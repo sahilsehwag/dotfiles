@@ -1,0 +1,48 @@
+#VARIABLES
+EDITOR=vim
+GEDITOR=gvim.exe
+ONEDRIVE=/mnt/c/Users/sehwa/OneDrive
+
+#NAVIGATION
+alias fcd='cd "$(find -type d -name "*" | fzf)"'
+alias fjh='cd "$(find /home -type d -name "*" | fzf)"'
+alias fjo='cd "$(find $ONEDRIVE -type d -name "*" | fzf)"'
+
+
+#FILES
+ffh(){
+	if [ $1 ] 
+	then
+		`$1 $(find /home -type f -name "*"| fzf)`
+	else
+		echo "No command specified"
+	fi
+}
+ffo(){
+	if [ $1 ] 
+	then
+		`$1 $(find $ONEDRIVE -type f -name "*"| fzf)`
+	else
+		echo "No command specified"
+	fi
+}
+ff(){
+	if [ $1 ] 
+	then
+		`$1 $(find -type f -name "*"| fzf)`
+	else
+		echo "No command specified"
+	fi
+}
+
+
+
+#UBUNTU APPLICATION
+alias fv='$EDITOR $(find -type f -name "*" | fzf)'
+alias fvh='$EDITOR $(find /home -type f -name "*" | fzf)'
+alias fvo='$EDITOR $(find $ONEDRIVE -type f -name "*" | fzf)'
+
+#WINDOWS APPLICATION
+alias fg='$GEDITOR $(find -type f -name "*" | fzf)'
+alias fgh='$GEDITOR $(find /home -type f -name "*" | fzf)'
+alias fgo='$GEDITOR $(find $ONEDRIVE -type f -name "*" | fzf)'

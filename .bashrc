@@ -134,39 +134,6 @@ PS1='\n\e[1;36m[\@] \e[37;1;92m\u \e[1;35m[\w]\e[0m\n\$ '
 #VI BINDNIGS
 set -o vi
 
-
-#FASD
-eval "$(fasd --init auto)"
-
-alias sd='fasd -sid'
-alias sf='fasd -sif'
-alias j='fasd_cd -d'
-alias z='fasd_cd -d'
-alias zz='fasd_cd -di'
-alias v="f -e vim"
-
-
-#TMUX SETTINGS
-alias tl='tmux list-sessions'
-alias tn='tmux new-session -s'
-alias tr='tmux rename-session -t'
-alias ta='tmux attach-session -t'
-alias tk='tmux kill-session -t'
-
-
-alias twn='tmux new-window -n'
-alias twk='tmux kill-window'
-alias twr='tmux rename-window -t'
-alias tws='tmux select-window -t'
-
-alias tpk='tmux kill-pane'
-alias td='tmux detach'
-
-alias tcs='tmux choose-session'
-alias tcw='tmux choose-window'
-alias tcp='tmux choose-pane'
-
-
 #COLORED MAN PAGES
 export LESS_TERMCAP_mb=$'\E[01;31m'             # begin blinking
 export LESS_TERMCAP_md=$'\E[01;31m'             # begin bold
@@ -175,3 +142,9 @@ export LESS_TERMCAP_se=$'\E[0m'                 # end standout-mode
 export LESS_TERMCAP_so=$'\E[01;44;33m'          # begin standout-mode - info box                              
 export LESS_TERMCAP_ue=$'\E[0m'                 # end underline
 export LESS_TERMCAP_us=$'\E[01;32m'             # begin underline
+
+
+#ALIASES
+source ~/aliases/.fzf
+source ~/aliases/.tmux
+source ~/aliases/.fasd
