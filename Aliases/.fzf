@@ -4,7 +4,7 @@ GEDITOR=gvim.exe
 ONEDRIVE=/mnt/c/Users/sehwa/OneDrive
 
 #NAVIGATION
-alias fcd='cd "$(find -type d -name "*" | fzf)"'
+alias fcd='cd "$(find "`pwd`" -type d -name "*" | fzf)"'
 alias fjh='cd "$(find /home -type d -name "*" | fzf)"'
 alias fjo='cd "$(find $ONEDRIVE -type d -name "*" | fzf)"'
 
@@ -13,7 +13,7 @@ alias fjo='cd "$(find $ONEDRIVE -type d -name "*" | fzf)"'
 ffh(){
 	if [ $1 ] 
 	then
-		`$1 $(find /home -type f -name "*"| fzf)`
+		$1 $(find /home -type f -name "*" | fzf)
 	else
 		echo "No command specified"
 	fi
@@ -21,7 +21,7 @@ ffh(){
 ffo(){
 	if [ $1 ] 
 	then
-		`$1 $(find $ONEDRIVE -type f -name "*"| fzf)`
+		$1 $(find $ONEDRIVE -type f -name "*" | fzf)
 	else
 		echo "No command specified"
 	fi
@@ -29,7 +29,7 @@ ffo(){
 ff(){
 	if [ $1 ] 
 	then
-		`$1 $(find -type f -name "*"| fzf)`
+		$1 $(find "`pwd`" -type f -name "*" | fzf)
 	else
 		echo "No command specified"
 	fi
@@ -38,11 +38,18 @@ ff(){
 
 
 #UBUNTU APPLICATION
-alias fv='$EDITOR $(find -type f -name "*" | fzf)'
+alias fv='$EDITOR $(find "`pwd`" -type f -name "*" | fzf)'
 alias fvh='$EDITOR $(find /home -type f -name "*" | fzf)'
 alias fvo='$EDITOR $(find $ONEDRIVE -type f -name "*" | fzf)'
 
+
+#LINUX PATH TO WINDOWS PATh
+#linuxToWin='sed -e \'s/\/mnt\///\' | sed -e \'s/c/C:/\''
+
 #WINDOWS APPLICATION
-alias fg='$GEDITOR $(find -type f -name "*" | fzf)'
-alias fgh='$GEDITOR $(find /home -type f -name "*" | fzf)'
-alias fgo='$GEDITOR $(find $ONEDRIVE -type f -name "*" | fzf)'
+#alias fg='$GEDITOR $(find "`pwd`" -type f -name "*" | fzf | $linuxToWin)'
+#alias fgh='$GEDITOR $(find /home -type f -name "*" | fzf | $linuxToWin)'
+#alias fgo='$GEDITOR $(find $ONEDRIVE -type f -name "*" | fzf | $linuxToWin)'
+alias fg='$GEDITOR $(find "`pwd`" -type f -name "*" | fzf | sed -e "s/\/mnt\///" | sed -e "s/c/C:/")' 
+alias fgh='$GEDITOR $(find /home -type f -name "*" | fzf | sed -e "s/\/mnt\///" | sed -e "s/c/C:/")'
+alias fgo='$GEDITOR $(find $ONEDRIVE -type f -name "*" | fzf | sed -e "s/\/mnt\///" | sed -e "s/c/C:/")'

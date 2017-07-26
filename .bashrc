@@ -127,6 +127,9 @@ export TERM="xterm-256color"
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 export FZF_DEFAULT_OPTS='--height 40% --reverse --border'
 
+#FASD
+eval "$(fasd --init auto)"
+
 #PROMPT
 #PS1='\e[37;1m\u \e[35m[\W]\e[0m > '
 PS1='\n\e[1;36m[\@] \e[37;1;92m\u \e[1;35m[\w]\e[0m\n\$ '

@@ -1,6 +1,4 @@
 #FASD
-eval "$(fasd --init auto)"
-
 alias sd='fasd -sid'
 alias sf='fasd -sif'
 alias j='fasd_cd -d'
