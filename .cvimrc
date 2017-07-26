@@ -1,0 +1,17 @@
+" UPDATE leader MAPPING
+let mapleader = " "
+
+" UNMAPPINGS
+unmap w
+unmap s
+
+"CUSTOM cvim MAPPINGS
+map zr :chrome://restart<CR>
+
+" SITE SPECIFIC CONFIGURATION
+site "file:///C:/Users/sehwa/OneDrive/Workspace/Projects/Scripts/Javascript%20Scripts/alertbeforeclose.js.html"{
+	call :pintab
+}
+
+" TEMP MAPPINGS
+"map <LEADER>t

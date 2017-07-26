@@ -1,0 +1,49 @@
+KEY MAPPINGS
+	map zf LinkHints.activateModeWithQueue
+
+	map sg Vomnibar.activate keyword=g
+	map sm Vomnibar.activate keyword=gm
+	map sw Vomnibar.activate keyword=w
+	map sy Vomnibar.activate keyword=y
+	map sb Vomnibar.activate keyword=b
+	#map sd Vomnibar.activate keyword=d
+	map sa Vomnibar.activate keyword=az
+	map sd Vomnibar.activate keyword=dw
+	map sq Vomnibar.activate keyword=q
+
+	map sG Vomnibar.activateInNewTab keyword=g
+	map sM Vomnibar.activateInNewTab keyword=gm
+	map sW Vomnibar.activateInNewTab keyword=w
+	map sY Vomnibar.activateInNewTab keyword=y
+	map sB Vomnibar.activateInNewTab keyword=b
+	map sD Vomnibar.activateInNewTab keyword=d
+	map sA Vomnibar.activateInNewTab keyword=az
+	map sD Vomnibar.activateInNewTab keyword=dw
+	map sQ Vomnibar.activateInNewTab keyword=q
+
+	unmap gt
+	unmap gT
+
+	#PORN MAPPINGS
+	map grk createTab http://www.realitykings.com/
+	map gzz createTab http://www.brazzers.com/
+	map gbb createTab http://www.bangbros.com/
+	map gdp createTab http://www.digitalplayground.com/
+
+	#TUMBLR MAPPINGS
+	map gts createTab http://www.tumblr.com/settings/account
+	map gtp createTab http://www.tumblr.com/settings/account
+	map gtc createTab http://www.tumblr.com/settings/account
+	map gth createTab http://www.tumblr.com/settings/account
+	map gtt createTab http://www.tumblr.com/settings/account
+SEARCH ENGINES
+	w: http://www.wikipedia.org/w/index.php?title=Special:Search&search=%s Wikipedia
+	g: http://www.google.com/search?q=%s Google
+	y: http://www.youtube.com/results?search_query=%s Youtube
+	gm: https://www.google.com/maps?q=%s Google maps
+	b: https://www.bing.com/search?q=%s Bing
+	d: https://duckduckgo.com/?q=%s DuckDuckGo
+	az: http://www.amazon.com/s/?field-keywords=%s Amazon
+	dw: http://www.merriam-webster.com/dictionary/%s Merriam-Webster
+	f: https://www.flipkart.com/search?otracker=start&as-show=on&as=off&q=%s Flipkart
+	q: https://www.qwant.com/?q=%s Qwant
