@@ -89,6 +89,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 
+
 #POWERLEVEL9K SETTINGS
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vi_mode)
@@ -106,6 +107,19 @@ POWERLEVEL9K_VI_COMMAND_MODE_STRING='NORMAL'
 POWERLEVEL9K_VI_MODE_INSERT_BACKGROUND='048'
 #POWERLEVEL9K_VI_COMMAND_FOREGROUND=''
 POWERLEVEL9K_VI_MODE_NORMAL_BACKGROUND='069'
+
+
+
+#FZF
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git "*"'
+export FZF_DEFAULT_OPTS='
+	--height 50%
+	--reverse
+	--margin 0,0,0,2
+	--color fg:-1,bg:-1,hl:33,fg+:254,bg+:235,hl+:33
+	--color info:136,prompt:136,pointer:230,marker:230,spinner:136
+'
 
 
 #ALIASES
