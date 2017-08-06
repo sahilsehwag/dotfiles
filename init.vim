@@ -8,7 +8,7 @@ call plug#begin()
 		Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 		Plug 'junegunn/fzf.vim'
 		Plug 'easymotion/vim-easymotion'
-		Plug 'scrooloose/nerdtree'
+		Plug 'vifm/neovim-vifm'
 	"EDITING
 		"OPERATORS
 			Plug 'tpope/vim-surround'
@@ -45,6 +45,7 @@ call plug#begin()
 		Plug 'okcompute/vim-ctrlp-session'
 		Plug 'jiangmiao/auto-pairs'
 		"Plug 'gorodinskiy/vim-coloresque'
+		"Plug 'hecal3/vim-leader-guide'
 	"MISCELLANOUS
 		Plug 'mhinz/vim-startify'
 		"Plug 'tpope/vim-capslock'
@@ -64,7 +65,6 @@ call plug#end()
 	set smartcase
 	set tabstop=4
 	set showcmd
-	set paste
 	set hidden
 	colorscheme Monokai
 "CONFIGURATION
@@ -93,7 +93,7 @@ call plug#end()
 		nnoremap <LEADER>bd :bdelete<CR>
 		nnoremap <LEADER>bfd :bdelete!<CR>
 	"WINDOW(SPLITS) MAPPINGS
-		nnoremap <Leader>wh :sp 
+		nnoremap <Leader>ws :sp 
 		nnoremap <Leader>wv :vsp 
 		nnoremap <Leader>wo :only<CR>
 
@@ -150,26 +150,34 @@ call plug#end()
 		"nmap <LEADER>jf <Plug>(easymotion-overwin-f)
 		"map <LEADER>js <Plug>(easymotion-overwin-f2)
 	"FZF
-		nnoremap <LEADER>no :FZF --no-reverse .<CR>
+		nnoremap <LEADER>nf :Files<CR>
+		nnoremap <LEADER>ng :Ag<CR>
+		nnoremap <LEADER>nl :Locate 
 		nnoremap <LEADER>nh :History<CR>
-		nnoremap <LEADER>nc :FZF --no-reverse %:p:h<CR>
+		nnoremap <LEADER>nF :FZF %:p:h<CR>
+		nnoremap <LEADER>nt :Tags<CR>
 
-		nnoremap <LEADER>nn :FZF --no-reverse /mnt/c/Users/sehwa/OneDrive<CR>
+		nnoremap <LEADER>nn :FZF /mnt/c/Users/sehwa/OneDrive<CR>
+		nnoremap M :History<CR>
+	"VIFM
+		nnoremap <LEADER>nv :VifmToggle .<CR>
+		nnoremap <LEADER>nV :VifmToggle %:p:h<CR>
 	"CTRLP
-	"NERDTREE
-		nnoremap <LEADER>nt :NERDTreeToggle<CR>
-		"nnoremap <LEADER>nc :NERDTree %<CR>
 	"VIM-CTRLP-SESSION
 		nnoremap <LEADER>sn :Session 
 		nnoremap <LEADER>sl :SLoad 
 		nnoremap <LEADER>sd :SDelete 
 		nnoremap <LEADER>sq :SQuit<CR>
 		nnoremap <LEADER>sp :CtrlPSession<CR>
+	"VIM-LEADER-GUIDE
+		"nnoremap <SPACE> :LeaderGuide '<LEADER>'<CR>
+		"nnoremap ; :LeaderGuide '<LOCALLEADER>'<CR>
+		"vnoremap <SPACE> :LeaderGuideVisual '<LEADER>'<CR>
+		"vnoremap ; :LeaderGuideVisual '<LOCALLEADER>'<CR>
+		
+		"DON'T UNCOMMENT THESE
+		"nmap <SPACE>. <Plug>leaderguide-global
+		"nmap ;. <Plug>leaderguide-buffer
 "VIMSCRIPT CODE
-	"AUTORELOAD .vimrc
-		augroup myvimrc
-			au!
-			au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
-		augroup END
 	"FILETYPE=jproperties FOR .txt FILES
 		autocmd BufNewFile,BufRead *.txt set syntax=jproperties
