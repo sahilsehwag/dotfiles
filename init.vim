@@ -57,6 +57,7 @@ call plug#end()
 
 "PREFERENCES
 	set nocompatible
+	set nowrap
 	set number
 	set relativenumber
 	set autoindent
@@ -76,7 +77,9 @@ call plug#end()
 	"NOTE: t=tabs b=buffers w=windows s=sessions c=registers/clipboards r=replace? n=navigation j=jumping f=find z|m?=miscellanous c=code/programming
 	"LEADER MAPPING
 		let mapleader = " "
+		let maplocalleader = ","
 		nmap <SPACE> <LEADER>
+		nnoremap ; :
 	"TAB MAPPINGS
 		nnoremap <LEADER>tn :tabnew<CR>
 		nnoremap <LEADER>td :tabclose<CR>
@@ -85,8 +88,6 @@ call plug#end()
 
 		nnoremap <LEADER>th :tabmove -<CR>
 		nnoremap <LEADER>tl :tabmove +<CR>
-		nnoremap <LEADER>tl :tabmove -<CR>
-		nnoremap <LEADER>tr :tabmove +<CR>
 	"BUFFER MAPPINGS
 		nnoremap H :bprevious<CR>
 		nnoremap L :bnext<CR>
@@ -153,6 +154,14 @@ call plug#end()
 		Submode n <enter> <Leader>b. :bnext<CR>
 		Submode n n :bnext<CR>
 		Submode n p :bprevious<CR>
+		SubmodeDefineEnd
+
+		SubmodeDefine tabs
+		Submode n <enter> <Leader>t.
+		Submode n n :tabnext<CR>
+		Submode n p :tabprevious<CR>
+		Submode n h :tabmove +1<CR>
+		Submode n l :tabmove -1<CR>
 		SubmodeDefineEnd
 "PLUGIN MAPPINGS
 	"VIM-EASY-ALIGN
