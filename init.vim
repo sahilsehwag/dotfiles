@@ -34,6 +34,8 @@ call plug#begin()
 		Plug 'flazz/vim-colorschemes'
 		Plug 'ryanoasis/vim-devicons'
 	"EXTENDING VIM
+		Plug 'kana/vim-submode'
+		Plug 'vim-scripts/vim-easy-submode'
 		Plug 'tpope/vim-repeat'
 		Plug 'kshenoy/vim-signature'
 		Plug 'joeytwiddle/sexy_scroller.vim'
@@ -139,7 +141,23 @@ call plug#end()
 		let g:session_autoload = 'yes'
 		let g:session_default_name = 'default'
 		let g:session_default_to_last = 'yes'
+	"VIM-SUBMODE
+		let g:submode_always_show_submode = 1
+		"let g:submode_keep_leaving_key = 1
+		"let g:submode_timeout = 0
+		let g:submode_timeoutlen = 1000
+	"VIM-EASY-SUBMODE
+		call easysubmode#load()
+
+		SubmodeDefine buffers
+		Submode n <enter> <Leader>b. :bnext<CR>
+		Submode n n :bnext<CR>
+		Submode n p :bprevious<CR>
+		SubmodeDefineEnd
 "PLUGIN MAPPINGS
+	"VIM-EASY-ALIGN
+		xmap ga <Plug>(EasyAlign)
+		nmap ga <Plug>(EasyAlign)
 	"EASYMOTION
 		let g:EasyMotion_smartcase = 1
 		nmap <LEADER>j <Plug>(easymotion-prefix)
@@ -169,6 +187,8 @@ call plug#end()
 		nnoremap <LEADER>sd :SDelete 
 		nnoremap <LEADER>sq :SQuit<CR>
 		nnoremap <LEADER>sp :CtrlPSession<CR>
+	"VIM-OVER
+		nmap <LEADER>ro :OverCommandLine<CR>
 	"VIM-LEADER-GUIDE
 		"nnoremap <SPACE> :LeaderGuide '<LEADER>'<CR>
 		"nnoremap ; :LeaderGuide '<LOCALLEADER>'<CR>
