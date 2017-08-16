@@ -1,17 +1,36 @@
-" UPDATE leader MAPPING
-let mapleader = " "
+"PREFERENCES
+	set localconfig
+	let configpath = "C:/Users/sehwa/OneDrive/Workspace/Projects/Scripts/Enviornment Setup Scripts/Dotfiles/.cvimrc"
 
-" UNMAPPINGS
-unmap w
-unmap s
+	set smoothscroll
+	set noautofocus
+	set scalehints
+	set linkanimations
+	"set showtabindices
 
-"CUSTOM cvim MAPPINGS
-map zr :chrome://restart<CR>
+	let mapleader = ","
+	let barposition = "bottom"
+	let blacklists = [""]
 
-" SITE SPECIFIC CONFIGURATION
-site "file:///C:/Users/sehwa/OneDrive/Workspace/Projects/Scripts/Javascript%20Scripts/alertbeforeclose.js.html"{
-	call :pintab
-}
-
-" TEMP MAPPINGS
-"map <LEADER>t
+	let scrollstep = 100
+	let scrollduration = 200
+	let searchlimit = 20
+	let zoomfactor = 0.1
+	let defaultengine = "google"
+"MAPPINGS
+	"CHROME/cVIM MAPPINGS (c)
+		map ; :
+		map <Leader>cr :chrome://restart<CR>
+	"SESSION MANAGEMENT (s)
+		map <Leader>sn :mksession<Space>
+		map <Leader>so :session<Space>
+		map <Leader>sd :delsession<Space>
+	"TAB MAPPINGS (t)
+		map <Leader>tl :buffer<Space>
+	"WINDOW MAPPINGS (w)
+	"OPTIONS (o)
+		map <Leader>oi :set showtabindices!<CR>
+"UNMAPPINGS
+	unmap w
+	unmap s
+"COMMANDS
