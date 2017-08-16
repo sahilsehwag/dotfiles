@@ -19,6 +19,7 @@ call plug#begin()
 
 			Plug 'kana/vim-textobj-line'
 			Plug 'junegunn/vim-after-object'
+		Plug 'machakann/vim-swap'
 		Plug 'chaoren/vim-wordmotion'
 		Plug 'junegunn/vim-easy-align'
 
@@ -34,6 +35,7 @@ call plug#begin()
 		Plug 'flazz/vim-colorschemes'
 		Plug 'ryanoasis/vim-devicons'
 	"EXTENDING VIM
+		Plug 'zirrostig/vim-schlepp'
 		Plug 'kana/vim-submode'
 		Plug 'vim-scripts/vim-easy-submode'
 		Plug 'tpope/vim-repeat'
@@ -50,6 +52,7 @@ call plug#begin()
 		"Plug 'hecal3/vim-leader-guide'
 	"MISCELLANOUS
 		Plug 'mhinz/vim-startify'
+		"Plug 'guns/xterm-color-table.vim'
 		"Plug 'tpope/vim-capslock'
 		"Plug 'vim-scripts/ScrollColors'
 call plug#end()
@@ -67,8 +70,9 @@ call plug#end()
 	set ignorecase
 	set smartcase
 	set tabstop=4
-	set showcmd
 	set hidden
+	set directory=~/.config/nvim/temp
+	set nobackup
 	colorscheme Monokai
 "CONFIGURATION
 	"PYTHON BINARIES
@@ -81,20 +85,23 @@ call plug#end()
 		nmap <SPACE> <LEADER>
 		nnoremap ; :
 	"TAB MAPPINGS
-		nnoremap <LEADER>tn :tabnew<CR>
-		nnoremap <LEADER>td :tabclose<CR>
+		nnoremap <LEADER>ta :tabnew<CR>
+		nnoremap <LEADER>tc :tabclose<CR>
 		nnoremap <LEADER>tn :tabnext<CR>
 		nnoremap <LEADER>tp :tabprevious<CR>
-
 		nnoremap <LEADER>th :tabmove -<CR>
 		nnoremap <LEADER>tl :tabmove +<CR>
 	"BUFFER MAPPINGS
 		nnoremap H :bprevious<CR>
 		nnoremap L :bnext<CR>
-		nnoremap <LEADER>bn :e 
+		nnoremap <LEADER>be :e 
 		nnoremap <LEADER>ba :badd 
 		nnoremap <LEADER>bd :bdelete<CR>
 		nnoremap <LEADER>bfd :bdelete!<CR>
+		nnoremap <LEADER>bn :bnext<CR>
+		nnoremap <LEADER>bp :bprevious<CR>
+		nnoremap <LEADER>bw :write<CR>
+		nnoremap <LEADER>bfw :write!<CR>
 	"WINDOW(SPLITS) MAPPINGS
 		nnoremap <Leader>ws :sp 
 		nnoremap <Leader>wv :vsp 
@@ -104,6 +111,22 @@ call plug#end()
 		nnoremap <C-K> <C-W><C-K>
 		nnoremap <C-L> <C-W><C-L>
 		nnoremap <C-H> <C-W><C-H>
+	"VIM MAPPINGS
+		nnoremap <LEADER>vs :source ~/.config/nvim/init.vim<CR>
+		nnoremap <LEADER>vrc :edit ~/.config/nvim/init.vim<CR>
+		nnoremap <LEADER>vq :q<CR>
+		nnoremap <LEADER>vfq :q!<CR>
+	"MISCELLANOUS MAPPINGS
+		"REPEAT LAST OPERATION ON A MATCH ON NEXT n MATCH
+			nnoremap Q :normal n.<CR>
+			"nnoremap Q @='n.'<CR>
+		"MOVE COMMANDS
+			nnoremap <C-DOWN> :m .+1<CR>==
+			nnoremap <C-UP> :m .-2<CR>==
+			inoremap <C-DOWN> <Esc>:m .+1<CR>==gi
+			inoremap <C-UP> <Esc>:m .-2<CR>==gi
+			vnoremap <C-DOWN> :m '>+1<CR>gv=gv
+			vnoremap <C-UP> :m '<-2<CR>gv=gv
 "PLUGIN CONFIGURATIONS
 	"SEXY-SCROLLER
 		let g:SexyScoller_ScrollTime = 10
@@ -164,6 +187,16 @@ call plug#end()
 		Submode n l :tabmove -1<CR>
 		SubmodeDefineEnd
 "PLUGIN MAPPINGS
+	"VIM-SCHLEPP
+		vmap <up>    <Plug>SchleppUp
+		vmap <down>  <Plug>SchleppDown
+		vmap <left>  <Plug>SchleppLeft
+		vmap <right> <Plug>SchleppRight
+
+		vmap Dk <Plug>SchleppDupUp
+		vmap Dj <Plug>SchleppDupDown
+		vmap Dh <Plug>SchleppDupLeft
+		vmap Dl <Plug>SchleppDupRight
 	"VIM-EASY-ALIGN
 		xmap ga <Plug>(EasyAlign)
 		nmap ga <Plug>(EasyAlign)
@@ -178,13 +211,15 @@ call plug#end()
 		"map <LEADER>js <Plug>(easymotion-overwin-f2)
 	"FZF
 		nnoremap <LEADER>nf :Files<CR>
+		nnoremap <LEADER>nc :FZF %:p:h<CR>
 		nnoremap <LEADER>ng :Ag<CR>
 		nnoremap <LEADER>nl :Locate 
+
 		nnoremap <LEADER>nh :History<CR>
-		nnoremap <LEADER>nF :FZF %:p:h<CR>
 		nnoremap <LEADER>nt :Tags<CR>
 
-		nnoremap <LEADER>nn :FZF /mnt/c/Users/sehwa/OneDrive<CR>
+		nnoremap <LEADER>nn :Files /mnt/c/Users/sehwa/OneDrive<CR>
+		nnoremap <LEADER>nu :Files ~<CR>
 		nnoremap M :History<CR>
 	"VIFM
 		nnoremap <LEADER>nv :VifmToggle .<CR>
