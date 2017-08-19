@@ -245,3 +245,6 @@ call plug#end()
 "VIMSCRIPT CODE
 	"FILETYPE=jproperties FOR .txt FILES
 		autocmd BufNewFile,BufRead *.txt set syntax=jproperties
+	"COLORING TRAILING WHITESPACES
+		highlight TrailingWhitespace ctermbg=135
+		call matchadd('TrailingWhitespace', '\s\+$', 100)
