@@ -82,7 +82,6 @@ call plug#end()
 	"LEADER MAPPING
 		let mapleader = " "
 		let maplocalleader = ","
-		nmap <SPACE> <LEADER>
 		nnoremap ; :
 	"TAB MAPPINGS
 		nnoremap <LEADER>ta :tabnew<CR>
