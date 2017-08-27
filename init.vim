@@ -12,29 +12,36 @@ call plug#begin()
 	"EDITING
 		"OPERATORS
 			Plug 'tpope/vim-surround'
+			Plug 'junegunn/vim-easy-align'
+			Plug 'thinca/vim-textobj-between'
+			Plug 'christoomey/vim-titlecase'
+		"TARGETS
 		"OBJECTS
 			Plug 'wellle/targets.vim'
 			Plug 'michaeljsmith/vim-indent-object'
 			Plug 'coderifous/textobj-word-column.vim'
-
-			Plug 'kana/vim-textobj-line'
 			Plug 'junegunn/vim-after-object'
-		Plug 'machakann/vim-swap'
+			Plug 'kana/vim-textobj-line'
+			Plug 'glts/vim-textobj-comment'
+		"CUSTOM
+			Plug 'kana/vim-textobj-user'
+			Plug 'kana/vim-operator-user'
 		Plug 'chaoren/vim-wordmotion'
-		Plug 'junegunn/vim-easy-align'
-
-		Plug 'terryma/vim-multiple-cursors'
-		"Plug 'christoomey/vim-titlecase'
-
-		Plug 'kana/vim-textobj-user'
-		Plug 'kana/vim-operator-user'
+		Plug 'machakann/vim-swap'
+		"Plug 'terryma/vim-multiple-cursors'
 	"SEARCHING
+		Plugin 'haya14busa/incsearch.vim'
+		Plugin 'haya14busa/incsearch-fuzzy.vim'
+		Plugin 'haya14busa/incsearch-easymotion.vim'
+		Plug 'haya14busa/vim-easyoperator-line'
+		Plug 'haya14busa/vim-easyoperator-phrase'
 	"LOOK&FEEL
 		Plug 'vim-airline/vim-airline'
 		Plug 'vim-airline/vim-airline-themes'
 		Plug 'flazz/vim-colorschemes'
-		Plug 'ryanoasis/vim-devicons'
+		"Plug 'ryanoasis/vim-devicons'
 	"EXTENDING VIM
+		Plug 'milsen/vim-operator-substitute'
 		Plug 'zirrostig/vim-schlepp'
 		Plug 'kana/vim-submode'
 		Plug 'vim-scripts/vim-easy-submode'
@@ -48,6 +55,7 @@ call plug#begin()
 		Plug 'haya14busa/vim-over'
 		Plug 'okcompute/vim-ctrlp-session'
 		Plug 'jiangmiao/auto-pairs'
+		"Plug 'haya14busa/vim-operator-flashy'
 		"Plug 'gorodinskiy/vim-coloresque'
 		"Plug 'hecal3/vim-leader-guide'
 	"MISCELLANOUS
@@ -127,6 +135,9 @@ call plug#end()
 			vnoremap <C-DOWN> :m '>+1<CR>gv=gv
 			vnoremap <C-UP> :m '<-2<CR>gv=gv
 "PLUGIN CONFIGURATIONS
+	"VIM-OPERATOR-SUBSTITUTE
+		let g:operator#substitute#default_flags = "g"
+		"let g:operator#substitute#default_delimiter = "#"
 	"SEXY-SCROLLER
 		let g:SexyScoller_ScrollTime = 10
 		let g:SexyScroller_CursorTime = 5
@@ -157,8 +168,6 @@ call plug#end()
 			"solarized dark 
 		"let g:airline#extensions#tabline#left_sep = ' '
 		"let g:airline#extensions#tabline#left_alt_sep = '|'
-	"VIM-TITLECASE
-		let g:titlecase_map_keys = 0
 	"VIM-SESSION
 		let g:session_autosave = 'yes'
 		let g:session_autoload = 'yes'
@@ -186,6 +195,40 @@ call plug#end()
 		Submode n l :tabmove -1<CR>
 		SubmodeDefineEnd
 "PLUGIN MAPPINGS
+	"INCSEARCH
+		map /  <Plug>(incsearch-forward)
+		map ?  <Plug>(incsearch-backward)
+		map g/ <Plug>(incsearch-stay)
+
+		let g:incsearch#auto_nohlsearch = 1
+		map n <Plug>(incsearch-nohl-n)<Plug>Pulse
+		map N <Plug>(incsearch-nohl-N)<Plug>Pulse
+		map * <Plug>(incsearch-nohl-*)<Plug>Pulse
+		map # <Plug>(incsearch-nohl-#)<Plug>Pulse
+		map g* <Plug>(incsearch-nohl-g*)<Plug>Pulse
+		map g# <Plug>(incsearch-nohl-g#)<Plug>Pulse
+	"INCSEARCH-FUZZY
+		map <LEADER>/ <Plug>(incsearch-fuzzy-/)
+		map <LEADER>? <Plug>(incsearch-fuzzy-?)
+		map <LEADER>s <Plug>(incsearch-fuzzy-stay)
+	"INCSEARCH-EASYMOTION
+		map <Leader>f/ <Plug>(incsearch-easymotion-/)
+		map <Leader>f? <Plug>(incsearch-easymotion-?)
+		map <Leader>fg/ <Plug>(incsearch-easymotion-stay)
+	"VIM-OPERATOR-SUBSTITUTE
+		map <Leader>r <Plug>(operator-substitute)
+		map R <Plug>(operator-substitute)$
+		map & <Plug>(operator-substitute-repeat)
+		map g& <Plug>(operator-substitute-repeat-no-flags)
+	"VIM-OPERATOR-FLASHY
+		map y <Plug>(operator-flashy)
+		map Y <Plug>(operator-flashy)$
+	"VIM-TEXTOBJ-COMMENT
+		let g:textobj_comment_no_default_mappings = 1
+		xmap a/ <Plug>(textobj-comment-a)
+		xmap i/ <Plug>(textobj-comment-i)
+		omap a/ <Plug>(textobj-comment-a)
+		omap i/ <Plug>(textobj-comment-i)
 	"VIM-SCHLEPP
 		vmap <up>    <Plug>SchleppUp
 		vmap <down>  <Plug>SchleppDown
@@ -242,6 +285,9 @@ call plug#end()
 		"nmap <SPACE>. <Plug>leaderguide-global
 		"nmap ;. <Plug>leaderguide-buffer
 "VIMSCRIPT CODE
+	"HIGHLIGHTS
+		highlight Search ctermfg=49 cterm=NONE gui=NONE
+		highlight IncSearchMatch ctermfg=black ctermbg=186
 	"FILETYPE=jproperties FOR .txt FILES
 		autocmd BufNewFile,BufRead *.txt set syntax=jproperties
 	"COLORING TRAILING WHITESPACES
