@@ -33,12 +33,20 @@
 #FZF
 	[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 	export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
-	export FZF_DEFAULT_OPTS='
+	export FZF_DEFAULT_OPTS=$'
 		--height 50%
 		--reverse
 		--margin 0,0,0,2
 		--color fg:-1,bg:-1,hl:33,fg+:254,bg+:235,hl+:33
 		--color info:136,prompt:136,pointer:230,marker:230,spinner:136
+		--preview \'
+			(highlight -O ansi -l {} ||
+			coderay {} ||
+			cat {} ||
+			tree -C {}) 2> /dev/null | head -500
+			\'
+		--preview-window right:50%:hidden
+		--bind ?:toggle-preview
 	'
 #ALIASES
 	source ~/aliases/.fzf
