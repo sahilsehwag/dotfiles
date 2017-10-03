@@ -1,13 +1,7 @@
 #VARIABLES
 	EDITOR=vim
 	GEDITOR=gvim.exe
-	ONEDRIVE=/mnt/c/Users/sehwa/OneDrive
-	EXEDIRS=("/mnt/c/Program Files" "/mnt/c/Program Files (x86)" /mnt/c/Users/sehwa/AppData/Roaming /mnt/c/Users/sehwa/AppData/Local)
-	VDIRS=(/mnt/c/Users/sehwa/Desktop)
-	MDIRS=(/mnt/c/Users/sehwa/Desktop)
-	VLC="/mnt/c/Program Files (x86)/VideoLAN/VLC/vlc.exe"
-	WMP="/mnt/c/Program Files (x86)/Windows Media Player/wmplayer.exe"
-
+	DRIVE=~/Google\ Drive
 	alias fzf='fzf-tmux'
 #GENERAL FUNCTIONS
 	fd(){
@@ -21,7 +15,7 @@
 	ffh(){
 		if [ $1 ] 
 		then
-			$1 "$(find /home -type f -name "*" | fzf)"
+			$1 "$(find ~ -type f -name "*" | fzf)"
 		else
 			echo "No command specified"
 		fi
@@ -29,7 +23,7 @@
 	ffo(){
 		if [ $1 ] 
 		then
-			$1 "$(find $ONEDRIVE -type f -name "*" | fzf)"
+			$1 "$(find $DRIVE -type f -name "*" | fzf)"
 		else
 			echo "No command specified"
 		fi
@@ -44,17 +38,17 @@
 	}
 #NAVIGATION
 	alias fj='cd "$(find "`pwd`" -type d -name "*" | fzf)"'
-	alias fjh='cd "$(find /home -type d -name "*" | fzf)"'
-	alias fjo='cd "$(find $ONEDRIVE -type d -name "*" | fzf)"'
+	alias fjh='cd "$(find ~ -type d -name "*" | fzf)"'
+	alias fjo='cd "$(find $DRIVE -type d -name "*" | fzf)"'
 #TOOLS
 	#VIM
 		alias fv='$EDITOR "$(find "`pwd`" -type f -name "*" | fzf)"'
-		alias fvh='$EDITOR "$(find /home -type f -name "*" | fzf)"'
-		alias fvo='$EDITOR "$(find $ONEDRIVE -type f -name "*" | fzf)"'
+		alias fvh='$EDITOR "$(find ~ -type f -name "*" | fzf)"'
+		alias fvo='$EDITOR "$(find $DRIVE -type f -name "*" | fzf)"'
 	#VIFM
 		alias vifm.='vifm "$(find "`pwd`" -type d -name "*" | fzf)"'
-		alias vifmo='vifm "$(find $ONEDRIVE -type d -name "*" | fzf)"'
-		alias vifmh='vifm "$(find /home -type d -name "*" | fzf)"'
+		alias vifmo='vifm "$(find $DRIVE -type d -name "*" | fzf)"'
+		alias vifmh='vifm "$(find ~ -type d -name "*" | fzf)"'
 	#TMUX
 		#alias fts='tmux switch -t $(tmux list-sessions | awk "{ print $1 }" | sed "s/://" | fzf-tmux)'
 		#alias ftw='tmux select-window -t $(tmux list-sessions | awk "{ print $1 }" | sed "s/://" | fzf-tmux)'
@@ -127,8 +121,8 @@
 #WINDOWS APPLICATION
 	#GVIM
 		alias fg='$GEDITOR "$(find "`pwd`" -type f -name "*" | fzf | sed -e "s/\/mnt\///" | sed -e "s/c/C:/")"' 
-		alias fgh='$GEDITOR "$(find /home -type f -name "*" | fzf | sed -e "s/\/mnt\///" | sed -e "s/c/C:/")"'
-		alias fgo='$GEDITOR "$(find $ONEDRIVE -type f -name "*" | fzf | sed -e "s/\/mnt\///" | sed -e "s/c/C:/")"'
+		alias fgh='$GEDITOR "$(find ~ -type f -name "*" | fzf | sed -e "s/\/mnt\///" | sed -e "s/c/C:/")"'
+		alias fgo='$GEDITOR "$(find $DRIVE -type f -name "*" | fzf | sed -e "s/\/mnt\///" | sed -e "s/c/C:/")"'
 	#MEDIA
 		#alias wmp='"$WMP" "$(find "${MDIRS[@]}" -type f -name "*.mp3" 2> /dev/null | fzf)"'
 #APPLICATIONS
