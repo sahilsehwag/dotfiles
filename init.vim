@@ -268,7 +268,7 @@ call plug#end()
 		nnoremap <LEADER>nh :History<CR>
 		nnoremap <LEADER>nt :Tags<CR>
 
-		nnoremap <LEADER>nn :Files /mnt/c/Users/sehwa/OneDrive<CR>
+		nnoremap <LEADER>nn :Files ~/Google\ Drive<CR>
 		nnoremap <LEADER>nu :Files ~<CR>
 		nnoremap M :History<CR>
 	"VIFM
