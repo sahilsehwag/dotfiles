@@ -1,0 +1,500 @@
+{
+    //BASIC PREFERENCES
+    "window.zoomLevel": 0,
+
+
+    //LOOK & FEEL
+    "workbench.colorTheme": "Sublime Material Theme - Dark",
+    "editor.fontFamily": "'Roboto Mono For Powerline', Consolas, 'Courier New', monospace",
+    // "editor.fontWeight": "bold",
+
+
+    // MISCELLANOUS
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/.DS_Store": true,
+        "**/.vscode": true
+    },
+
+
+    //VIM configuration
+    "vim.easymotion": true,
+    "vim.incsearch": true,
+    "vim.useSystemClipboard": true,
+    "vim.useCtrlKeys": true,
+    "vim.leader": " ",
+    "vim.timeout": 1000,
+    "vim.easymotionMarkerYOffset": 14,
+    "vim.foldfix": true,
+
+
+    //VIM MAPPINGS
+        // b = bookmarks (Bookmarks extension required)
+        // c = commenting
+        // d = debugging
+        // e = editors(tabs)
+        // f = filesystem operations (file and directory handling)
+        // g = gui mappings
+        // n = navigation(goto) mappings
+        // s = shell/terminal/repl
+        // t = tasks
+        // w = windows
+        // z = miscellanous
+
+
+    "vim.otherModesKeyBindingsNonRecursive": [
+        //FILESYSTEM MAPPINGS & EXPLORER MAPPINGS (FILE AND DIRECTORY HANDLING)
+        {
+            "before": ["leader", "f", "f"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "explorer.newFile",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "before": ["leader", "f", "n"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "workbench.action.files.newUntitledFile",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "before": ["leader", "f", "d"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "explorer.newFolder",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "before": ["leader", "f", "w"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "workbench.action.files.showOpenedFileInNewWindow",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "before": ["leader", "f", "s"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "workbench.action.files.saveAs",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "before": ["leader", "f", "F"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "workbench.action.files.openFile",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "before": ["leader", "f", "D"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "workbench.action.files.openFolder",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "before": ["leader", "f", "q", "o"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "workbench.action.closeFolder",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "before": ["leader", "f", "e"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "workbench.view.explorer",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "before": ["leader", "f", "r"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "workbench.files.action.refreshFilesExplorer",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "before": ["leader", "f", "c"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "workbench.files.action.collapseExplorerFolders",
+                    "args": []
+                }
+            ]
+        },
+
+        
+
+        // TAB MAPPINGS (EDITOR)
+        {
+            "before": ["leader", "t", "n"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "workbench.action.files.newUntitledFile",
+                    "args": []
+                }
+            ]
+        }, 
+        {
+            "before": ["leader", "t", "c"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "workbench.action.closeActiveEditor",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "before": ["leader", "t", "a"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "workbench.action.closeAllEditors",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "before": ["leader", "t", "l"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "workbench.action.closeEditorsToTheLeft",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "before": ["leader", "t", "r"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "workbench.action.closeEditorsToTheRight",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "before": ["leader", "t", "o"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "workbench.action.closeOtherEditors",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "before": ["leader", "t", "R"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "workbench.action.reopenClosedEditor",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "before": ["H"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "workbench.action.previousEditor",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "before": ["L"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "workbench.action.nextEditor",
+                    "args": []
+                }
+            ]
+        },
+        
+
+
+        //WINDOW MAPPINGS
+        {
+            "before": ["leader", "w", "n"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "workbench.action.newWindow",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "before": ["leader", "w", "r"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "workbench.action.reloadWindow",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "before": ["leader", "w", "c"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "workbench.action.closeWindow",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "before": ["leader", "w", "s"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "workbench.action.switchWindow",
+                    "args": []
+                }
+            ]
+        },
+        
+
+
+        // JUMP MAPPINGS
+        {
+            "before": ["leader", "j", "i"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "editor.action.goToImplementation",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "before": ["leader", "j", "t"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "editor.action.goToTypeDefinition",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "before": ["leader", "j", "d"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "editor.action.goToDeclaration",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "before": ["leader", "j", "I"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "editor.action.peekImplementation",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "before": ["leader", "j", "D"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "editor.action.peekDefinition",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "before": ["leader", "j", "r"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "editor.action.showReferences",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "before": ["leader", "j", "w"],
+            "after": ["<Leader>", "<Leader>", "w"]
+        },
+        {
+            "before": ["leader", "j", "b"],
+            "after": ["<Leader>", "<Leader>", "b"]
+        },
+        {
+            "before": ["leader", "j", "e"],
+            "after": ["<Leader>", "<Leader>", "e"]
+        },
+        {
+            "before": ["leader", "j", "g", "e"],
+            "after": ["<Leader>", "<Leader>", "g", "e"]
+        },
+        {
+            "before": ["leader", "j", "f"],
+            "after": ["<Leader>", "<Leader>", "f"]
+        },
+        {
+            "before": ["leader", "j", "F"],
+            "after": ["<Leader>", "<Leader>", "F"]
+        },
+        {
+            "before": ["leader", "j", "t"],
+            "after": ["<Leader>", "<Leader>", "t"]
+        },
+        {
+            "before": ["leader", "j", "T"],
+            "after": ["<Leader>", "<Leader>", "T"]
+        },
+        {
+            "before": ["leader", "j", "s"],
+            "after": ["<Leader>", "<Leader>", "s"]
+        },
+
+
+        // CODE RELATED MAPPINS
+        {
+            "before": ["leader", "c", "c"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "editor.action.addCommentLine",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "before": ["leader", "c", "u"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "editor.action.removeCommentLine",
+                    "args": []
+                }
+            ]
+        },
+    
+
+        // DEBUGGING MAPPPINGS
+        {
+            "before": ["leader", "d", "t"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "editor.debug.action.toggleBreakpoint",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "before": ["leader", "d", "r"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "editor.debug.action.removeBreakpoint",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "before": ["leader", "d", "c"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "editor.debug.action.conditionalBreakpoint",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "before": ["leader", "d", "a"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "workbench.debug.viewlet.action.removeAllBreakpoints",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "before": ["leader", "d", "e"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "workbench.debug.viewlet.action.enableAllBreakpoints",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "before": ["leader", "d", "d"],
+            "after": [],
+            "commands": [
+                {
+                    "command": "workbench.debug.viewlet.action.disableAllBreakpoints",
+                    "args": []
+                }
+            ]
+        },
+
+
+
+        // TEXT EDITING/FORMATTING MAPPINGS
+        {
+            "before": ["g", "s"],
+            "after": ["y", "s"]
+        }
+
+
+        // TASK MAPPINGS
+        // SHELL/TERMINAL MAPPINGS
+        // GUI MAPPPINGS
+        // BOOKMARK MAPPINGS
+    ],
+    "python.linting.enabledWithoutWorkspace": false,
+    "vim.disableAnnoyingNeovimMessage": true
+}

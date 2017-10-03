@@ -30,9 +30,9 @@ call plug#begin()
 		Plug 'machakann/vim-swap'
 		"Plug 'terryma/vim-multiple-cursors'
 	"SEARCHING
-		Plugin 'haya14busa/incsearch.vim'
-		Plugin 'haya14busa/incsearch-fuzzy.vim'
-		Plugin 'haya14busa/incsearch-easymotion.vim'
+		Plug 'haya14busa/incsearch.vim'
+		Plug 'haya14busa/incsearch-fuzzy.vim'
+		Plug 'haya14busa/incsearch-easymotion.vim'
 		Plug 'haya14busa/vim-easyoperator-line'
 		Plug 'haya14busa/vim-easyoperator-phrase'
 	"LOOK&FEEL
@@ -85,6 +85,14 @@ call plug#end()
 "CONFIGURATION
 	"PYTHON BINARIES
 		let g:python_host_prog = '/usr/bin/python3'
+	"HIGHLIGHTS
+		highlight Search ctermfg=49 cterm=NONE gui=NONE
+		highlight IncSearchMatch ctermfg=black ctermbg=186
+		"COLORING TRAILING WHITESPACES
+			"highlight TrailingWhitespace ctermbg=135
+			"call matchadd('TrailingWhitespace', '\s\+$', 100)
+	"FILETYPE=jproperties FOR TEXT FILES
+		autocmd BufNewFile,BufRead *.txt set syntax=jproperties
 "MAPPINGS
 	"NOTE: t=tabs b=buffers w=windows s=sessions c=registers/clipboards r=replace? n=navigation j=jumping f=find z|m?=miscellanous c=code/programming
 	"LEADER MAPPING
@@ -285,11 +293,88 @@ call plug#end()
 		"nmap <SPACE>. <Plug>leaderguide-global
 		"nmap ;. <Plug>leaderguide-buffer
 "VIMSCRIPT CODE
-	"HIGHLIGHTS
-		highlight Search ctermfg=49 cterm=NONE gui=NONE
-		highlight IncSearchMatch ctermfg=black ctermbg=186
-	"FILETYPE=jproperties FOR .txt FILES
-		autocmd BufNewFile,BufRead *.txt set syntax=jproperties
-	"COLORING TRAILING WHITESPACES
-		highlight TrailingWhitespace ctermbg=135
-		call matchadd('TrailingWhitespace', '\s\+$', 100)
+	"OPERATORS
+	"TEXT OBJECTS
+		"LINE
+			vnoremap il :<C-u>normal! ^v$h<CR>
+			onoremap il :<C-u>normal! ^v$h<CR>
+
+			vnoremap al :<C-u>normal! Vh<CR>
+			onoremap al :<C-u>normal! Vh<CR>
+		"ENTIRE
+			vnoremap ie :<C-u>normal! ggVG<CR>
+			onoremap ie :<C-u>normal! ggVG<CR>
+		"AFTER
+			"TEXT OBJECT
+				function! TextObjectAfter(targetChar)
+					"GETTING COLUMN NUMBER OF CHARACTER AFTER THE targetChar
+						execute 'normal! 0' . v:count . 'f' . a:targetChar
+						let targetCharCol = virtcol('.')
+						let targetCharNormCol = getpos('.')[2]
+					"IF CHARACTER AFTER targetChar IS SPACE THEN SKIP OVER THE SPACE CHARACTER
+						if getline('.')[targetCharNormCol] == ' '
+							execute 'normal! ' . string(targetCharCol+2) . '|v$h'
+						else
+							execute 'normal! ' . string(targetCharCol+1) . '|v$h'
+						endif
+				endfunction
+
+				function! TextObjectAfterAnyChar()
+					"GETTING TARGET CHAR
+						call inputsave()
+						let targetChar = getchar()
+						call inputrestore()
+					"GETTING COLUMN NUMBER OF CHARACTER AFTER THE targetChar
+						execute 'normal! 0' . v:count . 'f' . nr2char(targetChar)
+						let targetCharCol = virtcol('.')
+						let targetCharNormCol = getpos('.')[2]
+					"IF CHARACTER AFTER targetChar IS SPACE THEN SKIP OVER THE SPACE CHARACTER
+						if getline('.')[targetCharNormCol] == ' '
+							execute 'normal! ' . string(targetCharCol+2) . '|v$h'
+						else
+							execute 'normal! ' . string(targetCharCol+1) . '|v$h'
+						endif
+				endfunction
+			"MAPPINGS
+				vnoremap <silent> a= :<C-u>call TextObjectAfter('=')<CR>
+				onoremap <silent> a= :<C-u>call TextObjectAfter('=')<CR>
+
+				vnoremap <silent> a: :<C-u>call TextObjectAfter(':')<CR>
+				onoremap <silent> a: :<C-u>call TextObjectAfter(':')<CR>
+
+				vnoremap <silent> a- :<C-u>call TextObjectAfter('-')<CR>
+				onoremap <silent> a- :<C-u>call TextObjectAfter('-')<CR>
+
+				onoremap <silent> ga :<C-u>call TextObjectAfterAnyChar()<CR>
+	"FOLDTEXT
+		function! MinimalFoldText() abort
+			let line = substitute(getline(v:foldstart), '\t', repeat(' ', &tabstop), 'g')
+
+			let w = winwidth(0) - &foldcolumn - (&number ? &numberwidth+2 : 0)
+			let foldSize = 1 + v:foldend - v:foldstart
+			let foldSizeStr = foldSize . "L"
+			let expansionString = repeat(" ", w - strwidth(foldSizeStr.line))
+			return line . expansionString . foldSizeStr
+		endfunction
+	"RELOAD .vimrc
+		"augroup myvimrc
+			"au!
+			"au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc,init.vim so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
+		"augroup END
+	"SWAPFILE HANDLING (NOT WORKING)
+		"NOTE: IF SWAP FILE IS OLDER THEN DELETING IT OTHERWISE RECOVERING IT
+		augroup SwapHandler
+			autocmd!
+			autocmd SwapExists * call SwapHandler(expand('<afile>:p'))
+		augroup END
+
+		function! SwapHandler(filename)
+			if getftime(v:swapname) < getftime(a:filename)
+				call delete(v:swapname)
+				let v:swapchoice = 'e'
+				"echom 'OLD SWAP FILE DELETED: SWAP DELETED'
+			else
+				let v:swapchoice = 'o'
+				"echom 'SWAP FILE DETECTED: SWAP RECOVERED'
+			endif
+		endfunction

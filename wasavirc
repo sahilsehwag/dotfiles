@@ -7,9 +7,11 @@ set ignorecase
 set searchincr
 set tabstop=4
 set noerrorbells
+set nolaunchbell
 set autowrite
 set theme=solarized
 
 
 ;MAPPINGS
 map ; :
+map ` :wq<enter>

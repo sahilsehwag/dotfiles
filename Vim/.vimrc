@@ -79,7 +79,6 @@ Plugin 'tpope/vim-unimpaired'
 Plugin 'junegunn/vim-after-object'
 "Plugin 'rhysd/vim-textobj-anyblock'    #DOESN'T WORKS PROPERLY
 Plugin 'kana/vim-textobj-entire'
-"Plugin 'bkad/CamelCaseMotion'
 Plugin 'chaoren/vim-wordmotion'
 Plugin 'coderifous/textobj-word-column.vim'
 
@@ -179,6 +178,11 @@ Plugin 'derekwyatt/vim-scala'
 Plugin 'wavded/vim-stylus'
 
 "TOTRY
+"Plugin 'vim-showtime'
+"Plugin 'vim-visualstar'
+"Plugin 'osyo-manga/vim-operator-search'
+"Plugin 'syngan/vim-operator-furround'
+"Plugin 'osyo-manga/vim-operator-blockwise'
 "Plugin 't9md/vim-smalls'
 "Plugin 'machakann/vim-sandwich'
 "Plugin 'rhysd/vim-operator-surround'
