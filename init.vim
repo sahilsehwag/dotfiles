@@ -58,8 +58,11 @@ call plug#begin()
 		"Plug 'haya14busa/vim-operator-flashy'
 		"Plug 'gorodinskiy/vim-coloresque'
 		"Plug 'hecal3/vim-leader-guide'
+	"SYNTAX
+		Plug 'plasticboy/vim-markdown'
 	"MISCELLANOUS
 		Plug 'mhinz/vim-startify'
+		Plug 'suan/vim-instant-markdown'
 		"Plug 'guns/xterm-color-table.vim'
 		"Plug 'tpope/vim-capslock'
 		"Plug 'vim-scripts/ScrollColors'
@@ -117,7 +120,7 @@ call plug#end()
 		nnoremap <LEADER>bp :bprevious<CR>
 		nnoremap <LEADER>bw :write<CR>
 		nnoremap <LEADER>bfw :write!<CR>
-	"WINDOW(SPLITS) MAPPINGS
+	"WINDOW MAPPINGS
 		nnoremap <Leader>ws :sp 
 		nnoremap <Leader>wv :vsp 
 		nnoremap <Leader>wo :only<CR>
@@ -131,6 +134,12 @@ call plug#end()
 		nnoremap <LEADER>vrc :edit ~/.config/nvim/init.vim<CR>
 		nnoremap <LEADER>vq :q<CR>
 		nnoremap <LEADER>vfq :q!<CR>
+		nnoremap <LEADER>vt :terminal<CR>
+	"LOCAL LEADER MAPPINGS
+		"NOTES
+	"ABBREVIATIONS @TODO
+		abbreviate chk ✓
+		abbreviate crs ✗
 	"MISCELLANOUS MAPPINGS
 		"REPEAT LAST OPERATION ON A MATCH ON NEXT n MATCH
 			nnoremap Q :normal n.<CR>
