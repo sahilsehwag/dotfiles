@@ -70,6 +70,7 @@ call plug#end()
 
 
 "PREFERENCES
+	set mouse=a
 	set nocompatible
 	set nowrap
 	set number
