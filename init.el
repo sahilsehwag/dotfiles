@@ -167,7 +167,7 @@
 			;(evil-vimish-fold-mode 1)
 	;ORG-MODE
 		(add-to-list 'load-path "~/.emacs.d/packages/org-mode/lisp")
-	;;VIMISH-FOLD
+	;VIMISH-FOLD
 		;(add-to-list 'load-path "~/.emacs.d/packages/vimish-fold")
 		;(require 'vimish-fold)
 		;(vimish-fold-global-mode 1)
