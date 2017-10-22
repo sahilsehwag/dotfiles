@@ -3,11 +3,11 @@ call plug#begin()
 	"DEVELOPMENT
 		Plug '0x84/vim-coderunner'
 		Plug 'metakirby5/codi.vim'
-		"Plug 'airblade/vim-gitgutter'
-		"Plug 'chrisbra/changesPlugin'
-	"CODING
+		Plug 'vim-syntastic/syntastic'
 		Plug 'scrooloose/nerdcommenter'
-		Plug 'rhysd/devdocs.vim'
+		"Plug 'rhysd/devdocs.vim'
+		Plug 'rizzatti/dash.vim'
+		"Plug 'airblade/vim-gitgutter'
 	"FILESYSTEM
 		Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 		Plug 'junegunn/fzf.vim'
@@ -26,7 +26,7 @@ call plug#begin()
 			Plug 'wellle/targets.vim'
 			Plug 'michaeljsmith/vim-indent-object'
 			Plug 'coderifous/textobj-word-column.vim'
-			Plug 'junegunn/vim-after-object'
+			"Plug 'junegunn/vim-after-object'
 			Plug 'kana/vim-textobj-line'
 			Plug 'glts/vim-textobj-comment'
 		"CUSTOM
@@ -36,6 +36,10 @@ call plug#begin()
 		Plug 'machakann/vim-swap'
 		"Plug 'terryma/vim-multiple-cursors'
 		"Plug 'terryma/vim-expand-region'
+	"WRITTING
+		Plug 'reedes/vim-pencil'
+		Plug 'panozzaj/vim-autocorrect'
+		"Plug 'dbmrq/vim-ditto'
 	"SEARCHING
 		Plug 'haya14busa/incsearch.vim'
 		Plug 'haya14busa/incsearch-fuzzy.vim'
@@ -46,9 +50,10 @@ call plug#begin()
 		Plug 'vim-airline/vim-airline'
 		Plug 'vim-airline/vim-airline-themes'
 		Plug 'flazz/vim-colorschemes'
-		"Plug 'ryanoasis/vim-devicons'
+		Plug 'ryanoasis/vim-devicons'
 		"Plug 'augustold/vim-airline-colornum'
 	"EXTENDING VIM
+		Plug 'vim-scripts/WholeLineColor'
 		Plug 'zirrostig/vim-schlepp'
 		Plug 'kana/vim-submode'
 		Plug 'vim-scripts/vim-easy-submode'
@@ -63,9 +68,16 @@ call plug#begin()
 		Plug 'okcompute/vim-ctrlp-session'
 		Plug 'jiangmiao/auto-pairs'
 		Plug 'haya14busa/vim-operator-flashy'
+		Plug 'reedes/vim-wheel'
+		Plug 'tyru/open-browser.vim'
+		Plug 'junegunn/goyo.vim'
+		Plug 'junegunn/limelight.vim'
 		"Plug 'gorodinskiy/vim-coloresque'
 		"Plug 'hecal3/vim-leader-guide'
+		"Plug 'Yggdroot/indentLine'
 		"Plug '907th/vim-auto-save'
+		"Plug 'chrisbra/changesPlugin'
+		"Plug 'severin-lemaignan/vim-minimap'
 	"SYNTAX
 		Plug 'plasticboy/vim-markdown'
 	"MISCELLANOUS
@@ -95,6 +107,8 @@ call plug#end()
 	set directory=~/.config/nvim/temp
 	set nobackup
 	colorscheme Monokai
+	set clipboard=unnamed
+	set fillchars=fold:\ 
 "CONFIGURATION
 	"PYTHON BINARIES
 		let g:python_host_prog = '/usr/bin/python3'
@@ -108,6 +122,9 @@ call plug#end()
 		autocmd BufNewFile,BufRead *.txt set syntax=jproperties
 "MAPPINGS
 	"NOTE: t=tabs b=buffers w=windows s=sessions c=registers/clipboards r=replace? n=navigation j=jumping f=find z|m?=miscellanous c=code/programming
+	"MAIN LAYOUT MAPPINGS
+		nnoremap [P :normal! O<Esc>]p<CR>
+		nnoremap ]P :normal! o<Esc>]p<CR>
 	"LEADER MAPPING
 		let mapleader = " "
 		let maplocalleader = ","
@@ -147,8 +164,14 @@ call plug#end()
 		nnoremap <LEADER>vt :terminal<CR>
 		nnoremap <Leader>vi :PlugInstall<CR>
 		nnoremap <Leader>vu :PlugClean<CR>
+		nnoremap <Leader>vw :w<CR>
 		nnoremap <LEADER>vq :q<CR>
 		nnoremap <LEADER>vfq :q!<CR>
+
+		nnoremap <Leader>va :call AutoCorrect()<CR>
+		nnoremap <Leader>vp :PencilToggle<CR>
+		nnoremap <Leader>vg :Goyo<CR>
+		nnoremap <Leader>vl :Limelight!!<CR>
 	"ABBREVIATIONS @TODO
 		abbreviate chk ✓
 		abbreviate crs ✖
@@ -190,17 +213,47 @@ call plug#end()
 			nnoremap <LEADER>nv :VifmToggle .<CR>
 			nnoremap <LEADER>nV :VifmToggle %:p:h<CR>
 	"DEVELOPMENT
+		"DEVDOCS
+			nmap <Leader>fD :DevDocs<CR>
+			nmap <Leader>fd <Plug>(devdocs-under-cursor)
 		"VIM-CODERUNNER
 			let g:vcr_no_mappings = 1
 			nnoremap <LocalLeader>cr :RunCode<CR>
 			vnoremap <LocalLeader>cr :RunCode<CR>
-		"DEVDOCS
-			nmap <Leader>cd :DevDocs<CR>
-			nmap <Leader>cD <Plug>(devdocs-under-cursor)
 		"CODI
 			nmap <LocalLeader>ci :Codi!!<CR>
+		"DASH
+			nnoremap <Leader>fd :Dash<CR>
+			nnoremap <Leader>fD :Dash<space>
 	"EXTENDING VIM
+		"OPEN-BROWSER
+			let g:netrw_nogx = 1
+			"SMART SEARCH
+				nmap <Leader>fo <Plug>(openbrowser-smart-search)
+				vmap <Leader>fo <Plug>(openbrowser-smart-search)
+			"SEARCH WORD UNDER CURSOR
+				nmap <Leader>fs <Plug>(openbrowser-search)
+				vmap <Leader>fs <Plug>(openbrowser-search)
+			"OPEN URI UNDER CURSOR
+				nmap <Leader>fl <Plug>(openbrowser-open)
+				vmap <Leader>fl <Plug>(openbrowser-open)
+			"CUSTOM MAPPINGS
+				nmap <Leader>fg :execute ":OpenBrowserSearch -github " GetWordUnderCursor() <CR>
+				vmap <Leader>fg :<C-w>execute ":OpenBrowserSearch -github " GetSelectedText() <CR>
+		"VIM-WHEEL
+			let g:wheel#map#up   = '<D-k>'
+			let g:wheel#map#down = '<D-j>'
+			let g:wheel#map#mouse = 1
+		"WHOLELINECOLOR
+			let g:wholelinecolor_leader = ','
+			highlight WLCBlackBackground  ctermbg=233 guibg=#121212
+			highlight WLCRedBackground    ctermbg=52  guibg=#882323
+			highlight WLCBlueBackground   ctermbg=17  guibg=#003366
+			highlight WLCPurpleBackground ctermbg=53  guibg=#732c7b
+			highlight WLCGreyBackground   ctermbg=238 guibg=#464646
+			highlight WLCGreenBackground  ctermbg=22  guibg=#005500
 		"VIM-OPERATOR-FLASHY
+			let g:operator#flashy#group = 'Visual'
 			map y <Plug>(operator-flashy)
 			map Y <Plug>(operator-flashy)$
 		"VIM-SEARCH-PULSE
@@ -280,6 +333,11 @@ call plug#end()
 		"VIM-EASY-ALIGN
 			xmap ga <Plug>(EasyAlign)
 			nmap ga <Plug>(EasyAlign)
+	"WRITTING
+		"VIM-PENCIL
+			nnoremap <Leader>vp :PencilToggle<CR>
+		"VIM-AUTOCORRECT
+			nnoremap <Leader>va :call AutoCorrect()<CR>
 	"LOOK & FEEL
 		"VIM-AIRLINE
 			let g:airline_powerline_fonts = 1
@@ -412,4 +470,16 @@ call plug#end()
 				let v:swapchoice = 'o'
 				"echom 'SWAP FILE DETECTED: SWAP RECOVERED'
 			endif
+		endfunction
+	"HELPER FUNCTIONS
+		function! GetWordUnderCursor()
+			execute 'normal! "ayiw'
+			let value = @a
+			return value
+		endfunction
+
+		"NOT WORKING PROPERLY
+		function! GetSelectedText()
+			execute 'y'
+			return @"
 		endfunction
