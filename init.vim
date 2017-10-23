@@ -5,9 +5,13 @@ call plug#begin()
 		Plug 'metakirby5/codi.vim'
 		Plug 'vim-syntastic/syntastic'
 		Plug 'scrooloose/nerdcommenter'
-		"Plug 'rhysd/devdocs.vim'
 		Plug 'rizzatti/dash.vim'
+		"Plug 'vim-scripts/AutoComplPop'
+		"Plug 'rhysd/devdocs.vim'
 		"Plug 'airblade/vim-gitgutter'
+		"Plug 'mhinz/vim-signify'
+		"Plug 'majutsushi/tagbar'
+		"Plug 'ervandew/supertab'
 	"FILESYSTEM
 		Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 		Plug 'junegunn/fzf.vim'
@@ -46,6 +50,7 @@ call plug#begin()
 		Plug 'haya14busa/incsearch-easymotion.vim'
 		Plug 'haya14busa/vim-easyoperator-line'
 		Plug 'haya14busa/vim-easyoperator-phrase'
+		Plug 'bronson/vim-visual-star-search'
 	"LOOK&FEEL
 		Plug 'vim-airline/vim-airline'
 		Plug 'vim-airline/vim-airline-themes'
@@ -72,14 +77,15 @@ call plug#begin()
 		Plug 'tyru/open-browser.vim'
 		Plug 'junegunn/goyo.vim'
 		Plug 'junegunn/limelight.vim'
+		"Plug 'tpope/vim-speeddating'
 		"Plug 'gorodinskiy/vim-coloresque'
 		"Plug 'hecal3/vim-leader-guide'
 		"Plug 'Yggdroot/indentLine'
-		"Plug '907th/vim-auto-save'
 		"Plug 'chrisbra/changesPlugin'
 		"Plug 'severin-lemaignan/vim-minimap'
 	"SYNTAX
 		Plug 'plasticboy/vim-markdown'
+		Plug 'mattn/emmet-vim'
 	"MISCELLANOUS
 		Plug 'mhinz/vim-startify'
 		Plug 'suan/vim-instant-markdown'
@@ -91,40 +97,49 @@ call plug#end()
 
 
 "PREFERENCES
-	set mouse=a
-	set nocompatible
-	set nowrap
-	set number
-	set relativenumber
-	set autoindent
-	set shiftwidth=4
-	set hls
-	set incsearch
-	set ignorecase
-	set smartcase
-	set tabstop=4
-	set hidden
-	set directory=~/.config/nvim/temp
-	set nobackup
-	colorscheme Monokai
-	set clipboard=unnamed
-	set fillchars=fold:\ 
+	"INDENTATION
+		set autoindent
+		set shiftwidth=4
+		set tabstop=4
+	"AUTOCOMPLETION
+	"LINE NUMBERS
+		set number
+		set relativenumber
+	"SWAP & BACKUP
+		set directory=~/.config/nvim/temp
+		set nobackup
+	"SEARCHING
+		set hls
+		set incsearch
+		set ignorecase
+		set smartcase
+	"MISCELLANOUS
+		set nocompatible
+		set fillchars=fold:\ 
+		set mouse=a
+		set nowrap
+		set hidden
+		colorscheme Monokai
+		set clipboard=unnamed
 "CONFIGURATION
 	"PYTHON BINARIES
 		let g:python_host_prog = '/usr/bin/python3'
 	"HIGHLIGHTS
-		highlight Search ctermfg=49 cterm=NONE gui=NONE
-		highlight IncSearchMatch ctermfg=black ctermbg=186
-		"COLORING TRAILING WHITESPACES
+		"SEARCH HIGHLIGHTS
+			highlight Search ctermfg=49 cterm=NONE gui=NONE
+			highlight IncSearchMatch ctermfg=black ctermbg=186
+		"TRAILING WHITESPACES
 			"highlight TrailingWhitespace ctermbg=135
 			"call matchadd('TrailingWhitespace', '\s\+$', 100)
+		"AUTOCOMPLETION MENU
+			"highlight Pmenu ctermbg=232 ctermfg=7
+			"highlight PmenuSel ctermfg=15
+			highlight Pmenu ctermbg=238 gui=bold
 	"FILETYPE=jproperties FOR TEXT FILES
 		autocmd BufNewFile,BufRead *.txt set syntax=jproperties
 "MAPPINGS
 	"NOTE: t=tabs b=buffers w=windows s=sessions c=registers/clipboards r=replace? n=navigation j=jumping f=find z|m?=miscellanous c=code/programming
 	"MAIN LAYOUT MAPPINGS
-		nnoremap [P :normal! O<Esc>]p<CR>
-		nnoremap ]P :normal! o<Esc>]p<CR>
 	"LEADER MAPPING
 		let mapleader = " "
 		let maplocalleader = ","
@@ -164,13 +179,13 @@ call plug#end()
 		nnoremap <LEADER>vt :terminal<CR>
 		nnoremap <Leader>vi :PlugInstall<CR>
 		nnoremap <Leader>vu :PlugClean<CR>
-		nnoremap <Leader>vw :w<CR>
+		nnoremap <Leader>vw :call AutoSaveToggle()<CR>
 		nnoremap <LEADER>vq :q<CR>
 		nnoremap <LEADER>vfq :q!<CR>
 
 		nnoremap <Leader>va :call AutoCorrect()<CR>
 		nnoremap <Leader>vp :PencilToggle<CR>
-		nnoremap <Leader>vg :Goyo<CR>
+		nnoremap <Leader>vd :Goyo<CR>
 		nnoremap <Leader>vl :Limelight!!<CR>
 	"ABBREVIATIONS @TODO
 		abbreviate chk ✓
@@ -213,6 +228,8 @@ call plug#end()
 			nnoremap <LEADER>nv :VifmToggle .<CR>
 			nnoremap <LEADER>nV :VifmToggle %:p:h<CR>
 	"DEVELOPMENT
+		"TAGBAR
+			nnoremap <Leader>nT :TagbarToggle<CR>
 		"DEVDOCS
 			nmap <Leader>fD :DevDocs<CR>
 			nmap <Leader>fd <Plug>(devdocs-under-cursor)
@@ -225,6 +242,10 @@ call plug#end()
 		"DASH
 			nnoremap <Leader>fd :Dash<CR>
 			nnoremap <Leader>fD :Dash<space>
+		"EMMET
+			let g:user_emmet_install_global = 0
+			autocmd FileType html,css EmmetInstall
+			let g:user_emmet_leader_key='<tab>'
 	"EXTENDING VIM
 		"OPEN-BROWSER
 			let g:netrw_nogx = 1
@@ -374,7 +395,7 @@ call plug#end()
 			map <Leader>f? <Plug>(incsearch-easymotion-?)
 			map <Leader>fg/ <Plug>(incsearch-easymotion-stay)
 		"VIM-OVER
-			nmap <LEADER>ro :OverCommandLine<CR>
+			nmap <LEADER>fr :OverCommandLine<CR>
 	"MISCELLANOS
 		"VIM-LEADER-GUIDE
 			"nnoremap <SPACE> :LeaderGuide '<LEADER>'<CR>
@@ -386,6 +407,17 @@ call plug#end()
 			"nmap <SPACE>. <Plug>leaderguide-global
 			"nmap ;. <Plug>leaderguide-buffer
 "VIMSCRIPT CODE
+	"HELPER FUNCTIONS
+		function! GetWordUnderCursor()
+			execute 'normal! "ayiw'
+			let value = @a
+			return value
+		endfunction
+
+		function! GetSelectedText()
+			normal! gvy
+			return @"
+		endfunction
 	"OPERATORS
 	"TEXT OBJECTS
 		"LINE
@@ -439,22 +471,34 @@ call plug#end()
 				onoremap <silent> a- :<C-u>call TextObjectAfter('-')<CR>
 
 				onoremap <silent> ga :<C-u>call TextObjectAfterAnyChar()<CR>
-	"FOLDTEXT
-		function! MinimalFoldText() abort
-			let line = substitute(getline(v:foldstart), '\t', repeat(' ', &tabstop), 'g')
-
-			let w = winwidth(0) - &foldcolumn - (&number ? &numberwidth+2 : 0)
-			let foldSize = 1 + v:foldend - v:foldstart
-			let foldSizeStr = foldSize . "L"
-			let expansionString = repeat(" ", w - strwidth(foldSizeStr.line))
-			return line . expansionString . foldSizeStr
-		endfunction
-	"RELOAD .vimrc
+	"BETTER VIM
+	"AUTOMATIC vimrc SOURCING
 		"augroup myvimrc
 			"au!
 			"au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc,init.vim so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
 		"augroup END
-	"SWAPFILE HANDLING (NOT WORKING)
+	"AUTOSAVE TOGGLE
+		let g:autosave = 0
+
+		function! AutoSaveToggle()
+			if g:autosave == 0
+				echom "AutoSave Mode Enabled"
+				let g:autosave = 1
+
+				augroup AutoSaveGroup
+					autocmd!
+					au InsertLeave * w
+				augroup END
+			elseif g:autosave == 1
+				echom "AutoSave Mode Disabled"
+				let g:autosave = 0
+
+				augroup AutoSaveGroup
+					autocmd!
+				augroup END
+			endif
+		endfunction
+	"SWAPFILE HANDLING @FIX
 		"NOTE: IF SWAP FILE IS OLDER THEN DELETING IT OTHERWISE RECOVERING IT
 		augroup SwapHandler
 			autocmd!
@@ -471,15 +515,6 @@ call plug#end()
 				"echom 'SWAP FILE DETECTED: SWAP RECOVERED'
 			endif
 		endfunction
-	"HELPER FUNCTIONS
-		function! GetWordUnderCursor()
-			execute 'normal! "ayiw'
-			let value = @a
-			return value
-		endfunction
-
-		"NOT WORKING PROPERLY
-		function! GetSelectedText()
-			execute 'y'
-			return @"
-		endfunction
+	"NEWLINE PASTE @FIX
+		nnoremap [P :normal! O<Esc>]p<CR>
+		nnoremap ]P :normal! o<Esc>]p<CR>
