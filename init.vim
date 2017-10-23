@@ -256,10 +256,11 @@ call plug#end()
 
 			nnoremap <LocalLeader>s :Scratch<CR> 
 			nnoremap <LocalLeader>S :Scratch!<CR> 
-			nnoremap <LocalLeader>gs <plug>(scratch-insert-reuse)
-			nnoremap <LocalLeader>gS <plug>(scratch-insert-clear)
-			vnoremap <LocalLeader>gs <plug>(scratch-selection-reuse)
-			vnoremap <LocalLeader>gS <plug>(scratch-selection-clear)
+			nnoremap <LocalLeader>gp :ScratchPreview<CR>
+			nnoremap <LocalLeader>gs :ScratchInsert<CR>
+			nnoremap <LocalLeader>gS :ScratchInsert!<CR>
+			vnoremap <LocalLeader>gs :ScratchSelection<CR>
+			vnoremap <LocalLeader>gS :ScratchSelection!<CR>
 
 			augroup ScratchEnter
 				autocmd!
