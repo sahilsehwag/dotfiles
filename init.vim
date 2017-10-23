@@ -58,6 +58,7 @@ call plug#begin()
 		Plug 'ryanoasis/vim-devicons'
 		"Plug 'augustold/vim-airline-colornum'
 	"EXTENDING VIM
+		Plug 'mtth/scratch.vim'
 		Plug 'vim-scripts/WholeLineColor'
 		Plug 'zirrostig/vim-schlepp'
 		Plug 'kana/vim-submode'
@@ -247,6 +248,23 @@ call plug#end()
 			autocmd FileType html,css EmmetInstall
 			let g:user_emmet_leader_key='<tab>'
 	"EXTENDING VIM
+		"SCRATCH
+			let g:scratch_no_mappings = 1
+			let g:scratch_height = 0.3
+			let g:scratch_top = 0
+			let g:scratch_persistence_file = '~/temp.scratch'
+
+			nnoremap <LocalLeader>s :Scratch<CR> 
+			nnoremap <LocalLeader>S :Scratch!<CR> 
+			nnoremap <LocalLeader>gs <plug>(scratch-insert-reuse)
+			nnoremap <LocalLeader>gS <plug>(scratch-insert-clear)
+			vnoremap <LocalLeader>gs <plug>(scratch-selection-reuse)
+			vnoremap <LocalLeader>gS <plug>(scratch-selection-clear)
+
+			augroup ScratchEnter
+				autocmd!
+				autocmd FileType scratch nnoremap <buffer> <esc> :q<CR>
+			augroup END
 		"OPEN-BROWSER
 			let g:netrw_nogx = 1
 			"SMART SEARCH
