@@ -1,6 +1,7 @@
 #ENVIORNENT VARIABLES
 	export GOPATH='~/.config/go'
 #CUSTOM VARIABLES
+	PLATFORM='mac'
 	EDITOR=nvim
 	VISUAL=nvim
 #CONFIGURATION
@@ -62,3 +63,8 @@
 	alias pe='$GOPATH/src/github.com/edi9999/path-extractor/path-extractor/pe'
 	alias python=python3
 	alias pip=pip3
+
+	if [ $PLATFORM = 'MAC' ]; then
+		alias ctags="`brew --prefix`/bin/ctags"
+		alias ctagsg='ctags -R --exclude=.git --exclude=log *'
+	fi
