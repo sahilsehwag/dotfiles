@@ -1,6 +1,7 @@
 "VIM-PLUG
 call plug#begin()
 	"DEVELOPMENT
+		Plug 'Valloric/YouCompleteMe'
 		Plug '0x84/vim-coderunner'
 		Plug 'metakirby5/codi.vim'
 		Plug 'vim-syntastic/syntastic'
@@ -188,6 +189,9 @@ call plug#end()
 		nnoremap <Leader>vp :PencilToggle<CR>
 		nnoremap <Leader>vd :Goyo<CR>
 		nnoremap <Leader>vl :Limelight!!<CR>
+		nnoremap <Leader>vf :Autoformat<CR>
+		vnoremap <Leader>vf :Autoformat<CR>
+		nnoremap <Leader>vF :call AutoFormatToggle()<CR>
 	"ABBREVIATIONS @TODO
 		abbreviate chk ✓
 		abbreviate crs ✖
@@ -229,6 +233,18 @@ call plug#end()
 			nnoremap <LEADER>nv :VifmToggle .<CR>
 			nnoremap <LEADER>nV :VifmToggle %:p:h<CR>
 	"DEVELOPMENT
+		"YOUCOMPLETEME
+			"CONFIGURATION
+				let g:ycm_python_binary_path = 'python3'
+				let g:ycm_add_preview_to_completeopt = 0
+				"let g:ycm_autoclose_preview_window_after_completion = 1
+				"let g:ycm_autoclose_preview_window_after_insertion = 1
+				"set splitbelow
+			"MAPPINGS
+				nnoremap <Leader>jd :YcmCompleter GoToDeclaration<CR>
+				nnoremap <Leader>jD :YcmCompleter GoToDefinition<CR>
+				nnoremap <Leader>jj :YcmCompleter GoTo<CR>
+				nnoremap <Leader>ji :YcmCompleter GoToImplementation<CR>
 		"TAGBAR
 			nnoremap <Leader>nT :TagbarToggle<CR>
 		"DEVDOCS
@@ -248,6 +264,10 @@ call plug#end()
 			autocmd FileType html,css EmmetInstall
 			let g:user_emmet_leader_key='<tab>'
 	"EXTENDING VIM
+		"GOYO
+			let g:goyo_width = "75%"
+			"let g:goyo_height = "90%"
+			let g:goyo_linenr = 1
 		"SCRATCH
 			let g:scratch_no_mappings = 1
 			let g:scratch_height = 0.3
@@ -513,6 +533,27 @@ call plug#end()
 				let g:autosave = 0
 
 				augroup AutoSaveGroup
+					autocmd!
+				augroup END
+			endif
+		endfunction
+	"AUTOFORMAT TOGGLE
+		let g:autoformat = 0
+
+		function! AutoFormatToggle()
+			if g:autosave == 0
+				echom "AutoFormat Mode Enabled"
+				let g:autosave = 1
+
+				augroup AutoFormatGroup
+					autocmd!
+					au InsertLeave * Autoformat
+				augroup END
+			elseif g:autosave == 1
+				echom "AutoFormat Mode Disabled"
+				let g:autosave = 0
+
+				augroup AutoFormatGroup
 					autocmd!
 				augroup END
 			endif
