@@ -33,7 +33,7 @@
 		POWERLEVEL9K_VI_MODE_INSERT_BACKGROUND='048'
 		#POWERLEVEL9K_VI_COMMAND_FOREGROUND=''
 		POWERLEVEL9K_VI_MODE_NORMAL_BACKGROUND='069'
-#INITIALIZATION
+#APPLICATIONS
 	#FZF
 		[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 		export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
@@ -52,6 +52,8 @@
 			--preview-window right:50%:hidden
 			--bind ?:toggle-preview
 		'
+
+		export FZF_COMPLETION_TRIGGER=''
 	#FUCK
 		eval $(thefuck --alias fuck)
 #ALIASES
@@ -61,10 +63,20 @@
 
 	alias d2u='find -type f | xargs dos2unix'
 	alias pe='$GOPATH/src/github.com/edi9999/path-extractor/path-extractor/pe'
-	alias python=python3
-	alias pip=pip3
+	#alias python=python3
+	#alias pip=pip3
+	alias vim='nvim'
 
 	if [ $PLATFORM = 'MAC' ]; then
 		alias ctags="`brew --prefix`/bin/ctags"
 		alias ctagsg='ctags -R --exclude=.git --exclude=log *'
 	fi
+#FUNCTIONS
+	new() {
+		if [[ "$@" == */ ]] then
+			mkdir -p $@
+		else
+			for f in "$@"; do mkdir -p "$(dirname "$f")"; done
+			touch "$@"
+		fi
+	}
