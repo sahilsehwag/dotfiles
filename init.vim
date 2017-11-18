@@ -226,16 +226,21 @@ call plug#end()
 			nnoremap <LEADER>th :tabmove -<CR>
 			nnoremap <LEADER>tl :tabmove +<CR>
 		"BUFFER MAPPINGS
-			nnoremap H           : bprevious<CR>
-			nnoremap L           : bnext<CR>
-			nnoremap <LEADER>be  : e<space>
-			nnoremap <LEADER>ba  : badd<space>
-			nnoremap <LEADER>bd  : bdelete<CR>
-			nnoremap <LEADER>bfd : bdelete!<CR>
-			nnoremap <LEADER>bn  : bnext<CR>
-			nnoremap <LEADER>bp  : bprevious<CR>
-			nnoremap <LEADER>bw  : write<CR>
-			nnoremap <LEADER>bfw : write!<CR>
+			nnoremap H           :bprevious<CR>
+			nnoremap L           :bnext<CR>
+			nnoremap <LEADER>bn  :enew<CR>
+			nnoremap <LEADER>ba  :badd<space>
+			nnoremap <LEADER>bd  :bdelete<CR>
+			nnoremap <LEADER>bfd :bdelete!<CR>
+			nnoremap <LEADER>bl  :bnext<CR>
+			nnoremap <LEADER>bh  :bprevious<CR>
+			nnoremap <LEADER>br  :e<CR>
+			nnoremap <LEADER>bfr :e!<CR>
+			nnoremap <Leader>bv  :view<CR>
+			nnoremap <Leader>bfv :view!<CR>
+			nnoremap <LEADER>bw  :write<CR>
+			nnoremap <LEADER>bfw :write!<CR>
+			nnoremap <Leader>bc  :bp<bar>sp<bar>bn<bar>bd<CR>
 		"WINDOW MAPPINGS
 			nnoremap <Leader>wh :sp<CR>
 			nnoremap <Leader>wv :vsp<CR>
@@ -357,6 +362,7 @@ call plug#end()
 					\ 'ctrl-v': 'vsplit',
 					\ 'ctrl-a': 'badd',
 					\ 'ctrl-r': 'Read',
+					\ 'ctrl-p': 'view',
 					\ }
 			"COMMANDS
 			"MAPPINGS
