@@ -70,6 +70,7 @@
 	if [ $PLATFORM = 'MAC' ]; then
 		alias ctags="`brew --prefix`/bin/ctags"
 		alias ctagsg='ctags -R --exclude=.git --exclude=log *'
+		alias emacs='/usr/local/bin/emacs'
 	fi
 #FUNCTIONS
 	new() {
