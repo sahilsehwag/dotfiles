@@ -60,6 +60,9 @@ call plug#begin()
 		Plug 'bronson/vim-visual-star-search'
 		"Plug 'vim-scripts/MultipleSearch'
 		"Plug 'henrik/vim-indexed-search'
+		Plug 'lambdalisue/lista.nvim'
+		Plug 'osyo-manga/vim-hopping'
+			"Plug 'haya14busa/vim-over'
 	"LOOK&FEEL
 		Plug 'vim-airline/vim-airline'
 		Plug 'vim-airline/vim-airline-themes'
@@ -77,8 +80,6 @@ call plug#begin()
 		"Plug 'vim-scripts/repmo.vim'
 		Plug 'tpope/vim-eunuch'
 		Plug 'dohsimpson/vim-macroeditor'
-		Plug 'lambdalisue/lista.nvim'
-		Plug 'osyo-manga/vim-hopping'
 		"Plug 'vimlab/split-term.vim'
 		Plug 'zirrostig/vim-schlepp'
 		Plug 'kana/vim-submode'
@@ -92,7 +93,6 @@ call plug#begin()
 		Plug 'pseewald/vim-anyfold'
 		Plug 'arecarn/vim-fold-cycle'
 		Plug 'rhysd/clever-f.vim'
-		Plug 'haya14busa/vim-over'
 		Plug 'okcompute/vim-ctrlp-session'
 		Plug 'jiangmiao/auto-pairs'
 		Plug 'haya14busa/vim-operator-flashy'
@@ -688,8 +688,25 @@ call plug#end()
 			map <Leader>f/ <Plug>(incsearch-easymotion-/)
 			map <Leader>f? <Plug>(incsearch-easymotion-?)
 			map <Leader>fg/ <Plug>(incsearch-easymotion-stay)
+		"INCSEARCH-EASYMOTION-FUZZY
+			function! s:config_easyfuzzymotion(...) abort
+				return extend(copy({
+					\   'converters': [incsearch#config#fuzzy#converter()],
+					\   'modules': [incsearch#config#easymotion#module()],
+					\   'keymap': {"\<CR>": '<Over>(easymotion)'},
+					\   'is_expr': 0,
+					\   'is_stay': 1
+					\ }), get(a:, 1, {}))
+			endfunction
+
+			noremap <silent><expr> <Leader>fg/ incsearch#go(<SID>config_easyfuzzymotion())
 		"VIM-OVER
 			nmap <LEADER>fr :OverCommandLine<CR>
+		"LISTA
+			nmap <Leader>ff :Lista<CR>
+			nmap <Leader>fF :ListaCursorWord<CR>
+		"VIM-HOPPING
+			nmap <Leader>fr :HoppingStart<CR>
 	"MISCELLANOUS
 		"GOYO
 			let g:goyo_width = "75%"
