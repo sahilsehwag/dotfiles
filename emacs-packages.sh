@@ -19,6 +19,7 @@ git clone https://github.com/mrkkrp/vimish-fold/                   ~/.emacs.d/pa
 git clone https://github.com/noctuid/targets.el/                   ~/.emacs.d/packages/targets.el
 git clone https://github.com/winterTTr/ace-jump-mode/              ~/.emacs.d/packages/ace-jump-mode
 git clone https://github.com/milkypostman/powerline/               ~/.emacs.d/packages/powerline
+git clone https://github.com/jonathanchu/emacs-powerline/          ~/.emacs.d/packages/emacs-powerline
 git clone https://github.com/AnthonyDiGirolamo/airline-themes/     ~/.emacs.d/packages/airline-themes
 git clone https://github.com/gabesoft/evil-mc/                     ~/.emacs.d/packages/evil-mc
 git clone https://github.com/Somelauw/evil-org-mode/               ~/.emacs.d/packages/evil-org-mode
