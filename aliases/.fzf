@@ -20,7 +20,7 @@
 			echo "No command specified"
 		fi
 	}
-	ffo(){
+	ffd(){
 		if [ $1 ] 
 		then
 			$1 "$(find $DRIVE -type f -name "*" | fzf)"
@@ -39,15 +39,15 @@
 #NAVIGATION
 	alias fj='cd "$(find "`pwd`" -type d -name "*" | fzf)"'
 	alias fjh='cd "$(find ~ -type d -name "*" | fzf)"'
-	alias fjo='cd "$(find $DRIVE -type d -name "*" | fzf)"'
+	alias fjd='cd "$(find $DRIVE -type d -name "*" | fzf)"'
 #TOOLS
 	#VIM
 		alias fv='$EDITOR "$(find "`pwd`" -type f -name "*" | fzf)"'
 		alias fvh='$EDITOR "$(find ~ -type f -name "*" | fzf)"'
-		alias fvo='$EDITOR "$(find $DRIVE -type f -name "*" | fzf)"'
+		alias fvd='$EDITOR "$(find $DRIVE -type f -name "*" | fzf)"'
 	#VIFM
 		alias vifm.='vifm "$(find "`pwd`" -type d -name "*" | fzf)"'
-		alias vifmo='vifm "$(find $DRIVE -type d -name "*" | fzf)"'
+		alias vifmd='vifm "$(find $DRIVE -type d -name "*" | fzf)"'
 		alias vifmh='vifm "$(find ~ -type d -name "*" | fzf)"'
 	#TMUX
 		#alias fts='tmux switch -t $(tmux list-sessions | awk "{ print $1 }" | sed "s/://" | fzf-tmux)'
