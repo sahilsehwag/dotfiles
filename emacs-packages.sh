@@ -22,6 +22,7 @@ git clone https://github.com/milkypostman/powerline/               ~/.emacs.d/pa
 git clone https://github.com/jonathanchu/emacs-powerline/          ~/.emacs.d/packages/emacs-powerline
 git clone https://github.com/AnthonyDiGirolamo/airline-themes/     ~/.emacs.d/packages/airline-themes
 git clone https://github.com/gabesoft/evil-mc/                     ~/.emacs.d/packages/evil-mc
+git clone https://github.com/jwiegley/org-mode/               	   ~/.emacs.d/packages/org-mode
 git clone https://github.com/Somelauw/evil-org-mode/               ~/.emacs.d/packages/evil-org-mode
 git clone https://github.com/krisajenkins/evil-tabs/               ~/.emacs.d/packages/evil-tabs
 git clone https://github.com/edkolev/evil-goggles/                 ~/.emacs.d/packages/evil-goggles
