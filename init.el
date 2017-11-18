@@ -3,6 +3,7 @@
 
 	(require 'package)
 	(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+	(package-initialize)
 ;PACKAGES
 	;EVIL
 		;EVIL-MODE
@@ -161,7 +162,7 @@
 		;EVIL-TEXTOBJ-ENTIRE
 			(add-to-list 'load-path "~/.emacs.d/packages/evil-textobj-entire")
 			(require 'evil-textobj-entire)
-		;;EVIL-VIMISH-FOLD
+		;EVIL-VIMISH-FOLD
 			;(add-to-list 'load-path "~/.emacs.d/packages/evil-vimish-fold")
 			;(require 'evil-vimish-fold)
 			;(evil-vimish-fold-mode 1)
@@ -178,11 +179,22 @@
 		(add-to-list 'load-path "~/.emacs.d/packages/ace-jump-mode")
 		(require 'ace-jump-mode)
 ;THEMES
-	(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+	(setq-default custom-safe-themes t)
+	;COLORSCHMEMS
+		(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+	;STATUSLINE THEMES
+		;EMACS-POWERLINE
+			;(add-to-list 'load-path "~/.emacs.d/packages/emacs-powerline")
+			;(require 'powerline)
+		;POWERLINE
+			(add-to-list 'load-path "~/.emacs.d/packages/powerline")
+			(require 'powerline)
+			(powerline-default-theme)
+		;AIRLINE-THEMES
+			(add-to-list 'load-path "~/.emacs.d/packages/airline-themes")
+			(require 'airline-themes)
+	(load-theme 'airline-light)
 	(load-theme 'dracula t)
-
-	(add-to-list 'load-path "~/.emacs.d/packages/emacs-powerline")
-	(require 'powerline)
 ;PREFERENCES
 	;UI
 		(menu-bar-mode -1)
@@ -190,6 +202,11 @@
 		(set-default-font "InconsolataForPowerline NF-14")
 ;NOT TO TOUCH
 	(custom-set-variables
-	 '(package-selected-packages (quote (##))))
-	(custom-set-faces
-	 )
+		;; custom-set-variables was added by Custom.
+		;; If you edit it by hand, you could mess it up, so be careful.
+		;; Your init file should contain only one such instance.
+		;; If there is more than one, they won't work right.
+		'(custom-safe-themes
+			(quote ("b59d7adea7873d58160d368d42828e7ac670340f11f36f67fa8071dbf957236a" default)))
+		'(package-selected-packages (quote (##))))
+
