@@ -1,5 +1,5 @@
 #VARIABLES
-	EDITOR=vim
+	EDITOR=nvim
 	GEDITOR=gvim.exe
 	DRIVE=~/Google\ Drive
 	alias fzf='fzf-tmux'
@@ -120,9 +120,9 @@
 	}
 #WINDOWS APPLICATION
 	#GVIM
-		alias fg='$GEDITOR "$(find "`pwd`" -type f -name "*" | fzf | sed -e "s/\/mnt\///" | sed -e "s/c/C:/")"' 
-		alias fgh='$GEDITOR "$(find ~ -type f -name "*" | fzf | sed -e "s/\/mnt\///" | sed -e "s/c/C:/")"'
-		alias fgo='$GEDITOR "$(find $DRIVE -type f -name "*" | fzf | sed -e "s/\/mnt\///" | sed -e "s/c/C:/")"'
+		#alias fg='$GEDITOR "$(find "`pwd`" -type f -name "*" | fzf | sed -e "s/\/mnt\///" | sed -e "s/c/C:/")"' 
+		#alias fgh='$GEDITOR "$(find ~ -type f -name "*" | fzf | sed -e "s/\/mnt\///" | sed -e "s/c/C:/")"'
+		#alias fgo='$GEDITOR "$(find $DRIVE -type f -name "*" | fzf | sed -e "s/\/mnt\///" | sed -e "s/c/C:/")"'
 	#MEDIA
 		#alias wmp='"$WMP" "$(find "${MDIRS[@]}" -type f -name "*.mp3" 2> /dev/null | fzf)"'
 #APPLICATIONS
