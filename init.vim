@@ -75,6 +75,7 @@ call plug#begin()
 		"Plug 'Yggdroot/indentLine'
 	"EXTENDING VIM
 		"Plug 'vim-scripts/repmo.vim'
+		Plug 'tpope/vim-eunuch'
 		Plug 'dohsimpson/vim-macroeditor'
 		Plug 'lambdalisue/lista.nvim'
 		Plug 'osyo-manga/vim-hopping'
@@ -270,6 +271,7 @@ call plug#end()
 		nnoremap <Leader>vf  : Autoformat<CR>
 		vnoremap <Leader>vf  : Autoformat<CR>
 		nnoremap <Leader>vF  : call AutoFormatToggle()<CR>
+		nnoremap <LEADER>vS  : Startify<CR>
 	"FILETYPE MAPPINGS
 		"TEXT
 		"PUG
@@ -327,8 +329,18 @@ call plug#end()
 	"OTHER MAPPINGS
 		"TEXT
 		"UNIX|LINUX WRAPPERS
-			vnoremap <Leader><Leader>s :sort<CR>
-			vnoremap <Leader><Leader>u :<C-u>'<,'>sort \| '<,'>!uniq<CR>
+			"FILESYSTEM
+				nnoremap <silent> <Leader>ld :execute "DeleteFile " . glob('%')<CR>
+			"FZF
+				nnoremap <Leader>lnf : call fzf#run(fzf#wrap({'source': 'find ~ -type d', 'sink': 'NewFile'          }))<CR>
+				nnoremap <Leader>lnd : call fzf#run(fzf#wrap({'source': 'find ~ -type d', 'sink': 'NewDirectory'     }))<CR>
+				nnoremap <Leader>ldf : call fzf#run(fzf#wrap({'source': 'find ~ -type f', 'sink': 'DeleteFile'       }))<CR>
+				nnoremap <Leader>ldd : call fzf#run(fzf#wrap({'source': 'find ~ -type d', 'sink': 'DeleteDirectory'  }))<CR>
+				nnoremap <Leader>ldD : call fzf#run(fzf#wrap({'source': 'find ~ -type d', 'sink': 'DeleteDirectory!' }))<CR>
+			"UTILITIES
+				vnoremap <Leader>lus :sort                         <CR>
+				vnoremap <Leader>luu :<C-u>'<,'>sort \| '<,'>!uniq <CR>
+				vnoremap <Leader>luc :<C-u>'<,'>!bc                <CR>
 		"FIND & REPLACE
 			"REPLACE CHARACTER @TODO
 	"MISCELLANOUS MAPPINGS
@@ -387,15 +399,14 @@ call plug#end()
 					nnoremap <Leader>nS :Snippets<CR>
 					nnoremap <Leader>nm :Maps<CR>
 				"FREQUENT
-					nnoremap <LEADER>nd :Files ~/Google Drive<CR>
-					nnoremap <LEADER>nu :Files ~<CR>
-					nnoremap M :History<CR>
+					nnoremap <LEADER>nd : Files ~/Google Drive<CR>
+					nnoremap <LEADER>nu : Files ~<CR>
+					nnoremap M          : History<CR>
 				"FILESYSTEM
-					nnoremap <Leader>nf :call fzf#run(fzf#wrap({'source': 'find ~ -type d', 'sink': 'VifmToggle'}))<CR>
-					nnoremap <Leader>nw :call fzf#run(fzf#wrap({'source': 'find ~ -type d', 'sink': 'SaveAs'}))<CR>
-					nnoremap <Leader>nW :call fzf#run(fzf#wrap({'source': 'find ~ -type d', 'sink': 'SaveAs!'}))<CR>
-					"nnoremap <Leader>nr :call fzf#run(fzf#wrap({'source': 'ag --hidden --ignore .git -g "" ~', 'sink': 'Read'}))<CR>
-					nnoremap <Leader>nr :call fzf#run(fzf#wrap({'source': 'ag --hidden --ignore .git -g "" ~', 'sink': 'Read!'}))<CR>
+					nnoremap <Leader>nf  : call fzf#run(fzf#wrap({'source': 'find ~ -type d',                    'sink': 'VifmToggle' }))<CR>
+					nnoremap <Leader>nw  : call fzf#run(fzf#wrap({'source': 'find ~ -type d',                    'sink': 'SaveAs'     }))<CR>
+					nnoremap <Leader>nW  : call fzf#run(fzf#wrap({'source': 'find ~ -type d',                    'sink': 'SaveAs!'    }))<CR>
+					nnoremap <Leader>nr  : call fzf#run(fzf#wrap({'source': 'ag --hidden --ignore .git -g "" ~', 'sink': 'Read!'      }))<CR>
 				"COMPLETION
 		"VIFM
 			nnoremap <LEADER>nf :VifmToggle %:p:h<CR>
@@ -828,35 +839,80 @@ call plug#end()
 "VIMSCRIPT CODE
 	"HELPERS
 		"EXTERNAL
-			function! InstallPackage(pacman, package, flags)
-				if executable(a:pacman) == 1
-					execute '!' a:pacman ' install ' a:flags ' ' a:package
-				else
-					echom a:pacman ' NOT INSTALLED'
-				endif
-			endfunction
+			"PACKAGE MANAGERS
+				function! InstallPackage(pacman, package, flags)
+					if executable(a:pacman) == 1
+						execute '!' a:pacman ' install ' a:flags ' ' a:package
+					else
+						echom a:pacman ' NOT INSTALLED'
+					endif
+				endfunction
 
-			function! RunCommand(cmd, flags, range, pacman, package, installFlags)
-				if executable(a:cmd) == 0
-					echom "INSTALLING " a:cmd " USING " a:pacman "..."
-					call InstallPackage(a:pacman, a:package, a:installFlags)
-				else
-					execute a:range '!' a:cmd ' ' a:flags
-				endif
-			endfunction
+				function! RunCommand(cmd, flags, range, pacman, package, installFlags)
+					if executable(a:cmd) == 0
+						echom "INSTALLING " a:cmd " USING " a:pacman "..."
+						call InstallPackage(a:pacman, a:package, a:installFlags)
+					else
+						execute a:range '!' a:cmd ' ' a:flags
+					endif
+				endfunction
 
-			function! RunNpmCommand(cmd, flags, range, package)
-				call RunCommand(a:cmd, a:flags, a:range, 'npm', a:package, '-g')
-			endfunction
+				function! RunNpmCommand(cmd, flags, range, package)
+					call RunCommand(a:cmd, a:flags, a:range, 'npm', a:package, '-g')
+				endfunction
 
-			function! RunPipCommand(cmd, flags, range, package)
-				call RunCommand(a:cmd, a:flags, a:range, 'pip', a:package, '')
-			endfunction
+				function! RunPipCommand(cmd, flags, range, package)
+					call RunCommand(a:cmd, a:flags, a:range, 'pip', a:package, '')
+				endfunction
+			"UNIX|LINUX
+				"COMMANDS
+					command! -nargs=1		NewFile         : call NewFile         (<q-args>)
+					command! -nargs=1		NewDirectory    : call NewDiretory     (<q-args>)
+					command! -nargs=1 -bang DeleteDirectory : call DeleteDirectory (<q-args>, <bang>0)
+					command! -nargs=1		DeleteFile      : call DeleteFile	   (<q-args>)
+				"FUNCTIONS
+					function! NewFile(path)
+						let l:filename = input('Enter New Filename: ')
+						let l:file = a:path . '/' . l:filename
+
+						if empty(l:filename)
+							call Pechoerr('No Filename Specified')
+						else
+							execute "e " . l:file
+						endif
+					endfunction
+
+					function! NewDirectory(path)
+						let l:dirname = input('Enter New Directory Name: ')
+						let l:dir = a:path . '/' . l:dirname
+
+						if empty(l:dirname)
+							call Pechoerr('No Directory Name Specified')
+						else
+							execute "!mkdir " . l:dir
+						endif
+					endfunction
+
+					function! DeleteDirectory(path, bang)
+						if !empty(a:path)
+							if bang == 0
+								execute "!rmdir " . a:path
+							else
+								execute "!rm -rf " . a:path
+							endif
+						endif
+					endfunction
+
+					function! DeleteFile(file)
+						execute "bdelete!"
+						silent execute "!rm " . a:file | redraw!
+						call Pechoerr("File " . a:file ." Deleted Successfully")
+					endfunction
 		"VIM
 			"FILESYSTEM
 				"COMMANDS
-					command! -nargs=1 -bang SaveAs :call SaveAs(<q-args>, <bang>0)
-					command! -nargs=1 -bang Read   :call Read(<q-args>, <bang>0)
+					command! -nargs=1 -bang SaveAs  : call SaveAs  (<q-args>, <bang>0)
+					command! -nargs=1 -bang Read    : call Read    (<q-args>, <bang>0)
 				"FUNCTIONS
 					function! SaveAs(path, bang)
 						let l:filename = input('Enter New Filename: ')
@@ -922,6 +978,30 @@ call plug#end()
 					echom a:msg
 					call getchar()
 					echohl None
+				endfunction
+
+				function! PEchoSuccess(msg)
+					echohl MoreMsg
+					echom a:msg
+					call getchar()
+					echohl None
+				endfunction
+
+				function! PEchoWarning(msg)
+					echohl WildMenu
+					echom "WARNING: " . a:msg
+					call getchar()
+					echohl None
+				endfunction
+
+				function! PEchoInfo(msg)
+					echohl StorageClass
+					echom "INFO: " . a:msg
+					call getchar()
+					echohl None
+				endfunction
+
+				function! Prompt(msg)
 				endfunction
 	"OPERATORS
 	"TEXT OBJECTS
