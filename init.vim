@@ -352,10 +352,12 @@ call plug#end()
 		"FZF
 			"CONFIGURATION
 				let g:fzf_action = {
-				  \ 'ctrl-t': 'tab split',
-				  \ 'ctrl-h': 'split',
-				  \ 'ctrl-v': 'vsplit'
-				\ }
+					\ 'ctrl-t': 'tab split',
+					\ 'ctrl-h': 'split',
+					\ 'ctrl-v': 'vsplit',
+					\ 'ctrl-a': 'badd',
+					\ 'ctrl-r': 'Read',
+					\ }
 			"COMMANDS
 			"MAPPINGS
 				"INBUILT
@@ -386,8 +388,8 @@ call plug#end()
 					nnoremap <Leader>nf :call fzf#run(fzf#wrap({'source': 'find ~ -type d', 'sink': 'VifmToggle'}))<CR>
 					nnoremap <Leader>nw :call fzf#run(fzf#wrap({'source': 'find ~ -type d', 'sink': 'SaveAs'}))<CR>
 					nnoremap <Leader>nW :call fzf#run(fzf#wrap({'source': 'find ~ -type d', 'sink': 'SaveAs!'}))<CR>
-					nnoremap <Leader>nr :call fzf#run(fzf#wrap({'source': 'ag --hidden --ignore .git -g "" ~', 'sink': 'Read'}))<CR>
-					nnoremap <Leader>nR :call fzf#run(fzf#wrap({'source': 'ag --hidden --ignore .git -g "" ~', 'sink': 'Read!'}))<CR>
+					"nnoremap <Leader>nr :call fzf#run(fzf#wrap({'source': 'ag --hidden --ignore .git -g "" ~', 'sink': 'Read'}))<CR>
+					nnoremap <Leader>nr :call fzf#run(fzf#wrap({'source': 'ag --hidden --ignore .git -g "" ~', 'sink': 'Read!'}))<CR>
 				"COMPLETION
 		"VIFM
 			nnoremap <LEADER>nf :VifmToggle %:p:h<CR>
