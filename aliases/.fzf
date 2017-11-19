@@ -1,6 +1,7 @@
 #VARIABLES
 	EDITOR=nvim
 	GEDITOR=gvim.exe
+	SEDITOR=emacs
 	DRIVE=~/Google\ Drive
 	alias fzf='fzf-tmux'
 #GENERAL FUNCTIONS
@@ -41,6 +42,10 @@
 	alias fjh='cd "$(find ~ -type d -name "*" | fzf)"'
 	alias fjd='cd "$(find $DRIVE -type d -name "*" | fzf)"'
 #TOOLS
+	#EMACS
+		alias fe='$SEDITOR "$(find "`pwd`" -type f -name "*" | fzf)"'
+		alias feh='$SEDITOR "$(find ~ -type f -name "*" | fzf)"'
+		alias fed='$SEDITOR "$(find $ONEDRIVE -type f -name "*" | fzf)"'
 	#VIM
 		alias fv='$EDITOR "$(find "`pwd`" -type f -name "*" | fzf)"'
 		alias fvh='$EDITOR "$(find ~ -type f -name "*" | fzf)"'
