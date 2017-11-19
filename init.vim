@@ -63,6 +63,7 @@ call plug#begin()
 		Plug 'lambdalisue/lista.nvim'
 		Plug 'osyo-manga/vim-hopping'
 			"Plug 'haya14busa/vim-over'
+		"Plug 'osyo-manga/vim-anzu'
 	"LOOK&FEEL
 		Plug 'vim-airline/vim-airline'
 		Plug 'vim-airline/vim-airline-themes'
@@ -563,13 +564,13 @@ call plug#end()
 			call airline#add_statusline_func('Noscrollbar')
 	"EDITING
 		"VIM-OPERATOR-SUBSTITUTE
-			let g:operator#substitute#default_flags = "g"
-			"let g:operator#substitute#default_delimiter = "#"
+			let g:operator#substitute#default_flags     = "g"
+			let g:operator#substitute#default_delimiter = ";"
 			"MAPPINGS
-				map <Leader>r <Plug>(operator-substitute)
-				map R <Plug>(operator-substitute)$
-				map & <Plug>(operator-substitute-repeat)
+				map gr <Plug>(operator-substitute)
+				map &  <Plug>(operator-substitute-repeat)
 				map g& <Plug>(operator-substitute-repeat-no-flags)
+				map gR <Plug>(operator-substitute)$
 		"VIM-AFTER-OBJECT
 			autocmd VimEnter * call after_object#enable('=', ':', '-', '#', ' ')
 		"VIM-TEXTOBJ-COMMENT
@@ -591,6 +592,12 @@ call plug#end()
 		"VIM-EASY-ALIGN
 			xmap ga <Plug>(EasyAlign)
 			nmap ga <Plug>(EasyAlign)
+		"VIM-EASYHOPERATOR-PHRASE
+			omap gp  <Plug>(easyoperator-phrase-select)
+			xmap gp  <Plug>(easyoperator-phrase-select)
+		"VIM-EASYOPERATOR-LINE
+			omap gp  <Plug>(easyoperator-line-select)
+			xmap gp  <Plug>(easyoperator-line-select)
 	"WRITTING
 		"VIM-PENCIL
 			nnoremap <Leader>vp :PencilToggle<CR>
@@ -707,6 +714,11 @@ call plug#end()
 			nmap <Leader>fF :ListaCursorWord<CR>
 		"VIM-HOPPING
 			nmap <Leader>fr :HoppingStart<CR>
+		"VIM-ANZU
+			"nmap n <Plug>(incsearch-nohl-n)<Plug>(anzu-mode-n)
+			"nmap N <Plug>(incsearch-nohl-N)<Plug>(anzu-mode-N)
+			"nmap * <Plug>(anzu-star-with-echo)
+			"nmap # <Plug>(anzu-sharp-with-echo)
 	"MISCELLANOUS
 		"GOYO
 			let g:goyo_width = "75%"
