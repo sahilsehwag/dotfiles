@@ -62,18 +62,13 @@
 					;BUFFERS
 						"be" 'evil-edit
 						"bw" 'evil-save
-						"ba" 'evil-buffer-new
+						"bn" 'evil-buffer-new
 						"bd" 'evil-delete-buffer
-						"bn" 'evil-next-buffer
-						"bp" 'evil-prev-buffer
 					;WINDOWS
-						"wd" 'evil-window-delete
-						"ws" 'evil-window-new
+						"wc" 'evil-window-delete
+						"wh" 'evil-window-new
 						"wv" 'evil-window-vnew
-						"wh" 'evil-window-left
-						"wj" 'evil-window-down
-						"wk" 'evil-window-up
-						"wl" 'evil-window-right
+						"wo" 'evil-window-only
 					;JUMPING
 						"jf" 'evil-ace-jump-char-mode
 						"jt" 'evil-ace-jump-char-to-mode

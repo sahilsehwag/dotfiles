@@ -20,7 +20,6 @@ call plug#begin()
 	"FILESYSTEM
 		Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 		Plug 'junegunn/fzf.vim'
-		Plug 'easymotion/vim-easymotion'
 		Plug 'vifm/neovim-vifm'
 	"EDITING
 		"OPERATORS
@@ -38,9 +37,7 @@ call plug#begin()
 			"Plug 'junegunn/vim-after-object'
 			Plug 'kana/vim-textobj-line'
 			Plug 'glts/vim-textobj-comment'
-		"CUSTOM
-			Plug 'kana/vim-textobj-user'
-			Plug 'kana/vim-operator-user'
+			Plug 'Julian/vim-textobj-variable-segment'
 		Plug 'chaoren/vim-wordmotion'
 		Plug 'machakann/vim-swap'
 		"Plug 'terryma/vim-multiple-cursors'
@@ -52,11 +49,13 @@ call plug#begin()
 		"Plug 'dbmrq/vim-ditto'
 		Plug 'reedes/vim-lexical'
 	"SEARCHING
+		Plug 'easymotion/vim-easymotion'
 		Plug 'haya14busa/incsearch.vim'
 		Plug 'haya14busa/incsearch-fuzzy.vim'
 		Plug 'haya14busa/incsearch-easymotion.vim'
 		Plug 'haya14busa/vim-easyoperator-line'
 		Plug 'haya14busa/vim-easyoperator-phrase'
+		Plug 'aykamko/vim-easymotion-segments'
 		Plug 'bronson/vim-visual-star-search'
 		"Plug 'vim-scripts/MultipleSearch'
 		"Plug 'henrik/vim-indexed-search'
@@ -71,9 +70,19 @@ call plug#begin()
 		Plug 'edkolev/promptline.vim'
 		Plug 'bling/vim-bufferline'
 		Plug 'flazz/vim-colorschemes'
+		Plug 'rafi/awesome-vim-colorschemes'
+		Plug 'chriskempson/base16-vim'
 		Plug 'ryanoasis/vim-devicons'
 		Plug 'itchyny/vim-highlighturl'
 		Plug 'gcavallanti/vim-noscrollbar'
+		Plug 'KeitaNakamura/neodark.vim'
+		Plug 'sindresorhus/focus'
+		Plug 'KabbAmine/yowish.vim'
+		Plug 'ayu-theme/ayu-vim'
+		Plug 'tyrannicaltoucan/vim-quantum'
+		Plug 'raphamorim/lucario'
+		Plug 'paranoida/vim-airlineish'
+		"Plug 'zefei/vim-colortuner'
 		"Plug 'itchyny/lightline.vim'
 		"Plug 'augustold/vim-airline-colornum'
 		"Plug 'Yggdroot/indentLine'
@@ -140,6 +149,10 @@ call plug#begin()
 		"Plug 'vim-scripts/DrawIt'
 		"Plug 'gorodinskiy/vim-coloresque'
 		"Plug 'hecal3/vim-leader-guide'
+	"LIBRARIES|UTILITIES
+		Plug 'kana/vim-textobj-user'
+		Plug 'kana/vim-operator-user'
+		Plug 'mattn/webapi-vim'
 call plug#end()
 
 
@@ -670,6 +683,13 @@ call plug#end()
 			"let g:bufferline_inactive_highlight = 'StatusLineNC'
 			"let g:bufferline_solo_highlight = 0
 			"let g:bufferline_pathshorten = 0
+		"NEODARK.VIM
+			let g:neodark#use_256color         = 1
+			let g:neodark#solid_vertsplit      = 1
+			let g:neodark#background           = '#202020'
+			"let g:lightline                    = {}
+			"let g:lightline.colorscheme        = 'neodark'
+			"let g:neodark#terminal_transparent = 1
 	"SEARCH & REPLACE
 		"CLEVER-F.VIM
 			let g:clever_f_ignore_case=1
