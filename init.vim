@@ -372,14 +372,75 @@ call plug#end()
 "PLUGINS
 	"PRODUCTIVITY
 		"EASYMOTION
-			let g:EasyMotion_smartcase = 1
-			nmap <LEADER>j <Plug>(easymotion-prefix)
-
-			nmap <LEADER>jl <Plug>(easymotion-overwin-line)
-			nmap <LEADER>jw <Plug>(easymotion-overwin-w)
-			nmap <LEADER>je <Plug>(easymotion-bd-e)
-			"nmap <LEADER>jf <Plug>(easymotion-overwin-f)
-			"map <LEADER>js <Plug>(easymotion-overwin-f2)
+			"CONFIGURATION
+				let g:EasyMotion_smartcase = 1
+				nmap <LEADER>j <Plug>(easymotion-prefix)
+				"hi link EasyMotionTarget Search
+				let g:EasyMotion_enter_jump_first = 1
+				let g:EasyMotion_space_jump_first = 1
+				"let g:EasyMotion_use_upper        = 1
+				let g:EasyMotion_smartcase        = 1
+				"let g:EasyMotion_keys             = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ;'
+			"MAIN MAPPINGS
+				nmap <LEADER>jl <Plug>(easymotion-overwin-line)
+				nmap <LEADER>jw <Plug>(easymotion-overwin-w)
+				nmap <LEADER>je <Plug>(easymotion-bd-e)
+				nmap <LEADER>jf <Plug>(easymotion-overwin-f)
+				nmap <LEADER>js <Plug>(easymotion-overwin-f2)
+				nmap <LEADER>jj <Plug>(easymotion-j)
+				nmap <LEADER>jk <Plug>(easymotion-k)
+				nmap <LEADER>jJ <Plug>(easymotion-eol-j)
+				nmap <LEADER>jK <Plug>(easymotion-eol-k)
+				nmap <LEADER>j. <Plug>(easymotion-repeat)
+				nmap <LEADER>ja <Plug>(easymotion-jumptoanywhere)
+				nmap <LEADER>j/ <Plug>(easymotion-sn)
+				nmap <LEADER>j? <Plug>(easymotion-tn)
+			"OPERATOR MAPPINGS
+				omap jw <Plug>(easymotion-bd-w)
+				omap jW <Plug>(easymotion-bd-W)
+				omap je <Plug>(easymotion-bd-e)
+				omap jE <Plug>(easymotion-bd-E)
+				omap jl <Plug>(easymotion-bd-jk)
+				omap jj <Plug>(easymotion-j)
+				omap jk <Plug>(easymotion-k)
+				omap jJ <Plug>(easymotion-eol-j)
+				omap jK <Plug>(easymotion-eol-K)
+				omap jf <Plug>(easymotion-bd-f)
+				omap js <Plug>(easymotion-bd-f2)
+				omap jt <Plug>(easymotion-bd-t)
+				omap jS <Plug>(easymotion-bd-t2)
+				omap j/ <Plug>(easymotion-sn)
+				xmap j? <Plug>(easymotion-tn)
+				omap jn <Plug>(easymotion-bd-n)
+				omap j. <Plug>(easymotion-repeat)
+				omap jv <Plug>(easymotion-segments-LF)
+				omap jV <Plug>(easymotion-segments-LB)
+				omap jgv <Plug>(easymotion-segments-RF)
+				omap jgV <Plug>(easymotion-segments-RB)
+				omap ja <Plug>(easymotion-jumptoanywhere)
+			"VISUAL MAPPINGS
+				xmap jw <Plug>(easymotion-bd-w)
+				xmap jW <Plug>(easymotion-bd-W)
+				xmap je <Plug>(easymotion-bd-e)
+				xmap jE <Plug>(easymotion-bd-E)
+				xmap jl <Plug>(easymotion-bd-jk)
+				xmap jj <Plug>(easymotion-j)
+				xmap jk <Plug>(easymotion-k)
+				xmap jJ <Plug>(easymotion-eol-j)
+				xmap jK <Plug>(easymotion-eol-K)
+				xmap jf <Plug>(easymotion-bd-f)
+				xmap jt <Plug>(easymotion-bd-t)
+				xmap js <Plug>(easymotion-bd-f2)
+				xmap jS <Plug>(easymotion-bd-t2)
+				xmap j/ <Plug>(easymotion-sn)
+				xmap j? <Plug>(easymotion-tn)
+				xmap jn <Plug>(easymotion-bd-n)
+				xmap j. <Plug>(easymotion-repeat)
+				xmap jv <Plug>(easymotion-segments-LF)
+				xmap jV <Plug>(easymotion-segments-LB)
+				xmap jgv <Plug>(easymotion-segments-RF)
+				xmap jgV <Plug>(easymotion-segments-RB)
+				xmap ja <Plug>(easymotion-jumptoanywhere)
 		"FZF
 			"CONFIGURATION
 				let g:fzf_action = {
