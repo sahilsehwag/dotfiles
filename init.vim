@@ -125,6 +125,7 @@ call plug#begin()
 				"Plug 'vim-latex/vim-latex'
 	"MISCELLANOUS
 		Plug 'alpertuna/vim-header'
+		Plug 'tweekmonster/startuptime.vim'
 		Plug 'sbdchd/vim-shebang'
 		Plug 'vim-utils/vim-read'
 		Plug 'antoyo/vim-licenses'
@@ -818,10 +819,10 @@ call plug#end()
 			highlight WLCGreyBackground   ctermbg=238 guibg=#464646
 			highlight WLCGreenBackground  ctermbg=22  guibg=#005500
 		"SCRATCH
-			let g:scratch_no_mappings = 1
-			let g:scratch_height = 0.3
-			let g:scratch_top = 0
-			let g:scratch_persistence_file = '~/temp.scratch'
+			let g:scratch_no_mappings      = 1
+			let g:scratch_height           = 0.3
+			let g:scratch_top              = 0
+			let g:scratch_persistence_file = glob('~/') . 'temp.scratch'
 
 			nnoremap <LocalLeader>s :Scratch<CR>
 			nnoremap <LocalLeader>S :Scratch!<CR>
@@ -833,7 +834,7 @@ call plug#end()
 
 			augroup ScratchEnter
 				autocmd!
-				autocmd FileType scratch nnoremap <buffer> <esc> :q<CR>
+				autocmd BufEnter __Scratch__ nnoremap <buffer> <esc> :q<CR>
 			augroup END
 		"OPEN-BROWSER
 			"CONFIGURATION
