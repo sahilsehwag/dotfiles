@@ -5,23 +5,144 @@
    dotspacemacs-ask-for-lazy-installation t
    dotspacemacs-configuration-layer-path '()
    dotspacemacs-configuration-layers '(
-		vimscript
-		python
+	;DISTRIBUTION
+		;spacemacs
+		;spacemacs-base
+		;spacemacs-bootstrap
+	;COMPLETION
 		;helm
+		;ivy
 		;auto-completion
-		;better-defaults
-		;emacs-lisp
+	;LANGUAGES
+		;CODING
+			vimscript
+			python
+			;emacs-lisp
+			;autohotkey
+			;c-c++
+			;clojure
+			;common-lisp
+			;csharp
+			;d
+			;elixir
+			;elm
+			;erlang
+			;fsharp
+			;go
+			;haskell
+			;html
+			;java
+			;javascript
+			;ipython-notebook
+			;lua
+			;nim
+			;php
+			;ruby
+			;rust
+			;scala
+			;shell-scripts
+			;sql
+			;typescript
+			;windows-scripts
+			;extra-langs
+		;MARKUP
+			;markdown
+			;latex
+			;org
+			;asciidoc
+			;csv
+			;yaml
+	;DEVELOPMENT
 		;git
-		;markdown
-		themes-megapack
-		;org
-		(shell :variables
-			shell-default-height 30
-			shell-default-position 'bottom)
+		;version-control
+		;github
+		;(shell :variables
+			;shell-default-height 30
+			;shell-default-position 'bottom)
+		;tags
+		;cscope
+		;nixos
+		;osx
+		;floobits
+	;TOOLS
+		;ansible
+		;chrome
+		;command-log
+		;dash
+		;deft
+		;docker
+		;fasd
+		;finance
+		;geolocation
+		;imenu-list
+		;nginx
+		;pandoc
+		;pdf-tools
+		;prodigy
+		;puppet
+		;ranger
+		;restclient
+		;salt
+		;speed-reading
+		;systemd
+		;terraform
+		;tmux
+		;vagrant
+		;ycmd
+	;CHECKERS
 		;spell-checking
 		;syntax-checking
-		;version-control
-		)
+	;FRAMEWORKS
+	;VIM
+		;evil-cleverparens
+		;evil-commentary
+		;evil-snipe
+		;vim-empty-lines
+		;vim-powerline
+		;vinegar
+	;EMACS
+		;better-defaults
+		;ibuffer
+		;semantic
+		;smex
+		;typography
+	;SPACEMACS
+		;spacemacs-completion
+		;spacemacs-editing
+		;spacemacs-editing-visual
+		;spacemacs-evil
+		;spacemacs-language
+		;spacemacs-layouts
+		;spacemacs-misc
+		;spacemacs-org
+		;spacemacs-ui
+		;spacemacs-ui-visual
+	;MISCELLANOUS
+		;CHAT
+			;erc
+			;jabber
+			;rcirc
+			;slack
+		;EMAIL
+			;gnus
+			;mu4e
+		;SERVICES
+			;elfeed
+			;spotify
+			;search-engine
+			;evernote
+			;twitter
+			;wakatime
+		;FUN
+			;emoji
+			;games
+			;selectric
+			;xkcd
+	;LOOK & FEEL
+		themes-megapack
+		;colors
+		;theming
+	)
    dotspacemacs-additional-packages '()
    dotspacemacs-frozen-packages '()
    dotspacemacs-excluded-packages '()
@@ -52,7 +173,7 @@
 	;; with `:variables' keyword (similar to layers). Check the editing styles
 	;; section of the documentation for details on available variables.
 	;; (default 'vim)
-	dotspacemacs-editing-style 'vim
+	dotspacemacs-editing-style 'hybrid
 	;; If non nil output loading progress in `*Messages*' buffer. (default nil)
 	dotspacemacs-verbose-loading nil
 	;; Specify the startup banner. Default value is `official', it displays
@@ -83,7 +204,7 @@
 	dotspacemacs-colorize-cursor-according-to-state t
 	;; Default font, or prioritized list of fonts. `powerline-scale' allows to
 	;; quickly tweak the mode-line size to make separators look not too crappy.
-	dotspacemacs-default-font '("Source Code Pro"
+	dotspacemacs-default-font '("Menlo"
 							   :size 13
 							   :weight normal
 							   :width normal
@@ -94,7 +215,7 @@
 	;; (default "SPC")
 	dotspacemacs-emacs-command-key "SPC"
 	;; The key used for Vim Ex commands (default ":")
-	dotspacemacs-ex-command-key ":"
+	dotspacemacs-ex-command-key ";"
 	;; The leader key accessible in `emacs state' and `insert state'
 	;; (default "M-m")
 	dotspacemacs-emacs-leader-key "M-m"
@@ -159,7 +280,7 @@
 	dotspacemacs-enable-paste-transient-state nil
 	;; Which-key delay in seconds. The which-key buffer is the popup listing
 	;; the commands bound to the current keystroke sequence. (default 0.4)
-	dotspacemacs-which-key-delay 0
+	dotspacemacs-which-key-delay 0.4
 	;; Which-key frame position. Possible values are `right', `bottom' and
 	;; `right-then-bottom'. right-then-bottom tries to display the frame to the
 	;; right; if there is insufficient space it displays it at the bottom.
@@ -171,10 +292,10 @@
 	dotspacemacs-loading-progress-bar t
 	;; If non nil the frame is fullscreen when Emacs starts up. (default nil)
 	;; (Emacs 24.4+ only)
-	dotspacemacs-fullscreen-at-startup nil
+	dotspacemacs-fullscreen-at-startup t
 	;; If non nil `spacemacs/toggle-fullscreen' will not use native fullscreen.
 	;; Use to disable fullscreen animations in OSX. (default nil)
-	dotspacemacs-fullscreen-use-non-native nil
+	dotspacemacs-fullscreen-use-non-native t
 	;; If non nil the frame is maximized when Emacs starts up.
 	;; Takes effect only if `dotspacemacs-fullscreen-at-startup' is nil.
 	;; (default nil) (Emacs 24.4+ only)
