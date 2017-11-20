@@ -21,6 +21,7 @@ call plug#begin()
 		Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 		Plug 'junegunn/fzf.vim'
 		Plug 'vifm/neovim-vifm'
+		Plug 'pbogut/fzf-mru.vim'
 	"EDITING
 		"OPERATORS
 			Plug 'tommcdo/vim-exchange'
@@ -103,7 +104,7 @@ call plug#begin()
 		Plug 'pseewald/vim-anyfold'
 		Plug 'arecarn/vim-fold-cycle'
 		Plug 'rhysd/clever-f.vim'
-		Plug 'okcompute/vim-ctrlp-session'
+		Plug 'dominickng/fzf-session.vim'
 		Plug 'jiangmiao/auto-pairs'
 		Plug 'haya14busa/vim-operator-flashy'
 		"Plug 'reedes/vim-wheel'
@@ -476,13 +477,14 @@ call plug#end()
 				"FREQUENT
 					nnoremap <LEADER>nd : Files ~/Google Drive<CR>
 					nnoremap <LEADER>nu : Files ~<CR>
-					nnoremap M          : History<CR>
 				"FILESYSTEM
 					nnoremap <Leader>nf  : call fzf#run(fzf#wrap({'source': 'find ~ -type d',                    'sink': 'VifmToggle' }))<CR>
 					nnoremap <Leader>nw  : call fzf#run(fzf#wrap({'source': 'find ~ -type d',                    'sink': 'SaveAs'     }))<CR>
 					nnoremap <Leader>nW  : call fzf#run(fzf#wrap({'source': 'find ~ -type d',                    'sink': 'SaveAs!'    }))<CR>
 					nnoremap <Leader>nr  : call fzf#run(fzf#wrap({'source': 'ag --hidden --ignore .git -g "" ~', 'sink': 'Read!'      }))<CR>
 				"COMPLETION
+		"FZF-MRU
+			map M :<C-u>FZFMru<CR>
 		"VIFM
 			nnoremap <LEADER>nf :VifmToggle %:p:h<CR>
 			nnoremap <LEADER>nF :VifmToggle .<CR>
@@ -585,12 +587,14 @@ call plug#end()
 			let g:session_autoload = 'yes'
 			let g:session_default_name = 'default'
 			let g:session_default_to_last = 'yes'
-		"VIM-CTRLP-SESSION
+		"FZF-SESSION
+			let g:fzf_session_path = '~/.vim-sessions'
 			nnoremap <LEADER>sn :Session<space>
 			nnoremap <LEADER>sl :SLoad<space>
 			nnoremap <LEADER>sd :SDelete<space>
-			nnoremap <LEADER>sq :SQuit<CR>
-			nnoremap <LEADER>sp :CtrlPSession<CR>
+			nnoremap <LEADER>sc :SQuit<CR>
+			"nnoremap <LEADER>sl :SList<CR>
+			nnoremap <LEADER>ss :Sessions<CR>
 		"VIM-SUBMODE
 			let g:submode_always_show_submode = 1
 			"let g:submode_keep_leaving_key = 1
