@@ -11,6 +11,15 @@
 				(add-to-list 'load-path "~/.emacs.d/packages/evil")
 				(require 'evil)
 				(evil-mode 1)
+				(setq evil-normal-state-modes
+					  (append evil-emacs-state-modes
+							  evil-insert-state-modes
+							  evil-motion-state-modes
+							  evil-motion-state-modes))
+			;SETTINGS
+				(setq evil-auto-indent t)
+				(setq evil-shift-width 4)
+			;REMAPPINGS
 			;MAPPINGS
 				;EVIL
 					(define-key evil-normal-state-map ";" 'evil-ex)
@@ -49,6 +58,7 @@
 				;EVIL-NUMBERS
 					(define-key evil-normal-state-map (kbd "C-a") 'evil-numbers/inc-at-pt)
 					(define-key evil-normal-state-map (kbd "C-x") 'evil-numbers/dec-at-pt)
+			;COMMANDS
 		;EVIL-LEADER
 			;CONFIGURATION
 				(add-to-list 'load-path "~/.emacs.d/packages/evil-leader")
@@ -59,16 +69,17 @@
 				(evil-leader/set-key
 					;VIM
 						"vq" 'evil-quit
+						"vl" 'linum-relative-global-mode
 					;BUFFERS
 						"be" 'evil-edit
 						"bw" 'evil-save
 						"bn" 'evil-buffer-new
 						"bd" 'evil-delete-buffer
+						"bl" 'list-buffers
 					;WINDOWS
 						"wc" 'evil-window-delete
 						"wh" 'evil-window-new
 						"wv" 'evil-window-vnew
-						"wo" 'evil-window-only
 					;JUMPING
 						"jf" 'evil-ace-jump-char-mode
 						"jt" 'evil-ace-jump-char-to-mode
@@ -161,41 +172,63 @@
 			;(add-to-list 'load-path "~/.emacs.d/packages/evil-vimish-fold")
 			;(require 'evil-vimish-fold)
 			;(evil-vimish-fold-mode 1)
-	;ORG-MODE
-		(add-to-list 'load-path "~/.emacs.d/packages/org-mode/lisp")
-	;VIMISH-FOLD
-		;(add-to-list 'load-path "~/.emacs.d/packages/vimish-fold")
-		;(require 'vimish-fold)
-		;(vimish-fold-global-mode 1)
-	;TARGETS.EL
-		;(add-to-list 'load-path "~/.emacs.d/packages/targets.el")
-		;(require 'targets.el)
-	;ACE-JUMP-MODE
-		(add-to-list 'load-path "~/.emacs.d/packages/ace-jump-mode")
-		(require 'ace-jump-mode)
-;THEMES
-	(setq-default custom-safe-themes t)
-	;COLORSCHMEMS
-		(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-	;STATUSLINE THEMES
+		;LINUM-RELATIVE
+			(add-to-list 'load-path "~/.emacs.d/packages/linum-relative")
+			(require 'linum-relative)
+			(linum-on)
+	;LANGUAGES
+		;ORG-MODE
+			(add-to-list 'load-path "~/.emacs.d/packages/org-mode/lisp")
+	;EMACS
+		;VIMISH-FOLD
+			;(add-to-list 'load-path "~/.emacs.d/packages/vimish-fold")
+			;(require 'vimish-fold)
+			;(vimish-fold-global-mode 1)
+	;EDITING
+		;TARGETS.EL
+			;(add-to-list 'load-path "~/.emacs.d/packages/targets.el")
+			;(require 'targets.el)
+	;PRODUCTIVITY
+		;ACE-JUMP-MODE
+			(add-to-list 'load-path "~/.emacs.d/packages/ace-jump-mode")
+			(require 'ace-jump-mode)
+	;LOOK & FEEL
 		;EMACS-POWERLINE
 			;(add-to-list 'load-path "~/.emacs.d/packages/emacs-powerline")
 			;(require 'powerline)
 		;POWERLINE
 			(add-to-list 'load-path "~/.emacs.d/packages/powerline")
+			;(add-to-list 'load-path "~/.emacs.d/packages/evil-powerline")
 			(require 'powerline)
 			(powerline-default-theme)
 		;AIRLINE-THEMES
 			(add-to-list 'load-path "~/.emacs.d/packages/airline-themes")
 			(require 'airline-themes)
-	(load-theme 'airline-light)
-	(load-theme 'dracula t)
+		;DASHBOARD
+			(require 'dashboard)
+			(dashboard-setup-startup-hook)
+			(setq dashboard-banner-logo-title "WELCOME to Evil Emacs!!!")
+			(setq dashboard-startup-banner 'logo)
+			(setq dashboard-items '(
+				(recents   . 5)
+				(bookmarks . 5)
+				;(projects  . 5)
+				;(agenda    . 5)
+				(registers . 5)))
+	;DEPENDENCIES
+		;PAGE-BREAK-LINES
+			;(turn-on-page-break-lines-mode)
 ;PREFERENCES
+	;THEMES
+		(setq-default custom-safe-themes t)
+		(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+		(load-theme 'airline-powerlineish)
+		(load-theme 'molokai t)
 	;UI
 		(menu-bar-mode -1)
 	;FONT
 		(set-default-font "Inconsolata Nerd Font")
-		(set-face-attribute 'default nil :height 180)
+		(set-face-attribute 'default nil :height 160)
 ;NOT TO TOUCH
 	(custom-set-variables
 	 ;; custom-set-variables was added by Custom.
