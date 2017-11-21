@@ -25,14 +25,19 @@
 	git clone https://github.com/bling/evil-jumper                     ~/.emacs.d/packages/evil-jumper
 	git clone https://github.com/bling/evil-visualstar                 ~/.emacs.d/packages/evil-visualstar
 	git clone https://github.com/hlissner/evil-snipe                   ~/.emacs.d/packages/evil-snipe
-	git clone https://github.com/noctuid/evil-textobj-column           ~/.emacs.d/packages/evil-textobj-column
 	git clone https://github.com/coldnew/linum-relative                ~/.emacs.d/packages/linum-relative
 #EMACS
-	git clone https://github.com/mrkkrp/vimish-fold/                   ~/.emacs.d/packages/vimish-fold
-	git clone https://github.com/winterTTr/ace-jump-mode/              ~/.emacs.d/packages/ace-jump-mode
-	git clone https://github.com/noctuid/targets.el/                   ~/.emacs.d/packages/targets.el
+	git clone https://github.com/mrkkrp/vimish-fold/      ~/.emacs.d/packages/vimish-fold
+	git clone https://github.com/winterTTr/ace-jump-mode/ ~/.emacs.d/packages/ace-jump-mode
+	git clone https://github.com/noctuid/targets.el/      ~/.emacs.d/packages/targets.el
+	git clone https://github.com/gregsexton/origami.el    ~/.emacs.d/packages/origami.el
+#PRODUCTIVITY
+	git clone https://github.com/emacs-helm/helm    ~/.emacs.d/packages/helm
+#META
+	git clone https://github.com/justbur/emacs-which-key                   ~/.emacs.d/packages/emacs-which-key
 #LANGUAGES
 	git clone https://github.com/jwiegley/org-mode/               	   ~/.emacs.d/packages/org-mode
+	git clone https://github.com/nverno/vimscript               	   ~/.emacs.d/packages/vimscript
 #LOOK & FEEL
 	git clone https://github.com/rakanalh/emacs-dashboard          ~/.emacs.d/packages/dashboard
 	git clone https://github.com/milkypostman/powerline/           ~/.emacs.d/packages/powerline
@@ -47,4 +52,9 @@
 	git clone https://github.com/purcell/page-break-lines ~/.emacs.d/packages/page-break-lines
 	git clone https://github.com/emacs-evil/goto-chg      ~/.emacs.d/packages/goto-chg
 	git clone https://github.com/emacsmirror/undo-tree    ~/.emacs.d/packages/undo-tree
-	git clone https://github.com/magnars/dash.el    	  ~/.emacs.d/packages/dash
+	git clone https://github.com/jwiegley/emacs-async    ~/.emacs.d/packages/emacs-async
+	git clone https://github.com/auto-complete/popup-el    ~/.emacs.d/packages/popup-el
+#LIBRARIES
+	git clone https://github.com/magnars/dash.el ~/.emacs.d/packages/dash
+	git clone https://github.com/rejeep/f.el     ~/.emacs.d/packages/f
+	git clone https://github.com/magnars/s.el    ~/.emacs.d/packages/s

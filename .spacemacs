@@ -98,7 +98,7 @@
 		;evil-commentary
 		;evil-snipe
 		;vim-empty-lines
-		;vim-powerline
+		vim-powerline
 		;vinegar
 	;EMACS
 		;better-defaults
@@ -143,7 +143,12 @@
 		;colors
 		;theming
 	)
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(
+	;EVIL-PACKAGES
+		evil-surround
+		evil-leader
+	;EMACS-PACKAGES
+	  )
    dotspacemacs-frozen-packages '()
    dotspacemacs-excluded-packages '()
    dotspacemacs-install-packages 'used-only))
@@ -365,7 +370,10 @@
 	dotspacemacs-whitespace-cleanup nil
 	))
 (defun dotspacemacs/user-init()
-	(setq-default dotspacemacs-themes '(molokai)))
+	(setq-default dotspacemacs-themes '(molokai))
+	(define-key evil-normal-state-map "H" 'evil-prev-buffer)
+	(define-key evil-normal-state-map "L" 'evil-next-buffer)
+	)
 (defun dotspacemacs/user-config()
 	(setq-default tab-width 4)
 	(setq-default c-basic-offset 4)

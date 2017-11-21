@@ -5,6 +5,53 @@
 	(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 	(package-initialize)
 ;PACKAGES
+	;DEPENDENCIES
+		;PAGE-BREAK-LINES
+			;(turn-on-page-break-lines-mode)
+		;EMACS-ASYNC
+			(add-to-list 'load-path "~/.emacs.d/packages/emacs-async")
+		;POPUP-EL
+			(add-to-list 'load-path "~/.emacs.d/packages/popup-el")
+	;LIBRARIES
+		;DASH
+			(add-to-list 'load-path "~/.emacs.d/packages/dash")
+			(require 'dash)
+		;S
+			(add-to-list 'load-path "~/.emacs.d/packages/s")
+			(require 's)
+		;F
+			(add-to-list 'load-path "~/.emacs.d/packages/f")
+			(require 'f)
+	;EMACS
+		;ORIGAMI
+			;(add-to-list 'load-path "~/.emacs.d/packages/origami.el")
+			;(require 'origami)
+			;(global-origami-mode 1)
+		;VIMISH-FOLD
+			(add-to-list 'load-path "~/.emacs.d/packages/vimish-fold")
+			(require 'vimish-fold)
+			(vimish-fold-global-mode 1)
+		;WHICH-KEY
+			(add-to-list 'load-path "~/.emacs.d/packages/emacs-which-key")
+			(require 'which-key)
+			(which-key-mode)
+			(setq which-key-idle-delay 0)
+			(setq which-key-allow-evil-operators t)
+			(setq which-key-show-operator-state-maps t)
+			;(which-key-setup-minibuffer)
+			;(setq which-key-popup-type 'minibuffer)
+				;'minibuffer
+				;'frame
+				;'side-window
+			;(setq which-key-side-window-location 'bottom)
+				;'bottom
+				;'top
+				;'left
+				;'right
+			;(setq which-key-side-window-max-width 0.33)
+			;(setq which-key-side-window-max-height 0.25)
+			;(setq which-key-frame-max-width 60)
+			;(setq which-key-frame-max-height 20)
 	;EVIL
 		;EVIL-MODE
 			;CONFIGURATION
@@ -12,13 +59,15 @@
 				(require 'evil)
 				(evil-mode 1)
 				(setq evil-normal-state-modes
-					  (append evil-emacs-state-modes
-							  evil-insert-state-modes
-							  evil-motion-state-modes
-							  evil-motion-state-modes))
+					(append evil-insert-state-modes
+							evil-normal-state-modes))
+				(setq evil-motion-state-modes
+					(append evil-emacs-state-modes
+							evil-motion-state-modes))
 			;SETTINGS
 				(setq evil-auto-indent t)
 				(setq evil-shift-width 4)
+				(setq evil-tab-stop 4)
 			;REMAPPINGS
 			;MAPPINGS
 				;EVIL
@@ -58,6 +107,16 @@
 				;EVIL-NUMBERS
 					(define-key evil-normal-state-map (kbd "C-a") 'evil-numbers/inc-at-pt)
 					(define-key evil-normal-state-map (kbd "C-x") 'evil-numbers/dec-at-pt)
+				;FOLDING
+					;(define-key evil-normal-state-map "za" 'origami-forward-toggle-node)
+					;(define-key evil-normal-state-map "zR" 'origami-close-all-nodes)
+					;(define-key evil-normal-state-map "zM" 'origami-open-all-nodes)
+					;(define-key evil-normal-state-map "zr" 'origami-close-node-recursively)
+					;(define-key evil-normal-state-map "zm" 'origami-open-node-recursively)
+					;(define-key evil-normal-state-map "zo" 'origami-show-node)
+					;(define-key evil-normal-state-map "zc" 'origami-close-node)
+					;(define-key evil-normal-state-map "zj" 'origami-forward-fold)
+					;(define-key evil-normal-state-map "zk" 'origami-previous-fold)
 			;COMMANDS
 		;EVIL-LEADER
 			;CONFIGURATION
@@ -75,6 +134,7 @@
 						"bw" 'evil-save
 						"bn" 'evil-buffer-new
 						"bd" 'evil-delete-buffer
+						;"bD" 'kill-buffer-and-window
 						"bl" 'list-buffers
 					;WINDOWS
 						"wc" 'evil-window-delete
@@ -113,6 +173,12 @@
 		;EVIL-TEXTOBJ-LINE
 			(add-to-list 'load-path "~/.emacs.d/packages/evil-textobj-line")
 			(require 'evil-textobj-line)
+		;EVIL-TEXTOBJ-ENTIRE
+			(add-to-list 'load-path "~/.emacs.d/packages/evil-textobj-entire")
+			(require 'evil-textobj-entire)
+		;EVIL-TEXTOBJ-ANYBLOCK
+			(add-to-list 'load-path "~/.emacs.d/packages/evil-textobj-anyblock")
+			(require 'evil-textobj-anyblock)
 		;EVIL-MC
 			(add-to-list 'load-path "~/.emacs.d/packages/evil-mc")
 			(require 'evil-mc)
@@ -165,25 +231,57 @@
 			;(setq evil-normal-state-cursor 'box)
 			;(setq evil-insert-state-cursor 'bar)
 			;(setq evil-emacs-state-cursor  'hbar)
-		;EVIL-TEXTOBJ-ENTIRE
-			(add-to-list 'load-path "~/.emacs.d/packages/evil-textobj-entire")
-			(require 'evil-textobj-entire)
 		;EVIL-VIMISH-FOLD
-			;(add-to-list 'load-path "~/.emacs.d/packages/evil-vimish-fold")
-			;(require 'evil-vimish-fold)
-			;(evil-vimish-fold-mode 1)
+			(add-to-list 'load-path "~/.emacs.d/packages/evil-vimish-fold")
+			(require 'evil-vimish-fold)
+			(evil-vimish-fold-mode 1)
 		;LINUM-RELATIVE
 			(add-to-list 'load-path "~/.emacs.d/packages/linum-relative")
 			(require 'linum-relative)
 			(linum-on)
+		;EVIL-SNIPE
+			(add-to-list 'load-path "~/.emacs.d/packages/evil-snipe")
+			(require 'evil-snipe)
+		;EVIL-VISUALSTAR
+			(add-to-list 'load-path "~/.emacs.d/packages/evil-visualstar")
+			(require 'evil-visualstar)
+		;EVIL-JUMPER
+			(add-to-list 'load-path "~/.emacs.d/packages/evil-jumper")
+			(require 'evil-jumper)
+		;EVIL-EXTRA-OPERATOR
+			(add-to-list 'load-path "~/.emacs.d/packages/evil-extra-operator")
+			(require 'evil-extra-operator)
+		;EVIL-EXCHANGE
+			(add-to-list 'load-path "~/.emacs.d/packages/evil-exchange")
+			(require 'evil-exchange)
 	;LANGUAGES
 		;ORG-MODE
 			(add-to-list 'load-path "~/.emacs.d/packages/org-mode/lisp")
-	;EMACS
-		;VIMISH-FOLD
-			;(add-to-list 'load-path "~/.emacs.d/packages/vimish-fold")
-			;(require 'vimish-fold)
-			;(vimish-fold-global-mode 1)
+		;VIMSCRIPT
+			(add-to-list 'load-path "~/.emacs.d/packages/vimscript")
+			(require 'vimscript)
+			(add-to-list 'auto-mode-alist '("\\.vim\\'" . vimscript-mode))
+			(add-to-list 'auto-mode-alist '("\\.exrc\\'" . vimscript-mode))
+			(add-to-list 'auto-mode-alist '("\\.vimrc\\'" . vimscript-mode))
+		;PYTHON
+		;C++
+		;JAVA
+		;C#
+		;R
+		;SCALA
+		;GO
+		;AHK
+		;HASKELL
+		;HTML
+		;CSS
+		;JAVASCRIPT
+		;LATEX
+		;MARKDOWN
+		;PHP
+		;RUBY
+		;SHELL
+		;TYPESCRIPT
+		;CSV
 	;EDITING
 		;TARGETS.EL
 			;(add-to-list 'load-path "~/.emacs.d/packages/targets.el")
@@ -192,6 +290,9 @@
 		;ACE-JUMP-MODE
 			(add-to-list 'load-path "~/.emacs.d/packages/ace-jump-mode")
 			(require 'ace-jump-mode)
+		;HELM
+			(add-to-list 'load-path "~/.emacs.d/packages/helm")
+			(require 'helm-config)
 	;LOOK & FEEL
 		;EMACS-POWERLINE
 			;(add-to-list 'load-path "~/.emacs.d/packages/emacs-powerline")
@@ -215,9 +316,6 @@
 				;(projects  . 5)
 				;(agenda    . 5)
 				(registers . 5)))
-	;DEPENDENCIES
-		;PAGE-BREAK-LINES
-			;(turn-on-page-break-lines-mode)
 ;PREFERENCES
 	;THEMES
 		(setq-default custom-safe-themes t)
@@ -226,19 +324,21 @@
 		(load-theme 'molokai t)
 	;UI
 		(menu-bar-mode -1)
+		(tool-bar-mode -1)
+		(scroll-bar-mode -1)
+		;(toggle-frame-maximized)
+		(toggle-frame-fullscreen)
 	;FONT
 		(set-default-font "Inconsolata Nerd Font")
 		(set-face-attribute 'default nil :height 160)
+	;FILE HANDLING
+		(setq custom-file "~/.emacs.d/custom.el")
+		(load custom-file)
+	;TEXT
+		;(set-selective-display 1)
+		(setq-default tab-width 4)
+		(setq-default indent-tabs-mode t)
+		(setq tab-stop-list '(4 8 12 16))
 ;NOT TO TOUCH
-	(custom-set-variables
-	 ;; custom-set-variables was added by Custom.
-	 ;; If you edit it by hand, you could mess it up, so be careful.
-	 ;; Your init file should contain only one such instance.
-	 ;; If there is more than one, they won't work right.
-	 '(package-selected-packages (quote (fzf org-edna))))
-	(custom-set-faces
-	 ;; custom-set-faces was added by Custom.
-	 ;; If you edit it by hand, you could mess it up, so be careful.
-	 ;; Your init file should contain only one such instance.
-	 ;; If there is more than one, they won't work right.
-	 )
+	(custom-set-variables)
+	(custom-set-faces)
