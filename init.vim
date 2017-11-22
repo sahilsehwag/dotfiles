@@ -12,6 +12,7 @@ call plug#begin()
 		Plug 'rizzatti/dash.vim'
 		Plug 'mattn/emmet-vim'
 		Plug 'vim-scripts/AutoComplPop'
+		Plug 'arkwright/vim-whiteboard'
 		"Plug 'rhysd/devdocs.vim'
 		"Plug 'airblade/vim-gitgutter'
 		"Plug 'mhinz/vim-signify'
@@ -36,7 +37,7 @@ call plug#begin()
 			Plug 'michaeljsmith/vim-indent-object'
 			Plug 'coderifous/textobj-word-column.vim'
 			"Plug 'junegunn/vim-after-object'
-			Plug 'kana/vim-textobj-line'
+			"Plug 'kana/vim-textobj-line'
 			Plug 'glts/vim-textobj-comment'
 			Plug 'Julian/vim-textobj-variable-segment'
 		Plug 'chaoren/vim-wordmotion'
@@ -121,6 +122,7 @@ call plug#begin()
 			Plug 'plasticboy/vim-markdown'
 			Plug 'digitaltoad/vim-pug'
 			Plug 'chrisbra/csv.vim'
+			Plug 'leafgarland/typescript-vim'
 			"Plug 'lervag/vimtex'
 				"Plug 'vim-latex/vim-latex'
 	"MISCELLANOUS
@@ -490,6 +492,34 @@ call plug#end()
 			nnoremap <LEADER>nf :VifmToggle %:p:h<CR>
 			nnoremap <LEADER>nF :VifmToggle .<CR>
 	"DEVELOPMENT
+		"VIM-WHITEBOARD
+			"CONFIGURATIONS
+				let g:whiteboard_temp_directory = '~/.config/nvim/temp'
+				let g:whiteboard_interpreters = {
+							\'python'     : { 'extension': 'py'     ,'command': 'python3'   },
+							\'javascript' : { 'extension': 'js'     ,'command': 'node'      },
+							\'php'        : { 'extension': 'php'    ,'command': 'php'       },
+							\'ruby'       : { 'extension': 'rb'     ,'command': 'ruby'      },
+							\'haskell'    : { 'extension': 'hs'     ,'command': 'ghci'      },
+							\'scala'      : { 'extension': 'scala'  ,'command': 'scala'     },
+							\'perl'       : { 'extension': 'pl'     ,'command': 'perl'      },
+							\'go'         : { 'extension': 'go'     ,'command': 'gore'      },
+							\'typescript' : { 'extension': 'ts'     ,'command': 'ts-node'   },
+							\'sh'         : { 'extension': 'sh'     ,'command': 'bash'      },
+							\'bash'       : { 'extension': 'bash'   ,'command': 'bash'      },
+							\'zsh'        : { 'extension': 'zsh'    ,'command': 'zsh'       },
+							\'fish'       : { 'extension': 'fsh'    ,'command': 'fsh'       },
+							\'pandoc'     : { 'extension': 'pandoc' ,'command': 'pandoc'    },
+							\'redis'      : { 'extension': 'redis'  ,'command': 'redis-cli' },
+							\'mongo'      : { 'extension': 'mongo'  ,'command': 'mongo'     },
+							\'mysql'      : { 'extension': 'mysql'  ,'command': 'mysql'     },
+							\'sqlite'     : { 'extension': 'sqlite'  ,'command': 'sqlite'   },
+							\'dosbatch'   : { 'extension': 'cmd'    ,'command': 'cmd'       },
+							\'git'        : { 'extension': 'git'    ,'command': 'gitsome'   },
+							\'lisp'       : { 'extension': 'lisp'   ,'command': 'sbcl'     }}
+			"MAPPINGS
+				nnoremap <LocalLeader>cs :execute "Whiteboard "  . &filetype<CR>
+				nnoremap <LocalLeader>cS :execute "Whiteboard! " . &filetype<CR>
 		"FUGUTIVE
 			nnoremap <Leader>gc :Commits<CR>
 			nnoremap <Leader>gC :BCommits<CR>
@@ -642,6 +672,12 @@ call plug#end()
 			endfunction
 			call airline#add_statusline_func('Noscrollbar')
 	"EDITING
+		"VIM-EXCHANGE
+			let g:exchange_no_mappings = 1
+			nmap gx  <Plug>(Exchange)
+			nmap gxx <Plug>(ExchangeLine)
+			xmap X   <Plug>(Exchange)
+			nmap gxc <Plug>(ExchangeClear)
 		"VIM-OPERATOR-SUBSTITUTE
 			let g:operator#substitute#default_flags     = "g"
 			let g:operator#substitute#default_delimiter = ";"
