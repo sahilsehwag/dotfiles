@@ -6,6 +6,7 @@ call plug#begin()
 		Plug 'honza/vim-snippets'
 		Plug 'Valloric/YouCompleteMe'
 		Plug '0x84/vim-coderunner'
+			"Plug 'thinca/vim-quickrun'?
 		Plug 'metakirby5/codi.vim'
 		Plug 'vim-syntastic/syntastic'
 		Plug 'scrooloose/nerdcommenter'
@@ -13,6 +14,7 @@ call plug#begin()
 		Plug 'mattn/emmet-vim'
 		Plug 'vim-scripts/AutoComplPop'
 		Plug 'arkwright/vim-whiteboard'
+		Plug 'ujihisa/repl.vim'
 		"Plug 'rhysd/devdocs.vim'
 		"Plug 'airblade/vim-gitgutter'
 		"Plug 'mhinz/vim-signify'
@@ -36,8 +38,7 @@ call plug#begin()
 			Plug 'wellle/targets.vim'
 			Plug 'michaeljsmith/vim-indent-object'
 			Plug 'coderifous/textobj-word-column.vim'
-			"Plug 'junegunn/vim-after-object'
-			"Plug 'kana/vim-textobj-line'
+			Plug 'rhysd/vim-textobj-anyblock'
 			Plug 'glts/vim-textobj-comment'
 			Plug 'Julian/vim-textobj-variable-segment'
 		Plug 'chaoren/vim-wordmotion'
@@ -63,7 +64,7 @@ call plug#begin()
 		"Plug 'henrik/vim-indexed-search'
 		Plug 'lambdalisue/lista.nvim'
 		Plug 'osyo-manga/vim-hopping'
-			"Plug 'haya14busa/vim-over'
+		Plug 'haya14busa/vim-over'
 		"Plug 'osyo-manga/vim-anzu'
 	"LOOK&FEEL
 		Plug 'vim-airline/vim-airline'
@@ -153,10 +154,12 @@ call plug#begin()
 		"Plug 'vim-scripts/DrawIt'
 		"Plug 'gorodinskiy/vim-coloresque'
 		"Plug 'hecal3/vim-leader-guide'
-	"LIBRARIES|UTILITIES
+	"LIBRARIES|UTILITIES|DEPENDENCIES
 		Plug 'kana/vim-textobj-user'
 		Plug 'kana/vim-operator-user'
 		Plug 'mattn/webapi-vim'
+		Plug 'Shougo/vimproc.vim'
+		Plug 'Shougo/vimshell.vim'
 call plug#end()
 
 
@@ -206,8 +209,56 @@ call plug#end()
 			"highlight Pmenu ctermbg=232 ctermfg=7
 			"highlight PmenuSel ctermfg=15
 			highlight Pmenu ctermbg=238 gui=bold
+		"INTERFACE HIGHLIGHTS
+			highlight VertSplit ctermbg=None guibg=None
 	"FILETYPE=jproperties FOR TEXT FILES
 		autocmd BufNewFile,BufRead *.txt set syntax=jproperties
+	"VARIABLES
+		let g:repls = {
+					\ 'python'     : 'python3',
+					\ 'javascript' : 'node',
+					\ 'ruby'       : 'irb',
+					\ 'php'        : 'php',
+					\ 'scala'      : 'scala',
+					\ 'perl'       : 'perl',
+					\ 'lisp'       : 'sbcl',
+					\ 'sqlite'     : 'sqlite',
+					\ 'mysql'      : 'mysql',
+					\ 'mongo'      : 'mongo',
+					\ 'redis'      : 'redis-cli',
+					\ 'typescript' : 'ts-node',
+					\ 'haskell'    : 'ghci',
+					\ 'sh'         : 'bash',
+					\ 'bash'       : 'bash',
+					\ 'zsh'        : 'zsh',
+					\ 'fish'       : 'fsh',
+					\ 'dosbatch'   : 'cmd',
+					\}
+		let g:languages = {}
+		let g:languages.python = {
+			\'extension'     : 'py',
+			\'repl'          : 'ipython',
+			\'execute'       : 'python3',
+			\'execute-flags' : 0,
+			\'compile'       : 0,
+			\'compile-flags' : 0,
+		\}
+		let g:languages.javascript = {
+			\'extension'     : 'js',
+			\'repl'          : 'node',
+			\'execute'       : 'node',
+			\'execute-flags' : 0,
+			\'compile'       : 0,
+			\'compile-flags' : 0,
+		\}
+		let g:languages.ruby = {
+			\'extension'     : 'rb',
+			\'repl'          : 'irb',
+			\'execute'       : 'ruby',
+			\'execute-flags' : 0,
+			\'compile'       : 0,
+			\'compile-flags' : 0,
+		\}
 "MAPPINGS
 	"NOTE: t=tabs b=buffers w=windows s=sessions c=registers/clipboards r=replace? n=navigation j=jumping f=find z|m?=miscellanous c=code/programming
 	"MAIN LAYOUT MAPPINGS
@@ -565,9 +616,11 @@ call plug#end()
 			nmap <Leader>fd <Plug>(devdocs-under-cursor)
 		"VIM-CODERUNNER
 			let g:vcr_no_mappings = 1
-			nnoremap <LocalLeader>cr :RunCode<CR>
-			vnoremap <LocalLeader>cr :RunCode<CR>
+			nnoremap <LocalLeader>cq :RunCode<CR>
+			vnoremap <LocalLeader>cq :RunCode<CR>
 		"CODI
+			let g:codi#width      = 80
+			let g:codi#rightalign = 0
 			nmap <LocalLeader>ci :Codi!!<CR>
 		"DASH
 			nnoremap <Leader>fd :Dash<CR>
@@ -576,6 +629,14 @@ call plug#end()
 			let g:user_emmet_install_global = 0
 			autocmd FileType html,css EmmetInstall
 			let g:user_emmet_leader_key='<tab>'
+		"REPL.vim
+			nnoremap <LocalLeader>cR :Repl<CR>
+		"VIM-COMMENTARY
+			nmap gk  gc
+			nmap gkk gcc
+			nmap gkK gcu
+			omap gk  gc
+			vmap gk  gc
 	"EXTENDING VIM
 		"REPMO
 			let repmo_key = ";"
@@ -690,10 +751,10 @@ call plug#end()
 			autocmd VimEnter * call after_object#enable('=', ':', '-', '#', ' ')
 		"VIM-TEXTOBJ-COMMENT
 			let g:textobj_comment_no_default_mappings = 1
-			xmap a/ <Plug>(textobj-comment-a)
-			xmap i/ <Plug>(textobj-comment-i)
-			omap a/ <Plug>(textobj-comment-a)
-			omap i/ <Plug>(textobj-comment-i)
+			xmap ak <Plug>(textobj-comment-a)
+			xmap ik <Plug>(textobj-comment-i)
+			omap ak <Plug>(textobj-comment-a)
+			omap ik <Plug>(textobj-comment-i)
 		"VIM-SCHLEPP
 			vmap <up>    <Plug>SchleppUp
 			vmap <down>  <Plug>SchleppDown
@@ -830,7 +891,7 @@ call plug#end()
 
 			noremap <silent><expr> <Leader>fg/ incsearch#go(<SID>config_easyfuzzymotion())
 		"VIM-OVER
-			nmap <LEADER>fr :OverCommandLine<CR>
+			nmap <LEADER>fR :OverCommandLine<CR>
 		"LISTA
 			nmap <Leader>ff :Lista<CR>
 			nmap <Leader>fF :ListaCursorWord<CR>
@@ -987,6 +1048,12 @@ call plug#end()
 			map <Leader>zlm :AddMITLicense<CR>
 			map <Leader>zla :AddApacheLicense<CR>
 			map <Leader>zlg :AddGNULicense<CR>
+	"DEPENDENCIES
+		"VIMSHELL
+			"CONFIGURATION
+				let g:vimshell_prompt = '> '
+			"MAPPINGS
+				nnoremap <silent> <LocalLeader>cr :execute 'VimShellInteractive ' . g:repls[&filetype]<CR>
 "VIMSCRIPT CODE
 	"HELPERS
 		"EXTERNAL
