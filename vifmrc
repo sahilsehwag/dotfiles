@@ -296,6 +296,8 @@
 		set scrolloff=4
 		set slowfs=curlftpfs
 		set statusline=""
+		set number
+		set relativenumber
 	"FILETYPES
 "MAPPINGS
 	"MAIN MAPPINGS
