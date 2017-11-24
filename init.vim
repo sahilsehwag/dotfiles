@@ -10,6 +10,8 @@ call plug#begin()
 		Plug 'metakirby5/codi.vim'
 		Plug 'vim-syntastic/syntastic'
 		Plug 'scrooloose/nerdcommenter'
+		Plug 'manasthakur/vim-commentor'
+			"Plug 'tpope/vim-commentary'
 		Plug 'rizzatti/dash.vim'
 		Plug 'mattn/emmet-vim'
 		Plug 'vim-scripts/AutoComplPop'
@@ -25,6 +27,8 @@ call plug#begin()
 		Plug 'junegunn/fzf.vim'
 		Plug 'vifm/neovim-vifm'
 		Plug 'pbogut/fzf-mru.vim'
+		"Plug 'cocopon/vaffle.vim'
+		"Plug 'justinmk/vim-dirvish'
 	"EDITING
 		"OPERATORS
 			Plug 'tommcdo/vim-exchange'
@@ -33,7 +37,10 @@ call plug#begin()
 			Plug 'thinca/vim-textobj-between'
 			Plug 'christoomey/vim-titlecase'
 			Plug 'milsen/vim-operator-substitute'
-		"TARGETS
+			Plug 'tyru/operator-camelize.vim'
+			Plug 'deris/vim-operator-insert'
+			Plug 'emonkak/vim-operator-sort'
+			Plug 'sgur/vim-operator-openbrowser'
 		"OBJECTS
 			Plug 'wellle/targets.vim'
 			Plug 'michaeljsmith/vim-indent-object'
@@ -43,8 +50,8 @@ call plug#begin()
 			Plug 'Julian/vim-textobj-variable-segment'
 		Plug 'chaoren/vim-wordmotion'
 		Plug 'machakann/vim-swap'
-		"Plug 'terryma/vim-multiple-cursors'
-		"Plug 'terryma/vim-expand-region'
+		Plug 'terryma/vim-multiple-cursors'
+		Plug 'terryma/vim-expand-region'
 	"WRITTING
 		Plug 'reedes/vim-pencil'
 		Plug 'panozzaj/vim-autocorrect'
@@ -91,12 +98,13 @@ call plug#begin()
 		"Plug 'Yggdroot/indentLine'
 	"EXTENDING VIM
 		"Plug 'vim-scripts/repmo.vim'
+		Plug 'unblevable/quick-scope'
+		Plug 'gastonsimone/vim-dokumentary'
 		Plug 'tpope/vim-eunuch'
+		Plug 'kopischke/vim-fetch'
 		Plug 'dohsimpson/vim-macroeditor'
 		"Plug 'vimlab/split-term.vim'
 		Plug 'zirrostig/vim-schlepp'
-		Plug 'kana/vim-submode'
-		Plug 'vim-scripts/vim-easy-submode'
 		Plug 'szw/vim-maximizer'
 		Plug 'tpope/vim-repeat'
 		Plug 'kshenoy/vim-signature'
@@ -128,6 +136,8 @@ call plug#begin()
 				"Plug 'vim-latex/vim-latex'
 	"MISCELLANOUS
 		Plug 'alpertuna/vim-header'
+		Plug 'shanzi/autoHEADER'
+		Plug 'leothelocust/vim-makecols'
 		Plug 'tweekmonster/startuptime.vim'
 		Plug 'sbdchd/vim-shebang'
 		Plug 'vim-utils/vim-read'
@@ -160,39 +170,75 @@ call plug#begin()
 		Plug 'mattn/webapi-vim'
 		Plug 'Shougo/vimproc.vim'
 		Plug 'Shougo/vimshell.vim'
+		Plug 'lucerion/vim-buffr'
+		Plug 'kana/vim-submode'
+		Plug 'vim-scripts/vim-easy-submode'
+		Plug 'kana/vim-arpeggio'
+		Plug 'vim-scripts/tinymode.vim'
+		Plug 'tyru/stickykey.vim'
+		Plug 'luzhlon/popup.vim'
+		Plug 'skywind3000/quickmenu.vim'
+	"TODECIDE
+		"Plug 'lucerion/vim-executor'
+		"Plug 'vim-scripts/Omap.vim'
+		"Plug 'tyru/capture.vim'
+		"Plug 'JarrodCTaylor/vim-shell-executor'
+		"Plug 'tommcdo/vim-express'
+		"Plug 'syngan/vim-operator-evalf'
+		"Plug 'neitanod/vim-sade'
 call plug#end()
 
 
 "PREFERENCES
 	"INDENTATION
-		set autoindent
-		set shiftwidth=4
-		set tabstop=4
-		set noexpandtab
+	set autoindent
+	set shiftwidth=4
+	set tabstop=4
+	set noexpandtab
+
 	"LINE NUMBERS
-		set number
-		set relativenumber
+	set number
+	set relativenumber
+
 	"SWAP & BACKUP
-		set directory=~/.config/nvim/temp
-		set nobackup
+	set directory=~/.config/nvim/temp
+	set nobackup
+
 	"SEARCHING
-		set hls
-		set incsearch
-		set ignorecase
-		set smartcase
+	set hls
+	set incsearch
+	set ignorecase
+	set smartcase
+
+	"COMMANDLINE
+	set path+=**
+	if has('wildmenu')
+		set wildmenu
+		set wildmode=longest:full,full
+		set wildignore+=*.a,*.o
+		set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png
+		set wildignore+=.DS_Store,.git,.hg,.svn
+		set wildignore+=*~,*.swp,*.tmp
+		set wildignorecase
+	endif
+
+	"UI
+	colorscheme Monokai
+	set noshowcmd
+	set noruler
+	set noshowmode
+	set cursorline
+
+	"BTW
+	set splitbelow
+	set nowrap
+	set hidden
+
 	"MISCELLANOUS
-		set noshowcmd
-		set noruler
-		set noshowmode
-		set cursorline
-		set splitbelow
-		set nocompatible
-		set fillchars=fold:\ ,
-		set mouse=a
-		set nowrap
-		set hidden
-		colorscheme Monokai
-		set clipboard=unnamed
+	set nocompatible
+	set fillchars=fold:\ ,
+	set mouse=a
+	set clipboard=unnamed
 "CONFIGURATION
 	"PYTHON BINARIES
 		let g:python_host_prog = 'python2'
@@ -318,6 +364,7 @@ call plug#end()
 			nnoremap <Leader>wc :close<CR>
 			nnoremap <Leader>wn :vnew<CR>
 			nnoremap <Leader>wN :new<CR>
+			nnoremap <Leader>wm :MaximizerToggle<CR>
 
 			nnoremap <C-J> <C-W><C-J>
 			nnoremap <C-K> <C-W><C-K>
@@ -396,16 +443,21 @@ call plug#end()
 			abbreviate chk ✓
 			abbreviate crs ✖
 	"OTHER MAPPINGS
-		"TEXT
-		"UNIX|LINUX WRAPPERS
+		"TEXT MAPPINGS
+		"UI MAPPINGS
+			map <Leader>utl :set number!<CR>
+			map <Leader>utr :set relativenumber!<CR>
+		"LINUX MAPPINGS
 			"FILESYSTEM
 				nnoremap <silent> <Leader>ld :execute "DeleteFile " . glob('%')<CR>
 			"FZF
-				nnoremap <Leader>lnf : call fzf#run(fzf#wrap({'source': 'find ~ -type d', 'sink': 'NewFile'          }))<CR>
-				nnoremap <Leader>lnd : call fzf#run(fzf#wrap({'source': 'find ~ -type d', 'sink': 'NewDirectory'     }))<CR>
-				nnoremap <Leader>ldf : call fzf#run(fzf#wrap({'source': 'find ~ -type f', 'sink': 'DeleteFile'       }))<CR>
-				nnoremap <Leader>ldd : call fzf#run(fzf#wrap({'source': 'find ~ -type d', 'sink': 'DeleteDirectory'  }))<CR>
-				nnoremap <Leader>ldD : call fzf#run(fzf#wrap({'source': 'find ~ -type d', 'sink': 'DeleteDirectory!' }))<CR>
+				nnoremap <Leader>nf  :call fzf#run(fzf#wrap({'source': 'find ~/Google\ Drive -type d', 'sink': 'VifmToggle'       }))<CR>
+				nnoremap <Leader>nF  :call fzf#run(fzf#wrap({'source': 'find ~               -type d', 'sink': 'VifmToggle'       }))<CR>
+				nnoremap <Leader>lnf :call fzf#run(fzf#wrap({'source': 'find ~               -type d', 'sink': 'NewFile'          }))<CR>
+				nnoremap <Leader>lnd :call fzf#run(fzf#wrap({'source': 'find ~               -type d', 'sink': 'NewDirectory'     }))<CR>
+				nnoremap <Leader>ldf :call fzf#run(fzf#wrap({'source': 'find ~               -type f', 'sink': 'DeleteFile'       }))<CR>
+				nnoremap <Leader>ldd :call fzf#run(fzf#wrap({'source': 'find ~               -type d', 'sink': 'DeleteDirectory'  }))<CR>
+				nnoremap <Leader>ldD :call fzf#run(fzf#wrap({'source': 'find ~               -type d', 'sink': 'DeleteDirectory!' }))<CR>
 			"UTILITIES
 				vnoremap <Leader>lus :sort                         <CR>
 				vnoremap <Leader>luu :<C-u>'<,'>sort \| '<,'>!uniq <CR>
@@ -631,12 +683,10 @@ call plug#end()
 			let g:user_emmet_leader_key='<tab>'
 		"REPL.vim
 			nnoremap <LocalLeader>cR :Repl<CR>
-		"VIM-COMMENTARY
-			nmap gk  gc
-			nmap gkk gcc
-			nmap gkK gcu
-			omap gk  gc
-			vmap gk  gc
+		"VIM-COMMENTOR
+			nmap gk  <Plug>Commentor
+			xmap gk  <Plug>Commentor
+			nmap gkk <Plug>CommentorLine
 	"EXTENDING VIM
 		"REPMO
 			let repmo_key = ";"
@@ -733,6 +783,15 @@ call plug#end()
 			endfunction
 			call airline#add_statusline_func('Noscrollbar')
 	"EDITING
+		"VIM-OPERATOR-SORT
+			map <Leader><Leader>s <Plug>(operator-sort)
+		"VIM-OPERATOR-INSERT
+			nmap gI <Plug>(operator-insert-i)
+			nmap gA <Plug>(operator-insert-a)
+		"VIM-OPERATOR-CAMELIZE
+			map cp <Plug>(operator-camelize)
+			map cu <Plug>(operator-decamelize)
+			map cP <Plug>(operator-camelize-toggle)
 		"VIM-EXCHANGE
 			let g:exchange_no_mappings = 1
 			nmap gx  <Plug>(Exchange)
@@ -1006,6 +1065,9 @@ call plug#end()
 
 					nmap <Leader>fwq :execute ":OpenBrowserSearch -wikiquote " GetWordUnderCursor() <CR>
 					vmap <Leader>fwq :<C-w>execute ":OpenBrowserSearch -wikiquote " GetSelectedText() <CR>
+		"VIM-OPERATOR-OPEN-BROWSER
+			nmap <Leader><Leader>f <Plug>(operator-openbrowser)
+			vmap <Leader><Leader>f <Plug>(operator-openbrowser)
 		"VIM-WORDPRESS
 			nnoremap <LocalLeader>wl :call RunInNewBuffer('BlogList', 'wordpress')<CR>
 			nnoremap <LocalLeader>wn :call RunInNewBuffer('BlogNew',  'wordpress')<CR>
