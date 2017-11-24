@@ -35,6 +35,8 @@
 	git clone https://github.com/emacs-helm/helm    ~/.emacs.d/packages/helm
 #META
 	git clone https://github.com/justbur/emacs-which-key                   ~/.emacs.d/packages/emacs-which-key
+#DEVELOPMENT
+	git clone https://github.com/syohex/emacs-quickrun               	   ~/.emacs.d/packages/emacs-quickrun
 #LANGUAGES
 	git clone https://github.com/jwiegley/org-mode/               	   ~/.emacs.d/packages/org-mode
 	git clone https://github.com/nverno/vimscript               	   ~/.emacs.d/packages/vimscript

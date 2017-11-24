@@ -254,6 +254,10 @@
 		;EVIL-EXCHANGE
 			(add-to-list 'load-path "~/.emacs.d/packages/evil-exchange")
 			(require 'evil-exchange)
+	;DEVELOPMENT
+		;EMACS-QUICKRUN
+			(add-to-list 'load-path "~/.emacs.d/packages/emacs-quickrun")
+			(require 'quickrun)
 	;LANGUAGES
 		;ORG-MODE
 			(add-to-list 'load-path "~/.emacs.d/packages/org-mode/lisp")
