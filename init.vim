@@ -27,8 +27,8 @@ call plug#begin()
 		Plug 'junegunn/fzf.vim'
 		Plug 'vifm/neovim-vifm'
 		Plug 'pbogut/fzf-mru.vim'
-		"Plug 'cocopon/vaffle.vim'
-		"Plug 'justinmk/vim-dirvish'
+		Plug 'cocopon/vaffle.vim'
+			"Plug 'justinmk/vim-dirvish'
 	"EDITING
 		"OPERATORS
 			Plug 'tommcdo/vim-exchange'
@@ -128,14 +128,13 @@ call plug#begin()
 		"AUTOCOMPLETION
 			"Plug 'dNitro/vim-pug-complete'
 		"SYNTAX
-			Plug 'plasticboy/vim-markdown'
-			Plug 'digitaltoad/vim-pug'
+			Plug 'sheerun/vim-polyglot'
 			Plug 'chrisbra/csv.vim'
-			Plug 'leafgarland/typescript-vim'
 			"Plug 'lervag/vimtex'
 				"Plug 'vim-latex/vim-latex'
 	"MISCELLANOUS
 		Plug 'alpertuna/vim-header'
+		Plug 'itchyny/calendar.vim'
 		Plug 'shanzi/autoHEADER'
 		Plug 'leothelocust/vim-makecols'
 		Plug 'tweekmonster/startuptime.vim'
@@ -962,6 +961,15 @@ call plug#end()
 			"nmap * <Plug>(anzu-star-with-echo)
 			"nmap # <Plug>(anzu-sharp-with-echo)
 	"MISCELLANOUS
+		"CALENDER
+			nnoremap <Leader>zcy :Calendar -view=year<CR>
+			nnoremap <Leader>zcm :Calendar -view=month<CR>
+			nnoremap <Leader>zcw :Calendar -view=week<CR>
+			nnoremap <Leader>zcd :Calendar -view=day<CR>
+			nnoremap <Leader>zcD :Calendar -view=days<CR>
+			nnoremap <Leader>zcc :Calendar -view=clock<CR>
+			nnoremap <Leader>zce :Calendar -view=event<CR>
+			nnoremap <Leader>zca :Calendar -view=agenda<CR>
 		"GOYO
 			let g:goyo_width = "75%"
 			"let g:goyo_height = "90%"
