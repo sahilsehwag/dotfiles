@@ -48,6 +48,9 @@ call plug#begin()
 			Plug 'rhysd/vim-textobj-anyblock'
 			Plug 'glts/vim-textobj-comment'
 			Plug 'Julian/vim-textobj-variable-segment'
+			Plug 'rhysd/vim-textobj-lastinserted'
+			Plug 'kana/vim-textobj-lastpat'
+			Plug 'saaguero/vim-textobj-pastedtext'
 		Plug 'chaoren/vim-wordmotion'
 		Plug 'machakann/vim-swap'
 		Plug 'terryma/vim-multiple-cursors'
@@ -562,7 +565,8 @@ call plug#end()
 					\ 'ctrl-r': 'Read',
 					\ 'ctrl-p': 'view',
 					\ }
-			"COMMANDS
+				autocmd! FileType fzf
+				autocmd  FileType fzf set laststatus=0 noshowmode noruler | autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 			"MAPPINGS
 				"INBUILT
 					nnoremap <LEADER>n/ :History/<CR>
