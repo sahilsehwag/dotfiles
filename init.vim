@@ -163,6 +163,7 @@ call plug#begin()
 		"Plug 'vim-scripts/DrawIt'
 		"Plug 'gorodinskiy/vim-coloresque'
 		"Plug 'hecal3/vim-leader-guide'
+		"Plug 'kyuhi/vim-emoji-complete'
 	"LIBRARIES|UTILITIES|DEPENDENCIES
 		Plug 'kana/vim-textobj-user'
 		Plug 'kana/vim-operator-user'
@@ -239,6 +240,8 @@ call plug#end()
 	set mouse=a
 	set clipboard=unnamed
 "CONFIGURATION
+	"PERFORMANCE
+		let loaded_netrwPlugin = 0
 	"PYTHON BINARIES
 		let g:python_host_prog = 'python2'
 		let g:python3_host_prog = 'python3'
@@ -332,7 +335,7 @@ call plug#end()
 		let mapleader = " "
 		let maplocalleader = ","
 		nnoremap ; :
-	"COMMAND MAPPINGS
+	"INTERFACE MAPPINGS
 		"TAB MAPPINGS
 			nnoremap <LEADER>ta :tabnew<CR>
 			nnoremap <LEADER>tc :tabclose<CR>
@@ -356,6 +359,8 @@ call plug#end()
 			nnoremap <LEADER>bw  :write<CR>
 			nnoremap <LEADER>bfw :write!<CR>
 			nnoremap <Leader>bc  :bp<bar>sp<bar>bn<bar>bd<CR>
+			nnoremap <LEADER>bt  :call ScratchBuffer('e')<CR>
+			nnoremap <LEADER>bT  :call ScratchBuffer('e', 1)<CR>
 		"WINDOW MAPPINGS
 			nnoremap <Leader>wh :sp<CR>
 			nnoremap <Leader>wv :vsp<CR>
@@ -587,7 +592,21 @@ call plug#end()
 					nnoremap <Leader>nw  : call fzf#run(fzf#wrap({'source': 'find ~ -type d',                    'sink': 'SaveAs'     }))<CR>
 					nnoremap <Leader>nW  : call fzf#run(fzf#wrap({'source': 'find ~ -type d',                    'sink': 'SaveAs!'    }))<CR>
 					nnoremap <Leader>nr  : call fzf#run(fzf#wrap({'source': 'ag --hidden --ignore .git -g "" ~', 'sink': 'Read!'      }))<CR>
+				"MAPPINGS
+					nmap <LEADER>hn <plug>(fzf-maps-n)
+					nmap <LEADER><TAB> <plug>(fzf-maps-n)
+					xmap <LEADER><TAB> <plug>(fzf-maps-x)
+					imap <LEADER><TAB> <plug>(fzf-maps-i)
+					omap <LEADER><TAB> <plug>(fzf-maps-o)
 				"COMPLETION
+					imap        ;w <plug>(fzf-complete-word)
+					imap        ;p <plug>(fzf-complete-path)
+					imap        ;f <plug>(fzf-complete-file-ag)
+					imap        ;l <plug>(fzf-complete-line)
+					imap        ;L <plug>(fzf-complete-buffer-line)
+					imap <expr> ;dp fzf#complete('find ~/Google\ Drive')
+					imap <expr> ;df fzf#complete('find ~/Google\ Drive -type f')
+					imap <expr> ;dd fzf#complete('find ~/Google\ Drive -type d')
 		"FZF-MRU
 			map M :<C-u>FZFMru<CR>
 		"VIFM
@@ -1259,6 +1278,25 @@ call plug#end()
 				function! RunInNewBuffer(command, filename)
 					execute "edit! " a:filename
 					execute a:command
+				endfunction
+
+				function! ScratchBuffer(type, ...)
+					if a:type == 'e'
+						enew
+					elseif a:type == 's'
+						new
+					elseif a:type == 'v'
+						vnew
+					endif
+
+					setlocal buftype=nofile
+					setlocal bufhidden=hide
+					setlocal noswapfile
+					setlocal nobuflisted
+
+					if exists('a:1')
+						Filetypes
+					endif
 				endfunction
 			"META
 				function! Pechoerr(msg)
