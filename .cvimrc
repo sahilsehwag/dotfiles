@@ -18,17 +18,17 @@
 	let zoomfactor = 0.1
 	let defaultengine = "google"
 "MAPPINGS
-	"CHROME/cVIM MAPPINGS (c)
+	"c = CHROME|CVIM MAPPINGS
 		map ; :
 		map <Leader>cr :chrome://restart<CR>
-	"SESSION MANAGEMENT (s)
-		map <Leader>sn :mksession<Space>
-		map <Leader>so :session<Space>
-		map <Leader>sd :delsession<Space>
-	"TAB MAPPINGS (t)
+	"s = SESSION MANAGEMENT
+		map <Leader>sn :mksession<space>
+		map <Leader>so :session<space>
+		map <Leader>sd :delsession<space>
+	"t = TAB MAPPINGS
 		map <Leader>tl :buffer<Space>
-	"WINDOW MAPPINGS (w)
-	"OPTIONS (o)
+	"w = WINDOW MAPPINGS
+	"o = OPTIONS
 		map <Leader>oi :set showtabindices!<CR>
 "UNMAPPINGS
 	unmap w
