@@ -1048,7 +1048,7 @@ call plug#end()
 			"OPEN URI UNDER CURSOR
 				nmap <Leader>fl <Plug>(openbrowser-open)
 				vmap <Leader>fl <Plug>(openbrowser-open)
-				nmap <Leader>fL :call ConvertAndOpenUnderCursor()
+				nmap <Leader>fL :call ConvertAndOpenUnderCursor()<CR>
 
 				function! ConvertAndOpenUnderCursor()
 					let l:word = GetWORDUnderCursor()
