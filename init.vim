@@ -1099,6 +1099,59 @@
 			abbreviate crs ✖
 	"COMMANDLINE MODE
 	"MISCELLANOUS GROUPS
+		"REGISTER MAPPINGS
+			nnoremap <Leader>ra "a
+			nnoremap <Leader>rb "b
+			nnoremap <Leader>rc "c
+			nnoremap <Leader>rd "d
+			nnoremap <Leader>re "e
+			nnoremap <Leader>rf "f
+			nnoremap <Leader>rg "g
+			nnoremap <Leader>rh "h
+			nnoremap <Leader>ri "i
+			nnoremap <Leader>rj "j
+			nnoremap <Leader>rk "k
+			nnoremap <Leader>rl "l
+			nnoremap <Leader>rm "m
+			nnoremap <Leader>rn "n
+			nnoremap <Leader>ro "o
+			nnoremap <Leader>rp "p
+			nnoremap <Leader>rq "q
+			nnoremap <Leader>rr "r
+			nnoremap <Leader>rs "s
+			nnoremap <Leader>rt "t
+			nnoremap <Leader>ru "u
+			nnoremap <Leader>rv "v
+			nnoremap <Leader>rw "w
+			nnoremap <Leader>rx "x
+			nnoremap <Leader>ry "y
+			nnoremap <Leader>rz "z
+			nnoremap <Leader>rA "a
+			nnoremap <Leader>rB "b
+			nnoremap <Leader>rC "c
+			nnoremap <Leader>rD "d
+			nnoremap <Leader>rE "e
+			nnoremap <Leader>rF "f
+			nnoremap <Leader>rG "g
+			nnoremap <Leader>rH "h
+			nnoremap <Leader>rI "i
+			nnoremap <Leader>rJ "j
+			nnoremap <Leader>rK "k
+			nnoremap <Leader>rL "l
+			nnoremap <Leader>rM "m
+			nnoremap <Leader>rN "n
+			nnoremap <Leader>rO "o
+			nnoremap <Leader>rP "p
+			nnoremap <Leader>rQ "q
+			nnoremap <Leader>rR "r
+			nnoremap <Leader>rS "s
+			nnoremap <Leader>rT "t
+			nnoremap <Leader>rU "u
+			nnoremap <Leader>rV "v
+			nnoremap <Leader>rW "w
+			nnoremap <Leader>rX "x
+			nnoremap <Leader>rY "y
+			nnoremap <Leader>rZ "z
 		"VIM MAPPINGS
 			nnoremap <LEADER>vc  : edit ~/.config/nvim/init.vim<CR>
 			nnoremap <LEADER>vs  : source ~/.config/nvim/init.vim<CR>
