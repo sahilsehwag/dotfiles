@@ -1,597 +1,7 @@
-"VIM-PLUG
-call plug#begin()
-	"DEVELOPMENT
-		Plug 'chiel92/vim-autoformat'
-		Plug 'SirVer/ultisnips'
-		Plug 'honza/vim-snippets'
-		Plug 'Valloric/YouCompleteMe'
-		Plug '0x84/vim-coderunner'
-			"Plug 'thinca/vim-quickrun'?
-		Plug 'metakirby5/codi.vim'
-		Plug 'vim-syntastic/syntastic'
-		Plug 'scrooloose/nerdcommenter'
-		Plug 'manasthakur/vim-commentor'
-			"Plug 'tpope/vim-commentary'
-		Plug 'rizzatti/dash.vim'
-		Plug 'mattn/emmet-vim'
-		Plug 'vim-scripts/AutoComplPop'
-		Plug 'arkwright/vim-whiteboard'
-		Plug 'ujihisa/repl.vim'
-		"Plug 'rhysd/devdocs.vim'
-		"Plug 'airblade/vim-gitgutter'
-		"Plug 'mhinz/vim-signify'
-		"Plug 'majutsushi/tagbar'
-		"Plug 'ervandew/supertab'
-	"FILESYSTEM
-		Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-		Plug 'junegunn/fzf.vim'
-		Plug 'vifm/neovim-vifm'
-		Plug 'pbogut/fzf-mru.vim'
-		Plug 'cocopon/vaffle.vim'
-			"Plug 'justinmk/vim-dirvish'
-	"EDITING
-		"OPERATORS
-			Plug 'tommcdo/vim-exchange'
-			Plug 'tpope/vim-surround'
-			Plug 'junegunn/vim-easy-align'
-			Plug 'thinca/vim-textobj-between'
-			Plug 'christoomey/vim-titlecase'
-			Plug 'milsen/vim-operator-substitute'
-			Plug 'tyru/operator-camelize.vim'
-			Plug 'deris/vim-operator-insert'
-			Plug 'emonkak/vim-operator-sort'
-			Plug 'sgur/vim-operator-openbrowser'
-		"OBJECTS
-			Plug 'wellle/targets.vim'
-			Plug 'michaeljsmith/vim-indent-object'
-			Plug 'coderifous/textobj-word-column.vim'
-			Plug 'rhysd/vim-textobj-anyblock'
-			Plug 'glts/vim-textobj-comment'
-			Plug 'Julian/vim-textobj-variable-segment'
-			Plug 'rhysd/vim-textobj-lastinserted'
-			Plug 'kana/vim-textobj-lastpat'
-			Plug 'saaguero/vim-textobj-pastedtext'
-		Plug 'chaoren/vim-wordmotion'
-		Plug 'machakann/vim-swap'
-		Plug 'terryma/vim-multiple-cursors'
-		Plug 'terryma/vim-expand-region'
-	"WRITTING
-		Plug 'reedes/vim-pencil'
-		Plug 'panozzaj/vim-autocorrect'
-		Plug 'davidbeckingsale/writegood.vim'
-		"Plug 'dbmrq/vim-ditto'
-		Plug 'reedes/vim-lexical'
-	"SEARCHING
-		Plug 'easymotion/vim-easymotion'
-		Plug 'haya14busa/incsearch.vim'
-		Plug 'haya14busa/incsearch-fuzzy.vim'
-		Plug 'haya14busa/incsearch-easymotion.vim'
-		Plug 'haya14busa/vim-easyoperator-line'
-		Plug 'haya14busa/vim-easyoperator-phrase'
-		Plug 'aykamko/vim-easymotion-segments'
-		Plug 'bronson/vim-visual-star-search'
-		"Plug 'vim-scripts/MultipleSearch'
-		"Plug 'henrik/vim-indexed-search'
-		Plug 'lambdalisue/lista.nvim'
-		Plug 'osyo-manga/vim-hopping'
-		Plug 'haya14busa/vim-over'
-		"Plug 'osyo-manga/vim-anzu'
-	"LOOK&FEEL
-		Plug 'vim-airline/vim-airline'
-		Plug 'vim-airline/vim-airline-themes'
-		Plug 'edkolev/tmuxline.vim'
-		Plug 'edkolev/promptline.vim'
-		Plug 'bling/vim-bufferline'
-		Plug 'flazz/vim-colorschemes'
-		Plug 'rafi/awesome-vim-colorschemes'
-		Plug 'chriskempson/base16-vim'
-		Plug 'ryanoasis/vim-devicons'
-		Plug 'itchyny/vim-highlighturl'
-		Plug 'gcavallanti/vim-noscrollbar'
-		Plug 'KeitaNakamura/neodark.vim'
-		Plug 'sindresorhus/focus'
-		Plug 'KabbAmine/yowish.vim'
-		Plug 'ayu-theme/ayu-vim'
-		Plug 'tyrannicaltoucan/vim-quantum'
-		Plug 'raphamorim/lucario'
-		Plug 'paranoida/vim-airlineish'
-		"Plug 'zefei/vim-colortuner'
-		"Plug 'itchyny/lightline.vim'
-		"Plug 'augustold/vim-airline-colornum'
-		"Plug 'Yggdroot/indentLine'
-	"EXTENDING VIM
-		"Plug 'vim-scripts/repmo.vim'
-		Plug 'unblevable/quick-scope'
-		Plug 'gastonsimone/vim-dokumentary'
-		Plug 'tpope/vim-eunuch'
-		Plug 'kopischke/vim-fetch'
-		Plug 'dohsimpson/vim-macroeditor'
-		"Plug 'vimlab/split-term.vim'
-		Plug 'zirrostig/vim-schlepp'
-		Plug 'szw/vim-maximizer'
-		Plug 'tpope/vim-repeat'
-		Plug 'kshenoy/vim-signature'
-		Plug 'joeytwiddle/sexy_scroller.vim'
-			"Plug 'terryma/vim-smooth-scroll'
-		Plug 'inside/vim-search-pulse'
-		Plug 'pseewald/vim-anyfold'
-		Plug 'arecarn/vim-fold-cycle'
-		Plug 'rhysd/clever-f.vim'
-		Plug 'dominickng/fzf-session.vim'
-		Plug 'jiangmiao/auto-pairs'
-		Plug 'haya14busa/vim-operator-flashy'
-		"Plug 'reedes/vim-wheel'
-		"Plug 'tpope/vim-speeddating'
-		"Plug 'severin-lemaignan/vim-minimap'
-	"LANGUAGES
-		"LINTERS
-		"BEAUTIFIERS
-		"AUTOCOMPILATION
-			Plug 'coachshea/jade-vim'
-		"AUTOCOMPLETION
-			"Plug 'dNitro/vim-pug-complete'
-		"SYNTAX
-			Plug 'sheerun/vim-polyglot'
-			Plug 'chrisbra/csv.vim'
-			"Plug 'lervag/vimtex'
-				"Plug 'vim-latex/vim-latex'
-	"MISCELLANOUS
-		Plug 'alpertuna/vim-header'
-		Plug 'itchyny/calendar.vim'
-		Plug 'shanzi/autoHEADER'
-		Plug 'leothelocust/vim-makecols'
-		Plug 'tweekmonster/startuptime.vim'
-		Plug 'sbdchd/vim-shebang'
-		Plug 'vim-utils/vim-read'
-		Plug 'antoyo/vim-licenses'
-		Plug 'vim-scripts/WholeLineColor'
-		Plug 'tyru/open-browser.vim'
-		Plug 'junegunn/goyo.vim'
-		Plug 'junegunn/limelight.vim'
-		Plug 'mtth/scratch.vim'
-		Plug 'mhinz/vim-startify'
-		Plug 'suan/vim-instant-markdown'
-		Plug 'tpope/vim-capslock'
-		"Plug 'natw/keyboard_cat.vim'
-		Plug 'MrPeterLee/VimWordpress'
-			"Plug 'vim-scripts/blogit.vim'
-			"Plug 'PotHix/Vimpress'
-			"Plug 'vim-scripts/VimRepress'
-			"Plug 'vim-scripts/Vimpress'
-		"Plug 'vim-scripts/autoscroll.vim'
-		"Plug 'fadein/vim-FIGlet'
-		"Plug 'chrisbra/changesPlugin'
-		"Plug 'guns/xterm-color-table.vim'
-		"Plug 'vim-scripts/ScrollColors'
-		"Plug 'vim-scripts/DrawIt'
-		"Plug 'gorodinskiy/vim-coloresque'
-		"Plug 'hecal3/vim-leader-guide'
-		"Plug 'tweekmonster/nvim-api-viewer'
-		"Plug 'kyuhi/vim-emoji-complete'
-	"LIBRARIES|UTILITIES|DEPENDENCIES
-		Plug 'kana/vim-textobj-user'
-		Plug 'kana/vim-operator-user'
-		Plug 'mattn/webapi-vim'
-		Plug 'Shougo/vimproc.vim'
-		Plug 'Shougo/vimshell.vim'
-		Plug 'lucerion/vim-buffr'
-		Plug 'kana/vim-submode'
-		Plug 'vim-scripts/vim-easy-submode'
-		Plug 'kana/vim-arpeggio'
-		Plug 'vim-scripts/tinymode.vim'
-		Plug 'tyru/stickykey.vim'
-		Plug 'luzhlon/popup.vim'
-		Plug 'skywind3000/quickmenu.vim'
-	"TODECIDE
-		"Plug 'lucerion/vim-executor'
-		"Plug 'vim-scripts/Omap.vim'
-		"Plug 'tyru/capture.vim'
-		"Plug 'JarrodCTaylor/vim-shell-executor'
-		"Plug 'tommcdo/vim-express'
-		"Plug 'syngan/vim-operator-evalf'
-		"Plug 'neitanod/vim-sade'
-call plug#end()
-
-
-"PREFERENCES
-	"INDENTATION
-	set autoindent
-	set shiftwidth=4
-	set tabstop=4
-	set noexpandtab
-
-	"LINE NUMBERS
-	set number
-	set relativenumber
-
-	"SWAP & BACKUP
-	set directory=~/.config/nvim/temp
-	set nobackup
-
-	"SEARCHING
-	set hls
-	set incsearch
-	set ignorecase
-	set smartcase
-
-	"COMMANDLINE
-	set path+=**
-	if has('wildmenu')
-		set wildmenu
-		set wildmode=longest:full,full
-		set wildignore+=*.a,*.o
-		set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png
-		set wildignore+=.DS_Store,.git,.hg,.svn
-		set wildignore+=*~,*.swp,*.tmp
-		set wildignorecase
-	endif
-
-	"UI
-	colorscheme Monokai
-	set noshowcmd
-	set noruler
-	set noshowmode
-	set cursorline
-
-	"BTW
-	set splitbelow
-	set nowrap
-	set hidden
-
-	"MISCELLANOUS
-	set nocompatible
-	set fillchars=fold:\ ,
-	set mouse=a
-	set clipboard=unnamed
-"CONFIGURATION
-	"PERFORMANCE
-		let loaded_netrwPlugin = 0
-	"PYTHON BINARIES
-		let g:python_host_prog = 'python2'
-		let g:python3_host_prog = 'python3'
-		"let g:loaded_python3_provider=1
-	"HIGHLIGHTS
-		"SEARCH HIGHLIGHTS
-			highlight Search ctermfg=49 cterm=NONE gui=NONE
-			highlight IncSearchMatch ctermfg=black ctermbg=186
-		"TRAILING WHITESPACES
-			"highlight TrailingWhitespace ctermbg=135
-			"call matchadd('TrailingWhitespace', '\s\+$', 100)
-		"AUTOCOMPLETION MENU
-			"highlight Pmenu ctermbg=232 ctermfg=7
-			"highlight PmenuSel ctermfg=15
-			highlight Pmenu ctermbg=238 gui=bold
-		"INTERFACE HIGHLIGHTS
-			highlight VertSplit ctermbg=None guibg=None
-	"FILETYPE=jproperties FOR TEXT FILES
-		autocmd BufNewFile,BufRead *.txt set syntax=jproperties
-	"VARIABLES
-		let g:repls = {
-					\ 'python'     : 'python3',
-					\ 'javascript' : 'node',
-					\ 'ruby'       : 'irb',
-					\ 'php'        : 'php',
-					\ 'scala'      : 'scala',
-					\ 'perl'       : 'perl',
-					\ 'lisp'       : 'sbcl',
-					\ 'sqlite'     : 'sqlite',
-					\ 'mysql'      : 'mysql',
-					\ 'mongo'      : 'mongo',
-					\ 'redis'      : 'redis-cli',
-					\ 'typescript' : 'ts-node',
-					\ 'haskell'    : 'ghci',
-					\ 'sh'         : 'bash',
-					\ 'bash'       : 'bash',
-					\ 'zsh'        : 'zsh',
-					\ 'fish'       : 'fsh',
-					\ 'dosbatch'   : 'cmd',
-					\}
-		let g:languages = {}
-		"INTERPRETED LANGUAGES
-			let g:languages.python = {
-				\'extension'     : 'py',
-				\'repl'          : 'ipython',
-				\'execute'       : 'python3',
-				\'execute-flags' : '',
-			\}
-			let g:languages.javascript = {
-				\'extension'     : 'js',
-				\'repl'          : 'node',
-				\'execute'       : 'node',
-				\'execute-flags' : '',
-			\}
-			let g:languages.ruby = {
-				\'extension'     : 'rb',
-				\'repl'          : 'irb',
-				\'execute'       : 'ruby',
-				\'execute-flags' : '',
-			\}
-			let g:languages.typscript = {
-				\'extension'     : 'ts',
-				\'repl'          : 'ts-node',
-				\'execute'       : 'tsc',
-				\'execute-flags' : '',
-			\}
-			let g:languages.perl = {
-				\'extension'     : 'pl',
-				\'repl'          : 'perl',
-				\'execute'       : 'perl',
-				\'execute-flags' : '',
-			\}
-			let g:languages.php = {
-				\'extension'     : 'php',
-				\'repl'          : 'php',
-				\'execute'       : 'php',
-				\'execute-flags' : '',
-			\}
-			let g:languages.lisp = {
-				\'extension'     : 'lsp',
-				\'repl'          : 'sbcl',
-				\'execute'       : '',
-				\'execute-flags' : '',
-			\}
-		"COMPILED LANGUAGES
-			let g:languages.c = {
-				\'extension'     : 'c',
-				\'execute'       : '',
-				\'execute-flags' : '',
-				\'compile'       : 'gcc',
-				\'compile-flags' : '',
-			\}
-			let g:languages.cpp = {
-				\'extension'     : 'cpp',
-				\'execute'       : '',
-				\'execute-flags' : '',
-				\'compile'       : 'g++',
-				\'compile-flags' : '-std=c++14',
-			\}
-			let g:languages.java = {
-				\'extension'     : 'java',
-				\'execute'       : 'java',
-				\'execute-flags' : '',
-				\'compile'       : 'javac',
-				\'compile-flags' : '',
-			\}
-			let g:languages.scala = {
-				\'extension'     : 'scala',
-				\'repl'          : 'scala',
-				\'execute'       : 'scala',
-				\'execute-flags' : '',
-				\'compile'       : 'scalac',
-				\'compile-flags' : '',
-			\}
-			let g:languages.haskell = {
-				\'extension'     : 'hs',
-				\'repl'          : 'ghci',
-				\'execute'       : '',
-				\'execute-flags' : '',
-				\'compile'       : '',
-				\'compile-flags' : '',
-			\}
-		"SHELL
-			let g:languages.zsh = {
-				\'extension'     : 'zsh',
-				\'repl'          : 'zsh',
-				\'execute'       : 'zsh',
-				\'execute-flags' : '',
-			\}
-			let g:languages.bash = {
-				\'extension'     : 'bash',
-				\'repl'          : 'bash',
-				\'execute'       : 'bash',
-				\'execute-flags' : '',
-			\}
-			let g:languages.fish = {
-				\'extension'     : 'fsh',
-				\'repl'          : 'fsh',
-				\'execute'       : 'fsh',
-				\'execute-flags' : '',
-			\}
-			let g:languages.sh = {
-				\'extension'     : 'sh',
-				\'repl'          : 'sh',
-				\'execute'       : 'sh',
-				\'execute-flags' : '',
-			\}
-			let g:languages.batch = {
-				\'extension'     : 'cmd',
-				\'repl'          : 'cmd',
-				\'execute'       : '',
-				\'execute-flags' : '',
-			\}
-		"DATABASES
-			let g:languages.sqlite = {
-				\'extension'     : 'sql',
-				\'repl'          : 'sqlite',
-			\}
-			let g:languages.mysql = {
-				\'extension'     : 'mysql',
-				\'repl'          : 'mysql',
-			\}
-			let g:languages.redis = {
-				\'extension'     : 'redis',
-				\'repl'          : 'redis-cli',
-			\}
-			let g:languages.mongo = {
-				\'extension'     : 'mongo',
-				\'repl'          : 'mongo',
-			\}
-"MAPPINGS
-	"NOTE: t=tabs b=buffers w=windows s=sessions c=registers/clipboards r=replace? n=navigation j=jumping f=find z|m?=miscellanous c=code/programming
-	"MAIN LAYOUT MAPPINGS
-		"BETTER o|O @TODO
-			"NORMAL MODE OPENER
-				"nnoremap <CR> :normal! o<ESC>
-		"BETTER PASTES
-			"PASTE SWAP @FIX
-				nnoremap p :normal! ]p <CR>
-				nnoremap P :normal! [p <CR>
-				nnoremap ]p :normal! p <CR>
-				nnoremap [p :normal! P <CR>
-				"vnoremap p :<C-u>normal! ]pgvd <CR>
-				"vnoremap P :<C-u>normal! [pgvd <CR>
-				"vnoremap ]p :<C-u>normal! pgvd <CR>
-				"vnoremap [p :<C-u>normal! Pgvd <CR>
-			"FORMATTED PASTE + <<|>> @FIX
-				nnoremap >p :normal! ]p>> <CR>
-				nnoremap <p :normal! ]p<< <CR>
-				nnoremap >P :normal! [p>> <CR>
-				nnoremap <P :normal! [p<< <CR>
-			"NEWLINE PASTE + ==
-				nnoremap ]P :normal! o<esc>p==
-				nnoremap [P :normal! O<Esc>P==
-	"LEADER MAPPING
-		let mapleader = " "
-		let maplocalleader = ","
-		nnoremap ; :
-	"INTERFACE MAPPINGS
-		"TAB MAPPINGS
-			nnoremap <LEADER>ta :tabnew<CR>
-			nnoremap <LEADER>tc :tabclose<CR>
-			nnoremap <LEADER>tn :tabnext<CR>
-			nnoremap <LEADER>tp :tabprevious<CR>
-			nnoremap <LEADER>th :tabmove -<CR>
-			nnoremap <LEADER>tl :tabmove +<CR>
-		"BUFFER MAPPINGS
-			nnoremap H           :bprevious<CR>
-			nnoremap L           :bnext<CR>
-			nnoremap <LEADER>bn  :enew<CR>
-			nnoremap <LEADER>ba  :badd<space>
-			nnoremap <LEADER>bd  :bdelete<CR>
-			nnoremap <LEADER>bfd :bdelete!<CR>
-			nnoremap <LEADER>bl  :bnext<CR>
-			nnoremap <LEADER>bh  :bprevious<CR>
-			nnoremap <LEADER>br  :e<CR>
-			nnoremap <LEADER>bfr :e!<CR>
-			nnoremap <Leader>bv  :view<CR>
-			nnoremap <Leader>bfv :view!<CR>
-			nnoremap <LEADER>bw  :write<CR>
-			nnoremap <LEADER>bfw :write!<CR>
-			nnoremap <Leader>bc  :bp<bar>sp<bar>bn<bar>bd<CR>
-			nnoremap <LEADER>bt  :call ScratchBuffer('e')<CR>
-			nnoremap <LEADER>bT  :call ScratchBuffer('e', 1)<CR>
-		"WINDOW MAPPINGS
-			nnoremap <Leader>wh :sp<CR>
-			nnoremap <Leader>wv :vsp<CR>
-			nnoremap <Leader>wo :only<CR>
-			nnoremap <Leader>wc :close<CR>
-			nnoremap <Leader>wn :vnew<CR>
-			nnoremap <Leader>wN :new<CR>
-			nnoremap <Leader>wm :MaximizerToggle<CR>
-
-			nnoremap <C-J> <C-W><C-J>
-			nnoremap <C-K> <C-W><C-K>
-			nnoremap <C-L> <C-W><C-L>
-			nnoremap <C-H> <C-W><C-H>
-	"VIM MAPPINGS
-		nnoremap <LEADER>vc  : edit ~/.config/nvim/init.vim<CR>
-		nnoremap <LEADER>vs  : source ~/.config/nvim/init.vim<CR>
-		nnoremap <LEADER>vt  : terminal<CR>
-		nnoremap <Leader>vi  : PlugInstall<CR>
-		nnoremap <Leader>vu  : PlugClean<CR>
-		nnoremap <Leader>vw  : call AutoSaveToggle()<CR>
-		nnoremap <LEADER>vq  : q<CR>
-		nnoremap <LEADER>vfq : q!<CR>
-
-		nnoremap <Leader>va  : call AutoCorrect()<CR>
-		nnoremap <Leader>vp  : PencilToggle<CR>
-		nnoremap <Leader>vd  : Goyo<CR>
-		nnoremap <Leader>vl  : Limelight!!<CR>
-		nnoremap <Leader>vf  : Autoformat<CR>
-		vnoremap <Leader>vf  : Autoformat<CR>
-		nnoremap <Leader>vF  : call AutoFormatToggle()<CR>
-		nnoremap <LEADER>vS  : Startify<CR>
-	"FILETYPE MAPPINGS
-		"TEXT
-		"PUG
-			"FUNCTIONS
-				function! Pug(range)
-					call RunNpmCommand('pug', '-P', a:range, 'pug-cli')
-				endfunction
-			"MAPPINGS
-				augroup PUG
-					au!
-					au FileType jade,pug map <buffer> <LocalLeader>cw : JadeWatch html vertical<CR>
-					au FileType jade,pug nmap <buffer> <LocalLeader>cc : <C-u> call Pug('')<CR>
-					au FileType jade,pug vmap <buffer> <LocalLeader>cc : <C-u> call Pug("'<,'>")<CR>
-					au FileType jade,pug nmap <buffer> <LocalLeader>cb : <C-u> call Pug('%')<CR>
-				augroup END
-		"HTML
-			"FUNCTIONS
-				function! Html2Pug(range)
-					call RunNpmCommand('html2pug', '-f', a:range, 'html2pug')
-				endfunction
-			"MAPPINGS
-				augroup HTML
-					au!
-					au FileType html nmap <buffer> <LocalLeader>cj :call Html2Pug('%')<CR>
-					au FileType html vmap <buffer> <LocalLeader>cj :call Html2Pug("'<,'>")<CR>
-				augroup END
-		"CSS
-		"PYTHON
-		"C++/C
-		"JAVA
-		"XML
-			augroup XML
-				au!
-				au FileType xml nmap <buffer> <LocalLeader>cj :call RunNpmCommand('x2j', '', '%', 'x2j-cli')<CR>
-				au FileType xml vmap <buffer> <LocalLeader>cj :call RunNpmCommand('x2j', '', "'<,'>", 'x2j-cli')<CR>
-			augroup END
-		"JAVASCRIPT
-		"MARKDOWN
-			augroup MARKDOWN
-				au!
-				au FileType markdown nmap <buffer> <LocalLeader>ch :call RunNpmCommand('', "%", 'gh-markdown-cli')<CR>
-				au FileType markdown vmap <buffer> <LocalLeader>ch :call RunNpmCommand('mdown', '', "'<,'>", 'gh-markdown-cli')<CR>
-			augroup END
-		"WORDPRESS
-			augroup WORDPRESS
-				au!
-				au BufEnter wordpress set filetype=jade
-				au BufEnter wordpress map <buffer> <LocalLeader>ch :<C-u>call Pug('12,$')<CR>
-				au BufEnter wordpress map <buffer> <LocalLeader>cj :<C-u>call Html2Pug('12,$')<CR>
-			augroup END
-	"INSERT MAPPINGS
-		"ABBREVIATIONS @TODO
-			abbreviate chk ✓
-			abbreviate crs ✖
-	"OTHER MAPPINGS
-		"TEXT MAPPINGS
-		"UI MAPPINGS
-			map <Leader>utl :set number!<CR>
-			map <Leader>utr :set relativenumber!<CR>
-		"LINUX MAPPINGS
-			"FILESYSTEM
-				nnoremap <silent> <Leader>ld :execute "DeleteFile " . glob('%')<CR>
-			"FZF
-				nnoremap <Leader>nf  :call fzf#run(fzf#wrap({'source': 'find ~/Google\ Drive -type d', 'sink': 'VifmToggle'       }))<CR>
-				nnoremap <Leader>nF  :call fzf#run(fzf#wrap({'source': 'find ~               -type d', 'sink': 'VifmToggle'       }))<CR>
-				nnoremap <Leader>lnf :call fzf#run(fzf#wrap({'source': 'find ~               -type d', 'sink': 'NewFile'          }))<CR>
-				nnoremap <Leader>lnd :call fzf#run(fzf#wrap({'source': 'find ~               -type d', 'sink': 'NewDirectory'     }))<CR>
-				nnoremap <Leader>ldf :call fzf#run(fzf#wrap({'source': 'find ~               -type f', 'sink': 'DeleteFile'       }))<CR>
-				nnoremap <Leader>ldd :call fzf#run(fzf#wrap({'source': 'find ~               -type d', 'sink': 'DeleteDirectory'  }))<CR>
-				nnoremap <Leader>ldD :call fzf#run(fzf#wrap({'source': 'find ~               -type d', 'sink': 'DeleteDirectory!' }))<CR>
-			"UTILITIES
-				vnoremap <Leader>lus :sort                         <CR>
-				vnoremap <Leader>luu :<C-u>'<,'>sort \| '<,'>!uniq <CR>
-				vnoremap <Leader>luc :<C-u>'<,'>!bc                <CR>
-		"FIND & REPLACE
-			"REPLACE CHARACTER @TODO
-	"MISCELLANOUS MAPPINGS
-		"QUICK EXIT MAPPINGS
-		"REPEAT LAST OPERATION ON A MATCH ON NEXT n MATCH
-			nnoremap Q :normal n.<CR>
-			"nnoremap Q @='n.'<CR>
-		"MOVE COMMANDS
-			nnoremap <C-DOWN> :m .+1<CR>==
-			nnoremap <C-UP> :m .-2<CR>==
-			inoremap <C-DOWN> <Esc>:m .+1<CR>==gi
-			inoremap <C-UP> <Esc>:m .-2<CR>==gi
-			vnoremap <C-DOWN> :m '>+1<CR>gv=gv
-			vnoremap <C-UP> :m '<-2<CR>gv=gv
 "PLUGINS
+	call plug#begin()
 	"PRODUCTIVITY
-		"EASYMOTION
+		Plug 'easymotion/vim-easymotion'
 			"CONFIGURATION
 				let g:EasyMotion_smartcase = 1
 				nmap <LEADER>j <Plug>(easymotion-prefix)
@@ -661,7 +71,8 @@ call plug#end()
 				xmap jgv <Plug>(easymotion-segments-RF)
 				xmap jgV <Plug>(easymotion-segments-RB)
 				xmap ja <Plug>(easymotion-jumptoanywhere)
-		"FZF
+		Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+		Plug 'junegunn/fzf.vim'
 			"CONFIGURATION
 				let g:fzf_action = {
 					\ 'ctrl-t': 'tab split',
@@ -717,256 +128,185 @@ call plug#end()
 					imap <expr> ;dp fzf#complete('find ~/Google\ Drive')
 					imap <expr> ;df fzf#complete('find ~/Google\ Drive -type f')
 					imap <expr> ;dd fzf#complete('find ~/Google\ Drive -type d')
-		"FZF-MRU
+		Plug 'pbogut/fzf-mru.vim'
 			map M :<C-u>FZFMru<CR>
-		"VIFM
+		Plug 'vifm/neovim-vifm'
 			nnoremap <LEADER>nf :VifmToggle %:p:h<CR>
 			nnoremap <LEADER>nF :VifmToggle .<CR>
+		Plug 'cocopon/vaffle.vim'
 	"DEVELOPMENT
-		"VIM-WHITEBOARD
-			"CONFIGURATIONS
-				let g:whiteboard_temp_directory = '~/.config/nvim/temp'
-				let g:whiteboard_interpreters = {
-							\'python'     : { 'extension': 'py'     ,'command': 'python3'   },
-							\'javascript' : { 'extension': 'js'     ,'command': 'node'      },
-							\'php'        : { 'extension': 'php'    ,'command': 'php'       },
-							\'ruby'       : { 'extension': 'rb'     ,'command': 'ruby'      },
-							\'haskell'    : { 'extension': 'hs'     ,'command': 'ghci'      },
-							\'scala'      : { 'extension': 'scala'  ,'command': 'scala'     },
-							\'perl'       : { 'extension': 'pl'     ,'command': 'perl'      },
-							\'go'         : { 'extension': 'go'     ,'command': 'gore'      },
-							\'typescript' : { 'extension': 'ts'     ,'command': 'ts-node'   },
-							\'sh'         : { 'extension': 'sh'     ,'command': 'bash'      },
-							\'bash'       : { 'extension': 'bash'   ,'command': 'bash'      },
-							\'zsh'        : { 'extension': 'zsh'    ,'command': 'zsh'       },
-							\'fish'       : { 'extension': 'fsh'    ,'command': 'fsh'       },
-							\'pandoc'     : { 'extension': 'pandoc' ,'command': 'pandoc'    },
-							\'redis'      : { 'extension': 'redis'  ,'command': 'redis-cli' },
-							\'mongo'      : { 'extension': 'mongo'  ,'command': 'mongo'     },
-							\'mysql'      : { 'extension': 'mysql'  ,'command': 'mysql'     },
-							\'sqlite'     : { 'extension': 'sqlite'  ,'command': 'sqlite'   },
-							\'dosbatch'   : { 'extension': 'cmd'    ,'command': 'cmd'       },
-							\'git'        : { 'extension': 'git'    ,'command': 'gitsome'   },
-							\'lisp'       : { 'extension': 'lisp'   ,'command': 'sbcl'     }}
-			"MAPPINGS
-				nnoremap <LocalLeader>cs :execute "Whiteboard "  . &filetype<CR>
-				nnoremap <LocalLeader>cS :execute "Whiteboard! " . &filetype<CR>
-		"FUGUTIVE
-			nnoremap <Leader>gc :Commits<CR>
-			nnoremap <Leader>gC :BCommits<CR>
-			nnoremap <Leader>gf :GFiles<CR>
-			nnoremap <Leader>gF :GFiles?<CR>
+		"VCS
+			Plug 'tpope/vim-fugutive'
+				nnoremap <Leader>gc :Commits<CR>
+				nnoremap <Leader>gC :BCommits<CR>
+				nnoremap <Leader>gf :GFiles<CR>
+				nnoremap <Leader>gF :GFiles?<CR>
 
-			nnoremap <Leader>gb :Gbrowser<CR>
-		"UTIL-SNIPS
-			let g:UltiSnipsExpandTrigger="<CR>"
-			let g:UltiSnipsJumpForwardTrigger="<C-b>"
-			let g:UltiSnipsJumpBackwardTrigger="<C-z>"
-		"AUTOCOMPLPOP
-			let g:acp_enableAtStartup = 0
-
-			augroup AutoComplPop
-				autocmd!
-				autocmd BufEnter *.txt :AcpEnable
-				autocmd BufLeave *.txt :AcpDisable
-			augroup END
+				nnoremap <Leader>gb :Gbrowser<CR>
+			"Plug 'airblade/vim-gitgutter'
+			"Plug 'mhinz/vim-signify'
 		"AUTOFORMAT
-			let g:formatterpath = ['/usr/local/bin/autopep8']
-		"YOUCOMPLETEME
-			"CONFIGURATION
-                let g:ycm_python_binary_path = 'python3'
-                let g:ycm_add_preview_to_completeopt = 0
+			Plug 'chiel92/vim-autoformat'
+				let g:formatterpath = ['/usr/local/bin/autopep8']
+		"SNIPPETS
+			Plug 'honza/vim-snippets'
+			Plug 'SirVer/ultisnips'
+				let g:UltiSnipsExpandTrigger="<CR>"
+				let g:UltiSnipsJumpForwardTrigger="<C-b>"
+				let g:UltiSnipsJumpBackwardTrigger="<C-z>"
+		"AUTOCOMPLETION
+			"Plug 'ervandew/supertab'
+			Plug 'vim-scripts/AutoComplPop'
+				let g:acp_enableAtStartup = 0
 
-                "let g:ycm_key_list_select_completion = ['<SPACE>', '<Down>']
-                "let g:ycm_key_list_previous_completion = ['<S-SPACE>', '<Up>']
-                "let g:ycm_key_list_stop_completion = ['<CR>']
+				augroup AutoComplPop
+					autocmd!
+					autocmd BufEnter *.txt :AcpEnable
+					autocmd BufLeave *.txt :AcpDisable
+				augroup END
+			Plug 'Valloric/YouCompleteMe'
+				"CONFIGURATION
+					let g:ycm_python_binary_path = 'python3'
+					let g:ycm_add_preview_to_completeopt = 0
 
-                "let g:ycm_autoclose_preview_window_after_completion = 1
-                "let g:ycm_autoclose_preview_window_after_insertion = 1
-                "set splitbelow
-			"MAPPINGS
-				nnoremap <Leader>jd :YcmCompleter GoToDeclaration<CR>
-				nnoremap <Leader>jD :YcmCompleter GoToDefinition<CR>
-				nnoremap <Leader>jj :YcmCompleter GoTo<CR>
-				nnoremap <Leader>ji :YcmCompleter GoToImplementation<CR>
-		"TAGBAR
-			nnoremap <Leader>nT :TagbarToggle<CR>
-		"DEVDOCS
-			nmap <Leader>fD :DevDocs<CR>
-			nmap <Leader>fd <Plug>(devdocs-under-cursor)
-		"VIM-CODERUNNER
-			let g:vcr_no_mappings = 1
-			nnoremap <LocalLeader>cq :RunCode<CR>
-			vnoremap <LocalLeader>cq :RunCode<CR>
-		"CODI
-			let g:codi#width      = 80
-			let g:codi#rightalign = 0
-			nmap <LocalLeader>ci :Codi!!<CR>
-		"DASH
-			nnoremap <Leader>fd :Dash<CR>
-			nnoremap <Leader>fD :Dash<space>
-		"EMMET
-			let g:user_emmet_install_global = 0
-			autocmd FileType html,css EmmetInstall
-			let g:user_emmet_leader_key='<tab>'
-		"REPL.vim
-			nnoremap <LocalLeader>cR :Repl<CR>
-		"VIM-COMMENTOR
-			nmap gk  <Plug>Commentor
-			xmap gk  <Plug>Commentor
-			nmap gkk <Plug>CommentorLine
-	"EXTENDING VIM
-		"REPMO
-			let repmo_key = ";"
-			let repmo_revkey = ","
-		"MACRO-EDITOR
-			nnoremap <Leader>zm :execute "MacroEdit " nr2char(getchar()) <CR>
-		"AUTOCOMPLPOP
-			let g:acp_enableAtStartup = 0
+					"let g:ycm_key_list_select_completion = ['<SPACE>', '<Down>']
+					"let g:ycm_key_list_previous_completion = ['<S-SPACE>', '<Up>']
+					"let g:ycm_key_list_stop_completion = ['<CR>']
 
-			augroup AutoComplPop
-				autocmd!
-				autocmd BufEnter *.txt :AcpEnable
-				autocmd BufLeave *.txt :AcpDisable
-			augroup END
-		"VIM-WHEEL
-			let g:wheel#map#up   = '<D-k>'
-			let g:wheel#map#down = '<D-j>'
-			let g:wheel#map#mouse = 1
-		"VIM-OPERATOR-FLASHY
-			let g:operator#flashy#group = 'Visual'
-			map y <Plug>(operator-flashy)
-			map Y <Plug>(operator-flashy)$
-		"VIM-SEARCH-PULSE
-			let g:vim_search_pulse_mode = 'cursor_line'
-		"VIM-ANYFOLD
-			let anyfold_activate=1
-			let anyfold_identify_comments=0
-			set foldlevel=0
-		"VIM-FOLD-CYCLE
-			let g:fold_cycle_default_mapping = 0
-			nmap <Tab> <Plug>(fold-cycle-open)
-			nmap <S-Tab> <Plug>(fold-cycle-close)
-		"SEXY-SCROLLER
-			let g:SexyScoller_ScrollTime = 10
-			let g:SexyScroller_CursorTime = 5
-			let g:SexyScroller_MaxTime = 200
-			let g:SexyScroller_EasingStyle = 1
-		"VIM-SESSION
-			let g:session_autosave = 'yes'
-			let g:session_autoload = 'yes'
-			let g:session_default_name = 'default'
-			let g:session_default_to_last = 'yes'
-		"FZF-SESSION
-			let g:fzf_session_path = '~/.vim-sessions'
-			nnoremap <LEADER>sn :Session<space>
-			nnoremap <LEADER>sl :SLoad<space>
-			nnoremap <LEADER>sd :SDelete<space>
-			nnoremap <LEADER>sc :SQuit<CR>
-			"nnoremap <LEADER>sl :SList<CR>
-			nnoremap <LEADER>ss :Sessions<CR>
-		"VIM-SUBMODE
-			let g:submode_always_show_submode = 1
-			"let g:submode_keep_leaving_key = 1
-			"let g:submode_timeout = 0
-			let g:submode_timeoutlen = 1000
-		"VIM-EASY-SUBMODE
-			call easysubmode#load()
-
-			SubmodeDefine buffers
-			Submode n <enter> <Leader>b. :bnext<CR>
-			Submode n h :bnext<CR>
-			Submode n l :bprevious<CR>
-			SubmodeDefineEnd
-
-			SubmodeDefine tabs
-			Submode n <enter> <Leader>t. :tabnext<CR>
-			Submode n n :tabnext<CR>
-			Submode n p :tabprevious<CR>
-			Submode n h :tabmove +1<CR>
-			Submode n l :tabmove -1<CR>
-			SubmodeDefineEnd
-
-
-			SubmodeDefine windows
-			Submode n <enter> <Leader>w. <C-W><C-L>
-			Submode n h <C-W><C-H>
-			Submode n j <C-W><C-J>
-			Submode n k <C-W><C-K>
-			Submode n l <C-W><C-L>
-
-			Submode n <S-h> <C-W><S-H>
-			Submode n <S-j> <C-W><S-J>
-			Submode n <S-k> <C-W><S-K>
-			Submode n <S-l> <C-W><S-L>
-
-			Submode n r <C-W><C-R>
-			Submode n R <C-W><S-R>
-			SubmodeDefineEnd
-		"VIM-NOSCROLLBAR
-			function! Noscrollbar(...)
-				let w:airline_section_z = '%{noscrollbar#statusline(20," ", "█")}'
-				"let w:airline_section_z = '%{noscrollbar#statusline(20," ", "▌")}'
-				"let w:airline_section_z = '%{noscrollbar#statusline(20," ", "▐")}'
-			endfunction
-			call airline#add_statusline_func('Noscrollbar')
+					"let g:ycm_autoclose_preview_window_after_completion = 1
+					"let g:ycm_autoclose_preview_window_after_insertion = 1
+					"set splitbelow
+				"MAPPINGS
+					nnoremap <Leader>jd :YcmCompleter GoToDeclaration<CR>
+					nnoremap <Leader>jD :YcmCompleter GoToDefinition<CR>
+					nnoremap <Leader>jj :YcmCompleter GoTo<CR>
+					nnoremap <Leader>ji :YcmCompleter GoToImplementation<CR>
+		"CODE EXECUTION
+			Plug '0x84/vim-coderunner'
+				let g:vcr_no_mappings = 1
+				nnoremap <LocalLeader>cq :RunCode<CR>
+				vnoremap <LocalLeader>cq :RunCode<CR>
+			"Plug 'thinca/vim-quickrun'
+			Plug 'metakirby5/codi.vim'
+				let g:codi#width      = 80
+				let g:codi#rightalign = 0
+				nmap <LocalLeader>ci :Codi!!<CR>
+			Plug 'arkwright/vim-whiteboard'
+				"CONFIGURATIONS
+					let g:whiteboard_temp_directory = '~/.config/nvim/temp'
+					let g:whiteboard_interpreters = {
+								\'python'     : { 'extension': 'py'     ,'command': 'python3'   },
+								\'javascript' : { 'extension': 'js'     ,'command': 'node'      },
+								\'php'        : { 'extension': 'php'    ,'command': 'php'       },
+								\'ruby'       : { 'extension': 'rb'     ,'command': 'ruby'      },
+								\'haskell'    : { 'extension': 'hs'     ,'command': 'ghci'      },
+								\'scala'      : { 'extension': 'scala'  ,'command': 'scala'     },
+								\'perl'       : { 'extension': 'pl'     ,'command': 'perl'      },
+								\'go'         : { 'extension': 'go'     ,'command': 'gore'      },
+								\'typescript' : { 'extension': 'ts'     ,'command': 'ts-node'   },
+								\'sh'         : { 'extension': 'sh'     ,'command': 'bash'      },
+								\'bash'       : { 'extension': 'bash'   ,'command': 'bash'      },
+								\'zsh'        : { 'extension': 'zsh'    ,'command': 'zsh'       },
+								\'fish'       : { 'extension': 'fsh'    ,'command': 'fsh'       },
+								\'pandoc'     : { 'extension': 'pandoc' ,'command': 'pandoc'    },
+								\'redis'      : { 'extension': 'redis'  ,'command': 'redis-cli' },
+								\'mongo'      : { 'extension': 'mongo'  ,'command': 'mongo'     },
+								\'mysql'      : { 'extension': 'mysql'  ,'command': 'mysql'     },
+								\'sqlite'     : { 'extension': 'sqlite'  ,'command': 'sqlite'   },
+								\'dosbatch'   : { 'extension': 'cmd'    ,'command': 'cmd'       },
+								\'git'        : { 'extension': 'git'    ,'command': 'gitsome'   },
+								\'lisp'       : { 'extension': 'lisp'   ,'command': 'sbcl'     }}
+				"MAPPINGS
+					nnoremap <LocalLeader>cs :execute "Whiteboard "  . &filetype<CR>
+					nnoremap <LocalLeader>cS :execute "Whiteboard! " . &filetype<CR>
+			Plug 'ujihisa/repl.vim'
+				nnoremap <LocalLeader>cR :Repl<CR>
+		"SYNTAX
+			"Plug 'vim-syntastic/syntastic'
+		"COMMENTING
+			Plug 'scrooloose/nerdcommenter'
+			"Plug 'tpope/vim-commentary'
+			Plug 'manasthakur/vim-commentor'
+				nmap gk  <Plug>Commentor
+				xmap gk  <Plug>Commentor
+				nmap gkk <Plug>CommentorLine
+		"DOCUMENTATION
+			Plug 'rizzatti/dash.vim'
+				nnoremap <Leader>fd :Dash<CR>
+				nnoremap <Leader>fD :Dash<space>
+			"Plug 'rhysd/devdocs.vim'
+				"nmap <Leader>fD :DevDocs<CR>
+				"nmap <Leader>fd <Plug>(devdocs-under-cursor)
+		"TAGS
+			"Plug 'majutsushi/tagbar'
+				nnoremap <Leader>nT :TagbarToggle<CR>
 	"EDITING
-		"VIM-OPERATOR-SORT
-			map <Leader><Leader>s <Plug>(operator-sort)
-		"VIM-OPERATOR-INSERT
-			nmap gI <Plug>(operator-insert-i)
-			nmap gA <Plug>(operator-insert-a)
-		"VIM-OPERATOR-CAMELIZE
-			map cp <Plug>(operator-camelize)
-			map cu <Plug>(operator-decamelize)
-			map cP <Plug>(operator-camelize-toggle)
-		"VIM-EXCHANGE
-			let g:exchange_no_mappings = 1
-			nmap gx  <Plug>(Exchange)
-			nmap gxx <Plug>(ExchangeLine)
-			xmap X   <Plug>(Exchange)
-			nmap gxc <Plug>(ExchangeClear)
-		"VIM-OPERATOR-SUBSTITUTE
-			let g:operator#substitute#default_flags     = "g"
-			let g:operator#substitute#default_delimiter = ";"
-			"MAPPINGS
-				map gr <Plug>(operator-substitute)
-				map &  <Plug>(operator-substitute-repeat)
-				map g& <Plug>(operator-substitute-repeat-no-flags)
-				map gR <Plug>(operator-substitute)$
-		"VIM-AFTER-OBJECT
-			autocmd VimEnter * call after_object#enable('=', ':', '-', '#', ' ')
-		"VIM-TEXTOBJ-COMMENT
-			let g:textobj_comment_no_default_mappings = 1
-			xmap ak <Plug>(textobj-comment-a)
-			xmap ik <Plug>(textobj-comment-i)
-			omap ak <Plug>(textobj-comment-a)
-			omap ik <Plug>(textobj-comment-i)
-		"VIM-SCHLEPP
-			vmap <up>    <Plug>SchleppUp
-			vmap <down>  <Plug>SchleppDown
-			vmap <left>  <Plug>SchleppLeft
-			vmap <right> <Plug>SchleppRight
-
-			vmap Dk <Plug>SchleppDupUp
-			vmap Dj <Plug>SchleppDupDown
-			vmap Dh <Plug>SchleppDupLeft
-			vmap Dl <Plug>SchleppDupRight
-		"VIM-EASY-ALIGN
-			xmap ga <Plug>(EasyAlign)
-			nmap ga <Plug>(EasyAlign)
-		"VIM-EASYHOPERATOR-PHRASE
-			omap gp  <Plug>(easyoperator-phrase-select)
-			xmap gp  <Plug>(easyoperator-phrase-select)
-		"VIM-EASYOPERATOR-LINE
-			omap gp  <Plug>(easyoperator-line-select)
-			xmap gp  <Plug>(easyoperator-line-select)
+		"OPERATORS
+			Plug 'tommcdo/vim-exchange'
+				let g:exchange_no_mappings = 1
+				nmap gx  <Plug>(Exchange)
+				nmap gxx <Plug>(ExchangeLine)
+				xmap X   <Plug>(Exchange)
+				nmap gxc <Plug>(ExchangeClear)
+			Plug 'tpope/vim-surround'
+			Plug 'junegunn/vim-easy-align'
+				xmap ga <Plug>(EasyAlign)
+				nmap ga <Plug>(EasyAlign)
+			Plug 'thinca/vim-textobj-between'
+			Plug 'christoomey/vim-titlecase'
+			Plug 'milsen/vim-operator-substitute'
+				let g:operator#substitute#default_flags     = "g"
+				let g:operator#substitute#default_delimiter = ";"
+				"MAPPINGS
+					map gr <Plug>(operator-substitute)
+					map &  <Plug>(operator-substitute-repeat)
+					map g& <Plug>(operator-substitute-repeat-no-flags)
+					map gR <Plug>(operator-substitute)$
+			Plug 'tyru/operator-camelize.vim'
+				map cp <Plug>(operator-camelize)
+				map cu <Plug>(operator-decamelize)
+				map cP <Plug>(operator-camelize-toggle)
+			Plug 'deris/vim-operator-insert'
+				nmap gI <Plug>(operator-insert-i)
+				nmap gA <Plug>(operator-insert-a)
+			Plug 'emonkak/vim-operator-sort'
+				map <Leader><Leader>s <Plug>(operator-sort)
+			Plug 'sgur/vim-operator-openbrowser'
+				nmap <Leader><Leader>f <Plug>(operator-openbrowser)
+				vmap <Leader><Leader>f <Plug>(operator-openbrowser)
+		"OBJECTS
+			Plug 'wellle/targets.vim'
+			Plug 'michaeljsmith/vim-indent-object'
+			Plug 'coderifous/textobj-word-column.vim'
+			Plug 'rhysd/vim-textobj-anyblock'
+			Plug 'glts/vim-textobj-comment'
+				let g:textobj_comment_no_default_mappings = 1
+				xmap ak <Plug>(textobj-comment-a)
+				xmap ik <Plug>(textobj-comment-i)
+				omap ak <Plug>(textobj-comment-a)
+				omap ik <Plug>(textobj-comment-i)
+			Plug 'Julian/vim-textobj-variable-segment'
+			Plug 'rhysd/vim-textobj-lastinserted'
+			Plug 'kana/vim-textobj-lastpat'
+			Plug 'saaguero/vim-textobj-pastedtext'
+			Plug 'haya14busa/vim-easyoperator-line'
+				omap gp  <Plug>(easyoperator-line-select)
+				xmap gp  <Plug>(easyoperator-line-select)
+			Plug 'haya14busa/vim-easyoperator-phrase'
+				omap gp  <Plug>(easyoperator-phrase-select)
+				xmap gp  <Plug>(easyoperator-phrase-select)
+		Plug 'chaoren/vim-wordmotion'
+		Plug 'machakann/vim-swap'
+		Plug 'terryma/vim-multiple-cursors'
+		Plug 'terryma/vim-expand-region'
 	"WRITTING
-		"VIM-PENCIL
+		Plug 'reedes/vim-pencil'
 			nnoremap <Leader>vp :PencilToggle<CR>
-		"VIM-AUTOCORRECT
+		Plug 'panozzaj/vim-autocorrect'
 			nnoremap <Leader>va :call AutoCorrect()<CR>
-		"LEXICAL
+		Plug 'davidbeckingsale/writegood.vim'
+		Plug 'dbmrq/vim-ditto'
+		Plug 'reedes/vim-lexical'
 			nnoremap <Leader><Leader>s :set spell!<CR>
 			let g:lexical#spell = 1
 			let g:lexical#spell_key = '<leader>zs'
@@ -974,94 +314,24 @@ call plug#end()
 			"let g:lexical#dictionary = ['/usr/share/dict/words',]
 			let g:lexical#thesaurus = ['~/.config/nvim/spell/mthesaurus.txt/',]
 			let g:lexical#spellfile = ['~/.config/spell/en.utf-8.add',]
-	"LOOK & FEEL
-		"VIM-AIRLINE
-			"CONFIGURATION
-				let g:airline_powerline_fonts = 1
-				let g:airline_theme           = 'powerlineish'
-			"BUFFERLINE
-				"let g:airline#extensions#bufferline#enabled = 1
-				"let g:airline#extensions#bufferline#overwrite_variables = 1
-			"TABLINE
-				let g:airline#extensions#tabline#enabled = 1
-				"let g:airline#extensions#tabline#left_sep = ' '
-				"let g:airline#extensions#tabline#left_alt_sep = '|'
-				"let g:airline#extensions#tabline#right_sep = ' '
-				"let g:airline#extensions#tabline#right_alt_sep = '|'
-				"let g:airline#extensions#tabline#show_splits = 1
-				"let g:airline#extensions#tabline#show_close_button = 1
-				"let g:airline#extensions#tabline#close_symbol = '✖ '
-			"TMUXLINE
-				"let airline#extensions#tmuxline#color_template = 'normal'
-				"let airline#extensions#tmuxline#color_template = 'insert'
-				"let airline#extensions#tmuxline#color_template = 'visual'
-				"let airline#extensions#tmuxline#color_template = 'replace'
-			"CUSTOMIZATION
-				let g:airline#extensions#default#layout = [
-					\ [ 'a', 'b', 'c' ],
-					\ [ 'x', 'y', 'z', 'error', 'warning']
-					\ ]
-				let g:airline#extensions#default#section_truncate_width = {
-					\ 'b': 79,
-					\ 'x': 60,
-					\ 'y': 88,
-					\ 'z': 45,
-					\ 'warning': 80,
-					\ 'error': 80,
-					\ }
-				let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
-			"EXTRAS
-				let g:airline#extensions#wordcount#enabled = 0
-				"let g:airline#extensions#wordcount#filetypes = []
-				"let g:airline#extensions#whitespace#enabled = 1
-				"let g:airline#extensions#whitespace#mixed_indent_algo = 0
-				"let g:airline#extensions#whitespace#symbol = '!'
-				"let g:airline#extensions#whitespace#checks = [ 'indent', 'trailing', 'long', 'mixed-indent-file' ]
-				"let g:airline#extensions#whitespace#trailing_format = 'trailing[%s]'
-				"let g:airline#extensions#whitespace#mixed_indent_format = 'mixed-indent[%s]'
-				"let g:airline#extensions#whitespace#long_format = 'long[%s]'
-				"let g:airline#extensions#whitespace#mixed_indent_file_format = 'mix-indent-file[%s]'
-				"let g:airline#extensions#whitespace#trailing_regexp = '\s$'
-		"VIM-BUFFERLINE
-			let g:bufferline_echo = 0
-			"let g:bufferline_active_buffer_left = '['
-			"let g:bufferline_active_buffer_right = ']'
-			"let g:bufferline_modified = '+'
-			"let g:bufferline_rotate = 0
-			let g:bufferline_show_bufnr = 0
-			"let g:bufferline_fname_mod = ':t'
-			"let g:bufferline_inactive_highlight = 'StatusLineNC'
-			"let g:bufferline_solo_highlight = 0
-			"let g:bufferline_pathshorten = 0
-		"NEODARK.VIM
-			let g:neodark#use_256color         = 1
-			let g:neodark#solid_vertsplit      = 1
-			let g:neodark#background           = '#202020'
-			"let g:lightline                    = {}
-			"let g:lightline.colorscheme        = 'neodark'
-			"let g:neodark#terminal_transparent = 1
-	"SEARCH & REPLACE
-		"CLEVER-F.VIM
-			let g:clever_f_ignore_case=1
-			let g:clever_f_smart_case=1
-			"let g:clever_f_mark_char_color='cssColor66ffcc'
-		"INCSEARCH
+	"SEARCHING
+		Plug 'haya14busa/incsearch.vim'
 			map /  <Plug>(incsearch-forward)
 			map ?  <Plug>(incsearch-backward)
 			map g/ <Plug>(incsearch-stay)
 
 			let g:incsearch#auto_nohlsearch = 1
-			map n <Plug>(incsearch-nohl-n)<Plug>Pulse
-			map N <Plug>(incsearch-nohl-N)<Plug>Pulse
-			map * <Plug>(incsearch-nohl-*)<Plug>Pulse
-			map # <Plug>(incsearch-nohl-#)<Plug>Pulse
-			map g* <Plug>(incsearch-nohl-g*)<Plug>Pulse
-			map g# <Plug>(incsearch-nohl-g#)<Plug>Pulse
-		"INCSEARCH-FUZZY
+			map n <Plug>(incsearch-nohl-n)
+			map N <Plug>(incsearch-nohl-N)
+			map * <Plug>(incsearch-nohl-*)
+			map # <Plug>(incsearch-nohl-#)
+			map g* <Plug>(incsearch-nohl-g*)
+			map g# <Plug>(incsearch-nohl-g#)
+		Plug 'haya14busa/incsearch-fuzzy.vim'
 			map <LEADER>/ <Plug>(incsearch-fuzzy-/)
 			map <LEADER>? <Plug>(incsearch-fuzzy-?)
 			map <LEADER>s <Plug>(incsearch-fuzzy-stay)
-		"INCSEARCH-EASYMOTION
+		Plug 'haya14busa/incsearch-easymotion.vim'
 			map <Leader>f/ <Plug>(incsearch-easymotion-/)
 			map <Leader>f? <Plug>(incsearch-easymotion-?)
 			map <Leader>fg/ <Plug>(incsearch-easymotion-stay)
@@ -1077,20 +347,229 @@ call plug#end()
 			endfunction
 
 			noremap <silent><expr> <Leader>fg/ incsearch#go(<SID>config_easyfuzzymotion())
-		"VIM-OVER
-			nmap <LEADER>fR :OverCommandLine<CR>
-		"LISTA
+		Plug 'aykamko/vim-easymotion-segments'
+		Plug 'bronson/vim-visual-star-search'
+		Plug 'lambdalisue/lista.nvim'
 			nmap <Leader>ff :Lista<CR>
 			nmap <Leader>fF :ListaCursorWord<CR>
-		"VIM-HOPPING
+		Plug 'osyo-manga/vim-hopping'
 			nmap <Leader>fr :HoppingStart<CR>
-		"VIM-ANZU
+		Plug 'haya14busa/vim-over'
+			nmap <LEADER>fR :OverCommandLine<CR>
+		"Plug 'vim-scripts/MultipleSearch'
+		"Plug 'henrik/vim-indexed-search'
+		Plug 'osyo-manga/vim-anzu'
 			"nmap n <Plug>(incsearch-nohl-n)<Plug>(anzu-mode-n)
 			"nmap N <Plug>(incsearch-nohl-N)<Plug>(anzu-mode-N)
 			"nmap * <Plug>(anzu-star-with-echo)
 			"nmap # <Plug>(anzu-sharp-with-echo)
+	"LOOK&FEEL
+		"STATUSLINE
+			Plug 'vim-airline/vim-airline'
+				"CONFIGURATION
+					if !exists('g:gui_oni')
+						let g:airline_powerline_fonts = 1
+						let g:airline_theme           = 'powerlineish'
+					else
+						let g:airline_powerline_fonts = 0
+						let g:airline_theme           = 'wombat'
+					endif
+				"BUFFERLINE
+					if exists('g:gui_oni')
+						let g:airline#extensions#bufferline#enabled = 1
+						"let g:airline#extensions#bufferline#overwrite_variables = 1
+					endif
+				"TABLINE
+					let g:airline#extensions#tabline#enabled = 1
+					"let g:airline#extensions#tabline#left_sep = ' '
+					"let g:airline#extensions#tabline#left_alt_sep = '|'
+					"let g:airline#extensions#tabline#right_sep = ' '
+					"let g:airline#extensions#tabline#right_alt_sep = '|'
+					"let g:airline#extensions#tabline#show_splits = 1
+					"let g:airline#extensions#tabline#show_close_button = 1
+					"let g:airline#extensions#tabline#close_symbol = '✖ '
+				"TMUXLINE
+					"let airline#extensions#tmuxline#color_template = 'normal'
+					"let airline#extensions#tmuxline#color_template = 'insert'
+					"let airline#extensions#tmuxline#color_template = 'visual'
+					"let airline#extensions#tmuxline#color_template = 'replace'
+				"CUSTOMIZATION
+					let g:airline#extensions#default#layout = [
+						\ [ 'a', 'b', 'c' ],
+						\ [ 'x', 'y', 'z', 'error', 'warning']
+						\ ]
+					let g:airline#extensions#default#section_truncate_width = {
+						\ 'b': 79,
+						\ 'x': 60,
+						\ 'y': 88,
+						\ 'z': 45,
+						\ 'warning': 80,
+						\ 'error': 80,
+						\ }
+					let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
+				"EXTRAS
+					let g:airline#extensions#wordcount#enabled = 0
+					"let g:airline#extensions#wordcount#filetypes = []
+					"let g:airline#extensions#whitespace#enabled = 1
+					"let g:airline#extensions#whitespace#mixed_indent_algo = 0
+					"let g:airline#extensions#whitespace#symbol = '!'
+					"let g:airline#extensions#whitespace#checks = [ 'indent', 'trailing', 'long', 'mixed-indent-file' ]
+					"let g:airline#extensions#whitespace#trailing_format = 'trailing[%s]'
+					"let g:airline#extensions#whitespace#mixed_indent_format = 'mixed-indent[%s]'
+					"let g:airline#extensions#whitespace#long_format = 'long[%s]'
+					"let g:airline#extensions#whitespace#mixed_indent_file_format = 'mix-indent-file[%s]'
+					"let g:airline#extensions#whitespace#trailing_regexp = '\s$'
+			Plug 'vim-airline/vim-airline-themes'
+			Plug 'edkolev/tmuxline.vim'
+			Plug 'edkolev/promptline.vim'
+			Plug 'bling/vim-bufferline'
+				let g:bufferline_echo = 0
+				"let g:bufferline_active_buffer_left = '['
+				"let g:bufferline_active_buffer_right = ']'
+				"let g:bufferline_modified = '+'
+				"let g:bufferline_rotate = 0
+				let g:bufferline_show_bufnr = 0
+				"let g:bufferline_fname_mod = ':t'
+				"let g:bufferline_inactive_highlight = 'StatusLineNC'
+				"let g:bufferline_solo_highlight = 0
+				"let g:bufferline_pathshorten = 0
+			"Plug 'itchyny/lightline.vim'
+		"COLORSCHEMES
+			Plug 'flazz/vim-colorschemes'
+			Plug 'rafi/awesome-vim-colorschemes'
+			Plug 'chriskempson/base16-vim'
+			Plug 'KeitaNakamura/neodark.vim'
+				let g:neodark#use_256color         = 1
+				let g:neodark#solid_vertsplit      = 1
+				let g:neodark#background           = '#202020'
+				"let g:lightline                    = {}
+				"let g:lightline.colorscheme        = 'neodark'
+				"let g:neodark#terminal_transparent = 1
+			Plug 'sindresorhus/focus'
+			Plug 'KabbAmine/yowish.vim'
+			Plug 'ayu-theme/ayu-vim'
+			Plug 'tyrannicaltoucan/vim-quantum'
+			Plug 'raphamorim/lucario'
+			Plug 'paranoida/vim-airlineish'
+		Plug 'ryanoasis/vim-devicons'
+		Plug 'itchyny/vim-highlighturl'
+			let g:highlighturl_ctermfg = ''
+			let g:highlighturl_guifg = ''
+			let g:highlighturl_underline = 0
+		Plug 'gcavallanti/vim-noscrollbar'
+			function! Noscrollbar(...)
+				let w:airline_section_z = '%{noscrollbar#statusline(20," ", "█")}'
+				"let w:airline_section_z = '%{noscrollbar#statusline(20," ", "▌")}'
+				"let w:airline_section_z = '%{noscrollbar#statusline(20," ", "▐")}'
+			endfunction
+			call airline#add_statusline_func('Noscrollbar')
+		"Plug 'zefei/vim-colortuner'
+		"Plug 'augustold/vim-airline-colornum'
+		"Plug 'Yggdroot/indentLine'
+	"EXTENDING VIM
+		"Plug 'vim-scripts/repmo.vim'
+			let repmo_key = ";"
+			let repmo_revkey = ","
+		Plug 'unblevable/quick-scope'
+		Plug 'gastonsimone/vim-dokumentary'
+		Plug 'tpope/vim-eunuch'
+		Plug 'kopischke/vim-fetch'
+		Plug 'dohsimpson/vim-macroeditor'
+			nnoremap <Leader>zm :execute "MacroEdit " nr2char(getchar()) <CR>
+		"Plug 'vimlab/split-term.vim'
+		Plug 'zirrostig/vim-schlepp'
+			vmap <up>    <Plug>SchleppUp
+			vmap <down>  <Plug>SchleppDown
+			vmap <left>  <Plug>SchleppLeft
+			vmap <right> <Plug>SchleppRight
+
+			vmap Dk <Plug>SchleppDupUp
+			vmap Dj <Plug>SchleppDupDown
+			vmap Dh <Plug>SchleppDupLeft
+			vmap Dl <Plug>SchleppDupRight
+		Plug 'szw/vim-maximizer'
+		Plug 'tpope/vim-repeat'
+		Plug 'kshenoy/vim-signature'
+		Plug 'joeytwiddle/sexy_scroller.vim'
+			let g:SexyScoller_ScrollTime = 10
+			let g:SexyScroller_CursorTime = 5
+			let g:SexyScroller_MaxTime = 200
+			let g:SexyScroller_EasingStyle = 1
+		"Plug 'terryma/vim-smooth-scroll'
+		Plug 'inside/vim-search-pulse'
+			let g:vim_search_pulse_mode = 'cursor_line'
+			if exists('g:gui_oni')
+				let g:vim_search_pulse_disable_auto_mappings = 1
+			else
+				map n <Plug>(incsearch-nohl-n)<Plug>Pulse
+				map N <Plug>(incsearch-nohl-N)<Plug>Pulse
+				map * <Plug>(incsearch-nohl-*)<Plug>Pulse
+				map # <Plug>(incsearch-nohl-#)<Plug>Pulse
+				map g* <Plug>(incsearch-nohl-g*)<Plug>Pulse
+				map g# <Plug>(incsearch-nohl-g#)<Plug>Pulse
+			endif
+		Plug 'pseewald/vim-anyfold'
+			let anyfold_activate=1
+			let anyfold_identify_comments=0
+			set foldlevel=0
+		Plug 'arecarn/vim-fold-cycle'
+			let g:fold_cycle_default_mapping = 0
+			nmap <Tab> <Plug>(fold-cycle-open)
+			nmap <S-Tab> <Plug>(fold-cycle-close)
+		Plug 'rhysd/clever-f.vim'
+			let g:clever_f_ignore_case=1
+			let g:clever_f_smart_case=1
+			"let g:clever_f_mark_char_color='cssColor66ffcc'
+		Plug 'dominickng/fzf-session.vim'
+			let g:fzf_session_path = '~/.vim-sessions'
+			nnoremap <LEADER>sn :Session<space>
+			nnoremap <LEADER>sl :SLoad<space>
+			nnoremap <LEADER>sd :SDelete<space>
+			nnoremap <LEADER>sc :SQuit<CR>
+			"nnoremap <LEADER>sl :SList<CR>
+			nnoremap <LEADER>ss :Sessions<CR>
+		Plug 'jiangmiao/auto-pairs'
+		Plug 'haya14busa/vim-operator-flashy'
+			let g:operator#flashy#group = 'Visual'
+			map y <Plug>(operator-flashy)
+			map Y <Plug>(operator-flashy)$
+		"Plug 'reedes/vim-wheel'
+			let g:wheel#map#up   = '<D-k>'
+			let g:wheel#map#down = '<D-j>'
+			let g:wheel#map#mouse = 1
+		"Plug 'tpope/vim-speeddating'
+		"Plug 'severin-lemaignan/vim-minimap'
+	"LANGUAGES
+		"LINTERS
+		"BEAUTIFIERS
+		"AUTOCOMPILATION
+			Plug 'coachshea/jade-vim'
+		"AUTOCOMPLETION
+			"Plug 'dNitro/vim-pug-complete'
+		"SYNTAX
+			Plug 'sheerun/vim-polyglot'
+			Plug 'chrisbra/csv.vim'
+			"Plug 'lervag/vimtex'
+				"Plug 'vim-latex/vim-latex'
+		Plug 'mattn/emmet-vim'
+			let g:user_emmet_install_global = 0
+			autocmd FileType html,css EmmetInstall
+			let g:user_emmet_leader_key='<tab>'
 	"MISCELLANOUS
-		"CALENDER
+		Plug 'alpertuna/vim-header'
+			let g:header_auto_add_header = 0
+			"let g:header_alignment = 1
+			let g:header_field_filename = 0
+			let g:header_field_modified_by = 0
+			let g:header_field_author = 'Sahil Sehwag'
+			let g:header_field_author_email = 'sehwagsahil002@gmail.com'
+
+			map <Leader>zh :AddHeader<CR>
+			map <Leader>zH :AddMinHeader<CR>
+			map <Leader>zlm :AddMITLicense<CR>
+			map <Leader>zla :AddApacheLicense<CR>
+			map <Leader>zlg :AddGNULicense<CR>
+		Plug 'itchyny/calendar.vim'
 			nnoremap <Leader>zcy :Calendar -view=year<CR>
 			nnoremap <Leader>zcm :Calendar -view=month<CR>
 			nnoremap <Leader>zcw :Calendar -view=week<CR>
@@ -1099,11 +578,13 @@ call plug#end()
 			nnoremap <Leader>zcc :Calendar -view=clock<CR>
 			nnoremap <Leader>zce :Calendar -view=event<CR>
 			nnoremap <Leader>zca :Calendar -view=agenda<CR>
-		"GOYO
-			let g:goyo_width = "75%"
-			"let g:goyo_height = "90%"
-			let g:goyo_linenr = 1
-		"WHOLELINECOLOR
+		Plug 'shanzi/autoHEADER'
+		Plug 'leothelocust/vim-makecols'
+		Plug 'tweekmonster/startuptime.vim'
+		Plug 'sbdchd/vim-shebang'
+		Plug 'vim-utils/vim-read'
+		Plug 'antoyo/vim-licenses'
+		Plug 'vim-scripts/WholeLineColor'
 			let g:wholelinecolor_leader = ','
 			highlight WLCBlackBackground  ctermbg=233 guibg=#121212
 			highlight WLCRedBackground    ctermbg=52  guibg=#882323
@@ -1111,25 +592,7 @@ call plug#end()
 			highlight WLCPurpleBackground ctermbg=53  guibg=#732c7b
 			highlight WLCGreyBackground   ctermbg=238 guibg=#464646
 			highlight WLCGreenBackground  ctermbg=22  guibg=#005500
-		"SCRATCH
-			let g:scratch_no_mappings      = 1
-			let g:scratch_height           = 0.3
-			let g:scratch_top              = 0
-			let g:scratch_persistence_file = glob('~/') . 'temp.scratch'
-
-			nnoremap <LocalLeader>s :Scratch<CR>
-			nnoremap <LocalLeader>S :Scratch!<CR>
-			nnoremap <LocalLeader>gp :ScratchPreview<CR>
-			nnoremap <LocalLeader>gs :ScratchInsert<CR>
-			nnoremap <LocalLeader>gS :ScratchInsert!<CR>
-			vnoremap <LocalLeader>gs :ScratchSelection<CR>
-			vnoremap <LocalLeader>gS :ScratchSelection!<CR>
-
-			augroup ScratchEnter
-				autocmd!
-				autocmd BufEnter __Scratch__ nnoremap <buffer> <esc> :q<CR>
-			augroup END
-		"OPEN-BROWSER
+		Plug 'tyru/open-browser.vim'
 			"CONFIGURATION
 				let g:netrw_nogx = 1
 				let g:openbrowser_search_engines = {
@@ -1202,10 +665,34 @@ call plug#end()
 
 					nmap <Leader>fwq :execute ":OpenBrowserSearch -wikiquote " GetWordUnderCursor() <CR>
 					vmap <Leader>fwq :<C-w>execute ":OpenBrowserSearch -wikiquote " GetSelectedText() <CR>
-		"VIM-OPERATOR-OPEN-BROWSER
-			nmap <Leader><Leader>f <Plug>(operator-openbrowser)
-			vmap <Leader><Leader>f <Plug>(operator-openbrowser)
-		"VIM-WORDPRESS
+		Plug 'junegunn/goyo.vim'
+			let g:goyo_width = "75%"
+			"let g:goyo_height = "90%"
+			let g:goyo_linenr = 1
+		Plug 'junegunn/limelight.vim'
+		Plug 'mtth/scratch.vim'
+			let g:scratch_no_mappings      = 1
+			let g:scratch_height           = 0.3
+			let g:scratch_top              = 0
+			let g:scratch_persistence_file = glob('~/') . 'temp.scratch'
+
+			nnoremap <LocalLeader>s :Scratch<CR>
+			nnoremap <LocalLeader>S :Scratch!<CR>
+			nnoremap <LocalLeader>gp :ScratchPreview<CR>
+			nnoremap <LocalLeader>gs :ScratchInsert<CR>
+			nnoremap <LocalLeader>gS :ScratchInsert!<CR>
+			vnoremap <LocalLeader>gs :ScratchSelection<CR>
+			vnoremap <LocalLeader>gS :ScratchSelection!<CR>
+
+			augroup ScratchEnter
+				autocmd!
+				autocmd BufEnter __Scratch__ nnoremap <buffer> <esc> :q<CR>
+			augroup END
+		Plug 'mhinz/vim-startify'
+		Plug 'suan/vim-instant-markdown'
+		Plug 'tpope/vim-capslock'
+		"Plug 'natw/keyboard_cat.vim'
+		Plug 'MrPeterLee/VimWordpress'
 			nnoremap <LocalLeader>wl :call RunInNewBuffer('BlogList', 'wordpress')<CR>
 			nnoremap <LocalLeader>wn :call RunInNewBuffer('BlogNew',  'wordpress')<CR>
 			nnoremap <LocalLeader>wd :BlogSave draft<CR>
@@ -1214,18 +701,19 @@ call plug#end()
 			nnoremap <LocalLeader>wp :BlogPreview publish<CR>
 			nnoremap <LocalLeader>wc :BlogCode python<CR>
 			nnoremap <LocalLeader>wu :BlogUpload<space><CR>
-		"AUTOSCROLL
+		"Plug 'vim-scripts/autoscroll.vim'
 			let g:AutoScrollSpeed = 100
-		"VIM-FIGLET
+		"Plug 'fadein/vim-FIGlet'
 			nnoremap <Leader>zf :FIGlet<CR>
 			nnoremap <Leader>zF :FIGlet -f<space>
 			vnoremap <Leader>zf :FIGlet<CR>
 			vnoremap <Leader>zF :FIGlet -f<space>
-		"VIM-HIGHLIGHTURL
-			let g:highlighturl_ctermfg = ''
-			let g:highlighturl_guifg = ''
-			let g:highlighturl_underline = 0
-		"VIM-LEADER-GUIDE
+		"Plug 'chrisbra/changesPlugin'
+		"Plug 'guns/xterm-color-table.vim'
+		"Plug 'vim-scripts/ScrollColors'
+		"Plug 'vim-scripts/DrawIt'
+		"Plug 'gorodinskiy/vim-coloresque'
+		"Plug 'hecal3/vim-leader-guide'
 			"nnoremap <SPACE> :LeaderGuide '<LEADER>'<CR>
 			"nnoremap ; :LeaderGuide '<LOCALLEADER>'<CR>
 			"vnoremap <SPACE> :LeaderGuideVisual '<LEADER>'<CR>
@@ -1234,26 +722,502 @@ call plug#end()
 			"DON'T UNCOMMENT THESE
 			"nmap <SPACE>. <Plug>leaderguide-global
 			"nmap ;. <Plug>leaderguide-buffer
-		"VIM-HEADER
-			let g:header_auto_add_header = 0
-			"let g:header_alignment = 1
-			let g:header_field_filename = 0
-			let g:header_field_modified_by = 0
-			let g:header_field_author = 'Sahil Sehwag'
-			let g:header_field_author_email = 'sehwagsahil002@gmail.com'
-
-			map <Leader>zh :AddHeader<CR>
-			map <Leader>zH :AddMinHeader<CR>
-			map <Leader>zlm :AddMITLicense<CR>
-			map <Leader>zla :AddApacheLicense<CR>
-			map <Leader>zlg :AddGNULicense<CR>
-	"DEPENDENCIES
-		"VIMSHELL
+		"Plug 'tweekmonster/nvim-api-viewer'
+		"Plug 'kyuhi/vim-emoji-complete'
+	"LIBRARIES|UTILITIES|DEPENDENCIES
+		Plug 'kana/vim-textobj-user'
+		Plug 'kana/vim-operator-user'
+		Plug 'mattn/webapi-vim'
+		Plug 'Shougo/vimproc.vim'
+		Plug 'Shougo/vimshell.vim'
 			"CONFIGURATION
 				let g:vimshell_prompt = '> '
 			"MAPPINGS
 				nnoremap <silent> <LocalLeader>cr :execute 'VimShellInteractive ' . g:repls[&filetype]<CR>
-"VIMSCRIPT CODE
+		Plug 'lucerion/vim-buffr'
+		Plug 'kana/vim-submode'
+			let g:submode_always_show_submode = 1
+			"let g:submode_keep_leaving_key = 1
+			"let g:submode_timeout = 0
+			let g:submode_timeoutlen = 1000
+		Plug 'vim-scripts/vim-easy-submode'
+			call easysubmode#load()
+
+			SubmodeDefine buffers
+			Submode n <enter> <Leader>b. :bnext<CR>
+			Submode n h :bnext<CR>
+			Submode n l :bprevious<CR>
+			SubmodeDefineEnd
+
+			SubmodeDefine tabs
+			Submode n <enter> <Leader>t. :tabnext<CR>
+			Submode n n :tabnext<CR>
+			Submode n p :tabprevious<CR>
+			Submode n h :tabmove +1<CR>
+			Submode n l :tabmove -1<CR>
+			SubmodeDefineEnd
+
+
+			SubmodeDefine windows
+			Submode n <enter> <Leader>w. <C-W><C-L>
+			Submode n h <C-W><C-H>
+			Submode n j <C-W><C-J>
+			Submode n k <C-W><C-K>
+			Submode n l <C-W><C-L>
+
+			Submode n <S-h> <C-W><S-H>
+			Submode n <S-j> <C-W><S-J>
+			Submode n <S-k> <C-W><S-K>
+			Submode n <S-l> <C-W><S-L>
+
+			Submode n r <C-W><C-R>
+			Submode n R <C-W><S-R>
+			SubmodeDefineEnd
+		Plug 'kana/vim-arpeggio'
+		Plug 'vim-scripts/tinymode.vim'
+		Plug 'tyru/stickykey.vim'
+		Plug 'luzhlon/popup.vim'
+		Plug 'skywind3000/quickmenu.vim'
+	"TODECIDE
+		"Plug 'lucerion/vim-executor'
+		"Plug 'vim-scripts/Omap.vim'
+		"Plug 'tyru/capture.vim'
+		"Plug 'JarrodCTaylor/vim-shell-executor'
+		"Plug 'tommcdo/vim-express'
+		"Plug 'syngan/vim-operator-evalf'
+		"Plug 'neitanod/vim-sade'
+	call plug#end()
+"SETTINGS
+	"INDENTATION
+		set autoindent
+		set smartindent
+		set shiftwidth=4
+		set tabstop=4
+		set noexpandtab
+	"LINE NUMBERS
+		set number
+		set relativenumber
+	"SWAP & BACKUP
+		set directory=~/.config/nvim/temp
+		set nobackup
+	"SEARCHING
+		set hls
+		set incsearch
+		set ignorecase
+		set smartcase
+	"COMMANDLINE
+		set path+=**
+		if has('wildmenu')
+			set wildmenu
+			set wildmode=longest:full,full
+			set wildignore+=*.a,*.o
+			set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png
+			set wildignore+=.DS_Store,.git,.hg,.svn
+			set wildignore+=*~,*.swp,*.tmp
+			set wildignorecase
+		endif
+	"UI
+		colorscheme Monokai
+		set noshowcmd
+		set noruler
+		set noshowmode
+		set cursorline
+	"BTW
+		set splitbelow
+		set nowrap
+		set hidden
+	"MISCELLANOUS
+		set nocompatible
+		set fillchars=fold:\ ,
+		set mouse=a
+		set clipboard=unnamed
+"CONFIGURATION
+	"VARIABLES
+		"PERFORMANCE
+			let loaded_netrwPlugin = 0
+		"VIM
+		"INTERFACE
+			let g:highlight_trailing_whitespaces = 1
+			let g:highlight_leading_spaces = 1
+		"DEVELOPMENT
+			let g:repls = {
+						\ 'python'     : 'python3',
+						\ 'javascript' : 'node',
+						\ 'ruby'       : 'irb',
+						\ 'php'        : 'php',
+						\ 'scala'      : 'scala',
+						\ 'perl'       : 'perl',
+						\ 'lisp'       : 'sbcl',
+						\ 'sqlite'     : 'sqlite',
+						\ 'mysql'      : 'mysql',
+						\ 'mongo'      : 'mongo',
+						\ 'redis'      : 'redis-cli',
+						\ 'typescript' : 'ts-node',
+						\ 'haskell'    : 'ghci',
+						\ 'sh'         : 'bash',
+						\ 'bash'       : 'bash',
+						\ 'zsh'        : 'zsh',
+						\ 'fish'       : 'fsh',
+						\ 'dosbatch'   : 'cmd',
+						\}
+			let g:languages = {}
+			"INTERPRETED LANGUAGES
+				let g:languages.python = {
+					\'extension'     : 'py',
+					\'repl'          : 'ipython',
+					\'execute'       : 'python3',
+					\'execute-flags' : '',
+				\}
+				let g:languages.javascript = {
+					\'extension'     : 'js',
+					\'repl'          : 'node',
+					\'execute'       : 'node',
+					\'execute-flags' : '',
+				\}
+				let g:languages.ruby = {
+					\'extension'     : 'rb',
+					\'repl'          : 'irb',
+					\'execute'       : 'ruby',
+					\'execute-flags' : '',
+				\}
+				let g:languages.typscript = {
+					\'extension'     : 'ts',
+					\'repl'          : 'ts-node',
+					\'execute'       : 'tsc',
+					\'execute-flags' : '',
+				\}
+				let g:languages.perl = {
+					\'extension'     : 'pl',
+					\'repl'          : 'perl',
+					\'execute'       : 'perl',
+					\'execute-flags' : '',
+				\}
+				let g:languages.php = {
+					\'extension'     : 'php',
+					\'repl'          : 'php',
+					\'execute'       : 'php',
+					\'execute-flags' : '',
+				\}
+				let g:languages.lisp = {
+					\'extension'     : 'lsp',
+					\'repl'          : 'sbcl',
+					\'execute'       : '',
+					\'execute-flags' : '',
+				\}
+			"COMPILED LANGUAGES
+				let g:languages.c = {
+					\'extension'     : 'c',
+					\'execute'       : '',
+					\'execute-flags' : '',
+					\'compile'       : 'gcc',
+					\'compile-flags' : '',
+				\}
+				let g:languages.cpp = {
+					\'extension'     : 'cpp',
+					\'execute'       : '',
+					\'execute-flags' : '',
+					\'compile'       : 'g++',
+					\'compile-flags' : '-std=c++14',
+				\}
+				let g:languages.java = {
+					\'extension'     : 'java',
+					\'execute'       : 'java',
+					\'execute-flags' : '',
+					\'compile'       : 'javac',
+					\'compile-flags' : '',
+				\}
+				let g:languages.scala = {
+					\'extension'     : 'scala',
+					\'repl'          : 'scala',
+					\'execute'       : 'scala',
+					\'execute-flags' : '',
+					\'compile'       : 'scalac',
+					\'compile-flags' : '',
+				\}
+				let g:languages.haskell = {
+					\'extension'     : 'hs',
+					\'repl'          : 'ghci',
+					\'execute'       : '',
+					\'execute-flags' : '',
+					\'compile'       : '',
+					\'compile-flags' : '',
+				\}
+			"SHELL
+				let g:languages.zsh = {
+					\'extension'     : 'zsh',
+					\'repl'          : 'zsh',
+					\'execute'       : 'zsh',
+					\'execute-flags' : '',
+				\}
+				let g:languages.bash = {
+					\'extension'     : 'bash',
+					\'repl'          : 'bash',
+					\'execute'       : 'bash',
+					\'execute-flags' : '',
+				\}
+				let g:languages.fish = {
+					\'extension'     : 'fsh',
+					\'repl'          : 'fsh',
+					\'execute'       : 'fsh',
+					\'execute-flags' : '',
+				\}
+				let g:languages.sh = {
+					\'extension'     : 'sh',
+					\'repl'          : 'sh',
+					\'execute'       : 'sh',
+					\'execute-flags' : '',
+				\}
+				let g:languages.batch = {
+					\'extension'     : 'cmd',
+					\'repl'          : 'cmd',
+					\'execute'       : '',
+					\'execute-flags' : '',
+				\}
+			"DATABASES
+				let g:languages.sqlite = {
+					\'extension'     : 'sql',
+					\'repl'          : 'sqlite',
+				\}
+				let g:languages.mysql = {
+					\'extension'     : 'mysql',
+					\'repl'          : 'mysql',
+				\}
+				let g:languages.redis = {
+					\'extension'     : 'redis',
+					\'repl'          : 'redis-cli',
+				\}
+				let g:languages.mongo = {
+					\'extension'     : 'mongo',
+					\'repl'          : 'mongo',
+				\}
+		"MISCELLANOUS
+	"PYTHON BINARIES
+		let g:python_host_prog = 'python2'
+		let g:python3_host_prog = 'python3'
+		"let g:loaded_python3_provider=1
+	"HIGHLIGHTS
+		"SEARCH HIGHLIGHTS
+			if exists('g:jaat_highlight_search')
+				highlight Search ctermfg=49 cterm=NONE gui=NONE
+				highlight IncSearchMatch ctermfg=black ctermbg=186
+			endif
+		"TRAILING WHITESPACES
+			if exists('g:jaat_highlight_trailing_whitespaces')
+				highlight TrailingWhitespace ctermbg=135
+				call matchadd('TrailingWhitespace', '\s\+$', 100)
+			endif
+		"CONSECUTIVE BLANKLINES
+			if exists('g:jaat_highlight_consecutive_blanklines')
+				highlight ConsecutiveBlankLines ctermbg=135
+				call matchadd('ConsecutiveBlankLines', '\(^$\n\)\{2,}', 100)
+			endif
+		"LEADING SPACES
+			if exists('g:jaat_highlight_leading_spaces')
+				highlight LeadingSpaces ctermbg=135
+				call matchadd('LeadingSpaces', '^ \+', 100)
+			endif
+		"LEADING TABS
+			if exists('g:jaat_highlight_leading_tabs')
+				highlight LeadingTabs ctermbg=135
+				call matchadd('LeadingTabs', '^\t\+', 100)
+			endif
+		"AUTOCOMPLETION MENU
+			"highlight Pmenu ctermbg=232 ctermfg=7
+			"highlight PmenuSel ctermfg=15
+			highlight Pmenu ctermbg=238 gui=bold
+		"INTERFACE HIGHLIGHTS
+			highlight VertSplit ctermbg=None guibg=None
+"MAPPINGS
+	"MAIN LAYOUT MAPPINGS
+		"BETTER o|O @TODO
+			"NORMAL MODE OPENER
+				"nnoremap <CR> :normal! o<ESC>
+		"BETTER PASTES
+			"PASTE SWAP @FIX
+				nnoremap p :normal! ]p <CR>
+				nnoremap P :normal! [p <CR>
+				nnoremap ]p :normal! p <CR>
+				nnoremap [p :normal! P <CR>
+				"vnoremap p :<C-u>normal! ]pgvd <CR>
+				"vnoremap P :<C-u>normal! [pgvd <CR>
+				"vnoremap ]p :<C-u>normal! pgvd <CR>
+				"vnoremap [p :<C-u>normal! Pgvd <CR>
+			"FORMATTED PASTE + <<|>> @FIX
+				nnoremap >p :normal! ]p>> <CR>
+				nnoremap <p :normal! ]p<< <CR>
+				nnoremap >P :normal! [p>> <CR>
+				nnoremap <P :normal! [p<< <CR>
+			"NEWLINE PASTE + ==
+				nnoremap ]P :normal! o<esc>p==
+				nnoremap [P :normal! O<Esc>P==
+	"LEADER MAPPING
+		let mapleader = " "
+		let maplocalleader = ","
+		nnoremap ; :
+	"INTERFACE MAPPINGS
+		"TAB MAPPINGS
+			nnoremap <LEADER>ta :tabnew<CR>
+			nnoremap <LEADER>tc :tabclose<CR>
+			nnoremap <LEADER>tn :tabnext<CR>
+			nnoremap <LEADER>tp :tabprevious<CR>
+			nnoremap <LEADER>th :tabmove -<CR>
+			nnoremap <LEADER>tl :tabmove +<CR>
+		"BUFFER MAPPINGS
+			nnoremap H           :bprevious<CR>
+			nnoremap L           :bnext<CR>
+			nnoremap <LEADER>bn  :enew<CR>
+			nnoremap <LEADER>ba  :badd<space>
+			nnoremap <LEADER>bd  :bdelete<CR>
+			nnoremap <LEADER>bfd :bdelete!<CR>
+			nnoremap <LEADER>bl  :bnext<CR>
+			nnoremap <LEADER>bh  :bprevious<CR>
+			nnoremap <LEADER>br  :e<CR>
+			nnoremap <LEADER>bfr :e!<CR>
+			nnoremap <Leader>bv  :view<CR>
+			nnoremap <Leader>bfv :view!<CR>
+			nnoremap <LEADER>bw  :write<CR>
+			nnoremap <LEADER>bfw :write!<CR>
+			nnoremap <Leader>bc  :bp<bar>sp<bar>bn<bar>bd<CR>
+			nnoremap <LEADER>bt  :call ScratchBuffer('e')<CR>
+			nnoremap <LEADER>bT  :call ScratchBuffer('e', 1)<CR>
+		"WINDOW MAPPINGS
+			nnoremap <Leader>wh :sp<CR>
+			nnoremap <Leader>wv :vsp<CR>
+			nnoremap <Leader>wo :only<CR>
+			nnoremap <Leader>wc :close<CR>
+			nnoremap <Leader>wn :vnew<CR>
+			nnoremap <Leader>wN :new<CR>
+			nnoremap <Leader>wm :MaximizerToggle<CR>
+
+			nnoremap <C-J> <C-W><C-J>
+			nnoremap <C-K> <C-W><C-K>
+			nnoremap <C-L> <C-W><C-L>
+			nnoremap <C-H> <C-W><C-H>
+	"INSERT MODE
+		"ABBREVIATIONS @TODO
+			abbreviate chk ✓
+			abbreviate crs ✖
+	"COMMANDLINE MODE
+	"MISCELLANOUS GROUPS
+		"VIM MAPPINGS
+			nnoremap <LEADER>vc  : edit ~/.config/nvim/init.vim<CR>
+			nnoremap <LEADER>vs  : source ~/.config/nvim/init.vim<CR>
+			nnoremap <LEADER>vt  : terminal<CR>
+			nnoremap <Leader>vi  : PlugInstall<CR>
+			nnoremap <Leader>vu  : PlugClean<CR>
+			nnoremap <Leader>vw  : call AutoSaveToggle()<CR>
+			nnoremap <LEADER>vq  : q<CR>
+			nnoremap <LEADER>vfq : q!<CR>
+
+			nnoremap <Leader>va  : call AutoCorrect()<CR>
+			nnoremap <Leader>vp  : PencilToggle<CR>
+			nnoremap <Leader>vd  : Goyo<CR>
+			nnoremap <Leader>vl  : Limelight!!<CR>
+			nnoremap <Leader>vf  : Autoformat<CR>
+			vnoremap <Leader>vf  : Autoformat<CR>
+			nnoremap <Leader>vF  : call AutoFormatToggle()<CR>
+			nnoremap <LEADER>vS  : Startify<CR>
+		"TEXT MAPPINGS
+			"REMOVE CONSECUTIVE BLANK LINES (>=3)
+				nmap <Leader>xb :g:^$\n\{3,}:d<CR>
+			"REMOVE TRAILING WHITESPACE
+				nmap <Leader>xw :call StripTrailingWhitespace()<CR>
+			"SPACES => TABS
+				nmap <Leader>xt :call ConvertSpaces2Tabs()<CR>
+			"TABS => SPACES
+				nmap <Leader>xs :call ConvertTabs2Spaces()<CR>
+			"RETAB
+				nmap <Leader>xr :%retab!<CR>
+		"EDITOR MAPPINGS
+			"TOGGLES
+				map <Leader>etl :set number!<CR>
+				map <Leader>etr :set relativenumber!<CR>
+				map <Leader>etw :let g:highlight_trailing_whitespaces = !g:highlight_trailing_whitespaces<CR>
+				map <Leader>ets :let g:highlight_leading_spaces       = !g:highlight_leading_spaces<CR>
+				map <Leader>ett :let g:highlight_leading_tabs         = !g:highlight_leading_tabs<CR>
+		"LINUX MAPPINGS
+			"FILESYSTEM
+				nnoremap <silent> <Leader>ld :execute "DeleteFile " . glob('%')<CR>
+			"FZF
+				nnoremap <Leader>nf  :call fzf#run(fzf#wrap({'source': 'find ~/Google\ Drive -type d', 'sink': 'VifmToggle'       }))<CR>
+				nnoremap <Leader>nF  :call fzf#run(fzf#wrap({'source': 'find ~               -type d', 'sink': 'VifmToggle'       }))<CR>
+				nnoremap <Leader>lnf :call fzf#run(fzf#wrap({'source': 'find ~               -type d', 'sink': 'NewFile'          }))<CR>
+				nnoremap <Leader>lnd :call fzf#run(fzf#wrap({'source': 'find ~               -type d', 'sink': 'NewDirectory'     }))<CR>
+				nnoremap <Leader>ldf :call fzf#run(fzf#wrap({'source': 'find ~               -type f', 'sink': 'DeleteFile'       }))<CR>
+				nnoremap <Leader>ldd :call fzf#run(fzf#wrap({'source': 'find ~               -type d', 'sink': 'DeleteDirectory'  }))<CR>
+				nnoremap <Leader>ldD :call fzf#run(fzf#wrap({'source': 'find ~               -type d', 'sink': 'DeleteDirectory!' }))<CR>
+			"UTILITIES
+				vnoremap <Leader>lus :sort                         <CR>
+				vnoremap <Leader>luu :<C-u>'<,'>sort \| '<,'>!uniq <CR>
+				vnoremap <Leader>luc :<C-u>'<,'>!bc                <CR>
+		"FIND & REPLACE
+			"REPLACE CHARACTER @TODO
+	"MISCELLANOUS MAPPINGS
+		"QUICK EXIT MAPPINGS
+		"REPEAT LAST OPERATION ON A MATCH ON NEXT n MATCH
+			nnoremap Q :normal n.<CR>
+			"nnoremap Q @='n.'<CR>
+		"MOVE COMMANDS
+			nnoremap <C-DOWN> :m .+1<CR>==
+			nnoremap <C-UP> :m .-2<CR>==
+			inoremap <C-DOWN> <Esc>:m .+1<CR>==gi
+			inoremap <C-UP> <Esc>:m .-2<CR>==gi
+			vnoremap <C-DOWN> :m '>+1<CR>gv=gv
+			vnoremap <C-UP> :m '<-2<CR>gv=gv
+"FILETYPE
+	"TEXT
+		"FILETYPE=jproperties FOR TEXT FILES
+		autocmd BufNewFile,BufRead *.txt set syntax=jproperties
+		autocmd Filetype text set syntax=jproperties
+	"PUG
+		"FUNCTIONS
+			function! Pug(range)
+				call RunNpmCommand('pug', '-P', a:range, 'pug-cli')
+			endfunction
+		"MAPPINGS
+			augroup PUG
+				au!
+				au FileType jade,pug map <buffer> <LocalLeader>cw : JadeWatch html vertical<CR>
+				au FileType jade,pug nmap <buffer> <LocalLeader>cc : <C-u> call Pug('')<CR>
+				au FileType jade,pug vmap <buffer> <LocalLeader>cc : <C-u> call Pug("'<,'>")<CR>
+				au FileType jade,pug nmap <buffer> <LocalLeader>cb : <C-u> call Pug('%')<CR>
+			augroup END
+	"HTML
+		"FUNCTIONS
+			function! Html2Pug(range)
+				call RunNpmCommand('html2pug', '-f', a:range, 'html2pug')
+			endfunction
+		"MAPPINGS
+			augroup HTML
+				au!
+				au FileType html nmap <buffer> <LocalLeader>cj :call Html2Pug('%')<CR>
+				au FileType html vmap <buffer> <LocalLeader>cj :call Html2Pug("'<,'>")<CR>
+			augroup END
+	"CSS
+	"PYTHON
+	"C++/C
+	"JAVA
+	"XML
+		augroup XML
+			au!
+			au FileType xml nmap <buffer> <LocalLeader>cj :call RunNpmCommand('x2j', '', '%', 'x2j-cli')<CR>
+			au FileType xml vmap <buffer> <LocalLeader>cj :call RunNpmCommand('x2j', '', "'<,'>", 'x2j-cli')<CR>
+		augroup END
+	"JAVASCRIPT
+	"MARKDOWN
+		augroup MARKDOWN
+			au!
+			au FileType markdown nmap <buffer> <LocalLeader>ch :call RunNpmCommand('', "%", 'gh-markdown-cli')<CR>
+			au FileType markdown vmap <buffer> <LocalLeader>ch :call RunNpmCommand('mdown', '', "'<,'>", 'gh-markdown-cli')<CR>
+		augroup END
+	"WORDPRESS
+		augroup WORDPRESS
+			au!
+			au BufEnter wordpress set filetype=jade
+			au BufEnter wordpress map <buffer> <LocalLeader>ch :<C-u>call Pug('12,$')<CR>
+			au BufEnter wordpress map <buffer> <LocalLeader>cj :<C-u>call Html2Pug('12,$')<CR>
+		augroup END
+"VIMSCRIPT
 	"HELPERS
 		"EXTERNAL
 			"PACKAGE MANAGERS
@@ -1383,6 +1347,28 @@ call plug#end()
 				function! StripTrailingWhitespace()
 					execute ':%s/\s\+$//e'
 					execute ':%s/\t\+$//e'
+				endfunction
+
+				function! ConvertSpaces2Tabs()
+					let l:et = &expandtab
+					setlocal noexpandtab
+					%retab!
+					if l:et
+						setlocal expandtab
+					else
+						setlocal noexpandtab
+					endif
+				endfunction
+
+				function! ConvertTabs2Spaces()
+					let l:et = &expandtab
+					setlocal expandtab
+					%retab!
+					if l:et
+						setlocal expandtab
+					else
+						setlocal noexpandtab
+					endif
 				endfunction
 			"INTERFACE
 				function! RunInNewBuffer(command, filename)
@@ -1564,23 +1550,5 @@ call plug#end()
 				endif
 			endfunction
 		"REMOVE STUFF
-			"REMOVE EMPTY LINES
-				nnoremap <Leader><Leader>e :g/^$/d<CR>
-			"REMOVE TRAILING WHITESPACE
-				nnoremap <Leader><Leader>w :call StripTrailingWhitespace()<CR>
-		"SCRATCH.vim @TODO
-"ONI CONFIGURATION
-	if exists('g:gui_oni')
-		"LOOK & FEEL
-			let g:airline_powerline_fonts               = 0
-			let g:airline_theme                         = 'wombat'
-			let g:airline#extensions#bufferline#enabled = 1
-		"MISCELLANOUS
-			let g:vim_search_pulse_disable_auto_mappings = 1
-			unmap n
-			unmap N
-			unmap *
-			unmap #
-			unmap g*
-			unmap g#
-	endif
+	"PLUGINS
+"PYTHON
