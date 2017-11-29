@@ -166,6 +166,7 @@ call plug#begin()
 		"Plug 'vim-scripts/DrawIt'
 		"Plug 'gorodinskiy/vim-coloresque'
 		"Plug 'hecal3/vim-leader-guide'
+		"Plug 'tweekmonster/nvim-api-viewer'
 		"Plug 'kyuhi/vim-emoji-complete'
 	"LIBRARIES|UTILITIES|DEPENDENCIES
 		Plug 'kana/vim-textobj-user'
@@ -286,30 +287,135 @@ call plug#end()
 					\ 'dosbatch'   : 'cmd',
 					\}
 		let g:languages = {}
-		let g:languages.python = {
-			\'extension'     : 'py',
-			\'repl'          : 'ipython',
-			\'execute'       : 'python3',
-			\'execute-flags' : 0,
-			\'compile'       : 0,
-			\'compile-flags' : 0,
-		\}
-		let g:languages.javascript = {
-			\'extension'     : 'js',
-			\'repl'          : 'node',
-			\'execute'       : 'node',
-			\'execute-flags' : 0,
-			\'compile'       : 0,
-			\'compile-flags' : 0,
-		\}
-		let g:languages.ruby = {
-			\'extension'     : 'rb',
-			\'repl'          : 'irb',
-			\'execute'       : 'ruby',
-			\'execute-flags' : 0,
-			\'compile'       : 0,
-			\'compile-flags' : 0,
-		\}
+		"INTERPRETED LANGUAGES
+			let g:languages.python = {
+				\'extension'     : 'py',
+				\'repl'          : 'ipython',
+				\'execute'       : 'python3',
+				\'execute-flags' : '',
+			\}
+			let g:languages.javascript = {
+				\'extension'     : 'js',
+				\'repl'          : 'node',
+				\'execute'       : 'node',
+				\'execute-flags' : '',
+			\}
+			let g:languages.ruby = {
+				\'extension'     : 'rb',
+				\'repl'          : 'irb',
+				\'execute'       : 'ruby',
+				\'execute-flags' : '',
+			\}
+			let g:languages.typscript = {
+				\'extension'     : 'ts',
+				\'repl'          : 'ts-node',
+				\'execute'       : 'tsc',
+				\'execute-flags' : '',
+			\}
+			let g:languages.perl = {
+				\'extension'     : 'pl',
+				\'repl'          : 'perl',
+				\'execute'       : 'perl',
+				\'execute-flags' : '',
+			\}
+			let g:languages.php = {
+				\'extension'     : 'php',
+				\'repl'          : 'php',
+				\'execute'       : 'php',
+				\'execute-flags' : '',
+			\}
+			let g:languages.lisp = {
+				\'extension'     : 'lsp',
+				\'repl'          : 'sbcl',
+				\'execute'       : '',
+				\'execute-flags' : '',
+			\}
+		"COMPILED LANGUAGES
+			let g:languages.c = {
+				\'extension'     : 'c',
+				\'execute'       : '',
+				\'execute-flags' : '',
+				\'compile'       : 'gcc',
+				\'compile-flags' : '',
+			\}
+			let g:languages.cpp = {
+				\'extension'     : 'cpp',
+				\'execute'       : '',
+				\'execute-flags' : '',
+				\'compile'       : 'g++',
+				\'compile-flags' : '-std=c++14',
+			\}
+			let g:languages.java = {
+				\'extension'     : 'java',
+				\'execute'       : 'java',
+				\'execute-flags' : '',
+				\'compile'       : 'javac',
+				\'compile-flags' : '',
+			\}
+			let g:languages.scala = {
+				\'extension'     : 'scala',
+				\'repl'          : 'scala',
+				\'execute'       : 'scala',
+				\'execute-flags' : '',
+				\'compile'       : 'scalac',
+				\'compile-flags' : '',
+			\}
+			let g:languages.haskell = {
+				\'extension'     : 'hs',
+				\'repl'          : 'ghci',
+				\'execute'       : '',
+				\'execute-flags' : '',
+				\'compile'       : '',
+				\'compile-flags' : '',
+			\}
+		"SHELL
+			let g:languages.zsh = {
+				\'extension'     : 'zsh',
+				\'repl'          : 'zsh',
+				\'execute'       : 'zsh',
+				\'execute-flags' : '',
+			\}
+			let g:languages.bash = {
+				\'extension'     : 'bash',
+				\'repl'          : 'bash',
+				\'execute'       : 'bash',
+				\'execute-flags' : '',
+			\}
+			let g:languages.fish = {
+				\'extension'     : 'fsh',
+				\'repl'          : 'fsh',
+				\'execute'       : 'fsh',
+				\'execute-flags' : '',
+			\}
+			let g:languages.sh = {
+				\'extension'     : 'sh',
+				\'repl'          : 'sh',
+				\'execute'       : 'sh',
+				\'execute-flags' : '',
+			\}
+			let g:languages.batch = {
+				\'extension'     : 'cmd',
+				\'repl'          : 'cmd',
+				\'execute'       : '',
+				\'execute-flags' : '',
+			\}
+		"DATABASES
+			let g:languages.sqlite = {
+				\'extension'     : 'sql',
+				\'repl'          : 'sqlite',
+			\}
+			let g:languages.mysql = {
+				\'extension'     : 'mysql',
+				\'repl'          : 'mysql',
+			\}
+			let g:languages.redis = {
+				\'extension'     : 'redis',
+				\'repl'          : 'redis-cli',
+			\}
+			let g:languages.mongo = {
+				\'extension'     : 'mongo',
+				\'repl'          : 'mongo',
+			\}
 "MAPPINGS
 	"NOTE: t=tabs b=buffers w=windows s=sessions c=registers/clipboards r=replace? n=navigation j=jumping f=find z|m?=miscellanous c=code/programming
 	"MAIN LAYOUT MAPPINGS
