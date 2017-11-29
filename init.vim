@@ -831,6 +831,347 @@
 		set fillchars=fold:\ ,
 		set mouse=a
 		set clipboard=unnamed
+"VIMSCRIPT
+	"HELPERS
+		"EXTERNAL
+			"PACKAGE MANAGERS
+				function! InstallPackage(pacman, package, flags)
+					if executable(a:pacman) == 1
+						execute '!' a:pacman ' install ' a:flags ' ' a:package
+					else
+						echom a:pacman ' NOT INSTALLED'
+					endif
+				endfunction
+
+				function! RunCommand(cmd, flags, range, pacman, package, installFlags)
+					if executable(a:cmd) == 0
+						echom "INSTALLING " a:cmd " USING " a:pacman "..."
+						call InstallPackage(a:pacman, a:package, a:installFlags)
+					else
+						execute a:range '!' a:cmd ' ' a:flags
+					endif
+				endfunction
+
+				function! RunNpmCommand(cmd, flags, range, package)
+					call RunCommand(a:cmd, a:flags, a:range, 'npm', a:package, '-g')
+				endfunction
+
+				function! RunPipCommand(cmd, flags, range, package)
+					call RunCommand(a:cmd, a:flags, a:range, 'pip', a:package, '')
+				endfunction
+			"UNIX|LINUX
+				"COMMANDS
+					command! -nargs=1		NewFile         : call NewFile         (<q-args>)
+					command! -nargs=1		NewDirectory    : call NewDiretory     (<q-args>)
+					command! -nargs=1 -bang DeleteDirectory : call DeleteDirectory (<q-args>, <bang>0)
+					command! -nargs=1		DeleteFile      : call DeleteFile	   (<q-args>)
+				"FUNCTIONS
+					function! NewFile(path)
+						let l:filename = input('Enter New Filename: ')
+						let l:file = a:path . '/' . l:filename
+
+						if empty(l:filename)
+							call Pechoerr('No Filename Specified')
+						else
+							execute "e " . l:file
+						endif
+					endfunction
+
+					function! NewDirectory(path)
+						let l:dirname = input('Enter New Directory Name: ')
+						let l:dir = a:path . '/' . l:dirname
+
+						if empty(l:dirname)
+							call Pechoerr('No Directory Name Specified')
+						else
+							execute "!mkdir " . l:dir
+						endif
+					endfunction
+
+					function! DeleteDirectory(path, bang)
+						if !empty(a:path)
+							if bang == 0
+								execute "!rmdir " . a:path
+							else
+								execute "!rm -rf " . a:path
+							endif
+						endif
+					endfunction
+
+					function! DeleteFile(file)
+						execute "bdelete!"
+						silent execute "!rm " . a:file | redraw!
+						call Pechoerr("File " . a:file ." Deleted Successfully")
+					endfunction
+		"VIM
+			"FILESYSTEM
+				"COMMANDS
+					command! -nargs=1 -bang SaveAs  : call SaveAs  (<q-args>, <bang>0)
+					command! -nargs=1 -bang Read    : call Read    (<q-args>, <bang>0)
+				"FUNCTIONS
+					function! SaveAs(path, bang)
+						let l:filename = input('Enter New Filename: ')
+						let l:file = a:path . '/' . l:filename
+
+						if empty(l:filename)
+							call Pechoerr('No Filename Specified')
+						elseif a:bang == 0
+							if empty(glob(l:file))
+								execute "w " . a:path ."/" . l:filename
+							else
+								call Pechoerr('File Already Exists')
+							endif
+						else
+							execute "w! " . a:path ."/" . l:filename
+						endif
+					endfunction
+
+					function! Read(file, bang)
+						if empty(a:file)
+							call Pechoerr('No File Specified')
+						elseif empty(glob(a:file))
+							call Pechoerr("File Doesn't Exists")
+						else
+							if a:bang == 0
+								execute "read " . a:file
+							else
+								normal die
+								execute "0read " . a:file
+							endif
+						endif
+					endfunction
+			"TEXT
+				function! GetWordUnderCursor()
+					execute 'normal! "ayiw'
+					let value = @a
+					return value
+				endfunction
+
+				function! GetWORDUnderCursor()
+					execute 'normal! "ayiW'
+					let value = @a
+					return value
+				endfunction
+
+				function! GetSelectedText()
+					normal! gvy
+					return @"
+				endfunction
+
+				function! StripTrailingWhitespace()
+					execute ':%s/\s\+$//e'
+					execute ':%s/\t\+$//e'
+				endfunction
+
+				function! ConvertSpaces2Tabs()
+					let l:et = &expandtab
+					setlocal noexpandtab
+					%retab!
+					if l:et
+						setlocal expandtab
+					else
+						setlocal noexpandtab
+					endif
+				endfunction
+
+				function! ConvertTabs2Spaces()
+					let l:et = &expandtab
+					setlocal expandtab
+					%retab!
+					if l:et
+						setlocal expandtab
+					else
+						setlocal noexpandtab
+					endif
+				endfunction
+			"INTERFACE
+				function! RunInNewBuffer(command, filename)
+					execute "edit! " a:filename
+					execute a:command
+				endfunction
+
+				function! ScratchBuffer(type, ...)
+					if a:type == 'e'
+						enew
+					elseif a:type == 's'
+						new
+					elseif a:type == 'v'
+						vnew
+					endif
+
+					setlocal buftype=nofile
+					setlocal bufhidden=hide
+					setlocal noswapfile
+					setlocal nobuflisted
+
+					if exists('a:1')
+						Filetypes
+					endif
+				endfunction
+			"META
+				function! Pechoerr(msg)
+					echohl ErrorMsg
+					echom a:msg
+					call getchar()
+					echohl None
+				endfunction
+
+				function! PEchoSuccess(msg)
+					echohl MoreMsg
+					echom a:msg
+					call getchar()
+					echohl None
+				endfunction
+
+				function! PEchoWarning(msg)
+					echohl WildMenu
+					echom "WARNING: " . a:msg
+					call getchar()
+					echohl None
+				endfunction
+
+				function! PEchoInfo(msg)
+					echohl StorageClass
+					echom "INFO: " . a:msg
+					call getchar()
+					echohl None
+				endfunction
+
+				function! Prompt(msg)
+				endfunction
+
+				function! ExistsAndTrue(name)
+					if exists(a:name)
+						return eval(a:name)
+					return 0
+				endfunction
+	"OPERATORS
+	"TEXT OBJECTS
+		"LINE
+			vnoremap il :<C-u>normal! ^v$h<CR>
+			onoremap il :<C-u>normal! ^v$h<CR>
+
+			vnoremap al :<C-u>normal! Vh<CR>
+			onoremap al :<C-u>normal! Vh<CR>
+		"ENTIRE
+			vnoremap ie :<C-u>normal! ggVG<CR>
+			onoremap ie :<C-u>normal! ggVG<CR>
+		"AT @TODO
+		"AFTER
+			"TEXT OBJECT
+				function! TextObjectAfter(targetChar)
+					"GETTING COLUMN NUMBER OF CHARACTER AFTER THE targetChar
+						execute 'normal! 0' . v:count . 'f' . a:targetChar
+						let targetCharCol = virtcol('.')
+						let targetCharNormCol = getpos('.')[2]
+					"IF CHARACTER AFTER targetChar IS SPACE THEN SKIP OVER THE SPACE CHARACTER
+						if getline('.')[targetCharNormCol] == ' '
+							execute 'normal! ' . string(targetCharCol+2) . '|v$h'
+						else
+							execute 'normal! ' . string(targetCharCol+1) . '|v$h'
+						endif
+				endfunction
+
+				function! TextObjectAfterAnyChar()
+					"GETTING TARGET CHAR
+						call inputsave()
+						let targetChar = getchar()
+						call inputrestore()
+					"GETTING COLUMN NUMBER OF CHARACTER AFTER THE targetChar
+						execute 'normal! 0' . v:count . 'f' . nr2char(targetChar)
+						let targetCharCol = virtcol('.')
+						let targetCharNormCol = getpos('.')[2]
+					"IF CHARACTER AFTER targetChar IS SPACE THEN SKIP OVER THE SPACE CHARACTER
+						if getline('.')[targetCharNormCol] == ' '
+							execute 'normal! ' . string(targetCharCol+2) . '|v$h'
+						else
+							execute 'normal! ' . string(targetCharCol+1) . '|v$h'
+						endif
+				endfunction
+			"MAPPINGS
+				vnoremap <silent> a= :<C-u>call TextObjectAfter('=')<CR>
+				onoremap <silent> a= :<C-u>call TextObjectAfter('=')<CR>
+
+				vnoremap <silent> a: :<C-u>call TextObjectAfter(':')<CR>
+				onoremap <silent> a: :<C-u>call TextObjectAfter(':')<CR>
+
+				vnoremap <silent> a- :<C-u>call TextObjectAfter('-')<CR>
+				onoremap <silent> a- :<C-u>call TextObjectAfter('-')<CR>
+
+				onoremap <silent> ga :<C-u>call TextObjectAfterAnyChar()<CR>
+		"BEFORE @TODO
+		"LANGUAGES @TODO
+			"PYTHON
+			"CLANG
+	"TOGGLES
+		"AUTOSAVE
+			let g:autosave = 0
+
+			function! AutoSaveToggle()
+				if g:autosave == 0
+					echom "AutoSave Mode Enabled"
+					let g:autosave = 1
+
+					augroup AutoSaveGroup
+						autocmd!
+						au InsertLeave * w
+					augroup END
+				elseif g:autosave == 1
+					echom "AutoSave Mode Disabled"
+					let g:autosave = 0
+
+					augroup AutoSaveGroup
+						autocmd!
+					augroup END
+				endif
+			endfunction
+		"AUTOFORMAT
+			let g:autoformat = 0
+
+			function! AutoFormatToggle()
+				if g:autoformat == 0
+					echom "AutoFormat Mode Enabled"
+					let g:autoformat = 1
+
+					augroup AutoFormatGroup
+						autocmd!
+						au InsertLeave * Autoformat
+					augroup END
+				elseif g:autoformat == 1
+					echom "AutoFormat Mode Disabled"
+					let g:autoformat = 0
+
+					augroup AutoFormatGroup
+						autocmd!
+					augroup END
+				endif
+			endfunction
+	"MISCELLANOUS
+		"AUTOMATIC vimrc SOURCING
+			"augroup myvimrc
+				"au!
+				"au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc,init.vim so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
+			"augroup END
+		"SWAPFILE HANDLING @FIX
+			"NOTE: IF SWAP FILE IS OLDER THEN DELETING IT OTHERWISE RECOVERING IT
+			augroup SwapHandler
+				autocmd!
+				autocmd SwapExists * call SwapHandler(expand('<afile>:p'))
+			augroup END
+
+			function! SwapHandler(filename)
+				if getftime(v:swapname) < getftime(a:filename)
+					call delete(v:swapname)
+					let v:swapchoice = 'e'
+					"echom 'OLD SWAP FILE DELETED: SWAP DELETED'
+				else
+					let v:swapchoice = 'o'
+					"echom 'SWAP FILE DETECTED: SWAP RECOVERED'
+				endif
+			endfunction
+		"REMOVE STUFF
+	"PLUGINS
+"PYTHON
 "CONFIGURATION
 	"VARIABLES
 		"PERFORMANCE
@@ -997,27 +1338,27 @@
 		"let g:loaded_python3_provider=1
 	"HIGHLIGHTS
 		"SEARCH HIGHLIGHTS
-			if exists('g:jaat_highlight_search')
+			if ExistsAndTrue('g:jaat_highlight_search')
 				highlight Search ctermfg=49 cterm=NONE gui=NONE
 				highlight IncSearchMatch ctermfg=black ctermbg=186
 			endif
 		"TRAILING WHITESPACES
-			if exists('g:jaat_highlight_trailing_whitespaces')
+			if ExistsAndTrue('g:highlight_trailing_whitespaces')
 				highlight TrailingWhitespace ctermbg=135
 				call matchadd('TrailingWhitespace', '\s\+$', 100)
 			endif
 		"CONSECUTIVE BLANKLINES
-			if exists('g:jaat_highlight_consecutive_blanklines')
+			if ExistsAndTrue('g:highlight_consecutive_blanklines')
 				highlight ConsecutiveBlankLines ctermbg=135
 				call matchadd('ConsecutiveBlankLines', '\(^$\n\)\{2,}', 100)
 			endif
 		"LEADING SPACES
-			if exists('g:jaat_highlight_leading_spaces')
+			if ExistsAndTrue('g:highlight_leading_spaces')
 				highlight LeadingSpaces ctermbg=135
 				call matchadd('LeadingSpaces', '^ \+', 100)
 			endif
 		"LEADING TABS
-			if exists('g:jaat_highlight_leading_tabs')
+			if ExistsAndTrue('g:highlight_leading_tabs')
 				highlight LeadingTabs ctermbg=135
 				call matchadd('LeadingTabs', '^\t\+', 100)
 			endif
@@ -1270,338 +1611,3 @@
 			au BufEnter wordpress map <buffer> <LocalLeader>ch :<C-u>call Pug('12,$')<CR>
 			au BufEnter wordpress map <buffer> <LocalLeader>cj :<C-u>call Html2Pug('12,$')<CR>
 		augroup END
-"VIMSCRIPT
-	"HELPERS
-		"EXTERNAL
-			"PACKAGE MANAGERS
-				function! InstallPackage(pacman, package, flags)
-					if executable(a:pacman) == 1
-						execute '!' a:pacman ' install ' a:flags ' ' a:package
-					else
-						echom a:pacman ' NOT INSTALLED'
-					endif
-				endfunction
-
-				function! RunCommand(cmd, flags, range, pacman, package, installFlags)
-					if executable(a:cmd) == 0
-						echom "INSTALLING " a:cmd " USING " a:pacman "..."
-						call InstallPackage(a:pacman, a:package, a:installFlags)
-					else
-						execute a:range '!' a:cmd ' ' a:flags
-					endif
-				endfunction
-
-				function! RunNpmCommand(cmd, flags, range, package)
-					call RunCommand(a:cmd, a:flags, a:range, 'npm', a:package, '-g')
-				endfunction
-
-				function! RunPipCommand(cmd, flags, range, package)
-					call RunCommand(a:cmd, a:flags, a:range, 'pip', a:package, '')
-				endfunction
-			"UNIX|LINUX
-				"COMMANDS
-					command! -nargs=1		NewFile         : call NewFile         (<q-args>)
-					command! -nargs=1		NewDirectory    : call NewDiretory     (<q-args>)
-					command! -nargs=1 -bang DeleteDirectory : call DeleteDirectory (<q-args>, <bang>0)
-					command! -nargs=1		DeleteFile      : call DeleteFile	   (<q-args>)
-				"FUNCTIONS
-					function! NewFile(path)
-						let l:filename = input('Enter New Filename: ')
-						let l:file = a:path . '/' . l:filename
-
-						if empty(l:filename)
-							call Pechoerr('No Filename Specified')
-						else
-							execute "e " . l:file
-						endif
-					endfunction
-
-					function! NewDirectory(path)
-						let l:dirname = input('Enter New Directory Name: ')
-						let l:dir = a:path . '/' . l:dirname
-
-						if empty(l:dirname)
-							call Pechoerr('No Directory Name Specified')
-						else
-							execute "!mkdir " . l:dir
-						endif
-					endfunction
-
-					function! DeleteDirectory(path, bang)
-						if !empty(a:path)
-							if bang == 0
-								execute "!rmdir " . a:path
-							else
-								execute "!rm -rf " . a:path
-							endif
-						endif
-					endfunction
-
-					function! DeleteFile(file)
-						execute "bdelete!"
-						silent execute "!rm " . a:file | redraw!
-						call Pechoerr("File " . a:file ." Deleted Successfully")
-					endfunction
-		"VIM
-			"FILESYSTEM
-				"COMMANDS
-					command! -nargs=1 -bang SaveAs  : call SaveAs  (<q-args>, <bang>0)
-					command! -nargs=1 -bang Read    : call Read    (<q-args>, <bang>0)
-				"FUNCTIONS
-					function! SaveAs(path, bang)
-						let l:filename = input('Enter New Filename: ')
-						let l:file = a:path . '/' . l:filename
-
-						if empty(l:filename)
-							call Pechoerr('No Filename Specified')
-						elseif a:bang == 0
-							if empty(glob(l:file))
-								execute "w " . a:path ."/" . l:filename
-							else
-								call Pechoerr('File Already Exists')
-							endif
-						else
-							execute "w! " . a:path ."/" . l:filename
-						endif
-					endfunction
-
-					function! Read(file, bang)
-						if empty(a:file)
-							call Pechoerr('No File Specified')
-						elseif empty(glob(a:file))
-							call Pechoerr("File Doesn't Exists")
-						else
-							if a:bang == 0
-								execute "read " . a:file
-							else
-								normal die
-								execute "0read " . a:file
-							endif
-						endif
-					endfunction
-			"TEXT
-				function! GetWordUnderCursor()
-					execute 'normal! "ayiw'
-					let value = @a
-					return value
-				endfunction
-
-				function! GetWORDUnderCursor()
-					execute 'normal! "ayiW'
-					let value = @a
-					return value
-				endfunction
-
-				function! GetSelectedText()
-					normal! gvy
-					return @"
-				endfunction
-
-				function! StripTrailingWhitespace()
-					execute ':%s/\s\+$//e'
-					execute ':%s/\t\+$//e'
-				endfunction
-
-				function! ConvertSpaces2Tabs()
-					let l:et = &expandtab
-					setlocal noexpandtab
-					%retab!
-					if l:et
-						setlocal expandtab
-					else
-						setlocal noexpandtab
-					endif
-				endfunction
-
-				function! ConvertTabs2Spaces()
-					let l:et = &expandtab
-					setlocal expandtab
-					%retab!
-					if l:et
-						setlocal expandtab
-					else
-						setlocal noexpandtab
-					endif
-				endfunction
-			"INTERFACE
-				function! RunInNewBuffer(command, filename)
-					execute "edit! " a:filename
-					execute a:command
-				endfunction
-
-				function! ScratchBuffer(type, ...)
-					if a:type == 'e'
-						enew
-					elseif a:type == 's'
-						new
-					elseif a:type == 'v'
-						vnew
-					endif
-
-					setlocal buftype=nofile
-					setlocal bufhidden=hide
-					setlocal noswapfile
-					setlocal nobuflisted
-
-					if exists('a:1')
-						Filetypes
-					endif
-				endfunction
-			"META
-				function! Pechoerr(msg)
-					echohl ErrorMsg
-					echom a:msg
-					call getchar()
-					echohl None
-				endfunction
-
-				function! PEchoSuccess(msg)
-					echohl MoreMsg
-					echom a:msg
-					call getchar()
-					echohl None
-				endfunction
-
-				function! PEchoWarning(msg)
-					echohl WildMenu
-					echom "WARNING: " . a:msg
-					call getchar()
-					echohl None
-				endfunction
-
-				function! PEchoInfo(msg)
-					echohl StorageClass
-					echom "INFO: " . a:msg
-					call getchar()
-					echohl None
-				endfunction
-
-				function! Prompt(msg)
-				endfunction
-	"OPERATORS
-	"TEXT OBJECTS
-		"LINE
-			vnoremap il :<C-u>normal! ^v$h<CR>
-			onoremap il :<C-u>normal! ^v$h<CR>
-
-			vnoremap al :<C-u>normal! Vh<CR>
-			onoremap al :<C-u>normal! Vh<CR>
-		"ENTIRE
-			vnoremap ie :<C-u>normal! ggVG<CR>
-			onoremap ie :<C-u>normal! ggVG<CR>
-		"AT @TODO
-		"AFTER
-			"TEXT OBJECT
-				function! TextObjectAfter(targetChar)
-					"GETTING COLUMN NUMBER OF CHARACTER AFTER THE targetChar
-						execute 'normal! 0' . v:count . 'f' . a:targetChar
-						let targetCharCol = virtcol('.')
-						let targetCharNormCol = getpos('.')[2]
-					"IF CHARACTER AFTER targetChar IS SPACE THEN SKIP OVER THE SPACE CHARACTER
-						if getline('.')[targetCharNormCol] == ' '
-							execute 'normal! ' . string(targetCharCol+2) . '|v$h'
-						else
-							execute 'normal! ' . string(targetCharCol+1) . '|v$h'
-						endif
-				endfunction
-
-				function! TextObjectAfterAnyChar()
-					"GETTING TARGET CHAR
-						call inputsave()
-						let targetChar = getchar()
-						call inputrestore()
-					"GETTING COLUMN NUMBER OF CHARACTER AFTER THE targetChar
-						execute 'normal! 0' . v:count . 'f' . nr2char(targetChar)
-						let targetCharCol = virtcol('.')
-						let targetCharNormCol = getpos('.')[2]
-					"IF CHARACTER AFTER targetChar IS SPACE THEN SKIP OVER THE SPACE CHARACTER
-						if getline('.')[targetCharNormCol] == ' '
-							execute 'normal! ' . string(targetCharCol+2) . '|v$h'
-						else
-							execute 'normal! ' . string(targetCharCol+1) . '|v$h'
-						endif
-				endfunction
-			"MAPPINGS
-				vnoremap <silent> a= :<C-u>call TextObjectAfter('=')<CR>
-				onoremap <silent> a= :<C-u>call TextObjectAfter('=')<CR>
-
-				vnoremap <silent> a: :<C-u>call TextObjectAfter(':')<CR>
-				onoremap <silent> a: :<C-u>call TextObjectAfter(':')<CR>
-
-				vnoremap <silent> a- :<C-u>call TextObjectAfter('-')<CR>
-				onoremap <silent> a- :<C-u>call TextObjectAfter('-')<CR>
-
-				onoremap <silent> ga :<C-u>call TextObjectAfterAnyChar()<CR>
-		"BEFORE @TODO
-		"LANGUAGES @TODO
-			"PYTHON
-			"CLANG
-	"TOGGLES
-		"AUTOSAVE
-			let g:autosave = 0
-
-			function! AutoSaveToggle()
-				if g:autosave == 0
-					echom "AutoSave Mode Enabled"
-					let g:autosave = 1
-
-					augroup AutoSaveGroup
-						autocmd!
-						au InsertLeave * w
-					augroup END
-				elseif g:autosave == 1
-					echom "AutoSave Mode Disabled"
-					let g:autosave = 0
-
-					augroup AutoSaveGroup
-						autocmd!
-					augroup END
-				endif
-			endfunction
-		"AUTOFORMAT
-			let g:autoformat = 0
-
-			function! AutoFormatToggle()
-				if g:autoformat == 0
-					echom "AutoFormat Mode Enabled"
-					let g:autoformat = 1
-
-					augroup AutoFormatGroup
-						autocmd!
-						au InsertLeave * Autoformat
-					augroup END
-				elseif g:autoformat == 1
-					echom "AutoFormat Mode Disabled"
-					let g:autoformat = 0
-
-					augroup AutoFormatGroup
-						autocmd!
-					augroup END
-				endif
-			endfunction
-	"MISCELLANOUS
-		"AUTOMATIC vimrc SOURCING
-			"augroup myvimrc
-				"au!
-				"au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc,init.vim so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
-			"augroup END
-		"SWAPFILE HANDLING @FIX
-			"NOTE: IF SWAP FILE IS OLDER THEN DELETING IT OTHERWISE RECOVERING IT
-			augroup SwapHandler
-				autocmd!
-				autocmd SwapExists * call SwapHandler(expand('<afile>:p'))
-			augroup END
-
-			function! SwapHandler(filename)
-				if getftime(v:swapname) < getftime(a:filename)
-					call delete(v:swapname)
-					let v:swapchoice = 'e'
-					"echom 'OLD SWAP FILE DELETED: SWAP DELETED'
-				else
-					let v:swapchoice = 'o'
-					"echom 'SWAP FILE DETECTED: SWAP RECOVERED'
-				endif
-			endfunction
-		"REMOVE STUFF
-	"PLUGINS
-"PYTHON
