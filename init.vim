@@ -337,8 +337,8 @@
 				endif
 			endfunction
 		"REMOVE STUFF
-	"PLUGINS
 "PYTHON
+	"PLUGINS
 "SETTINGS
 	"INDENTATION
 		set autoindent
@@ -374,13 +374,27 @@
 		set noruler
 		set noshowmode
 		set cursorline
+		set list
+		set shortmess="filmnrwxoOTF"
+		set listchars=tab:\ \ ,
+		set listchars+=eol:¬
+		set listchars+=trail:•
+		set listchars+=extends:➞
+		set listchars+=extends:…
+		set listchars+=precedes:←
+		set listchars+=precedes:…
+		set listchars+=nbsp:␣
+		set fillchars=fold:\ ,
+		set fillchars=stl:\ ,
+		set fillchars=stlnc:\ ,
+		set fillchars=vert:⎪
 	"BTW
 		set splitbelow
 		set nowrap
 		set hidden
+		set fileformats=unix,mac,dos
 	"MISCELLANOUS
 		set nocompatible
-		set fillchars=fold:\ ,
 		set mouse=a
 		set clipboard=unnamed
 "CONFIGURATION
@@ -390,7 +404,9 @@
 		"VIM
 		"INTERFACE
 			let g:highlight_trailing_whitespaces = 1
-			let g:highlight_leading_spaces = 1
+			let g:highlight_leading_spaces       = 1
+			let g:highlight_leading_tabs         = 0
+			let g:highlight_listchars            = 1
 		"DEVELOPMENT
 			let g:repls = {
 						\ 'python'     : 'python3',
@@ -555,7 +571,8 @@
 			endif
 		"TRAILING WHITESPACES
 			if ExistsAndTrue('g:highlight_trailing_whitespaces')
-				highlight TrailingWhitespace ctermbg=135
+				"highlight TrailingWhitespace ctermbg=135
+				highlight TrailingWhitespace ctermfg=135
 				call matchadd('TrailingWhitespace', '\s\+$', 100)
 			endif
 		"CONSECUTIVE BLANKLINES
@@ -579,6 +596,12 @@
 			highlight Pmenu ctermbg=238 gui=bold
 		"INTERFACE HIGHLIGHTS
 			highlight VertSplit ctermbg=None guibg=None
+		"LISTCHARS
+			if ExistsAndTrue('g:highlight_listchars')
+				highlight EndOfBuffer ctermfg=245 guifg=#658595
+				highlight NonText     ctermfg=135 guifg=#af5fff
+				highlight Whitespace  ctermfg=135 guifg=#af5fff
+			endif
 "PLUGINS
 	call plug#begin()
 	"PRODUCTIVITY
