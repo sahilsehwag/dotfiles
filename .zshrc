@@ -62,9 +62,8 @@
 	source ~/aliases/.fasd
 
 	alias d2u='find -type f | xargs dos2unix'
-	alias pe='$GOPATH/src/github.com/edi9999/path-extractor/path-extractor/pe'
-	#alias python=python3
-	#alias pip=pip3
+	alias python=python3
+	alias pip=pip3
 	alias vim='nvim'
 
 	if [ $PLATFORM = 'MAC' ]; then
@@ -72,6 +71,8 @@
 		alias ctagsg='ctags -R --exclude=.git --exclude=log *'
 		alias emacs='/usr/local/bin/emacs'
 		alias vis='/usr/local/bin/vis'
+		alias ls='exa'
+		alias pe='path-extractor'
 	fi
 #FUNCTIONS
 	new() {

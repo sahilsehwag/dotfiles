@@ -340,64 +340,6 @@
 "PYTHON
 	"PLUGINS
 "COMMANDS
-"SETTINGS
-	"INDENTATION
-		set autoindent
-		set smartindent
-		set shiftwidth=4
-		set tabstop=4
-		set noexpandtab
-	"LINE NUMBERS
-		set number
-		set relativenumber
-	"SWAP & BACKUP
-		set directory=~/.config/nvim/temp
-		set nobackup
-	"SEARCHING
-		set hls
-		set incsearch
-		set ignorecase
-		set smartcase
-	"COMMANDLINE
-		set path+=**
-		if has('wildmenu')
-			set wildmenu
-			set wildmode=longest:full,full
-			set wildignore+=*.a,*.o
-			set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png
-			set wildignore+=.DS_Store,.git,.hg,.svn
-			set wildignore+=*~,*.swp,*.tmp
-			set wildignorecase
-		endif
-	"UI
-		colorscheme Monokai
-		set noshowcmd
-		set noruler
-		set noshowmode
-		set cursorline
-		set list
-		set shortmess="filmnrwxoOTF"
-		set listchars=tab:\ \ ,
-		set listchars+=eol:¬
-		set listchars+=trail:•
-		set listchars+=extends:➞
-		set listchars+=extends:…
-		set listchars+=precedes:←
-		set listchars+=precedes:…
-		set listchars+=nbsp:␣
-		set fillchars=fold:\ ,
-		set fillchars=stl:\ ,
-		set fillchars=stlnc:\ ,
-		set fillchars=vert:⎪
-	"BTW
-		set splitbelow
-		set nowrap
-		set hidden
-		set fileformats=unix,mac,dos
-	"MISCELLANOUS
-		set nocompatible
-		set mouse=a
-		set clipboard=unnamed
 "CONFIGURATION
 	"VARIABLES
 		"PERFORMANCE
@@ -609,6 +551,256 @@
 				highlight NonText     ctermfg=135 guifg=#af5fff
 				highlight Whitespace  ctermfg=135 guifg=#af5fff
 			endif
+"MAPPINGS
+	"MAIN LAYOUT MAPPINGS
+		"BETTER o|O @TODO
+			"NORMAL MODE OPENER
+				"nnoremap <CR> :normal! o<ESC>
+		"BETTER PASTES
+			"PASTE SWAP @FIX
+				nnoremap p :normal! ]p <CR>
+				nnoremap P :normal! [p <CR>
+				nnoremap ]p :normal! p <CR>
+				nnoremap [p :normal! P <CR>
+				"vnoremap p :<C-u>normal! ]pgvd <CR>
+				"vnoremap P :<C-u>normal! [pgvd <CR>
+				"vnoremap ]p :<C-u>normal! pgvd <CR>
+				"vnoremap [p :<C-u>normal! Pgvd <CR>
+			"FORMATTED PASTE + <<|>> @FIX
+				nnoremap >p :normal! ]p>> <CR>
+				nnoremap <p :normal! ]p<< <CR>
+				nnoremap >P :normal! [p>> <CR>
+				nnoremap <P :normal! [p<< <CR>
+			"NEWLINE PASTE + ==
+				nnoremap ]P :normal! o<esc>p==
+				nnoremap [P :normal! O<Esc>P==
+	"LEADER MAPPING
+		let mapleader = " "
+		let maplocalleader = ","
+		nnoremap ; :
+	"INTERFACE MAPPINGS
+		"TAB MAPPINGS
+			nnoremap <LEADER>ta :tabnew<CR>
+			nnoremap <LEADER>tc :tabclose<CR>
+			nnoremap <LEADER>tn :tabnext<CR>
+			nnoremap <LEADER>tp :tabprevious<CR>
+			nnoremap <LEADER>th :tabmove -<CR>
+			nnoremap <LEADER>tl :tabmove +<CR>
+		"BUFFER MAPPINGS
+			nnoremap H           :bprevious<CR>
+			nnoremap L           :bnext<CR>
+			nnoremap <LEADER>bn  :enew<CR>
+			nnoremap <LEADER>ba  :badd<space>
+			nnoremap <LEADER>bd  :bdelete<CR>
+			nnoremap <LEADER>bfd :bdelete!<CR>
+			nnoremap <LEADER>bl  :bnext<CR>
+			nnoremap <LEADER>bh  :bprevious<CR>
+			nnoremap <LEADER>br  :e<CR>
+			nnoremap <LEADER>bfr :e!<CR>
+			nnoremap <Leader>bv  :view<CR>
+			nnoremap <Leader>bfv :view!<CR>
+			nnoremap <LEADER>bw  :write<CR>
+			nnoremap <LEADER>bfw :write!<CR>
+			nnoremap <Leader>bc  :bp<bar>sp<bar>bn<bar>bd<CR>
+			nnoremap <LEADER>bt  :call ScratchBuffer('e')<CR>
+			nnoremap <LEADER>bT  :call ScratchBuffer('e', 1)<CR>
+		"WINDOW MAPPINGS
+			nnoremap <Leader>wh :sp<CR>
+			nnoremap <Leader>wv :vsp<CR>
+			nnoremap <Leader>wo :only<CR>
+			nnoremap <Leader>wc :close<CR>
+			nnoremap <Leader>wn :vnew<CR>
+			nnoremap <Leader>wN :new<CR>
+			nnoremap <Leader>wm :MaximizerToggle<CR>
+
+			nnoremap <C-J> <C-W><C-J>
+			nnoremap <C-K> <C-W><C-K>
+			nnoremap <C-L> <C-W><C-L>
+			nnoremap <C-H> <C-W><C-H>
+	"INSERT MODE
+		"ABBREVIATIONS @TODO
+			abbreviate chk ✓
+			abbreviate crs ✖
+	"COMMANDLINE MODE
+	"MISCELLANOUS GROUPS
+		"REGISTER MAPPINGS
+			nnoremap <Leader>ra "a
+			nnoremap <Leader>rb "b
+			nnoremap <Leader>rc "c
+			nnoremap <Leader>rd "d
+			nnoremap <Leader>re "e
+			nnoremap <Leader>rf "f
+			nnoremap <Leader>rg "g
+			nnoremap <Leader>rh "h
+			nnoremap <Leader>ri "i
+			nnoremap <Leader>rj "j
+			nnoremap <Leader>rk "k
+			nnoremap <Leader>rl "l
+			nnoremap <Leader>rm "m
+			nnoremap <Leader>rn "n
+			nnoremap <Leader>ro "o
+			nnoremap <Leader>rp "p
+			nnoremap <Leader>rq "q
+			nnoremap <Leader>rr "r
+			nnoremap <Leader>rs "s
+			nnoremap <Leader>rt "t
+			nnoremap <Leader>ru "u
+			nnoremap <Leader>rv "v
+			nnoremap <Leader>rw "w
+			nnoremap <Leader>rx "x
+			nnoremap <Leader>ry "y
+			nnoremap <Leader>rz "z
+			nnoremap <Leader>rA "a
+			nnoremap <Leader>rB "b
+			nnoremap <Leader>rC "c
+			nnoremap <Leader>rD "d
+			nnoremap <Leader>rE "e
+			nnoremap <Leader>rF "f
+			nnoremap <Leader>rG "g
+			nnoremap <Leader>rH "h
+			nnoremap <Leader>rI "i
+			nnoremap <Leader>rJ "j
+			nnoremap <Leader>rK "k
+			nnoremap <Leader>rL "l
+			nnoremap <Leader>rM "m
+			nnoremap <Leader>rN "n
+			nnoremap <Leader>rO "o
+			nnoremap <Leader>rP "p
+			nnoremap <Leader>rQ "q
+			nnoremap <Leader>rR "r
+			nnoremap <Leader>rS "s
+			nnoremap <Leader>rT "t
+			nnoremap <Leader>rU "u
+			nnoremap <Leader>rV "v
+			nnoremap <Leader>rW "w
+			nnoremap <Leader>rX "x
+			nnoremap <Leader>rY "y
+			nnoremap <Leader>rZ "z
+		"VIM MAPPINGS
+			nnoremap <LEADER>vc  : edit ~/.config/nvim/init.vim<CR>
+			nnoremap <LEADER>vs  : source ~/.config/nvim/init.vim<CR>
+			nnoremap <LEADER>vt  : terminal<CR>
+			nnoremap <Leader>vi  : PlugInstall<CR>
+			nnoremap <Leader>vu  : PlugClean<CR>
+			nnoremap <Leader>vw  : call AutoSaveToggle()<CR>
+			nnoremap <LEADER>vq  : q<CR>
+			nnoremap <LEADER>vfq : q!<CR>
+
+			nnoremap <Leader>va  : call AutoCorrect()<CR>
+			nnoremap <Leader>vp  : PencilToggle<CR>
+			nnoremap <Leader>vd  : Goyo<CR>
+			nnoremap <Leader>vl  : Limelight!!<CR>
+			nnoremap <Leader>vf  : Autoformat<CR>
+			vnoremap <Leader>vf  : Autoformat<CR>
+			nnoremap <Leader>vF  : call AutoFormatToggle()<CR>
+			nnoremap <LEADER>vS  : Startify<CR>
+		"TEXT MAPPINGS
+			"REMOVE CONSECUTIVE BLANK LINES (>=3)
+				nmap <Leader>xb :g:^$\n\{3,}:d<CR>
+			"REMOVE TRAILING WHITESPACE
+				nmap <Leader>xw :call StripTrailingWhitespace()<CR>
+			"SPACES => TABS
+				nmap <Leader>xt :call ConvertSpaces2Tabs()<CR>
+			"TABS => SPACES
+				nmap <Leader>xs :call ConvertTabs2Spaces()<CR>
+			"RETAB
+				nmap <Leader>xr :%retab!<CR>
+		"EDITOR MAPPINGS
+			"TOGGLES
+				map <Leader>etl :set number!<CR>
+				map <Leader>etr :set relativenumber!<CR>
+				map <Leader>etw :let g:highlight_trailing_whitespaces = !g:highlight_trailing_whitespaces<CR>
+				map <Leader>ets :let g:highlight_leading_spaces       = !g:highlight_leading_spaces<CR>
+				map <Leader>ett :let g:highlight_leading_tabs         = !g:highlight_leading_tabs<CR>
+		"LINUX MAPPINGS
+			"FILESYSTEM
+				nnoremap <silent> <Leader>ld :execute "DeleteFile " . glob('%')<CR>
+			"FZF
+				nnoremap <Leader>nf  :call fzf#run(fzf#wrap({'source': 'find ~/Google\ Drive -type d', 'sink': 'VifmToggle'       }))<CR>
+				nnoremap <Leader>nF  :call fzf#run(fzf#wrap({'source': 'find ~               -type d', 'sink': 'VifmToggle'       }))<CR>
+				nnoremap <Leader>lnf :call fzf#run(fzf#wrap({'source': 'find ~               -type d', 'sink': 'NewFile'          }))<CR>
+				nnoremap <Leader>lnd :call fzf#run(fzf#wrap({'source': 'find ~               -type d', 'sink': 'NewDirectory'     }))<CR>
+				nnoremap <Leader>ldf :call fzf#run(fzf#wrap({'source': 'find ~               -type f', 'sink': 'DeleteFile'       }))<CR>
+				nnoremap <Leader>ldd :call fzf#run(fzf#wrap({'source': 'find ~               -type d', 'sink': 'DeleteDirectory'  }))<CR>
+				nnoremap <Leader>ldD :call fzf#run(fzf#wrap({'source': 'find ~               -type d', 'sink': 'DeleteDirectory!' }))<CR>
+			"UTILITIES
+				vnoremap <Leader>lus :sort                         <CR>
+				vnoremap <Leader>luu :<C-u>'<,'>sort \| '<,'>!uniq <CR>
+				vnoremap <Leader>luc :<C-u>'<,'>!bc                <CR>
+		"FIND & REPLACE
+			"REPLACE CHARACTER @TODO
+	"MISCELLANOUS MAPPINGS
+		"QUICK EXIT MAPPINGS
+		"REPEAT LAST OPERATION ON A MATCH ON NEXT n MATCH
+			nnoremap Q :normal n.<CR>
+			"nnoremap Q @='n.'<CR>
+		"MOVE COMMANDS
+			nnoremap <C-DOWN> :m .+1<CR>==
+			nnoremap <C-UP> :m .-2<CR>==
+			inoremap <C-DOWN> <Esc>:m .+1<CR>==gi
+			inoremap <C-UP> <Esc>:m .-2<CR>==gi
+			vnoremap <C-DOWN> :m '>+1<CR>gv=gv
+			vnoremap <C-UP> :m '<-2<CR>gv=gv
+"FILETYPE
+	"TEXT
+		"FILETYPE=jproperties FOR TEXT FILES
+		autocmd BufNewFile,BufRead *.txt set syntax=jproperties
+		autocmd Filetype text set syntax=jproperties
+	"MARKUP
+		"MARKDOWN
+			augroup MARKDOWN
+				au!
+				au FileType markdown nmap <buffer> <LocalLeader>ch :call RunNpmCommand('', "%", 'gh-markdown-cli')<CR>
+				au FileType markdown vmap <buffer> <LocalLeader>ch :call RunNpmCommand('mdown', '', "'<,'>", 'gh-markdown-cli')<CR>
+			augroup END
+		"XML
+			augroup XML
+				au!
+				au FileType xml nmap <buffer> <LocalLeader>cj :call RunNpmCommand('x2j', '', '%', 'x2j-cli')<CR>
+				au FileType xml vmap <buffer> <LocalLeader>cj :call RunNpmCommand('x2j', '', "'<,'>", 'x2j-cli')<CR>
+			augroup END
+	"FRONTEND
+		"PUG|JADE
+			"FUNCTIONS
+				function! Pug(range)
+					call RunNpmCommand('pug', '-P', a:range, 'pug-cli')
+				endfunction
+			"MAPPINGS
+				augroup PUG
+					au!
+					au FileType jade,pug map  <buffer> <LocalLeader>cw :JadeWatch html vertical<CR>
+					au FileType jade,pug nmap <buffer> <LocalLeader>cc :<C-u> call Pug('')<CR>
+					au FileType jade,pug vmap <buffer> <LocalLeader>cc :<C-u> call Pug("'<,'>")<CR>
+					au FileType jade,pug nmap <buffer> <LocalLeader>cb :<C-u> call Pug('%')<CR>
+				augroup END
+		"HTML
+			"FUNCTIONS
+				function! Html2Pug(range)
+					call RunNpmCommand('html2pug', '-f', a:range, 'html2pug')
+				endfunction
+			"MAPPINGS
+				augroup HTML
+					au!
+					au FileType html nmap <buffer> <LocalLeader>cj :call Html2Pug('%')<CR>
+					au FileType html vmap <buffer> <LocalLeader>cj :call Html2Pug("'<,'>")<CR>
+				augroup END
+		"CSS
+	"PROGRAMMING
+		"PYTHON
+			augroup PYTHON
+				au!
+				au Filetype python set tabstop=4 | set shiftwidth=4 | set noexpandtab
+			augroup END
+		"C|C++
+		"JAVA
+		"JAVASCRIPT
+	"WORDPRESS
+		augroup WORDPRESS
+			au!
+			au BufEnter wordpress set filetype=jade
+			au BufEnter wordpress map <buffer> <LocalLeader>ch :<C-u>call Pug('12,$')<CR>
+			au BufEnter wordpress map <buffer> <LocalLeader>cj :<C-u>call Html2Pug('12,$')<CR>
+		augroup END
 "PLUGINS
 	call plug#begin()
 	"PRODUCTIVITY
@@ -1198,6 +1390,9 @@
 			nnoremap <Leader>zce :Calendar -view=event<CR>
 			nnoremap <Leader>zca :Calendar -view=agenda<CR>
 		Plug 'shanzi/autoHEADER'
+		Plug 'itchyny/dictionary.vim'
+			nnoremap <Leader>zd :Dictionary<CR>
+			nnoremap <Leader>zD :Dictionary -cursor-word<CR>
 		Plug 'leothelocust/vim-makecols'
 		Plug 'tweekmonster/startuptime.vim'
 		Plug 'sbdchd/vim-shebang'
@@ -1406,253 +1601,61 @@
 		"Plug 'syngan/vim-operator-evalf'
 		"Plug 'neitanod/vim-sade'
 	call plug#end()
-"MAPPINGS
-	"MAIN LAYOUT MAPPINGS
-		"BETTER o|O @TODO
-			"NORMAL MODE OPENER
-				"nnoremap <CR> :normal! o<ESC>
-		"BETTER PASTES
-			"PASTE SWAP @FIX
-				nnoremap p :normal! ]p <CR>
-				nnoremap P :normal! [p <CR>
-				nnoremap ]p :normal! p <CR>
-				nnoremap [p :normal! P <CR>
-				"vnoremap p :<C-u>normal! ]pgvd <CR>
-				"vnoremap P :<C-u>normal! [pgvd <CR>
-				"vnoremap ]p :<C-u>normal! pgvd <CR>
-				"vnoremap [p :<C-u>normal! Pgvd <CR>
-			"FORMATTED PASTE + <<|>> @FIX
-				nnoremap >p :normal! ]p>> <CR>
-				nnoremap <p :normal! ]p<< <CR>
-				nnoremap >P :normal! [p>> <CR>
-				nnoremap <P :normal! [p<< <CR>
-			"NEWLINE PASTE + ==
-				nnoremap ]P :normal! o<esc>p==
-				nnoremap [P :normal! O<Esc>P==
-	"LEADER MAPPING
-		let mapleader = " "
-		let maplocalleader = ","
-		nnoremap ; :
-	"INTERFACE MAPPINGS
-		"TAB MAPPINGS
-			nnoremap <LEADER>ta :tabnew<CR>
-			nnoremap <LEADER>tc :tabclose<CR>
-			nnoremap <LEADER>tn :tabnext<CR>
-			nnoremap <LEADER>tp :tabprevious<CR>
-			nnoremap <LEADER>th :tabmove -<CR>
-			nnoremap <LEADER>tl :tabmove +<CR>
-		"BUFFER MAPPINGS
-			nnoremap H           :bprevious<CR>
-			nnoremap L           :bnext<CR>
-			nnoremap <LEADER>bn  :enew<CR>
-			nnoremap <LEADER>ba  :badd<space>
-			nnoremap <LEADER>bd  :bdelete<CR>
-			nnoremap <LEADER>bfd :bdelete!<CR>
-			nnoremap <LEADER>bl  :bnext<CR>
-			nnoremap <LEADER>bh  :bprevious<CR>
-			nnoremap <LEADER>br  :e<CR>
-			nnoremap <LEADER>bfr :e!<CR>
-			nnoremap <Leader>bv  :view<CR>
-			nnoremap <Leader>bfv :view!<CR>
-			nnoremap <LEADER>bw  :write<CR>
-			nnoremap <LEADER>bfw :write!<CR>
-			nnoremap <Leader>bc  :bp<bar>sp<bar>bn<bar>bd<CR>
-			nnoremap <LEADER>bt  :call ScratchBuffer('e')<CR>
-			nnoremap <LEADER>bT  :call ScratchBuffer('e', 1)<CR>
-		"WINDOW MAPPINGS
-			nnoremap <Leader>wh :sp<CR>
-			nnoremap <Leader>wv :vsp<CR>
-			nnoremap <Leader>wo :only<CR>
-			nnoremap <Leader>wc :close<CR>
-			nnoremap <Leader>wn :vnew<CR>
-			nnoremap <Leader>wN :new<CR>
-			nnoremap <Leader>wm :MaximizerToggle<CR>
-
-			nnoremap <C-J> <C-W><C-J>
-			nnoremap <C-K> <C-W><C-K>
-			nnoremap <C-L> <C-W><C-L>
-			nnoremap <C-H> <C-W><C-H>
-	"INSERT MODE
-		"ABBREVIATIONS @TODO
-			abbreviate chk ✓
-			abbreviate crs ✖
-	"COMMANDLINE MODE
-	"MISCELLANOUS GROUPS
-		"REGISTER MAPPINGS
-			nnoremap <Leader>ra "a
-			nnoremap <Leader>rb "b
-			nnoremap <Leader>rc "c
-			nnoremap <Leader>rd "d
-			nnoremap <Leader>re "e
-			nnoremap <Leader>rf "f
-			nnoremap <Leader>rg "g
-			nnoremap <Leader>rh "h
-			nnoremap <Leader>ri "i
-			nnoremap <Leader>rj "j
-			nnoremap <Leader>rk "k
-			nnoremap <Leader>rl "l
-			nnoremap <Leader>rm "m
-			nnoremap <Leader>rn "n
-			nnoremap <Leader>ro "o
-			nnoremap <Leader>rp "p
-			nnoremap <Leader>rq "q
-			nnoremap <Leader>rr "r
-			nnoremap <Leader>rs "s
-			nnoremap <Leader>rt "t
-			nnoremap <Leader>ru "u
-			nnoremap <Leader>rv "v
-			nnoremap <Leader>rw "w
-			nnoremap <Leader>rx "x
-			nnoremap <Leader>ry "y
-			nnoremap <Leader>rz "z
-			nnoremap <Leader>rA "a
-			nnoremap <Leader>rB "b
-			nnoremap <Leader>rC "c
-			nnoremap <Leader>rD "d
-			nnoremap <Leader>rE "e
-			nnoremap <Leader>rF "f
-			nnoremap <Leader>rG "g
-			nnoremap <Leader>rH "h
-			nnoremap <Leader>rI "i
-			nnoremap <Leader>rJ "j
-			nnoremap <Leader>rK "k
-			nnoremap <Leader>rL "l
-			nnoremap <Leader>rM "m
-			nnoremap <Leader>rN "n
-			nnoremap <Leader>rO "o
-			nnoremap <Leader>rP "p
-			nnoremap <Leader>rQ "q
-			nnoremap <Leader>rR "r
-			nnoremap <Leader>rS "s
-			nnoremap <Leader>rT "t
-			nnoremap <Leader>rU "u
-			nnoremap <Leader>rV "v
-			nnoremap <Leader>rW "w
-			nnoremap <Leader>rX "x
-			nnoremap <Leader>rY "y
-			nnoremap <Leader>rZ "z
-		"VIM MAPPINGS
-			nnoremap <LEADER>vc  : edit ~/.config/nvim/init.vim<CR>
-			nnoremap <LEADER>vs  : source ~/.config/nvim/init.vim<CR>
-			nnoremap <LEADER>vt  : terminal<CR>
-			nnoremap <Leader>vi  : PlugInstall<CR>
-			nnoremap <Leader>vu  : PlugClean<CR>
-			nnoremap <Leader>vw  : call AutoSaveToggle()<CR>
-			nnoremap <LEADER>vq  : q<CR>
-			nnoremap <LEADER>vfq : q!<CR>
-
-			nnoremap <Leader>va  : call AutoCorrect()<CR>
-			nnoremap <Leader>vp  : PencilToggle<CR>
-			nnoremap <Leader>vd  : Goyo<CR>
-			nnoremap <Leader>vl  : Limelight!!<CR>
-			nnoremap <Leader>vf  : Autoformat<CR>
-			vnoremap <Leader>vf  : Autoformat<CR>
-			nnoremap <Leader>vF  : call AutoFormatToggle()<CR>
-			nnoremap <LEADER>vS  : Startify<CR>
-		"TEXT MAPPINGS
-			"REMOVE CONSECUTIVE BLANK LINES (>=3)
-				nmap <Leader>xb :g:^$\n\{3,}:d<CR>
-			"REMOVE TRAILING WHITESPACE
-				nmap <Leader>xw :call StripTrailingWhitespace()<CR>
-			"SPACES => TABS
-				nmap <Leader>xt :call ConvertSpaces2Tabs()<CR>
-			"TABS => SPACES
-				nmap <Leader>xs :call ConvertTabs2Spaces()<CR>
-			"RETAB
-				nmap <Leader>xr :%retab!<CR>
-		"EDITOR MAPPINGS
-			"TOGGLES
-				map <Leader>etl :set number!<CR>
-				map <Leader>etr :set relativenumber!<CR>
-				map <Leader>etw :let g:highlight_trailing_whitespaces = !g:highlight_trailing_whitespaces<CR>
-				map <Leader>ets :let g:highlight_leading_spaces       = !g:highlight_leading_spaces<CR>
-				map <Leader>ett :let g:highlight_leading_tabs         = !g:highlight_leading_tabs<CR>
-		"LINUX MAPPINGS
-			"FILESYSTEM
-				nnoremap <silent> <Leader>ld :execute "DeleteFile " . glob('%')<CR>
-			"FZF
-				nnoremap <Leader>nf  :call fzf#run(fzf#wrap({'source': 'find ~/Google\ Drive -type d', 'sink': 'VifmToggle'       }))<CR>
-				nnoremap <Leader>nF  :call fzf#run(fzf#wrap({'source': 'find ~               -type d', 'sink': 'VifmToggle'       }))<CR>
-				nnoremap <Leader>lnf :call fzf#run(fzf#wrap({'source': 'find ~               -type d', 'sink': 'NewFile'          }))<CR>
-				nnoremap <Leader>lnd :call fzf#run(fzf#wrap({'source': 'find ~               -type d', 'sink': 'NewDirectory'     }))<CR>
-				nnoremap <Leader>ldf :call fzf#run(fzf#wrap({'source': 'find ~               -type f', 'sink': 'DeleteFile'       }))<CR>
-				nnoremap <Leader>ldd :call fzf#run(fzf#wrap({'source': 'find ~               -type d', 'sink': 'DeleteDirectory'  }))<CR>
-				nnoremap <Leader>ldD :call fzf#run(fzf#wrap({'source': 'find ~               -type d', 'sink': 'DeleteDirectory!' }))<CR>
-			"UTILITIES
-				vnoremap <Leader>lus :sort                         <CR>
-				vnoremap <Leader>luu :<C-u>'<,'>sort \| '<,'>!uniq <CR>
-				vnoremap <Leader>luc :<C-u>'<,'>!bc                <CR>
-		"FIND & REPLACE
-			"REPLACE CHARACTER @TODO
-	"MISCELLANOUS MAPPINGS
-		"QUICK EXIT MAPPINGS
-		"REPEAT LAST OPERATION ON A MATCH ON NEXT n MATCH
-			nnoremap Q :normal n.<CR>
-			"nnoremap Q @='n.'<CR>
-		"MOVE COMMANDS
-			nnoremap <C-DOWN> :m .+1<CR>==
-			nnoremap <C-UP> :m .-2<CR>==
-			inoremap <C-DOWN> <Esc>:m .+1<CR>==gi
-			inoremap <C-UP> <Esc>:m .-2<CR>==gi
-			vnoremap <C-DOWN> :m '>+1<CR>gv=gv
-			vnoremap <C-UP> :m '<-2<CR>gv=gv
-"FILETYPE
-	"TEXT
-		"FILETYPE=jproperties FOR TEXT FILES
-		autocmd BufNewFile,BufRead *.txt set syntax=jproperties
-		autocmd Filetype text set syntax=jproperties
-	"MARKUP
-		"MARKDOWN
-			augroup MARKDOWN
-				au!
-				au FileType markdown nmap <buffer> <LocalLeader>ch :call RunNpmCommand('', "%", 'gh-markdown-cli')<CR>
-				au FileType markdown vmap <buffer> <LocalLeader>ch :call RunNpmCommand('mdown', '', "'<,'>", 'gh-markdown-cli')<CR>
-			augroup END
-		"XML
-			augroup XML
-				au!
-				au FileType xml nmap <buffer> <LocalLeader>cj :call RunNpmCommand('x2j', '', '%', 'x2j-cli')<CR>
-				au FileType xml vmap <buffer> <LocalLeader>cj :call RunNpmCommand('x2j', '', "'<,'>", 'x2j-cli')<CR>
-			augroup END
-	"FRONTEND
-		"PUG|JADE
-			"FUNCTIONS
-				function! Pug(range)
-					call RunNpmCommand('pug', '-P', a:range, 'pug-cli')
-				endfunction
-			"MAPPINGS
-				augroup PUG
-					au!
-					au FileType jade,pug map <buffer> <LocalLeader>cw : JadeWatch html vertical<CR>
-					au FileType jade,pug nmap <buffer> <LocalLeader>cc : <C-u> call Pug('')<CR>
-					au FileType jade,pug vmap <buffer> <LocalLeader>cc : <C-u> call Pug("'<,'>")<CR>
-					au FileType jade,pug nmap <buffer> <LocalLeader>cb : <C-u> call Pug('%')<CR>
-				augroup END
-		"HTML
-			"FUNCTIONS
-				function! Html2Pug(range)
-					call RunNpmCommand('html2pug', '-f', a:range, 'html2pug')
-				endfunction
-			"MAPPINGS
-				augroup HTML
-					au!
-					au FileType html nmap <buffer> <LocalLeader>cj :call Html2Pug('%')<CR>
-					au FileType html vmap <buffer> <LocalLeader>cj :call Html2Pug("'<,'>")<CR>
-				augroup END
-		"CSS
-	"PROGRAMMING
-		"PYTHON
-			augroup PYTHON
-				au!
-				au Filetype python set tabstop=4 | set shiftwidth=4 | set noexpandtab
-			augroup END
-		"C|C++
-		"JAVA
-		"JAVASCRIPT
-	"WORDPRESS
-		augroup WORDPRESS
-			au!
-			au BufEnter wordpress set filetype=jade
-			au BufEnter wordpress map <buffer> <LocalLeader>ch :<C-u>call Pug('12,$')<CR>
-			au BufEnter wordpress map <buffer> <LocalLeader>cj :<C-u>call Html2Pug('12,$')<CR>
-		augroup END
+"SETTINGS
+	"INDENTATION
+		set autoindent
+		set smartindent
+		set shiftwidth=4
+		set tabstop=4
+		set noexpandtab
+	"LINE NUMBERS
+		set number
+		set relativenumber
+	"SWAP & BACKUP
+		set directory=~/.config/nvim/temp
+		set nobackup
+	"SEARCHING
+		set hls
+		set incsearch
+		set ignorecase
+		set smartcase
+	"COMMANDLINE
+		set path+=**
+		if has('wildmenu')
+			set wildmenu
+			set wildmode=longest:full,full
+			set wildignore+=*.a,*.o
+			set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png
+			set wildignore+=.DS_Store,.git,.hg,.svn
+			set wildignore+=*~,*.swp,*.tmp
+			set wildignorecase
+		endif
+	"UI
+		colorscheme Monokai
+		set noshowcmd
+		set noruler
+		set noshowmode
+		set cursorline
+		set list
+		set shortmess="filmnrwxoOTF"
+		set listchars=tab:\ \ ,
+		set listchars+=eol:¬
+		set listchars+=trail:•
+		set listchars+=extends:➞
+		set listchars+=extends:…
+		set listchars+=precedes:←
+		set listchars+=precedes:…
+		set listchars+=nbsp:␣
+		set fillchars=fold:\ ,
+		set fillchars=stl:\ ,
+		set fillchars=stlnc:\ ,
+		set fillchars=vert:⎪
+	"BTW
+		set splitbelow
+		set nowrap
+		set hidden
+		set fileformats=unix,mac,dos
+	"MISCELLANOUS
+		set nocompatible
+		set mouse=a
+		set clipboard=unnamed
