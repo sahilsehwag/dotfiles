@@ -881,10 +881,11 @@
 				nmap gI <Plug>(operator-insert-i)
 				nmap gA <Plug>(operator-insert-a)
 			Plug 'emonkak/vim-operator-sort'
-				map <Leader><Leader>s <Plug>(operator-sort)
+				map gS <Plug>(operator-sort)
 			Plug 'sgur/vim-operator-openbrowser'
-				nmap <Leader><Leader>f <Plug>(operator-openbrowser)
-				vmap <Leader><Leader>f <Plug>(operator-openbrowser)
+				map gb <Plug>(operator-openbrowser)
+			Plug 'gustavo-hms/vim-duplicate'
+				map gd <Plug>(operator-duplicate)
 		"TEXT-OBJECTS
 			Plug 'wellle/targets.vim'
 			Plug 'michaeljsmith/vim-indent-object'
@@ -906,10 +907,11 @@
 			Plug 'haya14busa/vim-easyoperator-phrase'
 				omap gp  <Plug>(easyoperator-phrase-select)
 				xmap gp  <Plug>(easyoperator-phrase-select)
-		Plug 'chaoren/vim-wordmotion'
-		Plug 'machakann/vim-swap'
-		"Plug 'terryma/vim-multiple-cursors'
-		"Plug 'terryma/vim-expand-region'
+		"MISCELLANOUS
+			Plug 'chaoren/vim-wordmotion'
+			Plug 'machakann/vim-swap'
+			Plug 'terryma/vim-multiple-cursors'
+			Plug 'terryma/vim-expand-region'
 	"WRITTING
 		Plug 'reedes/vim-pencil'
 			nnoremap <Leader>vp :PencilToggle<CR>
