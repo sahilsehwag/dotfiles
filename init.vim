@@ -886,6 +886,11 @@
 				map gb <Plug>(operator-openbrowser)
 			Plug 'gustavo-hms/vim-duplicate'
 				map gd <Plug>(operator-duplicate)
+			Plug 'kusabashira/vim-operator-exrange'
+				map <silent> g: <Plug>(operator-exrange)
+			Plug 'rjayatilleka/vim-operator-goto'
+				map go <Plug>(operator-gotostart)
+				map gO <Plug>(operator-gotoend)
 		"TEXT-OBJECTS
 			Plug 'wellle/targets.vim'
 			Plug 'michaeljsmith/vim-indent-object'
