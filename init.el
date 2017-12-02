@@ -150,6 +150,10 @@
 						"cy" 'evilnc-copy-and-comment-lines
 					;NAVIGATION
 						"nf" 'find-file)
+		;VI-TILDE-FRING
+			(add-to-list 'load-path "~/.emacs.d/packages/vi-tilde-fringe")
+			(require 'vi-tilde-fringe)
+			(global-vi-tilde-fringe-mode)
 		;EVIL-SURROUND
 			(add-to-list 'load-path "~/.emacs.d/packages/evil-surround")
 			(require 'evil-surround)

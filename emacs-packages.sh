@@ -26,6 +26,7 @@
 	git clone https://github.com/bling/evil-visualstar                 ~/.emacs.d/packages/evil-visualstar
 	git clone https://github.com/hlissner/evil-snipe                   ~/.emacs.d/packages/evil-snipe
 	git clone https://github.com/coldnew/linum-relative                ~/.emacs.d/packages/linum-relative
+	git clone https://github.com/syl20bnr/vi-tilde-fringe                ~/.emacs.d/packages/vi-tilde-fringe
 #EMACS
 	git clone https://github.com/mrkkrp/vimish-fold/      ~/.emacs.d/packages/vimish-fold
 	git clone https://github.com/winterTTr/ace-jump-mode/ ~/.emacs.d/packages/ace-jump-mode
