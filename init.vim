@@ -339,6 +339,7 @@
 		"REMOVE STUFF
 "PYTHON
 	"PLUGINS
+"COMMANDS
 "SETTINGS
 	"INDENTATION
 		set autoindent
@@ -470,6 +471,12 @@
 					\'extension'     : 'lsp',
 					\'repl'          : 'sbcl',
 					\'execute'       : '',
+					\'execute-flags' : '',
+				\}
+				let g:languages.lua = {
+					\'extension'     : 'lua',
+					\'repl'          : 'lua',
+					\'execute'       : 'lua',
 					\'execute-flags' : '',
 				\}
 			"COMPILED LANGUAGES
@@ -1628,6 +1635,10 @@
 		"CSS
 	"PROGRAMMING
 		"PYTHON
+			augroup PYTHON
+				au!
+				au Filetype python set tabstop=4 | set shiftwidth=4 | set noexpandtab
+			augroup END
 		"C|C++
 		"JAVA
 		"JAVASCRIPT

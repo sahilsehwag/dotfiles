@@ -71,6 +71,7 @@
 		alias ctags="`brew --prefix`/bin/ctags"
 		alias ctagsg='ctags -R --exclude=.git --exclude=log *'
 		alias emacs='/usr/local/bin/emacs'
+		alias vis='/usr/local/bin/vis'
 	fi
 #FUNCTIONS
 	new() {
