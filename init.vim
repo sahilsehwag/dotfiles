@@ -267,6 +267,18 @@
 
 				onoremap <silent> ga :<C-u>call TextObjectAfterAnyChar()<CR>
 		"BEFORE @TODO
+			vnoremap b= :<C-u>normal! ^vt=<CR>
+			onoremap b= :<C-u>normal! ^vt=<CR>
+			vnoremap b: :<C-u>normal! ^vt:<CR>
+			onoremap b: :<C-u>normal! ^vt:<CR>
+			vnoremap b- :<C-u>normal! ^vt-<CR>
+			onoremap b- :<C-u>normal! ^vt-<CR>
+			vnoremap B= :<C-u>normal! ^vf=<CR>
+			onoremap B= :<C-u>normal! ^vf=<CR>
+			vnoremap B: :<C-u>normal! ^vf:<CR>
+			onoremap B: :<C-u>normal! ^vf:<CR>
+			vnoremap B- :<C-u>normal! ^vf-<CR>
+			onoremap B- :<C-u>normal! ^vf-<CR>
 		"LANGUAGES @TODO
 			"PYTHON
 			"CLANG
@@ -1500,7 +1512,8 @@
 
 			augroup ScratchEnter
 				autocmd!
-				autocmd BufEnter __Scratch__ nnoremap <buffer> <esc> :q<CR>
+				autocmd FileType scratch nnoremap <buffer> <esc> :q<CR>
+				autocmd FileType scratch set syntax=jproperties
 			augroup END
 		Plug 'mhinz/vim-startify'
 		Plug 'suan/vim-instant-markdown'
