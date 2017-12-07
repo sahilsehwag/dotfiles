@@ -450,6 +450,7 @@
 				\}
 				let g:languages.java = {
 					\'extension'     : 'java',
+					\'repl'          : 'jshell',
 					\'execute'       : 'java',
 					\'execute-flags' : '',
 					\'compile'       : 'javac',
@@ -1012,6 +1013,8 @@
 					let g:whiteboard_interpreters = {
 								\'python'     : { 'extension': 'py'     ,'command': 'python3'   },
 								\'javascript' : { 'extension': 'js'     ,'command': 'node'      },
+								\'java'       : { 'extension': 'java'   ,'command': 'jshell'    },
+								\'lua'        : { 'extension': 'lua'    ,'command': 'lua'       },
 								\'php'        : { 'extension': 'php'    ,'command': 'php'       },
 								\'ruby'       : { 'extension': 'rb'     ,'command': 'ruby'      },
 								\'haskell'    : { 'extension': 'hs'     ,'command': 'ghci'      },
