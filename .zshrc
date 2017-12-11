@@ -72,6 +72,7 @@
 		alias emacs='/usr/local/bin/emacs'
 		alias vis='/usr/local/bin/vis'
 		alias ls='exa'
+		alias r='/usr/local/bin/r'
 		alias pe='path-extractor'
 	fi
 #FUNCTIONS
