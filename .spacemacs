@@ -148,7 +148,7 @@
 		evil-surround
 		evil-leader
 	;EMACS-PACKAGES
-	  )
+	)
    dotspacemacs-frozen-packages '()
    dotspacemacs-excluded-packages '()
    dotspacemacs-install-packages 'used-only))
@@ -328,13 +328,13 @@
 	;; `text-mode' derivatives. If set to `relative', line numbers are relative.
 	;; This variable can also be set to a property list for finer control:
 	;; '(:relative nil
-	;;   :disabled-for-modes dired-mode
-	;;                       doc-view-mode
-	;;                       markdown-mode
-	;;                       org-mode
-	;;                       pdf-view-mode
-	;;                       text-mode
-	;;   :size-limit-kb 1000)
+	;;	 :disabled-for-modes dired-mode
+	;;						 doc-view-mode
+	;;						 markdown-mode
+	;;						 org-mode
+	;;						 pdf-view-mode
+	;;						 text-mode
+	;;	 :size-limit-kb 1000)
 	;; (default nil)
 	dotspacemacs-line-numbers 'relative
 	;; Code folding method. Possible values are `evil' and `origami'.
