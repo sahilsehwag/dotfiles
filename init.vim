@@ -297,7 +297,8 @@
 
 					augroup AutoSaveGroup
 						autocmd!
-						au InsertLeave * w
+						au InsertLeave * silent write
+						au TextChanged * silent write
 					augroup END
 				elseif g:autosave == 1
 					echom "AutoSave Mode Disabled"
@@ -353,6 +354,8 @@
 				endif
 			endfunction
 		"REMOVE STUFF
+	"PLUGINS
+		"ORGASMIC C LANGUAGES @TODO
 "PYTHON
 	"PLUGINS
 "COMMANDS
@@ -1301,7 +1304,7 @@
 					endif
 				"BUFFERLINE
 					if exists('g:gui_oni')
-						let g:airline#extensions#bufferline#enabled = 1
+						"let g:airline#extensions#bufferline#enabled = 1
 						"let g:airline#extensions#bufferline#overwrite_variables = 1
 					endif
 				"TABLINE
@@ -1447,12 +1450,12 @@
 			"let g:clever_f_mark_char_color='cssColor66ffcc'
 		Plug 'dominickng/fzf-session.vim'
 			let g:fzf_session_path = '~/.vim-sessions'
-			nnoremap <LEADER>sn :Session<space>
-			nnoremap <LEADER>sl :SLoad<space>
-			nnoremap <LEADER>sd :SDelete<space>
-			nnoremap <LEADER>sc :SQuit<CR>
-			"nnoremap <LEADER>sl :SList<CR>
-			nnoremap <LEADER>ss :Sessions<CR>
+
+			nnoremap <Leader>sl :Sessions<CR>
+			nnoremap <Leader>sn :Session<space>
+			nnoremap <Leader>sd :SDelete<space>
+			nnoremap <Leader>so :SLoad<space>
+			nnoremap <Leader>sc :SQuit<CR>
 		Plug 'jiangmiao/auto-pairs'
 		Plug 'haya14busa/vim-operator-flashy'
 			let g:operator#flashy#group = 'Visual'
@@ -1605,13 +1608,14 @@
 			let g:scratch_top              = 0
 			let g:scratch_persistence_file = glob('~/') . 'temp.scratch'
 
-			nnoremap <LocalLeader>s :Scratch<CR>
-			nnoremap <LocalLeader>S :Scratch!<CR>
-			nnoremap <LocalLeader>gp :ScratchPreview<CR>
-			nnoremap <LocalLeader>gs :ScratchInsert<CR>
-			nnoremap <LocalLeader>gS :ScratchInsert!<CR>
-			vnoremap <LocalLeader>gs :ScratchSelection<CR>
-			vnoremap <LocalLeader>gS :ScratchSelection!<CR>
+			nnoremap <Leader>ss :Scratch<CR>
+			nnoremap <Leader>sS :Scratch!<CR>
+			nnoremap <Leader>sp :ScratchPreview<CR>
+			nnoremap <Leader>si :ScratchInsert<CR>
+			nnoremap <Leader>sI :ScratchInsert!<CR>
+
+			vnoremap <Leader>ss :ScratchSelection<CR>
+			vnoremap <Leader>sS :ScratchSelection!<CR>
 
 			augroup ScratchEnter
 				autocmd!
