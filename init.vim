@@ -121,8 +121,20 @@
 				endfunction
 
 				function! GetSelectedText()
-					normal! gvy
-					return @"
+					let [lineStart, columnStart] = getpos("'<")[1:2]
+					let [lineEnd, columnEnd] = getpos("'>")[1:2]
+					let lines = getline(lineStart, lineEnd)
+					if len(lines) == 0
+						return ''
+					endif
+					let lines[-1] = lines[-1][: columnEnd - (&selection == 'inclusive' ? 1 : 2)]
+					let lines[0] = lines[0][columnStart - 1:]
+
+					if ExistsAndTrue('a:1')
+						return join(lines, "\n")
+					else
+						return lines
+					endif
 				endfunction
 
 				function! StripTrailingWhitespace()
@@ -355,7 +367,66 @@
 			endfunction
 		"REMOVE STUFF
 	"PLUGINS
-		"ORGASMIC C LANGUAGES @TODO
+		"@TODO ORGASMIC C LANGUAGES
+		"TERMINAL
+			if has('nvim')
+				"COMMANDS
+					command! -bang -nargs=1 Term  call Terminal(<q-args>, '15new', <bang>0)
+					command! -bang -nargs=1 VTerm call Terminal(<q-args>, 'vnew', <bang>0)
+					command! TermSendSelected     call TerminalSend(GetSelectedText(), '\n')
+					command! TermSendFile         call TerminalSend(getline(0, '$'))
+					command! TermSendLine         call TerminalSend([getline('.')])
+				"FUNCTIONS
+					function! Terminal(cmd, pos, exit)
+						execute a:pos
+						setl modifiable
+
+						if a:exit == 1
+							call termopen(a:cmd, {'on_exit': function('TerminalOnExit')})
+						elseif a:exit == 0
+							call termopen(a:cmd)
+						endif
+
+						let g:last_terminal_job_id = b:terminal_job_id
+						startinsert
+					endfunction
+
+					function! TerminalOnExit(job_id, code, event) dict
+						if a:code == 0
+							bdelete!
+						endif
+					endfunction
+
+					function! TerminalSend(lines)
+						call jobsend(g:last_terminal_job_id, add(a:lines, ''))
+					endfunction
+				"OPERATORS
+					"SEND OPERATOR
+					function! OperatorTerminalSend(visual, ...)
+						let [lineStart, columnStart] = getpos(a:0 ? "'<" : "'[")[1:2]
+						let [lineEnd, columnEnd]     = getpos(a:0 ? "'>" : "']")[1:2]
+						let lines                    = getline(lineStart, lineEnd)
+
+						if len(lines) == 0
+							return
+						endif
+						"let lines[-1] = lines[-1][: columnEnd - (&selection == 'inclusive' ? 1 : 2)]
+						"let lines[0]  = lines[0][columnStart - 1:]
+
+						if a:visual == 'block' || a:visual == "\<c-v>"
+							Pechoerr('Operator(SEND) not defined for VISUAL-BLOCK mode')
+							return
+						else
+							call TerminalSend(lines)
+						endif
+					endfunction
+
+					nnoremap <silent> gz :set opfunc=OperatorTerminalSend<CR>g@
+					vnoremap <silent> gz :<c-u>call OperatorTerminalSend(visualmode(), 1)<CR>
+
+					nnoremap <silent> gzz :TermSendLine<CR>
+					vnoremap <silent> gzz :<C-U>TermSendLine<CR>
+			endif
 "PYTHON
 	"PLUGINS
 "COMMANDS
@@ -610,6 +681,10 @@
 			nnoremap <LEADER>tp :tabprevious<CR>
 			nnoremap <LEADER>th :tabmove -<CR>
 			nnoremap <LEADER>tl :tabmove +<CR>
+		"TERMINAL MAPPINGS
+			nnoremap <LEADER>te :terminal<CR>
+			nnoremap <LEADER>th :15split \| terminal<CR>
+			nnoremap <LEADER>tv :vsplit \| terminal<CR>
 		"BUFFER MAPPINGS
 			nnoremap H           :bprevious<CR>
 			nnoremap L           :bnext<CR>
@@ -642,7 +717,9 @@
 			nnoremap <C-L> <C-W><C-L>
 			nnoremap <C-H> <C-W><C-H>
 	"TERMINAL MAPPINGS
-		tnoremap <C-[> <C-\><C-n>
+		if has('nvim')
+			tnoremap <C-[> <C-\><C-n>
+		endif
 	"INSERT MODE
 		"ABBREVIATIONS @TODO
 			abbreviate chk ✓
@@ -705,12 +782,13 @@
 		"VIM MAPPINGS
 			nnoremap <LEADER>vc  : edit ~/.config/nvim/init.vim<CR>
 			nnoremap <LEADER>vs  : source ~/.config/nvim/init.vim<CR>
-			nnoremap <LEADER>vt  : terminal<CR>
 			nnoremap <Leader>vi  : PlugInstall<CR>
 			nnoremap <Leader>vu  : PlugClean<CR>
 			nnoremap <Leader>vw  : call AutoSaveToggle()<CR>
-			nnoremap <LEADER>vq  : q<CR>
-			nnoremap <LEADER>vfq : q!<CR>
+
+			nnoremap <LEADER>vte :terminal<CR>
+			nnoremap <LEADER>vth :15split \| terminal<CR>
+			nnoremap <LEADER>vtv :vsplit \| terminal<CR>
 
 			nnoremap <Leader>va  : call AutoCorrect()<CR>
 			nnoremap <Leader>vp  : PencilToggle<CR>
@@ -1144,6 +1222,7 @@
 					nnoremap <LocalLeader>cS :execute "Whiteboard! " . &filetype<CR>
 			Plug 'ujihisa/repl.vim'
 				nnoremap <LocalLeader>cR :Repl<CR>
+			Plug 'mtikekar/nvim-send-to-term'
 		"SYNTAX
 			"Plug 'vim-syntastic/syntastic'
 		"COMMENTING
@@ -1406,7 +1485,7 @@
 		Plug 'kopischke/vim-fetch'
 		Plug 'dohsimpson/vim-macroeditor'
 			nnoremap <Leader>zm :execute "MacroEdit " nr2char(getchar()) <CR>
-		"Plug 'vimlab/split-term.vim'
+		Plug 'kassio/neoterm'
 		Plug 'zirrostig/vim-schlepp'
 			vmap <up>    <Plug>SchleppUp
 			vmap <down>  <Plug>SchleppDown
@@ -1469,6 +1548,9 @@
 			let g:wheel#map#mouse = 1
 		"Plug 'tpope/vim-speeddating'
 		"Plug 'severin-lemaignan/vim-minimap'
+		Plug 'junegunn/vim-peekaboo'
+			let g:peekaboo_window = 'vert bo 30new'
+			let g:peekaboo_prefix = '<leader>'
 	"LANGUAGES
 		"LINTERS
 		"BEAUTIFIERS
@@ -1625,6 +1707,7 @@
 				autocmd FileType scratch set syntax=jproperties
 			augroup END
 		Plug 'mhinz/vim-startify'
+			let g:startify_session_dir='~/.vim-sessions'
 		Plug 'suan/vim-instant-markdown'
 		Plug 'tpope/vim-capslock'
 		"Plug 'natw/keyboard_cat.vim'
