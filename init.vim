@@ -410,13 +410,15 @@
 						if len(lines) == 0
 							return
 						endif
-						"let lines[-1] = lines[-1][: columnEnd - (&selection == 'inclusive' ? 1 : 2)]
-						"let lines[0]  = lines[0][columnStart - 1:]
 
 						if a:visual == 'block' || a:visual == "\<c-v>"
 							Pechoerr('Operator(SEND) not defined for VISUAL-BLOCK mode')
 							return
-						else
+						elseif a:visual == 'line'
+							call TerminalSend(lines)
+						elseif a:visual == 'char'
+							let lines[-1] = lines[-1][: columnEnd - (&selection == 'inclusive' ? 1 : 2)]
+							let lines[0]  = lines[0][columnStart - 1:]
 							call TerminalSend(lines)
 						endif
 					endfunction
