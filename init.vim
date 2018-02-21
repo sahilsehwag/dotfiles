@@ -441,26 +441,6 @@
 			let g:highlight_leading_tabs         = 0
 			let g:highlight_listchars            = 1
 		"DEVELOPMENT
-			let g:repls = {
-						\ 'python'     : 'python3',
-						\ 'javascript' : 'node',
-						\ 'ruby'       : 'irb',
-						\ 'php'        : 'php',
-						\ 'scala'      : 'scala',
-						\ 'perl'       : 'perl',
-						\ 'lisp'       : 'sbcl',
-						\ 'sqlite'     : 'sqlite',
-						\ 'mysql'      : 'mysql',
-						\ 'mongo'      : 'mongo',
-						\ 'redis'      : 'redis-cli',
-						\ 'typescript' : 'ts-node',
-						\ 'haskell'    : 'ghci',
-						\ 'sh'         : 'bash',
-						\ 'bash'       : 'bash',
-						\ 'zsh'        : 'zsh',
-						\ 'fish'       : 'fsh',
-						\ 'dosbatch'   : 'cmd',
-						\}
 			let g:languages = {}
 			"INTERPRETED LANGUAGES
 				let g:languages.python = {
@@ -522,6 +502,7 @@
 					\'execute-flags' : '',
 					\'compile'       : 'gcc',
 					\'compile-flags' : '',
+					\'repl'          : 'cling',
 				\}
 				let g:languages.cpp = {
 					\'extension'     : 'cpp',
@@ -529,6 +510,7 @@
 					\'execute-flags' : '',
 					\'compile'       : 'g++',
 					\'compile-flags' : '-std=c++14',
+					\'repl'          : 'cling',
 				\}
 				let g:languages.java = {
 					\'extension'     : 'java',
@@ -981,6 +963,9 @@
 				augroup END
 		"CSS
 	"PROGRAMMING
+		"CODING
+			nnoremap <LocalLeader>cr :execute 'VTerm! ' . g:languages[&filetype]['repl']<CR>
+			nnoremap <LocalLeader>ce :execute 'Term '   . g:languages[&filetype]['execute'] . ' ' . glob('%')<CR>
 		"PYTHON
 			augroup PYTHON
 				au!
@@ -1180,11 +1165,6 @@
 					nnoremap <Leader>jj :YcmCompleter GoTo<CR>
 					nnoremap <Leader>ji :YcmCompleter GoToImplementation<CR>
 		"CODE EXECUTION
-			Plug '0x84/vim-coderunner'
-				let g:vcr_no_mappings = 1
-				nnoremap <LocalLeader>cq :RunCode<CR>
-				vnoremap <LocalLeader>cq :RunCode<CR>
-			"Plug 'thinca/vim-quickrun'
 			Plug 'metakirby5/codi.vim'
 				let g:codi#width      = 80
 				let g:codi#rightalign = 0
@@ -1220,9 +1200,6 @@
 				"MAPPINGS
 					nnoremap <LocalLeader>cs :execute "Whiteboard "  . &filetype<CR>
 					nnoremap <LocalLeader>cS :execute "Whiteboard! " . &filetype<CR>
-			Plug 'ujihisa/repl.vim'
-				nnoremap <LocalLeader>cR :Repl<CR>
-			Plug 'mtikekar/nvim-send-to-term'
 		"SYNTAX
 			"Plug 'vim-syntastic/syntastic'
 		"COMMENTING
@@ -1857,6 +1834,7 @@
 		set fillchars=vert:⎪
 	"BTW
 		set splitbelow
+		set splitright
 		set nowrap
 		set hidden
 		set fileformats=unix,mac,dos
