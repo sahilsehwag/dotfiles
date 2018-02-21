@@ -667,8 +667,8 @@
 			nnoremap <LEADER>tl :tabmove +<CR>
 		"TERMINAL MAPPINGS
 			nnoremap <LEADER>te :terminal<CR>
-			nnoremap <LEADER>th :15split \| terminal<CR>
-			nnoremap <LEADER>tv :vsplit \| terminal<CR>
+			nnoremap <LEADER>th :VTerm! zsh<CR>
+			nnoremap <LEADER>tv :Term! zsh<CR>
 		"BUFFER MAPPINGS
 			nnoremap H           :bprevious<CR>
 			nnoremap L           :bnext<CR>
@@ -769,10 +769,6 @@
 			nnoremap <Leader>vi  : PlugInstall<CR>
 			nnoremap <Leader>vu  : PlugClean<CR>
 			nnoremap <Leader>vw  : call AutoSaveToggle()<CR>
-
-			nnoremap <LEADER>vte :terminal<CR>
-			nnoremap <LEADER>vth :15split \| terminal<CR>
-			nnoremap <LEADER>vtv :vsplit \| terminal<CR>
 
 			nnoremap <Leader>va  : call AutoCorrect()<CR>
 			nnoremap <Leader>vp  : PencilToggle<CR>
