@@ -702,7 +702,7 @@
 			nnoremap <C-H> <C-W><C-H>
 	"TERMINAL MAPPINGS
 		if has('nvim')
-			tnoremap <C-[> <C-\><C-n>
+			tnoremap <C-SPACE> <C-\><C-n>
 		endif
 	"INSERT MODE
 		"ABBREVIATIONS @TODO
