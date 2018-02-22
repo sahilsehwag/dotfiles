@@ -378,6 +378,11 @@
 					command! TermSendLine         call TerminalSend([getline('.')])
 				"FUNCTIONS
 					function! Terminal(cmd, pos, exit)
+						let l:sr = &l:splitright
+						let l:sb = &l:splitbelow
+						set splitright
+						set splitbelow
+
 						execute a:pos
 						setl modifiable
 
@@ -385,6 +390,18 @@
 							call termopen(a:cmd, {'on_exit': function('TerminalOnExit')})
 						elseif a:exit == 0
 							call termopen(a:cmd)
+						endif
+
+						if l:sr == 1
+							set splitright
+						else
+							set nosplitright
+						endif
+
+						if l:sb == 1
+							set splitbelow
+						else
+							set nosplitbelow
 						endif
 
 						let g:last_terminal_job_id = b:terminal_job_id
@@ -1832,7 +1849,6 @@
 		set fillchars=vert:⎪
 	"BTW
 		set splitbelow
-		set splitright
 		set nowrap
 		set hidden
 		set fileformats=unix,mac,dos
