@@ -373,6 +373,7 @@
 				"COMMANDS
 					command! -bang -nargs=1 Term  call Terminal(<q-args>, '15new', <bang>0)
 					command! -bang -nargs=1 VTerm call Terminal(<q-args>, 'vnew', <bang>0)
+					command! -bang -nargs=1 BTerm call Terminal(<q-args>, 'enew', <bang>0)
 					command! TermSendSelected     call TerminalSend(GetSelectedText(), '\n')
 					command! TermSendFile         call TerminalSend(getline(0, '$'))
 					command! TermSendLine         call TerminalSend([getline('.')])
@@ -683,9 +684,9 @@
 			nnoremap <LEADER>th :tabmove -<CR>
 			nnoremap <LEADER>tl :tabmove +<CR>
 		"TERMINAL MAPPINGS
-			nnoremap <LEADER>te :terminal<CR>
-			nnoremap <LEADER>th :VTerm! zsh<CR>
-			nnoremap <LEADER>tv :Term! zsh<CR>
+			nnoremap <LEADER>te :BTerm! zsh<CR>
+			nnoremap <LEADER>tv :VTerm! zsh<CR>
+			nnoremap <LEADER>th :Term! zsh<CR>
 		"BUFFER MAPPINGS
 			nnoremap H           :bprevious<CR>
 			nnoremap L           :bnext<CR>
