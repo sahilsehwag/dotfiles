@@ -240,11 +240,11 @@
 				endif
 
 				if a:visual == 'block' || a:visual == "\<c-v>"
-					Pechoerr('Operator not defined for VISUAL-BLOCK mode')
+					call Pechoerr('Operator not defined for VISUAL-BLOCK mode')
 					return
-				elseif a:visual == 'line'
+				elseif a:visual == 'line' || a:visual ==# 'V'
 					execute 'OpenBrowserSmartSearch ' . join(lines, '\n')
-				elseif a:visual == 'char'
+				elseif a:visual == 'char' || a:visual ==# 'v'
 					let lines[-1] = lines[-1][: columnEnd - (&selection == 'inclusive' ? 1 : 2)]
 					let lines[0]  = lines[0][columnStart - 1:]
 					execute 'OpenBrowserSmartSearch ' . join(lines, '\n')
@@ -252,7 +252,7 @@
 			endfunction
 
 			nnoremap <silent> gb :set opfunc=OperatorOpenBrowser<CR>g@
-			vnoremap <silent> gb :<C-U>call OperatorOpenBrowser<CR>
+			vnoremap <silent> gb :<C-U>call OperatorOpenBrowser(visualmode(), 1)<CR>
 
 			nnoremap <silent> gbb :execute 'OpenBrowserSmartSearch ' . getline('.')<CR>
 			vnoremap <silent> gbb :<C-U>execute 'OpenBrowserSmartSearch ' . getline('.')<CR>
@@ -458,11 +458,11 @@
 						endif
 
 						if a:visual == 'block' || a:visual == "\<c-v>"
-							Pechoerr('Operator(SEND) not defined for VISUAL-BLOCK mode')
+							call Pechoerr('Operator(SEND) not defined for VISUAL-BLOCK mode')
 							return
-						elseif a:visual == 'line'
+						elseif a:visual == 'line' || a:visual ==# 'V'
 							call TerminalSend(lines)
-						elseif a:visual == 'char'
+						elseif a:visual == 'char' || a:visual ==# 'v'
 							let lines[-1] = lines[-1][: columnEnd - (&selection == 'inclusive' ? 1 : 2)]
 							let lines[0]  = lines[0][columnStart - 1:]
 							call TerminalSend(lines)
@@ -474,6 +474,7 @@
 
 					nnoremap <silent> gzz :TermSendLine<CR>
 					vnoremap <silent> gzz :<C-U>TermSendLine<CR>
+				"MAPPINGS
 			endif
 "PYTHON
 	"PLUGINS
