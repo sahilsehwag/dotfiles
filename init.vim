@@ -229,6 +229,33 @@
 					return a:word . repeat("\<Left>", strlen(a:word)) . "\<BS>" . repeat("\<Right>", strlen(a:word))
 				endfunction
 	"OPERATORS
+		"OPERATOR-BROWSER
+			function! OperatorOpenBrowser(visual, ...)
+				let [lineStart, columnStart] = getpos(a:0 ? "'<" : "'[")[1:2]
+				let [lineEnd, columnEnd]     = getpos(a:0 ? "'>" : "']")[1:2]
+				let lines                    = getline(lineStart, lineEnd)
+
+				if len(lines) == 0
+					return
+				endif
+
+				if a:visual == 'block' || a:visual == "\<c-v>"
+					Pechoerr('Operator not defined for VISUAL-BLOCK mode')
+					return
+				elseif a:visual == 'line'
+					execute 'OpenBrowserSmartSearch ' . join(lines, '\n')
+				elseif a:visual == 'char'
+					let lines[-1] = lines[-1][: columnEnd - (&selection == 'inclusive' ? 1 : 2)]
+					let lines[0]  = lines[0][columnStart - 1:]
+					execute 'OpenBrowserSmartSearch ' . join(lines, '\n')
+				endif
+			endfunction
+
+			nnoremap <silent> gb :set opfunc=OperatorOpenBrowser<CR>g@
+			vnoremap <silent> gb :<C-U>call OperatorOpenBrowser<CR>
+
+			nnoremap <silent> gbb :execute 'OpenBrowserSmartSearch ' . getline('.')<CR>
+			vnoremap <silent> gbb :<C-U>execute 'OpenBrowserSmartSearch ' . getline('.')<CR>
 	"TEXT OBJECTS
 		"LINE
 			vnoremap il :<C-u>normal! ^v$h<CR>
@@ -368,6 +395,7 @@
 		"REMOVE STUFF
 	"PLUGINS
 		"@TODO ORGASMIC C LANGUAGES
+		"@TODO WINDOWS-MANAGER
 		"TERMINAL
 			if has('nvim')
 				"COMMANDS
@@ -684,9 +712,11 @@
 			nnoremap <LEADER>th :tabmove -<CR>
 			nnoremap <LEADER>tl :tabmove +<CR>
 		"TERMINAL MAPPINGS
-			nnoremap <LEADER>te :BTerm! zsh<CR>
-			nnoremap <LEADER>tv :VTerm! zsh<CR>
-			nnoremap <LEADER>th :Term! zsh<CR>
+			if has('nvim')
+				nnoremap <LEADER>te :BTerm! zsh<CR>
+				nnoremap <LEADER>tv :VTerm! zsh<CR>
+				nnoremap <LEADER>th :Term! zsh<CR>
+			endif
 		"BUFFER MAPPINGS
 			nnoremap H           :bprevious<CR>
 			nnoremap L           :bnext<CR>
@@ -1266,8 +1296,6 @@
 				nmap gA <Plug>(operator-insert-a)
 			Plug 'emonkak/vim-operator-sort'
 				map gS <Plug>(operator-sort)
-			Plug 'sgur/vim-operator-openbrowser'
-				map gb <Plug>(operator-openbrowser)
 			Plug 'gustavo-hms/vim-duplicate'
 				map gd <Plug>(operator-duplicate)
 			Plug 'kusabashira/vim-operator-exrange'
