@@ -256,6 +256,38 @@
 
 			nnoremap <silent> gbb :execute 'OpenBrowserSmartSearch ' . getline('.')<CR>
 			vnoremap <silent> gbb :<C-U>execute 'OpenBrowserSmartSearch ' . getline('.')<CR>
+		"OPERATOR-EXRANGE
+			function! OperatorExRange(visual)
+				let [lineStart, columnStart] = getpos(a:0 ? "'<" : "'[")[1:2]
+				let [lineEnd, columnEnd]     = getpos(a:0 ? "'>" : "']")[1:2]
+				let lines                    = getline(lineStart, lineEnd)
+
+				if len(lines) == 0
+					return
+				endif
+
+				if a:visual == 'block' || a:visual == "\<c-v>"
+					call Pechoerr('Operator not defined for VISUAL-BLOCK mode')
+					return
+				elseif a:visual == 'line' || a:visual ==# 'V'
+					for line in lines
+						execute line
+					endfor
+				elseif a:visual == 'char' || a:visual ==# 'v'
+					let lines[-1] = lines[-1][: columnEnd - (&selection == 'inclusive' ? 1 : 2)]
+					let lines[0]  = lines[0][columnStart - 1:]
+
+					for line in lines
+						execute line
+					endfor
+				endif
+			endfunction
+
+			nnoremap <silent> g; :set opfunc=OperatorExRange<CR>g@
+			vnoremap <silent> g; :<C-U>call OperatorExRange(visualmode())<CR>
+
+			nnoremap <silent> g;; :execute getline('.')<CR>
+			vnoremap <silent> g;; :<C-U>execute getline('.')<CR>
 	"TEXT OBJECTS
 		"LINE
 			vnoremap il :<C-u>normal! ^v$h<CR>
@@ -1299,8 +1331,6 @@
 				map gS <Plug>(operator-sort)
 			Plug 'gustavo-hms/vim-duplicate'
 				map gd <Plug>(operator-duplicate)
-			Plug 'kusabashira/vim-operator-exrange'
-				map <silent> g: <Plug>(operator-exrange)
 			Plug 'rjayatilleka/vim-operator-goto'
 				map go <Plug>(operator-gotostart)
 				map gO <Plug>(operator-gotoend)
