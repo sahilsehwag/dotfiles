@@ -879,7 +879,7 @@
 				map <Leader>ett :let g:highlight_leading_tabs         = !g:highlight_leading_tabs<CR>
 		"LINUX MAPPINGS
 			"FILESYSTEM
-				nnoremap <silent> <Leader>ld :execute "DeleteFile " . glob('%')<CR>
+				nnoremap <silent> <Leader>ld :execute "DeleteFile " . escape(glob('%'), ' -')<CR>
 			"FZF
 				nnoremap <Leader>nf  :call fzf#run(fzf#wrap({'source': 'find ~/Google\ Drive -type d', 'sink': 'VifmToggle'       }))<CR>
 				nnoremap <Leader>nF  :call fzf#run(fzf#wrap({'source': 'find ~               -type d', 'sink': 'VifmToggle'       }))<CR>
@@ -1044,7 +1044,7 @@
 	"PROGRAMMING
 		"CODING
 			nnoremap <LocalLeader>cr :execute 'VTerm! ' . g:languages[&filetype]['repl']<CR>
-			nnoremap <LocalLeader>ce :execute 'Term '   . g:languages[&filetype]['execute'] . ' ' . glob('%')<CR>
+			nnoremap <LocalLeader>ce :execute 'Term '   . g:languages[&filetype]['execute'] . ' ' . escape(glob('%'), ' -')<CR>
 		"PYTHON
 			augroup PYTHON
 				au!
