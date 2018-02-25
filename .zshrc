@@ -74,6 +74,7 @@
 		alias ls='exa'
 		alias r='/usr/local/bin/r'
 		alias pe='path-extractor'
+		alias processing-java='/usr/local/bin/processing-java'
 	fi
 #FUNCTIONS
 	new() {
@@ -95,4 +96,9 @@
 		 hi NonText ctermfg=0 |\
 		 Codi $syntax" "$@"
 	 }
+	processing(){
+		rm -rf /tmp/processing
+		mkdir /tmp/processing
+		processing-java --output=/tmp/processing/ --force --sketch=$1 --run
+	}
 #TEMPORARY
