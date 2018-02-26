@@ -899,9 +899,6 @@
 			vnoremap <C-UP> :m '<-2<CR>gv=gv
 "FILETYPE
 	"TEXT
-		"FILETYPE=jproperties FOR TEXT FILES
-		autocmd BufNewFile,BufRead *.txt set syntax=jproperties
-		autocmd Filetype text set syntax=jproperties
 	"MARKUP
 		"MARKDOWN
 			augroup MARKDOWN
@@ -1035,12 +1032,8 @@
 	"PROGRAMMING
 		"CODING
 			nnoremap <LocalLeader>cr :execute 'VRTerm ' . g:languages[&filetype]['repl']<CR>
-			nnoremap <LocalLeader>ce :execute 'HTerm! '   . g:languages[&filetype]['execute'] . ' ' . escape(glob('%'), ' -')<CR>
+			nnoremap <LocalLeader>ce :execute 'HBTerm! '   . g:languages[&filetype]['execute'] . ' ' . escape(glob('%'), ' -')<CR>
 		"PYTHON
-			augroup PYTHON
-				au!
-				au Filetype python set tabstop=4 | set shiftwidth=4 | set noexpandtab
-			augroup END
 		"C|C++
 		"JAVA
 		"JAVASCRIPT
@@ -1907,3 +1900,34 @@
 		set nocompatible
 		set mouse=a
 		set clipboard=unnamed
+	"LANGUAGE CONFIGURATIONS
+		augroup CONFIGURATIONS
+			au!
+			au Filetype python set tabstop=4 | set shiftwidth=4 | set noexpandtab
+			au Filetype scala set tabstop=4 | set shiftwidth=4 | set noexpandtab
+
+			"FILETYPE=jproperties FOR TEXT FILES
+			autocmd BufNewFile,BufRead *.txt set syntax=jproperties
+			autocmd Filetype text set syntax=jproperties
+		augroup END
+	"COMPILIERS
+		augroup COMPILERS
+			au!
+			au Filetype cpp setl makeprg=g++\ -std=c++14\ %:S\ &&\ %:h/a.out
+			au Filetype c setl makeprg=gcc\ %:p:S\ &&\ %:p:h:S/a.out
+			au Filetype scala setl makeprg=scalac\ %:p:S\ &&\ scala\ %:r
+			au Filetype java setl makeprg=javac\ %:p:S\ &&\ java\ %:r
+			au Filetype processing setl makeprg=processing-java\ --output=/tmp/processing/\ --force\ --sketch=%:p:h:S\ --run
+
+			au Filetype python setl makeprg=python3\ %
+			au Filetype javascript setl makeprg=node\ %
+			au Filetype ruby setl makeprg=ruby\ %
+			au Filetype perl setl makeprg=perl\ %
+			au Filetype php setl makeprg=php\ %
+			au Filetype typescript setl makeprg=tsc\ %
+			au Filetype lua setl makeprg=lua\ %
+
+			au Filetype sh setl makeprg=bash\ %
+			au Filetype zsh setl makeprg=zsh\ %
+		augroup END
+
