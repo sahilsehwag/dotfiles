@@ -431,38 +431,29 @@
 		"TERMINAL
 			if has('nvim')
 				"COMMANDS
-					command! -bang -nargs=1 Term  call Terminal(<q-args>, '15new', <bang>0)
-					command! -bang -nargs=1 VTerm call Terminal(<q-args>, 'vnew', <bang>0)
-					command! -bang -nargs=1 BTerm call Terminal(<q-args>, 'enew', <bang>0)
+					command! -bang        -nargs=1 Term call Terminal(0, '', 'enew', <bang>0, <q-args>)
+					command! -bang -count -nargs=1 HBTerm  call Terminal(<count>, 'botright', 'new', <bang>0, <q-args>)
+					command! -bang -count -nargs=1 HTTerm  call Terminal(<count>, 'topleft', 'new', <bang>0, <q-args>)
+					command! -bang -count -nargs=1 VLTerm call Terminal(<count>, 'leftabove', 'vnew', <bang>0, <q-args>)
+					command! -bang -count -nargs=1 VRTerm call Terminal(<count>, 'rightbelow', 'vnew', <bang>0, <q-args>)
+
 					command! TermSendSelected     call TerminalSend(GetSelectedText(), '\n')
 					command! TermSendFile         call TerminalSend(getline(0, '$'))
 					command! TermSendLine         call TerminalSend([getline('.')])
 				"FUNCTIONS
-					function! Terminal(cmd, pos, exit)
-						let l:sr = &l:splitright
-						let l:sb = &l:splitbelow
-						set splitright
-						set splitbelow
+					function! Terminal(count, dir, pos, bang, cmd)
+						if a:count == 0
+							execute a:dir a:pos
+						else
+							execute a:dir . ' ' . a:count a:pos
+						endif
 
-						execute a:pos
 						setl modifiable
 
-						if a:exit == 1
+						if a:bang == 0
 							call termopen(a:cmd, {'on_exit': function('TerminalOnExit')})
-						elseif a:exit == 0
+						elseif a:bang == 1
 							call termopen(a:cmd)
-						endif
-
-						if l:sr == 1
-							set splitright
-						else
-							set nosplitright
-						endif
-
-						if l:sb == 1
-							set splitbelow
-						else
-							set nosplitbelow
 						endif
 
 						let g:last_terminal_job_id = b:terminal_job_id
@@ -746,9 +737,9 @@
 			nnoremap <LEADER>tl :tabmove +<CR>
 		"TERMINAL MAPPINGS
 			if has('nvim')
-				nnoremap <LEADER>te :BTerm! zsh<CR>
-				nnoremap <LEADER>tv :VTerm! zsh<CR>
-				nnoremap <LEADER>th :Term! zsh<CR>
+				nnoremap <LEADER>te :Term zsh<CR>
+				nnoremap <LEADER>tv :VRTerm zsh<CR>
+				nnoremap <LEADER>th :15HBTerm zsh<CR>
 			endif
 		"BUFFER MAPPINGS
 			nnoremap H           :bprevious<CR>
@@ -1043,8 +1034,8 @@
 		"CSS
 	"PROGRAMMING
 		"CODING
-			nnoremap <LocalLeader>cr :execute 'VTerm! ' . g:languages[&filetype]['repl']<CR>
-			nnoremap <LocalLeader>ce :execute 'Term '   . g:languages[&filetype]['execute'] . ' ' . escape(glob('%'), ' -')<CR>
+			nnoremap <LocalLeader>cr :execute 'VRTerm ' . g:languages[&filetype]['repl']<CR>
+			nnoremap <LocalLeader>ce :execute 'HTerm! '   . g:languages[&filetype]['execute'] . ' ' . escape(glob('%'), ' -')<CR>
 		"PYTHON
 			augroup PYTHON
 				au!
