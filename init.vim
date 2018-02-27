@@ -499,6 +499,164 @@
 					vnoremap <silent> gzz :<C-U>TermSendLine<CR>
 				"MAPPINGS
 			endif
+		"EXECUTION-ENGINE
+			if has('nvim')
+				"VARIABLES
+					let s:languages = {}
+					"INTERPRETED LANGUAGES
+						let s:languages.python = {
+							\'extension' : 'py',
+							\'repl'      : 'ipython',
+							\'execute'   : 'python3 %:p',
+						\}
+						let s:languages.r = {
+							\'extension'	 : 'r',
+							\'repl'			 : 'r',
+						\}
+						let s:languages.javascript = {
+							\'extension'	 : 'js',
+							\'repl'			 : 'node',
+							\'execute'		 : 'node %:p',
+						\}
+						let s:languages.ruby = {
+							\'extension'	 : 'rb',
+							\'repl'			 : 'irb',
+							\'execute'		 : 'ruby %:p',
+						\}
+						let s:languages.typescript = {
+							\'extension'	 : 'ts',
+							\'repl'			 : 'ts-node',
+							\'execute'		 : 'tsc %:p',
+						\}
+						let s:languages.perl = {
+							\'extension'	 : 'pl',
+							\'repl'			 : 'perl',
+							\'execute'		 : 'perl %:p',
+						\}
+						let s:languages.php = {
+							\'extension'	 : 'php',
+							\'repl'			 : 'php',
+							\'execute'		 : 'php %:p',
+						\}
+						let s:languages.lisp = {
+							\'extension'	 : 'lsp',
+							\'repl'			 : 'sbcl',
+						\}
+						let s:languages.lua = {
+							\'extension'	 : 'lua',
+							\'repl'			 : 'lua',
+							\'execute'		 : 'lua %:p',
+						\}
+					"COMPILED LANGUAGES
+						let s:languages.c = {
+							\'extension'       : 'c',
+							\'repl'            : 'cling',
+							\'compile'         : 'gcc %:p:S -o %:p:r:S.out',
+							\'execute'         : '%:p:r:S.out',
+							\'compile-execute' : 'gcc %:p:S -o %:p:r:S.out && %:p:r:S.out',
+						\}
+						let s:languages.cpp = {
+							\'extension'       : 'cpp',
+							\'repl'            : 'cling',
+							\'compile'         : 'g++ -std=c++14 %:p -o %:p:r.out',
+							\'execute'         : '%:p:r.out',
+							\'compile-execute' : 'g++ -std=c++14 %:p -o %:p:r.out && %:p:r.out',
+						\}
+						let s:languages.java = {
+							\'extension'       : 'java',
+							\'repl'            : 'jshell',
+							\'compile'         : 'javac %:p',
+							\'execute'         : 'java %:r',
+							\'compile-execute' : 'javac %:p && java %:r',
+						\}
+						let s:languages.scala = {
+							\'extension'       : 'scala',
+							\'repl'            : 'scala',
+							\'compile'         : 'scalac %:p',
+							\'execute'         : 'scala %:r',
+							\'compile-execute' : 'scalac %:p && scala %:r',
+						\}
+						let s:languages.haskell = {
+							\'extension'	 : 'hs',
+							\'repl'			 : 'ghci',
+						\}
+						let s:languages.processing = {
+							\'extension' : 'pde',
+							\'compile'   : 'processing-java --output=/tmp/processing/ --force --sketch=%:p:h --build',
+							\'execute'   : 'processing-java --output=/tmp/processing/ --force --sketch=%:p:h --run',
+							\'compile-execute'   : 'processing-java --output=/tmp/processing/ --force --sketch=%:p:h --run',
+						\}
+					"SHELL
+						let s:languages.zsh = {
+							\'extension'	 : 'zsh',
+							\'repl'			 : 'zsh',
+							\'execute'		 : 'zsh %:p',
+						\}
+						let s:languages.bash = {
+							\'extension'	 : 'bash',
+							\'repl'			 : 'bash',
+							\'execute'		 : 'bash %:p',
+						\}
+						let s:languages.fish = {
+							\'extension'	 : 'fsh',
+							\'repl'			 : 'fsh',
+							\'execute'		 : 'fsh',
+							\'execute-flags' : '',
+						\}
+						let s:languages.sh = {
+							\'extension'	 : 'sh',
+							\'repl'			 : 'sh',
+							\'execute'		 : 'sh %:p',
+						\}
+						let s:languages.batch = {
+							\'extension'	 : 'cmd',
+							\'repl'			 : 'cmd',
+						\}
+					"DATABASES
+						let s:languages.sqlite = {
+							\'extension'	 : 'sql',
+							\'repl'			 : 'sqlite',
+						\}
+						let s:languages.mysql = {
+							\'extension'	 : 'mysql',
+							\'repl'			 : 'mysql',
+						\}
+						let s:languages.redis = {
+							\'extension'	 : 'redis',
+							\'repl'			 : 'redis-cli',
+						\}
+						let s:languages.mongo = {
+							\'extension'	 : 'mongo',
+							\'repl'			 : 'mongo',
+						\}
+				"FUNCTIONS
+					function! EECommand(type)
+						if has_key(s:languages, &filetype) == 1
+							let l:lang = s:languages[&filetype]
+
+							if has_key(l:lang, a:type) == 1
+								let l:command = substitute(l:lang[a:type], '%\(:\w\)\+', '\=expand(submatch(0))', 'g')
+								return l:command
+							else
+								call PEchoError(&filetype . ' does not support ' . a:type . ' operation')
+								return
+							endif
+						else
+							call PEchoError(&filetype . ' filetype is not supported')
+							return
+						endif
+					endfunction
+				"COMMANDS
+					command! EEREPL           :execute 'VRTerm '    . EECommand('repl')
+					command! EECompile        :execute '10HBTerm ' . EECommand('compile')
+					command! EEExecute        :execute '20HBTerm! ' . EECommand('execute')
+					command! EECompileExecute :execute '20HBTerm! ' . EECommand('compile-execute')
+				"MAPPINGS
+					nmap <silent> <Plug>(ee-repl)            :EEREPL<CR>
+					nmap <silent> <Plug>(ee-compile)         :EECompile<CR>
+					nmap <silent> <Plug>(ee-execute)         :EEExecute<CR>
+					nmap <silent> <Plug>(ee-compile-execute) :EECompileExecute<CR>
+			endif
 "PYTHON
 	"PLUGINS
 "COMMANDS
@@ -512,150 +670,6 @@
 			let g:highlight_leading_spaces       = 1
 			let g:highlight_leading_tabs         = 0
 			let g:highlight_listchars            = 1
-		"DEVELOPMENT
-			let g:languages = {}
-			"INTERPRETED LANGUAGES
-				let g:languages.python = {
-					\'extension'     : 'py',
-					\'repl'          : 'ipython',
-					\'execute'       : 'python3',
-					\'execute-flags' : '',
-				\}
-				let g:languages.r = {
-					\'extension' : 'r',
-					\'repl'      : '/usr/local/bin/r --silent --slave -f',
-				\}
-				let g:languages.javascript = {
-					\'extension'     : 'js',
-					\'repl'          : 'node',
-					\'execute'       : 'node',
-					\'execute-flags' : '',
-				\}
-				let g:languages.ruby = {
-					\'extension'     : 'rb',
-					\'repl'          : 'irb',
-					\'execute'       : 'ruby',
-					\'execute-flags' : '',
-				\}
-				let g:languages.typscript = {
-					\'extension'     : 'ts',
-					\'repl'          : 'ts-node',
-					\'execute'       : 'tsc',
-					\'execute-flags' : '',
-				\}
-				let g:languages.perl = {
-					\'extension'     : 'pl',
-					\'repl'          : 'perl',
-					\'execute'       : 'perl',
-					\'execute-flags' : '',
-				\}
-				let g:languages.php = {
-					\'extension'     : 'php',
-					\'repl'          : 'php',
-					\'execute'       : 'php',
-					\'execute-flags' : '',
-				\}
-				let g:languages.lisp = {
-					\'extension'     : 'lsp',
-					\'repl'          : 'sbcl',
-					\'execute'       : '',
-					\'execute-flags' : '',
-				\}
-				let g:languages.lua = {
-					\'extension'     : 'lua',
-					\'repl'          : 'lua',
-					\'execute'       : 'lua',
-					\'execute-flags' : '',
-				\}
-			"COMPILED LANGUAGES
-				let g:languages.c = {
-					\'extension'     : 'c',
-					\'execute'       : '',
-					\'execute-flags' : '',
-					\'compile'       : 'gcc',
-					\'compile-flags' : '',
-					\'repl'          : 'cling',
-				\}
-				let g:languages.cpp = {
-					\'extension'     : 'cpp',
-					\'execute'       : '',
-					\'execute-flags' : '',
-					\'compile'       : 'g++',
-					\'compile-flags' : '-std=c++14',
-					\'repl'          : 'cling',
-				\}
-				let g:languages.java = {
-					\'extension'     : 'java',
-					\'repl'          : 'jshell',
-					\'execute'       : 'java',
-					\'execute-flags' : '',
-					\'compile'       : 'javac',
-					\'compile-flags' : '',
-				\}
-				let g:languages.scala = {
-					\'extension'     : 'scala',
-					\'repl'          : 'scala',
-					\'execute'       : 'scala',
-					\'execute-flags' : '',
-					\'compile'       : 'scalac',
-					\'compile-flags' : '',
-				\}
-				let g:languages.haskell = {
-					\'extension'     : 'hs',
-					\'repl'          : 'ghci',
-					\'execute'       : '',
-					\'execute-flags' : '',
-					\'compile'       : '',
-					\'compile-flags' : '',
-				\}
-			"SHELL
-				let g:languages.zsh = {
-					\'extension'     : 'zsh',
-					\'repl'          : 'zsh',
-					\'execute'       : 'zsh',
-					\'execute-flags' : '',
-				\}
-				let g:languages.bash = {
-					\'extension'     : 'bash',
-					\'repl'          : 'bash',
-					\'execute'       : 'bash',
-					\'execute-flags' : '',
-				\}
-				let g:languages.fish = {
-					\'extension'     : 'fsh',
-					\'repl'          : 'fsh',
-					\'execute'       : 'fsh',
-					\'execute-flags' : '',
-				\}
-				let g:languages.sh = {
-					\'extension'     : 'sh',
-					\'repl'          : 'sh',
-					\'execute'       : 'sh',
-					\'execute-flags' : '',
-				\}
-				let g:languages.batch = {
-					\'extension'     : 'cmd',
-					\'repl'          : 'cmd',
-					\'execute'       : '',
-					\'execute-flags' : '',
-				\}
-			"DATABASES
-				let g:languages.sqlite = {
-					\'extension'     : 'sql',
-					\'repl'          : 'sqlite',
-				\}
-				let g:languages.mysql = {
-					\'extension'     : 'mysql',
-					\'repl'          : 'mysql',
-				\}
-				let g:languages.redis = {
-					\'extension'     : 'redis',
-					\'repl'          : 'redis-cli',
-				\}
-				let g:languages.mongo = {
-					\'extension'     : 'mongo',
-					\'repl'          : 'mongo',
-				\}
 		"MISCELLANOUS
 	"PYTHON BINARIES
 		let g:python_host_prog = 'python2'
@@ -1841,6 +1855,12 @@
 		"Plug 'tommcdo/vim-express'
 		"Plug 'syngan/vim-operator-evalf'
 		"Plug 'neitanod/vim-sade'
+	"CUSTOM
+		"EXECUTION-ENGINE
+			nmap <LocalLeader>cr <Plug>(ee-repl)
+			nmap <LocalLeader>cc <Plug>(ee-compile)
+			nmap <LocalLeader>ce <Plug>(ee-execute)
+			nmap <LocalLeader>cq <Plug>(ee-compile-execute)
 	call plug#end()
 "SETTINGS
 	"INDENTATION
