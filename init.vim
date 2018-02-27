@@ -499,6 +499,33 @@
 					vnoremap <silent> gzz :<C-U>TermSendLine<CR>
 				"MAPPINGS
 			endif
+		"VIFM
+			if has('nvim')
+				"FUNCTIONS
+					function! Vifm(path)
+						let s:temp = tempname()
+						let l:command = 'Vifm --choose-files ' . s:temp . ' ' . a:path
+
+						execute 'leftabove 40vnew'
+						call termopen(l:command, {'on_exit': function('TVifmOnExit')})
+						setl modifiable
+						startinsert
+
+						let s:vifm_job_id = b:terminal_job_id
+					endfunction
+
+					function! VifmOnExit(...)
+						bdelete!
+						let l:lines = readfile(s:temp)
+						if len(l:lines) > 0
+							for line in l:lines
+								execute 'edit ' . fnameescape(line)
+							endfor
+						endif
+					endfunction
+				"COMMANDS
+					command! -narg=1 Vifm :call Vifm(<q-args>)
+			endif
 		"EXECUTION-ENGINE
 			if has('nvim')
 				"VARIABLES
