@@ -504,10 +504,10 @@
 				"FUNCTIONS
 					function! Vifm(path)
 						let s:temp = tempname()
-						let l:command = 'Vifm --choose-files ' . s:temp . ' ' . a:path
+						let l:command = 'Vifm --choose-files ' . s:temp . ' ' . fnameescape(expand(a:path ))
 
 						execute 'leftabove 40vnew'
-						call termopen(l:command, {'on_exit': function('TVifmOnExit')})
+						call termopen(l:command, {'on_exit': function('VifmOnExit')})
 						setl modifiable
 						startinsert
 
@@ -1217,9 +1217,9 @@
 					imap <expr> ;dd fzf#complete('find ~/Google\ Drive -type d')
 		Plug 'pbogut/fzf-mru.vim'
 			map M :<C-u>FZFMru<CR>
-		Plug 'vifm/neovim-vifm'
-			nnoremap <LEADER>nf :VifmToggle %:p:h<CR>
-			nnoremap <LEADER>nF :VifmToggle .<CR>
+		" Plug 'vifm/neovim-vifm'
+			" nnoremap <LEADER>nf :VifmToggle %:p:h<CR>
+			" nnoremap <LEADER>nF :VifmToggle .<CR>
 		Plug 'cocopon/vaffle.vim'
 	"DEVELOPMENT
 		"VCS
@@ -1883,6 +1883,9 @@
 		"Plug 'syngan/vim-operator-evalf'
 		"Plug 'neitanod/vim-sade'
 	"CUSTOM
+		"VIFM
+			nnoremap <LEADER>nv :Vifm %:p:h<CR>
+			nnoremap <LEADER>nV :Vifm .<CR>
 		"EXECUTION-ENGINE
 			nmap <LocalLeader>cr <Plug>(ee-repl)
 			nmap <LocalLeader>cc <Plug>(ee-compile)
