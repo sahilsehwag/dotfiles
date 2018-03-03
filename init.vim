@@ -657,33 +657,75 @@
 							\'repl'			 : 'mongo',
 						\}
 				"FUNCTIONS
-					function! EECommand(type)
-						if has_key(s:languages, &filetype) == 1
-							let l:lang = s:languages[&filetype]
+					function! EECommand(type, ...)
+						if exists('a:1') && len(a:1) > 0
+							let l:filetype = a:1
+						else
+							let l:filetype = &filetype
+						endif
+
+						if has_key(s:languages, l:filetype) == 1
+							let l:lang = s:languages[l:filetype]
 
 							if has_key(l:lang, a:type) == 1
 								let l:command = substitute(l:lang[a:type], '%\(:\w\)\+', '\=expand(submatch(0))', 'g')
 								return l:command
 							else
-								call PEchoError(&filetype . ' does not support ' . a:type . ' operation')
+								call PEchoError(l:filetype . ' does not support ' . a:type . ' operation')
 								return
 							endif
 						else
-							call PEchoError(&filetype . ' filetype is not supported')
+							call PEchoError(l:filetype . ' filetype is not supported')
 							return
 						endif
 					endfunction
 				"COMMANDS
-					command! EEREPL           :execute 'VRTerm '    . EECommand('repl')
-					command! EECompile        :execute '10HBTerm ' . EECommand('compile')
+					command! -narg=? EERepl   :execute 'VRTerm '    . EECommand('repl', <q-args>)
+					command! EECompile        :execute '10HBTerm '  . EECommand('compile')
 					command! EEExecute        :execute '20HBTerm! ' . EECommand('execute')
 					command! EECompileExecute :execute '20HBTerm! ' . EECommand('compile-execute')
+					"FZF INTEGRATION
+						command! FZFEERepl :call fzf#run(fzf#wrap({'source': getcompletion('', 'filetype'), 'sink': 'EEREPL'}))<CR>
 				"MAPPINGS
-					nmap <silent> <Plug>(ee-repl)            :EEREPL<CR>
+					nmap <silent> <Plug>(ee-repl)            :EERepl<CR>
 					nmap <silent> <Plug>(ee-compile)         :EECompile<CR>
 					nmap <silent> <Plug>(ee-execute)         :EEExecute<CR>
 					nmap <silent> <Plug>(ee-compile-execute) :EECompileExecute<CR>
+					nmap <silent> <Plug>(ee-fzf-repl)        :FZFEERepl<CR>
 			endif
+		"FZF-EXTENSIONS
+			"FZF-EMOJIS
+				"FUNCTIONS
+					function! FZFEmojisLoad(path)
+						let l:emojis = ReadJSON(glob(a:path))
+						let l:strings = []
+
+						for emoji in l:emojis
+							let l:sno    = string(emoji['sno']) . '.  '
+							let l:symbol = '[' . emoji['symbol'] . ' ]' . repeat(' ', 4)
+							let l:name   = emoji['name'] . repeat(' ', 8)
+							let l:tags   = ':' . join(emoji['tags'], ' | ') . ':'
+
+							if emoji['symbol'] == '🥰'
+							else
+								let l:string = l:sno . l:symbol . l:name
+								let l:strings = add(l:strings, l:string)
+							endif
+						endfor
+
+						let s:fzf_emojis = l:emojis
+						return l:strings
+					endfunction
+
+					function! FZFEmojisInsert(string)
+						let l:id = split(str2nr(a:string), ':')[0]
+						execute 'normal! a' . s:fzf_emojis[l:id]['symbol']
+					endfunction
+				"COMMANDS
+					command! -narg=1 FZFEmojisInsert call FZFEmojisInsert(<q-args>)
+					command! FZFEmojis :call fzf#run(fzf#wrap({'source': FZFEmojisLoad('~/unicode-emojis.json'), 'sink': 'FZFEmojisInsert'}))<CR>
+				"MAPPINGS
+					imap :ej <ESC>:FZFEmojis<CR>
 "PYTHON
 	"PLUGINS
 "COMMANDS
@@ -911,7 +953,7 @@
 				map <Leader>ett :let g:highlight_leading_tabs         = !g:highlight_leading_tabs<CR>
 		"LINUX MAPPINGS
 			"FILESYSTEM
-				nnoremap <silent> <Leader>ld :execute "DeleteFile " . escape(glob('%'), ' -')<CR>
+				nnoremap <silent> <Leader>ld :execute "DeleteFile " . fnamescape(expand('%'))<CR>
 			"FZF
 				nnoremap <Leader>nf  :call fzf#run(fzf#wrap({'source': 'find ~/Google\ Drive -type d', 'sink': 'Vifm'             }))<CR>
 				nnoremap <Leader>nF  :call fzf#run(fzf#wrap({'source': 'find ~               -type d', 'sink': 'Vifm'             }))<CR>
@@ -923,7 +965,7 @@
 			"UTILITIES
 				vnoremap <Leader>lus :sort                         <CR>
 				vnoremap <Leader>luu :<C-u>'<,'>sort \| '<,'>!uniq <CR>
-				vnoremap <Leader>luc :<C-u>'<,'>!bc                <CR>
+				" vnoremap <Leader>luc :<C-u>'<,'>!bc                <CR>
 		"FIND & REPLACE
 			"REPLACE CHARACTER @TODO
 	"MISCELLANOUS MAPPINGS
