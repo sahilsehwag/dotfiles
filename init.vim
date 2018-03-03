@@ -685,7 +685,7 @@
 					command! EEExecute        :execute '20HBTerm! ' . EECommand('execute')
 					command! EECompileExecute :execute '20HBTerm! ' . EECommand('compile-execute')
 					"FZF INTEGRATION
-						command! FZFEERepl :call fzf#run(fzf#wrap({'source': getcompletion('', 'filetype'), 'sink': 'EEREPL'}))<CR>
+						command! FZFEERepl :call fzf#run(fzf#wrap({'source': getcompletion('', 'filetype'), 'sink': 'EERepl'}))<CR>
 				"MAPPINGS
 					nmap <silent> <Plug>(ee-repl)            :EERepl<CR>
 					nmap <silent> <Plug>(ee-compile)         :EECompile<CR>
@@ -1933,6 +1933,7 @@
 			nmap <LocalLeader>cc <Plug>(ee-compile)
 			nmap <LocalLeader>ce <Plug>(ee-execute)
 			nmap <LocalLeader>cq <Plug>(ee-compile-execute)
+			nmap <LocalLeader>cR <Plug>(ee-fzf-repl)
 	call plug#end()
 "SETTINGS
 	"INDENTATION
