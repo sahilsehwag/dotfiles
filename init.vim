@@ -534,7 +534,7 @@
 						let s:languages.python = {
 							\'extension' : 'py',
 							\'repl'      : 'ipython',
-							\'execute'   : 'python3 %:p',
+							\'execute'   : 'python3 %:p:S',
 						\}
 						let s:languages.r = {
 							\'extension'	 : 'r',
@@ -543,27 +543,27 @@
 						let s:languages.javascript = {
 							\'extension'	 : 'js',
 							\'repl'			 : 'node',
-							\'execute'		 : 'node %:p',
+							\'execute'		 : 'node %:p:S',
 						\}
 						let s:languages.ruby = {
 							\'extension'	 : 'rb',
 							\'repl'			 : 'irb',
-							\'execute'		 : 'ruby %:p',
+							\'execute'		 : 'ruby %:p:S',
 						\}
 						let s:languages.typescript = {
 							\'extension'	 : 'ts',
 							\'repl'			 : 'ts-node',
-							\'execute'		 : 'tsc %:p',
+							\'execute'		 : 'tsc %:p:S',
 						\}
 						let s:languages.perl = {
 							\'extension'	 : 'pl',
 							\'repl'			 : 'perl',
-							\'execute'		 : 'perl %:p',
+							\'execute'		 : 'perl %:p:S',
 						\}
 						let s:languages.php = {
 							\'extension'	 : 'php',
 							\'repl'			 : 'php',
-							\'execute'		 : 'php %:p',
+							\'execute'		 : 'php %:p:S',
 						\}
 						let s:languages.lisp = {
 							\'extension'	 : 'lsp',
@@ -572,7 +572,7 @@
 						let s:languages.lua = {
 							\'extension'	 : 'lua',
 							\'repl'			 : 'lua',
-							\'execute'		 : 'lua %:p',
+							\'execute'		 : 'lua %:p:S',
 						\}
 					"COMPILED LANGUAGES
 						let s:languages.c = {
@@ -585,62 +585,68 @@
 						let s:languages.cpp = {
 							\'extension'       : 'cpp',
 							\'repl'            : 'cling',
-							\'compile'         : 'g++ -std=c++14 %:p -o %:p:r.out',
-							\'execute'         : '%:p:r.out',
-							\'compile-execute' : 'g++ -std=c++14 %:p -o %:p:r.out && %:p:r.out',
+							\'compile'         : 'g++ -std=c++14 %:p:S -o %:p:r:S.out',
+							\'execute'         : '%:p:r:S.out',
+							\'compile-execute' : 'g++ -std=c++14 %:p:S -o %:p:r:S.out && %:p:r:S.out',
 						\}
+						" let s:languages.cs = {
+						" 	\'extension'       : 'cs',
+						" 	\'repl'            : 'csharp',
+						" 	\'compile'         : 'csc %:p:S',
+						" 	\'execute'         : 'mono %:r:S.exe',
+						" 	\'compile-execute' : 'csc %:p:S && mono %:r:S.exe',
+						" \}
 						let s:languages.cs = {
 							\'extension'       : 'cs',
-							\'repl'            : 'csharp',
-							\'compile'         : 'csc %:p',
-							\'execute'         : 'mono %:r.exe',
-							\'compile-execute' : 'csc %:p && mono %:r.exe',
+							\'repl'            : 'scriptcs',
+							\'compile'         : 'csc %:p:S',
+							\'execute'         : 'mono %:r:S.exe',
+							\'compile-execute' : 'scriptcs %:r:S.cs',
 						\}
 						let s:languages.java = {
 							\'extension'       : 'java',
 							\'repl'            : 'jshell',
-							\'compile'         : 'javac %:p',
-							\'execute'         : 'java %:r',
-							\'compile-execute' : 'javac %:p && java %:r',
+							\'compile'         : 'javac %:p:S',
+							\'execute'         : 'java %:r:S',
+							\'compile-execute' : 'javac %:p:S && java %:r:S',
 						\}
 						let s:languages.scala = {
 							\'extension'       : 'scala',
 							\'repl'            : 'scala',
-							\'compile'         : 'scalac %:p',
-							\'execute'         : 'scala %:r',
-							\'compile-execute' : 'scalac %:p && scala %:r',
+							\'compile'         : 'scalac %:p:S',
+							\'execute'         : 'scala %:r:S',
+							\'compile-execute' : 'scalac %:p:S && scala %:r:S',
 						\}
 						let s:languages.haskell = {
 							\'extension'	 : 'hs',
 							\'repl'			 : 'ghci',
 						\}
 						let s:languages.processing = {
-							\'extension' : 'pde',
-							\'compile'   : 'processing-java --output=/tmp/processing/ --force --sketch=%:p:h --build',
-							\'execute'   : 'processing-java --output=/tmp/processing/ --force --sketch=%:p:h --run',
-							\'compile-execute'   : 'processing-java --output=/tmp/processing/ --force --sketch=%:p:h --run',
+							\'extension'       : 'pde',
+							\'compile'         : 'processing-java --output=/tmp/processing/ --force --sketch=%:p:h:S --build',
+							\'execute'         : 'processing-java --output=/tmp/processing/ --force --sketch=%:p:h:S --run',
+							\'compile-execute' : 'processing-java --output=/tmp/processing/ --force --sketch=%:p:h:S --run',
 						\}
 					"SHELL
 						let s:languages.zsh = {
 							\'extension'	 : 'zsh',
 							\'repl'			 : 'zsh',
-							\'execute'		 : 'zsh %:p',
+							\'execute'		 : 'zsh %:p:S',
 						\}
 						let s:languages.bash = {
 							\'extension'	 : 'bash',
 							\'repl'			 : 'bash',
-							\'execute'		 : 'bash %:p',
+							\'execute'		 : 'bash %:p:S',
 						\}
 						let s:languages.fish = {
 							\'extension'	 : 'fsh',
 							\'repl'			 : 'fsh',
 							\'execute'		 : 'fsh',
-							\'execute-flags' : '',
 						\}
 						let s:languages.sh = {
 							\'extension'	 : 'sh',
 							\'repl'			 : 'sh',
-							\'execute'		 : 'sh %:p',
+							\'execute'		 : 'sh %:p:S',
 						\}
 						let s:languages.batch = {
 							\'extension'	 : 'cmd',
