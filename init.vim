@@ -589,6 +589,13 @@
 							\'execute'         : '%:p:r.out',
 							\'compile-execute' : 'g++ -std=c++14 %:p -o %:p:r.out && %:p:r.out',
 						\}
+						let s:languages.cs = {
+							\'extension'       : 'cs',
+							\'repl'            : 'csharp',
+							\'compile'         : 'csc %:p',
+							\'execute'         : 'mono %:r.exe',
+							\'compile-execute' : 'csc %:p && mono %:r.exe',
+						\}
 						let s:languages.java = {
 							\'extension'       : 'java',
 							\'repl'            : 'jshell',
@@ -2010,6 +2017,11 @@
 			au Filetype c setl makeprg=gcc\ %:p:S\ &&\ %:p:h:S/a.out
 			au Filetype scala setl makeprg=scalac\ %:p:S\ &&\ scala\ %:r
 			au Filetype java setl makeprg=javac\ %:p:S\ &&\ java\ %:r
+			if has('macunix')
+				au Filetype cs setl makeprg=csc\ %:p:S\ &&\ mono\ %:p:r.exe
+			elseif has('win32')
+				au Filetype cs setl makeprg=csc\ %:p:S\ &&\ %:r.exe
+			endif
 			au Filetype processing setl makeprg=processing-java\ --output=/tmp/processing/\ --force\ --sketch=%:p:h:S\ --run
 
 			au Filetype python setl makeprg=python3\ %
