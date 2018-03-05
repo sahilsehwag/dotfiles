@@ -589,19 +589,17 @@
 							\'execute'         : '%:p:r:S.out',
 							\'compile-execute' : 'g++ -std=c++14 %:p:S -o %:p:r:S.out && %:p:r:S.out',
 						\}
-						" let s:languages.cs = {
-						" 	\'extension'       : 'cs',
-						" 	\'repl'            : 'csharp',
-						" 	\'compile'         : 'csc %:p:S',
-						" 	\'execute'         : 'mono %:r:S.exe',
-						" 	\'compile-execute' : 'csc %:p:S && mono %:r:S.exe',
-						" \}
 						let s:languages.cs = {
 							\'extension'       : 'cs',
+							\'repl'            : 'csharp',
+							\'compile'         : 'csc %:p:s',
+							\'execute'         : 'mono %:r:s.exe',
+							\'compile-execute' : 'csc %:p:s && mono %:r:s.exe',
+						\}
+						let s:languages.csx = {
+							\'extension'       : 'csx',
 							\'repl'            : 'scriptcs',
-							\'compile'         : 'csc %:p:S',
-							\'execute'         : 'mono %:r:S.exe',
-							\'compile-execute' : 'scriptcs %:r:S.cs',
+							\'execute'         : 'scriptcs %:r:S.csx',
 						\}
 						let s:languages.java = {
 							\'extension'       : 'java',
@@ -2011,6 +2009,7 @@
 			au!
 			au Filetype python set tabstop=4 | set shiftwidth=4 | set noexpandtab
 			au Filetype scala set tabstop=4 | set shiftwidth=4 | set noexpandtab
+			au BufEnter *.csx set filetype=csx | set syntax=cs
 
 			"FILETYPE=jproperties FOR TEXT FILES
 			autocmd BufNewFile,BufRead *.txt set syntax=jproperties
@@ -2028,6 +2027,7 @@
 			elseif has('win32')
 				au Filetype cs setl makeprg=csc\ %:p:S\ &&\ %:r.exe
 			endif
+			au Filetype csx setl makeprg=scriptcs\ %:r:S.csx
 			au Filetype processing setl makeprg=processing-java\ --output=/tmp/processing/\ --force\ --sketch=%:p:h:S\ --run
 
 			au Filetype python setl makeprg=python3\ %
