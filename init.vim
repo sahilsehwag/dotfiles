@@ -535,6 +535,21 @@
 							\'extension' : 'py',
 							\'repl'      : 'ipython',
 							\'execute'   : 'python3 %:p:S',
+							\'init'      : [
+									\'import os',
+									\'import sys',
+									\'import re',
+									\'from collections import *',
+									\'import pprint',
+									\'import time',
+									\'import datetime',
+									\'import itertools',
+									\'import functools',
+									\'import datetime',
+									\'import numpy as np',
+									\'import pandas as pd',
+									\'import matplotlib.pyplot as plt',
+							\],
 						\}
 						let s:languages.r = {
 							\'extension'	 : 'r',
@@ -581,6 +596,10 @@
 							\'compile'         : 'gcc %:p:S -o %:p:r:S.out',
 							\'execute'         : '%:p:r:S.out',
 							\'compile-execute' : 'gcc %:p:S -o %:p:r:S.out && %:p:r:S.out',
+							\'init'      : [
+									\'#include <stdio.h>',
+									\'#include <math.h>',
+							\],
 						\}
 						let s:languages.cpp = {
 							\'extension'       : 'cpp',
@@ -588,6 +607,11 @@
 							\'compile'         : 'g++ -std=c++14 %:p:S -o %:p:r:S.out',
 							\'execute'         : '%:p:r:S.out',
 							\'compile-execute' : 'g++ -std=c++14 %:p:S -o %:p:r:S.out && %:p:r:S.out',
+							\'init'      : [
+									\'#include <iostream>',
+									\'#include <string>',
+									\'using namespace std;',
+							\],
 						\}
 						let s:languages.cs = {
 							\'extension'       : 'cs',
