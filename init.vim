@@ -679,6 +679,10 @@
 							let l:lang = s:languages[l:filetype]
 
 							if has_key(l:lang, a:type) == 1
+								if a:type == 'repl'
+									let s:ee_last_repl_filetype = l:filetype
+								endif
+
 								let l:command = substitute(l:lang[a:type], '%\(:\w\)\+', '\=expand(submatch(0))', 'g')
 								return l:command
 							else
@@ -690,8 +694,23 @@
 							return
 						endif
 					endfunction
+
+					function! EEInitREPL()
+						let l:filetype = s:ee_last_repl_filetype
+
+						if has_key(s:languages, l:filetype) == 1
+							let l:lang = s:languages[l:filetype]
+
+							if has_key(l:lang, 'init') == 1
+								call TerminalSend(l:lang['init'])
+							endif
+						else
+							call PEchoError(l:filetype . ' filetype is not supported')
+							return
+						endif
+					endfunction
 				"COMMANDS
-					command! -narg=? EERepl   :execute 'VRTerm '    . EECommand('repl', <q-args>)
+					command! -narg=? EERepl   :execute 'VRTerm '    . EECommand('repl', <q-args>) | :call EEInitREPL()
 					command! EECompile        :execute '10HBTerm '  . EECommand('compile')
 					command! EEExecute        :execute '20HBTerm! ' . EECommand('execute')
 					command! EECompileExecute :execute '20HBTerm! ' . EECommand('compile-execute')
