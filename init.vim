@@ -738,14 +738,12 @@
 					command! EECompile        :execute '10HBTerm '  . EECommand('compile')
 					command! EEExecute        :execute '20HBTerm! ' . EECommand('execute')
 					command! EECompileExecute :execute '20HBTerm! ' . EECommand('compile-execute')
-					"FZF INTEGRATION
-						command! FZFEERepl :call fzf#run(fzf#wrap({'source': getcompletion('', 'filetype'), 'sink': 'EERepl'}))<CR>
 				"MAPPINGS
 					nmap <silent> <Plug>(ee-repl)            :EERepl<CR>
 					nmap <silent> <Plug>(ee-compile)         :EECompile<CR>
 					nmap <silent> <Plug>(ee-execute)         :EEExecute<CR>
 					nmap <silent> <Plug>(ee-compile-execute) :EECompileExecute<CR>
-					nmap <silent> <Plug>(ee-fzf-repl)        :FZFEERepl<CR>
+					nmap <silent> <Plug>(ee-fzf-repl)        :call fzf#run(fzf#wrap({'source': getcompletion('', 'filetype'), 'sink': 'EERepl'}))<CR>
 			endif
 		"FZF-EXTENSIONS
 			"FZF-EMOJIS
@@ -877,6 +875,10 @@
 				nnoremap <LEADER>te :Term zsh<CR>
 				nnoremap <LEADER>tv :VRTerm zsh<CR>
 				nnoremap <LEADER>th :15HBTerm zsh<CR>
+
+				nnoremap <LEADER>tE :lcd %:p:h \| Term zsh<CR>
+				nnoremap <LEADER>tE :lcd %:p:h \| Term zsh<CR>
+				nnoremap <LEADER>tH :lcd %:p:h \| 15HBTerm zsh<CR>
 			endif
 		"BUFFER MAPPINGS
 			nnoremap H           :bprevious<CR>
