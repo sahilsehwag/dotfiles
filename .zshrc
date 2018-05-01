@@ -102,3 +102,8 @@
 		processing-java --output=/tmp/processing/ --force --sketch=$1 --run
 	}
 #TEMPORARY
+#PATH
+	if [ $PLATFORM = 'MAC' ]; then
+		export PATH="/usr/local/sbin:$PATH"
+		export PATH="$PATH:/Users/jaat/.npm-packages/bin:/Uses/jaat/node_modules/.bin"
+	fi
