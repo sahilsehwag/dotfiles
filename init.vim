@@ -357,6 +357,7 @@
 		"LANGUAGES @TODO
 			"PYTHON
 			"CLANG
+	"TARGETS
 	"TOGGLES
 		"AUTOSAVE
 			let g:autosave = 0
@@ -401,30 +402,6 @@
 					augroup END
 				endif
 			endfunction
-	"MISCELLANOUS
-		"AUTOMATIC vimrc SOURCING
-			"augroup myvimrc
-				"au!
-				"au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc,init.vim so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
-			"augroup END
-		"SWAPFILE HANDLING @FIX
-			"NOTE: IF SWAP FILE IS OLDER THEN DELETING IT OTHERWISE RECOVERING IT
-			augroup SwapHandler
-				autocmd!
-				autocmd SwapExists * call SwapHandler(expand('<afile>:p'))
-			augroup END
-
-			function! SwapHandler(filename)
-				if getftime(v:swapname) < getftime(a:filename)
-					call delete(v:swapname)
-					let v:swapchoice = 'e'
-					"echom 'OLD SWAP FILE DELETED: SWAP DELETED'
-				else
-					let v:swapchoice = 'o'
-					"echom 'SWAP FILE DETECTED: SWAP RECOVERED'
-				endif
-			endfunction
-		"REMOVE STUFF
 	"PLUGINS
 		"@TODO ORGASMIC C LANGUAGES
 		"@TODO WINDOWS-MANAGER
@@ -778,9 +755,36 @@
 					command! FZFEmojis :call fzf#run(fzf#wrap({'source': FZFEmojisLoad('~/unicode-emojis.json'), 'sink': 'FZFEmojisInsert'}))<CR>
 				"MAPPINGS
 					imap :ej <ESC>:FZFEmojis<CR>
+		"TOAGGLER.vim
+		"WRAPIT.vim
+	"MISCELLANOUS
+		"AUTOMATIC vimrc SOURCING
+			"augroup myvimrc
+				"au!
+				"au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc,init.vim so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
+			"augroup END
+		"SWAPFILE HANDLING @FIX
+			"NOTE: IF SWAP FILE IS OLDER THEN DELETING IT OTHERWISE RECOVERING IT
+			augroup SwapHandler
+				autocmd!
+				autocmd SwapExists * call SwapHandler(expand('<afile>:p'))
+			augroup END
+
+			function! SwapHandler(filename)
+				if getftime(v:swapname) < getftime(a:filename)
+					call delete(v:swapname)
+					let v:swapchoice = 'e'
+					"echom 'OLD SWAP FILE DELETED: SWAP DELETED'
+				else
+					let v:swapchoice = 'o'
+					"echom 'SWAP FILE DETECTED: SWAP RECOVERED'
+				endif
+			endfunction
+		"REMOVE STUFF
 "PYTHON
 	"PLUGINS
 "COMMANDS
+	command! -nargs=* Wrap set wrap linebreak nolist
 "CONFIGURATION
 	"VARIABLES
 		"PERFORMANCE
@@ -2086,4 +2090,3 @@
 			au Filetype sh setl makeprg=bash\ %
 			au Filetype zsh setl makeprg=zsh\ %
 		augroup END
-
