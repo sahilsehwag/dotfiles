@@ -1881,8 +1881,8 @@
 			Plug 'vim-airline/vim-airline'
 				"CONFIGURATION
 					if !exists('g:gui_oni')
-						let g:airline_powerline_fonts = 1
-						let g:airline_theme           = 'powerlineish'
+						let g:airline_powerline_fonts = 0
+						let g:airline_theme           = 'bubblegum'
 					else
 						let g:airline_powerline_fonts = 0
 						let g:airline_theme           = 'wombat'
@@ -1933,8 +1933,8 @@
 					"let g:airline#extensions#whitespace#mixed_indent_file_format = 'mix-indent-file[%s]'
 					"let g:airline#extensions#whitespace#trailing_regexp = '\s$'
 			Plug 'vim-airline/vim-airline-themes'
-			Plug 'edkolev/tmuxline.vim'
-			Plug 'edkolev/promptline.vim'
+			"Plug 'edkolev/tmuxline.vim'
+			"Plug 'edkolev/promptline.vim'
 			Plug 'bling/vim-bufferline'
 				let g:bufferline_echo = 0
 				"let g:bufferline_active_buffer_left = '['
