@@ -923,6 +923,327 @@
 		"ABBREVIATIONS @TODO
 			abbreviate chk ✓
 			abbreviate crs ✖
+		"MATH
+			"OPERATORS
+				inoremap ,<- ≤
+				inoremap ,<< ≪
+				inoremap ,<<< ⋘
+				inoremap ,>- ≥
+				inoremap ,>> ≫
+				inoremap ,>>> ⋙
+				inoremap ,!= ≠
+				inoremap ,* ×
+				inoremap ,/ ÷
+				inoremap ,sum ∑
+				inoremap ,prod ∏
+				inoremap ,cprod ∐
+				inoremap ,srt √
+				inoremap ,crt ∛
+				inoremap ,qrt ∜
+				inoremap ,~ ≈
+				inoremap ,= ≡
+				inoremap ,prop ∝
+				inoremap ,floor ⌊⌋
+				inoremap ,ceil ⌈⌉
+				inoremap ,+- ±
+				inoremap ,-+ ∓
+				inoremap ,. ∙
+				inoremap ,<= ≦
+				inoremap ,>= ≧
+				inoremap ,ox ⨂
+				inoremap ,o+ ⨁
+				inoremap ,o- ⊖
+				inoremap ,o. ⨀
+				inoremap ,o* ⊛
+			"SYMBOLS
+				inoremap ,deg °
+				inoremap ,8 ∞
+				inoremap ,-8 -∞
+				inoremap ,- ―
+				inoremap ,tf ∴
+				inoremap ,ie ∵
+				inoremap ,... ⋯
+				inoremap ,ang ∠
+				inoremap ,rang ∟
+				inoremap ,perp ⊥
+				inoremap ,cong ≅
+				inoremap ,& ∧
+				inoremap ,\| ∨
+				inoremap ,! ¬
+				inoremap ,' ′
+				inoremap ,'' ″
+				inoremap ,T ⊤
+				inoremap ,iT ⊥
+				inoremap ,-\| ⊣
+				inoremap ,\|- ⊢
+				inoremap ,\|= ⊨
+				inoremap ,->u ↑
+				inoremap ,->d ↓
+				inoremap ,-> →
+				inoremap ,<- ←
+				inoremap ,<-> ↔
+				inoremap ,=> ⇒
+				inoremap ,=> ⇐
+				inoremap ,<=> ⇔
+				inoremap ,--> ⟶
+				inoremap ,<-- ⟵
+				inoremap ,<--> ⟷
+				inoremap ,==> ⟹
+				inoremap ,<== ⟸
+				inoremap ,<==> ⟺
+				inoremap ,\|> ↦
+				inoremap ,<\| ↤
+				inoremap ,\|-> ⟼
+				inoremap ,<-\| ⟻
+				inoremap ,\|=> ⟾
+				inoremap ,<=\| ⟽
+				inoremap ,<.. ⇠
+				inoremap ,..> ⇢
+				inoremap ,..>u ⇡
+				inoremap ,..>d ⇣
+			"ALPHABETS
+				inoremap ,E 𝔼
+				inoremap ,N ℕ
+				inoremap ,P ℙ
+				inoremap ,Q ℚ
+				inoremap ,R ℝ
+				inoremap ,C ℂ
+				inoremap ,U 𝕌
+				inoremap ,Z ℤ
+			"GREEK
+				inoremap ,alpha 𝛂
+					"α
+				inoremap ,beta 𝛃
+					"β
+				inoremap ,gamma 𝛄
+				inoremap ,Gamma Γ
+				inoremap ,delta 𝛅
+				inoremap ,Delta ∆
+				inoremap ,nabla ∇
+				inoremap ,epsi 𝛆
+				inoremap ,zeta ζ
+				inoremap ,eta 𝛈
+				inoremap ,theta 𝛉
+				inoremap ,Theta Θ
+				inoremap ,iota ι
+				inoremap ,kappa 𝛞
+				inoremap ,lambda 𝛌
+				inoremap ,Lambda Λ
+				inoremap ,mu 𝛍
+				inoremap ,nu 𝛎
+				inoremap ,xi ξ
+				inoremap ,Xi Ξ
+				inoremap ,pi 𝛑
+				inoremap ,Pi Π
+				inoremap ,rho 𝛒
+					"ρ
+				inoremap ,sigma 𝛔
+				inoremap ,Sigma Σ
+				inoremap ,tau 𝛕
+				inoremap ,upsi 𝛖
+				inoremap ,Upsi ϒ
+				inoremap ,phi φ
+				inoremap ,Phi 𝛟
+				inoremap ,chi 𝛘
+				inoremap ,psi 𝛙
+				inoremap ,Psi Ψ
+				inoremap ,omega 𝛚
+				inoremap ,Omega Ω
+
+				inoremap ,a 𝛂
+				inoremap ,b 𝛃
+				inoremap ,e 𝛆
+				inoremap ,n 𝛈
+				inoremap ,o 𝛉
+				inoremap ,i ι
+				inoremap ,u 𝛍
+				inoremap ,v 𝛎
+				inoremap ,p 𝛒
+				inoremap ,t 𝛕
+				inoremap ,X 𝛞
+				inoremap ,w 𝛚
+				inoremap ,x 𝛞
+			"SET
+				inoremap ,uu ∪
+				inoremap ,ud ∩
+				inoremap ,ur= ⊆
+				inoremap ,ur ⊂
+				inoremap ,nur ⊄
+				inoremap ,ul= ⊇
+				inoremap ,ul ⊃
+				inoremap ,nul ⊅
+				inoremap ,sphi ∅
+				inoremap ,bt ∈
+				inoremap ,nbt ∉
+				inoremap ,fa ∀
+				inoremap ,te ∃
+				inoremap ,tne ∄
+			"CALCULAS
+				inoremap ,f1 ∫
+				inoremap ,f2 ∬
+				inoremap ,f3 ∭
+				inoremap ,f4 ⨌
+				inoremap ,of1 ∮
+				inoremap ,of1 ∯
+				inoremap ,of1 ∰
+				inoremap ,pd 𝛛
+			"RELATIONAL ALGEBRA
+				inoremap ,lj ⋉
+				inoremap ,rj ⋊
+				inoremap ,fj ⋈
+			"SUB|SUPER SCRIPTS
+				inoremap ,0u ⁰
+				inoremap ,1u ¹
+				inoremap ,2u ²
+				inoremap ,3u ³
+				inoremap ,4u ⁴
+				inoremap ,5u ⁵
+				inoremap ,6u ⁶
+				inoremap ,7u ⁷
+				inoremap ,8u ⁸
+				inoremap ,9u ⁹
+
+				inoremap ,0d ₀
+				inoremap ,1d ₁
+				inoremap ,2d ₂
+				inoremap ,3d ₃
+				inoremap ,4d ₄
+				inoremap ,5d ₅
+				inoremap ,6d ₆
+				inoremap ,7d ₇
+				inoremap ,8d ₈
+				inoremap ,9d ₉
+
+				inoremap ,+u ⁺
+				inoremap ,-u ⁻
+				inoremap ,(u ⁽
+				inoremap ,)u ⁾
+				inoremap ,=u ⁼
+
+				inoremap ,+d ₊
+				inoremap ,-d ₋
+				inoremap ,(d ₍
+				inoremap ,)d ₎
+				inoremap ,=d ₌
+
+				inoremap ,au ᵃ
+				inoremap ,bu ᵇ
+				inoremap ,cu ᶜ
+				inoremap ,du ᵈ
+				inoremap ,eu ᵉ
+				inoremap ,fu ᶠ
+				inoremap ,gu ᵍ
+				inoremap ,hu ʰ
+				inoremap ,iu ⁱ
+				inoremap ,ju ʲ
+				inoremap ,ku ᵏ
+				inoremap ,lu ˡ
+				inoremap ,mu ᵐ
+				inoremap ,nu ⁿ
+				inoremap ,ou ᵒ
+				inoremap ,pu ᵖ
+				inoremap ,qu ⁺
+				inoremap ,ru ʳ
+				inoremap ,su ˢ
+				inoremap ,tu ᵗ
+				inoremap ,uu ᵘ
+				inoremap ,vu ᵛ
+				inoremap ,wu ʷ
+				inoremap ,xu ˣ
+				inoremap ,yu ʸ
+				inoremap ,zu ᶻ
+
+				inoremap ,Au ᴬ
+				inoremap ,Bu ᴮ
+				inoremap ,Cu ⁺
+				inoremap ,Du ᴰ
+				inoremap ,Eu ᴱ
+				inoremap ,Fu ⁺
+				inoremap ,Gu ᴳ
+				inoremap ,Hu ᴴ
+				inoremap ,Iu ᴵ
+				inoremap ,Ju ᴶ
+				inoremap ,Ku ᴷ
+				inoremap ,Lu ᴸ
+				inoremap ,Mu ᴹ
+				inoremap ,Nu ᴺ
+				inoremap ,Ou ᴼ
+				inoremap ,Pu ᴾ
+				inoremap ,Qu ⁺
+				inoremap ,Ru ᴿ
+				inoremap ,Su ⁺
+				inoremap ,Tu ᵀ
+				inoremap ,Uu ᵁ
+				inoremap ,Vu ⱽ
+				inoremap ,Wu ᵂ
+				inoremap ,Xu ⁺
+				inoremap ,Yu ⁺
+				inoremap ,Zu ⁺
+
+				inoremap ,ad ₐ
+				inoremap ,bd ⁺
+				inoremap ,cd ⁺
+				inoremap ,dd ⁺
+				inoremap ,ed ₑ
+				inoremap ,fd ⁺
+				inoremap ,gd ⁺
+				inoremap ,hd ⁺
+				inoremap ,id ᵢ
+				inoremap ,jd ⱼ
+				inoremap ,kd ⁺
+				inoremap ,ld ⁺
+				inoremap ,md ⁺
+				inoremap ,nd ⁺
+				inoremap ,od ₒ
+				inoremap ,pd ⁺
+				inoremap ,qd ⁺
+				inoremap ,rd ᵣ
+				inoremap ,sd ⁺
+				inoremap ,td ⁺
+				inoremap ,ud ᵤ
+				inoremap ,vd ᵥ
+				inoremap ,wd ⁺
+				inoremap ,xd ₓ
+				inoremap ,yd ⁺
+				inoremap ,zd ⁺
+
+				inoremap ,Ad ⁺
+				inoremap ,Bd ⁺
+				inoremap ,Cd ⁺
+				inoremap ,Dd ⁺
+				inoremap ,Ed ⁺
+				inoremap ,Fd ⁺
+				inoremap ,Gd ⁺
+				inoremap ,Hd ⁺
+				inoremap ,Id ⁺
+				inoremap ,Jd ⁺
+				inoremap ,Kd ⁺
+				inoremap ,Ld ⁺
+				inoremap ,Md ⁺
+				inoremap ,Nd ⁺
+				inoremap ,Od ⁺
+				inoremap ,Pd ⁺
+				inoremap ,Qd ⁺
+				inoremap ,Rd ⁺
+				inoremap ,Sd ⁺
+				inoremap ,Td ⁺
+				inoremap ,Ud ⁺
+				inoremap ,Vd ⁺
+				inoremap ,Wd ⁺
+				inoremap ,Xd ⁺
+				inoremap ,Yd ⁺
+				inoremap ,Zd ⁺
+
+				inoremap ,alphau ᵅ
+				inoremap ,betau ᵝ
+				inoremap ,epsiu ᵋ
+				inoremap ,deltau ᵟ
+				inoremap ,thetau ᶿ
+				inoremap ,phiu ᶲ
+				inoremap ,Phiu ᵠ
+
+				inoremap ,betad ᵦ
+				inoremap ,phid ᵩ
 	"COMMANDLINE MODE
 	"MISCELLANOUS GROUPS
 		"REGISTER MAPPINGS
@@ -1215,51 +1536,51 @@
 				nmap <LEADER>j/ <Plug>(easymotion-sn)
 				nmap <LEADER>j? <Plug>(easymotion-tn)
 			"OPERATOR MAPPINGS
-				omap jw <Plug>(easymotion-bd-w)
-				omap jW <Plug>(easymotion-bd-W)
-				omap je <Plug>(easymotion-bd-e)
-				omap jE <Plug>(easymotion-bd-E)
-				omap jl <Plug>(easymotion-bd-jk)
-				omap jj <Plug>(easymotion-j)
-				omap jk <Plug>(easymotion-k)
-				omap jJ <Plug>(easymotion-eol-j)
-				omap jK <Plug>(easymotion-eol-K)
-				omap jf <Plug>(easymotion-bd-f)
-				omap js <Plug>(easymotion-bd-f2)
-				omap jt <Plug>(easymotion-bd-t)
-				omap jS <Plug>(easymotion-bd-t2)
-				omap j/ <Plug>(easymotion-sn)
-				xmap j? <Plug>(easymotion-tn)
-				omap jn <Plug>(easymotion-bd-n)
-				omap j. <Plug>(easymotion-repeat)
-				omap jv <Plug>(easymotion-segments-LF)
-				omap jV <Plug>(easymotion-segments-LB)
-				omap jgv <Plug>(easymotion-segments-RF)
-				omap jgV <Plug>(easymotion-segments-RB)
-				omap ja <Plug>(easymotion-jumptoanywhere)
+				omap <Leader>w <Plug>(easymotion-bd-w)
+				omap <Leader>W <Plug>(easymotion-bd-W)
+				omap <Leader>e <Plug>(easymotion-bd-e)
+				omap <Leader>E <Plug>(easymotion-bd-E)
+				omap <Leader>l <Plug>(easymotion-bd-jk)
+				omap <Leader>j <Plug>(easymotion-j)
+				omap <Leader>k <Plug>(easymotion-k)
+				omap <Leader>J <Plug>(easymotion-eol-j)
+				omap <Leader>K <Plug>(easymotion-eol-K)
+				omap <Leader>f <Plug>(easymotion-bd-f)
+				omap <Leader>s <Plug>(easymotion-bd-f2)
+				omap <Leader>t <Plug>(easymotion-bd-t)
+				omap <Leader>S <Plug>(easymotion-bd-t2)
+				omap <Leader>/ <Plug>(easymotion-sn)
+				omap <Leader>? <Plug>(easymotion-tn)
+				omap <Leader>n <Plug>(easymotion-bd-n)
+				omap <Leader>. <Plug>(easymotion-repeat)
+				omap <Leader>v <Plug>(easymotion-segments-LF)
+				omap <Leader>V <Plug>(easymotion-segments-LB)
+				omap <Leader>gv <Plug>(easymotion-segments-RF)
+				omap <Leader>gV <Plug>(easymotion-segments-RB)
+				omap <Leader>a <Plug>(easymotion-jumptoanywhere)
 			"VISUAL MAPPINGS
-				xmap jw <Plug>(easymotion-bd-w)
-				xmap jW <Plug>(easymotion-bd-W)
-				xmap je <Plug>(easymotion-bd-e)
-				xmap jE <Plug>(easymotion-bd-E)
-				xmap jl <Plug>(easymotion-bd-jk)
-				xmap jj <Plug>(easymotion-j)
-				xmap jk <Plug>(easymotion-k)
-				xmap jJ <Plug>(easymotion-eol-j)
-				xmap jK <Plug>(easymotion-eol-K)
-				xmap jf <Plug>(easymotion-bd-f)
-				xmap jt <Plug>(easymotion-bd-t)
-				xmap js <Plug>(easymotion-bd-f2)
-				xmap jS <Plug>(easymotion-bd-t2)
-				xmap j/ <Plug>(easymotion-sn)
-				xmap j? <Plug>(easymotion-tn)
-				xmap jn <Plug>(easymotion-bd-n)
-				xmap j. <Plug>(easymotion-repeat)
-				xmap jv <Plug>(easymotion-segments-LF)
-				xmap jV <Plug>(easymotion-segments-LB)
-				xmap jgv <Plug>(easymotion-segments-RF)
-				xmap jgV <Plug>(easymotion-segments-RB)
-				xmap ja <Plug>(easymotion-jumptoanywhere)
+				xmap <Leader>w <Plug>(easymotion-bd-w)
+				xmap <Leader>W <Plug>(easymotion-bd-W)
+				xmap <Leader>e <Plug>(easymotion-bd-e)
+				xmap <Leader>E <Plug>(easymotion-bd-E)
+				xmap <Leader>l <Plug>(easymotion-bd-jk)
+				xmap <Leader>j <Plug>(easymotion-j)
+				xmap <Leader>k <Plug>(easymotion-k)
+				xmap <Leader>J <Plug>(easymotion-eol-j)
+				xmap <Leader>K <Plug>(easymotion-eol-K)
+				xmap <Leader>f <Plug>(easymotion-bd-f)
+				xmap <Leader>t <Plug>(easymotion-bd-t)
+				xmap <Leader>s <Plug>(easymotion-bd-f2)
+				xmap <Leader>S <Plug>(easymotion-bd-t2)
+				xmap <Leader>/ <Plug>(easymotion-sn)
+				xmap <Leader>? <Plug>(easymotion-tn)
+				xmap <Leader>n <Plug>(easymotion-bd-n)
+				xmap <Leader>. <Plug>(easymotion-repeat)
+				xmap <Leader>v <Plug>(easymotion-segments-LF)
+				xmap <Leader>V <Plug>(easymotion-segments-LB)
+				xmap <Leader>gv <Plug>(easymotion-segments-RF)
+				xmap <Leader>gV <Plug>(easymotion-segments-RB)
+				xmap <Leader>a <Plug>(easymotion-jumptoanywhere)
 		Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 		Plug 'junegunn/fzf.vim'
 			"CONFIGURATION
@@ -1325,7 +1646,7 @@
 		Plug 'cocopon/vaffle.vim'
 	"DEVELOPMENT
 		"VCS
-			Plug 'tpope/vim-fugutive'
+			"Plug 'tpope/vim-fugutive'
 				nnoremap <Leader>gc :Commits<CR>
 				nnoremap <Leader>gC :BCommits<CR>
 				nnoremap <Leader>gf :GFiles<CR>
@@ -1353,7 +1674,7 @@
 					autocmd BufEnter *.txt :AcpEnable
 					autocmd BufLeave *.txt :AcpDisable
 				augroup END
-			Plug 'Valloric/YouCompleteMe'
+			"Plug 'Valloric/YouCompleteMe'
 				"CONFIGURATION
 					let g:ycm_python_binary_path = 'python3'
 					let g:ycm_add_preview_to_completeopt = 0
@@ -1416,9 +1737,11 @@
 				xmap gk  <Plug>Commentor
 				nmap gkk <Plug>CommentorLine
 		"DOCUMENTATION
-			Plug 'rizzatti/dash.vim'
+			if has('macunix')
+				Plug 'rizzatti/dash.vim'
 				nnoremap <Leader>fd :Dash<CR>
 				nnoremap <Leader>fD :Dash<space>
+			endif
 			"Plug 'rhysd/devdocs.vim'
 				"nmap <Leader>fD :DevDocs<CR>
 				"nmap <Leader>fd <Plug>(devdocs-under-cursor)
@@ -1537,9 +1860,11 @@
 			noremap <silent><expr> <Leader>fg/ incsearch#go(<SID>config_easyfuzzymotion())
 		Plug 'aykamko/vim-easymotion-segments'
 		Plug 'bronson/vim-visual-star-search'
-		Plug 'lambdalisue/lista.nvim'
+		if has('macunix') && has('nvim')
+			Plug 'lambdalisue/lista.nvim'
 			nmap <Leader>ff :Lista<CR>
 			nmap <Leader>fF :ListaCursorWord<CR>
+		endif
 		Plug 'osyo-manga/vim-hopping'
 			nmap <Leader>fr :HoppingStart<CR>
 		Plug 'haya14busa/vim-over'
@@ -1933,44 +2258,44 @@
 			"MAPPINGS
 				nnoremap <silent> <LocalLeader>cr :execute 'VimShellInteractive ' . g:repls[&filetype]<CR>
 		Plug 'lucerion/vim-buffr'
-		Plug 'kana/vim-submode'
+		"Plug 'kana/vim-submode'
 			let g:submode_always_show_submode = 1
 			"let g:submode_keep_leaving_key = 1
 			"let g:submode_timeout = 0
 			let g:submode_timeoutlen = 1000
-		Plug 'vim-scripts/vim-easy-submode'
-			call easysubmode#load()
+		"Plug 'vim-scripts/vim-easy-submode'
+			" call easysubmode#load()
 
-			SubmodeDefine buffers
-			Submode n <enter> <Leader>b. :bnext<CR>
-			Submode n h :bnext<CR>
-			Submode n l :bprevious<CR>
-			SubmodeDefineEnd
+			" SubmodeDefine buffers
+			" Submode n <enter> <Leader>b. :bnext<CR>
+			" Submode n h :bnext<CR>
+			" Submode n l :bprevious<CR>
+			" SubmodeDefineEnd
 
-			SubmodeDefine tabs
-			Submode n <enter> <Leader>t. :tabnext<CR>
-			Submode n n :tabnext<CR>
-			Submode n p :tabprevious<CR>
-			Submode n h :tabmove +1<CR>
-			Submode n l :tabmove -1<CR>
-			SubmodeDefineEnd
+			" SubmodeDefine tabs
+			" Submode n <enter> <Leader>t. :tabnext<CR>
+			" Submode n n :tabnext<CR>
+			" Submode n p :tabprevious<CR>
+			" Submode n h :tabmove +1<CR>
+			" Submode n l :tabmove -1<CR>
+			" SubmodeDefineEnd
 
 
-			SubmodeDefine windows
-			Submode n <enter> <Leader>w. <C-W><C-L>
-			Submode n h <C-W><C-H>
-			Submode n j <C-W><C-J>
-			Submode n k <C-W><C-K>
-			Submode n l <C-W><C-L>
+			" SubmodeDefine windows
+			" Submode n <enter> <Leader>w. <C-W><C-L>
+			" Submode n h <C-W><C-H>
+			" Submode n j <C-W><C-J>
+			" Submode n k <C-W><C-K>
+			" Submode n l <C-W><C-L>
 
-			Submode n <S-h> <C-W><S-H>
-			Submode n <S-j> <C-W><S-J>
-			Submode n <S-k> <C-W><S-K>
-			Submode n <S-l> <C-W><S-L>
+			" Submode n <S-h> <C-W><S-H>
+			" Submode n <S-j> <C-W><S-J>
+			" Submode n <S-k> <C-W><S-K>
+			" Submode n <S-l> <C-W><S-L>
 
-			Submode n r <C-W><C-R>
-			Submode n R <C-W><S-R>
-			SubmodeDefineEnd
+			" Submode n r <C-W><C-R>
+			" Submode n R <C-W><S-R>
+			" SubmodeDefineEnd
 		Plug 'kana/vim-arpeggio'
 		Plug 'vim-scripts/tinymode.vim'
 		Plug 'tyru/stickykey.vim'
