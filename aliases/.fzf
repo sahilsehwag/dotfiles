@@ -6,7 +6,7 @@
 	alias fzf='fzf-tmux'
 #GENERAL FUNCTIONS
 	fd(){
-		if [ $1 ] 
+		if [ $1 ]
 		then
 			$1 "$(find $2 -type d -name "*" 2> /dev/null | fzf)"
 		else
@@ -14,7 +14,7 @@
 		fi
 	}
 	ffh(){
-		if [ $1 ] 
+		if [ $1 ]
 		then
 			$1 "$(find ~ -type f -name "*" | fzf)"
 		else
@@ -22,7 +22,7 @@
 		fi
 	}
 	ffd(){
-		if [ $1 ] 
+		if [ $1 ]
 		then
 			$1 "$(find $DRIVE -type f -name "*" | fzf)"
 		else
@@ -30,7 +30,7 @@
 		fi
 	}
 	ff(){
-		if [ $1 ] 
+		if [ $1 ]
 		then
 			$1 "$(find $2 -type f -name "*" | fzf)"
 		else
@@ -125,7 +125,7 @@
 	}
 #WINDOWS APPLICATION
 	#GVIM
-		#alias fg='$GEDITOR "$(find "`pwd`" -type f -name "*" | fzf | sed -e "s/\/mnt\///" | sed -e "s/c/C:/")"' 
+		#alias fg='$GEDITOR "$(find "`pwd`" -type f -name "*" | fzf | sed -e "s/\/mnt\///" | sed -e "s/c/C:/")"'
 		#alias fgh='$GEDITOR "$(find ~ -type f -name "*" | fzf | sed -e "s/\/mnt\///" | sed -e "s/c/C:/")"'
 		#alias fgo='$GEDITOR "$(find $DRIVE -type f -name "*" | fzf | sed -e "s/\/mnt\///" | sed -e "s/c/C:/")"'
 	#MEDIA
