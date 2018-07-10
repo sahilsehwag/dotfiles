@@ -55,7 +55,7 @@
 
 		export FZF_COMPLETION_TRIGGER=''
 	#FUCK
-		eval $(thefuck --alias fuck)
+		type "thefuck" > /dev/null && eval $(thefuck --alias fuck)
 #ALIASES
 	source ~/aliases/.fzf
 	source ~/aliases/.tmux
@@ -66,7 +66,7 @@
 	alias pip=pip3
 	alias vim='nvim'
 
-	if [ $PLATFORM = 'MAC' ]; then
+	if [[ $(uname) ~= Darwin ]]; then
 		alias ctags="`brew --prefix`/bin/ctags"
 		alias ctagsg='ctags -R --exclude=.git --exclude=log *'
 		alias emacs='/usr/local/bin/emacs'
@@ -103,7 +103,7 @@
 	}
 #TEMPORARY
 #PATH
-	if [ $PLATFORM = 'MAC' ]; then
+	if [[ $(uname) ~= Darwin ]]; then
 		export PATH="/usr/local/sbin:$PATH"
-		export PATH="$PATH:/Users/jaat/.npm-packages/bin:/Uses/jaat/node_modules/.bin"
+		export PATH="$PATH:~/.npm-packages/bin:~/node_modules/.bin"
 	fi

@@ -222,6 +222,7 @@
 				function! ExistsAndTrue(name)
 					if exists(a:name)
 						return eval(a:name)
+					endif
 					return 0
 				endfunction
 			"MISCELLANOUS
@@ -1661,7 +1662,7 @@
 		"SNIPPETS
 			Plug 'honza/vim-snippets'
 			Plug 'SirVer/ultisnips'
-				let g:UltiSnipsExpandTrigger="<CR>"
+				"let g:UltiSnipsExpandTrigger="<CR>"
 				let g:UltiSnipsJumpForwardTrigger="<C-b>"
 				let g:UltiSnipsJumpBackwardTrigger="<C-z>"
 		"AUTOCOMPLETION
@@ -2041,7 +2042,7 @@
 			nnoremap <Leader>sd :SDelete<space>
 			nnoremap <Leader>so :SLoad<space>
 			nnoremap <Leader>sc :SQuit<CR>
-		Plug 'jiangmiao/auto-pairs'
+		"Plug 'jiangmiao/auto-pairs'
 		Plug 'haya14busa/vim-operator-flashy'
 			let g:operator#flashy#group = 'Visual'
 			map y <Plug>(operator-flashy)
