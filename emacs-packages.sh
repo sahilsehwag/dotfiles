@@ -33,14 +33,14 @@
 	git clone https://github.com/noctuid/targets.el/      ~/.emacs.d/packages/targets.el
 	git clone https://github.com/gregsexton/origami.el    ~/.emacs.d/packages/origami.el
 #PRODUCTIVITY
-	git clone https://github.com/emacs-helm/helm    ~/.emacs.d/packages/helm
+	git clone https://github.com/emacs-helm/helm ~/.emacs.d/packages/helm
+	git clone https://github.com/justbur/emacs-which-key ~/.emacs.d/packages/emacs-which-key
 #META
-	git clone https://github.com/justbur/emacs-which-key                   ~/.emacs.d/packages/emacs-which-key
 #DEVELOPMENT
-	git clone https://github.com/syohex/emacs-quickrun               	   ~/.emacs.d/packages/emacs-quickrun
+	git clone https://github.com/syohex/emacs-quickrun ~/.emacs.d/packages/emacs-quickrun
 #LANGUAGES
-	git clone https://github.com/jwiegley/org-mode/               	   ~/.emacs.d/packages/org-mode
-	git clone https://github.com/nverno/vimscript               	   ~/.emacs.d/packages/vimscript
+	git clone https://github.com/jwiegley/org-mode/ ~/.emacs.d/packages/org-mode
+	git clone https://github.com/nverno/vimscript ~/.emacs.d/packages/vimscript
 #LOOK & FEEL
 	git clone https://github.com/rakanalh/emacs-dashboard          ~/.emacs.d/packages/dashboard
 	git clone https://github.com/milkypostman/powerline/           ~/.emacs.d/packages/powerline
