@@ -14,13 +14,13 @@
 			(add-to-list 'load-path "~/.emacs.d/packages/popup-el")
 	;LIBRARIES
 		;DASH
-			(add-to-list 'load-path "~/.emacs.d/packages/dash")
+			(add-to-list 'load-path "~/.emacs.d/packages/dash.el")
 			(require 'dash)
 		;S
-			(add-to-list 'load-path "~/.emacs.d/packages/s")
+			(add-to-list 'load-path "~/.emacs.d/packages/s.el")
 			(require 's)
 		;F
-			(add-to-list 'load-path "~/.emacs.d/packages/f")
+			(add-to-list 'load-path "~/.emacs.d/packages/f.el")
 			(require 'f)
 	;EMACS
 		;ORIGAMI
