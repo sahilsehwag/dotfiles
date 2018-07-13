@@ -57,27 +57,28 @@
 	#FUCK
 		type "thefuck" > /dev/null && eval $(thefuck --alias fuck)
 #ALIASES
-	source ~/aliases/.fzf
-	source ~/aliases/.tmux
-	source ~/aliases/.fasd
+	[[ -f $HOME/aliases/.fzf ]]  && source $HOME/aliases/.fzf
+	[[ -f $HOME/aliases/.tmux ]] && source $HOME/aliases/.tmux
+	[[ -f $HOME/aliases/.fasd ]] && source $HOME/aliases/.fasd
 
-	alias d2u='find -type f | xargs dos2unix'
-	alias python=python3
-	alias pip=pip3
-	alias vim='nvim'
+	type dos2unix       > /dev/null && alias d2u='find -type f | xargs dos2unix'
+	type python3        > /dev/null && alias python=python3
+	type pip3           > /dev/null && alias pip=pip3
+	type nvim           > /dev/null && alias vim='nvim'
+	type exa            > /dev/null && alias ls='exa'
+	type path-extractor > /dev/null && alias pe='path-extractor'
 
-	if [[ $(uname) ~= Darwin ]]; then
+	if [[ $(uname) =~ Darwin ]]; then
 		alias ctags="`brew --prefix`/bin/ctags"
 		alias ctagsg='ctags -R --exclude=.git --exclude=log *'
 		alias emacs='/usr/local/bin/emacs'
 		alias vis='/usr/local/bin/vis'
-		alias ls='exa'
 		alias r='/usr/local/bin/r'
-		alias pe='path-extractor'
 		alias processing-java='/usr/local/bin/processing-java'
 	fi
 #FUNCTIONS
-	new() {
+	function newfile()
+	{
 		if [[ "$@" == */ ]] then
 			mkdir -p $@
 		else
@@ -85,7 +86,14 @@
 			touch "$@"
 		fi
 	}
-	codi() {
+
+	function cheatsh()
+	{
+		type curl > /dev/null && curl cheat.sh/$1
+	}
+
+	function codi()
+	{
 		local syntax="${1:-python}"
 		shift
 		nvim -c \
@@ -96,7 +104,9 @@
 			hi NonText ctermfg=0 |\
 			Codi $syntax" "$@"
 	}
-	processing(){
+
+	function processing()
+	{
 		rm -rf /tmp/processing
 		mkdir /tmp/processing
 		processing-java --output=/tmp/processing/ --force --sketch=$1 --run
@@ -105,5 +115,5 @@
 #PATH
 	if [[ $(uname) ~= Darwin ]]; then
 		export PATH="/usr/local/sbin:$PATH"
-		export PATH="$PATH:~/.npm-packages/bin:~/node_modules/.bin"
+		export PATH="$HOME/.npm-packages/bin:$HOME/node_modules/.bin:$PATH"
 	fi
