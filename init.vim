@@ -1628,7 +1628,8 @@
 					nmap <LEADER>hn <plug>(fzf-maps-n)
 					nmap <LEADER><TAB> <plug>(fzf-maps-n)
 					xmap <LEADER><TAB> <plug>(fzf-maps-x)
-					imap <LEADER><TAB> <plug>(fzf-maps-i)
+					imap ;<TAB> <plug>(fzf-maps-i)
+					"imap <LEADER><TAB> <plug>(fzf-maps-i)
 					omap <LEADER><TAB> <plug>(fzf-maps-o)
 				"COMPLETION
 					imap        ;w <plug>(fzf-complete-word)
@@ -1636,9 +1637,9 @@
 					imap        ;f <plug>(fzf-complete-file-ag)
 					imap        ;l <plug>(fzf-complete-line)
 					imap        ;L <plug>(fzf-complete-buffer-line)
-					imap <expr> ;dp fzf#complete('find ~/Google\ Drive')
-					imap <expr> ;df fzf#complete('find ~/Google\ Drive -type f')
-					imap <expr> ;dd fzf#complete('find ~/Google\ Drive -type d')
+					imap <expr> ;cp fzf#complete('find ~/Google\ Drive')
+					imap <expr> ;cf fzf#complete('find ~/Google\ Drive -type f')
+					imap <expr> ;cd fzf#complete('find ~/Google\ Drive -type d')
 		Plug 'pbogut/fzf-mru.vim'
 			map M :<C-u>FZFMru<CR>
 		" Plug 'vifm/neovim-vifm'
@@ -1800,6 +1801,7 @@
 			Plug 'rhysd/vim-textobj-lastinserted'
 			Plug 'kana/vim-textobj-lastpat'
 			Plug 'saaguero/vim-textobj-pastedtext'
+				let g:pastedtext_select_key = 'gp'
 			Plug 'haya14busa/vim-easyoperator-line'
 				omap gp  <Plug>(easyoperator-line-select)
 				xmap gp  <Plug>(easyoperator-line-select)
@@ -1967,9 +1969,9 @@
 			Plug 'paranoida/vim-airlineish'
 		Plug 'ryanoasis/vim-devicons'
 		Plug 'itchyny/vim-highlighturl'
-			let g:highlighturl_ctermfg = ''
-			let g:highlighturl_guifg = ''
-			let g:highlighturl_underline = 0
+			"let g:highlighturl_ctermfg = ''
+			"let g:highlighturl_guifg = ''
+			"let g:highlighturl_underline = 0
 		Plug 'gcavallanti/vim-noscrollbar'
 			function! Noscrollbar(...)
 				let w:airline_section_z = '%{noscrollbar#statusline(20," ", "█")}'
@@ -2215,6 +2217,8 @@
 			let g:startify_session_dir='~/.vim-sessions'
 		Plug 'suan/vim-instant-markdown'
 		Plug 'tpope/vim-capslock'
+			"MAPPINGS
+				imap <LocalLeader><LocalLeader> <Plug>CapsLockToggle
 		"Plug 'natw/keyboard_cat.vim'
 		Plug 'MrPeterLee/VimWordpress'
 			nnoremap <LocalLeader>wl :call RunInNewBuffer('BlogList', 'wordpress')<CR>
