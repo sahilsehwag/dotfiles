@@ -1662,10 +1662,12 @@
 				let g:formatterpath = ['/usr/local/bin/autopep8']
 		"SNIPPETS
 			Plug 'honza/vim-snippets'
-			Plug 'SirVer/ultisnips'
-				"let g:UltiSnipsExpandTrigger="<CR>"
-				let g:UltiSnipsJumpForwardTrigger="<C-b>"
-				let g:UltiSnipsJumpBackwardTrigger="<C-z>"
+			if has('python3')
+				Plug 'SirVer/ultisnips'
+					"let g:UltiSnipsExpandTrigger="<CR>"
+					let g:UltiSnipsJumpForwardTrigger="<C-b>"
+					let g:UltiSnipsJumpBackwardTrigger="<C-z>"
+			endif
 		"AUTOCOMPLETION
 			"Plug 'ervandew/supertab'
 			Plug 'vim-scripts/AutoComplPop'
@@ -1676,23 +1678,25 @@
 					autocmd BufEnter *.txt :AcpEnable
 					autocmd BufLeave *.txt :AcpDisable
 				augroup END
-			"Plug 'Valloric/YouCompleteMe'
-				"CONFIGURATION
-					let g:ycm_python_binary_path = 'python3'
-					let g:ycm_add_preview_to_completeopt = 0
+			if has('macunix') && has('python3')
+				"Plug 'Valloric/YouCompleteMe'
+					"CONFIGURATION
+						let g:ycm_python_binary_path = 'python3'
+						let g:ycm_add_preview_to_completeopt = 0
 
-					"let g:ycm_key_list_select_completion = ['<SPACE>', '<Down>']
-					"let g:ycm_key_list_previous_completion = ['<S-SPACE>', '<Up>']
-					"let g:ycm_key_list_stop_completion = ['<CR>']
+						"let g:ycm_key_list_select_completion = ['<SPACE>', '<Down>']
+						"let g:ycm_key_list_previous_completion = ['<S-SPACE>', '<Up>']
+						"let g:ycm_key_list_stop_completion = ['<CR>']
 
-					"let g:ycm_autoclose_preview_window_after_completion = 1
-					"let g:ycm_autoclose_preview_window_after_insertion = 1
-					"set splitbelow
-				"MAPPINGS
-					nnoremap <Leader>jd :YcmCompleter GoToDeclaration<CR>
-					nnoremap <Leader>jD :YcmCompleter GoToDefinition<CR>
-					nnoremap <Leader>jj :YcmCompleter GoTo<CR>
-					nnoremap <Leader>ji :YcmCompleter GoToImplementation<CR>
+						"let g:ycm_autoclose_preview_window_after_completion = 1
+						"let g:ycm_autoclose_preview_window_after_insertion = 1
+						"set splitbelow
+					"MAPPINGS
+						nnoremap <Leader>jd :YcmCompleter GoToDeclaration<CR>
+						nnoremap <Leader>jD :YcmCompleter GoToDefinition<CR>
+						nnoremap <Leader>jj :YcmCompleter GoTo<CR>
+						nnoremap <Leader>ji :YcmCompleter GoToImplementation<CR>
+			endif
 		"CODE EXECUTION
 			Plug 'metakirby5/codi.vim'
 				let g:codi#width      = 80
@@ -1863,10 +1867,10 @@
 			noremap <silent><expr> <Leader>fg/ incsearch#go(<SID>config_easyfuzzymotion())
 		Plug 'aykamko/vim-easymotion-segments'
 		Plug 'bronson/vim-visual-star-search'
-		if has('macunix') && has('nvim')
+		if (has('unix') || has('macunix')) && has('nvim')
 			Plug 'lambdalisue/lista.nvim'
-			nmap <Leader>ff :Lista<CR>
-			nmap <Leader>fF :ListaCursorWord<CR>
+				nmap <Leader>ff :Lista<CR>
+				nmap <Leader>fF :ListaCursorWord<CR>
 		endif
 		Plug 'osyo-manga/vim-hopping'
 			nmap <Leader>fr :HoppingStart<CR>
@@ -1881,75 +1885,80 @@
 			"nmap # <Plug>(anzu-sharp-with-echo)
 	"LOOK&FEEL
 		"STATUSLINE
-			Plug 'vim-airline/vim-airline'
-				"CONFIGURATION
-					if !exists('g:gui_oni')
-						let g:airline_powerline_fonts = 0
-						let g:airline_theme           = 'bubblegum'
-					else
-						let g:airline_powerline_fonts = 0
-						let g:airline_theme           = 'wombat'
-					endif
-				"BUFFERLINE
-					if exists('g:gui_oni')
-						"let g:airline#extensions#bufferline#enabled = 1
-						"let g:airline#extensions#bufferline#overwrite_variables = 1
-					endif
-				"TABLINE
-					let g:airline#extensions#tabline#enabled = 1
-					"let g:airline#extensions#tabline#left_sep = ' '
-					"let g:airline#extensions#tabline#left_alt_sep = '|'
-					"let g:airline#extensions#tabline#right_sep = ' '
-					"let g:airline#extensions#tabline#right_alt_sep = '|'
-					"let g:airline#extensions#tabline#show_splits = 1
-					"let g:airline#extensions#tabline#show_close_button = 1
-					"let g:airline#extensions#tabline#close_symbol = '✖ '
-				"TMUXLINE
-					"let airline#extensions#tmuxline#color_template = 'normal'
-					"let airline#extensions#tmuxline#color_template = 'insert'
-					"let airline#extensions#tmuxline#color_template = 'visual'
-					"let airline#extensions#tmuxline#color_template = 'replace'
-				"CUSTOMIZATION
-					let g:airline#extensions#default#layout = [
-						\ [ 'a', 'b', 'c' ],
-						\ [ 'x', 'y', 'z', 'error', 'warning']
-						\ ]
-					let g:airline#extensions#default#section_truncate_width = {
-						\ 'b': 79,
-						\ 'x': 60,
-						\ 'y': 88,
-						\ 'z': 45,
-						\ 'warning': 80,
-						\ 'error': 80,
-						\ }
-					let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
-				"EXTRAS
-					let g:airline#extensions#wordcount#enabled = 0
-					"let g:airline#extensions#wordcount#filetypes = []
-					"let g:airline#extensions#whitespace#enabled = 1
-					"let g:airline#extensions#whitespace#mixed_indent_algo = 0
-					"let g:airline#extensions#whitespace#symbol = '!'
-					"let g:airline#extensions#whitespace#checks = [ 'indent', 'trailing', 'long', 'mixed-indent-file' ]
-					"let g:airline#extensions#whitespace#trailing_format = 'trailing[%s]'
-					"let g:airline#extensions#whitespace#mixed_indent_format = 'mixed-indent[%s]'
-					"let g:airline#extensions#whitespace#long_format = 'long[%s]'
-					"let g:airline#extensions#whitespace#mixed_indent_file_format = 'mix-indent-file[%s]'
-					"let g:airline#extensions#whitespace#trailing_regexp = '\s$'
-			Plug 'vim-airline/vim-airline-themes'
+			if has('macunix') || has('unix') || has('win32unix')
+				Plug 'vim-airline/vim-airline'
+					"CONFIGURATION
+						if !exists('g:gui_oni')
+							let g:airline_powerline_fonts = 0
+							let g:airline_theme           = 'bubblegum'
+						else
+							let g:airline_powerline_fonts = 0
+							let g:airline_theme           = 'wombat'
+						endif
+					"BUFFERLINE
+						if exists('g:gui_oni')
+							"let g:airline#extensions#bufferline#enabled = 1
+							"let g:airline#extensions#bufferline#overwrite_variables = 1
+						endif
+					"TABLINE
+						let g:airline#extensions#tabline#enabled = 1
+						"let g:airline#extensions#tabline#left_sep = ' '
+						"let g:airline#extensions#tabline#left_alt_sep = '|'
+						"let g:airline#extensions#tabline#right_sep = ' '
+						"let g:airline#extensions#tabline#right_alt_sep = '|'
+						"let g:airline#extensions#tabline#show_splits = 1
+						"let g:airline#extensions#tabline#show_close_button = 1
+						"let g:airline#extensions#tabline#close_symbol = '✖ '
+					"TMUXLINE
+						"let airline#extensions#tmuxline#color_template = 'normal'
+						"let airline#extensions#tmuxline#color_template = 'insert'
+						"let airline#extensions#tmuxline#color_template = 'visual'
+						"let airline#extensions#tmuxline#color_template = 'replace'
+					"CUSTOMIZATION
+						let g:airline#extensions#default#layout = [
+							\ [ 'a', 'b', 'c' ],
+							\ [ 'x', 'y', 'z', 'error', 'warning']
+							\ ]
+						let g:airline#extensions#default#section_truncate_width = {
+							\ 'b': 79,
+							\ 'x': 60,
+							\ 'y': 88,
+							\ 'z': 45,
+							\ 'warning': 80,
+							\ 'error': 80,
+							\ }
+						let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
+					"EXTRAS
+						let g:airline#extensions#wordcount#enabled = 0
+						"let g:airline#extensions#wordcount#filetypes = []
+						"let g:airline#extensions#whitespace#enabled = 1
+						"let g:airline#extensions#whitespace#mixed_indent_algo = 0
+						"let g:airline#extensions#whitespace#symbol = '!'
+						"let g:airline#extensions#whitespace#checks = [ 'indent', 'trailing', 'long', 'mixed-indent-file' ]
+						"let g:airline#extensions#whitespace#trailing_format = 'trailing[%s]'
+						"let g:airline#extensions#whitespace#mixed_indent_format = 'mixed-indent[%s]'
+						"let g:airline#extensions#whitespace#long_format = 'long[%s]'
+						"let g:airline#extensions#whitespace#mixed_indent_file_format = 'mix-indent-file[%s]'
+						"let g:airline#extensions#whitespace#trailing_regexp = '\s$'
+				Plug 'vim-airline/vim-airline-themes'
+			endif
 			"Plug 'edkolev/tmuxline.vim'
 			"Plug 'edkolev/promptline.vim'
-			Plug 'bling/vim-bufferline'
-				let g:bufferline_echo = 0
-				"let g:bufferline_active_buffer_left = '['
-				"let g:bufferline_active_buffer_right = ']'
-				"let g:bufferline_modified = '+'
-				"let g:bufferline_rotate = 0
-				let g:bufferline_show_bufnr = 0
-				"let g:bufferline_fname_mod = ':t'
-				"let g:bufferline_inactive_highlight = 'StatusLineNC'
-				"let g:bufferline_solo_highlight = 0
-				"let g:bufferline_pathshorten = 0
-			"Plug 'itchyny/lightline.vim'
+
+			if has('win32')
+				Plug 'bling/vim-bufferline'
+					let g:bufferline_echo = 0
+					"let g:bufferline_active_buffer_left = '['
+					"let g:bufferline_active_buffer_right = ']'
+					"let g:bufferline_modified = '+'
+					"let g:bufferline_rotate = 0
+					let g:bufferline_show_bufnr = 0
+					"let g:bufferline_fname_mod = ':t'
+					"let g:bufferline_inactive_highlight = 'StatusLineNC'
+					"let g:bufferline_solo_highlight = 0
+					"let g:bufferline_pathshorten = 0
+				Plug 'itchyny/lightline.vim'
+			endif
 		"COLORSCHEMES
 			Plug 'flazz/vim-colorschemes'
 			Plug 'rafi/awesome-vim-colorschemes'
@@ -1968,17 +1977,19 @@
 			Plug 'raphamorim/lucario'
 			Plug 'paranoida/vim-airlineish'
 		Plug 'ryanoasis/vim-devicons'
-		Plug 'itchyny/vim-highlighturl'
-			"let g:highlighturl_ctermfg = ''
-			"let g:highlighturl_guifg = ''
-			"let g:highlighturl_underline = 0
-		Plug 'gcavallanti/vim-noscrollbar'
-			function! Noscrollbar(...)
-				let w:airline_section_z = '%{noscrollbar#statusline(20," ", "█")}'
-				"let w:airline_section_z = '%{noscrollbar#statusline(20," ", "▌")}'
-				"let w:airline_section_z = '%{noscrollbar#statusline(20," ", "▐")}'
-			endfunction
-			call airline#add_statusline_func('Noscrollbar')
+		if has('macunix')
+			Plug 'itchyny/vim-highlighturl'
+				"let g:highlighturl_ctermfg = ''
+				"let g:highlighturl_guifg = ''
+				"let g:highlighturl_underline = 0
+			Plug 'gcavallanti/vim-noscrollbar'
+				function! Noscrollbar(...)
+					let w:airline_section_z = '%{noscrollbar#statusline(20," ", "█")}'
+					"let w:airline_section_z = '%{noscrollbar#statusline(20," ", "▌")}'
+					"let w:airline_section_z = '%{noscrollbar#statusline(20," ", "▐")}'
+				endfunction
+				"call airline#add_statusline_func('Noscrollbar')
+		endif
 		"Plug 'zefei/vim-colortuner'
 		"Plug 'augustold/vim-airline-colornum'
 		"Plug 'Yggdroot/indentLine'
