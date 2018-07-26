@@ -2370,8 +2370,10 @@
 		set noshowcmd
 		set noruler
 		set noshowmode
-		set cursorline
-		set list
+		if has('macunix') || has('unix')
+			set cursorline
+		endif
+		set nolist
 		set shortmess="filmnrwxoOTF"
 		set listchars=tab:\ \ ,
 		set listchars+=eol:¬
