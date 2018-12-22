@@ -1,7 +1,7 @@
 "VIMSCRIPT
 	"HELPERS
 		"EXTERNAL
-			"PACKAGE MANAGERS
+			"PACKAGE-MANAGERS
 				function! InstallPackage(pacman, package, flags)
 					if executable(a:pacman) == 1
 						execute '!' a:pacman ' install ' a:flags ' ' a:package
@@ -27,11 +27,6 @@
 					call RunCommand(a:cmd, a:flags, a:range, 'pip', a:package, '')
 				endfunction
 			"UNIX|LINUX
-				"COMMANDS
-					command! -nargs=1		NewFile         : call NewFile         (<q-args>)
-					command! -nargs=1		NewDirectory    : call NewDiretory     (<q-args>)
-					command! -nargs=1 -bang DeleteDirectory : call DeleteDirectory (<q-args>, <bang>0)
-					command! -nargs=1		DeleteFile      : call DeleteFile	   (<q-args>)
 				"FUNCTIONS
 					function! NewFile(path)
 						let l:filename = input('Enter New Filename: ')
@@ -69,6 +64,18 @@
 						execute "bdelete!"
 						silent execute "!rm " . a:file | redraw!
 						call Pechoerr("File " . a:file ." Deleted Successfully")
+					endfunction
+				"COMMANDS
+					command! -nargs=1		NewFile         : call NewFile         (<q-args>)
+					command! -nargs=1		NewDirectory    : call NewDiretory     (<q-args>)
+					command! -nargs=1 -bang DeleteDirectory : call DeleteDirectory (<q-args>, <bang>0)
+					command! -nargs=1		DeleteFile      : call DeleteFile	   (<q-args>)
+			"UTILITIES
+				"READ-JSON
+					function! ReadJSON(path)
+						let l:lines = readfile(a:path)
+						let l:json = json_decode(l:lines)
+						return l:json
 					endfunction
 		"VIM
 			"FILESYSTEM
@@ -289,7 +296,7 @@
 
 			nnoremap <silent> g;; :execute getline('.')<CR>
 			vnoremap <silent> g;; :<C-U>execute getline('.')<CR>
-	"TEXT OBJECTS
+	"TEXT-OBJECTS
 		"LINE
 			vnoremap il :<C-u>normal! ^v$h<CR>
 			onoremap il :<C-u>normal! ^v$h<CR>
@@ -404,360 +411,371 @@
 				endif
 			endfunction
 	"PLUGINS
-		"@TODO ORGASMIC C LANGUAGES
-		"@TODO WINDOWS-MANAGER
-		"TERMINAL
-			if has('nvim')
-				"COMMANDS
-					command! -bang        -nargs=1 Term call Terminal(0, '', 'enew', <bang>0, <q-args>)
-					command! -bang -count -nargs=1 HBTerm  call Terminal(<count>, 'botright', 'new', <bang>0, <q-args>)
-					command! -bang -count -nargs=1 HTTerm  call Terminal(<count>, 'topleft', 'new', <bang>0, <q-args>)
-					command! -bang -count -nargs=1 VLTerm call Terminal(<count>, 'leftabove', 'vnew', <bang>0, <q-args>)
-					command! -bang -count -nargs=1 VRTerm call Terminal(<count>, 'rightbelow', 'vnew', <bang>0, <q-args>)
-
-					command! TermSendSelected     call TerminalSend(GetSelectedText(), '\n')
-					command! TermSendFile         call TerminalSend(getline(0, '$'))
-					command! TermSendLine         call TerminalSend([getline('.')])
-				"FUNCTIONS
-					function! Terminal(count, dir, pos, bang, cmd)
-						if a:count == 0
-							execute a:dir a:pos
-						else
-							execute a:dir . ' ' . a:count a:pos
-						endif
-
-						setl modifiable
-
-						if a:bang == 0
-							call termopen(a:cmd, {'on_exit': function('TerminalOnExit')})
-						elseif a:bang == 1
-							call termopen(a:cmd)
-						endif
-
-						let g:last_terminal_job_id = b:terminal_job_id
-						startinsert
-					endfunction
-
-					function! TerminalOnExit(job_id, code, event) dict
-						if a:code == 0
-							bdelete!
-						endif
-					endfunction
-
-					function! TerminalSend(lines)
-						call jobsend(g:last_terminal_job_id, add(a:lines, ''))
-					endfunction
-				"OPERATORS
-					"SEND OPERATOR
-					function! OperatorTerminalSend(visual, ...)
-						let [lineStart, columnStart] = getpos(a:0 ? "'<" : "'[")[1:2]
-						let [lineEnd, columnEnd]     = getpos(a:0 ? "'>" : "']")[1:2]
-						let lines                    = getline(lineStart, lineEnd)
-
-						if len(lines) == 0
-							return
-						endif
-
-						if a:visual == 'block' || a:visual == "\<c-v>"
-							call Pechoerr('Operator(SEND) not defined for VISUAL-BLOCK mode')
-							return
-						elseif a:visual == 'line' || a:visual ==# 'V'
-							call TerminalSend(lines)
-						elseif a:visual == 'char' || a:visual ==# 'v'
-							let lines[-1] = lines[-1][: columnEnd - (&selection == 'inclusive' ? 1 : 2)]
-							let lines[0]  = lines[0][columnStart - 1:]
-							call TerminalSend(lines)
-						endif
-					endfunction
-
-					nnoremap <silent> gz :set opfunc=OperatorTerminalSend<CR>g@
-					vnoremap <silent> gz :<c-u>call OperatorTerminalSend(visualmode(), 1)<CR>
-
-					nnoremap <silent> gzz :TermSendLine<CR>
-					vnoremap <silent> gzz :<C-U>TermSendLine<CR>
-				"MAPPINGS
-			endif
-		"VIFM
-			if has('nvim')
-				"FUNCTIONS
-					function! Vifm(path)
-						let s:temp = tempname()
-						let l:command = 'Vifm --choose-files ' . s:temp . ' ' . fnameescape(expand(a:path ))
-
-						execute 'leftabove 40vnew'
-						call termopen(l:command, {'on_exit': function('VifmOnExit')})
-						setl modifiable
-						startinsert
-
-						let s:vifm_job_id = b:terminal_job_id
-					endfunction
-
-					function! VifmOnExit(...)
-						bdelete!
-						let l:lines = readfile(s:temp)
-						if len(l:lines) > 0
-							for line in l:lines
-								execute 'edit ' . fnameescape(line)
-							endfor
-						endif
-					endfunction
-				"COMMANDS
-					command! -narg=1 Vifm :call Vifm(<q-args>)
-			endif
-		"EXECUTION-ENGINE
-			if has('nvim')
-				"VARIABLES
-					let s:languages = {}
-					"INTERPRETED LANGUAGES
-						let s:languages.python = {
-							\'extension' : 'py',
-							\'repl'      : 'ipython',
-							\'execute'   : 'python3 %:p:S',
-							\'init'      : [
-									\'import os',
-									\'import sys',
-									\'import re',
-									\'from collections import *',
-									\'import pprint',
-									\'import time',
-									\'import datetime',
-									\'import itertools',
-									\'import functools',
-									\'import datetime',
-									\'import numpy as np',
-									\'import pandas as pd',
-									\'import matplotlib.pyplot as plt',
-							\],
-						\}
-						let s:languages.r = {
-							\'extension'	 : 'r',
-							\'repl'			 : 'r',
-						\}
-						let s:languages.javascript = {
-							\'extension'	 : 'js',
-							\'repl'			 : 'node',
-							\'execute'		 : 'node %:p:S',
-						\}
-						let s:languages.ruby = {
-							\'extension'	 : 'rb',
-							\'repl'			 : 'irb',
-							\'execute'		 : 'ruby %:p:S',
-						\}
-						let s:languages.typescript = {
-							\'extension'	 : 'ts',
-							\'repl'			 : 'ts-node',
-							\'execute'		 : 'tsc %:p:S',
-						\}
-						let s:languages.perl = {
-							\'extension'	 : 'pl',
-							\'repl'			 : 'perl',
-							\'execute'		 : 'perl %:p:S',
-						\}
-						let s:languages.php = {
-							\'extension'	 : 'php',
-							\'repl'			 : 'php',
-							\'execute'		 : 'php %:p:S',
-						\}
-						let s:languages.lisp = {
-							\'extension'	 : 'lsp',
-							\'repl'			 : 'sbcl',
-						\}
-						let s:languages.lua = {
-							\'extension'	 : 'lua',
-							\'repl'			 : 'lua',
-							\'execute'		 : 'lua %:p:S',
-						\}
-					"COMPILED LANGUAGES
-						let s:languages.c = {
-							\'extension'       : 'c',
-							\'repl'            : 'cling',
-							\'compile'         : 'gcc %:p:S -o %:p:r:S.out',
-							\'execute'         : '%:p:r:S.out',
-							\'compile-execute' : 'gcc %:p:S -o %:p:r:S.out && %:p:r:S.out',
-							\'init'      : [
-									\'#include <stdio.h>',
-									\'#include <math.h>',
-							\],
-						\}
-						let s:languages.cpp = {
-							\'extension'       : 'cpp',
-							\'repl'            : 'cling',
-							\'compile'         : 'g++ -std=c++14 %:p:S -o %:p:r:S.out',
-							\'execute'         : '%:p:r:S.out',
-							\'compile-execute' : 'g++ -std=c++14 %:p:S -o %:p:r:S.out && %:p:r:S.out',
-							\'init'      : [
-									\'#include <iostream>',
-									\'#include <string>',
-									\'using namespace std;',
-							\],
-						\}
-						let s:languages.cs = {
-							\'extension'       : 'cs',
-							\'repl'            : 'csharp',
-							\'compile'         : 'csc %:p:s',
-							\'execute'         : 'mono %:r:s.exe',
-							\'compile-execute' : 'csc %:p:s && mono %:r:s.exe',
-						\}
-						let s:languages.csx = {
-							\'extension'       : 'csx',
-							\'repl'            : 'scriptcs',
-							\'execute'         : 'scriptcs %:r:S.csx',
-						\}
-						let s:languages.java = {
-							\'extension'       : 'java',
-							\'repl'            : 'jshell',
-							\'compile'         : 'javac %:p:S',
-							\'execute'         : 'java %:r:S',
-							\'compile-execute' : 'javac %:p:S && java %:r:S',
-						\}
-						let s:languages.scala = {
-							\'extension'       : 'scala',
-							\'repl'            : 'scala',
-							\'compile'         : 'scalac %:p:S',
-							\'execute'         : 'scala %:r:S',
-							\'compile-execute' : 'scalac %:p:S && scala %:r:S',
-						\}
-						let s:languages.haskell = {
-							\'extension'	 : 'hs',
-							\'repl'			 : 'ghci',
-						\}
-						let s:languages.processing = {
-							\'extension'       : 'pde',
-							\'compile'         : 'processing-java --output=/tmp/processing/ --force --sketch=%:p:h:S --build',
-							\'execute'         : 'processing-java --output=/tmp/processing/ --force --sketch=%:p:h:S --run',
-							\'compile-execute' : 'processing-java --output=/tmp/processing/ --force --sketch=%:p:h:S --run',
-						\}
-					"SHELL
-						let s:languages.zsh = {
-							\'extension'	 : 'zsh',
-							\'repl'			 : 'zsh',
-							\'execute'		 : 'zsh %:p:S',
-						\}
-						let s:languages.bash = {
-							\'extension'	 : 'bash',
-							\'repl'			 : 'bash',
-							\'execute'		 : 'bash %:p:S',
-						\}
-						let s:languages.fish = {
-							\'extension'	 : 'fsh',
-							\'repl'			 : 'fsh',
-							\'execute'		 : 'fsh',
-						\}
-						let s:languages.sh = {
-							\'extension'	 : 'sh',
-							\'repl'			 : 'sh',
-							\'execute'		 : 'sh %:p:S',
-						\}
-						let s:languages.batch = {
-							\'extension'	 : 'cmd',
-							\'repl'			 : 'cmd',
-						\}
-					"DATABASES
-						let s:languages.sqlite = {
-							\'extension'	 : 'sql',
-							\'repl'			 : 'sqlite',
-						\}
-						let s:languages.mysql = {
-							\'extension'	 : 'mysql',
-							\'repl'			 : 'mysql',
-						\}
-						let s:languages.redis = {
-							\'extension'	 : 'redis',
-							\'repl'			 : 'redis-cli',
-						\}
-						let s:languages.mongo = {
-							\'extension'	 : 'mongo',
-							\'repl'			 : 'mongo',
-						\}
-				"FUNCTIONS
-					function! EECommand(type, ...)
-						if exists('a:1') && len(a:1) > 0
-							let l:filetype = a:1
-						else
-							let l:filetype = &filetype
-						endif
-
-						if has_key(s:languages, l:filetype) == 1
-							let l:lang = s:languages[l:filetype]
-
-							if has_key(l:lang, a:type) == 1
-								if a:type == 'repl'
-									let s:ee_last_repl_filetype = l:filetype
-								endif
-
-								let l:command = substitute(l:lang[a:type], '%\(:\w\)\+', '\=expand(submatch(0))', 'g')
-								return l:command
+		"VIM
+			"@TODO TOAGGLER.vim
+			"@TODO WRAPIT.vim
+		"GENERAL
+			"TERMINAL
+				if has('nvim')
+					"FUNCTIONS
+						function! Terminal(count, dir, pos, bang, cmd)
+							if a:count == 0
+								execute a:dir a:pos
 							else
-								call PEchoError(l:filetype . ' does not support ' . a:type . ' operation')
+								execute a:dir . ' ' . a:count a:pos
+							endif
+
+							setl modifiable
+
+							if a:bang == 0
+								call termopen(a:cmd, {'on_exit': function('TerminalOnExit')})
+							elseif a:bang == 1
+								call termopen(a:cmd)
+							endif
+
+							let g:last_terminal_job_id = b:terminal_job_id
+							startinsert
+						endfunction
+
+						function! TerminalOnExit(job_id, code, event) dict
+							if a:code == 0
+								bdelete!
+							endif
+						endfunction
+
+						function! TerminalSend(lines)
+							call jobsend(g:last_terminal_job_id, add(a:lines, ''))
+						endfunction
+					"COMMANDS
+						command! -bang        -nargs=1 Term   call Terminal(0, '', 'enew', <bang>0, <q-args>)
+						command! -bang -count -nargs=1 HBTerm call Terminal(<count>, 'botright', 'new', <bang>0, <q-args>)
+						command! -bang -count -nargs=1 HTTerm call Terminal(<count>, 'topleft', 'new', <bang>0, <q-args>)
+						command! -bang -count -nargs=1 VLTerm call Terminal(<count>, 'leftabove', 'vnew', <bang>0, <q-args>)
+						command! -bang -count -nargs=1 VRTerm call Terminal(<count>, 'rightbelow', 'vnew', <bang>0, <q-args>)
+
+						command! TermSendSelected     call TerminalSend(GetSelectedText(), '\n')
+						command! TermSendFile         call TerminalSend(getline(0, '$'))
+						command! TermSendLine         call TerminalSend([getline('.')])
+					"OPERATORS
+						"SEND OPERATOR
+						function! OperatorTerminalSend(visual, ...)
+							let [lineStart, columnStart] = getpos(a:0 ? "'<" : "'[")[1:2]
+							let [lineEnd, columnEnd]     = getpos(a:0 ? "'>" : "']")[1:2]
+							let lines                    = getline(lineStart, lineEnd)
+
+							if len(lines) == 0
 								return
 							endif
-						else
-							call PEchoError(l:filetype . ' filetype is not supported')
-							return
-						endif
-					endfunction
 
-					function! EEInitREPL()
-						let l:filetype = s:ee_last_repl_filetype
-
-						if has_key(s:languages, l:filetype) == 1
-							let l:lang = s:languages[l:filetype]
-
-							if has_key(l:lang, 'init') == 1
-								call TerminalSend(l:lang['init'])
+							if a:visual == 'block' || a:visual == "\<c-v>"
+								call Pechoerr('Operator(SEND) not defined for VISUAL-BLOCK mode')
+								return
+							elseif a:visual == 'line' || a:visual ==# 'V'
+								call TerminalSend(lines)
+							elseif a:visual == 'char' || a:visual ==# 'v'
+								let lines[-1] = lines[-1][: columnEnd - (&selection == 'inclusive' ? 1 : 2)]
+								let lines[0]  = lines[0][columnStart - 1:]
+								call TerminalSend(lines)
 							endif
-						else
-							call PEchoError(l:filetype . ' filetype is not supported')
-							return
-						endif
-					endfunction
-				"COMMANDS
-					command! -narg=? EERepl   :execute 'VRTerm '    . EECommand('repl', <q-args>) | :call EEInitREPL()
-					command! EECompile        :execute '10HBTerm '  . EECommand('compile')
-					command! EEExecute        :execute '20HBTerm! ' . EECommand('execute')
-					command! EECompileExecute :execute '20HBTerm! ' . EECommand('compile-execute')
-				"MAPPINGS
-					nmap <silent> <Plug>(ee-repl)            :EERepl<CR>
-					nmap <silent> <Plug>(ee-compile)         :EECompile<CR>
-					nmap <silent> <Plug>(ee-execute)         :EEExecute<CR>
-					nmap <silent> <Plug>(ee-compile-execute) :EECompileExecute<CR>
-					nmap <silent> <Plug>(ee-fzf-repl)        :call fzf#run(fzf#wrap({'source': getcompletion('', 'filetype'), 'sink': 'EERepl'}))<CR>
-			endif
-		"FZF-EXTENSIONS
-			"FZF-EMOJIS
-				"FUNCTIONS
-					function! FZFEmojisLoad(path)
-						let l:emojis = ReadJSON(glob(a:path))
-						let l:strings = []
+						endfunction
 
-						for emoji in l:emojis
-							let l:sno    = string(emoji['sno']) . '.  '
-							let l:symbol = '[' . emoji['symbol'] . ' ]' . repeat(' ', 4)
-							let l:name   = emoji['name'] . repeat(' ', 8)
-							let l:tags   = ':' . join(emoji['tags'], ' | ') . ':'
+						nnoremap <silent> gz :set opfunc=OperatorTerminalSend<CR>g@
+						vnoremap <silent> gz :<c-u>call OperatorTerminalSend(visualmode(), 1)<CR>
 
-							if emoji['symbol'] == '🥰'
+						nnoremap <silent> gzz :TermSendLine<CR>
+						vnoremap <silent> gzz :<C-U>TermSendLine<CR>
+					"MAPPINGS
+				endif
+			"VIFM
+				if has('nvim')
+					"FUNCTIONS
+						function! Vifm(path)
+							let s:temp = tempname()
+							let l:command = 'Vifm --choose-files ' . s:temp . ' ' . fnameescape(expand(a:path ))
+
+							execute 'leftabove 40vnew'
+							call termopen(l:command, {'on_exit': function('VifmOnExit')})
+							setl modifiable
+							startinsert
+
+							let s:vifm_job_id = b:terminal_job_id
+						endfunction
+
+						function! VifmOnExit(...)
+							bdelete!
+							let l:lines = readfile(s:temp)
+							if len(l:lines) > 0
+								for line in l:lines
+									execute 'edit ' . fnameescape(line)
+								endfor
+							endif
+						endfunction
+					"COMMANDS
+						command! -narg=1 Vifm :call Vifm(<q-args>)
+				endif
+			"EXECUTION-ENGINE
+				if has('nvim')
+					"VARIABLES
+						let s:languages = {}
+						"LANGUAGES
+							"INTERPRETED
+								let s:languages.python = {
+									\'extension' : 'py',
+									\'repl'      : 'ipython',
+									\'execute'   : 'python3 %:p:S',
+									\'init'      : [
+											\'import os',
+											\'import sys',
+											\'import re',
+											\'from collections import *',
+											\'import pprint',
+											\'import time',
+											\'import datetime',
+											\'import itertools',
+											\'import functools',
+											\'import datetime',
+											\'import numpy as np',
+											\'import pandas as pd',
+											\'import matplotlib.pyplot as plt',
+									\],
+								\}
+								let s:languages.r = {
+									\'extension'	 : 'r',
+									\'repl'			 : 'r',
+								\}
+								let s:languages.javascript = {
+									\'extension'	 : 'js',
+									\'repl'			 : 'node',
+									\'execute'		 : 'node %:p:S',
+								\}
+								let s:languages.ruby = {
+									\'extension'	 : 'rb',
+									\'repl'			 : 'irb',
+									\'execute'		 : 'ruby %:p:S',
+								\}
+								let s:languages.typescript = {
+									\'extension'	 : 'ts',
+									\'repl'			 : 'ts-node',
+									\'execute'		 : 'tsc %:p:S',
+								\}
+								let s:languages.perl = {
+									\'extension'	 : 'pl',
+									\'repl'			 : 'perl',
+									\'execute'		 : 'perl %:p:S',
+								\}
+								let s:languages.php = {
+									\'extension'	 : 'php',
+									\'repl'			 : 'php',
+									\'execute'		 : 'php %:p:S',
+								\}
+								let s:languages.lisp = {
+									\'extension'	 : 'lsp',
+									\'repl'			 : 'sbcl',
+								\}
+								let s:languages.lua = {
+									\'extension'	 : 'lua',
+									\'repl'			 : 'lua',
+									\'execute'		 : 'lua %:p:S',
+								\}
+							"COMPILED
+								let s:languages.c = {
+									\'extension'       : 'c',
+									\'repl'            : 'cling',
+									\'compile'         : 'gcc %:p:S -o %:p:r:S.out',
+									\'execute'         : '%:p:r:S.out',
+									\'compile-execute' : 'gcc %:p:S -o %:p:r:S.out && %:p:r:S.out',
+									\'init'      : [
+											\'#include <stdio.h>',
+											\'#include <math.h>',
+									\],
+								\}
+								let s:languages.cpp = {
+									\'extension'       : 'cpp',
+									\'repl'            : 'cling',
+									\'compile'         : 'g++ -std=c++14 %:p:S -o %:p:r:S.out',
+									\'execute'         : '%:p:r:S.out',
+									\'compile-execute' : 'g++ -std=c++14 %:p:S -o %:p:r:S.out && %:p:r:S.out',
+									\'init'      : [
+											\'#include <iostream>',
+											\'#include <string>',
+											\'using namespace std;',
+									\],
+								\}
+								let s:languages.cs = {
+									\'extension'       : 'cs',
+									\'repl'            : 'csharp',
+									\'compile'         : 'csc %:p:s',
+									\'execute'         : 'mono %:r:s.exe',
+									\'compile-execute' : 'csc %:p:s && mono %:r:s.exe',
+								\}
+								let s:languages.csx = {
+									\'extension'       : 'csx',
+									\'repl'            : 'scriptcs',
+									\'execute'         : 'scriptcs %:r:S.csx',
+								\}
+								let s:languages.java = {
+									\'extension'       : 'java',
+									\'repl'            : 'jshell',
+									\'compile'         : 'javac %:p:S',
+									\'execute'         : 'java %:r:S',
+									\'compile-execute' : 'javac %:p:S && java %:r:S',
+								\}
+								let s:languages.scala = {
+									\'extension'       : 'scala',
+									\'repl'            : 'scala',
+									\'compile'         : 'scalac %:p:S',
+									\'execute'         : 'scala %:r:S',
+									\'compile-execute' : 'scalac %:p:S && scala %:r:S',
+								\}
+								let s:languages.haskell = {
+									\'extension'	 : 'hs',
+									\'repl'			 : 'ghci',
+								\}
+								let s:languages.processing = {
+									\'extension'       : 'pde',
+									\'compile'         : 'processing-java --output=/tmp/processing/ --force --sketch=%:p:h:S --build',
+									\'execute'         : 'processing-java --output=/tmp/processing/ --force --sketch=%:p:h:S --run',
+									\'compile-execute' : 'processing-java --output=/tmp/processing/ --force --sketch=%:p:h:S --run',
+								\}
+						"SHELLS
+							"LINUX
+								let s:languages.zsh = {
+									\'extension'	 : 'zsh',
+									\'repl'			 : 'zsh',
+									\'execute'		 : 'zsh %:p:S',
+								\}
+								let s:languages.bash = {
+									\'extension'	 : 'bash',
+									\'repl'			 : 'bash',
+									\'execute'		 : 'bash %:p:S',
+								\}
+								let s:languages.fish = {
+									\'extension'	 : 'fsh',
+									\'repl'			 : 'fsh',
+									\'execute'		 : 'fsh',
+								\}
+								let s:languages.sh = {
+									\'extension'	 : 'sh',
+									\'repl'			 : 'sh',
+									\'execute'		 : 'sh %:p:S',
+								\}
+								let s:languages.batch = {
+									\'extension'	 : 'cmd',
+									\'repl'			 : 'cmd',
+								\}
+							"DATABASES
+								let s:languages.sqlite = {
+									\'extension'	 : 'sql',
+									\'repl'			 : 'sqlite',
+								\}
+								let s:languages.mysql = {
+									\'extension'	 : 'mysql',
+									\'repl'			 : 'mysql',
+								\}
+								let s:languages.redis = {
+									\'extension'	 : 'redis',
+									\'repl'			 : 'redis-cli',
+								\}
+								let s:languages.mongo = {
+									\'extension'	 : 'mongo',
+									\'repl'			 : 'mongo',
+								\}
+						"FRAMEWORKS
+							"@TODO NODEJS.vim
+							"@TODO DJANGO.vim
+							"@TODO FLASK.vim
+						"TOOLS
+					"FUNCTIONS
+						function! EECommand(type, ...)
+							if exists('a:1') && len(a:1) > 0
+								let l:filetype = a:1
 							else
-								let l:string = l:sno . l:symbol . l:name
-								let l:strings = add(l:strings, l:string)
+								let l:filetype = &filetype
 							endif
-						endfor
 
-						let s:fzf_emojis = l:emojis
-						return l:strings
-					endfunction
+							if has_key(s:languages, l:filetype) == 1
+								let l:lang = s:languages[l:filetype]
 
-					function! FZFEmojisInsert(string)
-						let l:id = split(str2nr(a:string), ':')[0]
-						execute 'normal! a' . s:fzf_emojis[l:id]['symbol']
-					endfunction
-				"COMMANDS
-					command! -narg=1 FZFEmojisInsert call FZFEmojisInsert(<q-args>)
-					command! FZFEmojis :call fzf#run(fzf#wrap({'source': FZFEmojisLoad('~/unicode-emojis.json'), 'sink': 'FZFEmojisInsert'}))<CR>
-				"MAPPINGS
-					imap :ej <ESC>:FZFEmojis<CR>
-		"TOAGGLER.vim
-		"WRAPIT.vim
+								if has_key(l:lang, a:type) == 1
+									if a:type == 'repl'
+										let s:ee_last_repl_filetype = l:filetype
+									endif
+
+									let l:command = substitute(l:lang[a:type], '%\(:\w\)\+', '\=expand(submatch(0))', 'g')
+									return l:command
+								else
+									call PEchoError(l:filetype . ' does not support ' . a:type . ' operation')
+									return
+								endif
+							else
+								call PEchoError(l:filetype . ' filetype is not supported')
+								return
+							endif
+						endfunction
+
+						function! EEInitREPL()
+							let l:filetype = s:ee_last_repl_filetype
+
+							if has_key(s:languages, l:filetype) == 1
+								let l:lang = s:languages[l:filetype]
+
+								if has_key(l:lang, 'init') == 1
+									call TerminalSend(l:lang['init'])
+								endif
+							else
+								call PEchoError(l:filetype . ' filetype is not supported')
+								return
+							endif
+						endfunction
+					"COMMANDS
+						command! -narg=? EERepl   :execute 'VRTerm '    . EECommand('repl', <q-args>) | :call EEInitREPL()
+						command! EECompile        :execute '10HBTerm '  . EECommand('compile')
+						command! EEExecute        :execute '20HBTerm! ' . EECommand('execute')
+						command! EECompileExecute :execute '20HBTerm! ' . EECommand('compile-execute')
+					"MAPPINGS
+						nmap <silent> <Plug>(ee-repl)            :EERepl<CR>
+						nmap <silent> <Plug>(ee-compile)         :EECompile<CR>
+						nmap <silent> <Plug>(ee-execute)         :EEExecute<CR>
+						nmap <silent> <Plug>(ee-compile-execute) :EECompileExecute<CR>
+						nmap <silent> <Plug>(ee-fzf-repl)        :call fzf#run(fzf#wrap({'source': getcompletion('', 'filetype'), 'sink': 'EERepl'}))<CR>
+				endif
+			"FZF-EXTENSIONS
+				"FZF-EMOJIS
+					"FUNCTIONS
+						function! FZFEmojisLoad(path)
+							let l:emojis = ReadJSON(glob(a:path))
+							let l:strings = []
+
+							for emoji in l:emojis
+								let l:sno    = string(emoji['sno']) . '.  '
+								let l:symbol = '[' . emoji['symbol'] . ' ]' . repeat(' ', 4)
+								let l:name   = emoji['name'] . repeat(' ', 8)
+								let l:tags   = ':' . join(emoji['tags'], ' | ') . ':'
+
+								if emoji['symbol'] == '🥰'
+								else
+									let l:string = l:sno . l:symbol . l:name
+									let l:strings = add(l:strings, l:string)
+								endif
+							endfor
+
+							let s:fzf_emojis = l:emojis
+							return l:strings
+						endfunction
+
+						function! FZFEmojisInsert(string)
+							let l:id = split(str2nr(a:string), ':')[0]
+							execute 'normal! a' . s:fzf_emojis[l:id]['symbol']
+						endfunction
+					"COMMANDS
+						command! -narg=1 FZFEmojisInsert call FZFEmojisInsert(<q-args>)
+						command! FZFEmojis :call fzf#run(fzf#wrap({'source': FZFEmojisLoad('~/unicode-emojis.json'), 'sink': 'FZFEmojisInsert'}))<CR>
+					"MAPPINGS
+						imap :ej <ESC>:FZFEmojis<CR>
+		"DEVELOPMENT
+		"MISCELLANOUS
+			"@TODO ORGASMIC-C
+			"@TODO WINDOWS-MANAGER
 	"MISCELLANOUS
 		"AUTOMATIC vimrc SOURCING
 			"augroup myvimrc
@@ -2370,7 +2388,7 @@
 		set noshowcmd
 		set noruler
 		set noshowmode
-		if has('macunix') || has('unix')
+		if has('macunix')
 			set cursorline
 		endif
 		set nolist
