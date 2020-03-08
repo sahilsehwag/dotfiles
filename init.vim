@@ -79,9 +79,6 @@
 					endfunction
 		"VIM
 			"FILESYSTEM
-				"COMMANDS
-					command! -nargs=1 -bang SaveAs  : call SaveAs  (<q-args>, <bang>0)
-					command! -nargs=1 -bang Read    : call Read    (<q-args>, <bang>0)
 				"FUNCTIONS
 					function! SaveAs(path, bang)
 						let l:filename = input('Enter New Filename: ')
@@ -114,6 +111,9 @@
 							endif
 						endif
 					endfunction
+				"COMMANDS
+					command! -nargs=1 -bang SaveAs  : call SaveAs  (<q-args>, <bang>0)
+					command! -nargs=1 -bang Read    : call Read    (<q-args>, <bang>0)
 			"TEXT
 				function! GetWordUnderCursor()
 					execute 'normal! "ayiw'
@@ -412,8 +412,18 @@
 			endfunction
 	"PLUGINS
 		"VIM
-			"@TODO TOAGGLER.vim
-			"@TODO WRAPIT.vim
+			"@TODO BETTER-VIM.vim
+				"YANK
+					"PRESERVE-POSITION
+					"REGISTER-MANAGEMENT
+				"PASTE
+					"PASTE-SWAP
+					"PASTE-ROTATION
+					"PASTE-FORMATTING
+					"PASTE-NEWLINE
+				"o|O
+				"VISUAL
+					"OBJECTS:PRESERVE-POSITION
 		"GENERAL
 			"TERMINAL
 				if has('nvim')
@@ -773,7 +783,11 @@
 					"MAPPINGS
 						imap :ej <ESC>:FZFEmojis<CR>
 		"DEVELOPMENT
+		"NOTES
+			"@TODO TYPIST.vim
 		"MISCELLANOUS
+			"@TODO TOAGGLER.vim
+			"@TODO WRAPIT.vim
 			"@TODO ORGASMIC-C
 			"@TODO WINDOWS-MANAGER
 	"MISCELLANOUS
@@ -815,42 +829,42 @@
 			let g:highlight_leading_tabs         = 0
 			let g:highlight_listchars            = 1
 		"MISCELLANOUS
-	"PYTHON BINARIES
+	"PYTHON-BINARIES
 		let g:python_host_prog = 'python2'
 		let g:python3_host_prog = 'python3'
 		"let g:loaded_python3_provider=1
 	"HIGHLIGHTS
-		"SEARCH HIGHLIGHTS
+		"SEARCH-HIGHLIGHTS
 			if ExistsAndTrue('g:jaat_highlight_search')
 				highlight Search ctermfg=49 cterm=NONE gui=NONE
 				highlight IncSearchMatch ctermfg=black ctermbg=186
 			endif
-		"TRAILING WHITESPACES
+		"TRAILING-WHITESPACES
 			if ExistsAndTrue('g:highlight_trailing_whitespaces')
 				"highlight TrailingWhitespace ctermbg=135
 				highlight TrailingWhitespace ctermfg=135
 				call matchadd('TrailingWhitespace', '\s\+$', 100)
 			endif
-		"CONSECUTIVE BLANKLINES
+		"CONSECUTIVE-BLANKLINES
 			if ExistsAndTrue('g:highlight_consecutive_blanklines')
 				highlight ConsecutiveBlankLines ctermbg=135
 				call matchadd('ConsecutiveBlankLines', '\(^$\n\)\{2,}', 100)
 			endif
-		"LEADING SPACES
+		"LEADING-SPACES
 			if ExistsAndTrue('g:highlight_leading_spaces')
 				highlight LeadingSpaces ctermbg=135
 				call matchadd('LeadingSpaces', '^ \+', 100)
 			endif
-		"LEADING TABS
+		"LEADING-TABS
 			if ExistsAndTrue('g:highlight_leading_tabs')
 				highlight LeadingTabs ctermbg=135
 				call matchadd('LeadingTabs', '^\t\+', 100)
 			endif
-		"AUTOCOMPLETION MENU
+		"AUTOCOMPLETION-MENU
 			"highlight Pmenu ctermbg=232 ctermfg=7
 			"highlight PmenuSel ctermfg=15
 			highlight Pmenu ctermbg=238 gui=bold
-		"INTERFACE HIGHLIGHTS
+		"INTERFACE-HIGHLIGHTS
 			highlight VertSplit ctermbg=None guibg=None
 		"LISTCHARS
 			if ExistsAndTrue('g:highlight_listchars')
@@ -859,41 +873,41 @@
 				highlight Whitespace  ctermfg=135 guifg=#af5fff
 			endif
 "MAPPINGS
-	"MAIN LAYOUT MAPPINGS
-		"BETTER o|O @TODO
-			"NORMAL MODE OPENER
+	"MAIN-LAYOUT-MAPPINGS
+		"BETTER-o|O @TODO
+			"NORMAL-MODE OPENER
 				"nnoremap <CR> :normal! o<ESC>
 		"BETTER PASTES
-			"PASTE SWAP @FIX
+			"PASTE-SWAP
 				nnoremap p :normal! ]p <CR>
 				nnoremap P :normal! [p <CR>
-				nnoremap ]p :normal! p <CR>
-				nnoremap [p :normal! P <CR>
+				" nnoremap ]p :normal! p <CR>
+				" nnoremap [p :normal! P <CR>
 				"vnoremap p :<C-u>normal! ]pgvd <CR>
 				"vnoremap P :<C-u>normal! [pgvd <CR>
 				"vnoremap ]p :<C-u>normal! pgvd <CR>
 				"vnoremap [p :<C-u>normal! Pgvd <CR>
-			"FORMATTED PASTE + <<|>> @FIX
+			"INDENTED-PASTE
 				nnoremap >p :normal! ]p>> <CR>
 				nnoremap <p :normal! ]p<< <CR>
 				nnoremap >P :normal! [p>> <CR>
 				nnoremap <P :normal! [p<< <CR>
-			"NEWLINE PASTE + ==
-				nnoremap ]P :normal! o<esc>p==
-				nnoremap [P :normal! O<Esc>P==
-	"LEADER MAPPING
+			"NEWLINE-PASTE
+				nnoremap ]p :normal! o<esc>p==
+				nnoremap [p :normal! O<Esc>P==
+	"LEADER-MAPPING
 		let mapleader = " "
 		let maplocalleader = ","
 		nnoremap ; :
-	"INTERFACE MAPPINGS
-		"TAB MAPPINGS
+	"INTERFACE-MAPPINGS
+		"TAB-MAPPINGS
 			nnoremap <LEADER>ta :tabnew<CR>
 			nnoremap <LEADER>tc :tabclose<CR>
 			nnoremap <LEADER>tn :tabnext<CR>
 			nnoremap <LEADER>tp :tabprevious<CR>
 			nnoremap <LEADER>th :tabmove -<CR>
 			nnoremap <LEADER>tl :tabmove +<CR>
-		"TERMINAL MAPPINGS
+		"TERMINAL-MAPPINGS
 			if has('nvim')
 				nnoremap <LEADER>te :Term zsh<CR>
 				nnoremap <LEADER>tv :VRTerm zsh<CR>
@@ -903,7 +917,7 @@
 				nnoremap <LEADER>tE :lcd %:p:h \| Term zsh<CR>
 				nnoremap <LEADER>tH :lcd %:p:h \| 15HBTerm zsh<CR>
 			endif
-		"BUFFER MAPPINGS
+		"BUFFER-MAPPINGS
 			nnoremap H           :bprevious<CR>
 			nnoremap L           :bnext<CR>
 			nnoremap <LEADER>bn  :enew<CR>
@@ -921,7 +935,7 @@
 			nnoremap <Leader>bc  :bp<bar>sp<bar>bn<bar>bd<CR>
 			nnoremap <LEADER>bt  :call ScratchBuffer('e')<CR>
 			nnoremap <LEADER>bT  :call ScratchBuffer('e', 1)<CR>
-		"WINDOW MAPPINGS
+		"WINDOW-MAPPINGS
 			nnoremap <Leader>wh :sp<CR>
 			nnoremap <Leader>wv :vsp<CR>
 			nnoremap <Leader>wo :only<CR>
@@ -934,11 +948,11 @@
 			nnoremap <C-K> <C-W><C-K>
 			nnoremap <C-L> <C-W><C-L>
 			nnoremap <C-H> <C-W><C-H>
-	"TERMINAL MAPPINGS
+	"TERMINAL-MAPPINGS
 		if has('nvim')
 			tnoremap <C-SPACE> <C-\><C-n>
 		endif
-	"INSERT MODE
+	"INSERT-MODE
 		"ABBREVIATIONS @TODO
 			abbreviate chk ✓
 			abbreviate crs ✖
@@ -1263,9 +1277,9 @@
 
 				inoremap ,betad ᵦ
 				inoremap ,phid ᵩ
-	"COMMANDLINE MODE
-	"MISCELLANOUS GROUPS
-		"REGISTER MAPPINGS
+	"COMMANDLINE-MODE
+	"MISCELLANOUS-GROUPS
+		"REGISTER-MAPPINGS
 			nnoremap <Leader>ra "a
 			nnoremap <Leader>rb "b
 			nnoremap <Leader>rc "c
@@ -1318,7 +1332,7 @@
 			nnoremap <Leader>rX "x
 			nnoremap <Leader>rY "y
 			nnoremap <Leader>rZ "z
-		"VIM MAPPINGS
+		"VIM-MAPPINGS
 			nnoremap <LEADER>vc  : edit ~/.config/nvim/init.vim<CR>
 			nnoremap <LEADER>vs  : source ~/.config/nvim/init.vim<CR>
 			nnoremap <Leader>vi  : PlugInstall<CR>
@@ -1333,7 +1347,7 @@
 			vnoremap <Leader>vf  : Autoformat<CR>
 			nnoremap <Leader>vF  : call AutoFormatToggle()<CR>
 			nnoremap <LEADER>vS  : Startify<CR>
-		"TEXT MAPPINGS
+		"TEXT-MAPPINGS
 			"REMOVE CONSECUTIVE BLANK LINES (>=3)
 				nmap <Leader>xb :g:^$\n\{3,}:d<CR>
 			"REMOVE TRAILING WHITESPACE
@@ -1344,14 +1358,14 @@
 				nmap <Leader>xs :call ConvertTabs2Spaces()<CR>
 			"RETAB
 				nmap <Leader>xr :%retab!<CR>
-		"EDITOR MAPPINGS
+		"EDITOR-MAPPINGS
 			"TOGGLES
 				map <Leader>etl :set number!<CR>
 				map <Leader>etr :set relativenumber!<CR>
 				map <Leader>etw :let g:highlight_trailing_whitespaces = !g:highlight_trailing_whitespaces<CR>
 				map <Leader>ets :let g:highlight_leading_spaces       = !g:highlight_leading_spaces<CR>
 				map <Leader>ett :let g:highlight_leading_tabs         = !g:highlight_leading_tabs<CR>
-		"LINUX MAPPINGS
+		"LINUX-MAPPINGS
 			"FILESYSTEM
 				nnoremap <silent> <Leader>ld :execute "DeleteFile " . fnamescape(expand('%'))<CR>
 			"FZF
@@ -1366,9 +1380,9 @@
 				vnoremap <Leader>lus :sort                         <CR>
 				vnoremap <Leader>luu :<C-u>'<,'>sort \| '<,'>!uniq <CR>
 				" vnoremap <Leader>luc :<C-u>'<,'>!bc                <CR>
-		"FIND & REPLACE
-			"REPLACE CHARACTER @TODO
-	"MISCELLANOUS MAPPINGS
+		"FIND-REPLACE
+			"REPLACE-CHARACTER @TODO
+	"MISCELLANOUS-MAPPINGS
 		"QUICK EXIT MAPPINGS
 		"REPEAT LAST OPERATION ON A MATCH ON NEXT n MATCH
 			nnoremap Q :normal n.<CR>
@@ -2011,7 +2025,16 @@
 		"Plug 'zefei/vim-colortuner'
 		"Plug 'augustold/vim-airline-colornum'
 		"Plug 'Yggdroot/indentLine'
-	"EXTENDING VIM
+	"EXTENDING-VIM
+		Plug 'svermeulen/vim-yoink'
+			let g:yoinkMaxItems = 10
+			let g:yoinkSyncNumberedRegisters = 1
+			let g:yoinkIncludeDeleteOperations = 0
+			let g:yoinkAutoFormatPaste = 0
+			let g:yoinkIncludeNamedRegisters = 0
+
+			nmap <expr> p yoink#canSwap() ? '<plug>(YoinkPostPasteSwapBack)' : '<plug>(YoinkPaste_p)'
+			nmap <expr> P yoink#canSwap() ? '<plug>(YoinkPostPasteSwapForward)' : '<plug>(YoinkPaste_P)'
 		"Plug 'vim-scripts/repmo.vim'
 			let repmo_key = ";"
 			let repmo_revkey = ","
@@ -2361,10 +2384,10 @@
 		set shiftwidth=4
 		set tabstop=4
 		set noexpandtab
-	"LINE NUMBERS
+	"LINE-NUMBERS
 		set number
 		set relativenumber
-	"SWAP & BACKUP
+	"SWAP-&-BACKUP
 		set directory=~/.config/nvim/temp
 		set nobackup
 	"SEARCHING
@@ -2414,7 +2437,7 @@
 		set nocompatible
 		set mouse=a
 		set clipboard=unnamed
-	"LANGUAGE CONFIGURATIONS
+	"LANGUAGE-CONFIGURATIONS
 		augroup CONFIGURATIONS
 			au!
 			au Filetype python set tabstop=4 | set shiftwidth=4 | set noexpandtab

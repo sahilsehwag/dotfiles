@@ -1,10 +1,10 @@
 (defun dotspacemacs/layers()
-  (setq-default
-   dotspacemacs-distribution 'spacemacs-base
-   dotspacemacs-enable-lazy-installation 'unused
-   dotspacemacs-ask-for-lazy-installation t
-   dotspacemacs-configuration-layer-path '()
-   dotspacemacs-configuration-layers '(
+ (setq-default
+  dotspacemacs-distribution 'spacemacs-base
+  dotspacemacs-enable-lazy-installation 'unused
+  dotspacemacs-ask-for-lazy-installation t
+  dotspacemacs-configuration-layer-path '()
+  dotspacemacs-configuration-layers '(
 	;DISTRIBUTION
 		;spacemacs
 		;spacemacs-base
