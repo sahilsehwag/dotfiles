@@ -412,18 +412,43 @@
 			endfunction
 	"PLUGINS
 		"VIM
-			"@TODO BETTER-VIM.vim
-				"YANK
+			"BETTER-VIM.vim
+				"BETTER-DELETE
+					nnoremap D "_D
+					nnoremap dd "_dd
+					xnoremap d "_d
+
+					nnoremap c "_c
+					nnoremap C "_C
+					nnoremap cc "_cc
+					xnoremap c "_c
+
+					nnoremap x d
+					nnoremap X D
+					nnoremap xx dd
+					xnoremap x d
+
+					nnoremap s c
+					nnoremap S C
+					nnoremap ss cc
+					xnoremap s c
+				"BETTER-YANK @TODO
 					"PRESERVE-POSITION
 					"REGISTER-MANAGEMENT
-				"PASTE
+				"BETTER-PASTE @TODO
 					"PASTE-SWAP
 					"PASTE-ROTATION
-					"PASTE-FORMATTING
-					"PASTE-NEWLINE
-				"o|O
-				"VISUAL
+					"NEWLINE-PASTE
+					"INDENTED-PASTE
+					"FORMATTED-PASTE
+				"BETTER-o|O
+					"nnoremap <CR> :normal! o<ESC>k^0<CR> @TODO
+					"nnoremap <SHIFT><CR> :normal! O<ESC>j^0<CR> @TODO
+				"BETTER-VISUAL
 					"OBJECTS:PRESERVE-POSITION
+				"BETTER-NAVIGATION
+					nnoremap 0 ^
+					nnoremap ^ 0
 		"GENERAL
 			"TERMINAL
 				if has('nvim')
@@ -2027,11 +2052,11 @@
 		"Plug 'Yggdroot/indentLine'
 	"EXTENDING-VIM
 		Plug 'svermeulen/vim-yoink'
-			let g:yoinkMaxItems = 10
-			let g:yoinkSyncNumberedRegisters = 1
-			let g:yoinkIncludeDeleteOperations = 0
-			let g:yoinkAutoFormatPaste = 0
-			let g:yoinkIncludeNamedRegisters = 0
+			let g:yoinkMaxItems                = 10
+			let g:yoinkSyncNumberedRegisters   = 1
+			let g:yoinkIncludeDeleteOperations = 1
+			let g:yoinkAutoFormatPaste         = 0
+			let g:yoinkIncludeNamedRegisters   = 0
 
 			nmap <expr> p yoink#canSwap() ? '<plug>(YoinkPostPasteSwapBack)' : '<plug>(YoinkPaste_p)'
 			nmap <expr> P yoink#canSwap() ? '<plug>(YoinkPostPasteSwapForward)' : '<plug>(YoinkPaste_P)'
