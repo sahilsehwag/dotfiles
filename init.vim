@@ -450,6 +450,14 @@
 				"BETTER-NAVIGATION
 					nnoremap 0 ^
 					nnoremap ^ 0
+				"BETTER-MARKS
+					"MACROS:RECORD=qr
+					"MACROS:HISTORY=qh
+					"MACROS:EDIT=qe
+					"MACROS:PLAY=qp
+					"MACROS:SAVE=qs
+					"MACROS:LIST=ql=play|edit|delete
+					"MACROS:NESTED
 		"GENERAL
 			"TERMINAL
 				if has('nvim')
