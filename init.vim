@@ -307,8 +307,22 @@
 			vnoremap ie :<C-u>normal! ggVG<CR>
 			onoremap ie :<C-u>normal! ggVG<CR>
 		"AT @TODO
+		"BEFORE @TODO
+			vnoremap b= :<C-u>normal! ^vt=<CR>
+			onoremap b= :<C-u>normal! ^vt=<CR>
+			vnoremap b: :<C-u>normal! ^vt:<CR>
+			onoremap b: :<C-u>normal! ^vt:<CR>
+			vnoremap b- :<C-u>normal! ^vt-<CR>
+			onoremap b- :<C-u>normal! ^vt-<CR>
+			vnoremap B= :<C-u>normal! ^vf=<CR>
+			onoremap B= :<C-u>normal! ^vf=<CR>
+			vnoremap B: :<C-u>normal! ^vf:<CR>
+			onoremap B: :<C-u>normal! ^vf:<CR>
+			vnoremap B- :<C-u>normal! ^vf-<CR>
+			onoremap B- :<C-u>normal! ^vf-<CR>
+		"BETWEEN
 		"AFTER
-			"TEXT OBJECT
+			"TEXT-OBJECT
 				function! TextObjectAfter(targetChar)
 					"GETTING COLUMN NUMBER OF CHARACTER AFTER THE targetChar
 						execute 'normal! 0' . v:count . 'f' . a:targetChar
@@ -349,19 +363,6 @@
 				onoremap <silent> a- :<C-u>call TextObjectAfter('-')<CR>
 
 				onoremap <silent> ga :<C-u>call TextObjectAfterAnyChar()<CR>
-		"BEFORE @TODO
-			vnoremap b= :<C-u>normal! ^vt=<CR>
-			onoremap b= :<C-u>normal! ^vt=<CR>
-			vnoremap b: :<C-u>normal! ^vt:<CR>
-			onoremap b: :<C-u>normal! ^vt:<CR>
-			vnoremap b- :<C-u>normal! ^vt-<CR>
-			onoremap b- :<C-u>normal! ^vt-<CR>
-			vnoremap B= :<C-u>normal! ^vf=<CR>
-			onoremap B= :<C-u>normal! ^vf=<CR>
-			vnoremap B: :<C-u>normal! ^vf:<CR>
-			onoremap B: :<C-u>normal! ^vf:<CR>
-			vnoremap B- :<C-u>normal! ^vf-<CR>
-			onoremap B- :<C-u>normal! ^vf-<CR>
 		"LANGUAGES @TODO
 			"PYTHON
 			"CLANG
@@ -1825,14 +1826,15 @@
 				nmap ga <Plug>(EasyAlign)
 			Plug 'thinca/vim-textobj-between'
 			Plug 'christoomey/vim-titlecase'
+			Plug 'svermeulen/vim-subversive'
+				nmap gr <plug>(SubversiveSubstituteRange)
+				xmap gr <plug>(SubversiveSubstituteRange)
 			Plug 'milsen/vim-operator-substitute'
 				let g:operator#substitute#default_flags     = "g"
 				let g:operator#substitute#default_delimiter = ";"
-				"MAPPINGS
-					map gr <Plug>(operator-substitute)
-					map &  <Plug>(operator-substitute-repeat)
-					map g& <Plug>(operator-substitute-repeat-no-flags)
-					map gR <Plug>(operator-substitute)$
+
+				map R <Plug>(operator-substitute)
+				map &  <Plug>(operator-substitute-repeat)
 			Plug 'tyru/operator-camelize.vim'
 				map cp <Plug>(operator-camelize)
 				map cu <Plug>(operator-decamelize)
