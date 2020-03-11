@@ -424,15 +424,15 @@
 					nnoremap cc "_cc
 					xnoremap c "_c
 
-					nnoremap x d
-					nnoremap X D
-					nnoremap xx dd
-					xnoremap x d
+					nnoremap gd d
+					nnoremap gD D
+					nnoremap gdd dd
+					xnoremap gd d
 
-					nnoremap s c
-					nnoremap S C
-					nnoremap ss cc
-					xnoremap s c
+					nnoremap gc c
+					nnoremap gC C
+					nnoremap gcc cc
+					xnoremap gc c
 				"BETTER-YANK @TODO
 					"PRESERVE-POSITION
 					"REGISTER-MANAGEMENT
@@ -1845,7 +1845,7 @@
 			Plug 'emonkak/vim-operator-sort'
 				map gS <Plug>(operator-sort)
 			Plug 'gustavo-hms/vim-duplicate'
-				map gd <Plug>(operator-duplicate)
+				"map gd <Plug>(operator-duplicate)
 			Plug 'rjayatilleka/vim-operator-goto'
 				map go <Plug>(operator-gotostart)
 				map gO <Plug>(operator-gotoend)
