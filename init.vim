@@ -416,24 +416,24 @@
 			"BETTER-VIM.vim
 				"BETTER-DELETE
 					nnoremap d "_d
+					xnoremap d "_d
 					nnoremap D "_D
 					nnoremap dd "_dd
-					xnoremap d "_d
 
 					nnoremap c "_c
+					xnoremap c "_c
 					nnoremap C "_C
 					nnoremap cc "_cc
-					xnoremap c "_c
 
-					nnoremap gd d
-					nnoremap gD D
-					nnoremap gdd dd
-					xnoremap gd d
+					nnoremap x d
+					xnoremap x d
+					nnoremap X D
+					nnoremap xx dd
 
-					nnoremap gc c
-					nnoremap gC C
-					nnoremap gcc cc
-					xnoremap gc c
+					nnoremap c c
+					xnoremap c c
+					nnoremap C C
+					nnoremap cc cc
 				"BETTER-YANK @TODO
 					"PRESERVE-POSITION
 					"REGISTER-MANAGEMENT
@@ -1836,13 +1836,13 @@
 			Plug 'thinca/vim-textobj-between'
 			Plug 'christoomey/vim-titlecase'
 			Plug 'svermeulen/vim-subversive'
-				nmap gr <plug>(SubversiveSubstituteRange)
-				xmap gr <plug>(SubversiveSubstituteRange)
+				nmap r <plug>(SubversiveSubstituteRange)
+				xmap r <plug>(SubversiveSubstituteRange)
 			Plug 'milsen/vim-operator-substitute'
-				let g:operator#substitute#default_flags     = "g"
+				let g:operator#substitute#default_flags     = ""
 				let g:operator#substitute#default_delimiter = ";"
 
-				map R <Plug>(operator-substitute)
+				map gr <Plug>(operator-substitute)
 				map &  <Plug>(operator-substitute-repeat)
 			Plug 'tyru/operator-camelize.vim'
 				map cp <Plug>(operator-camelize)
