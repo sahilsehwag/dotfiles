@@ -500,6 +500,15 @@
 							command! FZFEmojis :call fzf#run(fzf#wrap({'source': FZFEmojisLoad('~/unicode-emojis.json'), 'sink': 'FZFEmojisInsert'}))<CR>
 						"MAPPINGS
 							imap :ej <ESC>:FZFEmojis<CR>
+			"LINUXING @TODO
+				"VARIABLES
+					let g:linuxing_enable_default_mappings = 1
+				"DEFAULTS
+					if ExistsAndTrue('g:linuxing_enable_default_mappings')
+						vnoremap <Leader>lus :sort                         <CR>
+						vnoremap <Leader>luu :<C-u>'<,'>sort \| '<,'>!uniq <CR>
+						vnoremap <Leader>luc :<C-u>'<,'>!bc                <CR>
+					endif
 		"EDITING
 			"OPERATORS
 				"OPERATOR-BROWSER
@@ -1442,23 +1451,15 @@
 			nnoremap <Leader>rZ "z
 		"VIM-MAPPINGS
 			if (has('unix') || has('macunix'))
-				nnoremap <LEADER>vc  : edit ~/.config/nvim/init.vim<CR>
-				nnoremap <LEADER>vs  : source ~/.config/nvim/init.vim<CR>
+				nnoremap <LEADER>vc :edit ~/.config/nvim/init.vim<CR>
+				nnoremap <LEADER>vs :source ~/.config/nvim/init.vim<CR>
 			endif
-			nnoremap <Leader>vi  : PlugInstall<CR>
-			nnoremap <Leader>vu  : PlugClean<CR>
-
-			nnoremap <Leader>vd  : Goyo<CR>
-			nnoremap <Leader>vl  : Limelight!!<CR>
-			vnoremap <Leader>vf  : Autoformat<CR>
-			nnoremap <LEADER>vS  : Startify<CR>
+			nnoremap <Leader>vi :PlugInstall<CR>
+			nnoremap <Leader>vu :PlugClean<CR>
 		"EDITOR-MAPPINGS
 			"TOGGLES
 				map <Leader>etl :set number!<CR>
 				map <Leader>etr :set relativenumber!<CR>
-				map <Leader>etw :let g:highlight_trailing_whitespaces = !g:highlight_trailing_whitespaces<CR>
-				map <Leader>ets :let g:highlight_leading_spaces       = !g:highlight_leading_spaces<CR>
-				map <Leader>ett :let g:highlight_leading_tabs         = !g:highlight_leading_tabs<CR>
 		"LINUX-MAPPINGS
 			"FILESYSTEM
 				nnoremap <silent> <Leader>ld :execute "DeleteFile " . fnamescape(expand('%'))<CR>
@@ -1470,12 +1471,6 @@
 				nnoremap <Leader>ldf :call fzf#run(fzf#wrap({'source': 'find ~               -type f', 'sink': 'DeleteFile'       }))<CR>
 				nnoremap <Leader>ldd :call fzf#run(fzf#wrap({'source': 'find ~               -type d', 'sink': 'DeleteDirectory'  }))<CR>
 				nnoremap <Leader>ldD :call fzf#run(fzf#wrap({'source': 'find ~               -type d', 'sink': 'DeleteDirectory!' }))<CR>
-			"UTILITIES
-				vnoremap <Leader>lus :sort                         <CR>
-				vnoremap <Leader>luu :<C-u>'<,'>sort \| '<,'>!uniq <CR>
-				" vnoremap <Leader>luc :<C-u>'<,'>!bc                <CR>
-		"FIND-REPLACE
-			"REPLACE-CHARACTER @TODO
 	"MISCELLANOUS-MAPPINGS
 		"QUICK EXIT MAPPINGS
 		"REPEAT LAST OPERATION ON A MATCH ON NEXT n MATCH
@@ -1818,7 +1813,8 @@
 						endif
 					endfunction
 				"MAPPINGS
-					nnoremap <Leader>vF  : call AutoFormatToggle()<CR>
+					nnoremap <Leader>vF :call AutoFormatToggle()<CR>
+					vnoremap <Leader>vf :Autoformat<CR>
 		"SNIPPETS
 			Plug 'honza/vim-snippets'
 			if has('python3')
@@ -2355,7 +2351,10 @@
 			let g:goyo_width = "75%"
 			"let g:goyo_height = "90%"
 			let g:goyo_linenr = 1
+
+			nnoremap <Leader>vd  :Goyo<CR>
 		Plug 'junegunn/limelight.vim'
+			nnoremap <Leader>vl  :Limelight!!<CR>
 		Plug 'mtth/scratch.vim'
 			let g:scratch_no_mappings      = 1
 			let g:scratch_height           = 0.3
@@ -2378,6 +2377,7 @@
 			augroup END
 		Plug 'mhinz/vim-startify'
 			let g:startify_session_dir='~/.vim-sessions'
+			nnoremap <LEADER>vS  :Startify<CR>
 		Plug 'suan/vim-instant-markdown'
 		Plug 'tpope/vim-capslock'
 			"MAPPINGS
