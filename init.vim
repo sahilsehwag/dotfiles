@@ -416,24 +416,24 @@
 			"BETTER-VIM.vim
 				"BETTER-DELETE
 					nnoremap d "_d
-					xnoremap d "_d
 					nnoremap D "_D
 					nnoremap dd "_dd
+					xnoremap d "_d
 
 					nnoremap c "_c
-					xnoremap c "_c
 					nnoremap C "_C
 					nnoremap cc "_cc
+					xnoremap c "_c
 
-					nnoremap x d
-					xnoremap x d
-					nnoremap X D
-					nnoremap xx dd
+					nnoremap gd d
+					nnoremap gD D
+					nnoremap gdd dd
+					xnoremap gd d
 
-					nnoremap c c
-					xnoremap c c
-					nnoremap C C
-					nnoremap cc cc
+					nnoremap gc c
+					nnoremap gC C
+					nnoremap gcc cc
+					xnoremap gc c
 				"BETTER-YANK @TODO
 					"PRESERVE-POSITION
 					"REGISTER-MANAGEMENT
