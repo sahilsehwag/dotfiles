@@ -459,6 +459,34 @@
 					"MACROS:SAVE=qs
 					"MACROS:LIST=ql=play|edit|delete
 					"MACROS:NESTED
+				"BETTER-MAKE
+					augroup MAKE
+						au!
+						"COMPILED
+							au Filetype c setl makeprg=gcc\ %:S\ &&\ %:h:S/a.out
+							au Filetype cpp setl makeprg=g++\ -std=c++14\ %:S\ &&\ %:h:S/a.out
+							au Filetype scala setl makeprg=scalac\ %:S\ &&\ scala\ %:r:S
+							au Filetype java setl makeprg=javac\ %:S\ &&\ java\ %:r:S
+							au Filetype haskell setl makeprg=ghc\ -Wno-tabs\ %:S\ &&\ %:r:S
+							au Filetype processing setl makeprg=processing-java\ --output=/tmp/processing/\ --force\ --sketch=%:h:S\ --run
+							au Filetype csx setl makeprg=scriptcs\ %:r:S.csx
+							if has('macunix')
+								au Filetype cs setl makeprg=csc\ %:p:S\ &&\ mono\ %:r:S.exe
+							elseif has('win32')
+								au Filetype cs setl makeprg=csc\ %:p:S\ &&\ %:r:S.exe
+							endif
+						"INTERPRETED
+							au Filetype python setl makeprg=python3\ %:S
+							au Filetype javascript setl makeprg=node\ %:S
+							au Filetype ruby setl makeprg=ruby\ %:S
+							au Filetype perl setl makeprg=perl\ %:S
+							au Filetype php setl makeprg=php\ %:S
+							au Filetype typescript setl makeprg=tsc\ %:S
+							au Filetype lua setl makeprg=lua\ %:S
+						"SHELL
+							au Filetype sh setl makeprg=bash\ %:S
+							au Filetype zsh setl makeprg=zsh\ %:S
+					augroup END
 		"GENERAL
 			"TERMINAL
 				if has('nvim')
@@ -675,9 +703,9 @@
 								let s:languages.haskell = {
 									\'extension'       : 'hs',
 									\'repl'            : 'ghci',
-									\'compile'         : 'ghc -Wno-tabs -o %:p:r:S.exe %:p:S',
-									\'execute'         : '%:p:r:S.exe',
-									\'compile-execute' : 'ghc -Wno-tabs -o %:p:r:S.exe %:p:S && %:p:r:S',
+									\'compile'         : 'ghc -Wno-tabs %:p:S',
+									\'execute'         : '%:p:r:S',
+									\'compile-execute' : 'ghc -Wno-tabs %:p:S && %:p:r:S',
 								\}
 								let s:languages.processing = {
 									\'extension'       : 'pde',
@@ -1718,6 +1746,23 @@
 			" nnoremap <LEADER>nf :VifmToggle %:p:h<CR>
 			" nnoremap <LEADER>nF :VifmToggle .<CR>
 		Plug 'cocopon/vaffle.vim'
+	"LANGUAGES
+		"LINTERS
+		"BEAUTIFIERS
+		"AUTOCOMPILATION
+			Plug 'coachshea/jade-vim'
+		"AUTOCOMPLETION
+			"Plug 'dNitro/vim-pug-complete'
+		"SYNTAX
+			Plug 'sheerun/vim-polyglot'
+			Plug 'chrisbra/csv.vim'
+			"Plug 'lervag/vimtex'
+				"Plug 'vim-latex/vim-latex'
+		"MISCELLANOUS
+			Plug 'mattn/emmet-vim'
+				let g:user_emmet_install_global = 0
+				autocmd FileType html,css EmmetInstall
+				let g:user_emmet_leader_key='<tab>'
 	"DEVELOPMENT
 		"VCS
 			"Plug 'tpope/vim-fugutive'
@@ -1740,7 +1785,7 @@
 					let g:UltiSnipsJumpForwardTrigger="<C-b>"
 					let g:UltiSnipsJumpBackwardTrigger="<C-z>"
 			endif
-		"AUTOCOMPLETION
+		"AUTO-COMPLETION
 			"Plug 'ervandew/supertab'
 			Plug 'vim-scripts/AutoComplPop'
 				let g:acp_enableAtStartup = 0
@@ -1769,7 +1814,15 @@
 						nnoremap <Leader>jj :YcmCompleter GoTo<CR>
 						nnoremap <Leader>ji :YcmCompleter GoToImplementation<CR>
 			endif
-		"CODE EXECUTION
+		"CODE-EXECUTION
+			"BETTER-MAKE
+				nnoremap <LocalLeader>cm :make<CR>
+			"EXECUTION-ENGINE
+				nmap <LocalLeader>cr <Plug>(ee-repl)
+					nmap <LocalLeader>cR <Plug>(ee-fzf-repl)
+				nmap <LocalLeader>cb <Plug>(ee-compile)
+				nmap <LocalLeader>ce <Plug>(ee-execute)
+				nmap <LocalLeader>cq <Plug>(ee-compile-execute)
 			Plug 'metakirby5/codi.vim'
 				let g:codi#width      = 80
 				let g:codi#rightalign = 0
@@ -2151,23 +2204,6 @@
 		Plug 'junegunn/vim-peekaboo'
 			let g:peekaboo_window = 'vert bo 30new'
 			let g:peekaboo_prefix = '<leader>'
-	"LANGUAGES
-		"LINTERS
-		"BEAUTIFIERS
-		"AUTOCOMPILATION
-			Plug 'coachshea/jade-vim'
-		"AUTOCOMPLETION
-			"Plug 'dNitro/vim-pug-complete'
-		"SYNTAX
-			Plug 'sheerun/vim-polyglot'
-			Plug 'chrisbra/csv.vim'
-			"Plug 'lervag/vimtex'
-				"Plug 'vim-latex/vim-latex'
-		"MISCELLANOUS
-			Plug 'mattn/emmet-vim'
-				let g:user_emmet_install_global = 0
-				autocmd FileType html,css EmmetInstall
-				let g:user_emmet_leader_key='<tab>'
 	"MISCELLANOUS
 		Plug 'alpertuna/vim-header'
 			let g:header_auto_add_header = 0
@@ -2411,12 +2447,6 @@
 		"VIFM
 			nnoremap <LEADER>nv :Vifm %:p:h<CR>
 			nnoremap <LEADER>nV :Vifm .<CR>
-		"EXECUTION-ENGINE
-			nmap <LocalLeader>cr <Plug>(ee-repl)
-			nmap <LocalLeader>cc <Plug>(ee-compile)
-			nmap <LocalLeader>ce <Plug>(ee-execute)
-			nmap <LocalLeader>cq <Plug>(ee-compile-execute)
-			nmap <LocalLeader>cR <Plug>(ee-fzf-repl)
 	call plug#end()
 "SETTINGS
 	"INDENTATION
@@ -2490,28 +2520,3 @@
 			autocmd Filetype text set syntax=jproperties
 		augroup END
 	"COMPILIERS
-		augroup COMPILERS
-			au!
-			au Filetype cpp setl makeprg=g++\ -std=c++14\ %:S\ &&\ %:h/a.out
-			au Filetype c setl makeprg=gcc\ %:p:S\ &&\ %:p:h:S/a.out
-			au Filetype scala setl makeprg=scalac\ %:p:S\ &&\ scala\ %:r
-			au Filetype java setl makeprg=javac\ %:p:S\ &&\ java\ %:r
-			if has('macunix')
-				au Filetype cs setl makeprg=csc\ %:p:S\ &&\ mono\ %:p:r.exe
-			elseif has('win32')
-				au Filetype cs setl makeprg=csc\ %:p:S\ &&\ %:r.exe
-			endif
-			au Filetype csx setl makeprg=scriptcs\ %:r:S.csx
-			au Filetype processing setl makeprg=processing-java\ --output=/tmp/processing/\ --force\ --sketch=%:p:h:S\ --run
-
-			au Filetype python setl makeprg=python3\ %
-			au Filetype javascript setl makeprg=node\ %
-			au Filetype ruby setl makeprg=ruby\ %
-			au Filetype perl setl makeprg=perl\ %
-			au Filetype php setl makeprg=php\ %
-			au Filetype typescript setl makeprg=tsc\ %
-			au Filetype lua setl makeprg=lua\ %
-
-			au Filetype sh setl makeprg=bash\ %
-			au Filetype zsh setl makeprg=zsh\ %
-		augroup END
