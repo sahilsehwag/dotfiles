@@ -904,6 +904,7 @@
 				"DEFAULTS
 			"BOOTIFICATION
 			"FINISH-IT
+			"THE-PUNISHER
 			"SPACE-WARRIOR
 				"VARIABLES
 					let g:sw_enable_default_mappings          = 1
