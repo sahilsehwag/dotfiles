@@ -143,33 +143,6 @@
 						return lines
 					endif
 				endfunction
-
-				function! StripTrailingWhitespace()
-					execute ':%s/\s\+$//e'
-					execute ':%s/\t\+$//e'
-				endfunction
-
-				function! ConvertSpaces2Tabs()
-					let l:et = &expandtab
-					setlocal noexpandtab
-					%retab!
-					if l:et
-						setlocal expandtab
-					else
-						setlocal noexpandtab
-					endif
-				endfunction
-
-				function! ConvertTabs2Spaces()
-					let l:et = &expandtab
-					setlocal expandtab
-					%retab!
-					if l:et
-						setlocal expandtab
-					else
-						setlocal noexpandtab
-					endif
-				endfunction
 			"INTERFACE
 				function! RunInNewBuffer(command, filename)
 					execute "edit! " a:filename
@@ -264,10 +237,24 @@
 					"REGISTER-MANAGEMENT
 				"BETTER-PASTE @TODO
 					"PASTE-SWAP
-					"PASTE-ROTATION
-					"NEWLINE-PASTE
-					"INDENTED-PASTE
-					"FORMATTED-PASTE
+						nnoremap p :normal! ]p <CR>
+						nnoremap P :normal! [p <CR>
+						" nnoremap ]p :normal! p <CR>
+						" nnoremap [p :normal! P <CR>
+						"vnoremap p :<C-u>normal! ]pgvd <CR>
+						"vnoremap P :<C-u>normal! [pgvd <CR>
+						"vnoremap ]p :<C-u>normal! pgvd <CR>
+						"vnoremap [p :<C-u>normal! Pgvd <CR>
+					"PASTE+INDENT
+						nnoremap >p :normal! ]p>> <CR>
+						nnoremap <p :normal! ]p<< <CR>
+						nnoremap >P :normal! [p>> <CR>
+						nnoremap <P :normal! [p<< <CR>
+					"PASTE+NEWLINE
+						nnoremap ]p :normal! o<esc>p==
+						nnoremap [p :normal! O<Esc>P==
+					"PASTE+CYCLE
+					"PASTE+FORMAT
 				"BETTER-o|O
 					"nnoremap <CR> :normal! o<ESC>k^0<CR> @TODO
 					"nnoremap <SHIFT><CR> :normal! O<ESC>j^0<CR> @TODO
@@ -851,7 +838,80 @@
 						nmap <silent> <Plug>(ee-compile-execute) :EECompileExecute<CR>
 						nmap <silent> <Plug>(ee-fzf-repl)        :call fzf#run(fzf#wrap({'source': getcompletion('', 'filetype'), 'sink': 'EERepl'}))<CR>
 				endif
-		"LANGUAGES
+			"SPACE-WARRIOR
+				"VARIABLES
+					let g:sw_highlight_trailing_whitespaces   = 1
+					let g:sw_highlight_consecutive_blanklines = 1
+					let g:sw_highlight_leading_spaces         = 1
+					let g:sw_highlight_leading_tabs           = 0
+					let g:sw_highlight_listchars              = 1
+				"FUNCTIONS
+					function! SWStripTrailingWhitespace()
+						execute ':%s/\s\+$//e'
+						execute ':%s/\t\+$//e'
+					endfunction
+
+					function! SWConvertSpaces2Tabs()
+						let l:et = &expandtab
+						setlocal noexpandtab
+						%retab!
+						if l:et
+							setlocal expandtab
+						else
+							setlocal noexpandtab
+						endif
+					endfunction
+
+					function! SWConvertTabs2Spaces()
+						let l:et = &expandtab
+						setlocal expandtab
+						%retab!
+						if l:et
+							setlocal expandtab
+						else
+							setlocal noexpandtab
+						endif
+					endfunction
+				"COMMANDS
+					command! SWStripTrailingWhitespace :execute SWStripTrailingWhitespace()
+					command! SWSpaces2Tabs             :execute SWConvertSpaces2Tabs()
+					command! SWTabs2Spaces             :execute SWConvertSpaces2Tabs()
+				"MAPPINGS
+					nmap <silent> <Plug>(sw-strip-trailing-whitespace) :SWStripTrailingWhitespace<CR>
+					nmap <silent> <Plug>(sw-spaces-2-tabs)             :SWSpaces2Tabs<CR>
+					nmap <silent> <Plug>(sw-tabs-2-spaces)             :SWTabs2Spaces<CR>
+				"HIGHLIGHTS @TODO:FIX
+					"TRAILING-WHITESPACES @TODO:FIX
+						if ExistsAndTrue('g:sw_highlight_trailing_whitespaces')
+							"highlight TrailingWhitespace ctermfg=135
+							"call matchadd('TrailingWhitespace', '\s\+$', 100)
+							highlight TrailingTabs ctermbg=135
+							call matchadd('TrailingTabs', '\t\+$', 100)
+							highlight TrailingSpaces ctermbg=135
+							call matchadd('TrailingSpaces', ' \+$', 100)
+						endif
+					"CONSECUTIVE-BLANKLINES @TODO:FIX
+						if ExistsAndTrue('g:sw_highlight_consecutive_blanklines')
+							highlight ConsecutiveBlankLines ctermbg=135
+							call matchadd('ConsecutiveBlankLines', '\(^$\n\)\{2,}', 100)
+						endif
+					"LEADING-SPACES
+						if ExistsAndTrue('g:sw_highlight_leading_spaces')
+							highlight LeadingSpaces ctermbg=135
+							call matchadd('LeadingSpaces', '^ \+', 100)
+						endif
+					"LEADING-TABS
+						if ExistsAndTrue('g:sw_highlight_leading_tabs')
+							highlight LeadingTabs ctermbg=135
+							call matchadd('LeadingTabs', '^\t\+', 100)
+						endif
+					"LISTCHARS
+						if ExistsAndTrue('g:sw_highlight_listchars')
+							highlight EndOfBuffer ctermfg=245 guifg=#658595
+							highlight NonText     ctermfg=135 guifg=#af5fff
+							highlight Whitespace  ctermfg=135 guifg=#af5fff
+						endif
+			"LANGUAGES
 		"DEVELOPMENT
 		"NOTES
 			"@TODO TYPIST.vim
@@ -891,10 +951,7 @@
 		"PERFORMANCE
 			let loaded_netrwPlugin = 0
 		"INTERFACE
-			let g:highlight_trailing_whitespaces = 1
-			let g:highlight_leading_spaces       = 1
-			let g:highlight_leading_tabs         = 0
-			let g:highlight_listchars            = 1
+			let g:jaat_highlight_search = 1
 		"MISCELLANOUS
 	"PYTHON-BINARIES
 		let g:python_host_prog = 'python2'
@@ -906,65 +963,18 @@
 				highlight Search ctermfg=49 cterm=NONE gui=NONE
 				highlight IncSearchMatch ctermfg=black ctermbg=186
 			endif
-		"TRAILING-WHITESPACES
-			if ExistsAndTrue('g:highlight_trailing_whitespaces')
-				"highlight TrailingWhitespace ctermbg=135
-				highlight TrailingWhitespace ctermfg=135
-				call matchadd('TrailingWhitespace', '\s\+$', 100)
-			endif
-		"CONSECUTIVE-BLANKLINES
-			if ExistsAndTrue('g:highlight_consecutive_blanklines')
-				highlight ConsecutiveBlankLines ctermbg=135
-				call matchadd('ConsecutiveBlankLines', '\(^$\n\)\{2,}', 100)
-			endif
-		"LEADING-SPACES
-			if ExistsAndTrue('g:highlight_leading_spaces')
-				highlight LeadingSpaces ctermbg=135
-				call matchadd('LeadingSpaces', '^ \+', 100)
-			endif
-		"LEADING-TABS
-			if ExistsAndTrue('g:highlight_leading_tabs')
-				highlight LeadingTabs ctermbg=135
-				call matchadd('LeadingTabs', '^\t\+', 100)
-			endif
 		"AUTO-COMPLETION-MENU
 			"highlight Pmenu ctermbg=232 ctermfg=7
 			"highlight PmenuSel ctermfg=15
 			highlight Pmenu ctermbg=238 gui=bold
 		"INTERFACE-HIGHLIGHTS
 			highlight VertSplit ctermbg=None guibg=None
-		"LISTCHARS
-			if ExistsAndTrue('g:highlight_listchars')
-				highlight EndOfBuffer ctermfg=245 guifg=#658595
-				highlight NonText     ctermfg=135 guifg=#af5fff
-				highlight Whitespace  ctermfg=135 guifg=#af5fff
-			endif
 "MAPPINGS
 	"MAIN-LAYOUT-MAPPINGS
-		"BETTER-o|O @TODO
-			"NORMAL-MODE OPENER
-				"nnoremap <CR> :normal! o<ESC>
-		"BETTER PASTES
-			"PASTE-SWAP
-				nnoremap p :normal! ]p <CR>
-				nnoremap P :normal! [p <CR>
-				" nnoremap ]p :normal! p <CR>
-				" nnoremap [p :normal! P <CR>
-				"vnoremap p :<C-u>normal! ]pgvd <CR>
-				"vnoremap P :<C-u>normal! [pgvd <CR>
-				"vnoremap ]p :<C-u>normal! pgvd <CR>
-				"vnoremap [p :<C-u>normal! Pgvd <CR>
-			"INDENTED-PASTE
-				nnoremap >p :normal! ]p>> <CR>
-				nnoremap <p :normal! ]p<< <CR>
-				nnoremap >P :normal! [p>> <CR>
-				nnoremap <P :normal! [p<< <CR>
-			"NEWLINE-PASTE
-				nnoremap ]p :normal! o<esc>p==
-				nnoremap [p :normal! O<Esc>P==
 	"LEADER-MAPPING
 		let mapleader = " "
 		let maplocalleader = ","
+		let mapinsertleader = ";"
 		nnoremap ; :
 	"INTERFACE-MAPPINGS
 		"TAB-MAPPINGS
@@ -1025,325 +1035,325 @@
 			abbreviate crs ✖
 		"MATH
 			"OPERATORS
-				inoremap ,<- ≤
-				inoremap ,<< ≪
-				inoremap ,<<< ⋘
-				inoremap ,>- ≥
-				inoremap ,>> ≫
-				inoremap ,>>> ⋙
-				inoremap ,!= ≠
-				inoremap ,* ×
-				inoremap ,/ ÷
-				inoremap ,sum ∑
-				inoremap ,prod ∏
-				inoremap ,cprod ∐
-				inoremap ,srt √
-				inoremap ,crt ∛
-				inoremap ,qrt ∜
-				inoremap ,~ ≈
-				inoremap ,= ≡
-				inoremap ,prop ∝
-				inoremap ,floor ⌊⌋
-				inoremap ,ceil ⌈⌉
-				inoremap ,+- ±
-				inoremap ,-+ ∓
-				inoremap ,. ∙
-				inoremap ,<= ≦
-				inoremap ,>= ≧
-				inoremap ,ox ⨂
-				inoremap ,o+ ⨁
-				inoremap ,o- ⊖
-				inoremap ,o. ⨀
-				inoremap ,o* ⊛
+				inoremap ;<- ≤
+				inoremap ;<< ≪
+				inoremap ;<<< ⋘
+				inoremap ;>- ≥
+				inoremap ;>> ≫
+				inoremap ;>>> ⋙
+				inoremap ;!= ≠
+				inoremap ;* ×
+				inoremap ;/ ÷
+				inoremap ;sum ∑
+				inoremap ;prod ∏
+				inoremap ;cprod ∐
+				inoremap ;srt √
+				inoremap ;crt ∛
+				inoremap ;qrt ∜
+				inoremap ;~ ≈
+				inoremap ;= ≡
+				inoremap ;prop ∝
+				inoremap ;floor ⌊⌋
+				inoremap ;ceil ⌈⌉
+				inoremap ;+- ±
+				inoremap ;-+ ∓
+				inoremap ;. ∙
+				inoremap ;<= ≦
+				inoremap ;>= ≧
+				inoremap ;ox ⨂
+				inoremap ;o+ ⨁
+				inoremap ;o- ⊖
+				inoremap ;o. ⨀
+				inoremap ;o* ⊛
 			"SYMBOLS
-				inoremap ,deg °
-				inoremap ,8 ∞
-				inoremap ,-8 -∞
-				inoremap ,- ―
-				inoremap ,tf ∴
-				inoremap ,ie ∵
-				inoremap ,... ⋯
-				inoremap ,ang ∠
-				inoremap ,rang ∟
-				inoremap ,perp ⊥
-				inoremap ,cong ≅
-				inoremap ,& ∧
-				inoremap ,\| ∨
-				inoremap ,! ¬
-				inoremap ,' ′
-				inoremap ,'' ″
-				inoremap ,T ⊤
-				inoremap ,iT ⊥
-				inoremap ,-\| ⊣
-				inoremap ,\|- ⊢
-				inoremap ,\|= ⊨
-				inoremap ,->u ↑
-				inoremap ,->d ↓
-				inoremap ,-> →
-				inoremap ,<- ←
-				inoremap ,<-> ↔
-				inoremap ,=> ⇒
-				inoremap ,=> ⇐
-				inoremap ,<=> ⇔
-				inoremap ,--> ⟶
-				inoremap ,<-- ⟵
-				inoremap ,<--> ⟷
-				inoremap ,==> ⟹
-				inoremap ,<== ⟸
-				inoremap ,<==> ⟺
-				inoremap ,\|> ↦
-				inoremap ,<\| ↤
-				inoremap ,\|-> ⟼
-				inoremap ,<-\| ⟻
-				inoremap ,\|=> ⟾
-				inoremap ,<=\| ⟽
-				inoremap ,<.. ⇠
-				inoremap ,..> ⇢
-				inoremap ,..>u ⇡
-				inoremap ,..>d ⇣
+				inoremap ;deg °
+				inoremap ;8 ∞
+				inoremap ;-8 -∞
+				inoremap ;- ―
+				inoremap ;tf ∴
+				inoremap ;ie ∵
+				inoremap ;... ⋯
+				inoremap ;ang ∠
+				inoremap ;rang ∟
+				inoremap ;perp ⊥
+				inoremap ;cong ≅
+				inoremap ;& ∧
+				inoremap ;\| ∨
+				inoremap ;! ¬
+				inoremap ;' ′
+				inoremap ;'' ″
+				inoremap ;T ⊤
+				inoremap ;iT ⊥
+				inoremap ;-\| ⊣
+				inoremap ;\|- ⊢
+				inoremap ;\|= ⊨
+				inoremap ;->u ↑
+				inoremap ;->d ↓
+				inoremap ;-> →
+				inoremap ;<- ←
+				inoremap ;<-> ↔
+				inoremap ;=> ⇒
+				inoremap ;<= ⇐
+				inoremap ;<=> ⇔
+				inoremap ;--> ⟶
+				inoremap ;<-- ⟵
+				inoremap ;<--> ⟷
+				inoremap ;==> ⟹
+				inoremap ;<== ⟸
+				inoremap ;<==> ⟺
+				inoremap ;\|> ↦
+				inoremap ;<\| ↤
+				inoremap ;\|-> ⟼
+				inoremap ;<-\| ⟻
+				inoremap ;\|=> ⟾
+				inoremap ;<=\| ⟽
+				inoremap ;<.. ⇠
+				inoremap ;..> ⇢
+				inoremap ;..>u ⇡
+				inoremap ;..>d ⇣
 			"ALPHABETS
-				inoremap ,E 𝔼
-				inoremap ,N ℕ
-				inoremap ,P ℙ
-				inoremap ,Q ℚ
-				inoremap ,R ℝ
-				inoremap ,C ℂ
-				inoremap ,U 𝕌
-				inoremap ,Z ℤ
+				inoremap ;E 𝔼
+				inoremap ;N ℕ
+				inoremap ;P ℙ
+				inoremap ;Q ℚ
+				inoremap ;R ℝ
+				inoremap ;C ℂ
+				inoremap ;U 𝕌
+				inoremap ;Z ℤ
 			"GREEK
-				inoremap ,alpha 𝛂
+				inoremap ;alpha 𝛂
 					"α
-				inoremap ,beta 𝛃
+				inoremap ;beta 𝛃
 					"β
-				inoremap ,gamma 𝛄
-				inoremap ,Gamma Γ
-				inoremap ,delta 𝛅
-				inoremap ,Delta ∆
-				inoremap ,nabla ∇
-				inoremap ,epsi 𝛆
-				inoremap ,zeta ζ
-				inoremap ,eta 𝛈
-				inoremap ,theta 𝛉
-				inoremap ,Theta Θ
-				inoremap ,iota ι
-				inoremap ,kappa 𝛞
-				inoremap ,lambda 𝛌
-				inoremap ,Lambda Λ
-				inoremap ,mu 𝛍
-				inoremap ,nu 𝛎
-				inoremap ,xi ξ
-				inoremap ,Xi Ξ
-				inoremap ,pi 𝛑
-				inoremap ,Pi Π
-				inoremap ,rho 𝛒
+				inoremap ;gamma 𝛄
+				inoremap ;Gamma Γ
+				inoremap ;delta 𝛅
+				inoremap ;Delta ∆
+				inoremap ;nabla ∇
+				inoremap ;epsi 𝛆
+				inoremap ;zeta ζ
+				inoremap ;eta 𝛈
+				inoremap ;theta 𝛉
+				inoremap ;Theta Θ
+				inoremap ;iota ι
+				inoremap ;kappa 𝛞
+				inoremap ;lambda 𝛌
+				inoremap ;Lambda Λ
+				inoremap ;mu 𝛍
+				inoremap ;nu 𝛎
+				inoremap ;xi ξ
+				inoremap ;Xi Ξ
+				inoremap ;pi 𝛑
+				inoremap ;Pi Π
+				inoremap ;rho 𝛒
 					"ρ
-				inoremap ,sigma 𝛔
-				inoremap ,Sigma Σ
-				inoremap ,tau 𝛕
-				inoremap ,upsi 𝛖
-				inoremap ,Upsi ϒ
-				inoremap ,phi φ
-				inoremap ,Phi 𝛟
-				inoremap ,chi 𝛘
-				inoremap ,psi 𝛙
-				inoremap ,Psi Ψ
-				inoremap ,omega 𝛚
-				inoremap ,Omega Ω
+				inoremap ;sigma 𝛔
+				inoremap ;Sigma Σ
+				inoremap ;tau 𝛕
+				inoremap ;upsi 𝛖
+				inoremap ;Upsi ϒ
+				inoremap ;phi φ
+				inoremap ;Phi 𝛟
+				inoremap ;chi 𝛘
+				inoremap ;psi 𝛙
+				inoremap ;Psi Ψ
+				inoremap ;omega 𝛚
+				inoremap ;Omega Ω
 
-				inoremap ,a 𝛂
-				inoremap ,b 𝛃
-				inoremap ,e 𝛆
-				inoremap ,n 𝛈
-				inoremap ,o 𝛉
-				inoremap ,i ι
-				inoremap ,u 𝛍
-				inoremap ,v 𝛎
-				inoremap ,p 𝛒
-				inoremap ,t 𝛕
-				inoremap ,X 𝛞
-				inoremap ,w 𝛚
-				inoremap ,x 𝛞
+				inoremap ;a 𝛂
+				inoremap ;b 𝛃
+				inoremap ;e 𝛆
+				inoremap ;n 𝛈
+				inoremap ;o 𝛉
+				inoremap ;i ι
+				inoremap ;u 𝛍
+				inoremap ;v 𝛎
+				inoremap ;p 𝛒
+				inoremap ;t 𝛕
+				inoremap ;X 𝛞
+				inoremap ;w 𝛚
+				inoremap ;x 𝛞
 			"SET
-				inoremap ,uu ∪
-				inoremap ,ud ∩
-				inoremap ,ur= ⊆
-				inoremap ,ur ⊂
-				inoremap ,nur ⊄
-				inoremap ,ul= ⊇
-				inoremap ,ul ⊃
-				inoremap ,nul ⊅
-				inoremap ,sphi ∅
-				inoremap ,bt ∈
-				inoremap ,nbt ∉
-				inoremap ,fa ∀
-				inoremap ,te ∃
-				inoremap ,tne ∄
+				inoremap ;uu ∪
+				inoremap ;ud ∩
+				inoremap ;ur= ⊆
+				inoremap ;ur ⊂
+				inoremap ;nur ⊄
+				inoremap ;ul= ⊇
+				inoremap ;ul ⊃
+				inoremap ;nul ⊅
+				inoremap ;sphi ∅
+				inoremap ;bt ∈
+				inoremap ;nbt ∉
+				inoremap ;fa ∀
+				inoremap ;te ∃
+				inoremap ;tne ∄
 			"CALCULAS
-				inoremap ,f1 ∫
-				inoremap ,f2 ∬
-				inoremap ,f3 ∭
-				inoremap ,f4 ⨌
-				inoremap ,of1 ∮
-				inoremap ,of1 ∯
-				inoremap ,of1 ∰
-				inoremap ,pd 𝛛
+				inoremap ;f1 ∫
+				inoremap ;f2 ∬
+				inoremap ;f3 ∭
+				inoremap ;f4 ⨌
+				inoremap ;of1 ∮
+				inoremap ;of1 ∯
+				inoremap ;of1 ∰
+				inoremap ;pd 𝛛
 			"RELATIONAL ALGEBRA
-				inoremap ,lj ⋉
-				inoremap ,rj ⋊
-				inoremap ,fj ⋈
+				inoremap ;lj ⋉
+				inoremap ;rj ⋊
+				inoremap ;fj ⋈
 			"SUB|SUPER SCRIPTS
-				inoremap ,0u ⁰
-				inoremap ,1u ¹
-				inoremap ,2u ²
-				inoremap ,3u ³
-				inoremap ,4u ⁴
-				inoremap ,5u ⁵
-				inoremap ,6u ⁶
-				inoremap ,7u ⁷
-				inoremap ,8u ⁸
-				inoremap ,9u ⁹
+				inoremap ;0u ⁰
+				inoremap ;1u ¹
+				inoremap ;2u ²
+				inoremap ;3u ³
+				inoremap ;4u ⁴
+				inoremap ;5u ⁵
+				inoremap ;6u ⁶
+				inoremap ;7u ⁷
+				inoremap ;8u ⁸
+				inoremap ;9u ⁹
 
-				inoremap ,0d ₀
-				inoremap ,1d ₁
-				inoremap ,2d ₂
-				inoremap ,3d ₃
-				inoremap ,4d ₄
-				inoremap ,5d ₅
-				inoremap ,6d ₆
-				inoremap ,7d ₇
-				inoremap ,8d ₈
-				inoremap ,9d ₉
+				inoremap ;0d ₀
+				inoremap ;1d ₁
+				inoremap ;2d ₂
+				inoremap ;3d ₃
+				inoremap ;4d ₄
+				inoremap ;5d ₅
+				inoremap ;6d ₆
+				inoremap ;7d ₇
+				inoremap ;8d ₈
+				inoremap ;9d ₉
 
-				inoremap ,+u ⁺
-				inoremap ,-u ⁻
-				inoremap ,(u ⁽
-				inoremap ,)u ⁾
-				inoremap ,=u ⁼
+				inoremap ;+u ⁺
+				inoremap ;-u ⁻
+				inoremap ;(u ⁽
+				inoremap ;)u ⁾
+				inoremap ;=u ⁼
 
-				inoremap ,+d ₊
-				inoremap ,-d ₋
-				inoremap ,(d ₍
-				inoremap ,)d ₎
-				inoremap ,=d ₌
+				inoremap ;+d ₊
+				inoremap ;-d ₋
+				inoremap ;(d ₍
+				inoremap ;)d ₎
+				inoremap ;=d ₌
 
-				inoremap ,au ᵃ
-				inoremap ,bu ᵇ
-				inoremap ,cu ᶜ
-				inoremap ,du ᵈ
-				inoremap ,eu ᵉ
-				inoremap ,fu ᶠ
-				inoremap ,gu ᵍ
-				inoremap ,hu ʰ
-				inoremap ,iu ⁱ
-				inoremap ,ju ʲ
-				inoremap ,ku ᵏ
-				inoremap ,lu ˡ
-				inoremap ,mu ᵐ
-				inoremap ,nu ⁿ
-				inoremap ,ou ᵒ
-				inoremap ,pu ᵖ
-				inoremap ,qu ⁺
-				inoremap ,ru ʳ
-				inoremap ,su ˢ
-				inoremap ,tu ᵗ
-				inoremap ,uu ᵘ
-				inoremap ,vu ᵛ
-				inoremap ,wu ʷ
-				inoremap ,xu ˣ
-				inoremap ,yu ʸ
-				inoremap ,zu ᶻ
+				inoremap ;au ᵃ
+				inoremap ;bu ᵇ
+				inoremap ;cu ᶜ
+				inoremap ;du ᵈ
+				inoremap ;eu ᵉ
+				inoremap ;fu ᶠ
+				inoremap ;gu ᵍ
+				inoremap ;hu ʰ
+				inoremap ;iu ⁱ
+				inoremap ;ju ʲ
+				inoremap ;ku ᵏ
+				inoremap ;lu ˡ
+				inoremap ;mu ᵐ
+				inoremap ;nu ⁿ
+				inoremap ;ou ᵒ
+				inoremap ;pu ᵖ
+				inoremap ;qu ⁺
+				inoremap ;ru ʳ
+				inoremap ;su ˢ
+				inoremap ;tu ᵗ
+				inoremap ;uu ᵘ
+				inoremap ;vu ᵛ
+				inoremap ;wu ʷ
+				inoremap ;xu ˣ
+				inoremap ;yu ʸ
+				inoremap ;zu ᶻ
 
-				inoremap ,Au ᴬ
-				inoremap ,Bu ᴮ
-				inoremap ,Cu ⁺
-				inoremap ,Du ᴰ
-				inoremap ,Eu ᴱ
-				inoremap ,Fu ⁺
-				inoremap ,Gu ᴳ
-				inoremap ,Hu ᴴ
-				inoremap ,Iu ᴵ
-				inoremap ,Ju ᴶ
-				inoremap ,Ku ᴷ
-				inoremap ,Lu ᴸ
-				inoremap ,Mu ᴹ
-				inoremap ,Nu ᴺ
-				inoremap ,Ou ᴼ
-				inoremap ,Pu ᴾ
-				inoremap ,Qu ⁺
-				inoremap ,Ru ᴿ
-				inoremap ,Su ⁺
-				inoremap ,Tu ᵀ
-				inoremap ,Uu ᵁ
-				inoremap ,Vu ⱽ
-				inoremap ,Wu ᵂ
-				inoremap ,Xu ⁺
-				inoremap ,Yu ⁺
-				inoremap ,Zu ⁺
+				inoremap ;Au ᴬ
+				inoremap ;Bu ᴮ
+				inoremap ;Cu ⁺
+				inoremap ;Du ᴰ
+				inoremap ;Eu ᴱ
+				inoremap ;Fu ⁺
+				inoremap ;Gu ᴳ
+				inoremap ;Hu ᴴ
+				inoremap ;Iu ᴵ
+				inoremap ;Ju ᴶ
+				inoremap ;Ku ᴷ
+				inoremap ;Lu ᴸ
+				inoremap ;Mu ᴹ
+				inoremap ;Nu ᴺ
+				inoremap ;Ou ᴼ
+				inoremap ;Pu ᴾ
+				inoremap ;Qu ⁺
+				inoremap ;Ru ᴿ
+				inoremap ;Su ⁺
+				inoremap ;Tu ᵀ
+				inoremap ;Uu ᵁ
+				inoremap ;Vu ⱽ
+				inoremap ;Wu ᵂ
+				inoremap ;Xu ⁺
+				inoremap ;Yu ⁺
+				inoremap ;Zu ⁺
 
-				inoremap ,ad ₐ
-				inoremap ,bd ⁺
-				inoremap ,cd ⁺
-				inoremap ,dd ⁺
-				inoremap ,ed ₑ
-				inoremap ,fd ⁺
-				inoremap ,gd ⁺
-				inoremap ,hd ⁺
-				inoremap ,id ᵢ
-				inoremap ,jd ⱼ
-				inoremap ,kd ⁺
-				inoremap ,ld ⁺
-				inoremap ,md ⁺
-				inoremap ,nd ⁺
-				inoremap ,od ₒ
-				inoremap ,pd ⁺
-				inoremap ,qd ⁺
-				inoremap ,rd ᵣ
-				inoremap ,sd ⁺
-				inoremap ,td ⁺
-				inoremap ,ud ᵤ
-				inoremap ,vd ᵥ
-				inoremap ,wd ⁺
-				inoremap ,xd ₓ
-				inoremap ,yd ⁺
-				inoremap ,zd ⁺
+				inoremap ;ad ₐ
+				inoremap ;bd ⁺
+				inoremap ;cd ⁺
+				inoremap ;dd ⁺
+				inoremap ;ed ₑ
+				inoremap ;fd ⁺
+				inoremap ;gd ⁺
+				inoremap ;hd ⁺
+				inoremap ;id ᵢ
+				inoremap ;jd ⱼ
+				inoremap ;kd ⁺
+				inoremap ;ld ⁺
+				inoremap ;md ⁺
+				inoremap ;nd ⁺
+				inoremap ;od ₒ
+				inoremap ;pd ⁺
+				inoremap ;qd ⁺
+				inoremap ;rd ᵣ
+				inoremap ;sd ⁺
+				inoremap ;td ⁺
+				inoremap ;ud ᵤ
+				inoremap ;vd ᵥ
+				inoremap ;wd ⁺
+				inoremap ;xd ₓ
+				inoremap ;yd ⁺
+				inoremap ;zd ⁺
 
-				inoremap ,Ad ⁺
-				inoremap ,Bd ⁺
-				inoremap ,Cd ⁺
-				inoremap ,Dd ⁺
-				inoremap ,Ed ⁺
-				inoremap ,Fd ⁺
-				inoremap ,Gd ⁺
-				inoremap ,Hd ⁺
-				inoremap ,Id ⁺
-				inoremap ,Jd ⁺
-				inoremap ,Kd ⁺
-				inoremap ,Ld ⁺
-				inoremap ,Md ⁺
-				inoremap ,Nd ⁺
-				inoremap ,Od ⁺
-				inoremap ,Pd ⁺
-				inoremap ,Qd ⁺
-				inoremap ,Rd ⁺
-				inoremap ,Sd ⁺
-				inoremap ,Td ⁺
-				inoremap ,Ud ⁺
-				inoremap ,Vd ⁺
-				inoremap ,Wd ⁺
-				inoremap ,Xd ⁺
-				inoremap ,Yd ⁺
-				inoremap ,Zd ⁺
+				inoremap ;Ad ⁺
+				inoremap ;Bd ⁺
+				inoremap ;Cd ⁺
+				inoremap ;Dd ⁺
+				inoremap ;Ed ⁺
+				inoremap ;Fd ⁺
+				inoremap ;Gd ⁺
+				inoremap ;Hd ⁺
+				inoremap ;Id ⁺
+				inoremap ;Jd ⁺
+				inoremap ;Kd ⁺
+				inoremap ;Ld ⁺
+				inoremap ;Md ⁺
+				inoremap ;Nd ⁺
+				inoremap ;Od ⁺
+				inoremap ;Pd ⁺
+				inoremap ;Qd ⁺
+				inoremap ;Rd ⁺
+				inoremap ;Sd ⁺
+				inoremap ;Td ⁺
+				inoremap ;Ud ⁺
+				inoremap ;Vd ⁺
+				inoremap ;Wd ⁺
+				inoremap ;Xd ⁺
+				inoremap ;Yd ⁺
+				inoremap ;Zd ⁺
 
-				inoremap ,alphau ᵅ
-				inoremap ,betau ᵝ
-				inoremap ,epsiu ᵋ
-				inoremap ,deltau ᵟ
-				inoremap ,thetau ᶿ
-				inoremap ,phiu ᶲ
-				inoremap ,Phiu ᵠ
+				inoremap ;alphau ᵅ
+				inoremap ;betau ᵝ
+				inoremap ;epsiu ᵋ
+				inoremap ;deltau ᵟ
+				inoremap ;thetau ᶿ
+				inoremap ;phiu ᶲ
+				inoremap ;Phiu ᵠ
 
-				inoremap ,betad ᵦ
-				inoremap ,phid ᵩ
+				inoremap ;betad ᵦ
+				inoremap ;phid ᵩ
 	"COMMANDLINE-MODE
 	"MISCELLANOUS-GROUPS
 		"REGISTER-MAPPINGS
@@ -1416,17 +1426,6 @@
 			vnoremap <Leader>vf  : Autoformat<CR>
 			nnoremap <Leader>vF  : call AutoFormatToggle()<CR>
 			nnoremap <LEADER>vS  : Startify<CR>
-		"TEXT-MAPPINGS
-			"REMOVE CONSECUTIVE BLANK LINES (>=3)
-				nmap <Leader>xb :g:^$\n\{3,}:d<CR>
-			"REMOVE TRAILING WHITESPACE
-				nmap <Leader>xw :call StripTrailingWhitespace()<CR>
-			"SPACES => TABS
-				nmap <Leader>xt :call ConvertSpaces2Tabs()<CR>
-			"TABS => SPACES
-				nmap <Leader>xs :call ConvertTabs2Spaces()<CR>
-			"RETAB
-				nmap <Leader>xr :%retab!<CR>
 		"EDITOR-MAPPINGS
 			"TOGGLES
 				map <Leader>etl :set number!<CR>
@@ -1744,21 +1743,36 @@
 			" nnoremap <LEADER>nf :VifmToggle %:p:h<CR>
 			" nnoremap <LEADER>nF :VifmToggle .<CR>
 		Plug 'cocopon/vaffle.vim'
-	"LANGUAGES
-		"CODE-EXECUTION
-			Plug 'coachshea/jade-vim'
-		"AUTO-COMPLETION
-			"Plug 'dNitro/vim-pug-complete'
-		"SYNTAXES
-			Plug 'sheerun/vim-polyglot'
-			Plug 'chrisbra/csv.vim'
-			"Plug 'lervag/vimtex'
-				"Plug 'vim-latex/vim-latex'
-		"MISCELLANOUS
-			Plug 'mattn/emmet-vim'
-				let g:user_emmet_install_global = 0
-				autocmd FileType html,css EmmetInstall
-				let g:user_emmet_leader_key='<tab>'
+	"PROGRAMMING
+		"EXECUTION-ENGINE
+			nmap <LocalLeader>cr <Plug>(ee-repl)
+				nmap <LocalLeader>cR <Plug>(ee-fzf-repl)
+			nmap <LocalLeader>cb <Plug>(ee-compile)
+			nmap <LocalLeader>ce <Plug>(ee-execute)
+			nmap <LocalLeader>cq <Plug>(ee-compile-execute)
+		"BETTER-MAKE
+			nnoremap <LocalLeader>cm :make<CR>
+		"SPACE-WARRIOR
+			nmap <Leader>xb :g:^$\n\{3,}:d<CR>
+			nmap <Leader>xw <Plug>(sw-strip-trailing-whitespace)
+			nmap <Leader>xt <Plug>(sw-spaces-2-tabs)
+			nmap <Leader>xs <Plug>(sw-tabs-2-spaces)
+			nmap <Leader>xr :%retab!<CR>
+		"LANGUAGES
+			"CODE-EXECUTION
+				Plug 'coachshea/jade-vim'
+			"AUTO-COMPLETION
+				"Plug 'dNitro/vim-pug-complete'
+			"SYNTAXES
+				Plug 'sheerun/vim-polyglot'
+				Plug 'chrisbra/csv.vim'
+				"Plug 'lervag/vimtex'
+					"Plug 'vim-latex/vim-latex'
+			"MISCELLANOUS
+				Plug 'mattn/emmet-vim'
+					let g:user_emmet_install_global = 0
+					autocmd FileType html,css EmmetInstall
+					let g:user_emmet_leader_key='<tab>'
 	"DEVELOPMENT
 		"VCS
 			"Plug 'tpope/vim-fugutive'
@@ -1811,14 +1825,6 @@
 						nnoremap <Leader>ji :YcmCompleter GoToImplementation<CR>
 			endif
 		"CODE-EXECUTION
-			"BETTER-MAKE
-				nnoremap <LocalLeader>cm :make<CR>
-			"EXECUTION-ENGINE
-				nmap <LocalLeader>cr <Plug>(ee-repl)
-					nmap <LocalLeader>cR <Plug>(ee-fzf-repl)
-				nmap <LocalLeader>cb <Plug>(ee-compile)
-				nmap <LocalLeader>ce <Plug>(ee-execute)
-				nmap <LocalLeader>cq <Plug>(ee-compile-execute)
 			Plug 'metakirby5/codi.vim'
 				let g:codi#width      = 80
 				let g:codi#rightalign = 0
@@ -1912,7 +1918,7 @@
 			Plug 'rjayatilleka/vim-operator-goto'
 				map go <Plug>(operator-gotostart)
 				map gO <Plug>(operator-gotoend)
-		"TEXT-OBJECTS
+		"OBJECTS
 			Plug 'wellle/targets.vim'
 			Plug 'michaeljsmith/vim-indent-object'
 			Plug 'coderifous/textobj-word-column.vim'
@@ -2478,7 +2484,7 @@
 		if has('macunix')
 			set cursorline
 		endif
-		set nolist
+		set list
 		set shortmess="filmnrwxoOTF"
 		set listchars=tab:\ \ ,
 		set listchars+=eol:¬
