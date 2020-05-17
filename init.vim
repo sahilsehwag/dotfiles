@@ -649,7 +649,7 @@
 					"MAPPINGS
 					"ABBREVIATIONS
 		"PROGRAMMING
-			"EXECUTION-ENGINE
+			"EXECUTIONER
 				if has('nvim')
 					"VARIABLES
 						let g:ee_enable_default_mappings = 1
