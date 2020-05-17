@@ -236,184 +236,9 @@
 				function! SuffixAbbreviation(word)
 					return a:word . repeat("\<Left>", strlen(a:word)) . "\<BS>" . repeat("\<Right>", strlen(a:word))
 				endfunction
-	"OPERATORS
-		"OPERATOR-BROWSER
-			function! OperatorOpenBrowser(visual, ...)
-				let [lineStart, columnStart] = getpos(a:0 ? "'<" : "'[")[1:2]
-				let [lineEnd, columnEnd]     = getpos(a:0 ? "'>" : "']")[1:2]
-				let lines                    = getline(lineStart, lineEnd)
-
-				if len(lines) == 0
-					return
-				endif
-
-				if a:visual == 'block' || a:visual == "\<c-v>"
-					call Pechoerr('Operator not defined for VISUAL-BLOCK mode')
-					return
-				elseif a:visual == 'line' || a:visual ==# 'V'
-					execute 'OpenBrowserSmartSearch ' . join(lines, '\n')
-				elseif a:visual == 'char' || a:visual ==# 'v'
-					let lines[-1] = lines[-1][: columnEnd - (&selection == 'inclusive' ? 1 : 2)]
-					let lines[0]  = lines[0][columnStart - 1:]
-					execute 'OpenBrowserSmartSearch ' . join(lines, '\n')
-				endif
-			endfunction
-
-			nnoremap <silent> gb :set opfunc=OperatorOpenBrowser<CR>g@
-			vnoremap <silent> gb :<C-U>call OperatorOpenBrowser(visualmode(), 1)<CR>
-
-			nnoremap <silent> gbb :execute 'OpenBrowserSmartSearch ' . getline('.')<CR>
-			vnoremap <silent> gbb :<C-U>execute 'OpenBrowserSmartSearch ' . getline('.')<CR>
-		"OPERATOR-EXRANGE
-			function! OperatorExRange(visual)
-				let [lineStart, columnStart] = getpos(a:0 ? "'<" : "'[")[1:2]
-				let [lineEnd, columnEnd]     = getpos(a:0 ? "'>" : "']")[1:2]
-				let lines                    = getline(lineStart, lineEnd)
-
-				if len(lines) == 0
-					return
-				endif
-
-				if a:visual == 'block' || a:visual == "\<c-v>"
-					call Pechoerr('Operator not defined for VISUAL-BLOCK mode')
-					return
-				elseif a:visual == 'line' || a:visual ==# 'V'
-					for line in lines
-						execute line
-					endfor
-				elseif a:visual == 'char' || a:visual ==# 'v'
-					let lines[-1] = lines[-1][: columnEnd - (&selection == 'inclusive' ? 1 : 2)]
-					let lines[0]  = lines[0][columnStart - 1:]
-
-					for line in lines
-						execute line
-					endfor
-				endif
-			endfunction
-
-			nnoremap <silent> g; :set opfunc=OperatorExRange<CR>g@
-			vnoremap <silent> g; :<C-U>call OperatorExRange(visualmode())<CR>
-
-			nnoremap <silent> g;; :execute getline('.')<CR>
-			vnoremap <silent> g;; :<C-U>execute getline('.')<CR>
-	"TEXT-OBJECTS
-		"LINE
-			vnoremap il :<C-u>normal! ^v$h<CR>
-			onoremap il :<C-u>normal! ^v$h<CR>
-
-			vnoremap al :<C-u>normal! Vh<CR>
-			onoremap al :<C-u>normal! Vh<CR>
-		"ENTIRE
-			vnoremap ie :<C-u>normal! ggVG<CR>
-			onoremap ie :<C-u>normal! ggVG<CR>
-		"AT @TODO
-		"BEFORE @TODO
-			vnoremap b= :<C-u>normal! ^vt=<CR>
-			onoremap b= :<C-u>normal! ^vt=<CR>
-			vnoremap b: :<C-u>normal! ^vt:<CR>
-			onoremap b: :<C-u>normal! ^vt:<CR>
-			vnoremap b- :<C-u>normal! ^vt-<CR>
-			onoremap b- :<C-u>normal! ^vt-<CR>
-			vnoremap B= :<C-u>normal! ^vf=<CR>
-			onoremap B= :<C-u>normal! ^vf=<CR>
-			vnoremap B: :<C-u>normal! ^vf:<CR>
-			onoremap B: :<C-u>normal! ^vf:<CR>
-			vnoremap B- :<C-u>normal! ^vf-<CR>
-			onoremap B- :<C-u>normal! ^vf-<CR>
-		"BETWEEN
-		"AFTER
-			"TEXT-OBJECT
-				function! TextObjectAfter(targetChar)
-					"GETTING COLUMN NUMBER OF CHARACTER AFTER THE targetChar
-						execute 'normal! 0' . v:count . 'f' . a:targetChar
-						let targetCharCol = virtcol('.')
-						let targetCharNormCol = getpos('.')[2]
-					"IF CHARACTER AFTER targetChar IS SPACE THEN SKIP OVER THE SPACE CHARACTER
-						if getline('.')[targetCharNormCol] == ' '
-							execute 'normal! ' . string(targetCharCol+2) . '|v$h'
-						else
-							execute 'normal! ' . string(targetCharCol+1) . '|v$h'
-						endif
-				endfunction
-
-				function! TextObjectAfterAnyChar()
-					"GETTING TARGET CHAR
-						call inputsave()
-						let targetChar = getchar()
-						call inputrestore()
-					"GETTING COLUMN NUMBER OF CHARACTER AFTER THE targetChar
-						execute 'normal! 0' . v:count . 'f' . nr2char(targetChar)
-						let targetCharCol = virtcol('.')
-						let targetCharNormCol = getpos('.')[2]
-					"IF CHARACTER AFTER targetChar IS SPACE THEN SKIP OVER THE SPACE CHARACTER
-						if getline('.')[targetCharNormCol] == ' '
-							execute 'normal! ' . string(targetCharCol+2) . '|v$h'
-						else
-							execute 'normal! ' . string(targetCharCol+1) . '|v$h'
-						endif
-				endfunction
-			"MAPPINGS
-				vnoremap <silent> a= :<C-u>call TextObjectAfter('=')<CR>
-				onoremap <silent> a= :<C-u>call TextObjectAfter('=')<CR>
-
-				vnoremap <silent> a: :<C-u>call TextObjectAfter(':')<CR>
-				onoremap <silent> a: :<C-u>call TextObjectAfter(':')<CR>
-
-				vnoremap <silent> a- :<C-u>call TextObjectAfter('-')<CR>
-				onoremap <silent> a- :<C-u>call TextObjectAfter('-')<CR>
-
-				onoremap <silent> ga :<C-u>call TextObjectAfterAnyChar()<CR>
-		"LANGUAGES @TODO
-			"PYTHON
-			"CLANG
-	"TARGETS
-	"TOGGLES
-		"AUTOSAVE
-			let g:autosave = 0
-
-			function! AutoSaveToggle()
-				if g:autosave == 0
-					echom "AutoSave Mode Enabled"
-					let g:autosave = 1
-
-					augroup AutoSaveGroup
-						autocmd!
-						au InsertLeave * silent write
-						au TextChanged * silent write
-					augroup END
-				elseif g:autosave == 1
-					echom "AutoSave Mode Disabled"
-					let g:autosave = 0
-
-					augroup AutoSaveGroup
-						autocmd!
-					augroup END
-				endif
-			endfunction
-		"AUTOFORMAT
-			let g:autoformat = 0
-
-			function! AutoFormatToggle()
-				if g:autoformat == 0
-					echom "AutoFormat Mode Enabled"
-					let g:autoformat = 1
-
-					augroup AutoFormatGroup
-						autocmd!
-						au InsertLeave * Autoformat
-					augroup END
-				elseif g:autoformat == 1
-					echom "AutoFormat Mode Disabled"
-					let g:autoformat = 0
-
-					augroup AutoFormatGroup
-						autocmd!
-					augroup END
-				endif
-			endfunction
 	"PLUGINS
 		"VIM
-			"BETTER-VIM.vim
+			"BETTER-VIM
 				"BETTER-DELETE
 					nnoremap d "_d
 					nnoremap D "_D
@@ -487,7 +312,51 @@
 							au Filetype sh setl makeprg=bash\ %:S
 							au Filetype zsh setl makeprg=zsh\ %:S
 					augroup END
-		"GENERAL
+			"TOGGLES
+				"AUTOSAVE
+					let g:autosave = 0
+
+					function! AutoSaveToggle()
+						if g:autosave == 0
+							echom "AutoSave Mode Enabled"
+							let g:autosave = 1
+
+							augroup AutoSaveGroup
+								autocmd!
+								au InsertLeave * silent write
+								au TextChanged * silent write
+							augroup END
+						elseif g:autosave == 1
+							echom "AutoSave Mode Disabled"
+							let g:autosave = 0
+
+							augroup AutoSaveGroup
+								autocmd!
+							augroup END
+						endif
+					endfunction
+				"AUTOFORMAT
+					let g:autoformat = 0
+
+					function! AutoFormatToggle()
+						if g:autoformat == 0
+							echom "AutoFormat Mode Enabled"
+							let g:autoformat = 1
+
+							augroup AutoFormatGroup
+								autocmd!
+								au InsertLeave * Autoformat
+							augroup END
+						elseif g:autoformat == 1
+							echom "AutoFormat Mode Disabled"
+							let g:autoformat = 0
+
+							augroup AutoFormatGroup
+								autocmd!
+							augroup END
+						endif
+					endfunction
+		"SYSTEM
 			"TERMINAL
 				if has('nvim')
 					"FUNCTIONS
@@ -586,6 +455,173 @@
 					"COMMANDS
 						command! -narg=1 Vifm :call Vifm(<q-args>)
 				endif
+			"FZF
+				"FZF-EXTENSIONS
+					"FZF-EMOJIS
+						"FUNCTIONS
+							function! FZFEmojisLoad(path)
+								let l:emojis = ReadJSON(glob(a:path))
+								let l:strings = []
+
+								for emoji in l:emojis
+									let l:sno    = string(emoji['sno']) . '.  '
+									let l:symbol = '[' . emoji['symbol'] . ' ]' . repeat(' ', 4)
+									let l:name   = emoji['name'] . repeat(' ', 8)
+									let l:tags   = ':' . join(emoji['tags'], ' | ') . ':'
+
+									if emoji['symbol'] == '🥰'
+									else
+										let l:string = l:sno . l:symbol . l:name
+										let l:strings = add(l:strings, l:string)
+									endif
+								endfor
+
+								let s:fzf_emojis = l:emojis
+								return l:strings
+							endfunction
+
+							function! FZFEmojisInsert(string)
+								let l:id = split(str2nr(a:string), ':')[0]
+								execute 'normal! a' . s:fzf_emojis[l:id]['symbol']
+							endfunction
+						"COMMANDS
+							command! -narg=1 FZFEmojisInsert call FZFEmojisInsert(<q-args>)
+							command! FZFEmojis :call fzf#run(fzf#wrap({'source': FZFEmojisLoad('~/unicode-emojis.json'), 'sink': 'FZFEmojisInsert'}))<CR>
+						"MAPPINGS
+							imap :ej <ESC>:FZFEmojis<CR>
+		"EDITING
+			"OPERATORS
+				"OPERATOR-BROWSER
+					function! OperatorOpenBrowser(visual, ...)
+						let [lineStart, columnStart] = getpos(a:0 ? "'<" : "'[")[1:2]
+						let [lineEnd, columnEnd]     = getpos(a:0 ? "'>" : "']")[1:2]
+						let lines                    = getline(lineStart, lineEnd)
+
+						if len(lines) == 0
+							return
+						endif
+
+						if a:visual == 'block' || a:visual == "\<c-v>"
+							call Pechoerr('Operator not defined for VISUAL-BLOCK mode')
+							return
+						elseif a:visual == 'line' || a:visual ==# 'V'
+							execute 'OpenBrowserSmartSearch ' . join(lines, '\n')
+						elseif a:visual == 'char' || a:visual ==# 'v'
+							let lines[-1] = lines[-1][: columnEnd - (&selection == 'inclusive' ? 1 : 2)]
+							let lines[0]  = lines[0][columnStart - 1:]
+							execute 'OpenBrowserSmartSearch ' . join(lines, '\n')
+						endif
+					endfunction
+
+					nnoremap <silent> gb :set opfunc=OperatorOpenBrowser<CR>g@
+					vnoremap <silent> gb :<C-U>call OperatorOpenBrowser(visualmode(), 1)<CR>
+
+					nnoremap <silent> gbb :execute 'OpenBrowserSmartSearch ' . getline('.')<CR>
+					vnoremap <silent> gbb :<C-U>execute 'OpenBrowserSmartSearch ' . getline('.')<CR>
+				"OPERATOR-EXRANGE
+					function! OperatorExRange(visual)
+						let [lineStart, columnStart] = getpos(a:0 ? "'<" : "'[")[1:2]
+						let [lineEnd, columnEnd]     = getpos(a:0 ? "'>" : "']")[1:2]
+						let lines                    = getline(lineStart, lineEnd)
+
+						if len(lines) == 0
+							return
+						endif
+
+						if a:visual == 'block' || a:visual == "\<c-v>"
+							call Pechoerr('Operator not defined for VISUAL-BLOCK mode')
+							return
+						elseif a:visual == 'line' || a:visual ==# 'V'
+							for line in lines
+								execute line
+							endfor
+						elseif a:visual == 'char' || a:visual ==# 'v'
+							let lines[-1] = lines[-1][: columnEnd - (&selection == 'inclusive' ? 1 : 2)]
+							let lines[0]  = lines[0][columnStart - 1:]
+
+							for line in lines
+								execute line
+							endfor
+						endif
+					endfunction
+
+					nnoremap <silent> g; :set opfunc=OperatorExRange<CR>g@
+					vnoremap <silent> g; :<C-U>call OperatorExRange(visualmode())<CR>
+
+					nnoremap <silent> g;; :execute getline('.')<CR>
+					vnoremap <silent> g;; :<C-U>execute getline('.')<CR>
+			"OBJECTS
+				"LINE
+					vnoremap il :<C-u>normal! ^v$h<CR>
+					onoremap il :<C-u>normal! ^v$h<CR>
+
+					vnoremap al :<C-u>normal! Vh<CR>
+					onoremap al :<C-u>normal! Vh<CR>
+				"ENTIRE
+					vnoremap ie :<C-u>normal! ggVG<CR>
+					onoremap ie :<C-u>normal! ggVG<CR>
+				"AT @TODO
+				"BEFORE @TODO
+					vnoremap b= :<C-u>normal! ^vt=<CR>
+					onoremap b= :<C-u>normal! ^vt=<CR>
+					vnoremap b: :<C-u>normal! ^vt:<CR>
+					onoremap b: :<C-u>normal! ^vt:<CR>
+					vnoremap b- :<C-u>normal! ^vt-<CR>
+					onoremap b- :<C-u>normal! ^vt-<CR>
+					vnoremap B= :<C-u>normal! ^vf=<CR>
+					onoremap B= :<C-u>normal! ^vf=<CR>
+					vnoremap B: :<C-u>normal! ^vf:<CR>
+					onoremap B: :<C-u>normal! ^vf:<CR>
+					vnoremap B- :<C-u>normal! ^vf-<CR>
+					onoremap B- :<C-u>normal! ^vf-<CR>
+				"BETWEEN
+				"AFTER
+					"TEXT-OBJECT
+						function! TextObjectAfter(targetChar)
+							"GETTING COLUMN NUMBER OF CHARACTER AFTER THE targetChar
+								execute 'normal! 0' . v:count . 'f' . a:targetChar
+								let targetCharCol = virtcol('.')
+								let targetCharNormCol = getpos('.')[2]
+							"IF CHARACTER AFTER targetChar IS SPACE THEN SKIP OVER THE SPACE CHARACTER
+								if getline('.')[targetCharNormCol] == ' '
+									execute 'normal! ' . string(targetCharCol+2) . '|v$h'
+								else
+									execute 'normal! ' . string(targetCharCol+1) . '|v$h'
+								endif
+						endfunction
+
+						function! TextObjectAfterAnyChar()
+							"GETTING TARGET CHAR
+								call inputsave()
+								let targetChar = getchar()
+								call inputrestore()
+							"GETTING COLUMN NUMBER OF CHARACTER AFTER THE targetChar
+								execute 'normal! 0' . v:count . 'f' . nr2char(targetChar)
+								let targetCharCol = virtcol('.')
+								let targetCharNormCol = getpos('.')[2]
+							"IF CHARACTER AFTER targetChar IS SPACE THEN SKIP OVER THE SPACE CHARACTER
+								if getline('.')[targetCharNormCol] == ' '
+									execute 'normal! ' . string(targetCharCol+2) . '|v$h'
+								else
+									execute 'normal! ' . string(targetCharCol+1) . '|v$h'
+								endif
+						endfunction
+					"MAPPINGS
+						vnoremap <silent> a= :<C-u>call TextObjectAfter('=')<CR>
+						onoremap <silent> a= :<C-u>call TextObjectAfter('=')<CR>
+
+						vnoremap <silent> a: :<C-u>call TextObjectAfter(':')<CR>
+						onoremap <silent> a: :<C-u>call TextObjectAfter(':')<CR>
+
+						vnoremap <silent> a- :<C-u>call TextObjectAfter('-')<CR>
+						onoremap <silent> a- :<C-u>call TextObjectAfter('-')<CR>
+
+						onoremap <silent> ga :<C-u>call TextObjectAfterAnyChar()<CR>
+				"LANGUAGES @TODO
+					"PYTHON
+					"CLANG
+			"TARGETS
+		"PROGRAMMING
 			"EXECUTION-ENGINE
 				if has('nvim')
 					"VARIABLES
@@ -815,44 +851,11 @@
 						nmap <silent> <Plug>(ee-compile-execute) :EECompileExecute<CR>
 						nmap <silent> <Plug>(ee-fzf-repl)        :call fzf#run(fzf#wrap({'source': getcompletion('', 'filetype'), 'sink': 'EERepl'}))<CR>
 				endif
-			"FZF-EXTENSIONS
-				"FZF-EMOJIS
-					"FUNCTIONS
-						function! FZFEmojisLoad(path)
-							let l:emojis = ReadJSON(glob(a:path))
-							let l:strings = []
-
-							for emoji in l:emojis
-								let l:sno    = string(emoji['sno']) . '.  '
-								let l:symbol = '[' . emoji['symbol'] . ' ]' . repeat(' ', 4)
-								let l:name   = emoji['name'] . repeat(' ', 8)
-								let l:tags   = ':' . join(emoji['tags'], ' | ') . ':'
-
-								if emoji['symbol'] == '🥰'
-								else
-									let l:string = l:sno . l:symbol . l:name
-									let l:strings = add(l:strings, l:string)
-								endif
-							endfor
-
-							let s:fzf_emojis = l:emojis
-							return l:strings
-						endfunction
-
-						function! FZFEmojisInsert(string)
-							let l:id = split(str2nr(a:string), ':')[0]
-							execute 'normal! a' . s:fzf_emojis[l:id]['symbol']
-						endfunction
-					"COMMANDS
-						command! -narg=1 FZFEmojisInsert call FZFEmojisInsert(<q-args>)
-						command! FZFEmojis :call fzf#run(fzf#wrap({'source': FZFEmojisLoad('~/unicode-emojis.json'), 'sink': 'FZFEmojisInsert'}))<CR>
-					"MAPPINGS
-						imap :ej <ESC>:FZFEmojis<CR>
+		"LANGUAGES
 		"DEVELOPMENT
 		"NOTES
 			"@TODO TYPIST.vim
 		"MISCELLANOUS
-			"@TODO TOAGGLER.vim
 			"@TODO WRAPIT.vim
 			"@TODO ORGASMIC-C
 			"@TODO WINDOWS-MANAGER
@@ -879,7 +882,6 @@
 					"echom 'SWAP FILE DETECTED: SWAP RECOVERED'
 				endif
 			endfunction
-		"REMOVE STUFF
 "PYTHON
 	"PLUGINS
 "COMMANDS
@@ -888,7 +890,6 @@
 	"VARIABLES
 		"PERFORMANCE
 			let loaded_netrwPlugin = 0
-		"VIM
 		"INTERFACE
 			let g:highlight_trailing_whitespaces = 1
 			let g:highlight_leading_spaces       = 1
@@ -926,7 +927,7 @@
 				highlight LeadingTabs ctermbg=135
 				call matchadd('LeadingTabs', '^\t\+', 100)
 			endif
-		"AUTOCOMPLETION-MENU
+		"AUTO-COMPLETION-MENU
 			"highlight Pmenu ctermbg=232 ctermfg=7
 			"highlight PmenuSel ctermfg=15
 			highlight Pmenu ctermbg=238 gui=bold
@@ -1595,13 +1596,6 @@
 				augroup END
 		"CSS
 	"PROGRAMMING
-		"CODING
-			nnoremap <LocalLeader>cr :execute 'VRTerm ' . g:languages[&filetype]['repl']<CR>
-			nnoremap <LocalLeader>ce :execute 'HBTerm! '   . g:languages[&filetype]['execute'] . ' ' . escape(glob('%'), ' -')<CR>
-		"PYTHON
-		"C|C++
-		"JAVA
-		"JAVASCRIPT
 	"WORDPRESS
 		augroup WORDPRESS
 			au!
@@ -1612,6 +1606,10 @@
 "PLUGINS
 	call plug#begin()
 	"PRODUCTIVITY
+		"CUSTOM
+			"VIFM
+				nnoremap <LEADER>nv :Vifm %:p:h<CR>
+				nnoremap <LEADER>nV :Vifm .<CR>
 		Plug 'easymotion/vim-easymotion'
 			"CONFIGURATION
 				let g:EasyMotion_smartcase = 1
@@ -1747,13 +1745,11 @@
 			" nnoremap <LEADER>nF :VifmToggle .<CR>
 		Plug 'cocopon/vaffle.vim'
 	"LANGUAGES
-		"LINTERS
-		"BEAUTIFIERS
-		"AUTOCOMPILATION
+		"CODE-EXECUTION
 			Plug 'coachshea/jade-vim'
-		"AUTOCOMPLETION
+		"AUTO-COMPLETION
 			"Plug 'dNitro/vim-pug-complete'
-		"SYNTAX
+		"SYNTAXES
 			Plug 'sheerun/vim-polyglot'
 			Plug 'chrisbra/csv.vim'
 			"Plug 'lervag/vimtex'
@@ -2444,9 +2440,6 @@
 		"Plug 'syngan/vim-operator-evalf'
 		"Plug 'neitanod/vim-sade'
 	"CUSTOM
-		"VIFM
-			nnoremap <LEADER>nv :Vifm %:p:h<CR>
-			nnoremap <LEADER>nV :Vifm .<CR>
 	call plug#end()
 "SETTINGS
 	"INDENTATION
@@ -2519,4 +2512,3 @@
 			autocmd BufNewFile,BufRead *.txt set syntax=jproperties
 			autocmd Filetype text set syntax=jproperties
 		augroup END
-	"COMPILIERS
