@@ -650,31 +650,34 @@
 									\'extension'       : 'cs',
 									\'repl'            : 'csharp',
 									\'compile'         : 'csc %:p:s',
-									\'execute'         : 'mono %:r:s.exe',
-									\'compile-execute' : 'csc %:p:s && mono %:r:s.exe',
+									\'execute'         : 'mono %:p:r:s.exe',
+									\'compile-execute' : 'csc %:p:s && mono %:p:r:s.exe',
 								\}
 								let s:languages.csx = {
 									\'extension'       : 'csx',
 									\'repl'            : 'scriptcs',
-									\'execute'         : 'scriptcs %:r:S.csx',
+									\'execute'         : 'scriptcs %:p:r:S.csx',
 								\}
 								let s:languages.java = {
 									\'extension'       : 'java',
 									\'repl'            : 'jshell',
 									\'compile'         : 'javac %:p:S',
-									\'execute'         : 'java %:r:S',
-									\'compile-execute' : 'javac %:p:S && java %:r:S',
+									\'execute'         : 'java %:p:r:S',
+									\'compile-execute' : 'javac %:p:S && java %:p:r:S',
 								\}
 								let s:languages.scala = {
 									\'extension'       : 'scala',
 									\'repl'            : 'scala',
 									\'compile'         : 'scalac %:p:S',
-									\'execute'         : 'scala %:r:S',
-									\'compile-execute' : 'scalac %:p:S && scala %:r:S',
+									\'execute'         : 'scala %:p:r:S',
+									\'compile-execute' : 'scalac %:p:S && scala %:p:r:S',
 								\}
 								let s:languages.haskell = {
-									\'extension'	 : 'hs',
-									\'repl'			 : 'ghci',
+									\'extension'       : 'hs',
+									\'repl'            : 'ghci',
+									\'compile'         : 'ghc -Wno-tabs -o %:p:r:S.exe %:p:S',
+									\'execute'         : '%:p:r:S.exe',
+									\'compile-execute' : 'ghc -Wno-tabs -o %:p:r:S.exe %:p:S && %:p:r:S',
 								\}
 								let s:languages.processing = {
 									\'extension'       : 'pde',
@@ -1368,8 +1371,10 @@
 			nnoremap <Leader>rY "y
 			nnoremap <Leader>rZ "z
 		"VIM-MAPPINGS
-			nnoremap <LEADER>vc  : edit ~/.config/nvim/init.vim<CR>
-			nnoremap <LEADER>vs  : source ~/.config/nvim/init.vim<CR>
+			if (has('unix') || has('macunix'))
+				nnoremap <LEADER>vc  : edit ~/.config/nvim/init.vim<CR>
+				nnoremap <LEADER>vs  : source ~/.config/nvim/init.vim<CR>
+			endif
 			nnoremap <Leader>vi  : PlugInstall<CR>
 			nnoremap <Leader>vu  : PlugClean<CR>
 			nnoremap <Leader>vw  : call AutoSaveToggle()<CR>
