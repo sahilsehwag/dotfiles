@@ -1,82 +1,5 @@
 "VIMSCRIPT
 	"HELPERS
-		"EXTERNAL
-			"PACKAGE-MANAGERS
-				function! InstallPackage(pacman, package, flags)
-					if executable(a:pacman) == 1
-						execute '!' a:pacman ' install ' a:flags ' ' a:package
-					else
-						echom a:pacman ' NOT INSTALLED'
-					endif
-				endfunction
-
-				function! RunCommand(cmd, flags, range, pacman, package, installFlags)
-					if executable(a:cmd) == 0
-						echom "INSTALLING " a:cmd " USING " a:pacman "..."
-						call InstallPackage(a:pacman, a:package, a:installFlags)
-					else
-						execute a:range '!' a:cmd ' ' a:flags
-					endif
-				endfunction
-
-				function! RunNpmCommand(cmd, flags, range, package)
-					call RunCommand(a:cmd, a:flags, a:range, 'npm', a:package, '-g')
-				endfunction
-
-				function! RunPipCommand(cmd, flags, range, package)
-					call RunCommand(a:cmd, a:flags, a:range, 'pip', a:package, '')
-				endfunction
-			"UNIX|LINUX
-				"FUNCTIONS
-					function! NewFile(path)
-						let l:filename = input('Enter New Filename: ')
-						let l:file = a:path . '/' . l:filename
-
-						if empty(l:filename)
-							call Pechoerr('No Filename Specified')
-						else
-							execute "e " . l:file
-						endif
-					endfunction
-
-					function! NewDirectory(path)
-						let l:dirname = input('Enter New Directory Name: ')
-						let l:dir = a:path . '/' . l:dirname
-
-						if empty(l:dirname)
-							call Pechoerr('No Directory Name Specified')
-						else
-							execute "!mkdir " . l:dir
-						endif
-					endfunction
-
-					function! DeleteDirectory(path, bang)
-						if !empty(a:path)
-							if bang == 0
-								execute "!rmdir " . a:path
-							else
-								execute "!rm -rf " . a:path
-							endif
-						endif
-					endfunction
-
-					function! DeleteFile(file)
-						execute "bdelete!"
-						silent execute "!rm " . a:file | redraw!
-						call Pechoerr("File " . a:file ." Deleted Successfully")
-					endfunction
-				"COMMANDS
-					command! -nargs=1		NewFile         : call NewFile         (<q-args>)
-					command! -nargs=1		NewDirectory    : call NewDiretory     (<q-args>)
-					command! -nargs=1 -bang DeleteDirectory : call DeleteDirectory (<q-args>, <bang>0)
-					command! -nargs=1		DeleteFile      : call DeleteFile	   (<q-args>)
-			"UTILITIES
-				"READ-JSON
-					function! ReadJSON(path)
-						let l:lines = readfile(a:path)
-						let l:json = json_decode(l:lines)
-						return l:json
-					endfunction
 		"VIM
 			"FILESYSTEM
 				"FUNCTIONS
@@ -209,60 +132,148 @@
 				function! SuffixAbbreviation(word)
 					return a:word . repeat("\<Left>", strlen(a:word)) . "\<BS>" . repeat("\<Right>", strlen(a:word))
 				endfunction
+		"EXTERNAL
+			"PACKAGE-MANAGERS
+				function! InstallPackage(pacman, package, flags)
+					if executable(a:pacman) == 1
+						execute '!' a:pacman ' install ' a:flags ' ' a:package
+					else
+						echom a:pacman ' NOT INSTALLED'
+					endif
+				endfunction
+
+				function! RunCommand(cmd, flags, range, pacman, package, installFlags)
+					if executable(a:cmd) == 0
+						echom "INSTALLING " a:cmd " USING " a:pacman "..."
+						call InstallPackage(a:pacman, a:package, a:installFlags)
+					else
+						execute a:range '!' a:cmd ' ' a:flags
+					endif
+				endfunction
+
+				function! RunNpmCommand(cmd, flags, range, package)
+					call RunCommand(a:cmd, a:flags, a:range, 'npm', a:package, '-g')
+				endfunction
+
+				function! RunPipCommand(cmd, flags, range, package)
+					call RunCommand(a:cmd, a:flags, a:range, 'pip', a:package, '')
+				endfunction
+			"UNIX|LINUX
+				"FUNCTIONS
+					function! NewFile(path)
+						let l:filename = input('Enter New Filename: ')
+						let l:file = a:path . '/' . l:filename
+
+						if empty(l:filename)
+							call Pechoerr('No Filename Specified')
+						else
+							execute "e " . l:file
+						endif
+					endfunction
+
+					function! NewDirectory(path)
+						let l:dirname = input('Enter New Directory Name: ')
+						let l:dir = a:path . '/' . l:dirname
+
+						if empty(l:dirname)
+							call Pechoerr('No Directory Name Specified')
+						else
+							execute "!mkdir " . l:dir
+						endif
+					endfunction
+
+					function! DeleteDirectory(path, bang)
+						if !empty(a:path)
+							if bang == 0
+								execute "!rmdir " . a:path
+							else
+								execute "!rm -rf " . a:path
+							endif
+						endif
+					endfunction
+
+					function! DeleteFile(file)
+						execute "bdelete!"
+						silent execute "!rm " . a:file | redraw!
+						call Pechoerr("File " . a:file ." Deleted Successfully")
+					endfunction
+				"COMMANDS
+					command! -nargs=1		NewFile         : call NewFile         (<q-args>)
+					command! -nargs=1		NewDirectory    : call NewDiretory     (<q-args>)
+					command! -nargs=1 -bang DeleteDirectory : call DeleteDirectory (<q-args>, <bang>0)
+					command! -nargs=1		DeleteFile      : call DeleteFile	   (<q-args>)
+			"UTILITIES
+				"READ-JSON
+					function! ReadJSON(path)
+						let l:lines = readfile(a:path)
+						let l:json = json_decode(l:lines)
+						return l:json
+					endfunction
 	"PLUGINS
 		"VIM
 			"BETTER-VIM
+				"VARIABLES
+					let g:bv_enable_default_mappings = 1
 				"BETTER-DELETE
-					nnoremap d "_d
-					nnoremap D "_D
-					nnoremap dd "_dd
-					xnoremap d "_d
+					let g:bv_bd_enable_default_mappings = 1
+					if ExistsAndTrue('g:bv_enable_default_mappings') && ExistsAndTrue('bv_bd_enable_default_mappings')
+						nnoremap d "_d
+						nnoremap D "_D
+						nnoremap dd "_dd
+						xnoremap d "_d
 
-					nnoremap c "_c
-					nnoremap C "_C
-					nnoremap cc "_cc
-					xnoremap c "_c
+						nnoremap c "_c
+						nnoremap C "_C
+						nnoremap cc "_cc
+						xnoremap c "_c
 
-					nnoremap gd d
-					nnoremap gD D
-					nnoremap gdd dd
-					xnoremap gd d
+						nnoremap gd d
+						nnoremap gD D
+						nnoremap gdd dd
+						xnoremap gd d
 
-					nnoremap gc c
-					nnoremap gC C
-					nnoremap gcc cc
-					xnoremap gc c
+						nnoremap gc c
+						nnoremap gC C
+						nnoremap gcc cc
+						xnoremap gc c
+					endif
 				"BETTER-YANK @TODO
 					"PRESERVE-POSITION
 					"REGISTER-MANAGEMENT
 				"BETTER-PASTE @TODO
-					"PASTE-SWAP
-						nnoremap p :normal! ]p <CR>
-						nnoremap P :normal! [p <CR>
-						" nnoremap ]p :normal! p <CR>
-						" nnoremap [p :normal! P <CR>
-						"vnoremap p :<C-u>normal! ]pgvd <CR>
-						"vnoremap P :<C-u>normal! [pgvd <CR>
-						"vnoremap ]p :<C-u>normal! pgvd <CR>
-						"vnoremap [p :<C-u>normal! Pgvd <CR>
-					"PASTE+INDENT
-						nnoremap >p :normal! ]p>> <CR>
-						nnoremap <p :normal! ]p<< <CR>
-						nnoremap >P :normal! [p>> <CR>
-						nnoremap <P :normal! [p<< <CR>
-					"PASTE+NEWLINE
-						nnoremap ]p :normal! o<esc>p==
-						nnoremap [p :normal! O<Esc>P==
-					"PASTE+CYCLE
-					"PASTE+FORMAT
+					let g:bv_bp_enable_default_mappings = 1
+					if ExistsAndTrue('g:bv_enable_default_mappings') && ExistsAndTrue('bv_bp_enable_default_mappings')
+						"PASTE+SWAP
+							nnoremap p :normal! ]p <CR>
+							nnoremap P :normal! [p <CR>
+							"nnoremap ]p :normal! p <CR>
+							"nnoremap [p :normal! P <CR>
+							"vnoremap p :<C-u>normal! ]pgvd <CR>
+							"vnoremap P :<C-u>normal! [pgvd <CR>
+							"vnoremap ]p :<C-u>normal! pgvd <CR>
+							"vnoremap [p :<C-u>normal! Pgvd <CR>
+						"PASTE+INDENT
+							nnoremap >p :normal! ]p>> <CR>
+							nnoremap <p :normal! ]p<< <CR>
+							nnoremap >P :normal! [p>> <CR>
+							nnoremap <P :normal! [p<< <CR>
+						"PASTE+NEWLINE
+							nnoremap ]p :normal! o<esc>p==
+							nnoremap [p :normal! O<Esc>P==
+						"PASTE+CYCLE
+						"PASTE+FORMAT
+					endif
 				"BETTER-o|O
 					"nnoremap <CR> :normal! o<ESC>k^0<CR> @TODO
 					"nnoremap <SHIFT><CR> :normal! O<ESC>j^0<CR> @TODO
 				"BETTER-VISUAL
 					"OBJECTS:PRESERVE-POSITION
 				"BETTER-NAVIGATION
-					nnoremap 0 ^
-					nnoremap ^ 0
+					let g:bv_bn_enable_default_mappings = 1
+					if ExistsAndTrue('g:bv_enable_default_mappings') && ExistsAndTrue('bv_bn_enable_default_mappings')
+						nnoremap 0 ^
+						nnoremap ^ 0
+					endif
 				"BETTER-MARKS
 					"MACROS:RECORD=qr
 					"MACROS:HISTORY=qh
@@ -272,80 +283,76 @@
 					"MACROS:LIST=ql=play|edit|delete
 					"MACROS:NESTED
 				"BETTER-MAKE
-					augroup MAKE
-						au!
-						"COMPILED
-							au Filetype c setl makeprg=gcc\ %:S\ &&\ %:h:S/a.out
-							au Filetype cpp setl makeprg=g++\ -std=c++14\ %:S\ &&\ %:h:S/a.out
-							au Filetype scala setl makeprg=scalac\ %:S\ &&\ scala\ %:r:S
-							au Filetype java setl makeprg=javac\ %:S\ &&\ java\ %:r:S
-							au Filetype haskell setl makeprg=ghc\ -Wno-tabs\ %:S\ &&\ %:r:S
-							au Filetype processing setl makeprg=processing-java\ --output=/tmp/processing/\ --force\ --sketch=%:h:S\ --run
-							au Filetype csx setl makeprg=scriptcs\ %:r:S.csx
-							if has('macunix')
-								au Filetype cs setl makeprg=csc\ %:p:S\ &&\ mono\ %:r:S.exe
-							elseif has('win32')
-								au Filetype cs setl makeprg=csc\ %:p:S\ &&\ %:r:S.exe
+					"VARIABLES
+						let g:bv_bm_enable_default_mappings = 1
+					"GROUP
+						augroup MAKE
+							au!
+							"COMPILED
+								au Filetype c setl makeprg=gcc\ %:S\ &&\ %:h:S/a.out
+								au Filetype cpp setl makeprg=g++\ -std=c++14\ %:S\ &&\ %:h:S/a.out
+								au Filetype scala setl makeprg=scalac\ %:S\ &&\ scala\ %:r:S
+								au Filetype java setl makeprg=javac\ %:S\ &&\ java\ %:r:S
+								au Filetype haskell setl makeprg=ghc\ -Wno-tabs\ %:S\ &&\ %:r:S
+								au Filetype processing setl makeprg=processing-java\ --output=/tmp/processing/\ --force\ --sketch=%:h:S\ --run
+								au Filetype csx setl makeprg=scriptcs\ %:r:S.csx
+								if has('macunix')
+									au Filetype cs setl makeprg=csc\ %:p:S\ &&\ mono\ %:r:S.exe
+								elseif has('win32')
+									au Filetype cs setl makeprg=csc\ %:p:S\ &&\ %:r:S.exe
+								endif
+							"INTERPRETED
+								au Filetype python setl makeprg=python3\ %:S
+								au Filetype javascript setl makeprg=node\ %:S
+								au Filetype ruby setl makeprg=ruby\ %:S
+								au Filetype perl setl makeprg=perl\ %:S
+								au Filetype php setl makeprg=php\ %:S
+								au Filetype typescript setl makeprg=tsc\ %:S
+								au Filetype lua setl makeprg=lua\ %:S
+							"SHELL
+								au Filetype sh setl makeprg=bash\ %:S
+								au Filetype zsh setl makeprg=zsh\ %:S
+						augroup END
+					"DEFAULTS
+						if ExistsAndTrue('g:bv_enable_default_mappings') && ExistsAndTrue('g:bv_bm_enable_default_mappings')
+							nnoremap <LocalLeader>cm :make<CR>
+						endif
+			"TOAGGLER
+				"VARIABLES
+					let g:toaggler_enable_default_mappings = 1
+				"AUTOSAVE-TOGGLE
+					"VARIABLES
+						let g:toaggler_autosave = 0
+						let g:toaggler_autosave_enable_default_mappings = 1
+					"FUNCTIONS
+						function! AutoSaveToggle()
+							if g:toaggler_autosave == 0
+								echom "AutoSave Mode Enabled"
+								let g:toaggler_autosave = 1
+
+								augroup AutoSaveGroup
+									autocmd!
+									au InsertLeave * silent write
+									au TextChanged * silent write
+								augroup END
+							elseif g:toaggler_autosave == 1
+								echom "AutoSave Mode Disabled"
+								let g:autosave = 0
+
+								augroup AutoSaveGroup
+									autocmd!
+								augroup END
 							endif
-						"INTERPRETED
-							au Filetype python setl makeprg=python3\ %:S
-							au Filetype javascript setl makeprg=node\ %:S
-							au Filetype ruby setl makeprg=ruby\ %:S
-							au Filetype perl setl makeprg=perl\ %:S
-							au Filetype php setl makeprg=php\ %:S
-							au Filetype typescript setl makeprg=tsc\ %:S
-							au Filetype lua setl makeprg=lua\ %:S
-						"SHELL
-							au Filetype sh setl makeprg=bash\ %:S
-							au Filetype zsh setl makeprg=zsh\ %:S
-					augroup END
-			"TOGGLES
-				"AUTOSAVE
-					let g:autosave = 0
-
-					function! AutoSaveToggle()
-						if g:autosave == 0
-							echom "AutoSave Mode Enabled"
-							let g:autosave = 1
-
-							augroup AutoSaveGroup
-								autocmd!
-								au InsertLeave * silent write
-								au TextChanged * silent write
-							augroup END
-						elseif g:autosave == 1
-							echom "AutoSave Mode Disabled"
-							let g:autosave = 0
-
-							augroup AutoSaveGroup
-								autocmd!
-							augroup END
+						endfunction
+					"DEFAULTS
+						if ExistsAndTrue('g:toaggler_enable_default_mappings') && ExistsAndTrue('g:toaggler_autosave_enable_default_mappings')
+							nnoremap <Leader>vw :call AutoSaveToggle()<CR>
 						endif
-					endfunction
-				"AUTOFORMAT
-					let g:autoformat = 0
-
-					function! AutoFormatToggle()
-						if g:autoformat == 0
-							echom "AutoFormat Mode Enabled"
-							let g:autoformat = 1
-
-							augroup AutoFormatGroup
-								autocmd!
-								au InsertLeave * Autoformat
-							augroup END
-						elseif g:autoformat == 1
-							echom "AutoFormat Mode Disabled"
-							let g:autoformat = 0
-
-							augroup AutoFormatGroup
-								autocmd!
-							augroup END
-						endif
-					endfunction
 		"SYSTEM
 			"TERMINAL
 				if has('nvim')
+					"VARIABLES
+						let g:terminal_enable_default_mappings = 1
 					"FUNCTIONS
 						function! Terminal(count, dir, pos, bang, cmd)
 							if a:count == 0
@@ -414,9 +421,21 @@
 						nnoremap <silent> gzz :TermSendLine<CR>
 						vnoremap <silent> gzz :<C-U>TermSendLine<CR>
 					"MAPPINGS
+					"DEFAULTS
+						if ExistsAndTrue('g:terminal_enable_default_mappings')
+							nnoremap <LEADER>te :Term zsh<CR>
+							nnoremap <LEADER>tv :VRTerm zsh<CR>
+							nnoremap <LEADER>th :15HBTerm zsh<CR>
+
+							nnoremap <LEADER>tE :lcd %:p:h \| Term zsh<CR>
+							nnoremap <LEADER>tE :lcd %:p:h \| Term zsh<CR>
+							nnoremap <LEADER>tH :lcd %:p:h \| 15HBTerm zsh<CR>
+						endif
 				endif
 			"VIFM
 				if has('nvim')
+					"VARIABLES
+						let g:vifm_enable_default_mappings = 1
 					"FUNCTIONS
 						function! Vifm(path)
 							let s:temp = tempname()
@@ -441,6 +460,11 @@
 						endfunction
 					"COMMANDS
 						command! -narg=1 Vifm :call Vifm(<q-args>)
+					"DEFAULTS
+						if ExistsAndTrue('g:vifm_enable_default_mappings')
+							nnoremap <LEADER>nv :Vifm %:p:h<CR>
+							nnoremap <LEADER>nV :Vifm .<CR>
+						endif
 				endif
 			"FZF
 				"FZF-EXTENSIONS
@@ -612,7 +636,8 @@
 			"EXECUTION-ENGINE
 				if has('nvim')
 					"VARIABLES
-						let s:languages = {}
+						let g:ee_enable_default_mappings = 1
+						let s:languages                  = {}
 						"LANGUAGES
 							"INTERPRETED
 								let s:languages.python = {
@@ -736,7 +761,7 @@
 									\'execute'         : 'processing-java --output=/tmp/processing/ --force --sketch=%:p:h:S --run',
 									\'compile-execute' : 'processing-java --output=/tmp/processing/ --force --sketch=%:p:h:S --run',
 								\}
-						"SHELLS
+						"REPLS
 							"LINUX
 								let s:languages.zsh = {
 									\'extension'	 : 'zsh',
@@ -780,9 +805,6 @@
 									\'repl'			 : 'mongo',
 								\}
 						"FRAMEWORKS
-							"@TODO NODEJS.vim
-							"@TODO DJANGO.vim
-							"@TODO FLASK.vim
 						"TOOLS
 					"FUNCTIONS
 						function! EECommand(type, ...)
@@ -837,20 +859,25 @@
 						nmap <silent> <Plug>(ee-execute)         :EEExecute<CR>
 						nmap <silent> <Plug>(ee-compile-execute) :EECompileExecute<CR>
 						nmap <silent> <Plug>(ee-fzf-repl)        :call fzf#run(fzf#wrap({'source': getcompletion('', 'filetype'), 'sink': 'EERepl'}))<CR>
+					"DEFAULTS
+						if ExistsAndTrue('g:ee_enable_default_mappings')
+							nmap <LocalLeader>cr <Plug>(ee-repl)
+							nmap <LocalLeader>cb <Plug>(ee-compile)
+							nmap <LocalLeader>ce <Plug>(ee-execute)
+
+							nmap <LocalLeader>cR <Plug>(ee-fzf-repl)
+							nmap <LocalLeader>cq <Plug>(ee-compile-execute)
+						endif
 				endif
 			"SPACE-WARRIOR
 				"VARIABLES
+					let g:sw_enable_default_mappings          = 1
 					let g:sw_highlight_trailing_whitespaces   = 1
 					let g:sw_highlight_consecutive_blanklines = 1
 					let g:sw_highlight_leading_spaces         = 1
 					let g:sw_highlight_leading_tabs           = 0
 					let g:sw_highlight_listchars              = 1
 				"FUNCTIONS
-					function! SWStripTrailingWhitespace()
-						execute ':%s/\s\+$//e'
-						execute ':%s/\t\+$//e'
-					endfunction
-
 					function! SWConvertSpaces2Tabs()
 						let l:et = &expandtab
 						setlocal noexpandtab
@@ -872,15 +899,30 @@
 							setlocal noexpandtab
 						endif
 					endfunction
+
+					function! SWStripTrailingWhitespace()
+						execute ':%s/\s\+$//e'
+						execute ':%s/\t\+$//e'
+					endfunction
 				"COMMANDS
-					command! SWStripTrailingWhitespace :execute SWStripTrailingWhitespace()
 					command! SWSpaces2Tabs             :execute SWConvertSpaces2Tabs()
 					command! SWTabs2Spaces             :execute SWConvertSpaces2Tabs()
+					command! SWStripTrailingWhitespace :execute SWStripTrailingWhitespace()
 				"MAPPINGS
-					nmap <silent> <Plug>(sw-strip-trailing-whitespace) :SWStripTrailingWhitespace<CR>
 					nmap <silent> <Plug>(sw-spaces-2-tabs)             :SWSpaces2Tabs<CR>
 					nmap <silent> <Plug>(sw-tabs-2-spaces)             :SWTabs2Spaces<CR>
-				"HIGHLIGHTS @TODO:FIX
+					nmap <silent> <Plug>(sw-strip-trailing-whitespace) :SWStripTrailingWhitespace<CR>
+				"HIGHLIGHTS
+					"LEADING-TABS
+						if ExistsAndTrue('g:sw_highlight_leading_tabs')
+							highlight LeadingTabs ctermbg=135
+							call matchadd('LeadingTabs', '^\t\+', 100)
+						endif
+					"LEADING-SPACES
+						if ExistsAndTrue('g:sw_highlight_leading_spaces')
+							highlight LeadingSpaces ctermbg=135
+							call matchadd('LeadingSpaces', '^ \+', 100)
+						endif
 					"TRAILING-WHITESPACES @TODO:FIX
 						if ExistsAndTrue('g:sw_highlight_trailing_whitespaces')
 							"highlight TrailingWhitespace ctermfg=135
@@ -895,22 +937,21 @@
 							highlight ConsecutiveBlankLines ctermbg=135
 							call matchadd('ConsecutiveBlankLines', '\(^$\n\)\{2,}', 100)
 						endif
-					"LEADING-SPACES
-						if ExistsAndTrue('g:sw_highlight_leading_spaces')
-							highlight LeadingSpaces ctermbg=135
-							call matchadd('LeadingSpaces', '^ \+', 100)
-						endif
-					"LEADING-TABS
-						if ExistsAndTrue('g:sw_highlight_leading_tabs')
-							highlight LeadingTabs ctermbg=135
-							call matchadd('LeadingTabs', '^\t\+', 100)
-						endif
 					"LISTCHARS
 						if ExistsAndTrue('g:sw_highlight_listchars')
 							highlight EndOfBuffer ctermfg=245 guifg=#658595
 							highlight NonText     ctermfg=135 guifg=#af5fff
 							highlight Whitespace  ctermfg=135 guifg=#af5fff
 						endif
+				"DEFAULTS
+					if ExistsAndTrue('g:sw_enable_default_mappings')
+						nmap <Leader>xt <Plug>(sw-spaces-2-tabs)
+						nmap <Leader>xs <Plug>(sw-tabs-2-spaces)
+						nmap <Leader>xw <Plug>(sw-strip-trailing-whitespace)
+
+						nmap <Leader>xb :g:^$\n\{3,}:d<CR>
+						nmap <Leader>xr :%retab!<CR>
+					endif
 			"LANGUAGES
 		"DEVELOPMENT
 		"NOTES
@@ -984,16 +1025,6 @@
 			nnoremap <LEADER>tp :tabprevious<CR>
 			nnoremap <LEADER>th :tabmove -<CR>
 			nnoremap <LEADER>tl :tabmove +<CR>
-		"TERMINAL-MAPPINGS
-			if has('nvim')
-				nnoremap <LEADER>te :Term zsh<CR>
-				nnoremap <LEADER>tv :VRTerm zsh<CR>
-				nnoremap <LEADER>th :15HBTerm zsh<CR>
-
-				nnoremap <LEADER>tE :lcd %:p:h \| Term zsh<CR>
-				nnoremap <LEADER>tE :lcd %:p:h \| Term zsh<CR>
-				nnoremap <LEADER>tH :lcd %:p:h \| 15HBTerm zsh<CR>
-			endif
 		"BUFFER-MAPPINGS
 			nnoremap H           :bprevious<CR>
 			nnoremap L           :bnext<CR>
@@ -1416,15 +1447,10 @@
 			endif
 			nnoremap <Leader>vi  : PlugInstall<CR>
 			nnoremap <Leader>vu  : PlugClean<CR>
-			nnoremap <Leader>vw  : call AutoSaveToggle()<CR>
 
-			nnoremap <Leader>va  : call AutoCorrect()<CR>
-			nnoremap <Leader>vp  : PencilToggle<CR>
 			nnoremap <Leader>vd  : Goyo<CR>
 			nnoremap <Leader>vl  : Limelight!!<CR>
-			nnoremap <Leader>vf  : Autoformat<CR>
 			vnoremap <Leader>vf  : Autoformat<CR>
-			nnoremap <Leader>vF  : call AutoFormatToggle()<CR>
 			nnoremap <LEADER>vS  : Startify<CR>
 		"EDITOR-MAPPINGS
 			"TOGGLES
@@ -1605,10 +1631,6 @@
 "PLUGINS
 	call plug#begin()
 	"PRODUCTIVITY
-		"CUSTOM
-			"VIFM
-				nnoremap <LEADER>nv :Vifm %:p:h<CR>
-				nnoremap <LEADER>nV :Vifm .<CR>
 		Plug 'easymotion/vim-easymotion'
 			"CONFIGURATION
 				let g:EasyMotion_smartcase = 1
@@ -1744,20 +1766,6 @@
 			" nnoremap <LEADER>nF :VifmToggle .<CR>
 		Plug 'cocopon/vaffle.vim'
 	"PROGRAMMING
-		"EXECUTION-ENGINE
-			nmap <LocalLeader>cr <Plug>(ee-repl)
-				nmap <LocalLeader>cR <Plug>(ee-fzf-repl)
-			nmap <LocalLeader>cb <Plug>(ee-compile)
-			nmap <LocalLeader>ce <Plug>(ee-execute)
-			nmap <LocalLeader>cq <Plug>(ee-compile-execute)
-		"BETTER-MAKE
-			nnoremap <LocalLeader>cm :make<CR>
-		"SPACE-WARRIOR
-			nmap <Leader>xb :g:^$\n\{3,}:d<CR>
-			nmap <Leader>xw <Plug>(sw-strip-trailing-whitespace)
-			nmap <Leader>xt <Plug>(sw-spaces-2-tabs)
-			nmap <Leader>xs <Plug>(sw-tabs-2-spaces)
-			nmap <Leader>xr :%retab!<CR>
 		"LANGUAGES
 			"CODE-EXECUTION
 				Plug 'coachshea/jade-vim'
@@ -1786,7 +1794,31 @@
 			"Plug 'mhinz/vim-signify'
 		"AUTOFORMAT
 			Plug 'chiel92/vim-autoformat'
-				let g:formatterpath = ['/usr/local/bin/autopep8']
+				"CONFIGURATION
+					let g:formatterpath = ['/usr/local/bin/autopep8']
+				"AUTOFORMAT-TOGGLE
+					let g:autoformat = 0
+
+					function! AutoFormatToggle()
+						if g:autoformat == 0
+							echom "AutoFormat Mode Enabled"
+							let g:autoformat = 1
+
+							augroup AutoFormatGroup
+								autocmd!
+								au InsertLeave * Autoformat
+							augroup END
+						elseif g:autoformat == 1
+							echom "AutoFormat Mode Disabled"
+							let g:autoformat = 0
+
+							augroup AutoFormatGroup
+								autocmd!
+							augroup END
+						endif
+					endfunction
+				"MAPPINGS
+					nnoremap <Leader>vF  : call AutoFormatToggle()<CR>
 		"SNIPPETS
 			Plug 'honza/vim-snippets'
 			if has('python3')
