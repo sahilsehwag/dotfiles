@@ -641,6 +641,13 @@
 					"PYTHON
 					"CLANG
 			"TARGETS
+			"MISCELLEANOUS
+				"SYMBOLIC @TODO
+					"VARIABLES
+						let g:symbolic_leader                  = ';'
+						let g:symbolic_enable_default_mappings = 1
+					"MAPPINGS
+					"ABBREVIATIONS
 		"PROGRAMMING
 			"EXECUTION-ENGINE
 				if has('nvim')
@@ -2477,7 +2484,6 @@
 		"Plug 'tommcdo/vim-express'
 		"Plug 'syngan/vim-operator-evalf'
 		"Plug 'neitanod/vim-sade'
-	"CUSTOM
 	call plug#end()
 "SETTINGS
 	"INDENTATION
@@ -2508,7 +2514,7 @@
 			set wildignore+=*~,*.swp,*.tmp
 			set wildignorecase
 		endif
-	"UI
+	"INTERFACE
 		colorscheme Monokai
 		set noshowcmd
 		set noruler
@@ -2530,11 +2536,11 @@
 		set fillchars=stl:\ ,
 		set fillchars=stlnc:\ ,
 		set fillchars=vert:⎪
-	"BTW
-		set splitbelow
-		set nowrap
-		set hidden
-		set fileformats=unix,mac,dos
+		"BTW
+			set splitbelow
+			set nowrap
+			set hidden
+			set fileformats=unix,mac,dos
 	"MISCELLANOUS
 		set nocompatible
 		set mouse=a
