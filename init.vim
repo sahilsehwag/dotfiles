@@ -885,6 +885,18 @@
 							nmap <LocalLeader>cq <Plug>(ee-compile-execute)
 						endif
 				endif
+			"COMMENTFUL
+				"VARIABLES
+				"FUNCTIONS
+				"COMMANDS
+				"OPERATORS
+				"DEFAULTS
+			"SNIPIT
+				"VARIABLES
+				"FUNCTIONS
+				"COMMANDS
+				"OPERATORS
+				"DEFAULTS
 			"SPACE-WARRIOR
 				"VARIABLES
 					let g:sw_enable_default_mappings          = 1
@@ -970,6 +982,7 @@
 					endif
 			"LANGUAGES
 		"DEVELOPMENT
+			"FRAMEWORKS
 		"NOTES
 			"@TODO TYPIST.vim
 		"MISCELLANOUS
@@ -2496,8 +2509,8 @@
 		set number
 		set relativenumber
 	"SWAP-&-BACKUP
-		set directory=~/.config/nvim/temp
 		set nobackup
+		set directory=~/.config/nvim/temp
 	"SEARCHING
 		set hls
 		set incsearch
@@ -2515,6 +2528,11 @@
 			set wildignorecase
 		endif
 	"INTERFACE
+		"BTW
+			set splitbelow
+			set nowrap
+			set hidden
+			set fileformats=unix,mac,dos
 		colorscheme Monokai
 		set noshowcmd
 		set noruler
@@ -2536,11 +2554,6 @@
 		set fillchars=stl:\ ,
 		set fillchars=stlnc:\ ,
 		set fillchars=vert:⎪
-		"BTW
-			set splitbelow
-			set nowrap
-			set hidden
-			set fileformats=unix,mac,dos
 	"MISCELLANOUS
 		set nocompatible
 		set mouse=a
