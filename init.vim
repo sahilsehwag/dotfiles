@@ -902,6 +902,8 @@
 				"FUNCTIONS
 				"COMMANDS
 				"DEFAULTS
+			"BOOTIFICATION
+			"FINISH-IT
 			"SPACE-WARRIOR
 				"VARIABLES
 					let g:sw_enable_default_mappings          = 1
