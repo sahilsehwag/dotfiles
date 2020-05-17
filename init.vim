@@ -985,6 +985,14 @@
 						nmap <Leader>xb :g:^$\n\{3,}:d<CR>
 						nmap <Leader>xr :%retab!<CR>
 					endif
+			"OTTO
+				"VARIABLES
+				"FUNCTIONS
+				"OPERATORS
+				"OBJECTS
+				"TARGETS
+				"MAPPINGS
+				"DEFAULTS
 			"LANGUAGES
 		"DEVELOPMENT
 			"FRAMEWORKS
