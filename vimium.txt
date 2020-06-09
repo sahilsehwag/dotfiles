@@ -34,16 +34,6 @@ MAPPINGS
 			#map sD Vomnibar.activateInNewTab keyword=dw
 			#map sQ Vomnibar.activateInNewTab keyword=q
 			#map sB Vomnibar.activateInNewTab keyword=b
-		#PORN-MAPPINGS
-			# map grk createTab http://www.realitykings.com/
-			# map gzz createTab http://www.brazzers.com/
-			# map gbb createTab http://www.bangbros.com/
-			# map gdp createTab http://www.digitalplayground.com/
-			# map gna createTab http://www.naughtyamerica.com.com/
-			# map gfh createTab http://www.fakehub.com/
-			# map gmf createTab http://www.mofos.com/
-			# map gph createTab http://www.pornhub.com/
-		#TUMBLR-MAPPINGS
 	SEARCH-ENGINES
 		w: http://www.wikipedia.org/w/index.php?title=Special:Search&search=%s Wikipedia
 		g: http://www.google.com/search?q=%s Google
