@@ -1377,20 +1377,19 @@
 					endfunction
 				"COMMANDS
 					command! ProjectinatorOpenProject :call fzf#run(fzf#wrap({
-						\ 'source'	: g:jaat_find_directories_command . ' ' . g:jaat_root_path,
-						\ 'sink'	: 'cd',
+						\ 'source'  : g:jaat_find_directories_command . ' ' . g:jaat_root_path,
+						\ 'sink'    : 'cd',
 						\ 'options' : '--prompt "open-project> "'
 					\}))<CR>
 
 					command! ProjectinatorOpenFile :call fzf#run(fzf#wrap({
 						\ 'source'	: g:jaat_find_files_command . ' ' . getcwd(),
-						\ 'sink'	: 'edit',
 						\ 'options' : '--prompt "open-project-file> "'
 					\}))<CR>
 
 					command! ProjectinatorSearchProject :call fzf#run(fzf#wrap({
-						\ 'source'	: g:jaat_find_lines_command . ' ' . getcwd(),
-						\ 'sink'	: 'edit',
+						\ 'source'  : g:jaat_find_lines_command . ' ' . getcwd(),
+						\ 'sink'    : 'edit',
 						\ 'options' : '--prompt "search-project> "'
 					\}))<CR>
 				"DEFAULTS
@@ -3761,6 +3760,10 @@
 		"INTERFACE-HIGHLIGHTS
 			highlight VertSplit ctermbg=None guibg=None
 "SETTINGS
+	"FONTS
+		"Inconsolata
+		"JetBrainsMono-Regular
+		"OperatorMono?
 	"FOLDING
 		if has('folding')
 			set foldlevel=0
