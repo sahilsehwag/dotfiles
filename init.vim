@@ -3045,7 +3045,6 @@
 				Plug 'sheerun/vim-polyglot'
 				Plug 'chrisbra/csv.vim'
 				"Plug 'vim-syntastic/syntastic'
-				"Plug 'neovimhaskell/haskell-vim'
 				"Plug 'coachshea/jade-vim'
 			"RANDOM
 				Plug 'mattn/emmet-vim'
