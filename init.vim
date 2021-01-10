@@ -2568,19 +2568,19 @@
 						\}))
 					endfunction
 				"MAPPINGS
-					"nnoremap <silent> <Leader>frf :call FZFFindFiles()<CR>
-					nnoremap <silent> <Leader>fcf :call FZFFiles(expand('%:p:h'))<CR>
-					nnoremap <silent> <Leader>fhf :call FZFFiles(g:jaat_home_path)<CR>
-					nnoremap <silent> <Leader>fdf :call FZFFiles(g:jaat_drive_path)<CR>
-					nnoremap <silent> <Leader>f/f :call FZFFiles(g:jaat_root_path)<CR>
-					nnoremap <silent> <Leader>fpf :call FZFFiles(getcwd())<CR>
+					"nnoremap <silent> <Leader>ffr :call FZFFindFiles()<CR>
+					nnoremap <silent> <Leader>ffc :call FZFFiles(expand('%:p:h'))<CR>
+					nnoremap <silent> <Leader>ffh :call FZFFiles(g:jaat_home_path)<CR>
+					nnoremap <silent> <Leader>ffd :call FZFFiles(g:jaat_drive_path)<CR>
+					nnoremap <silent> <Leader>ff/ :call FZFFiles(g:jaat_root_path)<CR>
+					nnoremap <silent> <Leader>ffp :call FZFFiles(getcwd())<CR>
 
-					"nnoremap <silent> <Leader>frd :call FZFFindDirectories()<CR>
-					nnoremap <silent> <Leader>fcd :call FZFDirectories(expand('%:p:h'))<CR>
-					nnoremap <silent> <Leader>fhd :call FZFDirectories(g:jaat_home_path)<CR>
+					"nnoremap <silent> <Leader>fdr :call FZFFindDirectories()<CR>
+					nnoremap <silent> <Leader>fdc :call FZFDirectories(expand('%:p:h'))<CR>
+					nnoremap <silent> <Leader>fdh :call FZFDirectories(g:jaat_home_path)<CR>
 					nnoremap <silent> <Leader>fdd :call FZFDirectories(g:jaat_drive_path)<CR>
-					nnoremap <silent> <Leader>f/d :call FZFDirectories(g:jaat_root_path)<CR>
-					nnoremap <silent> <Leader>fpd :call FZFDirectories(getcwd())<CR>
+					nnoremap <silent> <Leader>fd/ :call FZFDirectories(g:jaat_root_path)<CR>
+					nnoremap <silent> <Leader>fdp :call FZFDirectories(getcwd())<CR>
 				"EXTENSIONS
 					Plug 'junegunn/fzf.vim'
 						"MAPPINGS
