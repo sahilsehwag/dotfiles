@@ -5,7 +5,7 @@
 	DRIVE=~/Google\ Drive
 	alias fzf='fzf-tmux'
 #GENERAL FUNCTIONS
-	fd(){
+	fzfd(){
 		if [ $1 ]
 		then
 			$1 "$(find $2 -type d -name "*" 2> /dev/null | fzf)"
