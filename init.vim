@@ -1933,8 +1933,8 @@
 				"TODO:FIX
 			let g:jaat_ag_command	= 'ag --nogroup -s .+'
 		"FINDISH
-			let g:jaat_fd_command_files		  = 'fd -tf .*'
-			let g:jaat_fd_command_directories = 'fd -td .*'
+			let g:jaat_fd_command_files		  = "fd -tf '.*'"
+			let g:jaat_fd_command_directories = "fd -td '.*'"
 
 			let g:jaat_find_command_files		= 'find -type f -iname'
 			let g:jaat_find_command_directories = 'find -type d -iname'
