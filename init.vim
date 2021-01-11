@@ -2047,34 +2047,32 @@
 						"vim-registers
 						tnoremap <silent> <expr> <C-R> '<C-\><C-N>"'.nr2char(getchar()).'pi'
 					"ALIASES
-						if IsWindows()
-							"GIT
-								execute 'tnoremap <silent> ' . g:terminal_leader . 'gi git init<CR>'
-								execute 'tnoremap <silent> ' . g:terminal_leader . 'gC git clone '
+						"GIT
+							execute 'tnoremap <silent> ' . g:terminal_leader . 'gi git init<CR>'
+							execute 'tnoremap <silent> ' . g:terminal_leader . 'gC git clone '
 
-								execute 'tnoremap <silent> ' . g:terminal_leader . 'ga git add '
-								execute 'tnoremap <silent> ' . g:terminal_leader . 'gd git diff '
-								execute 'tnoremap <silent> ' . g:terminal_leader . 'gs git status<CR>'
-								execute 'tnoremap <silent> ' . g:terminal_leader . 'gD git checkout -- '
+							execute 'tnoremap <silent> ' . g:terminal_leader . 'ga git add '
+							execute 'tnoremap <silent> ' . g:terminal_leader . 'gd git diff '
+							execute 'tnoremap <silent> ' . g:terminal_leader . 'gs git status<CR>'
+							execute 'tnoremap <silent> ' . g:terminal_leader . 'gD git checkout -- '
 
-								execute 'tnoremap <silent> ' . g:terminal_leader . 'grp git pull '
-								execute 'tnoremap <silent> ' . g:terminal_leader . 'grP git push '
+							execute 'tnoremap <silent> ' . g:terminal_leader . 'grp git pull '
+							execute 'tnoremap <silent> ' . g:terminal_leader . 'grP git push '
 
-								execute 'tnoremap <silent> ' . g:terminal_leader . 'gSs git stash<CR>'
-								execute 'tnoremap <silent> ' . g:terminal_leader . 'gSl git stash list<CR>'
-								execute 'tnoremap <silent> ' . g:terminal_leader . 'gSa git stash apply<CR>'
-								execute 'tnoremap <silent> ' . g:terminal_leader . 'gSp git stash pop<CR>'
+							execute 'tnoremap <silent> ' . g:terminal_leader . 'gSs git stash<CR>'
+							execute 'tnoremap <silent> ' . g:terminal_leader . 'gSl git stash list<CR>'
+							execute 'tnoremap <silent> ' . g:terminal_leader . 'gSa git stash apply<CR>'
+							execute 'tnoremap <silent> ' . g:terminal_leader . 'gSp git stash pop<CR>'
 
-								execute 'tnoremap <silent> ' . g:terminal_leader . 'gcm git commit -m ""<LEFT>'
-								execute 'tnoremap <silent> ' . g:terminal_leader . 'gca git commit --amend'
-								execute 'tnoremap <silent> ' . g:terminal_leader . 'gcl git log<CR>'
+							execute 'tnoremap <silent> ' . g:terminal_leader . 'gcm git commit -m ""<LEFT>'
+							execute 'tnoremap <silent> ' . g:terminal_leader . 'gca git commit --amend'
+							execute 'tnoremap <silent> ' . g:terminal_leader . 'gcl git log<CR>'
 
-								execute 'tnoremap <silent> ' . g:terminal_leader . 'gbl git branch<CR>'
-								execute 'tnoremap <silent> ' . g:terminal_leader . 'gbn git branch '
-								execute 'tnoremap <silent> ' . g:terminal_leader . 'gbc git checkout '
-								execute 'tnoremap <silent> ' . g:terminal_leader . 'gbC git checkout -b '
-								execute 'tnoremap <silent> ' . g:terminal_leader . 'gbN git checkout -b '
-						endif
+							execute 'tnoremap <silent> ' . g:terminal_leader . 'gbl git branch<CR>'
+							execute 'tnoremap <silent> ' . g:terminal_leader . 'gbn git branch '
+							execute 'tnoremap <silent> ' . g:terminal_leader . 'gbc git checkout '
+							execute 'tnoremap <silent> ' . g:terminal_leader . 'gbC git checkout -b '
+							execute 'tnoremap <silent> ' . g:terminal_leader . 'gbN git checkout -b '
 					"VISH
 						"CONFIGURATION
 							"let g:modes   = ['N','I']
