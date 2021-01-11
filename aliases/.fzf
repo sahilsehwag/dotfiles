@@ -114,7 +114,7 @@
 				-c "silent tag $(cut -f2 <<< "$line")"
 		}
 #PREINSTALLED
-	kill() {
+	fkill() {
 		local pid
 		pid=$(ps -ef | sed 1d | fzf -m | awk '{print $2}')
 
