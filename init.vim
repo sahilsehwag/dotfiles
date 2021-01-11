@@ -2051,8 +2051,8 @@
 							execute 'tnoremap <silent> ' . g:terminal_leader . 'gi git init<CR>'
 							execute 'tnoremap <silent> ' . g:terminal_leader . 'gC git clone '
 
-							execute 'tnoremap <silent> ' . g:terminal_leader . 'ga git add '
-							execute 'tnoremap <silent> ' . g:terminal_leader . 'gd git diff '
+							execute 'tnoremap <silent> ' . g:terminal_leader . 'ga git add **<LEFT>'
+							execute 'tnoremap <silent> ' . g:terminal_leader . 'gd git diff ** \| delta<C-LEFT><LEFT><LEFT><LEFT><LEFT>'
 							execute 'tnoremap <silent> ' . g:terminal_leader . 'gs git status<CR>'
 							execute 'tnoremap <silent> ' . g:terminal_leader . 'gD git checkout -- '
 
@@ -2073,6 +2073,9 @@
 							execute 'tnoremap <silent> ' . g:terminal_leader . 'gbc git checkout '
 							execute 'tnoremap <silent> ' . g:terminal_leader . 'gbC git checkout -b '
 							execute 'tnoremap <silent> ' . g:terminal_leader . 'gbN git checkout -b '
+						"SHELL
+							execute 'tnoremap <silent> ' . g:terminal_leader . 'sc clear<CR>'
+							execute 'tnoremap <silent> ' . g:terminal_leader . 'sp <space>\|<space>'
 					"VISH
 						"CONFIGURATION
 							"let g:modes   = ['N','I']
