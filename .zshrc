@@ -44,7 +44,8 @@
 			--color fg:-1,bg:-1,hl:33,fg+:254,bg+:235,hl+:33
 			--color info:136,prompt:136,pointer:230,marker:230,spinner:136
 			--preview \'
-				(highlight -O ansi -l {} ||
+				(bat --color=always --style="numbers,changes,header,grid" --line-range :500 {} ||
+				highlight -O ansi -l {} ||
 				coderay {} ||
 				cat {} ||
 				tree -C {}) 2> /dev/null | head -500
