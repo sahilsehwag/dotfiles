@@ -2533,10 +2533,10 @@
 						\'ALT-t': 'tab split',
 						\'ALT-h': 'split',
 						\'ALT-v': 'vsplit',
-						\'ALT-m': 'FloatermNew glow',
+						\'ALT-m': 'Glow',
 						\'ALT-c': 'cd',
-						\'ALT-e': 'FloatermNew ' . g:jaat_explorer_command,
-						\'CTRL-f': 'FloatermNew open'
+						\'ALT-e': 'Vifm',
+						\'CTRL-f': 'Open',
 					\}
 						"'SaveAs'
 						"'SaveAs!'
