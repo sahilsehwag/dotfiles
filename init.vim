@@ -1890,23 +1890,27 @@
 				"MAPPINGS
 					imap :ej <ESC>:FZFEmojis<CR>
 		"FLOATERM
+			if executable('vifm')
+				command!          Vifm     :FloatermNew vifm
+				command! -nargs=1 VifmOpen :FloatermNew vifm <q-args>
+
+				nnoremap <silent> <Leader>ae :Vifm<CR>
+			endif
+
+			if executable('glow')
+				command!          Glow     :FloatermNew glow
+				command! -nargs=1 GlowOpen :execute 'FloatermNew --autoclose=0 glow ' . shellescape(<q-args>)
+
+				nnoremap <silent> <Leader>ag :Glow<CR>
+			endif
+
 			if executable('lazygit')
 				command! LazyGit :FloatermNew lazygit
 				nnoremap <silent> <Leader>al :LazyGit<CR>
 			endif
 
-			if executable('vifm')
-				command! -nargs=? Vifm :FloatermNew vifm <q-args>
-				nnoremap <silent> <Leader>ae :Vifm<CR>
-			endif
-
-			if executable('glow')
-				command! -nargs=? Glow :FloatermNew glow <q-args>
-				nnoremap <silent> <Leader>ag :Glow<CR>
-			endif
-
 			if executable('bat')
-				command! -nargs=? Bat :FloatermNew bat <q-args>
+				command! -nargs=1 Bat :FloatermNew bat <q-args>
 			endif
 
 			if executable('open')
@@ -2533,9 +2537,9 @@
 						\'ALT-t': 'tab split',
 						\'ALT-h': 'split',
 						\'ALT-v': 'vsplit',
-						\'ALT-m': 'Glow',
+						\'ALT-m': 'GlowOpen',
 						\'ALT-c': 'cd',
-						\'ALT-e': 'Vifm',
+						\'ALT-e': 'VifmOpen',
 						\'ALT-o': 'Open',
 					\}
 						"'SaveAs'
