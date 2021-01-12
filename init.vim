@@ -1890,17 +1890,28 @@
 				"MAPPINGS
 					imap :ej <ESC>:FZFEmojis<CR>
 		"FLOATERM
-			"COMMANDS
-				if executable('lazygit')
-					command! LazyGit :FloatermNew lazygit
-				endif
-				if executable('glow')
-					command! -narg=* Glow :FloatermNew glow <q-args>
-				endif
-				if executable('bat')
-					command! Bat :FloatermNew bat
-				endif
-			"MAPPINGS
+			if executable('lazygit')
+				command! LazyGit :FloatermNew lazygit
+				nnoremap <silent> <Leader>al :LazyGit<CR>
+			endif
+
+			if executable('vifm')
+				command! -nargs=? Vifm :FloatermNew vifm <q-args>
+				nnoremap <silent> <Leader>ae :Vifm<CR>
+			endif
+
+			if executable('glow')
+				command! -nargs=? Glow :FloatermNew glow <q-args>
+				nnoremap <silent> <Leader>ag :Glow<CR>
+			endif
+
+			if executable('bat')
+				command! -nargs=? Bat :FloatermNew bat <q-args>
+			endif
+
+			if executable('open')
+				command! -nargs=1 Open :FloatermNew --autoclose=0 open <q-args>
+			endif
 		"FZF-FLOATERM
 		"TODO:TABULARIZE
 	"RANDOM
