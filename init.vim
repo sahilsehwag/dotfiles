@@ -1910,7 +1910,7 @@
 			endif
 
 			if executable('open')
-				command! -nargs=1 Open :FloatermNew --autoclose=0 open <q-args>
+				command! -nargs=1 Open :FloatermNew open <q-args>
 			endif
 		"FZF-FLOATERM
 		"TODO:TABULARIZE
@@ -1923,7 +1923,7 @@
 		let g:jaat_home_path = expand('~')
 		let g:jaat_root_path =
 			\ IsNix()
-			\ ? shellescape(expand('~'))
+			\ ? shellescape(expand('/'))
 			\ : shellescape(expand('D:'))
 		let g:jaat_drive_path =
 			\ IsNix()
@@ -2536,7 +2536,7 @@
 						\'ALT-m': 'Glow',
 						\'ALT-c': 'cd',
 						\'ALT-e': 'Vifm',
-						\'CTRL-f': 'Open',
+						\'ALT-o': 'Open',
 					\}
 						"'SaveAs'
 						"'SaveAs!'
