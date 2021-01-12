@@ -1906,7 +1906,7 @@
 
 			if executable('lazygit')
 				command! LazyGit :FloatermNew lazygit
-				nnoremap <silent> <Leader>al :LazyGit<CR>
+				nnoremap <silent> <Leader>ag :LazyGit<CR>
 			endif
 
 			if executable('bat')
@@ -1915,6 +1915,16 @@
 
 			if executable('open')
 				command! -nargs=1 Open :FloatermNew open <q-args>
+			endif
+
+			if executable('slack-term')
+				command! Slack :FloatermNew slack-term
+				nnoremap <silent> <Leader>as :LazyGit<CR>
+			endif
+
+			if executable('lazynpm')
+				command! LazyNPM :FloatermNew lazynpm
+				nnoremap <silent> <Leader>an :LazyNPM<CR>
 			endif
 		"FZF-FLOATERM
 		"TODO:TABULARIZE
@@ -2091,6 +2101,12 @@
 						"SHELL
 							execute 'tnoremap <silent> ' . g:terminal_leader . 'sc clear<CR>'
 							execute 'tnoremap <silent> ' . g:terminal_leader . 'sp <space>\|<space>'
+						"NPM
+							execute 'tnoremap <silent> ' . g:terminal_leader . 'ns npm run start<CR>'
+							execute 'tnoremap <silent> ' . g:terminal_leader . 'nt npm run test<CR>'
+							execute 'tnoremap <silent> ' . g:terminal_leader . 'nb npm run build<CR>'
+							execute 'tnoremap <silent> ' . g:terminal_leader . 'ni npm install --save '
+							execute 'tnoremap <silent> ' . g:terminal_leader . 'nd npm install --save-dev '
 					"VISH
 						"CONFIGURATION
 							"let g:modes   = ['N','I']
