@@ -2905,6 +2905,41 @@
 								"Recently vim can merge signcolumn and number column into one
 								set signcolumn=number
 							endif
+						"CONFIGURATION
+							let g:coc_global_extensions = [
+								\ 'coc-tsserver',
+								\ 'coc-rome',
+								\ 'coc-vimlsp',
+								\ 'coc-lua',
+								\ 'coc-pyright',
+								\ 'coc-java',
+								\ 'coc-go',
+								\ 'coc-json',
+								\ 'coc-yaml',
+								\ 'coc-xml',
+								\ 'coc-svg',
+								\ 'coc-sh',
+								\ 'coc-html',
+								\ 'coc-metals',
+								\ 'coc-clangd',
+								\ 'coc-css',
+								\ 'coc-cssmodules',
+								\ 'coc-emmet',
+								\ 'coc-flow',
+								\ 'coc-eslint',
+								\ 'coc-tslint',
+								\ 'coc-markdownlint',
+								\ 'coc-prettier',
+								\ 'coc-snippets',
+								\ 'coc-tabnine',
+								\ 'coc-highlight',
+								\ 'coc-explorer',
+								\ 'coc-git',
+								\ 'coc-lists',
+								\ 'coc-emoji',
+								\ 'coc-syntax',
+								\ 'coc-spell-checker',
+							\]
 						"FUNCTIONS
 							function! s:check_back_space() abort
 								let col = col('.') - 1
@@ -3003,6 +3038,9 @@
 								" Requires 'textDocument/selectionRange' support of LS, ex: coc-tsserver
 								nmap <silent> <C-s> <Plug>(coc-range-select)
 								xmap <silent> <C-s> <Plug>(coc-range-select)
+						"EXTENSIONS
+							Plug 'Shougo/neco-vim'
+							Plug 'neoclide/coc-neco'
 					"EXTENSIONS
 						Plug 'weirongxu/coc-explorer'
 				endif
@@ -3738,8 +3776,8 @@
 		let g:loaded_python3_provider = 1
 
 		if IsNix()
-			let g:python_host_prog	= 'python'
-			let g:python3_host_prog = 'python3'
+			let g:python_host_prog	= '/usr/bin/python'
+			let g:python3_host_prog = '/usr/local/bin/python3'
 		elseif IsWindows()
 			"TODO:FIX
 			let g:python_host_prog	= "C:/Users/138100/scoop/apps/anaconda3/current/envs/pynvim2/python.exe"
