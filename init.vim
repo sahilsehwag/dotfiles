@@ -1898,10 +1898,10 @@
 			endif
 
 			if executable('glow')
-				command!          Glow     :FloatermNew glow
-				command! -nargs=1 GlowOpen :execute 'FloatermNew --autoclose=0 glow ' . shellescape(<q-args>)
+				command! -nargs=1 Glow :execute 'FloatermNew --autoclose=0 glow ' . shellescape(<q-args>)
 
-				nnoremap <silent> <Leader>ag :Glow<CR>
+				nnoremap <silent> <Leader>aM :FloatermNew glow<CR>
+				nnoremap <silent> <Leader>am :execute 'FloatermNew --autoclose=0 glow ' . shellescape(expand('%:p'))<CR>
 			endif
 
 			if executable('lazygit')
@@ -2553,7 +2553,7 @@
 						\'ALT-t': 'tab split',
 						\'ALT-h': 'split',
 						\'ALT-v': 'vsplit',
-						\'ALT-m': 'GlowOpen',
+						\'ALT-m': 'Glow',
 						\'ALT-c': 'cd',
 						\'ALT-e': 'VifmOpen',
 						\'ALT-o': 'Open',
