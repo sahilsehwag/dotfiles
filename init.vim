@@ -1891,8 +1891,9 @@
 					imap :ej <ESC>:FZFEmojis<CR>
 		"FLOATERM
 			if executable('vifm')
-				command! -nargs=1 Vifm :FloatermNew vifm <q-args>
-				nnoremap <silent> <Leader>ae :FloatermNew vifm<CR>
+				command! -nargs=1 Vifm :execute 'FloatermNew ' g:jaat_explorer_command . ' ' . shellescape(<q-args>)
+				nnoremap <silent> <Leader>ae :execute 'FloatermNew ' . jaat_explorer_command<CR>
+				nnoremap <silent> <Leader>pE :execute 'FloatermNew ' . jaat_explorer_command . ' ' . getcwd()<CR>
 			endif
 
 			if executable('glow')
