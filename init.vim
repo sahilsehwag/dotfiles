@@ -1891,10 +1891,8 @@
 					imap :ej <ESC>:FZFEmojis<CR>
 		"FLOATERM
 			if executable('vifm')
-				command!          Vifm     :FloatermNew vifm
-				command! -nargs=1 VifmOpen :FloatermNew vifm <q-args>
-
-				nnoremap <silent> <Leader>ae :Vifm<CR>
+				command! -nargs=1 Vifm :FloatermNew vifm <q-args>
+				nnoremap <silent> <Leader>ae :FloatermNew vifm<CR>
 			endif
 
 			if executable('glow')
@@ -1905,8 +1903,7 @@
 			endif
 
 			if executable('lazygit')
-				command! LazyGit :FloatermNew lazygit
-				nnoremap <silent> <Leader>ag :LazyGit<CR>
+				nnoremap <silent> <Leader>ag :FloatermNew lazygit<CR>
 			endif
 
 			if executable('bat')
@@ -1918,13 +1915,11 @@
 			endif
 
 			if executable('slack-term')
-				command! Slack :FloatermNew slack-term
-				nnoremap <silent> <Leader>as :LazyGit<CR>
+				nnoremap <silent> <Leader>as :FloatermNew slack-term<CR>
 			endif
 
 			if executable('lazynpm')
-				command! LazyNPM :FloatermNew lazynpm
-				nnoremap <silent> <Leader>an :LazyNPM<CR>
+				nnoremap <silent> <Leader>an :FloatermNew lazynpm<CR>
 			endif
 		"FZF-FLOATERM
 		"TODO:TABULARIZE
@@ -2555,7 +2550,7 @@
 						\'ALT-v': 'vsplit',
 						\'ALT-m': 'Glow',
 						\'ALT-c': 'cd',
-						\'ALT-e': 'VifmOpen',
+						\'ALT-e': 'Vifm',
 						\'ALT-o': 'Open',
 					\}
 						"'SaveAs'
