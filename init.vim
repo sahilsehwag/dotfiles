@@ -1899,8 +1899,8 @@
 			if executable('glow')
 				command! -nargs=1 Glow :execute 'FloatermNew --autoclose=0 glow ' . shellescape(<q-args>)
 
-				nnoremap <silent> <Leader>aM :FloatermNew glow<CR>
-				nnoremap <silent> <Leader>am :execute 'FloatermNew --autoclose=0 glow ' . shellescape(expand('%:p'))<CR>
+				nnoremap <silent> <Leader>am :FloatermNew glow<CR>
+				nnoremap <silent> <Leader>aM :execute 'FloatermNew --autoclose=0 glow ' . shellescape(expand('%:p'))<CR>
 			endif
 
 			if executable('lazygit')
