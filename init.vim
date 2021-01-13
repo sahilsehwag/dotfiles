@@ -3138,6 +3138,10 @@
 				Plug 'chrisbra/csv.vim'
 				"Plug 'vim-syntastic/syntastic'
 				"Plug 'coachshea/jade-vim'
+			"DATABASE
+				Plug 'tpope/vim-dadbod'
+				Plug 'kristijanhusak/vim-dadbod-ui'
+			"DEBUGGING
 			"RANDOM
 				Plug 'mattn/emmet-vim'
 					let g:user_emmet_install_global = 0
