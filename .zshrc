@@ -48,9 +48,9 @@
 #APPLICATIONS
 	#FUCK
 		type "thefuck" > /dev/null && eval $(thefuck --alias fuck)
-	[[ -f $HOME/fzf.sh ]]  && source $HOME/fzf.sh
-	[[ -f $HOME/tmux.sh ]] && source $HOME/tmux.sh
-	[[ -f $HOME/fasd.sh ]] && source $HOME/fasd.sh
+	[[ -f $HOME/.config/fzf.sh ]]  && source $HOME/.config/fzf.sh
+	[[ -f $HOME/.config/tmux.sh ]] && source $HOME/.config/tmux.sh
+	[[ -f $HOME/.config/fasd.sh ]] && source $HOME/.config/fasd.sh
 #FUNCTIONS
 	#FILESYSTEM
 		function newFile() {
