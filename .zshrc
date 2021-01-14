@@ -2,9 +2,9 @@
 	#ENVIORNMENT
 		export GOPATH='~/.config/go'
 	#META
-		if [ $OSTYPE ~= "darwin" ]; then
+		if [[ $OSTYPE =~ "darwin" ]]; then
 			jatPlatform=mac
-		elif [ $OSTYPE ~= "linux" ]; then
+		elif [[ $OSTYPE =~ "linux" ]]; then
 			jatPlatform=linux
 		fi
 	#PATHS
@@ -24,6 +24,7 @@
 		ZSH_THEME="powerlevel9k/powerlevel9k"
 		HYPHEN_INSENSITIVE="true"
 		ENABLE_CORRECTION="true"
+		ZSH_DISABLE_COMPFIX="true"
 
 		plugins=(fasd vi-mode colored-man-pages)
 		source $ZSH/oh-my-zsh.sh
