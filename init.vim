@@ -3082,6 +3082,23 @@
 							Plug 'Shougo/neco-vim'
 							Plug 'neoclide/coc-neco'
 				endif
+				Plug 'liuchengxu/vista.vim'
+					"CONFIGURATION
+						let g:vista_default_executive = 'coc'
+						let g:vista#renderer#enable_icon = 1
+						let g:vista_sidebar_width = 40
+						let g:vista_fzf_preview = ['right:50%']
+						let g:vista_echo_cursor_strategy = 'echo'
+					"MAPPINGS
+						nnoremap <silent> <Leader>lt :Vista!!<CR>
+						nnoremap <silent> <Leader>lT :Vista finder fzf<CR>
+					"STATUSLINE
+						function! NearestMethodOrFunction() abort
+							return get(b:, 'vista_nearest_method_or_function', '')
+						endfunction
+
+						set statusline+=%{NearestMethodOrFunction()}
+						autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
 			"TREESITTER
 			"DATABASE
 				Plug 'tpope/vim-dadbod'
