@@ -47,11 +47,36 @@
 			#POWERLEVEL9K_VI_COMMAND_FOREGROUND=''
 			POWERLEVEL9K_VI_MODE_NORMAL_BACKGROUND='069'
 #APPLICATIONS
+	#TMUX
+		alias tl='tmux list-sessions'
+		alias tn='tmux new-session -s'
+		alias tr='tmux rename-session -t'
+		alias ta='tmux attach-session -t'
+		alias tk='tmux kill-session -t'
+
+
+		alias twn='tmux new-window -n'
+		alias twk='tmux kill-window'
+		alias twr='tmux rename-window -t'
+		alias tws='tmux select-window -t'
+
+		alias tpk='tmux kill-pane'
+		alias td='tmux detach'
+
+		alias tcs='tmux choose-session'
+		alias tcw='tmux choose-window'
+		alias tcp='tmux choose-pane'
+	#FZF
+		[[ -f $HOME/.config/fzf.sh ]]  && source $HOME/.config/fzf.sh
+	#FASD
+		alias sd='fasd -sid'
+		alias sf='fasd -sif'
+		alias j='fasd_cd -d'
+		alias z='fasd_cd -d'
+		alias zz='fasd_cd -di'
+		alias v="f -e vim"
 	#FUCK
 		type "thefuck" > /dev/null && eval $(thefuck --alias fuck)
-	[[ -f $HOME/.config/fzf.sh ]]  && source $HOME/.config/fzf.sh
-	[[ -f $HOME/.config/tmux.sh ]] && source $HOME/.config/tmux.sh
-	[[ -f $HOME/.config/fasd.sh ]] && source $HOME/.config/fasd.sh
 #FUNCTIONS
 	#FILESYSTEM
 		function newFile() {
