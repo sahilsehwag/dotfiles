@@ -2138,10 +2138,11 @@
 			"TEXT
 			"MARKUP
 				"MARKDOWN
+					"@TODO:FIX
 					augroup MARKDOWN
 						au!
-						au FileType markdown nmap <buffer> <LocalLeader>ch :call RunNpmCommand('', "%", 'gh-markdown-cli')<CR>
-						au FileType markdown vmap <buffer> <LocalLeader>ch :call RunNpmCommand('mdown', '', "'<,'>", 'gh-markdown-cli')<CR>
+						"au FileType markdown nmap <buffer> <LocalLeader>ch :call RunNpmCommand('', "%", 'gh-markdown-cli')<CR>
+						"au FileType markdown vmap <buffer> <LocalLeader>ch :call RunNpmCommand('mdown', '', "'<,'>", 'gh-markdown-cli')<CR>
 					augroup END
 				"XML
 					augroup XML
@@ -2905,7 +2906,12 @@
 					"let g:indentLine_char_list = ['│', '|', '¦', '┆', '┊']
 		"MANAGEMENT
 		"PROGRAMMING
-			"VCS:GIT
+			"SYNTAX
+				Plug 'sheerun/vim-polyglot'
+				Plug 'chrisbra/csv.vim'
+				"Plug 'vim-syntastic/syntastic'
+				"Plug 'coachshea/jade-vim'
+			"VCS
 				Plug 'rhysd/git-messenger.vim'
 					"CONFIGURATION
 						let g:git_messenger_no_default_mappings = v:true
@@ -2918,20 +2924,6 @@
 			"LSP
 				if has('node') && version >= 800
 					Plug 'neoclide/coc.nvim', {'branch': 'release'}
-						"OPTIONS
-							"set cmdheight=2
-								" Give more space for displaying messages.
-							set updatetime=300
-								" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
-								" delays and poor user experience.
-							set shortmess+=c
-								" Don't pass messages to |ins-completion-menu|.
-							if has("patch-8.1.1564")
-								"Always show the signcolumn, otherwise it would shift the text each time
-								"diagnostics appear/become resolved.
-								"Recently vim can merge signcolumn and number column into one
-								set signcolumn=number
-							endif
 						"CONFIGURATION
 							let g:coc_global_extensions = [
 								\ 'coc-marketplace',
@@ -2957,6 +2949,7 @@
 								\ 'coc-json',
 								\ 'coc-yaml',
 								\ 'coc-toml',
+								\ 'coc-docker',
 								\ 'coc-styled-components',
 								\ 'coc-git',
 								\ 'coc-gitignore',
@@ -2979,6 +2972,7 @@
 								\ 'coc-docthis',
 								\ 'coc-snippets',
 								\ 'coc-emmet',
+								\ 'coc-template',
 								\ 'coc-tabnine',
 								\ 'coc-syntax',
 								\ 'coc-explorer',
@@ -2994,12 +2988,12 @@
 								\ 'coc-leetcode',
 							\]
 						"FUNCTIONS
-							function! s:check_back_space() abort
+							function! s:checkBackspace() abort
 								let col = col('.') - 1
 								return !col || getline('.')[col - 1]	=~# '\s'
 							endfunction
 
-							function! s:show_documentation()
+							function! s:showDocumentation()
 								if (index(['vim','help'], &filetype) >= 0)
 									execute 'h '.expand('<cword>')
 								else
@@ -3007,49 +3001,38 @@
 								endif
 							endfunction
 						"COMMANDS
-							command! -nargs=0 COCFormat			 :call CocAction('format')
-							command! -nargs=? COCFold			 :call CocAction('fold', <f-args>)
+							command! -nargs=0 COCFormat          :call CocAction('format')
+							command! -nargs=? COCFold            :call CocAction('fold', <f-args>)
 							command! -nargs=0 COCOrganizeImports :call CocAction('runCommand', 'editor.action.organizeImport')
 						"AUTOCOMMANDS
-							augroup mygroup
+							augroup COC
 								autocmd!
-								" Setup formatexpr specified filetype(s).
 								autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-								" Update signature help on jump placeholder.
 								autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 							augroup end
 
 							autocmd CursorHold * silent call CocActionAsync('highlight')
 						"MAPPINGS
-							"COC-DOCUMENTATION
-								nnoremap <silent> K :call <SID>show_documentation()<CR>
-							"COC-COMPLETION
-								if exists('*complete_info')
-									inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
-								else
-									inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-								endif
+							"COC-LIST
+								nnoremap <silent><nowait> <Leader>lL  :<C-u>CocList<CR>
+								nnoremap <silent><nowait> <Leader>ll  :<C-u>CocListResume<CR>
+								nnoremap <silent><nowait> <Leader>le  :<C-u>CocList diagnostics<CR>
+								nnoremap <silent><nowait> <Leader>lc  :<C-u>CocList commands<CR>
+								nnoremap <silent><nowait> <Leader>lo  :<C-u>CocList outline<CR>
+								nnoremap <silent><nowait> <Leader>ls  :<C-u>CocList -I symbols<CR>
 
-								inoremap <silent><expr> <TAB>
-										\ pumvisible() ? "\<C-n>" :
-										\ <SID>check_back_space() ? "\<TAB>" :
-										\ coc#refresh()
-								inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-									" Use tab for trigger completion with characters ahead and navigate.
-									" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-									" other plugin before putting this into your config.
-								inoremap <silent><expr> <c-space> coc#refresh()
-									" Use <c-space> to trigger completion.
-
-
-							"COC-DIAGNOSTICS
-								nmap <silent> [e <Plug>(coc-diagnostic-prev)
-								nmap <silent> ]e <Plug>(coc-diagnostic-next)
+								nnoremap <silent><nowait> <Leader>ln  :<C-u>CocNext<CR>
+								nnoremap <silent><nowait> <Leader>lp  :<C-u>CocPrev<CR>
 							"COC-GOTO
 								nmap <silent> <Leader>lgd <Plug>(coc-definition)
 								nmap <silent> <Leader>lgD <Plug>(coc-type-definition)
 								nmap <silent> <Leader>lgi <Plug>(coc-implementation)
 								nmap <silent> <Leader>lgr <Plug>(coc-references)
+							"COC-DIAGNOSTICS
+								nmap <silent> [e <Plug>(coc-diagnostic-prev)
+								nmap <silent> ]e <Plug>(coc-diagnostic-next)
+							"COC-DOCUMENTATION
+								nnoremap <silent> K :call s:showDocumentation()<CR>
 							"COC-OBJECTS
 								"NOTE: Requires 'textDocument.documentSymbol' support from the language server.
 								xmap <LocalLeader>if <Plug>(coc-funcobj-i)
@@ -3060,16 +3043,6 @@
 								omap <LocalLeader>ic <Plug>(coc-classobj-i)
 								xmap <LocalLeader>ac <Plug>(coc-classobj-a)
 								omap <LocalLeader>ac <Plug>(coc-classobj-a)
-							"COC-LIST
-								nnoremap <silent><nowait> <Leader>ll  :<C-u>CocList<CR>
-								nnoremap <silent><nowait> <Leader>lL  :<C-u>CocListResume<CR>
-								nnoremap <silent><nowait> <Leader>le  :<C-u>CocList diagnostics<CR>
-								nnoremap <silent><nowait> <Leader>lc  :<C-u>CocList commands<CR>
-								nnoremap <silent><nowait> <Leader>lo  :<C-u>CocList outline<CR>
-								nnoremap <silent><nowait> <Leader>ls  :<C-u>CocList -I symbols<CR>
-
-								nnoremap <silent><nowait> <Leader>ln  :<C-u>CocNext<CR>
-								nnoremap <silent><nowait> <Leader>lp  :<C-u>CocPrev<CR>
 							"COC-ACTIONS
 								"COC-FORMAT
 									xmap <leader>lf  <Plug>(coc-format-selected)
@@ -3085,18 +3058,35 @@
 									nmap <leader>lac  <Plug>(coc-codeaction)
 									" Apply AutoFix to problem on the current line.
 									nmap <leader>lq  <Plug>(coc-fix-current)
+							"COC-COMPLETION
+								if exists('*complete_info')
+									inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+								else
+									inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+								endif
+
+								inoremap <silent><expr> <TAB>
+									\ pumvisible() ? "\<C-n>" :
+									\ <SID>checkBackspace() ? "\<TAB>" :
+									\ coc#refresh()
+								inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+									"Use tab for trigger completion with characters ahead and navigate.
+									"NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+									"other plugin before putting this into your config.
+								inoremap <silent><expr> <c-space> coc#refresh()
 							"RANDOM
 								nmap <Leader>lr <Plug>(coc-rename)
-								" Use CTRL-S for selections ranges.
-								" Requires 'textDocument/selectionRange' support of LS, ex: coc-tsserver
 								nmap <silent> <C-s> <Plug>(coc-range-select)
 								xmap <silent> <C-s> <Plug>(coc-range-select)
 						"EXTENSIONS
 							Plug 'Shougo/neco-vim'
 							Plug 'neoclide/coc-neco'
-					"EXTENSIONS
-						Plug 'weirongxu/coc-explorer'
 				endif
+			"TREESITTER
+			"DATABASE
+				Plug 'tpope/vim-dadbod'
+				Plug 'kristijanhusak/vim-dadbod-ui'
+			"DEBUGGING
 			"PLAYGROUND
 				Plug 'metakirby5/codi.vim'
 					let g:codi#width	  = 80
@@ -3133,20 +3123,44 @@
 					"MAPPINGS
 						nnoremap <LocalLeader>cs :execute "Whiteboard "  . &filetype<CR>
 						nnoremap <LocalLeader>cS :execute "Whiteboard! " . &filetype<CR>
-			"SYNTAX
-				Plug 'sheerun/vim-polyglot'
-				Plug 'chrisbra/csv.vim'
-				"Plug 'vim-syntastic/syntastic'
-				"Plug 'coachshea/jade-vim'
-			"DATABASE
-				Plug 'tpope/vim-dadbod'
-				Plug 'kristijanhusak/vim-dadbod-ui'
-			"DEBUGGING
 			"RANDOM
 				Plug 'mattn/emmet-vim'
 					let g:user_emmet_install_global = 0
-					autocmd FileType html,css,jsx,js,ts,tsx EmmetInstall
 					let g:user_emmet_leader_key='<TAB>'
+					autocmd FileType html,css,jsx,js,ts,tsx EmmetInstall
+				if has('nvim') || (has('vim') && v:version >= 800)
+					Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+						let g:mkdp_auto_start = 0
+						let g:mkdp_auto_close = 1
+						let g:mkdp_refresh_slow = 0
+						let g:mkdp_command_for_global = 0
+						let g:mkdp_open_to_the_world = 0
+						let g:mkdp_open_ip = ''
+						let g:mkdp_browser = ''
+						let g:mkdp_echo_preview_url = 0
+						let g:mkdp_browserfunc = ''
+						let g:mkdp_preview_options = {
+								\ 'mkit': {},
+								\ 'katex': {},
+								\ 'uml': {},
+								\ 'maid': {},
+								\ 'disable_sync_scroll': 0,
+								\ 'sync_scroll_type': 'middle',
+								\ 'hide_yaml_meta': 1,
+								\ 'sequence_diagrams': {},
+								\ 'flowchart_diagrams': {},
+								\ 'content_editable': v:false,
+								\ 'disable_filename': 0
+								\ }
+						let g:mkdp_markdown_css = ''
+						let g:mkdp_highlight_css = ''
+						let g:mkdp_port = ''
+						let g:mkdp_page_title = '?${name}?'
+						let g:mkdp_filetypes = ['markdown']
+				else
+					"install instant-markdown-d usig NPM
+					Plug 'suan/vim-instant-markdown'
+				endif
 			"DOCUMENTATION
 		"EXTENSIONS
 			Plug 'liuchengxu/vim-which-key'
@@ -3687,7 +3701,6 @@
 				nnoremap <Leader>vtd  :Goyo<CR>
 			Plug 'junegunn/limelight.vim'
 				nnoremap <Leader>vtl  :Limelight!!<CR>
-			Plug 'suan/vim-instant-markdown'
 			"Plug 'natw/keyboard_cat.vim'
 			if !IsWindows()
 				"Plug 'MrPeterLee/VimWordpress'
@@ -3856,8 +3869,8 @@
 			highlight VertSplit ctermbg=None guibg=None
 "SETTINGS
 	"FONTS
-		"Inconsolata
 		"JetBrainsMono-Regular
+		"Inconsolata
 		"OperatorMono?
 	"FOLDING
 		if has('folding')
@@ -3926,7 +3939,14 @@
 			"WINDOW
 				set splitbelow
 				set splitright
-				set signcolumn=yes
+				if has("patch-8.1.1564")
+					"Always show the signcolumn, otherwise it would shift the text each time
+					"diagnostics appear/become resolved.
+					"Recently vim can merge signcolumn and number column into one
+					set signcolumn=number
+				else
+					set signcolumn=yes
+				endif
 		"LIST
 			set nolist
 			set shortmess=filmnrwxoOTWAIcFS
@@ -3986,6 +4006,9 @@
 		set mouse=a
 		set clipboard=unnamed
 		set nf="alpha,octal,hex,bin"
+		set updatetime=300
+			"mainly used coc.nvim
+			"default is 4000ms(4s) which leads to noticeable delays and poor user experience.
 "CLIENTS
 	"VSCODE
 		if exists('g:vscode')
