@@ -3929,7 +3929,7 @@
 				set signcolumn=yes
 		"LIST
 			set nolist
-			set shortmess="filmnrwxoOTF"
+			set shortmess=filmnrwxoOTWAIcFS
 			set listchars=tab:\ \ ,
 			set listchars+=eol:¬
 			set listchars+=trail:•
@@ -3941,7 +3941,7 @@
 			set fillchars=fold:\ ,
 			set fillchars=stl:\ ,
 			set fillchars=stlnc:\ ,
-			set fillchars=vert:⎪
+			set fillchars=vert:│
 		"CURSOR
 			set nocursorcolumn
 			set cursorline
