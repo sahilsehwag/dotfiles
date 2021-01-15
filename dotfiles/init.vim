@@ -2971,6 +2971,7 @@
 								\ 'coc-import-cost',
 								\ 'coc-docthis',
 								\ 'coc-snippets',
+								\ 'coc-pairs',
 								\ 'coc-emmet',
 								\ 'coc-template',
 								\ 'coc-tabnine',
