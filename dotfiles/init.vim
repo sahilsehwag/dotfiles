@@ -1,9 +1,10 @@
 "LEADER
-	let mapleader		  = " "
-	let maplocalleader	  = ","
+	let mapleader         = " "
+	let maplocalleader    = ","
+	let g:modifier_leader = 'A'
 	let g:insert_leader   = ";"
 	let g:terminal_leader = ";"
-	let g:modifier_leader = 'A'
+	nnoremap ; :
 "VIMSCRIPT
 	"HELPERS
 		"VIM
@@ -1989,7 +1990,6 @@
 		map Q <nop>
 		map <C-r> <nop>
 	"REMAPS
-		nnoremap ; :
 		nnoremap U <C-r>
 		nnoremap ' "
 	"LEADER
@@ -2360,20 +2360,19 @@
 						map g* <Plug>(asterisk-gz*)
 						map g# <Plug>(asterisk-gz#)
 				Plug 'bronson/vim-visual-star-search'
-				"Plug 'rhysd/clever-f.vim'
-					let g:clever_f_ignore_case			 = 1
-					let g:clever_f_smart_case			 = 1
-					let g:clever_f_across_no_line		 = 0
+				Plug 'rhysd/clever-f.vim'
+					let g:clever_f_ignore_case           = 1
+					let g:clever_f_smart_case            = 1
+					let g:clever_f_across_no_line        = 0
 					let g:clever_f_chars_match_any_signs = '['
-					"let g:clever_f_mark_char_color		  = ''
 				Plug 'justinmk/vim-sneak'
 					"CONFIGURATION
 						let g:sneak#label	   = 0
 						let g:sneak#s_next	   = 1
 						let g:sneak#use_ic_scs = 1
 					"MAPPINGS
-						map f <Plug>Sneak_s
-						map F <Plug>Sneak_S
+						"map f <Plug>Sneak_s
+						"map F <Plug>Sneak_S
 						"map t <Plug>Sneak_t
 							"not-working"
 						"map T <Plug>Sneak_T
