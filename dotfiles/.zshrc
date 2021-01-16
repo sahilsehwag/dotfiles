@@ -48,12 +48,12 @@
 			POWERLEVEL9K_VI_MODE_NORMAL_BACKGROUND='069'
 #APPLICATIONS
 	#TMUX
-		alias tl='tmux list-sessions'
-		alias tn='tmux new-session -s'
-		alias tr='tmux rename-session -t'
-		alias ta='tmux attach-session -t'
-		alias tk='tmux kill-session -t'
-
+		alias tsl='tmux list-sessions'
+		alias tsn='tmux new-session -s'
+		alias tsr='tmux rename-session -t'
+		alias tsk='tmux kill-session -t'
+		alias tsa='tmux attach-session -t'
+		alias tsd='tmux detach'
 
 		alias twn='tmux new-window -n'
 		alias twk='tmux kill-window'
@@ -61,7 +61,6 @@
 		alias tws='tmux select-window -t'
 
 		alias tpk='tmux kill-pane'
-		alias td='tmux detach'
 
 		alias tcs='tmux choose-session'
 		alias tcw='tmux choose-window'
@@ -71,7 +70,6 @@
 	#FASD
 		alias sd='fasd -sid'
 		alias sf='fasd -sif'
-		alias j='fasd_cd -d'
 		alias z='fasd_cd -d'
 		alias zz='fasd_cd -di'
 		alias v="f -e vim"
