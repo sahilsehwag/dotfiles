@@ -1,12 +1,14 @@
 "LEADER
 	let mapleader         = " "
 	let maplocalleader    = ","
-	let g:leader_1        = 'D'
-	let g:leader_2        = 'A'
-	let g:leader_3        = 'C'
+	let g:modifier_leader = 'A'
 	let g:insert_leader   = ";"
 	let g:terminal_leader = ";"
+
 	nnoremap ; :
+	let g:modifier_ctrl   = 'C'
+	let g:modifier_alt    = 'A'
+	let g:modifier_cmd    = 'D'
 "VIMSCRIPT
 	"HELPERS
 		"VIM
@@ -2003,11 +2005,11 @@
 			"OBJECTS
 			"MOTIONS
 			"JUMPS
-				execute 'nnoremap <' . g:leader_2 . '-o> <C-o>'
-				execute 'nnoremap <' . g:leader_2 . '-i> <C-i>'
+				execute 'nnoremap <' . g:modifier_leader . '-o> <C-o>'
+				execute 'nnoremap <' . g:modifier_leader . '-i> <C-i>'
 
-				execute 'nnoremap <' . g:leader_2 . '-[> <C-t>'
-				execute 'nnoremap <' . g:leader_2 . '-]> <C-]>'
+				execute 'nnoremap <' . g:modifier_leader . '-[> <C-t>'
+				execute 'nnoremap <' . g:modifier_leader . '-]> <C-]>'
 		"INTERFACE
 			"TABS
 				nnoremap <silent> <Leader>Ta :tabnew	  <CR>
@@ -2030,8 +2032,8 @@
 
 				nnoremap <silent> ]b :bnext<CR>
 				nnoremap <silent> [b :bprevious<CR>
-				execute 'map <silent> <' . g:leader_2 . '-p> :bprevious<CR>'
-				execute 'map <silent> <' . g:leader_2 . '-n> :bnext<CR>'
+				execute 'map <silent> <' . g:modifier_leader . '-p> :bprevious<CR>'
+				execute 'map <silent> <' . g:modifier_leader . '-n> :bnext<CR>'
 			"WINDOWS
 				nnoremap <silent> <Leader>wh :sp<CR>
 				nnoremap <silent> <Leader>wv :vsp<CR>
@@ -2041,27 +2043,27 @@
 				nnoremap <silent> <Leader>wc :close<CR>
 
 				if has('nvim')
-					execute 'nnoremap <silent> <' . g:leader_2 . '-h> <C-w><C-h>'
-					execute 'nnoremap <silent> <' . g:leader_2 . '-j> <C-w><C-j>'
-					execute 'nnoremap <silent> <' . g:leader_2 . '-k> <C-w><C-k>'
-					execute 'nnoremap <silent> <' . g:leader_2 . '-l> <C-w><C-l>'
+					execute 'nnoremap <silent> <' . g:modifier_leader . '-h> <C-w><C-h>'
+					execute 'nnoremap <silent> <' . g:modifier_leader . '-j> <C-w><C-j>'
+					execute 'nnoremap <silent> <' . g:modifier_leader . '-k> <C-w><C-k>'
+					execute 'nnoremap <silent> <' . g:modifier_leader . '-l> <C-w><C-l>'
 
-					execute 'inoremap <silent> <' . g:leader_2 . '-h> <ESC><C-w><C-h>'
-					execute 'inoremap <silent> <' . g:leader_2 . '-j> <ESC><C-w><C-j>'
-					execute 'inoremap <silent> <' . g:leader_2 . '-k> <ESC><C-w><C-k>'
-					execute 'inoremap <silent> <' . g:leader_2 . '-l> <ESC><C-w><C-l>'
+					execute 'inoremap <silent> <' . g:modifier_leader . '-h> <ESC><C-w><C-h>'
+					execute 'inoremap <silent> <' . g:modifier_leader . '-j> <ESC><C-w><C-j>'
+					execute 'inoremap <silent> <' . g:modifier_leader . '-k> <ESC><C-w><C-k>'
+					execute 'inoremap <silent> <' . g:modifier_leader . '-l> <ESC><C-w><C-l>'
 
 					"window navigation for non-floating terminals
-					execute 'tnoremap <silent> <' . g:leader_2 . '-h> <C-\><C-n><C-w>h'
-					execute 'tnoremap <silent> <' . g:leader_2 . '-j> <C-\><C-n><C-w>j'
-					execute 'tnoremap <silent> <' . g:leader_2 . '-k> <C-\><C-n><C-w>k'
-					execute 'tnoremap <silent> <' . g:leader_2 . '-l> <C-\><C-n><C-w>l'
+					execute 'tnoremap <silent> <' . g:modifier_leader . '-h> <C-\><C-n><C-w>h'
+					execute 'tnoremap <silent> <' . g:modifier_leader . '-j> <C-\><C-n><C-w>j'
+					execute 'tnoremap <silent> <' . g:modifier_leader . '-k> <C-\><C-n><C-w>k'
+					execute 'tnoremap <silent> <' . g:modifier_leader . '-l> <C-\><C-n><C-w>l'
 				endif
 			"TERMINAL
 				if has('nvim')
 					"MAPPINGS
 						"<esc>
-						execute 'tnoremap <silent> <' . g:leader_2 . '-[> <C-\><C-n>'
+						execute 'tnoremap <silent> <' . g:modifier_leader . '-[> <C-\><C-n>'
 
 						"vim-registers
 						tnoremap <silent> <expr> <C-R> '<C-\><C-N>"'.nr2char(getchar()).'pi'
@@ -2108,10 +2110,10 @@
 						"FUNCTIONS
 						"MAPPINGS
 							if IsWindows()
-								execute 'tnoremap <silent> <' . g:leader_2 . '-w> <C-RIGHT>'
-								execute 'tnoremap <silent> <' . g:leader_2 . '-b> <C-LEFT>'
-								execute 'tnoremap <silent> <' . g:leader_2 . '-0> <HOME>'
-								execute 'tnoremap <silent> <' . g:leader_2 . '-9> <END>'
+								execute 'tnoremap <silent> <' . g:modifier_leader . '-w> <C-RIGHT>'
+								execute 'tnoremap <silent> <' . g:modifier_leader . '-b> <C-LEFT>'
+								execute 'tnoremap <silent> <' . g:modifier_leader . '-0> <HOME>'
+								execute 'tnoremap <silent> <' . g:modifier_leader . '-9> <END>'
 							endif
 				endif
 		"MODE:INSERT
@@ -2655,12 +2657,12 @@
 				nnoremap <silent> <Leader>tn :FloatermNext<CR>
 				nnoremap <silent> <Leader>tp :FloatermPrev<CR>
 
-				execute 'nnoremap <silent> <' . g:leader_2 . '-`> :FloatermToggle<CR>'
-				execute 'tnoremap <silent> <' . g:leader_2 . '-`> <C-\><C-n>:FloatermToggle<CR>'
-				execute 'tnoremap <silent> <' . g:leader_2 . '-f> <C-\><C-n>:FloatermNew<CR>'
-				execute 'tnoremap <silent> <' . g:leader_2 . '-d> <C-\><C-n>:FloatermKill<CR>'
-				execute 'tnoremap <silent> <' . g:leader_2 . '-p> <C-\><C-n>:FloatermNext<CR>'
-				execute 'tnoremap <silent> <' . g:leader_2 . '-n> <C-\><C-n>:FloatermPrev<CR>'
+				execute 'nnoremap <silent> <' . g:modifier_leader . '-`> :FloatermToggle<CR>'
+				execute 'tnoremap <silent> <' . g:modifier_leader . '-`> <C-\><C-n>:FloatermToggle<CR>'
+				execute 'tnoremap <silent> <' . g:modifier_leader . '-f> <C-\><C-n>:FloatermNew<CR>'
+				execute 'tnoremap <silent> <' . g:modifier_leader . '-d> <C-\><C-n>:FloatermKill<CR>'
+				execute 'tnoremap <silent> <' . g:modifier_leader . '-p> <C-\><C-n>:FloatermNext<CR>'
+				execute 'tnoremap <silent> <' . g:modifier_leader . '-n> <C-\><C-n>:FloatermPrev<CR>'
 		"LOOK&FEEL
 			"STATUSLINE
 				if IsNix()
