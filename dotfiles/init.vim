@@ -1,14 +1,20 @@
 "LEADER
-	let mapleader         = " "
-	let maplocalleader    = ","
-	let g:modifier_leader = 'A'
-	let g:insert_leader   = ";"
-	let g:terminal_leader = ";"
-
 	nnoremap ; :
-	let g:modifier_ctrl   = 'C'
-	let g:modifier_alt    = 'A'
-	let g:modifier_cmd    = 'D'
+	let mapleader      = ' '
+	let maplocalleader = ','
+
+	"let g:modifier_ctrl = 'C'
+	"let g:modifier_alt  = 'A'
+	"let g:modifier_cmd  = 'D'
+
+	"let g:modifier_ctrl_alt   = 'C-A'
+	"let g:modifier_ctrl_shift = 'C-S'
+	"let g:modifier_alt_shift  = 'A-S'
+
+	let g:modifier_leader = 'A'
+	let g:motion_leader   = 'C-A'
+	let g:insert_leader   = ';'
+	let g:terminal_leader = ';'
 "VIMSCRIPT
 	"HELPERS
 		"VIM
