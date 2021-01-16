@@ -1396,12 +1396,12 @@
 					\}))<CR>
 
 					command! ProjectinatorOpenFile :call fzf#run(fzf#wrap({
-						\ 'source'	: g:jaat_find_files_command . ' ' . shellescape(getcwd()),
+						\ 'source'	: g:jaat_find_files_command,
 						\ 'options' : '--prompt "open-project-file> "'
 					\}))<CR>
 
 					command! ProjectinatorSearchProject :call fzf#run(fzf#wrap({
-						\ 'source'  : g:jaat_find_lines_command . ' ' . shellescape(getcwd()),
+						\ 'source'  : g:jaat_find_lines_command,
 						\ 'sink'    : 'edit',
 						\ 'options' : '--prompt "search-project> "'
 					\}))<CR>
@@ -2602,14 +2602,14 @@
 					nnoremap <silent> <Leader>ff/ :call FZFFiles(g:jaat_root_path)<CR>
 					nnoremap <silent> <Leader>ffh :call FZFFiles(g:jaat_home_path)<CR>
 					nnoremap <silent> <Leader>ffd :call FZFFiles(g:jaat_drive_path)<CR>
-					nnoremap <silent> <Leader>ffp :call FZFFiles(shellescape(getcwd()))<CR>
+					nnoremap <silent> <Leader>ffp :call FZFFiles('')<CR>
 					nnoremap <silent> <Leader>ffc :call FZFFiles(expand('%:p:h'))<CR>
 
 					"nnoremap <silent> <Leader>fdr :call FZFFindDirectories()<CR>
 					nnoremap <silent> <Leader>fd/ :call FZFDirectories(g:jaat_root_path)<CR>
 					nnoremap <silent> <Leader>fdh :call FZFDirectories(g:jaat_home_path)<CR>
 					nnoremap <silent> <Leader>fdd :call FZFDirectories(g:jaat_drive_path)<CR>
-					nnoremap <silent> <Leader>fdp :call FZFDirectories(shellescape(getcwd()))<CR>
+					nnoremap <silent> <Leader>fdp :call FZFDirectories('')<CR>
 					nnoremap <silent> <Leader>fdc :call FZFDirectories(expand('%:p:h'))<CR>
 				"EXTENSIONS
 					Plug 'junegunn/fzf.vim'
