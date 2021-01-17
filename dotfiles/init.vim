@@ -3126,6 +3126,9 @@
 			"DATABASE
 				Plug 'tpope/vim-dadbod'
 				Plug 'kristijanhusak/vim-dadbod-ui'
+			"SNIPPETS
+				Plug 'honza/vim-snippets'
+				Plug 'epilande/vim-react-snippets'
 			"DEBUGGING
 			"PLAYGROUND
 				Plug 'metakirby5/codi.vim'
@@ -3634,7 +3637,6 @@
 				"Plug 'airblade/vim-gitgutter'
 				"Plug 'mhinz/vim-signify'
 			"SNIPPETS
-				Plug 'honza/vim-snippets'
 				if has('python3')
 					"Plug 'SirVer/ultisnips'
 						"let g:UltiSnipsExpandTrigger="<CR>"
