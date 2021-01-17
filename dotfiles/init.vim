@@ -2911,6 +2911,8 @@
 			"SYNTAX
 				Plug 'sheerun/vim-polyglot'
 				Plug 'chrisbra/csv.vim'
+				Plug 'plasticboy/vim-markdown'
+					let g:vim_markdown_no_default_key_mappings = 1
 				"Plug 'vim-syntastic/syntastic'
 				"Plug 'coachshea/jade-vim'
 			"VCS
@@ -3183,6 +3185,10 @@
 				endif
 			"DOCUMENTATION
 		"EXTENSIONS
+			Plug 'tpope/vim-repeat'
+			Plug 'tpope/vim-capslock'
+				nmap <silent> <LocalLeader><LocalLeader> <Plug>CapsLockToggle
+				imap ;; <Plug>CapsLockToggle
 			Plug 'liuchengxu/vim-which-key'
 				"CONFIGURATION
 					let g:which_key_sep				   = '→'
@@ -3417,9 +3423,6 @@
 					nnoremap <silent> <Leader>		:<C-U>WhichKey		 '<SPACE>' <CR>
 					vnoremap <silent> <Leader>		:<C-U>WhichKeyVisual '<SPACE>' <CR>
 					nnoremap <silent> <LocalLeader> :<C-U>WhichKey		 ','	   <CR>
-			Plug 'tpope/vim-capslock'
-				nmap <silent> <LocalLeader><LocalLeader> <Plug>CapsLockToggle
-				imap ;; <Plug>CapsLockToggle
 			Plug 'szw/vim-maximizer'
 				nnoremap <silent> <Leader>wm :MaximizerToggle<CR>
 			Plug 'junegunn/vim-peekaboo'
@@ -3824,7 +3827,6 @@
 			"Plug 'gcmt/wildfire.vim'
 			"Plug 'lambacck/preserve-vim'
 			"Plug 'mbbill/undotree'
-			"Plug 'tpope/vim-repeat'
 			"Plug 'godlygeek/tabular'
 			"Plug 'tpope/vim-unimpaired'
 			"Plug 'jeanCarloMachado/vim-toop'
