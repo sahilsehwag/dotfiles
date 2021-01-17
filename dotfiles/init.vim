@@ -1025,9 +1025,9 @@
 								"INTERPRETED
 									let g:languages.python = {
 										\'extension' : 'py',
-										\'repl'		 : 'ipython',
-										\'execute'	 : 'python3 %:p:S',
-										\'init'		 : [
+										\'repl'      : 'ipython',
+										\'execute'   : 'python3 %:p:S',
+										\'init'      : [
 											\'import os',
 											\'import sys',
 											\'import re',
@@ -1045,147 +1045,149 @@
 									\}
 									let g:languages.r = {
 										\'extension' : 'r',
-										\'repl'		 : 'r',
+										\'repl'      : 'r',
 									\}
 									let g:languages.javascript = {
 										\'extension' : 'js',
-										\'repl'		 : 'node',
-										\'execute'	 : 'node %:p:S',
+										\'repl'      : 'node',
+										\'execute'   : 'node %:p:S',
 									\}
 									let g:languages.ruby = {
 										\'extension' : 'rb',
-										\'repl'		 : 'irb',
-										\'execute'	 : 'ruby %:p:S',
-									\}
-									let g:languages.typescript = {
-										\'extension' : 'ts',
-										\'repl'		 : 'ts-node',
-										\'execute'	 : 'tsc %:p:S',
+										\'repl'      : 'irb',
+										\'execute'   : 'ruby %:p:S',
 									\}
 									let g:languages.perl = {
 										\'extension' : 'pl',
-										\'repl'		 : 'perl',
-										\'execute'	 : 'perl %:p:S',
+										\'repl'      : 'perl',
+										\'execute'   : 'perl %:p:S',
 									\}
 									let g:languages.php = {
 										\'extension' : 'php',
-										\'repl'		 : 'php',
-										\'execute'	 : 'php %:p:S',
+										\'repl'      : 'php',
+										\'execute'   : 'php %:p:S',
 									\}
 									let g:languages.lisp = {
 										\'extension' : 'lsp',
-										\'repl'		 : 'sbcl',
+										\'repl'      : 'sbcl',
 									\}
 									let g:languages.lua = {
 										\'extension' : 'lua',
-										\'repl'		 : 'lua',
-										\'execute'	 : 'lua %:p:S',
+										\'repl'      : 'lua',
+										\'execute'   : 'lua %:p:S',
 									\}
 								"COMPILED
 									let g:languages.c = {
-										\'extension'	   : 'c',
-										\'repl'			   : 'cling',
-										\'compile'		   : 'gcc %:p:S -o %:p:r:S.out',
-										\'execute'		   : '%:p:r:S.out',
+										\'extension'       : 'c',
+										\'repl'            : 'cling',
+										\'compile'         : 'gcc %:p:S -o %:p:r:S.out',
+										\'execute'         : '%:p:r:S.out',
 										\'compile-execute' : 'gcc %:p:S -o %:p:r:S.out && %:p:r:S.out',
-										\'init'		 : [
+										\'init'            : [
 												\'#include <stdio.h>',
 												\'#include <math.h>',
 										\],
 									\}
 									let g:languages.cpp = {
-										\'extension'	   : 'cpp',
-										\'repl'			   : 'cling',
-										\'compile'		   : 'g++ -std=c++14 %:p:S -o %:p:r:S.out',
-										\'execute'		   : '%:p:r:S.out',
+										\'extension'       : 'cpp',
+										\'repl'            : 'cling',
+										\'compile'         : 'g++ -std=c++14 %:p:S -o %:p:r:S.out',
+										\'execute'         : '%:p:r:S.out',
 										\'compile-execute' : 'g++ -std=c++14 %:p:S -o %:p:r:S.out && %:p:r:S.out',
-										\'init'			   : [
+										\'init'            : [
 											\'#include <iostream>',
 											\'#include <string>',
 											\'using namespace std;',
 										\],
 									\}
 									let g:languages.cs = {
-										\'extension'	   : 'cs',
-										\'repl'			   : 'csharp',
-										\'compile'		   : 'csc %:p:s',
-										\'execute'		   : 'mono %:p:r:s.exe',
+										\'extension'       : 'cs',
+										\'repl'            : 'csharp',
+										\'compile'         : 'csc %:p:s',
+										\'execute'         : 'mono %:p:r:s.exe',
 										\'compile-execute' : 'csc %:p:s && mono %:p:r:s.exe',
 									\}
 									let g:languages.csx = {
 										\'extension' : 'csx',
-										\'repl'		 : 'scriptcs',
-										\'execute'	 : 'scriptcs %:p:r:S.csx',
+										\'repl'      : 'scriptcs',
+										\'execute'   : 'scriptcs %:p:r:S.csx',
 									\}
 									let g:languages.java = {
-										\'extension'	   : 'java',
-										\'repl'			   : 'jshell',
-										\'compile'		   : 'javac %:p:S',
-										\'execute'		   : 'java %:p:r:S',
+										\'extension'       : 'java',
+										\'repl'            : 'jshell',
+										\'compile'         : 'javac %:p:S',
+										\'execute'         : 'java %:p:r:S',
 										\'compile-execute' : 'javac %:p:S && java %:p:r:S',
 									\}
 									let g:languages.scala = {
-										\'extension'	   : 'scala',
-										\'repl'			   : 'scala',
-										\'compile'		   : 'scalac %:p:S',
-										\'execute'		   : 'scala %:p:r:S',
+										\'extension'       : 'scala',
+										\'repl'            : 'scala',
+										\'compile'         : 'scalac %:p:S',
+										\'execute'         : 'scala %:p:r:S',
 										\'compile-execute' : 'scalac %:p:S && scala %:p:r:S',
 									\}
 									let g:languages.haskell = {
-										\'extension'	   : 'hs',
-										\'repl'			   : 'ghci',
-										\'compile'		   : 'ghc -Wno-tabs %:p:S',
-										\'execute'		   : '%:p:r:S',
+										\'extension'       : 'hs',
+										\'repl'            : 'ghci',
+										\'compile'         : 'ghc -Wno-tabs %:p:S',
+										\'execute'         : '%:p:r:S',
 										\'compile-execute' : 'ghc -Wno-tabs %:p:S && %:p:r:S',
 									\}
+									let g:languages.typescript = {
+										\'extension'       : 'ts',
+										\'repl'            : 'ts-node',
+										\'compile'         : 'tsc %:p:S',
+										\'execute'         : 'node %:p:r:S.js',
+										\'compile-execute' : 'tsc %:p:S && node %:p:r:S.js',
+									\}
 									let g:languages.processing = {
-										\'extension'	   : 'pde',
-										\'compile'		   : 'processing-java --output=/tmp/processing/ --force --sketch=%:p:h:S --build',
-										\'execute'		   : 'processing-java --output=/tmp/processing/ --force --sketch=%:p:h:S --run',
+										\'extension'       : 'pde',
+										\'compile'         : 'processing-java --output=/tmp/processing/ --force --sketch=%:p:h:S --build',
+										\'execute'         : 'processing-java --output=/tmp/processing/ --force --sketch=%:p:h:S --run',
 										\'compile-execute' : 'processing-java --output=/tmp/processing/ --force --sketch=%:p:h:S --run',
 									\}
 							"REPL
 								"SHELL
 									let g:languages.sh = {
 										\'extension' : 'sh',
-										\'repl'		 : 'sh',
-										\'execute'	 : 'sh %:p:S',
+										\'repl'      : 'sh',
+										\'execute'   : 'sh %:p:S',
 									\}
 									let g:languages.bash = {
 										\'extension' : 'bash',
-										\'repl'		 : 'bash',
-										\'execute'	 : 'bash %:p:S',
+										\'repl'      : 'bash',
+										\'execute'   : 'bash %:p:S',
 									\}
 									let g:languages.zsh = {
 												\'extension' : 'zsh',
-												\'repl'		 : 'zsh',
-												\'execute'	 : 'zsh %:p:S',
+												\'repl'      : 'zsh',
+												\'execute'   : 'zsh %:p:S',
 												\}
 									let g:languages.fish = {
 										\'extension' : 'fsh',
-										\'repl'		 : 'fsh',
-										\'execute'	 : 'fsh',
+										\'repl'      : 'fsh',
+										\'execute'   : 'fsh',
 									\}
 									let g:languages.batch = {
 										\'extension' : 'cmd',
-										\'repl'		 : 'cmd',
+										\'repl'      : 'cmd',
 									\}
 								"DATABASE
 									let g:languages.sqlite = {
 										\'extension' : 'sql',
-										\'repl'		 : 'sqlite',
+										\'repl'      : 'sqlite',
 									\}
 									let g:languages.mysql = {
 										\'extension' : 'mysql',
-										\'repl'		 : 'mysql',
+										\'repl'      : 'mysql',
 									\}
 									let g:languages.redis = {
 										\'extension' : 'redis',
-										\'repl'		 : 'redis-cli',
+										\'repl'      : 'redis-cli',
 									\}
 									let g:languages.mongo = {
 										\'extension' : 'mongo',
-										\'repl'		 : 'mongo',
+										\'repl'      : 'mongo',
 									\}
 							"FRAMEWORKS
 					"FUNCTIONS
