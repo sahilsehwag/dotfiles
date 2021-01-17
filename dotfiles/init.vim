@@ -2938,70 +2938,84 @@
 				if has('node') && version >= 800
 					Plug 'neoclide/coc.nvim', {'branch': 'release'}
 						"CONFIGURATION
-							let g:coc_global_extensions = [
-								\ 'coc-marketplace',
-								\ 'coc-vimlsp',
-								\ 'coc-lua',
-								\ 'coc-clangd',
-								\ 'coc-html',
-								\ 'coc-svg',
-								\ 'coc-css',
-								\ 'coc-cssmodules',
-								\ 'coc-tsserver',
-								\ 'coc-rome',
-								\ 'coc-pyright',
-								\ 'coc-java',
-								\ 'coc-omnisharp',
-								\ 'coc-sh',
-								\ 'coc-sql',
-								\ 'coc-metals',
-								\ 'coc-fsharp',
-								\ 'coc-go',
-								\ 'coc-r-lsp',
-								\ 'coc-xml',
-								\ 'coc-json',
-								\ 'coc-yaml',
-								\ 'coc-toml',
-								\ 'coc-docker',
-								\ 'coc-styled-components',
-								\ 'coc-git',
-								\ 'coc-gitignore',
-								\ 'coc-github',
-								\ 'coc-gist',
-								\ 'coc-flow',
-								\ 'coc-eslint',
-								\ 'coc-tslint',
-								\ 'coc-stylelint',
-								\ 'coc-stylelintplus',
-								\ 'coc-diagnostic',
-								\ 'coc-style-helper',
-								\ 'coc-jest',
-								\ 'coc-inline-jest',
-								\ 'coc-markdownlint',
-								\ 'coc-prettier',
-								\ 'coc-react-refactor',
-								\ 'coc-format-json',
-								\ 'coc-import-cost',
-								\ 'coc-docthis',
-								\ 'coc-snippets',
-								\ 'coc-pairs',
-								\ 'coc-emmet',
-								\ 'coc-template',
-								\ 'coc-tabnine',
-								\ 'coc-syntax',
-								\ 'coc-explorer',
-								\ 'coc-highlight',
-								\ 'coc-restclient',
-								\ 'coc-db',
-								\ 'coc-markmap',
-								\ 'coc-lists',
-								\ 'coc-floatinput',
-								\ 'coc-spell-checker',
-								\ 'coc-emoji',
-								\ 'coc-emoji-shortcodes',
-								\ 'coc-calc',
-								\ 'coc-leetcode',
-							\]
+						"PLUGINS
+							Plug 'Shougo/neco-vim'
+							Plug 'neoclide/coc-neco'
+						"EXTENSIONS
+							"META
+								let g:coc_global_extensions += [
+									\ 'coc-marketplace',
+									\ 'coc-explorer',
+									\ 'coc-floatinput',
+								\]
+							"LSP
+								let g:coc_global_extensions += [
+									\ 'coc-vimlsp',
+									\ 'coc-lua',
+									\ 'coc-clangd',
+									\ 'coc-html',
+									\ 'coc-svg',
+									\ 'coc-css',
+									\ 'coc-cssmodules',
+									\ 'coc-tsserver',
+									\ 'coc-rome',
+									\ 'coc-pyright',
+									\ 'coc-java',
+									\ 'coc-omnisharp',
+									\ 'coc-sh',
+									\ 'coc-sql',
+									\ 'coc-metals',
+									\ 'coc-fsharp',
+									\ 'coc-go',
+									\ 'coc-r-lsp',
+									\ 'coc-xml',
+									\ 'coc-json',
+									\ 'coc-yaml',
+									\ 'coc-toml',
+									\ 'coc-styled-components',
+									\ 'coc-docker',
+								\]
+							"TOOLING
+								let g:coc_global_extensions += [
+									\ 'coc-git',
+									\ 'coc-gitignore',
+									\ 'coc-github',
+									\ 'coc-gist',
+									\ 'coc-flow',
+									\ 'coc-eslint',
+									\ 'coc-tslint',
+									\ 'coc-stylelint',
+									\ 'coc-stylelintplus',
+									\ 'coc-diagnostic',
+									\ 'coc-style-helper',
+									\ 'coc-jest',
+									\ 'coc-inline-jest',
+									\ 'coc-markdownlint',
+									\ 'coc-prettier',
+									\ 'coc-react-refactor',
+									\ 'coc-format-json',
+									\ 'coc-import-cost',
+									\ 'coc-docthis',
+									\ 'coc-snippets',
+									\ 'coc-pairs',
+									\ 'coc-emmet',
+									\ 'coc-tabnine',
+									\ 'coc-syntax',
+									\ 'coc-highlight',
+									\ 'coc-restclient',
+									\ 'coc-db',
+								\]
+							"RANDOM
+								let g:coc_global_extensions += [
+									\ 'coc-emoji',
+									\ 'coc-emoji-shortcodes',
+									\ 'coc-calc',
+									\ 'coc-leetcode',
+									\ 'coc-template',
+									\ 'coc-markmap',
+									\ 'coc-lists',
+									\ 'coc-spell-checker',
+								\]
 						"FUNCTIONS
 							function! s:checkBackspace() abort
 								let col = col('.') - 1
@@ -3090,12 +3104,9 @@
 									"other plugin before putting this into your config.
 								inoremap <silent><expr> <c-space> coc#refresh()
 							"RANDOM
-								nmap <Leader>lr <Plug>(coc-rename)
-								nmap <silent> <C-s> <Plug>(coc-range-select)
-								xmap <silent> <C-s> <Plug>(coc-range-select)
-						"EXTENSIONS
-							Plug 'Shougo/neco-vim'
-							Plug 'neoclide/coc-neco'
+								nmap          <Leader>lr <Plug>(coc-rename)
+								nmap <silent> <C-s>      <Plug>(coc-range-select)
+								xmap <silent> <C-s>      <Plug>(coc-range-select)
 				endif
 				Plug 'liuchengxu/vista.vim'
 					"CONFIGURATION
