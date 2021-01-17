@@ -2944,6 +2944,7 @@
 									\ 'coc-marketplace',
 									\ 'coc-explorer',
 									\ 'coc-floatinput',
+									\ 'coc-yank',
 								\]
 							"LSP
 								let g:coc_global_extensions += [
@@ -2994,6 +2995,7 @@
 									\ 'coc-import-cost',
 									\ 'coc-docthis',
 									\ 'coc-snippets',
+									\ 'coc-zi',
 									\ 'coc-pairs',
 									\ 'coc-emmet',
 									\ 'coc-tabnine',
@@ -3004,14 +3006,15 @@
 								\]
 							"RANDOM
 								let g:coc_global_extensions += [
+									\ 'coc-lists',
+									\ 'coc-markmap',
+									\ 'coc-template',
+									\ 'coc-leetcode',
+									\ 'coc-browser',
+									\ 'coc-spell-checker',
 									\ 'coc-emoji',
 									\ 'coc-emoji-shortcodes',
 									\ 'coc-calc',
-									\ 'coc-leetcode',
-									\ 'coc-template',
-									\ 'coc-markmap',
-									\ 'coc-lists',
-									\ 'coc-spell-checker',
 								\]
 						"FUNCTIONS
 							function! s:checkBackspace() abort
@@ -3039,36 +3042,27 @@
 
 							autocmd CursorHold * silent call CocActionAsync('highlight')
 						"MAPPINGS
-							"COC-LIST
-								nnoremap <silent><nowait> <Leader>lL  :<C-u>CocList<CR>
-								nnoremap <silent><nowait> <Leader>ll  :<C-u>CocListResume<CR>
-								nnoremap <silent><nowait> <Leader>le  :<C-u>CocList diagnostics<CR>
-								nnoremap <silent><nowait> <Leader>lc  :<C-u>CocList commands<CR>
-								nnoremap <silent><nowait> <Leader>lo  :<C-u>CocList outline<CR>
-								nnoremap <silent><nowait> <Leader>ls  :<C-u>CocList -I symbols<CR>
-
-								nnoremap <silent><nowait> <Leader>ln  :<C-u>CocNext<CR>
-								nnoremap <silent><nowait> <Leader>lp  :<C-u>CocPrev<CR>
 							"COC-GOTO
 								nmap <silent> <Leader>lgd <Plug>(coc-definition)
 								nmap <silent> <Leader>lgD <Plug>(coc-type-definition)
 								nmap <silent> <Leader>lgi <Plug>(coc-implementation)
 								nmap <silent> <Leader>lgr <Plug>(coc-references)
+							"COC-COMPLETION
+								inoremap <silent><expr> <C-SPACE> coc#refresh()
+								inoremap <silent><expr> <CR> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
+								inoremap <silent><expr> <TAB>
+									\ pumvisible() ? "\<C-n>" :
+									\ <SID>checkBackspace() ? "\<TAB>" :
+									\ coc#refresh()
+								inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+							"COC-SNIPPETS
+								"imap <C-l>     <Plug>(coc-snippets-expand)
+								"imap <C-j>     <Plug>(coc-snippets-select)
+								"imap <C-j>     <Plug>(coc-snippets-expand-jump)
+								"xmap <leader>x <Plug>(coc-convert-snippet)
 							"COC-DIAGNOSTICS
 								nmap <silent> [e <Plug>(coc-diagnostic-prev)
 								nmap <silent> ]e <Plug>(coc-diagnostic-next)
-							"COC-DOCUMENTATION
-								nnoremap <silent> K :call s:showDocumentation()<CR>
-							"COC-OBJECTS
-								"NOTE: Requires 'textDocument.documentSymbol' support from the language server.
-								xmap <LocalLeader>if <Plug>(coc-funcobj-i)
-								omap <LocalLeader>if <Plug>(coc-funcobj-i)
-								xmap <LocalLeader>af <Plug>(coc-funcobj-a)
-								omap <LocalLeader>af <Plug>(coc-funcobj-a)
-								xmap <LocalLeader>ic <Plug>(coc-classobj-i)
-								omap <LocalLeader>ic <Plug>(coc-classobj-i)
-								xmap <LocalLeader>ac <Plug>(coc-classobj-a)
-								omap <LocalLeader>ac <Plug>(coc-classobj-a)
 							"COC-ACTIONS
 								"COC-FORMAT
 									xmap <leader>lf  <Plug>(coc-format-selected)
@@ -3084,22 +3078,28 @@
 									nmap <leader>lac  <Plug>(coc-codeaction)
 									" Apply AutoFix to problem on the current line.
 									nmap <leader>lq  <Plug>(coc-fix-current)
-							"COC-COMPLETION
-								if exists('*complete_info')
-									inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
-								else
-									inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-								endif
+							"COC-DOCUMENTATION
+								nnoremap <silent> K :call s:showDocumentation()<CR>
+							"COC-OBJECTS
+								"NOTE: Requires 'textDocument.documentSymbol' support from the language server.
+								xmap <LocalLeader>if <Plug>(coc-funcobj-i)
+								omap <LocalLeader>if <Plug>(coc-funcobj-i)
+								xmap <LocalLeader>af <Plug>(coc-funcobj-a)
+								omap <LocalLeader>af <Plug>(coc-funcobj-a)
+								xmap <LocalLeader>ic <Plug>(coc-classobj-i)
+								omap <LocalLeader>ic <Plug>(coc-classobj-i)
+								xmap <LocalLeader>ac <Plug>(coc-classobj-a)
+								omap <LocalLeader>ac <Plug>(coc-classobj-a)
+							"COC-LIST
+								nnoremap <silent><nowait> <Leader>lL  :<C-u>CocList<CR>
+								nnoremap <silent><nowait> <Leader>ll  :<C-u>CocListResume<CR>
+								nnoremap <silent><nowait> <Leader>le  :<C-u>CocList diagnostics<CR>
+								nnoremap <silent><nowait> <Leader>lc  :<C-u>CocList commands<CR>
+								nnoremap <silent><nowait> <Leader>lo  :<C-u>CocList outline<CR>
+								nnoremap <silent><nowait> <Leader>ls  :<C-u>CocList -I symbols<CR>
 
-								inoremap <silent><expr> <TAB>
-									\ pumvisible() ? "\<C-n>" :
-									\ <SID>checkBackspace() ? "\<TAB>" :
-									\ coc#refresh()
-								inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-									"Use tab for trigger completion with characters ahead and navigate.
-									"NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-									"other plugin before putting this into your config.
-								inoremap <silent><expr> <c-space> coc#refresh()
+								nnoremap <silent><nowait> <Leader>ln  :<C-u>CocNext<CR>
+								nnoremap <silent><nowait> <Leader>lp  :<C-u>CocPrev<CR>
 							"RANDOM
 								nmap          <Leader>lr <Plug>(coc-rename)
 								nmap <silent> <C-s>      <Plug>(coc-range-select)
