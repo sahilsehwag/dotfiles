@@ -2943,7 +2943,7 @@
 							Plug 'neoclide/coc-neco'
 						"EXTENSIONS
 							"META
-								let g:coc_global_extensions += [
+								let g:coc_global_extensions = [
 									\ 'coc-marketplace',
 									\ 'coc-explorer',
 									\ 'coc-floatinput',
