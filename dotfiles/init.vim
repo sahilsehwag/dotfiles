@@ -3048,13 +3048,14 @@
 								nmap <silent> <Leader>lgi <Plug>(coc-implementation)
 								nmap <silent> <Leader>lgr <Plug>(coc-references)
 							"COC-COMPLETION
-								inoremap <silent><expr> <C-SPACE> coc#refresh()
-								inoremap <silent><expr> <CR> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
-								inoremap <silent><expr> <TAB>
+								inoremap <silent> <expr> <C-SPACE> coc#refresh()
+								inoremap <silent> <expr> <CR> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
+								inoremap <silent> <expr> <TAB>
 									\ pumvisible() ? "\<C-n>" :
+									\ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
 									\ <SID>checkBackspace() ? "\<TAB>" :
 									\ coc#refresh()
-								inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+								inoremap <silent> <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
 							"COC-SNIPPETS
 								"imap <C-l>     <Plug>(coc-snippets-expand)
 								"imap <C-j>     <Plug>(coc-snippets-select)
