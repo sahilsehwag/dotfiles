@@ -1159,10 +1159,10 @@
 										\'execute'   : 'bash %:p:S',
 									\}
 									let g:languages.zsh = {
-												\'extension' : 'zsh',
-												\'repl'      : 'zsh',
-												\'execute'   : 'zsh %:p:S',
-												\}
+										\'extension' : 'zsh',
+										\'repl'      : 'zsh',
+										\'execute'   : 'zsh %:p:S',
+									\}
 									let g:languages.fish = {
 										\'extension' : 'fsh',
 										\'repl'      : 'fsh',
@@ -1191,63 +1191,58 @@
 									\}
 							"FRAMEWORKS
 					"FUNCTIONS
-						if has('vim')
-							"TODO
-						elseif has('nvim')
-							"FUNCTIONS
-								function! ExecutionerCommand(type, ...) abort
-									if exists('a:1') && len(a:1) > 0
-										let l:filetype = a:1
-									else
-										let l:filetype = &filetype
+						function! ExecutionerCommand(type, ...) abort
+							if exists('a:1') && len(a:1) > 0
+								let l:filetype = a:1
+							else
+								let l:filetype = &filetype
+							endif
+
+							if has_key(g:languages, l:filetype) == 1
+								let l:lang = g:languages[l:filetype]
+
+								if has_key(l:lang, a:type) == 1
+									if a:type == 'repl'
+										let s:executioner_last_repl_filetype = l:filetype
 									endif
 
-									if has_key(g:languages, l:filetype) == 1
-										let l:lang = g:languages[l:filetype]
+									let l:command = substitute(l:lang[a:type], '%\(:\w\)\+', '\=expand(submatch(0))', 'g')
+									return l:command
+								else
+									call PEchoError(l:filetype . ' does not support ' . a:type . ' operation')
+									return
+								endif
+							else
+								call PEchoError(l:filetype . ' filetype is not supported')
+								return
+							endif
+						endfunction
 
-										if has_key(l:lang, a:type) == 1
-											if a:type == 'repl'
-												let s:executioner_last_repl_filetype = l:filetype
-											endif
+						function! ExecutionerInitREPL()
+							let l:filetype = s:executioner_last_repl_filetype
 
-											let l:command = substitute(l:lang[a:type], '%\(:\w\)\+', '\=expand(submatch(0))', 'g')
-											return l:command
-										else
-											call PEchoError(l:filetype . ' does not support ' . a:type . ' operation')
-											return
-										endif
-									else
-										call PEchoError(l:filetype . ' filetype is not supported')
-										return
-									endif
-								endfunction
+							if has_key(g:languages, l:filetype) == 1
+								let l:lang = g:languages[l:filetype]
 
-								function! ExecutionerInitREPL()
-									let l:filetype = s:executioner_last_repl_filetype
-
-									if has_key(g:languages, l:filetype) == 1
-										let l:lang = g:languages[l:filetype]
-
-										if has_key(l:lang, 'init') == 1
-											call TerminalSend(l:lang['init'])
-										endif
-									else
-										call PEchoError(l:filetype . ' filetype is not supported')
-										return
-									endif
-								endfunction
-						endif
+								if has_key(l:lang, 'init') == 1
+									call TerminalSend(l:lang['init'])
+								endif
+							else
+								call PEchoError(l:filetype . ' filetype is not supported')
+								return
+							endif
+						endfunction
 					"COMMANDS
-						command! -narg=? ExecutionerREPL   :execute 'VRTerm '	 . ExecutionerCommand('repl', <q-args>) | :call ExecutionerInitREPL()
-						command! ExecutionerCompile		   :execute '10HBTerm '  . ExecutionerCommand('compile')
-						command! ExecutionerExecute		   :execute '20HBTerm! ' . ExecutionerCommand('execute')
-						command! ExecutionerCompileExecute :execute '20HBTerm! ' . ExecutionerCommand('compile-execute')
+						command! -narg=? ExecutionerREPL           :execute 'VRTerm '	   . ExecutionerCommand('repl', <q-args>) | :call ExecutionerInitREPL()
+						command!         ExecutionerCompile        :execute '10HBTerm '  . ExecutionerCommand('compile')
+						command!         ExecutionerExecute        :execute '20HBTerm! ' . ExecutionerCommand('execute')
+						command!         ExecutionerCompileExecute :execute '20HBTerm! ' . ExecutionerCommand('compile-execute')
 					"MAPPINGS
-						nmap <silent> <Plug>(executioner-repl)			  :ExecutionerREPL<CR>
-						nmap <silent> <Plug>(executioner-compile)		  :ExecutionerCompile<CR>
-						nmap <silent> <Plug>(executioner-execute)		  :ExecutionerExecute<CR>
+						nmap <silent> <Plug>(executioner-repl)            :ExecutionerREPL<CR>
+						nmap <silent> <Plug>(executioner-compile)         :ExecutionerCompile<CR>
+						nmap <silent> <Plug>(executioner-execute)         :ExecutionerExecute<CR>
 						nmap <silent> <Plug>(executioner-compile-execute) :ExecutionerCompileExecute<CR>
-						nmap <silent> <Plug>(executioner-fzf-repl)		  :call fzf#run(fzf#wrap({'source': getcompletion('', 'filetype'), 'sink': 'ExecutionerREPL'}))<CR>
+						nmap <silent> <Plug>(executioner-fzf-repl)        :call fzf#run(fzf#wrap({'source': getcompletion('', 'filetype'), 'sink': 'ExecutionerREPL'}))<CR>
 					"DEFAULTS
 						if ExistsAndTrue('g:executioner_enable_default_mappings')
 							nmap <LocalLeader>cr <Plug>(executioner-repl)
@@ -3006,17 +3001,19 @@
 									\ 'coc-highlight',
 									\ 'coc-restclient',
 									\ 'coc-db',
+									\ 'coc-zi',
 								\]
 							"RANDOM
 								let g:coc_global_extensions += [
+									\ 'coc-lists',
+									\ 'coc-markmap',
+									\ 'coc-leetcode',
+									\ 'coc-template',
+									\ 'coc-word',
+									\ 'coc-spell-checker',
 									\ 'coc-emoji',
 									\ 'coc-emoji-shortcodes',
 									\ 'coc-calc',
-									\ 'coc-leetcode',
-									\ 'coc-template',
-									\ 'coc-markmap',
-									\ 'coc-lists',
-									\ 'coc-spell-checker',
 								\]
 						"FUNCTIONS
 							function! s:checkBackspace() abort
