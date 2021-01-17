@@ -1921,7 +1921,10 @@
 			endif
 
 			if executable('bat')
-				command! -nargs=1 Bat :FloatermNew bat <q-args>
+				command! -nargs=1 Bat :FloatermNew bat --paging=always <q-args>
+
+				nnoremap <silent> <Leader>ab :execute 'FloatermNew bat    --paging=always --file-name=' . expand('%:p:t') . ' ' .expand('%:p')<CR>
+				nnoremap <silent> <Leader>aB :execute 'FloatermNew bat -d --paging=always --file-name=' . expand('%:p:t') . ' ' .expand('%:p')<CR>
 			endif
 
 			if executable('open')
@@ -1934,6 +1937,12 @@
 
 			if executable('lazynpm')
 				nnoremap <silent> <Leader>an :FloatermNew lazynpm<CR>
+			endif
+
+			if executable('man') && executable('bat')
+				command! -nargs=1 Man :FloatermNew man <q-args> | bat --paging=always
+			elseif executable('man') && executable('less')
+				command! -nargs=1 Man :FloatermNew man <q-args> | less
 			endif
 		"FZF-FLOATERM
 		"TODO:TABULARIZE
