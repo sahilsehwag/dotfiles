@@ -2995,6 +2995,7 @@
 								\ 'coc-db',
 								\ 'coc-markmap',
 								\ 'coc-lists',
+								\ 'coc-floatinput',
 								\ 'coc-spell-checker',
 								\ 'coc-emoji',
 								\ 'coc-emoji-shortcodes',
