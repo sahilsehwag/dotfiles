@@ -3067,20 +3067,15 @@
 								nmap <silent> [e <Plug>(coc-diagnostic-prev)
 								nmap <silent> ]e <Plug>(coc-diagnostic-next)
 							"COC-ACTIONS
+								nmap <leader>lac <Plug>(coc-codeaction)
+								nmap <leader>lq  <Plug>(coc-fix-current)
 								"COC-FORMAT
-									xmap <leader>lf  <Plug>(coc-format-selected)
-									nmap <leader>lf  <Plug>(coc-format-selected)
-									nmap <leader>lF  :COCFormat<CR>
-								"MESS
-									" Applying codeAction to the selected region.
-									" Example: `<leader>aap` for current paragraph
+									xmap <leader>lf <Plug>(coc-format-selected)
+									nmap <leader>lf <Plug>(coc-format-selected)
+									nmap <leader>lF :COCFormat<CR>
+								"OPERATOR
 									xmap <Leader>za  <Plug>(coc-codeaction-selected)
 									nmap <Leader>za  <Plug>(coc-codeaction-selected)
-
-									" Remap keys for applying codeAction to the current buffer.
-									nmap <leader>lac  <Plug>(coc-codeaction)
-									" Apply AutoFix to problem on the current line.
-									nmap <leader>lq  <Plug>(coc-fix-current)
 							"COC-DOCUMENTATION
 								nnoremap <silent> K :call s:showDocumentation()<CR>
 							"COC-OBJECTS
