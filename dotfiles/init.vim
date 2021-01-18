@@ -1406,8 +1406,10 @@
 					if ExistsAndTrue('g:projectinator_enable_default_mappings')
 						nnoremap <silent> <Leader>po :ProjectinatorOpenProject<CR>
 						nnoremap <silent> <Leader>pf :ProjectinatorOpenFile<CR>
-						nnoremap <silent> <Leader>pt :ProjectinatorSearchProject<CR>
 						nnoremap <silent> <Leader>pe :CocCommand explorer<CR>
+						nnoremap <silent> <Leader>pr :FzfPreviewProjectMruFilesRpc<CR>
+						nnoremap <silent> <Leader>pR :FzfPreviewProjectMrwFilesRpc<CR>
+						nnoremap <silent> <Leader>pt :ProjectinatorSearchProject<CR>
 					endif
 			"TODO:PACKMAN
 			"TODO:FRAMEWORKS
@@ -2981,7 +2983,7 @@
 									\ 'coc-gist',
 									\ 'coc-flow',
 									\ 'coc-eslint',
-									\ 'coc-tslint',
+									\ 'coc-tslint-plugin',
 									\ 'coc-stylelint',
 									\ 'coc-stylelintplus',
 									\ 'coc-diagnostic',
