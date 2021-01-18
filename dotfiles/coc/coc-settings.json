@@ -1,0 +1,82 @@
+{
+	//coc-emmet
+	"emmet.priority": 3,
+	"emmet.showSuggestionsAsSnippets": true,
+
+	//coc-snippets
+	"snippets.priority": 3,
+	"snippets.shortcut": "SNIP",
+	"snippets.enableStatusItem": false,
+
+	//coc-explorer
+	"explorer.git.showIgnored": true,
+	"explorer.file.showHiddenFiles": true,
+	"explorer.file.git.showUntrackedFiles": true,
+	"explorer.filename.colored.enable": true,
+	"explorer.diagnostic.enableSubscriptNumber": true,
+
+	//coc-prettier
+	"prettier.semi": true,
+	"prettier.useTabs": true,
+	"prettier.tabWidth": 2,
+	"prettier.printWidth": 80,
+	"prettier.singleQuote": true,
+	"prettier.arrowParens": "avoid",
+	"prettier.trailingComma": "es5",
+	"prettier.jsxBracketSameLine": false,
+	"prettier.jsxSingleQuote": false,
+	"prettier.bracketSpacing": true,
+	"prettier.disableSuccessMessage": true,
+	"prettier.eslintIntegration": true,
+	"prettier.tslintIntegration": true,
+	"prettier.onlyUseLocalVersion": true,
+	"prettier.statusItemText": "Prettier",
+
+	//coc-pairs
+	"pairs.enableBackspace": true,
+	"pairs.enableCharacters": [
+		"(",
+		"[",
+		"{",
+		"<",
+		"'",
+		"\"",
+		"`"
+	],
+
+	//coc-git
+	"git.addedSign.text": "+",
+	"git.removedSign.text": "-",
+	"git.changedSign.text": "~",
+	"git.blameUseRealTime": false,
+	"git.addGBlameToVirtualText": false,
+
+	//coc-diagnostics
+	"diagnostic.enable": true,
+	"diagnostic.virtualText": false,
+
+	//coc-zi
+	"zi.enable": true,
+
+	//coc-word
+	"coc.source.word.enable": true,
+	"coc.source.word.shortcut": "10K",
+	"coc.source.word.priority": 10,
+	"coc.source.word.filetypes": ["text"],
+
+	//coc-browser
+	"browser.priority": 5,
+
+	//coc-spell-checker
+	"cSpell.enabled": true,
+	"cSpell.language": "en",
+	"cSpell.showStatus": true,
+	"cSpell.diagnosticLevel": "Hint",
+	"cSpell.allowCompoundWords": true,
+	"cSpell.fixSpellingWithRenameProvider": true,
+	"cSpell.userWords": [
+    "Untracked"
+  ],
+	"cSpell.ignoreWords": [
+	],
+}
