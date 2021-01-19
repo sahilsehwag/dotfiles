@@ -3135,6 +3135,14 @@
 						let g:NERDTrimTrailingWhitespace = 1
 						let g:NERDToggleCheckAllLines    = 1
 					"MAPPINGS
+						xmap gkc <plug>NERDCommenterToggle
+						xmap gkC <plug>NERDCommenterAltDelims
+						xmap gki <plug>NERDCommenterInvert
+						xmap gkm <plug>NERDCommenterMinimal
+						xmap gks <plug>NERDCommenterSexy
+						xmap gky <plug>NERDCommenterYank
+						nmap gk9 <plug>NERDCommenterToEOL
+						nmap gka <plug>NERDCommenterAppend
 			"DATABASE
 				Plug 'tpope/vim-dadbod'
 				Plug 'kristijanhusak/vim-dadbod-ui'
