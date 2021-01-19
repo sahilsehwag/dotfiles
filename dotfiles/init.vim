@@ -3121,6 +3121,20 @@
 						set statusline+=%{NearestMethodOrFunction()}
 						autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
 			"TREESITTER
+			"COMMENTS
+				Plug 'tpope/vim-commentary'
+				Plug 'scrooloose/nerdcommenter'
+					"CONFIGURATION
+						let g:NERDCreateDefaultMappings  = 0
+						let g:NERDSpaceDelims            = 1
+						let g:NERDCompactSexyComs        = 1
+						let g:NERDDefaultAlign           = 'left'
+						let g:NERDAltDelims_java         = 1
+						let g:NERDCustomDelimiters       = { 'c': { 'left': '/**','right': '*/' } }
+						let g:NERDCommentEmptyLines      = 1
+						let g:NERDTrimTrailingWhitespace = 1
+						let g:NERDToggleCheckAllLines    = 1
+					"MAPPINGS
 			"DATABASE
 				Plug 'tpope/vim-dadbod'
 				Plug 'kristijanhusak/vim-dadbod-ui'
@@ -3634,39 +3648,6 @@
 					nnoremap <Leader>gb :Gbrowser<CR>
 				"Plug 'airblade/vim-gitgutter'
 				"Plug 'mhinz/vim-signify'
-			"SNIPPETS
-				if has('python3')
-					"Plug 'SirVer/ultisnips'
-						"let g:UltiSnipsExpandTrigger="<CR>"
-						let g:UltiSnipsJumpForwardTrigger="<C-b>"
-						let g:UltiSnipsJumpBackwardTrigger="<C-z>"
-				endif
-			"AUTO-COMPLETION
-				if has('macunix') && has('python3')
-					"Plug 'Valloric/YouCompleteMe'
-						"CONFIGURATION
-							let g:ycm_python_binary_path = 'python3'
-							let g:ycm_add_preview_to_completeopt = 0
-
-							"let g:ycm_key_list_select_completion = ['<SPACE>', '<Down>']
-							"let g:ycm_key_list_previous_completion = ['<S-SPACE>', '<Up>']
-							"let g:ycm_key_list_stop_completion = ['<CR>']
-
-							"let g:ycm_autoclose_preview_window_after_completion = 1
-							"let g:ycm_autoclose_preview_window_after_insertion = 1
-						"MAPPINGS
-							nnoremap <Leader>jd :YcmCompleter GoToDeclaration<CR>
-							nnoremap <Leader>jD :YcmCompleter GoToDefinition<CR>
-							nnoremap <Leader>jj :YcmCompleter GoTo<CR>
-							nnoremap <Leader>ji :YcmCompleter GoToImplementation<CR>
-				endif
-			"COMMENTS
-				Plug 'scrooloose/nerdcommenter'
-				"Plug 'tpope/vim-commentary'
-				Plug 'manasthakur/vim-commentor'
-					nmap gk  <Plug>Commentor
-					xmap gk  <Plug>Commentor
-					nmap gkk <Plug>CommentorLine
 		"MESS:EXTENDING-VIM
 			Plug 'svermeulen/vim-yoink'
 				let g:yoinkMaxItems				   = 10
