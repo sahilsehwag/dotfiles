@@ -9,11 +9,19 @@
 	"snippets.enableStatusItem": false,
 
 	//coc-explorer
+	"explorer.width": 45,
 	"explorer.git.showIgnored": true,
 	"explorer.file.showHiddenFiles": true,
 	"explorer.file.git.showUntrackedFiles": true,
 	"explorer.filename.colored.enable": true,
 	"explorer.diagnostic.enableSubscriptNumber": true,
+	"explorer.git.icon.status.modified": "●",
+	"explorer.git.icon.status.added": "✚",
+	/*"explorer.git.icon.status.ignored": "!",*/
+	"explorer.git.icon.status.deleted": "✖",
+	"explorer.git.icon.status.renamed": "ℝ",
+	/*"explorer.git.icon.status.untracked": "?",*/
+	"explorer.git.icon.status.unmerged": "𝕌",
 
 	//coc-prettier
 	"prettier.semi": true,
@@ -45,15 +53,38 @@
 	],
 
 	//coc-git
-	"git.addedSign.text": "+",
-	"git.removedSign.text": "-",
-	"git.changedSign.text": "~",
+	"git.signPriority": 2,
+	/*"git.addedSign.text": "+",*/
+	/*"git.removedSign.text": "-",*/
+	/*"git.changedSign.text": "~",*/
+	/*"git.changeRemovedSign.text": "≃",*/
+	"git.addedSign.hlGroup": "JatGitAdd",
+	"git.removedSign.hlGroup": "JatGitDelete",
+	"git.changedSign.hlGroup": "JatGitChange",
+	"git.changeRemovedSign.hlGroup": "JatGitChange",
 	"git.blameUseRealTime": false,
 	"git.addGBlameToVirtualText": false,
+	"git.virtualTextPrefix": "     ",
+	"git.conflict.current.hlGroup": "DiffChange",
+	"git.conflict.incoming.hlGroup": "DiffAdd",
 
 	//coc-diagnostics
 	"diagnostic.enable": true,
-	"diagnostic.virtualText": false,
+	"diagnostic.enableSign": false,
+	"diagnostic.signPriority": 1,
+	"diagnostic.errorSign": "ﱢ",
+	"diagnostic.warningSign": "ﱢ",
+	"diagnostic.infoSign": "ﱢ",
+	"diagnostic.hintSign": "ﱢ",
+	"diagnostic.virtualText": true,
+	"diagnostic.virtualTextLines": 3,
+	"diagnostic.virtualTextPrefix": " ﱢ ",
+	"diagnostic.virtualTextCurrentLineOnly": false,
+	"diagnostic.virtualTextLineSeparator": " ● ",
+	"diagnostic.enableMessage": "never",
+	"diagnostic.messageTarget": "float",
+	"diagnostic.format": "%message\n[%source:%code]",
+	/*"diagnostic.checkCurrentLine": false,*/
 
 	//coc-zi
 	"zi.enable": true,
@@ -70,13 +101,13 @@
 	//coc-spell-checker
 	"cSpell.enabled": true,
 	"cSpell.language": "en",
-	"cSpell.showStatus": true,
+	"cSpell.showStatus": false,
 	"cSpell.diagnosticLevel": "Hint",
 	"cSpell.allowCompoundWords": true,
 	"cSpell.fixSpellingWithRenameProvider": true,
 	"cSpell.userWords": [
-    "Untracked"
-  ],
+		"Untracked"
+	],
 	"cSpell.ignoreWords": [
 	],
 }
