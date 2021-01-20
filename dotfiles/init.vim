@@ -3929,8 +3929,8 @@
 		set undofile
 		set nobackup
 		set nowritebackup
-		set directory=~/.config/nvim/tmp
-		set undodir=~/.config/nvim/tmp
+		set undodir=~/.config/nvim/tmp/undofiles
+		set directory=~/.config/nvim/tmp/swapfiles
 	"SEARCH
 		set nohls
 		set incsearch
