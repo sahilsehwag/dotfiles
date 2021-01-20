@@ -1951,6 +1951,7 @@
 "VARIABLES
 	"PATHS
 		let g:jaat_tmp_path = glob('~/.config/nvim/tmp/')
+		let g:jaat_lists_path = jaat_tmp_path . 'tmp/'
 		let g:jaat_home_path = expand('~')
 		let g:jaat_root_path =
 			\ IsNix()
