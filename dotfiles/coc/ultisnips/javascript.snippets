@@ -23,9 +23,8 @@
 #		endsnippet
 #
 # Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
-
 #COMMENTS
-snippet Cb "comment-block"
+snippet cb "comment-block"
 // ##################################################
 // # ${1}
 // ##################################################
@@ -33,26 +32,26 @@ endsnippet
 
 
 #VARIABLES
-snippet vc "const-variable"
+snippet const "const-variable"
 const ${1} = ${2};
 endsnippet
 
-snippet vl "let-variable"
+snippet let "let-variable"
 let ${1} = ${2};
 endsnippet
 
-snippet vv "var-variable"
+snippet var "var-variable"
 var ${1} = ${2};
 endsnippet
 
 
 #CONDITIONALS
-snippet ci "if-block" b
+snippet if "if-block" b
 if (${1:condition}) {
 }
 endsnippet
 
-snippet cie "if-else-block" b
+snippet ifelse "if-else-block" b
 if (${1:condition}) {
 	${2}
 } else {
@@ -60,7 +59,7 @@ if (${1:condition}) {
 }
 endsnippet
 
-snippet cii "if-else-if-block" b
+snippet ifif "if-else-if-block" b
 if (${1:condition}) {
 	${3}
 } else if ($2) {
@@ -68,7 +67,7 @@ if (${1:condition}) {
 }
 endsnippet
 
-snippet ciie "if-else-if-else-block" b
+snippet ififelse "if-else-if-else-block" b
 if (${1:condition}) {
 	${3}
 } else if ($2) {
@@ -78,7 +77,7 @@ if (${1:condition}) {
 }
 endsnippet
 
-snippet cs "switch-block" b
+snippet switch "switch-block" b
 switch ($1) {
 	case $2:
 		break;
@@ -89,13 +88,13 @@ endsnippet
 
 
 #LOOPS
-snippet lfo "for-of-loop" b
+snippet forof "for-of-loop" b
 for (let ${1:value} of ${2:iterable}) {
 	${3}
 }
 endsnippet
 
-snippet lfi "for-in-loop" b
+snippet forin "for-in-loop" b
 for (let ${1:key} of ${2:obj}) {
 	${3}
 }
@@ -133,25 +132,25 @@ endsnippet
 
 
 #IMPORTS
-snippet id "defualt-import-statement" b
+snippet import "defualt-import-statement" b
 import ${1} from '${2}'
 endsnippet
 
-snippet in "named-import-statement" b
+snippet importn "named-import-statement" b
 import { ${1}, } from '${2}'
 endsnippet
 
-snippet idn "default-and-named-import-statement" b
+snippet importdn "default-and-named-import-statement" b
 import ${1}, { ${2}, } from '${3}'
 endsnippet
 
-snippet iN "named-import-statement" b
+snippet importN "named-import-statement" b
 import {
 	${1},
 } from '${2}'
 endsnippet
 
-snippet idN "default-and-named-import-statement" b
+snippet importdN "default-and-named-import-statement" b
 import ${1}, {
 	${2},
 } from '${3}'
