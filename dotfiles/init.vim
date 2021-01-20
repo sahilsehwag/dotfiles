@@ -3136,9 +3136,10 @@
 						let g:NERDToggleCheckAllLines    = 1
 					"MAPPINGS
 						xmap gkc <plug>NERDCommenterToggle
-						xmap gkC <plug>NERDCommenterAltDelims
+						xmap gkC <plug>NERDCommenterNested
 						xmap gki <plug>NERDCommenterInvert
-						xmap gkm <plug>NERDCommenterMinimal
+						xmap gkm <plug>NERDCommenterAltDelims
+						xmap gkM <plug>NERDCommenterMinimal
 						xmap gks <plug>NERDCommenterSexy
 						xmap gky <plug>NERDCommenterYank
 						nmap gk9 <plug>NERDCommenterToEOL
@@ -3483,10 +3484,10 @@
 						"let foldLevelStr = repeat(g:anyfold_fold_level_str, v:foldlevel)
 					let g:anyfold_fold_size_str  = ' Lines '
 					let g:anyfold_fold_level_str = ''
-				Plug 'arecarn/vim-fold-cycle'
-					let g:fold_cycle_default_mapping = 0
-					nmap <TAB>	 <Plug>(fold-cycle-open)
-					nmap <S-TAB> <Plug>(fold-cycle-close)
+				"Plug 'arecarn/vim-fold-cycle'
+					"let g:fold_cycle_default_mapping = 0
+					"nmap <TAB>	 <Plug>(fold-cycle-open)
+					"nmap <S-TAB> <Plug>(fold-cycle-close)
 			endif
 			if has('signs')
 				Plug 'kshenoy/vim-signature'
