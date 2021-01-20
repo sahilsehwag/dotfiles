@@ -1,0 +1,159 @@
+# A valid snippet should starts with:
+#
+#		snippet trigger_word [ "description" [ options ] ]
+#
+# and end with:
+#
+#		endsnippet
+#
+# Snippet options:
+#
+#		b - Beginning of line.
+#		i - In-word expansion.
+#		w - Word boundary.
+#		r - Regular expression
+#		e - Custom context snippet
+#		A - Snippet will be triggered automatically, when condition matches.
+#
+# Basic example:
+#
+#		snippet emitter "emitter properties" b
+#		private readonly ${1} = new Emitter<$2>()
+#		public readonly ${1/^_(.*)/$1/}: Event<$2> = this.$1.event
+#		endsnippet
+#
+# Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
+
+#COMMENTS
+snippet Cb "comment-block"
+// ##################################################
+// # ${1}
+// ##################################################
+endsnippet
+
+
+#VARIABLES
+snippet vc "const-variable"
+const ${1} = ${2};
+endsnippet
+
+snippet vl "let-variable"
+let ${1} = ${2};
+endsnippet
+
+snippet vv "var-variable"
+var ${1} = ${2};
+endsnippet
+
+
+#CONDITIONALS
+snippet ci "if-block" b
+if (${1:condition}) {
+}
+endsnippet
+
+snippet cie "if-else-block" b
+if (${1:condition}) {
+	${2}
+} else {
+	${3}
+}
+endsnippet
+
+snippet cii "if-else-if-block" b
+if (${1:condition}) {
+	${3}
+} else if ($2) {
+	${4}
+}
+endsnippet
+
+snippet ciie "if-else-if-else-block" b
+if (${1:condition}) {
+	${3}
+} else if ($2) {
+	${4}
+} else {
+	${5}
+}
+endsnippet
+
+snippet cs "switch-block" b
+switch ($1) {
+	case $2:
+		break;
+	default:
+		$3
+}
+endsnippet
+
+
+#LOOPS
+snippet lfo "for-of-loop" b
+for (let ${1:value} of ${2:iterable}) {
+	${3}
+}
+endsnippet
+
+snippet lfi "for-in-loop" b
+for (let ${1:key} of ${2:obj}) {
+	${3}
+}
+endsnippet
+
+
+#FUNCTIONS
+snippet fa "arrow-function" b
+const ${1} = ${2} => ${3}
+endsnippet
+
+snippet fA "arrow-function" b
+const ${1} = ${2} => {
+	${3}
+}
+endsnippet
+
+snippet fd "function-definition" b
+function ${1} (${2}) {
+	${3}
+}
+endsnippet
+
+snippet fe "function-expression" b
+const ${1} = function ${2} (${3}) {
+	${4}
+}
+endsnippet
+
+snippet fE "function-anonymous-expression" b
+const ${1} = function (${2}) {
+	${3}
+}
+endsnippet
+
+
+#IMPORTS
+snippet id "defualt-import-statement" b
+import ${1} from '${2}'
+endsnippet
+
+snippet in "named-import-statement" b
+import { ${1}, } from '${2}'
+endsnippet
+
+snippet idn "default-and-named-import-statement" b
+import ${1}, { ${2}, } from '${3}'
+endsnippet
+
+snippet iN "named-import-statement" b
+import {
+	${1},
+} from '${2}'
+endsnippet
+
+snippet idN "default-and-named-import-statement" b
+import ${1}, {
+	${2},
+} from '${3}'
+endsnippet
+
