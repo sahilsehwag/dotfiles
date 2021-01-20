@@ -1952,6 +1952,7 @@
 	"PATHS
 		let g:jaat_tmp_path = glob('~/.config/nvim/tmp/')
 		let g:jaat_lists_path = jaat_tmp_path . 'tmp/'
+
 		let g:jaat_home_path = expand('~')
 		let g:jaat_root_path =
 			\ IsNix()
@@ -3463,7 +3464,7 @@
 				"CONFIGURATIONS
 					let g:undotree_WindowLayout = 2
 					let g:undotree_ShortIndicators = 1
-					let g:undotree_SplitWidth = 40
+					let g:undotree_SplitWidth = 30
 					let g:undotree_DiffpanelHeight = 10
 					let g:undotree_SetFocusWhenToggle = 1
 					let g:undotree_TreeNodeShape = '◉'
@@ -4039,7 +4040,7 @@
 		set mouse=a
 		set clipboard=unnamed
 		set nf="alpha,octal,hex,bin"
-		set updatetime=300
+		set updatetime=50
 			"mainly used coc.nvim
 			"default is 4000ms(4s) which leads to noticeable delays and poor user experience.
 "CLIENTS

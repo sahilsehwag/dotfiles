@@ -1,41 +1,44 @@
 {
-	"profiles": [
-		{
-			"complex_modifications": {
-				"rules": [
-					{
-						"manipulators": [
-							{
-								"description": "Change caps_lock to control when used as modifier, escape when used alone",
-								"from": {
-									"key_code": "caps_lock",
-									"modifiers": {
-										"optional": [
-											"any"
-										]
-									}
-								},
-								"to": [
-									{
-										"key_code": "left_control"
-									}
-								],
-								"to_if_alone": [
-									{
-										"key_code": "escape",
-										"modifiers": {
-											"optional": [
-												"any"
-											]
-										}
-									}
-								],
-								"type": "basic"
-							}
-						]
-					}
-				]
-			}
-		}
-	]
+    "global": {
+        "check_for_updates_on_startup": true,
+        "show_in_menu_bar": true,
+        "show_profile_name_in_menu_bar": false
+    },
+    "profiles": [
+        {
+            "complex_modifications": {
+                "parameters": {
+                    "basic.simultaneous_threshold_milliseconds": 1,
+                    "basic.to_if_held_down_threshold_milliseconds": 50,
+
+                    "basic.to_delayed_action_delay_milliseconds": 500,
+                    "basic.to_if_alone_timeout_milliseconds": 1000
+                },
+                "rules": [
+                    {
+                        "manipulators": [
+                            {
+                                "description": "Capslock=Escape+Control",
+                                "from": {
+                                    "key_code": "caps_lock",
+                                    "simultaneous": []
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "escape"
+                                    }
+                                ],
+                                "to_if_held_down": [
+                                    {
+                                        "key_code": "left_control"
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    ]
 }
