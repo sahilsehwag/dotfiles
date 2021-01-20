@@ -268,11 +268,11 @@
 							"better-solution would be using autocmd! with CursorMoved
 							"nnoremap <silent> j gjzz:nohl<CR>
 							"nnoremap <silent> k gkzz:nohl<CR>
-							nnoremap <silent> j gj:nohl<CR>
-							nnoremap <silent> k gk:nohl<CR>
+							" nnoremap <silent> j gj:nohl<CR>
+							" nnoremap <silent> k gk:nohl<CR>
 
-							nnoremap <silent> h h:nohl<CR>
-							nnoremap <silent> l l:nohl<CR>
+							" nnoremap <silent> h h:nohl<CR>
+							" nnoremap <silent> l l:nohl<CR>
 							"nnoremap <silent> w w:nohl<CR>
 							"nnoremap <silent> e e:nohl<CR>
 							"nnoremap <silent> b b:nohl<CR>
@@ -3467,9 +3467,27 @@
 					nnoremap <silent> <LocalLeader> :<C-U>WhichKey		 ','	   <CR>
 			Plug 'szw/vim-maximizer'
 				nnoremap <silent> <Leader>wm :MaximizerToggle<CR>
+			Plug 'mbbill/undotree'
+				"CONFIGURATIONS
+					let g:undotree_WindowLayout = 2
+					let g:undotree_ShortIndicators = 1
+					let g:undotree_SplitWidth = 40
+					let g:undotree_DiffpanelHeight = 10
+					let g:undotree_SetFocusWhenToggle = 1
+					let g:undotree_TreeNodeShape = '◉'
+					" let g:undotree_DiffCommand = "Delta"
+					let g:undotree_HighlightChangedText = 1
+					let g:undotree_HighlightChangedWithSign = 1
+					let g:undotree_HighlightSyntaxAdd = "DiffAdd"
+					let g:undotree_HighlightSyntaxChange = "DiffChange"
+					let g:undotree_HighlightSyntaxDel = "DiffDelete"
+					let g:undotree_HelpLine = 0
+					let g:undotree_CursorLine = 1
+				"MAPPINGS
+					nnoremap <Leader>vu :UndotreeToggle<CR>
 			Plug 'junegunn/vim-peekaboo'
 				let g:peekaboo_window  = 'vert bo 80new'
-				let g:peekaboo_prefix  = '<Leader>'
+				let g:peekaboo_compact = 0
 			if has('folding')
 				Plug 'pseewald/vim-anyfold'
 					let g:anyfold_motion			= 0
@@ -3930,7 +3948,7 @@
 			"set undofile
 		"endif
 	"SEARCH
-		set hls
+		set nohls
 		set incsearch
 		set ignorecase
 		set smartcase
