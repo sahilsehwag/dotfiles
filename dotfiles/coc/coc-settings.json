@@ -1,6 +1,13 @@
 {
+	// PRIORITIES:COMPLETION
+	// completion=1
+	// emmet=2
+	// snippets=3
+	// words=9
+	// browser=10
+
 	//coc-emmet
-	"emmet.priority": 3,
+	"emmet.priority": 2,
 	"emmet.showSuggestionsAsSnippets": true,
 
 	//coc-snippets
@@ -96,7 +103,7 @@
 	"coc.source.word.filetypes": ["text"],
 
 	//coc-browser
-	"browser.priority": 5,
+	"browser.priority": 9,
 
 	//coc-spell-checker
 	"cSpell.enabled": true,
