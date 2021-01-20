@@ -93,6 +93,9 @@
 	"diagnostic.format": "%message\n[%source:%code]",
 	/*"diagnostic.checkCurrentLine": false,*/
 
+	//coc-yank
+	"yank.priority": 100,
+
 	//coc-zi
 	"zi.enable": true,
 
