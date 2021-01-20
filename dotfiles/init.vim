@@ -1950,7 +1950,7 @@
 			"MODES
 "VARIABLES
 	"PATHS
-		let g:jaat_vimfiles_path = glob('~/vimfiles/')
+		let g:jaat_tmp_path = glob('~/.config/nvim/tmp/')
 		let g:jaat_home_path = expand('~')
 		let g:jaat_root_path =
 			\ IsNix()
@@ -2656,7 +2656,7 @@
 					Plug 'yuki-ycino/fzf-preview.vim', { 'branch': 'release/rpc' }
 					Plug 'dominickng/fzf-session.vim'
 						"CONFIGURATION
-							let g:fzf_session_path = g:jaat_vimfiles_path . 'vim-sessions'
+							let g:fzf_session_path = g:jaat_tmp_path . 'sessions'
 						"MAPPINGS
 							nnoremap <silent> <Leader>Sl :Sessions<CR>
 							nnoremap <silent> <Leader>Sn :Session<space>
@@ -2890,7 +2890,7 @@
 					"CONFIGURATION
 						let g:startify_change_to_vcs_root  = 1
 							"let g:startify_change_to_dir = 0
-						let g:startify_session_dir		   = g:jaat_vimfiles_path . 'vim-sessions'
+						let g:startify_session_dir		   = g:jaat_tmp_path . 'vim-sessions'
 						let g:startify_fortune_use_unicode = 1
 						let g:startify_session_sort		   = 1
 						let g:startify_custom_indices	   = []
@@ -3158,7 +3158,7 @@
 					nmap <LocalLeader>ci :Codi!!<CR>
 				Plug 'arkwright/vim-whiteboard'
 					"CONFIGURATION
-						let g:whiteboard_temp_directory = g:jaat_vimfiles_path . 'whiteboard'
+						let g:whiteboard_temp_directory = g:jaat_tmp_path . 'whiteboard'
 						let g:whiteboard_interpreters = {
 							\'python'	  : { 'extension': 'py'		,'command': 'python3'	},
 							\'r'		  : { 'extension': 'r'		,'command': 'r'			},
@@ -3531,10 +3531,10 @@
 				let g:lexical#spellfile = ['~/.config/spell/en.utf-8.add',]
 		"RANDOM
 			Plug 'mtth/scratch.vim'
-				let g:scratch_no_mappings	   = 1
-				let g:scratch_height		   = 0.3
-				let g:scratch_top			   = 0
-				let g:scratch_persistence_file = g:jaat_vimfiles_path . 'temp.scratch'
+				let g:scratch_no_mappings      = 1
+				let g:scratch_height           = 0.3
+				let g:scratch_top              = 0
+				let g:scratch_persistence_file = g:jaat_tmp_path . 'scratch'
 
 				nnoremap <silent> <Leader>so :Scratch<CR>
 				nnoremap <silent> <Leader>sp :ScratchPreview<CR>
@@ -3852,7 +3852,6 @@
 			"Plug 'spiiph/vim-space'
 			"Plug 'gcmt/wildfire.vim'
 			"Plug 'lambacck/preserve-vim'
-			"Plug 'mbbill/undotree'
 			"Plug 'godlygeek/tabular'
 			"Plug 'tpope/vim-unimpaired'
 			"Plug 'jeanCarloMachado/vim-toop'
@@ -3936,17 +3935,11 @@
 		set number
 		set relativenumber
 	"SWAP|BACKUP|UNDO
+		set undofile
 		set nobackup
 		set nowritebackup
-		set directory=~/.config/nvim/temp
-		"if has('persistent_undo')
-			"TODO:FIX
-			"let myUndoDir = expand(vimDir . '/undodir')
-			"call system('mkdir ' . vimDir)
-			"call system('mkdir ' . myUndoDir)
-			"let &undodir = myUndoDir
-			"set undofile
-		"endif
+		set directory=~/.config/nvim/tmp
+		set undodir=~/.config/nvim/tmp
 	"SEARCH
 		set nohls
 		set incsearch
