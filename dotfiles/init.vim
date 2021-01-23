@@ -3072,8 +3072,9 @@
 									nmap <leader>lf <Plug>(coc-format-selected)
 									nmap <leader>lF :COCFormat<CR>
 								"OPERATOR
-									xmap <Leader>za  <Plug>(coc-codeaction-selected)
-									nmap <Leader>za  <Plug>(coc-codeaction-selected)
+									"TODO:CHANGE
+									nmap <C-A-a>  <Plug>(coc-codeaction-selected)
+									xmap <C-A-a>  <Plug>(coc-codeaction-selected)
 							"COC-DOCUMENTATION
 								nnoremap <silent> K :call s:showDocumentation()<CR>
 							"COC-OBJECTS
