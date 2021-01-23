@@ -3,15 +3,11 @@
 	let mapleader      = ' '
 	let maplocalleader = ','
 
-	"let g:modifier_ctrl = 'C'
-	"let g:modifier_alt  = 'A'
-	"let g:modifier_cmd  = 'D'
+	let g:modifier_1 = 'C-A'
+	let g:modifier_2 = 'C-S'
+	let g:modifier_3 = 'A-S'
 
-	"let g:modifier_ctrl_alt   = 'C-A'
-	"let g:modifier_ctrl_shift = 'C-S'
-	"let g:modifier_alt_shift  = 'A-S'
-
-	let g:motion_leader   = 'C-A'
+	let g:motion_leader   = g:modifier_2
 	let g:insert_leader   = ';'
 	let g:terminal_leader = ';'
 
