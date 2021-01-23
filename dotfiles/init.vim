@@ -3489,18 +3489,19 @@
 				let g:peekaboo_compact = 0
 			if has('folding')
 				Plug 'pseewald/vim-anyfold'
-					let g:anyfold_motion			= 0
-					let g:anyfold_fold_comments		= 0
-					let g:anyfold_identify_comments = 0
-					let g:anyfold_comments			= []
-					autocmd FileType * AnyFoldActivate
-
-					"WONT WORK BY DEFAULT
-						"to make these work, use lines below in anyfold.vim
-						"let foldSizeStr = " " . foldSize . g:anyfold_fold_size_str
-						"let foldLevelStr = repeat(g:anyfold_fold_level_str, v:foldlevel)
-					let g:anyfold_fold_size_str  = ' Lines '
-					let g:anyfold_fold_level_str = ''
+					"CONFIGURATION
+						let g:anyfold_motion            = 0
+						let g:anyfold_fold_comments     = 0
+						let g:anyfold_identify_comments = 0
+						let g:anyfold_fold_toplevel     = 1
+						let g:anyfold_comments          = []
+						let g:anyfold_fold_level_str    = ''
+						let g:anyfold_fold_size_str     = '%s Lines   '
+					"HIGHLIGHT
+						"hi Folded ctermfg= ctermbg= guifg= guibg
+					"AUTOCOMMANDS
+						autocmd FileType jproperties AnyFoldActivate
+					"MAPPINGS
 				"Plug 'arecarn/vim-fold-cycle'
 					"let g:fold_cycle_default_mapping = 0
 					"nmap <TAB>	 <Plug>(fold-cycle-open)
