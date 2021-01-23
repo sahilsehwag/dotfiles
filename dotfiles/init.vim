@@ -3066,15 +3066,14 @@
 								nmap <silent> ]e <Plug>(coc-diagnostic-next)
 							"COC-ACTIONS
 								nmap <leader>lac <Plug>(coc-codeaction)
-								nmap <leader>lq  <Plug>(coc-fix-current)
-								"COC-FORMAT
-									xmap <leader>lf <Plug>(coc-format-selected)
-									nmap <leader>lf <Plug>(coc-format-selected)
-									nmap <leader>lF :COCFormat<CR>
-								"OPERATOR
-									"TODO:CHANGE
-									nmap <C-A-a>  <Plug>(coc-codeaction-selected)
-									xmap <C-A-a>  <Plug>(coc-codeaction-selected)
+								nmap <leader>laq <Plug>(coc-fix-current)
+								xmap <leader>laf <Plug>(coc-format-selected)
+								nmap <leader>laf <Plug>(coc-format-selected)
+								nmap <leader>laF :COCFormat<CR>
+								nmap <leader>lao :COCOrganizeImports<CR>
+
+								nmap <C-A-a>  <Plug>(coc-codeaction-selected)
+								xmap <C-A-a>  <Plug>(coc-codeaction-selected)
 							"COC-DOCUMENTATION
 								nnoremap <silent> K :call s:showDocumentation()<CR>
 							"COC-OBJECTS
