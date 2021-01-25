@@ -2949,10 +2949,10 @@
 					let g:vim_markdown_no_default_key_mappings = 1
 				"Plug 'vim-syntastic/syntastic'
 				"Plug 'coachshea/jade-vim'
-			"VCS
-				Plug 'tpope/vim-fugutive'
+			"VCS:GIT
+				Plug 'tpope/vim-fugitive'
 					"TODO
-					nnoremap <Leader>gs :Gstatus<CR>
+					nnoremap <Leader>gas :Gstatus<CR>
 				Plug 'rhysd/git-messenger.vim'
 					"CONFIGURATION
 						let g:git_messenger_include_diff        = "none"
