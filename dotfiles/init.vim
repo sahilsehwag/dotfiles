@@ -1018,9 +1018,9 @@
 							"LANGUAGE
 								"INTERPRETED
 									let g:languages.python = {
-										\'extension' : 'py',
-										\'repl'      : 'ipython',
-										\'execute'   : 'python3 %:p:S',
+										\'extension' :'py',
+										\'repl'      :'ipython',
+										\'execute'   :'python3 %:p:S',
 										\'init'      : [
 											\'import os',
 											\'import sys',
@@ -1038,45 +1038,45 @@
 										\],
 									\}
 									let g:languages.r = {
-										\'extension' : 'r',
-										\'repl'      : 'r',
+										\'extension' :'r',
+										\'repl'      :'r',
 									\}
 									let g:languages.javascript = {
-										\'extension' : 'js',
-										\'repl'      : 'node',
-										\'execute'   : 'node %:p:S',
+										\'extension' :'js',
+										\'repl'      :'node',
+										\'execute'   :'node %:p:S',
 									\}
 									let g:languages.ruby = {
-										\'extension' : 'rb',
-										\'repl'      : 'irb',
-										\'execute'   : 'ruby %:p:S',
+										\'extension' :'rb',
+										\'repl'      :'irb',
+										\'execute'   :'ruby %:p:S',
 									\}
 									let g:languages.perl = {
-										\'extension' : 'pl',
-										\'repl'      : 'perl',
-										\'execute'   : 'perl %:p:S',
+										\'extension' :'pl',
+										\'repl'      :'perl',
+										\'execute'   :'perl %:p:S',
 									\}
 									let g:languages.php = {
-										\'extension' : 'php',
-										\'repl'      : 'php',
-										\'execute'   : 'php %:p:S',
+										\'extension' :'php',
+										\'repl'      :'php',
+										\'execute'   :'php %:p:S',
 									\}
 									let g:languages.lisp = {
-										\'extension' : 'lsp',
-										\'repl'      : 'sbcl',
+										\'extension' :'lsp',
+										\'repl'      :'sbcl',
 									\}
 									let g:languages.lua = {
-										\'extension' : 'lua',
-										\'repl'      : 'lua',
-										\'execute'   : 'lua %:p:S',
+										\'extension' :'lua',
+										\'repl'      :'lua',
+										\'execute'   :'lua %:p:S',
 									\}
 								"COMPILED
 									let g:languages.c = {
-										\'extension'       : 'c',
-										\'repl'            : 'cling',
-										\'compile'         : 'gcc %:p:S -o %:p:r:S.out',
-										\'execute'         : '%:p:r:S.out',
-										\'compile-execute' : 'gcc %:p:S -o %:p:r:S.out && %:p:r:S.out',
+										\'extension'       :'c',
+										\'repl'            :'cling',
+										\'compile'         :'gcc %:p:S -o %:p:r:S.out',
+										\'execute'         :'%:p:r:S.out',
+										\'compile-execute' :'gcc %:p:S -o %:p:r:S.out && %:p:r:S.out',
 										\'init'            : [
 												\'#include <stdio.h>',
 												\'#include <math.h>',
@@ -3151,7 +3151,7 @@
 						autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
 			"TREESITTER
 			"COMMENTS
-				Plug 'tpope/vim-commentary'
+				"Plug 'tpope/vim-commentary'
 				Plug 'scrooloose/nerdcommenter'
 					"CONFIGURATION
 						let g:NERDCreateDefaultMappings  = 0
@@ -3189,30 +3189,30 @@
 					"CONFIGURATION
 						let g:whiteboard_temp_directory = g:jaat_tmp_path . 'whiteboard'
 						let g:whiteboard_interpreters = {
-							\'python'	  : { 'extension': 'py'		,'command': 'python3'	},
-							\'r'		  : { 'extension': 'r'		,'command': 'r'			},
-							\'javascript' : { 'extension': 'js'		,'command': 'node'		},
-							\'java'		  : { 'extension': 'java'	,'command': 'jshell'	},
-							\'lua'		  : { 'extension': 'lua'	,'command': 'lua'		},
-							\'php'		  : { 'extension': 'php'	,'command': 'php'		},
-							\'ruby'		  : { 'extension': 'rb'		,'command': 'ruby'		},
-							\'haskell'	  : { 'extension': 'hs'		,'command': 'ghci'		},
-							\'scala'	  : { 'extension': 'scala'	,'command': 'scala'		},
-							\'perl'		  : { 'extension': 'pl'		,'command': 'perl'		},
-							\'go'		  : { 'extension': 'go'		,'command': 'gore'		},
-							\'typescript' : { 'extension': 'ts'		,'command': 'ts-node'	},
-							\'sh'		  : { 'extension': 'sh'		,'command': 'bash'		},
-							\'bash'		  : { 'extension': 'bash'	,'command': 'bash'		},
-							\'zsh'		  : { 'extension': 'zsh'	,'command': 'zsh'		},
-							\'fish'		  : { 'extension': 'fsh'	,'command': 'fsh'		},
-							\'pandoc'	  : { 'extension': 'pandoc' ,'command': 'pandoc'	},
-							\'redis'	  : { 'extension': 'redis'	,'command': 'redis-cli' },
-							\'mongo'	  : { 'extension': 'mongo'	,'command': 'mongo'		},
-							\'mysql'	  : { 'extension': 'mysql'	,'command': 'mysql'		},
-							\'sqlite'	  : { 'extension': 'sqlite'  ,'command': 'sqlite'	},
-							\'dosbatch'   : { 'extension': 'cmd'	,'command': 'cmd'		},
-							\'git'		  : { 'extension': 'git'	,'command': 'gitsome'	},
-							\'lisp'		  : { 'extension': 'lisp'	,'command': 'sbcl'	   }}
+							\'python'     :{'extension': 'py'     ,'command': 'python3'  },
+							\'r'          :{'extension': 'r'      ,'command': 'r'        },
+							\'javascript' :{'extension': 'js'     ,'command': 'node'     },
+							\'java'       :{'extension': 'java'   ,'command': 'jshell'   },
+							\'lua'        :{'extension': 'lua'    ,'command': 'lua'      },
+							\'php'        :{'extension': 'php'    ,'command': 'php'      },
+							\'ruby'       :{'extension': 'rb'     ,'command': 'ruby'     },
+							\'haskell'    :{'extension': 'hs'     ,'command': 'ghci'     },
+							\'scala'      :{'extension': 'scala'  ,'command': 'scala'    },
+							\'perl'       :{'extension': 'pl'     ,'command': 'perl'     },
+							\'go'         :{'extension': 'go'     ,'command': 'gore'     },
+							\'typescript' :{'extension': 'ts'     ,'command': 'ts-node'  },
+							\'sh'         :{'extension': 'sh'     ,'command': 'bash'     },
+							\'bash'       :{'extension': 'bash'   ,'command': 'bash'     },
+							\'zsh'        :{'extension': 'zsh'    ,'command': 'zsh'      },
+							\'fish'       :{'extension': 'fsh'    ,'command': 'fsh'      },
+							\'pandoc'     :{'extension': 'pandoc' ,'command': 'pandoc'   },
+							\'redis'      :{'extension': 'redis'  ,'command': 'redis-cli'},
+							\'mongo'      :{'extension': 'mongo'  ,'command': 'mongo'    },
+							\'mysql'      :{'extension': 'mysql'  ,'command': 'mysql'    },
+							\'sqlite'     :{'extension': 'sqlite' ,'command': 'sqlite'   },
+							\'dosbatch'   :{'extension': 'cmd'    ,'command': 'cmd'      },
+							\'git'        :{'extension': 'git'    ,'command': 'gitsome'  },
+							\'lisp'       :{'extension': 'lisp'   ,'command': 'sbcl'     }}
 					"MAPPINGS
 						nnoremap <LocalLeader>cs :execute "Whiteboard "  . &filetype<CR>
 						nnoremap <LocalLeader>cS :execute "Whiteboard! " . &filetype<CR>
@@ -3221,6 +3221,44 @@
 					let g:user_emmet_install_global = 0
 					let g:user_emmet_leader_key='<TAB>'
 					autocmd FileType html,css,jsx,js,ts,tsx EmmetInstall
+				"Plug 'tpope/vim-abolish'
+				Plug 'arthurxavierx/vim-caser'
+					"CONFIGURATIONS
+						let g:caser_no_mappings = 1
+						let g:caser_prefix = 'gc'
+					"MAPPINGS
+						nmap <silent> gcc <Plug>CaserCamelCase
+						vmap <silent> gcc <Plug>CaserVCamelCase
+
+						nmap <silent> gcp <Plug>CaserMixedCase
+						vmap <silent> gcp <Plug>CaserVMixedCase
+
+						nmap <silent> gc. <Plug>CaserDotCase
+						vmap <silent> gc. <Plug>CaserVDotCase
+
+						nmap <silent> gc- <Plug>CaserKebabCase
+						vmap <silent> gc- <Plug>CaserVKebabCase
+
+						nmap <silent> gc_ <Plug>CaserSnakeCase
+						vmap <silent> gc_ <Plug>CaserVSnakeCase
+
+						nmap <silent> gc<space> <Plug>CaserSpaceCase
+						vmap <silent> gc<space> <Plug>CaserVMixSpaceCase
+
+						nmap <silent> gcT <Plug>CaserTitleKebabCase
+						vmap <silent> gcT <Plug>CaserVTitleKebabCase
+
+						nmap <silent> gct <Plug>CaserTitleCase
+						vmap <silent> gct <Plug>CaserVTitleCase
+
+						nmap <silent> gcs <Plug>CaserSentenceCase
+						vmap <silent> gcs <Plug>CaserVSentenceCase
+
+						nnoremap <silent> gcl gu
+						vnoremap <silent> gcl gu
+
+						nmap <silent> gcu <Plug>CaserUpperCase
+						vmap <silent> gcu <Plug>CaserVUpperCase
 				if has('nvim') || (has('vim') && v:version >= 800)
 					Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 						let g:mkdp_auto_start = 0
