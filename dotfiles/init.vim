@@ -10,7 +10,7 @@
 	let g:mode_leader   = 'C-A'
 	let g:motion_leader = 'C-S'
 
-	let g:modifier_1 = 'A-S'
+	"let g:modifier_1 = 'A-S'
 "VIMSCRIPT
 	"HELPERS
 		"VIM
@@ -2286,6 +2286,40 @@
 					au BufEnter wordpress map <buffer> <LocalLeader>ch :<C-u>call Pug('12,$')<CR>
 					au BufEnter wordpress map <buffer> <LocalLeader>cj :<C-u>call Html2Pug('12,$')<CR>
 				augroup END
+	"MODE-LEADER
+	"MOTION-LEADER
+	"ACTION-LEADER
+	"INSERT-LEADER
+	"COMMAND-LEADER
+		"GIT
+			"TODO:FIX
+			execute 'cnoremap <silent> ' . g:command_leader . 'gi :!git init<CR>'
+			execute 'cnoremap <silent> ' . g:command_leader . 'gC :!git clone '
+
+			execute 'cnoremap <silent> ' . g:command_leader . 'ga :!git add **<LEFT>'
+			execute 'cnoremap <silent> ' . g:command_leader . 'gd :!git diff ** \| delta<C-LEFT><LEFT><LEFT><LEFT><LEFT>'
+			execute 'cnoremap <silent> ' . g:command_leader . 'gs :!git status<CR>'
+			execute 'cnoremap <silent> ' . g:command_leader . 'gD :!git checkout -- '
+
+			execute 'cnoremap <silent> ' . g:command_leader . 'grp :!git pull '
+			execute 'cnoremap <silent> ' . g:command_leader . 'grP :!git push '
+
+			execute 'cnoremap <silent> ' . g:command_leader . 'gSs :!git stash<CR>'
+			execute 'cnoremap <silent> ' . g:command_leader . 'gSl :!git stash list<CR>'
+			execute 'cnoremap <silent> ' . g:command_leader . 'gSa :!git stash apply<CR>'
+			execute 'cnoremap <silent> ' . g:command_leader . 'gSp :!git stash pop<CR>'
+
+			execute 'cnoremap <silent> ' . g:command_leader . 'gcm :!git commit -m ""<LEFT>'
+			execute 'cnoremap <silent> ' . g:command_leader . 'gca :!git commit --amend'
+			execute 'cnoremap <silent> ' . g:command_leader . 'gcl :!git log<CR>'
+
+			execute 'cnoremap <silent> ' . g:command_leader . 'gbl :!git branch<CR>'
+			execute 'cnoremap <silent> ' . g:command_leader . 'gbn :!git branch '
+			execute 'cnoremap <silent> ' . g:command_leader . 'gbc :!git checkout '
+			execute 'cnoremap <silent> ' . g:command_leader . 'gbC :!git checkout -b '
+			execute 'cnoremap <silent> ' . g:command_leader . 'gbN :!git checkout -b '
+		"VIM
+	"TERMINAL-LEADER
 	"RANDOM
 "PLUGINS
 	call plug#begin()
