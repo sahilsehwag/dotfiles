@@ -2719,17 +2719,17 @@
 				if IsNix()
 					Plug 'vim-airline/vim-airline'
 						"CONFIGURATION
+							let g:airline_theme           = 'bubblegum'
 							let g:airline_powerline_fonts = 0
-							let g:airline_theme			  = 'bubblegum'
 						"TABLINE
-							let g:airline#extensions#tabline#enabled		   = 1
-							"let g:airline#extensions#tabline#left_sep			= ' '
-							"let g:airline#extensions#tabline#left_alt_sep		= '|'
-							"let g:airline#extensions#tabline#right_sep			= ' '
-							"let g:airline#extensions#tabline#right_alt_sep		= '|'
-							"let g:airline#extensions#tabline#show_splits		= 1
+							let g:airline#extensions#tabline#enabled           = 1
+							"let g:airline#extensions#tabline#left_sep          = ' '
+							"let g:airline#extensions#tabline#left_alt_sep      = '|'
+							"let g:airline#extensions#tabline#right_sep         = ' '
+							"let g:airline#extensions#tabline#right_alt_sep     = '|'
+							"let g:airline#extensions#tabline#show_splits       = 1
 							"let g:airline#extensions#tabline#show_close_button = 1
-							"let g:airline#extensions#tabline#close_symbol		= '✖ '
+							"let g:airline#extensions#tabline#close_symbol      = '✖ '
 						"TMUXLINE
 							"let airline#extensions#tmuxline#color_template = 'normal'
 							"let airline#extensions#tmuxline#color_template = 'insert'
@@ -2738,9 +2738,9 @@
 						"BUFFERLINE
 						"CUSTOMIZATION
 							let g:airline#extensions#default#layout = [
-								\ [ 'a', 'b', 'c' ],
+								\ [ 'a', 'b', 'c'],
 								\ [ 'x', 'y', 'z', 'error', 'warning']
-								\ ]
+							\]
 							let g:airline#extensions#default#section_truncate_width = {
 								\ 'b': 79,
 								\ 'x': 60,
@@ -2751,17 +2751,17 @@
 								\ }
 							let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
 						"EXTENSIONS
-							let g:airline#extensions#wordcount#enabled					 = 0
-							"let g:airline#extensions#wordcount#filetypes				  = []
-							"let g:airline#extensions#whitespace#enabled				  = 1
-							"let g:airline#extensions#whitespace#mixed_indent_algo		  = 0
-							"let g:airline#extensions#whitespace#symbol					  = '!'
-							"let g:airline#extensions#whitespace#checks					  = [ 'indent', 'trailing', 'long', 'mixed-indent-file' ]
-							"let g:airline#extensions#whitespace#trailing_format		  = 'trailing[%s]'
-							"let g:airline#extensions#whitespace#mixed_indent_format	  = 'mixed-indent[%s]'
-							"let g:airline#extensions#whitespace#long_format			  = 'long[%s]'
+							let g:airline#extensions#wordcount#enabled                   = 0
+							"let g:airline#extensions#wordcount#filetypes                 = []
+							"let g:airline#extensions#whitespace#enabled                  = 1
+							"let g:airline#extensions#whitespace#mixed_indent_algo        = 0
+							"let g:airline#extensions#whitespace#symbol                   = '!'
+							"let g:airline#extensions#whitespace#checks                   = ['indent', 'trailing', 'long', 'mixed-indent-file']
+							"let g:airline#extensions#whitespace#trailing_format          = 'trailing[%s]'
+							"let g:airline#extensions#whitespace#mixed_indent_format      = 'mixed-indent[%s]'
+							"let g:airline#extensions#whitespace#long_format              = 'long[%s]'
 							"let g:airline#extensions#whitespace#mixed_indent_file_format = 'mix-indent-file[%s]'
-							"let g:airline#extensions#whitespace#trailing_regexp		  = '\s$'
+							"let g:airline#extensions#whitespace#trailing_regexp          = '\s$'
 					Plug 'vim-airline/vim-airline-themes'
 					Plug 'augustold/vim-airline-colornum'
 					Plug 'gcavallanti/vim-noscrollbar'
@@ -2829,9 +2829,9 @@
 							\}
 							let g:lightline.component = {}
 							let g:lightline.component_function = {
-								\'directory'	: 'GetCurrentDirectoryName',
+								\'directory'    : 'GetCurrentDirectoryName',
 								\'vim-capslock' : 'CapsLock',
-								\'gitbranch'	: 'FugitiveHead'
+								\'gitbranch'    : 'FugitiveHead'
 							\}
 						"FUNCTIONS
 							function! CapsLock()
@@ -2950,12 +2950,15 @@
 				"Plug 'vim-syntastic/syntastic'
 				"Plug 'coachshea/jade-vim'
 			"VCS
+				Plug 'tpope/vim-fugutive'
+					"TODO
+					nnoremap <Leader>gs :Gstatus<CR>
 				Plug 'rhysd/git-messenger.vim'
 					"CONFIGURATION
+						let g:git_messenger_include_diff        = "none"
+						let g:git_messenger_max_popup_width     = 200
+						let g:git_messenger_max_popup_height    = 40
 						let g:git_messenger_no_default_mappings = v:true
-						let g:git_messenger_include_diff		= "none"
-						let g:git_messenger_max_popup_width		= 200
-						let g:git_messenger_max_popup_height	= 40
 					"HIGHLIGHTS
 					"MAPPINGS
 						nmap <silent> <Leader>gm <Plug>(git-messenger)
@@ -3693,13 +3696,6 @@
 			"Plug 'skywind3000/quickmenu.vim'
 		"TODO:DEVELOPMENT
 			"VCS
-				"Plug 'tpope/vim-fugutive'
-					nnoremap <Leader>gc :Commits<CR>
-					nnoremap <Leader>gC :BCommits<CR>
-					nnoremap <Leader>gf :GFiles<CR>
-					nnoremap <Leader>gF :GFiles?<CR>
-
-					nnoremap <Leader>gb :Gbrowser<CR>
 				"Plug 'airblade/vim-gitgutter'
 				"Plug 'mhinz/vim-signify'
 		"MESS:EXTENDING-VIM
