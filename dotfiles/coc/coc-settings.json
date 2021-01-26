@@ -17,6 +17,7 @@
 
 	//coc-explorer
 	"explorer.width": 45,
+	"explorer.icon.enableNerdfont": true,
 	"explorer.git.showIgnored": true,
 	"explorer.file.showHiddenFiles": true,
 	"explorer.file.git.showUntrackedFiles": true,
