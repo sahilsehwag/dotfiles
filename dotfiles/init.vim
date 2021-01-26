@@ -4008,7 +4008,7 @@
 		set ignorecase
 		set smartcase
 		set gdefault
-	"FILE-SEARCH
+	"SEARCH-FILES
 		set path+=.,,**
 			"using ":find" to find files recursively in current "cd", by using patterns
 		if has('wildmenu')
@@ -4021,6 +4021,18 @@
 			set wildignore+=node_modules,package-lock.json,yarn-lock.json
 			set wildignorecase
 		endif
+	"SERACH-TAGS
+		"TODO
+		"set include=
+			"regex patterns to specify modules/files,
+			"in which vim can search for specified text/symbol
+			"use "ij" command to search and jump
+		"set define=
+			"regex patterns to specify the syntax of symbol-definition,
+			"so that we jump to first symbol definition match, instead of any first match
+			"use "ij" command to search and jump
+		"set suffixesadd=
+			"which suffixes/extension to add, when jumping/searching using "gf"
 	"COMMANDS
 		set ttimeout
 		set ttimeoutlen=100
