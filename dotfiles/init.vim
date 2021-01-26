@@ -3981,6 +3981,7 @@
 		"JetBrainsMono-Regular
 		"Inconsolata
 		"OperatorMono?
+		"IBMPlexMono(BlexMono)?
 	"FOLDING
 		if has('folding')
 			set foldlevel=0
