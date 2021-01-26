@@ -68,11 +68,8 @@
 	#FZF
 		[[ -f $HOME/.config/fzf.sh ]]  && source $HOME/.config/fzf.sh
 	#FASD
-		alias sd='fasd -sid'
-		alias sf='fasd -sif'
-		alias z='fasd_cd -d'
-		alias zz='fasd_cd -di'
-		alias v="f -e vim"
+		alias v="fasd -e vim"
+		alias cd='fasd_cd -d'
 	#FUCK
 		type "thefuck" > /dev/null && eval $(thefuck --alias fuck)
 #FUNCTIONS
