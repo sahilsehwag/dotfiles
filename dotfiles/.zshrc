@@ -107,10 +107,6 @@
 		}
 #ALIASES
 	type dos2unix       > /dev/null && alias d2u='find -type f | xargs dos2unix'
-	type nvim           > /dev/null && alias vi='nvim'
-	type nvim           > /dev/null && alias vim='nvim'
 	type exa            > /dev/null && alias ls='exa'
 	type path-extractor > /dev/null && alias pe='path-extractor'
-	#type python3        > /dev/null && alias python=python3
-	#type pip3           > /dev/null && alias pip=pip3
 #RANDOM
