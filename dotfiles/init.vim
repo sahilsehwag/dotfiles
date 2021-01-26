@@ -2445,6 +2445,7 @@
 							map <Leader>/ <Plug>(incsearch-fuzzy-/)
 								"map <Leader>/ <Plug>(incsearch-fuzzy-stay)
 							map <Leader>? <Plug>(incsearch-fuzzy-?)
+				Plug 'lambdalisue/reword.vim'
 				Plug 'easymotion/vim-easymotion'
 					"CONFIGURATION
 						let g:EasyMotion_do_mapping		  = 0
@@ -4008,7 +4009,7 @@
 		set smartcase
 		set gdefault
 	"FILE-SEARCH
-		set path+=**
+		set path+=.,,**
 			"using ":find" to find files recursively in current "cd", by using patterns
 		if has('wildmenu')
 			set wildmenu
@@ -4017,6 +4018,7 @@
 			set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png
 			set wildignore+=.DS_Store,.git,.hg,.svn
 			set wildignore+=*~,*.swp,*.tmp
+			set wildignore+=node_modules,package-lock.json,yarn-lock.json
 			set wildignorecase
 		endif
 	"COMMANDS
