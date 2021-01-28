@@ -68,8 +68,9 @@
 	#FZF
 		[[ -f $HOME/.config/fzf.sh ]]  && source $HOME/.config/fzf.sh
 	#FASD
-		alias v="fasd -e vim"
-		alias cd='fasd_cd -d'
+		alias v="fasd -fe nvim"
+		alias e="fasd -de vifm"
+		alias j='fasd_cd -d'
 	#FUCK
 		type "thefuck" > /dev/null && eval $(thefuck --alias fuck)
 #FUNCTIONS
@@ -106,7 +107,10 @@
 			processing-java --output=/tmp/processing/ --force --sketch=$1 --run
 		}
 #ALIASES
-	type dos2unix       > /dev/null && alias d2u='find -type f | xargs dos2unix'
 	type exa            > /dev/null && alias ls='exa'
+	type bat            > /dev/null && alias cat='bat'
+	type procs          > /dev/null && alias ps='procs'
+	type nvim           > /dev/null && alias vim='nvim'
 	type path-extractor > /dev/null && alias pe='path-extractor'
+	type dos2unix       > /dev/null && alias d2u='find -type f | xargs dos2unix'
 #RANDOM
