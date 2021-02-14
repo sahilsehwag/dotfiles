@@ -2086,6 +2086,7 @@
 						tnoremap <silent> <expr> <C-R> '<C-\><C-N>"'.nr2char(getchar()).'pi'
 					"ALIASES
 						"GIT
+							execute 'tnoremap <silent> ' . g:terminal_leader . 'g; git '
 							execute 'tnoremap <silent> ' . g:terminal_leader . 'gi git init<CR>'
 							execute 'tnoremap <silent> ' . g:terminal_leader . 'gC git clone '
 
@@ -2094,23 +2095,39 @@
 							execute 'tnoremap <silent> ' . g:terminal_leader . 'gs git status<CR>'
 							execute 'tnoremap <silent> ' . g:terminal_leader . 'gD git checkout -- '
 
+							"remote
+							execute 'tnoremap <silent> ' . g:terminal_leader . 'gr; git remote '
 							execute 'tnoremap <silent> ' . g:terminal_leader . 'grp git pull '
 							execute 'tnoremap <silent> ' . g:terminal_leader . 'grP git push '
+							execute 'tnoremap <silent> ' . g:terminal_leader . 'grl git remote show<CR>'
+							execute 'tnoremap <silent> ' . g:terminal_leader . 'gra git remote add '
+							execute 'tnoremap <silent> ' . g:terminal_leader . 'grd git remote remove '
+							execute 'tnoremap <silent> ' . g:terminal_leader . 'grr git remote rename '
+							execute 'tnoremap <silent> ' . g:terminal_leader . 'grg git remote get-url '
+							execute 'tnoremap <silent> ' . g:terminal_leader . 'grs git remote set-url '
 
+							"stash
+							execute 'tnoremap <silent> ' . g:terminal_leader . 'gS; git stash '
 							execute 'tnoremap <silent> ' . g:terminal_leader . 'gSs git stash<CR>'
 							execute 'tnoremap <silent> ' . g:terminal_leader . 'gSl git stash list<CR>'
 							execute 'tnoremap <silent> ' . g:terminal_leader . 'gSa git stash apply<CR>'
 							execute 'tnoremap <silent> ' . g:terminal_leader . 'gSp git stash pop<CR>'
 
+							"commits
+							execute 'tnoremap <silent> ' . g:terminal_leader . 'gcl git log --graph<CR>'
+							execute 'tnoremap <silent> ' . g:terminal_leader . 'gcl git log --graph<CR>'
+							execute 'tnoremap <silent> ' . g:terminal_leader . 'gcL git log --help \| bat<CR>'
 							execute 'tnoremap <silent> ' . g:terminal_leader . 'gcm git commit -m ""<LEFT>'
 							execute 'tnoremap <silent> ' . g:terminal_leader . 'gca git commit --amend'
-							execute 'tnoremap <silent> ' . g:terminal_leader . 'gcl git log<CR>'
 
+							"branch
 							execute 'tnoremap <silent> ' . g:terminal_leader . 'gbl git branch<CR>'
 							execute 'tnoremap <silent> ' . g:terminal_leader . 'gbn git branch '
-							execute 'tnoremap <silent> ' . g:terminal_leader . 'gbc git checkout '
-							execute 'tnoremap <silent> ' . g:terminal_leader . 'gbC git checkout -b '
 							execute 'tnoremap <silent> ' . g:terminal_leader . 'gbN git checkout -b '
+							execute 'tnoremap <silent> ' . g:terminal_leader . 'gbc git checkout '
+							execute 'tnoremap <silent> ' . g:terminal_leader . 'gbC git checkout -<CR>'
+							execute 'tnoremap <silent> ' . g:terminal_leader . 'gbm git merge --no-ff '
+							execute 'tnoremap <silent> ' . g:terminal_leader . 'gbr git rebase '
 						"SHELL
 							execute 'tnoremap <silent> ' . g:terminal_leader . 'sc clear<CR>'
 							execute 'tnoremap <silent> ' . g:terminal_leader . 'sp <space>\|<space>'
@@ -2994,6 +3011,7 @@
 									\ 'coc-omnisharp',
 									\ 'coc-sh',
 									\ 'coc-sql',
+									\ 'coc-graphql',
 									\ 'coc-metals',
 									\ 'coc-fsharp',
 									\ 'coc-go',
@@ -3981,6 +3999,7 @@
 		"JetBrainsMono-Regular
 		"Inconsolata
 		"OperatorMono?
+		"Menlo(GITLAB)?
 		"IBMPlexMono(BlexMono)?
 	"FOLDING
 		if has('folding')
