@@ -2115,8 +2115,7 @@
 
 							"commits
 							execute 'tnoremap <silent> ' . g:terminal_leader . 'gcl git log --graph<CR>'
-							execute 'tnoremap <silent> ' . g:terminal_leader . 'gcl git log --graph<CR>'
-							execute 'tnoremap <silent> ' . g:terminal_leader . 'gcL git log --help \| bat<CR>'
+							execute 'tnoremap <silent> ' . g:terminal_leader . 'gcL git log --help<CR>'
 							execute 'tnoremap <silent> ' . g:terminal_leader . 'gcm git commit -m ""<LEFT>'
 							execute 'tnoremap <silent> ' . g:terminal_leader . 'gca git commit --amend'
 
@@ -2126,6 +2125,7 @@
 							execute 'tnoremap <silent> ' . g:terminal_leader . 'gbN git checkout -b '
 							execute 'tnoremap <silent> ' . g:terminal_leader . 'gbc git checkout '
 							execute 'tnoremap <silent> ' . g:terminal_leader . 'gbC git checkout -<CR>'
+							execute 'tnoremap <silent> ' . g:terminal_leader . 'gbm git merge '
 							execute 'tnoremap <silent> ' . g:terminal_leader . 'gbm git merge --no-ff '
 							execute 'tnoremap <silent> ' . g:terminal_leader . 'gbr git rebase '
 						"SHELL
