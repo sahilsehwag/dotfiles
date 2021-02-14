@@ -1950,7 +1950,7 @@
 "VARIABLES
 	"PATHS
 		let g:jaat_tmp_path = glob('~/.config/nvim/tmp/')
-		let g:jaat_lists_path = jaat_tmp_path . 'tmp/'
+		let g:jaat_lists_path = g:jaat_tmp_path . 'lists/'
 
 		let g:jaat_home_path = expand('~')
 		let g:jaat_root_path =
@@ -1971,6 +1971,7 @@
 			\ ? g:jaat_vim_path
 			\ : g:jaat_nvim_path
 	"COMMANDS
+		"SHELL
 		"GREPISH
 			let g:jaat_grep_command = 'grep -rHnas --color --exclude-dir=".git" --exclude-dir="node_modules" -i . *'
 				"TODO:FIX
@@ -1984,6 +1985,16 @@
 		"EXPLORER
 			let g:jaat_vifm_command = 'vifm'
 			let g:jaat_ranger_command = 'ranger'
+		let g:jaat_shell_command =
+			\ IsWindows()
+			\ ? "cmd"
+			\ : executable('zsh')
+			\ ? "zsh"
+			\ : executable('fish')
+			\ ? "fish"
+			\ : executable('bash')
+			\ ? "bash"
+			\ : "sh"
 		let g:jaat_explorer_command =
 			\ executable('vifm')
 			\ ? g:jaat_vifm_command
