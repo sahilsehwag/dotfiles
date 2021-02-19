@@ -1,4 +1,4 @@
-"OLD
+"DEFAULT
 	" :com[mand][!] command_name action
 	" The following macros can be used in a command
 	" %a is replaced with the user arguments.
@@ -84,20 +84,20 @@
 			\ {Open in MPlayerX}
 			\ open -a MPlayerX.app,
 	fileviewer *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
-			  \*.fl[icv],*.m2v,*.mov,*.webm,*.ts,*.mts,*.m4v,*.r[am],*.qt,*.divx,
-			  \*.as[fx]
-			 \ ffprobe -pretty %c 2>&1
+		\*.fl[icv],*.m2v,*.mov,*.webm,*.ts,*.mts,*.m4v,*.r[am],*.qt,*.divx,
+		\*.as[fx]
+		\ ffprobe -pretty %c 2>&1
 
 	" Web
 	filetype *.html,*.htm
-		   \ {Open in Safari}
-		   \ open -a Safari.app,
-		   \ {Open in Firefox}
-		   \ open -a Firefox.app,
-		   \ {Open in Chrome}
-		   \ open -a Google\ Chrome.app,
-		   \ {Open in vim}
-		   \ vim,
+		\ {Open in Safari}
+		\ open -a Safari.app,
+		\ {Open in Firefox}
+		\ open -a Firefox.app,
+		\ {Open in Chrome}
+		\ open -a Google\ Chrome.app,
+		\ {Open in vim}
+		\ vim,
 	fileviewer *.html,*.htm w3m -dump -T text/html
 
 	" Object
@@ -109,14 +109,14 @@
 
 	" Image
 	filetype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,
-		   \ open -a Preview.app,
+		\ open -a Preview.app,
 	fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
-			 \ convert -identify %f -verbose /dev/null
+		\ convert -identify %f -verbose /dev/null
 
 	" MD5
 	filetype *.md5
-		   \ {Check MD5 hash sum}
-		   \ md5sum -c %f %S,
+		\ {Check MD5 hash sum}
+		\ md5sum -c %f %S,
 
 	" SHA1
 	filetype *.sha1
@@ -300,19 +300,19 @@
 		set relativenumber
 	"FILETYPES
 "MAPPINGS
-	"MAIN MAPPINGS
+	"MAIN
 		nnoremap yd :!printf %d | pbcopy<cr>
 		nnoremap yf :!printf %c:p | pbcopy<cr>
-	"VIFM MAPPINGS
+	"VIFM
 		nnoremap ; :
 		nnoremap <space>vq :q<CR>
 		nnoremap <space>vs :source ~/.config/vifm/vifmrc<CR>
 		nnoremap <space>vt :shell<CR>
-	"GUI MAPPINGS
+	"GUI
 		nnoremap <space>wo :only<CR>
 		nnoremap <space>wv :vsplit<CR>
 		nnoremap <space>wh :split<CR>
-	"FILESYSTEM MAPPINGS
+	"FILESYSTEM
 		nnoremap <space>ff :touch<space>
 		nnoremap <space>fd :mkdir<space>
 "MARKS

@@ -2101,15 +2101,20 @@
 							execute 'tnoremap <silent> ' . g:terminal_leader . 'gi git init<CR>'
 							execute 'tnoremap <silent> ' . g:terminal_leader . 'gC git clone '
 
-							execute 'tnoremap <silent> ' . g:terminal_leader . 'ga git add **<LEFT>'
-							execute 'tnoremap <silent> ' . g:terminal_leader . 'gd git diff ** \| delta<C-LEFT><LEFT><LEFT><LEFT><LEFT>'
-							execute 'tnoremap <silent> ' . g:terminal_leader . 'gs git status<CR>'
-							execute 'tnoremap <silent> ' . g:terminal_leader . 'gD git checkout -- '
+							"working-directory|staging-area
+							execute 'tnoremap <silent> ' . g:terminal_leader . 'gas git status<CR>'
+							execute 'tnoremap <silent> ' . g:terminal_leader . 'gad git diff **/** \| delta \| bat<C-LEFT><C-LEFT><LEFT><LEFT><LEFT><LEFT>'
+							execute 'tnoremap <silent> ' . g:terminal_leader . 'gaD git rerere diff **/** \| delta \| bat<C-LEFT><C-LEFT><LEFT><LEFT><LEFT><LEFT>'
+							execute 'tnoremap <silent> ' . g:terminal_leader . 'gaa git add **/**<LEFT>'
+							execute 'tnoremap <silent> ' . g:terminal_leader . 'gau git restore --staged **/**<LEFT>'
+							execute 'tnoremap <silent> ' . g:terminal_leader . 'gaD git restore **/**<LEFT>'
+							execute 'tnoremap <silent> ' . g:terminal_leader . 'gac git clean -d -f<CR>'
+							execute 'tnoremap <silent> ' . g:terminal_leader . 'gar git reset --hard HEAD<CR>'
 
 							"remote
 							execute 'tnoremap <silent> ' . g:terminal_leader . 'gr; git remote '
-							execute 'tnoremap <silent> ' . g:terminal_leader . 'grp git pull '
-							execute 'tnoremap <silent> ' . g:terminal_leader . 'grP git push '
+							execute 'tnoremap <silent> ' . g:terminal_leader . 'grp git pull<CR>'
+							execute 'tnoremap <silent> ' . g:terminal_leader . 'grP git push<CR>'
 							execute 'tnoremap <silent> ' . g:terminal_leader . 'grl git remote show<CR>'
 							execute 'tnoremap <silent> ' . g:terminal_leader . 'gra git remote add '
 							execute 'tnoremap <silent> ' . g:terminal_leader . 'grd git remote remove '
@@ -2118,17 +2123,22 @@
 							execute 'tnoremap <silent> ' . g:terminal_leader . 'grs git remote set-url '
 
 							"stash
-							execute 'tnoremap <silent> ' . g:terminal_leader . 'gS; git stash '
-							execute 'tnoremap <silent> ' . g:terminal_leader . 'gSs git stash<CR>'
-							execute 'tnoremap <silent> ' . g:terminal_leader . 'gSl git stash list<CR>'
-							execute 'tnoremap <silent> ' . g:terminal_leader . 'gSa git stash apply<CR>'
-							execute 'tnoremap <silent> ' . g:terminal_leader . 'gSp git stash pop<CR>'
+							execute 'tnoremap <silent> ' . g:terminal_leader . 'gs; git stash '
+							execute 'tnoremap <silent> ' . g:terminal_leader . 'gss git stash<CR>'
+							execute 'tnoremap <silent> ' . g:terminal_leader . 'gsl git stash list<CR>'
+							execute 'tnoremap <silent> ' . g:terminal_leader . 'gsa git stash apply<CR>'
+							execute 'tnoremap <silent> ' . g:terminal_leader . 'gsp git stash pop<CR>'
 
 							"commits
-							execute 'tnoremap <silent> ' . g:terminal_leader . 'gcl git log --graph<CR>'
-							execute 'tnoremap <silent> ' . g:terminal_leader . 'gcL git log --help<CR>'
+							execute 'tnoremap <silent> ' . g:terminal_leader . 'gcl git log --oneline<CR>'
+							execute 'tnoremap <silent> ' . g:terminal_leader . 'gcL git log --graph<CR>'
 							execute 'tnoremap <silent> ' . g:terminal_leader . 'gcm git commit -m ""<LEFT>'
 							execute 'tnoremap <silent> ' . g:terminal_leader . 'gca git commit --amend'
+							execute 'tnoremap <silent> ' . g:terminal_leader . 'gcu git reset --mixed HEAD^<CR>'
+							execute 'tnoremap <silent> ' . g:terminal_leader . 'gcd git reset --hard HEAD^<CR>'
+							execute 'tnoremap <silent> ' . g:terminal_leader . 'gcr git reset --'
+							execute 'tnoremap <silent> ' . g:terminal_leader . 'gcs git show  \| delta \| bat<CR>'
+							execute 'tnoremap <silent> ' . g:terminal_leader . 'gcS git show  \| delta \| bat<C-LEFT><C-LEFT><LEFT><LEFT><LEFT>'
 
 							"branch
 							execute 'tnoremap <silent> ' . g:terminal_leader . 'gbl git branch<CR>'
@@ -2137,9 +2147,11 @@
 							execute 'tnoremap <silent> ' . g:terminal_leader . 'gbc git checkout '
 							execute 'tnoremap <silent> ' . g:terminal_leader . 'gbC git checkout -<CR>'
 							execute 'tnoremap <silent> ' . g:terminal_leader . 'gbm git merge '
-							execute 'tnoremap <silent> ' . g:terminal_leader . 'gbm git merge --no-ff '
+							execute 'tnoremap <silent> ' . g:terminal_leader . 'gbM git merge --no-ff '
 							execute 'tnoremap <silent> ' . g:terminal_leader . 'gbr git rebase '
+							execute 'tnoremap <silent> ' . g:terminal_leader . 'gbR git rebase -i '
 						"SHELL
+							execute 'tnoremap <silent> ' . g:terminal_leader . 'sq exit<CR>'
 							execute 'tnoremap <silent> ' . g:terminal_leader . 'sc clear<CR>'
 							execute 'tnoremap <silent> ' . g:terminal_leader . 'sp <space>\|<space>'
 						"NPM
@@ -2617,6 +2629,17 @@
 					let g:multi_cursor_skip_key			   = '<C-x>'
 					let g:multi_cursor_select_all_word_key = '<A-a>'
 					let g:multi_cursor_select_all_key	   = 'g<A-a>'
+				Plug 'dkarter/bullets.vim'
+					let g:bullets_set_mappings = 0
+					let g:bullets_enabled_file_types = [
+						\ 'markdown',
+						\ 'text',
+						\ 'gitcommit',
+						\ 'scratch',
+					\]
+					let g:bullets_delete_last_bullet_if_empty = 1
+					let g:bullets_pad_right = 1
+					let g:bullets_max_alpha_characters = 2
 		"SYSTEM
 			Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': { -> fzf#install() }}
 				"CONFIGURATION
