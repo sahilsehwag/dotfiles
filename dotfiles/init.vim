@@ -3348,9 +3348,23 @@
 					endif
 				"DOCUMENTATION
 			"INTERFACE
-				if has('nvim-0.5')
-					Plug 'dstein64/nvim-scrollview'
-				endif
+				"SCROLLBAR"
+					if has('nvim-0.5')
+						Plug 'dstein64/nvim-scrollview'
+					elseif has('nvim')
+						Plug 'Xuyuanp/scrollbar.nvim'
+							"CONFIGURATION
+								augroup ScrollbarInit
+									autocmd!
+									autocmd CursorMoved,VimResized,QuitPre * silent! lua require('scrollbar').show()
+									autocmd WinEnter,FocusGained           * silent! lua require('scrollbar').show()
+									autocmd WinLeave,FocusLost             * silent! lua require('scrollbar').clear()
+								augroup end
+					endif
+				"MINIMAP
+					if has('nvim-0.5') || v:version >= 820
+						Plug 'wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'}
+					endif
 			"EXTENSIONS
 				Plug 'tpope/vim-repeat'
 				Plug 'tpope/vim-capslock'
