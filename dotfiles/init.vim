@@ -3347,6 +3347,10 @@
 						Plug 'suan/vim-instant-markdown'
 					endif
 				"DOCUMENTATION
+			"INTERFACE
+				if has('nvim-0.5')
+					Plug 'dstein64/nvim-scrollview'
+				endif
 			"EXTENSIONS
 				Plug 'tpope/vim-repeat'
 				Plug 'tpope/vim-capslock'
@@ -4002,9 +4006,9 @@
 
 		"post-loading…
 		call which_key#register('<SPACE>', "g:which_key_map")
-	CUSTOM
-	IDEAPAD
-	SCRATCHPAD
+	"CUSTOM
+	"IDEAPAD
+	"SCRATCHPAD
 "CONFIGURATION
 	"PYTHON-BINARIES
 		let g:loaded_python_provider  = 1
