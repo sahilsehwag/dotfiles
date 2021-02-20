@@ -2362,1645 +2362,1649 @@
 	"TERMINAL-LEADER
 	"RANDOM
 "PLUGINS
-	call plug#begin()
-		"DEFAULTS
-		"EDITING
-			"OPERATORS
-				Plug 'haya14busa/vim-operator-flashy'
-					"CONFIGURATION
-						let g:operator#flashy#group = 'Visual'
-					"MAPPINGS
-						map y <Plug>(operator-flashy)
-						map Y <Plug>(operator-flashy)$
-				Plug 'tpope/vim-surround'
-				Plug 'junegunn/vim-easy-align'
-					xmap gl <Plug>(EasyAlign)
-					nmap gl <Plug>(EasyAlign)
-				Plug 'tommcdo/vim-exchange'
-					let g:exchange_no_mappings = 1
-					nmap gx  <Plug>(Exchange)
-					nmap gxx <Plug>(ExchangeLine)
-					xmap X	 <Plug>(Exchange)
-					nmap gxc <Plug>(ExchangeClear)
-				Plug 'svermeulen/vim-subversive'
-					nmap gs <plug>(SubversiveSubstituteRange)
-					xmap gs <plug>(SubversiveSubstituteRange)
-				Plug 'deris/vim-operator-insert'
-					"TODO:FIX|DECIDE
-					nmap gi <Plug>(operator-insert-i)
-					nmap ga <Plug>(operator-insert-a)
-				Plug 'gustavo-hms/vim-duplicate'
-					"TODO:NOT-USED-MUCH
-					map gy <Plug>(operator-duplicate)
-				Plug 'rjayatilleka/vim-operator-goto'
-					map g[ <Plug>(operator-gotostart)
-					map g] <Plug>(operator-gotoend)
-				Plug 'christoomey/vim-titlecase'
-			"OBJECTS
-				Plug 'wellle/targets.vim'
-				Plug 'michaeljsmith/vim-indent-object'
-				Plug 'Julian/vim-textobj-variable-segment'
-				Plug 'saaguero/vim-textobj-pastedtext'
-					let g:pastedtext_select_key = 'gp'
-				Plug 'rhysd/vim-textobj-lastinserted'
-				Plug 'coderifous/textobj-word-column.vim'
-				Plug 'rhysd/vim-textobj-anyblock'
-				Plug 'thinca/vim-textobj-between'
-				Plug 'haya14busa/vim-easyoperator-line'
-					omap gr <Plug>(easyoperator-line-select)
-					xmap gr <Plug>(easyoperator-line-select)
-				Plug 'haya14busa/vim-easyoperator-phrase'
-					omap gR <Plug>(easyoperator-phrase-select)
-					xmap gR <Plug>(easyoperator-phrase-select)
-				Plug 'glts/vim-textobj-comment'
-					let g:textobj_comment_no_default_mappings = 1
-					xmap ak <Plug>(textobj-comment-a)
-					xmap ik <Plug>(textobj-comment-i)
-					omap ak <Plug>(textobj-comment-a)
-					omap ik <Plug>(textobj-comment-i)
-			"MOTIONS
-				Plug 'chaoren/vim-wordmotion'
-				Plug 'haya14busa/vim-edgemotion'
-					"map <C-j> <Plug>(edgemotion-j)
-					"map <C-k> <Plug>(edgemotion-k)
-			"SEARCH
-				"Plug 'romainl/vim-cool'
-					"TODO:DECIDE|CHECK-IF-NEEDED
-				Plug 'inside/vim-search-pulse'
-					"CONFIGURATION
-						let g:vim_search_pulse_mode = 'cursor_line'
-					"MAPPINGS
-						map n  <Plug>(incsearch-nohl-n)<Plug>Pulse
-						map N  <Plug>(incsearch-nohl-N)<Plug>Pulse
-						map *  <Plug>(incsearch-nohl-*)<Plug>Pulse
-						map #  <Plug>(incsearch-nohl-#)<Plug>Pulse
-						map g* <Plug>(incsearch-nohl-g*)<Plug>Pulse
-						map g# <Plug>(incsearch-nohl-g#)<Plug>Pulse
-				Plug 'haya14busa/vim-asterisk'
-					"CONFIGURATION
-						"TODO:NOT-WORKING
-						let g:asterisk#keeppos = 1
-					"MAPPINGS
-						map *  <Plug>(asterisk-z*)
-						map #  <Plug>(asterisk-z#)
-						map g* <Plug>(asterisk-gz*)
-						map g# <Plug>(asterisk-gz#)
-				Plug 'bronson/vim-visual-star-search'
-				Plug 'rhysd/clever-f.vim'
-					let g:clever_f_ignore_case           = 1
-					let g:clever_f_smart_case            = 1
-					let g:clever_f_across_no_line        = 0
-					let g:clever_f_chars_match_any_signs = '['
-				Plug 'justinmk/vim-sneak'
-					"CONFIGURATION
-						let g:sneak#label	   = 0
-						let g:sneak#s_next	   = 1
-						let g:sneak#use_ic_scs = 1
-					"MAPPINGS
-						"map f <Plug>Sneak_s
-						"map F <Plug>Sneak_S
-						"map t <Plug>Sneak_t
-							"not-working"
-						"map T <Plug>Sneak_T
-							"not-working"
-				Plug 'haya14busa/incsearch.vim'
-					"CONFIGURATION
-					"MAPPINGS
-						"SEARCH
-							map / <Plug>(incsearch-forward)
-								"map / <Plug>(incsearch-stay)
-							map ? <Plug>(incsearch-backward)
-						"NOHL
-							""using "vim-cool"
-							"set hlsearch
-							"let g:incsearch#auto_nohlsearch = 1
-							"map n	<Plug>(incsearch-nohl-n)
-							"map N	<Plug>(incsearch-nohl-N)
-							"map *	<Plug>(incsearch-nohl-*)
-							"map #	<Plug>(incsearch-nohl-#)
-							"map g* <Plug>(incsearch-nohl-g*)
-							"map g# <Plug>(incsearch-nohl-g#)
-					"EXTENSIONS
-						Plug 'haya14busa/incsearch-fuzzy.vim'
-							map <Leader>/ <Plug>(incsearch-fuzzy-/)
-								"map <Leader>/ <Plug>(incsearch-fuzzy-stay)
-							map <Leader>? <Plug>(incsearch-fuzzy-?)
-				Plug 'lambdalisue/reword.vim'
-				Plug 'easymotion/vim-easymotion'
-					"CONFIGURATION
-						let g:EasyMotion_do_mapping		  = 0
-						let g:EasyMotion_smartcase		  = 1
-						let g:EasyMotion_use_upper		  = 0
-						let g:EasyMotion_enter_jump_first = 1
-						let g:EasyMotion_space_jump_first = 1
-						"nmap <Leader>j <Plug>(easymotion-prefix)
-						"let g:EasyMotion_keys = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ;'
-						"hi link EasyMotionTarget Search
-					"MAPPINGS
-						"LEVEL=1
-							"MODE:NORMAL
-								nmap <Leader>jw <Plug>(easymotion-overwin-w)
-								nmap <Leader>jl <Plug>(easymotion-overwin-line)
-								nmap <Leader>je <Plug>(easymotion-bd-e)
-								nmap <Leader>jf <Plug>(easymotion-overwin-f)
-								nmap <Leader>js <Plug>(easymotion-overwin-f2)
-								nmap <Leader>jj <Plug>(easymotion-j)
-								nmap <Leader>jk <Plug>(easymotion-k)
-								nmap <Leader>jJ <Plug>(easymotion-eol-j)
-								nmap <Leader>jK <Plug>(easymotion-eol-k)
-								nmap <Leader>j. <Plug>(easymotion-repeat)
-								nmap <Leader>ja <Plug>(easymotion-jumptoanywhere)
-								nmap <Leader>j/ <Plug>(easymotion-sn)
-								nmap <Leader>j? <Plug>(easymotion-tn)
-							"MODE:OPERATOR
-								"omap <Leader>w <Plug>(easymotion-bd-w)
-								"omap <Leader>W <Plug>(easymotion-bd-W)
-								"omap <Leader>e <Plug>(easymotion-bd-e)
-								"omap <Leader>E <Plug>(easymotion-bd-E)
-								"omap <Leader>l <Plug>(easymotion-bd-jk)
-								"omap <Leader>j <Plug>(easymotion-j)
-								"omap <Leader>k <Plug>(easymotion-k)
-								"omap <Leader>J <Plug>(easymotion-eol-j)
-								"omap <Leader>K <Plug>(easymotion-eol-K)
-								"omap <Leader>f <Plug>(easymotion-bd-f)
-								"omap <Leader>s <Plug>(easymotion-bd-f2)
-								"omap <Leader>t <Plug>(easymotion-bd-t)
-								"omap <Leader>S <Plug>(easymotion-bd-t2)
-								"omap <Leader>/ <Plug>(easymotion-sn)
-								"omap <Leader>? <Plug>(easymotion-tn)
-								"omap <Leader>n <Plug>(easymotion-bd-n)
-								"omap <Leader>. <Plug>(easymotion-repeat)
-								"omap <Leader>v <Plug>(easymotion-segments-LF)
-								"omap <Leader>V <Plug>(easymotion-segments-LB)
-								"omap <Leader>gv <Plug>(easymotion-segments-RF)
-								"omap <Leader>gV <Plug>(easymotion-segments-RB)
-								"omap <Leader>a <Plug>(easymotion-jumptoanywhere)
-							"MODE:VISUAL
-								xmap <Leader>w <Plug>(easymotion-bd-w)
-								xmap <Leader>W <Plug>(easymotion-bd-W)
-								xmap <Leader>e <Plug>(easymotion-bd-e)
-								xmap <Leader>E <Plug>(easymotion-bd-E)
-								xmap <Leader>l <Plug>(easymotion-bd-jk)
-								xmap <Leader>j <Plug>(easymotion-j)
-								xmap <Leader>k <Plug>(easymotion-k)
-								xmap <Leader>J <Plug>(easymotion-eol-j)
-								xmap <Leader>K <Plug>(easymotion-eol-K)
-								xmap <Leader>f <Plug>(easymotion-bd-f)
-								xmap <Leader>t <Plug>(easymotion-bd-t)
-								xmap <Leader>s <Plug>(easymotion-bd-f2)
-								xmap <Leader>S <Plug>(easymotion-bd-t2)
-								xmap <Leader>/ <Plug>(easymotion-sn)
-								xmap <Leader>? <Plug>(easymotion-tn)
-								xmap <Leader>n <Plug>(easymotion-bd-n)
-								xmap <Leader>. <Plug>(easymotion-repeat)
-								xmap <Leader>v <Plug>(easymotion-segments-LF)
-								xmap <Leader>V <Plug>(easymotion-segments-LB)
-								xmap <Leader>gv <Plug>(easymotion-segments-RF)
-								xmap <Leader>gV <Plug>(easymotion-segments-RB)
-								xmap <Leader>a <Plug>(easymotion-jumptoanywhere)
-						"LEVEL=2
-						"LEVEL=3
-					"EXTENSIONS
-						Plug 'haya14busa/incsearch-easymotion.vim'
-							map <Leader><Leader>/ <Plug>(incsearch-easymotion-/)
-								"map <Leader><Leader>/ <Plug>(incsearch-easymotion-stay)
-							map <Leader><Leader>? <Plug>(incsearch-easymotion-?)
-						"incsearch-easymotion-fuzzy
-							"FUNCTIONS
-								function! s:config_easyfuzzymotion(...) abort
-									return extend(copy({
-										\	'converters': [incsearch#config#fuzzy#converter()],
-										\	'modules': [incsearch#config#easymotion#module()],
-										\	'keymap': {"\<CR>": '<Over>(easymotion)'},
-										\	'is_expr': 0,
-										\	'is_stay': 0
-										\ }), get(a:, 1, {}))
-								endfunction
-							"MAPPINGS
-								noremap <silent><expr> <Leader><Leader>g/ incsearch#go(<SID>config_easyfuzzymotion())
-				if has('nvim') && IsNix()
-					Plug 'lambdalisue/lista.nvim'
-						nmap <Leader>b/ :Lista<CR>
-						nmap <Leader>b? :ListaCursorWord<CR>
-					"Plug 'osyo-manga/vim-hopping'
-						"nmap <Leader>b/ :HoppingStart<CR>
-				endif
-			"RANDOM
-				Plug 'machakann/vim-swap'
-					let g:swap_no_default_key_mappings = 1
-					nmap g<			<Plug>(swap-prev)
-					nmap g>			<Plug>(swap-next)
-					nmap <Leader>zs <Plug>(swap-interactive)
-
-					onoremap id <Plug>(swap-textobject-i)
-					onoremap ad <Plug>(swap-textobject-a)
-				"Plug 'terryma/vim-expand-region'
-					""CONFIGURATION
-						""let g:expand_region_text_objects = {
-							""\'iw'  :0,
-							""\'iW'  :0,
-							""\'i"'  :0,
-							""\'i''' :0,
-							""\'i]'  :1,
-							""\'ib'  :1,
-							""\'iB'  :1,
-							""\'il'  :0,
-							""\'ip'  :0,
-							""\'ie'  :0,
-						""\}
-						""call expand_region#custom_text_objects({
-							""\ "\/\\n\\n\<CR>": 1, " Motions are supported as well. Here's a search motion that finds a blank line
-							""\ 'a]' :1, " Support nesting of 'around' brackets
-							""\ 'ab' :1, " Support nesting of 'around' parentheses
-							""\ 'aB' :1, " Support nesting of 'around' braces
-							""\ 'ii' :0, " 'inside indent'. Available through https://github.com/kana/vim-textobj-indent
-							""\ 'ai' :0, " 'around indent'. Available through https://github.com/kana/vim-textobj-indent
-							""\ })
-					""MAPPINGS
-						""map <C-=> <Plug>(expand_region_expand)
-						""map <C-+> <Plug>(expand_region_shrink)
-				Plug 'terryma/vim-multiple-cursors'
-					let g:multi_cursor_use_default_mapping = 0
-					let g:multi_cursor_quit_key			   = '<Esc>'
-					let g:multi_cursor_start_word_key	   = '<C-n>'
-					let g:multi_cursor_start_key		   = 'g<C-n>'
-					let g:multi_cursor_next_key			   = '<C-n>'
-					let g:multi_cursor_prev_key			   = '<C-p>'
-					let g:multi_cursor_skip_key			   = '<C-x>'
-					let g:multi_cursor_select_all_word_key = '<A-a>'
-					let g:multi_cursor_select_all_key	   = 'g<A-a>'
-				Plug 'dkarter/bullets.vim'
-					let g:bullets_set_mappings = 0
-					let g:bullets_enabled_file_types = [
-						\ 'markdown',
-						\ 'text',
-						\ 'gitcommit',
-						\ 'scratch',
-					\]
-					let g:bullets_delete_last_bullet_if_empty = 1
-					let g:bullets_pad_right = 1
-					let g:bullets_max_alpha_characters = 2
-		"SYSTEM
-			Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': { -> fzf#install() }}
-				"CONFIGURATION
-					let g:fzf_action = {
-						\'ALT-t': 'tab split',
-						\'ALT-h': 'split',
-						\'ALT-v': 'vsplit',
-						\'ALT-m': 'Glow',
-						\'ALT-c': 'cd',
-						\'ALT-e': 'Vifm',
-						\'ALT-o': 'Open',
-					\}
-						"'SaveAs'
-						"'SaveAs!'
-						"'NewFile'
-						"'NewDirectory'
-						"'DeleteFile'
-						"'DeleteDirectory'
-						"'DeleteDirectory!'
-					"let g:fzf_layout = {}
-					"let g:fzf_colors = {
-						"\'fg':		 ['fg', 'Normal'],
-						"\'bg':		 ['bg', 'Normal'],
-						"\'hl':		 ['fg', 'Comment'],
-						"\'fg+':	 ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-						"\'bg+':	 ['bg', 'CursorLine', 'CursorColumn'],
-						"\'hl+':	 ['fg', 'Statement'],
-						"\'info':	 ['fg', 'PreProc'],
-						"\'border':  ['fg', 'Ignore'],
-						"\'prompt':  ['fg', 'Conditional'],
-						"\'pointer': ['fg', 'Exception'],
-						"\'marker':  ['fg', 'Keyword'],
-						"\'spinner': ['fg', 'Label'],
-						"\'header':  ['fg', 'Comment'],
-					"\}
-					"let g:fzf_history_dir = {}
-					"let g:fzf_launcher = {}
-				"AUTOCOMMANDS
-					autocmd! FileType fzf
-					autocmd  FileType fzf set laststatus=0 | autocmd BufLeave <buffer> set laststatus=2
-				"FUNCTIONS
-					function! FZFFiles(path, ...)
-						call fzf#run(fzf#wrap({
-							\'source': g:jaat_find_files_command . ' ' . a:path,
-						\}))
-					endfunction
-
-					function! FZFDirectories(path, ...)
-						call fzf#run(fzf#wrap({
-							\'source': g:jaat_find_directories_command . ' ' . a:path,
-						\}))
-					endfunction
-				"MAPPINGS
-					"nnoremap <silent> <Leader>ffr :call FZFFindFiles()<CR>
-					nnoremap <silent> <Leader>ff/ :call FZFFiles(g:jaat_root_path)<CR>
-					nnoremap <silent> <Leader>ffh :call FZFFiles(g:jaat_home_path)<CR>
-					nnoremap <silent> <Leader>ffd :call FZFFiles(g:jaat_drive_path)<CR>
-					nnoremap <silent> <Leader>ffp :call FZFFiles('')<CR>
-					nnoremap <silent> <Leader>ffc :call FZFFiles(expand('%:h'))<CR>
-
-					"nnoremap <silent> <Leader>fdr :call FZFFindDirectories()<CR>
-					nnoremap <silent> <Leader>fd/ :call FZFDirectories(g:jaat_root_path)<CR>
-					nnoremap <silent> <Leader>fdh :call FZFDirectories(g:jaat_home_path)<CR>
-					nnoremap <silent> <Leader>fdd :call FZFDirectories(g:jaat_drive_path)<CR>
-					nnoremap <silent> <Leader>fdp :call FZFDirectories('')<CR>
-					nnoremap <silent> <Leader>fdc :call FZFDirectories(expand('%:h'))<CR>
-				"EXTENSIONS
-					Plug 'junegunn/fzf.vim'
-						"MAPPINGS
-							nmap <silent> <Leader><TAB> <plug>(fzf-maps-n)
-							xmap <silent> <Leader><TAB> <plug>(fzf-maps-x)
-							omap <silent> <Leader><TAB> <plug>(fzf-maps-o)
-							imap <silent> ;<TAB> <plug>(fzf-maps-i)
-						"INBUILT
-							nnoremap <silent> <Leader>bl :Buffers<CR>
-							"nnoremap <silent> <Leader>b/ :BLines<CR>
-							nnoremap <silent> <Leader>b? :Lines<CR>
-
-							nnoremap <silent> <Leader>bf :Filetypes<CR>
-
-							nnoremap <silent> <Leader>vhc :Commands<CR>
-							nnoremap <silent> <Leader>vhh :Helptags<CR>
-							nnoremap <silent> <Leader>vhm :Maps<CR>
-
-							nnoremap <silent> <Leader>v/ :History/<CR>
-							nnoremap <silent> <Leader>v: :History:<CR>
-
-							nnoremap <silent> <Leader>vC :Colors<CR>
-
-							"nnoremap <silent> <Leader>nt :Tags<CR>
-							"nnoremap <silent> <Leader>nT :BTags<CR>
-						"COMPLETION
-							imap		;w <plug>(fzf-complete-word)
-							imap		;p <plug>(fzf-complete-path)
-							imap		;f <plug>(fzf-complete-file-ag)
-							imap		;l <plug>(fzf-complete-line)
-							imap		;L <plug>(fzf-complete-buffer-line)
-							imap <expr> ;cp fzf#complete('find ~/Google\ Drive')
-							imap <expr> ;cf fzf#complete('find ~/Google\ Drive -type f')
-							imap <expr> ;cd fzf#complete('find ~/Google\ Drive -type d')
-					Plug 'yuki-ycino/fzf-preview.vim', { 'branch': 'release/rpc' }
-					Plug 'dominickng/fzf-session.vim'
+	"INSTALLED
+		call plug#begin()
+			"DEFAULTS
+			"EDITING
+				"OPERATORS
+					Plug 'haya14busa/vim-operator-flashy'
 						"CONFIGURATION
-							let g:fzf_session_path = g:jaat_tmp_path . 'sessions'
+							let g:operator#flashy#group = 'Visual'
 						"MAPPINGS
-							nnoremap <silent> <Leader>Sl :Sessions<CR>
-							nnoremap <silent> <Leader>Sn :Session<space>
-							nnoremap <silent> <Leader>Sd :SDelete<space>
-							nnoremap <silent> <Leader>So :SLoad<space>
-							nnoremap <silent> <Leader>Sc :SQuit<CR>
-					Plug 'pbogut/fzf-mru.vim'
-						"nnoremap <silent> <Leader>fr :<C-u>FZFMru<CR>
-						nnoremap <silent> <A-m> :<C-u>FZFMru<CR>
-			Plug 'voldikss/vim-floaterm'
-				nnoremap <silent> <Leader>tt :FloatermToggle<CR>
-				nnoremap <silent> <Leader>tf :FloatermNew<CR>
-				nnoremap <silent> <Leader>td :FloatermKill<CR>
-				nnoremap <silent> <Leader>tn :FloatermNext<CR>
-				nnoremap <silent> <Leader>tp :FloatermPrev<CR>
-
-				execute 'nnoremap <silent> <' . g:action_leader . '-`> :FloatermToggle<CR>'
-				execute 'tnoremap <silent> <' . g:action_leader . '-`> <C-\><C-n>:FloatermToggle<CR>'
-				execute 'tnoremap <silent> <' . g:action_leader . '-f> <C-\><C-n>:FloatermNew<CR>'
-				execute 'tnoremap <silent> <' . g:action_leader . '-d> <C-\><C-n>:FloatermKill<CR>'
-				execute 'tnoremap <silent> <' . g:action_leader . '-p> <C-\><C-n>:FloatermNext<CR>'
-				execute 'tnoremap <silent> <' . g:action_leader . '-n> <C-\><C-n>:FloatermPrev<CR>'
-		"LOOK&FEEL
-			"STATUSLINE
-				if IsNix()
-					Plug 'vim-airline/vim-airline'
+							map y <Plug>(operator-flashy)
+							map Y <Plug>(operator-flashy)$
+					Plug 'tpope/vim-surround'
+					Plug 'junegunn/vim-easy-align'
+						xmap gl <Plug>(EasyAlign)
+						nmap gl <Plug>(EasyAlign)
+					Plug 'tommcdo/vim-exchange'
+						let g:exchange_no_mappings = 1
+						nmap gx  <Plug>(Exchange)
+						nmap gxx <Plug>(ExchangeLine)
+						xmap X	 <Plug>(Exchange)
+						nmap gxc <Plug>(ExchangeClear)
+					Plug 'svermeulen/vim-subversive'
+						nmap gs <plug>(SubversiveSubstituteRange)
+						xmap gs <plug>(SubversiveSubstituteRange)
+					Plug 'deris/vim-operator-insert'
+						"TODO:FIX|DECIDE
+						nmap gi <Plug>(operator-insert-i)
+						nmap ga <Plug>(operator-insert-a)
+					Plug 'gustavo-hms/vim-duplicate'
+						"TODO:NOT-USED-MUCH
+						map gy <Plug>(operator-duplicate)
+					Plug 'rjayatilleka/vim-operator-goto'
+						map g[ <Plug>(operator-gotostart)
+						map g] <Plug>(operator-gotoend)
+					Plug 'christoomey/vim-titlecase'
+				"OBJECTS
+					Plug 'wellle/targets.vim'
+					Plug 'michaeljsmith/vim-indent-object'
+					Plug 'Julian/vim-textobj-variable-segment'
+					Plug 'saaguero/vim-textobj-pastedtext'
+						let g:pastedtext_select_key = 'gp'
+					Plug 'rhysd/vim-textobj-lastinserted'
+					Plug 'coderifous/textobj-word-column.vim'
+					Plug 'rhysd/vim-textobj-anyblock'
+					Plug 'thinca/vim-textobj-between'
+					Plug 'haya14busa/vim-easyoperator-line'
+						omap gr <Plug>(easyoperator-line-select)
+						xmap gr <Plug>(easyoperator-line-select)
+					Plug 'haya14busa/vim-easyoperator-phrase'
+						omap gR <Plug>(easyoperator-phrase-select)
+						xmap gR <Plug>(easyoperator-phrase-select)
+					Plug 'glts/vim-textobj-comment'
+						let g:textobj_comment_no_default_mappings = 1
+						xmap ak <Plug>(textobj-comment-a)
+						xmap ik <Plug>(textobj-comment-i)
+						omap ak <Plug>(textobj-comment-a)
+						omap ik <Plug>(textobj-comment-i)
+				"MOTIONS
+					Plug 'chaoren/vim-wordmotion'
+					Plug 'haya14busa/vim-edgemotion'
+						"map <C-j> <Plug>(edgemotion-j)
+						"map <C-k> <Plug>(edgemotion-k)
+				"SEARCH
+					"Plug 'romainl/vim-cool'
+						"TODO:DECIDE|CHECK-IF-NEEDED
+					Plug 'inside/vim-search-pulse'
 						"CONFIGURATION
-							let g:airline_theme           = 'bubblegum'
-							let g:airline_powerline_fonts = 0
-						"TABLINE
-							let g:airline#extensions#tabline#enabled           = 1
-							"let g:airline#extensions#tabline#left_sep          = ' '
-							"let g:airline#extensions#tabline#left_alt_sep      = '|'
-							"let g:airline#extensions#tabline#right_sep         = ' '
-							"let g:airline#extensions#tabline#right_alt_sep     = '|'
-							"let g:airline#extensions#tabline#show_splits       = 1
-							"let g:airline#extensions#tabline#show_close_button = 1
-							"let g:airline#extensions#tabline#close_symbol      = '✖ '
-						"TMUXLINE
-							"let airline#extensions#tmuxline#color_template = 'normal'
-							"let airline#extensions#tmuxline#color_template = 'insert'
-							"let airline#extensions#tmuxline#color_template = 'visual'
-							"let airline#extensions#tmuxline#color_template = 'replace'
-						"BUFFERLINE
-						"CUSTOMIZATION
-							let g:airline#extensions#default#layout = [
-								\ [ 'a', 'b', 'c'],
-								\ [ 'x', 'y', 'z', 'error', 'warning']
-							\]
-							let g:airline#extensions#default#section_truncate_width = {
-								\ 'b': 79,
-								\ 'x': 60,
-								\ 'y': 88,
-								\ 'z': 45,
-								\ 'warning': 80,
-								\ 'error': 80,
-								\ }
-							let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
+							let g:vim_search_pulse_mode = 'cursor_line'
+						"MAPPINGS
+							map n  <Plug>(incsearch-nohl-n)<Plug>Pulse
+							map N  <Plug>(incsearch-nohl-N)<Plug>Pulse
+							map *  <Plug>(incsearch-nohl-*)<Plug>Pulse
+							map #  <Plug>(incsearch-nohl-#)<Plug>Pulse
+							map g* <Plug>(incsearch-nohl-g*)<Plug>Pulse
+							map g# <Plug>(incsearch-nohl-g#)<Plug>Pulse
+					Plug 'haya14busa/vim-asterisk'
+						"CONFIGURATION
+							"TODO:NOT-WORKING
+							let g:asterisk#keeppos = 1
+						"MAPPINGS
+							map *  <Plug>(asterisk-z*)
+							map #  <Plug>(asterisk-z#)
+							map g* <Plug>(asterisk-gz*)
+							map g# <Plug>(asterisk-gz#)
+					Plug 'bronson/vim-visual-star-search'
+					Plug 'rhysd/clever-f.vim'
+						let g:clever_f_ignore_case           = 1
+						let g:clever_f_smart_case            = 1
+						let g:clever_f_across_no_line        = 0
+						let g:clever_f_chars_match_any_signs = '['
+					Plug 'justinmk/vim-sneak'
+						"CONFIGURATION
+							let g:sneak#label	   = 0
+							let g:sneak#s_next	   = 1
+							let g:sneak#use_ic_scs = 1
+						"MAPPINGS
+							"map f <Plug>Sneak_s
+							"map F <Plug>Sneak_S
+							"map t <Plug>Sneak_t
+								"not-working"
+							"map T <Plug>Sneak_T
+								"not-working"
+					Plug 'haya14busa/incsearch.vim'
+						"CONFIGURATION
+						"MAPPINGS
+							"SEARCH
+								map / <Plug>(incsearch-forward)
+									"map / <Plug>(incsearch-stay)
+								map ? <Plug>(incsearch-backward)
+							"NOHL
+								""using "vim-cool"
+								"set hlsearch
+								"let g:incsearch#auto_nohlsearch = 1
+								"map n	<Plug>(incsearch-nohl-n)
+								"map N	<Plug>(incsearch-nohl-N)
+								"map *	<Plug>(incsearch-nohl-*)
+								"map #	<Plug>(incsearch-nohl-#)
+								"map g* <Plug>(incsearch-nohl-g*)
+								"map g# <Plug>(incsearch-nohl-g#)
 						"EXTENSIONS
-							let g:airline#extensions#wordcount#enabled                   = 0
-							"let g:airline#extensions#wordcount#filetypes                 = []
-							"let g:airline#extensions#whitespace#enabled                  = 1
-							"let g:airline#extensions#whitespace#mixed_indent_algo        = 0
-							"let g:airline#extensions#whitespace#symbol                   = '!'
-							"let g:airline#extensions#whitespace#checks                   = ['indent', 'trailing', 'long', 'mixed-indent-file']
-							"let g:airline#extensions#whitespace#trailing_format          = 'trailing[%s]'
-							"let g:airline#extensions#whitespace#mixed_indent_format      = 'mixed-indent[%s]'
-							"let g:airline#extensions#whitespace#long_format              = 'long[%s]'
-							"let g:airline#extensions#whitespace#mixed_indent_file_format = 'mix-indent-file[%s]'
-							"let g:airline#extensions#whitespace#trailing_regexp          = '\s$'
-					Plug 'vim-airline/vim-airline-themes'
-					Plug 'augustold/vim-airline-colornum'
-					Plug 'gcavallanti/vim-noscrollbar'
-						function! Noscrollbar(...)
-							let w:airline_section_z = '%{noscrollbar#statusline(20," ", "█")}'
-							"let w:airline_section_z = '%{noscrollbar#statusline(20," ", "▌")}'
-							"let w:airline_section_z = '%{noscrollbar#statusline(20," ", "▐")}'
-						endfunction
-						"call airline#add_statusline_func('Noscrollbar')
-				elseif IsWindows()
-					Plug 'itchyny/lightline.vim'
+							Plug 'haya14busa/incsearch-fuzzy.vim'
+								map <Leader>/ <Plug>(incsearch-fuzzy-/)
+									"map <Leader>/ <Plug>(incsearch-fuzzy-stay)
+								map <Leader>? <Plug>(incsearch-fuzzy-?)
+					Plug 'lambdalisue/reword.vim'
+					Plug 'easymotion/vim-easymotion'
 						"CONFIGURATION
-							let g:lightline = {
-								\'enable': {
-									\'statusline': 1,
-									\'tabline': 1,
-								\},
-								\'active': {
-									\'left': [
-										\['mode', 'paste'],
-										\['gitbranch', 'readonly', 'filename', 'modified', 'directory', 'vim-capslock'],
-									\],
-									\'right': [
-										\['lineinfo'],
-										\['percent'],
-										\['fileformat', 'fileencoding', 'filetype'],
-									\],
-								\},
-							\}
-							let g:lightline.colorscheme = 'neodark'
-								"powerline
-								"powerlineish
-								"wombat
-								"solarized
-								"jellybeans
-								"molokai
-								"seoul256
-								"dracula
-								"selenized_dark|black|light|white
-								"Tomorrow[_Night][_Blue|Bright|Eigthies]
-								"PaperColor
-								"landscape
-								"one
-								"materia
-								"material
-								"OldHope
-								"nord
-								"deus
-								"simpleblack
-								"srcery_drk
-								"ayu_mirage|light|dark
-								"16color
-							let g:lightline.mode_map = {
-								\'n'	  : 'NORMAL',
-								\'i'	  : 'INSERT',
-								\'R'	  : 'REPLACE',
-								\'v'	  : 'VISUAL',
-								\'V'	  : 'V-LINE',
-								\"\<C-v>" : 'V-BLOCK',
-								\'t'	  : 'TERMINAL',
-								\'c'	  : 'COMMAND',
-								\'s'	  : 'SELECT',
-								\'S'	  : 'S-LINE',
-								\"\<C-s>" : 'S-BLOCK',
-							\}
-							let g:lightline.component = {}
-							let g:lightline.component_function = {
-								\'directory'    : 'GetCurrentDirectoryName',
-								\'vim-capslock' : 'CapsLock',
-								\'gitbranch'    : 'FugitiveHead'
-							\}
-						"FUNCTIONS
-							function! CapsLock()
-								return exists('*CapsLockStatusline') ? CapsLockStatusline('CAPS') : ''
-							endfunction
-					Plug 'mengelbrecht/lightline-bufferline'
-						"CONFIGURATION
-							set showtabline=2
-							let g:lightline#bufferline#filename_modifier = ':t'
-							let g:lightline#bufferline#show_number		 = 2
-							let g:lightline#bufferline#shorten_path		 = 0
-							let g:lightline#bufferline#unnamed			 = '[No Name]'
-							let g:lightline#bufferline#unicode_symbols	 = 0
-							let g:lightline#bufferline#enable_devicons	 = 0
-							let g:lightline#bufferline#number_separator = ':'
-							let g:lightline#bufferline#read_only		= '[ℝ]'
-							let g:lightline#bufferline#more_buffers		= '…'
-							let g:lightline#bufferline#modified			= '[+]'
-
-							let g:lightline.tabline			 = {'left': [['buffers']], 'right': [['close']]}
-							let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
-							let g:lightline.component_type	 = {'buffers': 'tabsel'}
+							let g:EasyMotion_do_mapping		  = 0
+							let g:EasyMotion_smartcase		  = 1
+							let g:EasyMotion_use_upper		  = 0
+							let g:EasyMotion_enter_jump_first = 1
+							let g:EasyMotion_space_jump_first = 1
+							"nmap <Leader>j <Plug>(easymotion-prefix)
+							"let g:EasyMotion_keys = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ;'
+							"hi link EasyMotionTarget Search
 						"MAPPINGS
-							nmap <Leader>1 <Plug>lightline#bufferline#go(1)
-							nmap <Leader>2 <Plug>lightline#bufferline#go(2)
-							nmap <Leader>3 <Plug>lightline#bufferline#go(3)
-							nmap <Leader>4 <Plug>lightline#bufferline#go(4)
-							nmap <Leader>5 <Plug>lightline#bufferline#go(5)
-							nmap <Leader>6 <Plug>lightline#bufferline#go(6)
-							nmap <Leader>7 <Plug>lightline#bufferline#go(7)
-							nmap <Leader>8 <Plug>lightline#bufferline#go(8)
-							nmap <Leader>9 <Plug>lightline#bufferline#go(9)
-				endif
-			"TABLINE
-				"Plug 'romgrk/barbar.nvim'
-				"Plug 'akinsho/nvim-bufferline.lua'
-				"Plug 'bling/vim-bufferline'
-					let g:bufferline_echo				 = 1
-					let g:bufferline_active_buffer_left  = '['
-					let g:bufferline_active_buffer_right = ']'
-					let g:bufferline_modified			 = '+'
-					let g:bufferline_rotate				 = 0
-					let g:bufferline_show_bufnr			 = 0
-					let g:bufferline_fname_mod			 = ':t'
-					let g:bufferline_active_highlight	 = 'StatusLineNC'
-					let g:bufferline_inactive_highlight  = 'StatusLineNC'
-					let g:bufferline_solo_highlight		 = 0
-					let g:bufferline_pathshorten		 = 0
-				"Plug 'edkolev/tmuxline.vim'
-				"Plug 'edkolev/promptline.vim'
-			"COLORSCHEMES
-				Plug 'flazz/vim-colorschemes'
-				Plug 'rafi/awesome-vim-colorschemes'
-				Plug 'chriskempson/base16-vim'
-				Plug 'KeitaNakamura/neodark.vim'
-					let g:neodark#use_256color		   = 1
-					let g:neodark#solid_vertsplit	   = 1
-					let g:neodark#background		   = '#202020'
-					"let g:lightline					= {}
-					"let g:lightline.colorscheme		= 'neodark'
-					"let g:neodark#terminal_transparent = 1
-				Plug 'sindresorhus/focus'
-				Plug 'KabbAmine/yowish.vim'
-				Plug 'ayu-theme/ayu-vim'
-				Plug 'tyrannicaltoucan/vim-quantum'
-				Plug 'raphamorim/lucario'
-				Plug 'paranoida/vim-airlineish'
-				Plug 'arzg/vim-corvine'
-				"REFERENCE
-					"TYPE:LIGHT
-						"*SOLARIZED8-LIGHT*|CORVINE-LIGHT=1
-						"XCODE=1
-					"TYPE:DARK:HIGH
-						"VIM-MATERIAL=1
-						"BASE16-MATERIAL-VIVID|DARKER=1
-					"TYPE:DARK:MEDIUM
-						"MONOKAI|MOLOKAI|MONOKAIN|BEEKAI=1
-					"TYPE:DARK:LOW
-						"ONEDARK=1:TUI
-						"SOLARIZED8-*
-						"MATERIAL|MATERIAL-BOX|MATERIAL-THEME
-					"TYPE:DULL
-						"CORVINE=2:TUI
-						"NEODARK
-					"RANDOM
-						"*MATERIAL*
-			"RANDOM
-				Plug 'kyazdani42/nvim-web-devicons'
-				Plug 'ryanoasis/vim-devicons'
-				Plug 'mhinz/vim-startify'
+							"LEVEL=1
+								"MODE:NORMAL
+									nmap <Leader>jw <Plug>(easymotion-overwin-w)
+									nmap <Leader>jl <Plug>(easymotion-overwin-line)
+									nmap <Leader>je <Plug>(easymotion-bd-e)
+									nmap <Leader>jf <Plug>(easymotion-overwin-f)
+									nmap <Leader>js <Plug>(easymotion-overwin-f2)
+									nmap <Leader>jj <Plug>(easymotion-j)
+									nmap <Leader>jk <Plug>(easymotion-k)
+									nmap <Leader>jJ <Plug>(easymotion-eol-j)
+									nmap <Leader>jK <Plug>(easymotion-eol-k)
+									nmap <Leader>j. <Plug>(easymotion-repeat)
+									nmap <Leader>ja <Plug>(easymotion-jumptoanywhere)
+									nmap <Leader>j/ <Plug>(easymotion-sn)
+									nmap <Leader>j? <Plug>(easymotion-tn)
+								"MODE:OPERATOR
+									"omap <Leader>w <Plug>(easymotion-bd-w)
+									"omap <Leader>W <Plug>(easymotion-bd-W)
+									"omap <Leader>e <Plug>(easymotion-bd-e)
+									"omap <Leader>E <Plug>(easymotion-bd-E)
+									"omap <Leader>l <Plug>(easymotion-bd-jk)
+									"omap <Leader>j <Plug>(easymotion-j)
+									"omap <Leader>k <Plug>(easymotion-k)
+									"omap <Leader>J <Plug>(easymotion-eol-j)
+									"omap <Leader>K <Plug>(easymotion-eol-K)
+									"omap <Leader>f <Plug>(easymotion-bd-f)
+									"omap <Leader>s <Plug>(easymotion-bd-f2)
+									"omap <Leader>t <Plug>(easymotion-bd-t)
+									"omap <Leader>S <Plug>(easymotion-bd-t2)
+									"omap <Leader>/ <Plug>(easymotion-sn)
+									"omap <Leader>? <Plug>(easymotion-tn)
+									"omap <Leader>n <Plug>(easymotion-bd-n)
+									"omap <Leader>. <Plug>(easymotion-repeat)
+									"omap <Leader>v <Plug>(easymotion-segments-LF)
+									"omap <Leader>V <Plug>(easymotion-segments-LB)
+									"omap <Leader>gv <Plug>(easymotion-segments-RF)
+									"omap <Leader>gV <Plug>(easymotion-segments-RB)
+									"omap <Leader>a <Plug>(easymotion-jumptoanywhere)
+								"MODE:VISUAL
+									xmap <Leader>w <Plug>(easymotion-bd-w)
+									xmap <Leader>W <Plug>(easymotion-bd-W)
+									xmap <Leader>e <Plug>(easymotion-bd-e)
+									xmap <Leader>E <Plug>(easymotion-bd-E)
+									xmap <Leader>l <Plug>(easymotion-bd-jk)
+									xmap <Leader>j <Plug>(easymotion-j)
+									xmap <Leader>k <Plug>(easymotion-k)
+									xmap <Leader>J <Plug>(easymotion-eol-j)
+									xmap <Leader>K <Plug>(easymotion-eol-K)
+									xmap <Leader>f <Plug>(easymotion-bd-f)
+									xmap <Leader>t <Plug>(easymotion-bd-t)
+									xmap <Leader>s <Plug>(easymotion-bd-f2)
+									xmap <Leader>S <Plug>(easymotion-bd-t2)
+									xmap <Leader>/ <Plug>(easymotion-sn)
+									xmap <Leader>? <Plug>(easymotion-tn)
+									xmap <Leader>n <Plug>(easymotion-bd-n)
+									xmap <Leader>. <Plug>(easymotion-repeat)
+									xmap <Leader>v <Plug>(easymotion-segments-LF)
+									xmap <Leader>V <Plug>(easymotion-segments-LB)
+									xmap <Leader>gv <Plug>(easymotion-segments-RF)
+									xmap <Leader>gV <Plug>(easymotion-segments-RB)
+									xmap <Leader>a <Plug>(easymotion-jumptoanywhere)
+							"LEVEL=2
+							"LEVEL=3
+						"EXTENSIONS
+							Plug 'haya14busa/incsearch-easymotion.vim'
+								map <Leader><Leader>/ <Plug>(incsearch-easymotion-/)
+									"map <Leader><Leader>/ <Plug>(incsearch-easymotion-stay)
+								map <Leader><Leader>? <Plug>(incsearch-easymotion-?)
+							"incsearch-easymotion-fuzzy
+								"FUNCTIONS
+									function! s:config_easyfuzzymotion(...) abort
+										return extend(copy({
+											\	'converters': [incsearch#config#fuzzy#converter()],
+											\	'modules': [incsearch#config#easymotion#module()],
+											\	'keymap': {"\<CR>": '<Over>(easymotion)'},
+											\	'is_expr': 0,
+											\	'is_stay': 0
+											\ }), get(a:, 1, {}))
+									endfunction
+								"MAPPINGS
+									noremap <silent><expr> <Leader><Leader>g/ incsearch#go(<SID>config_easyfuzzymotion())
+					if has('nvim') && IsNix()
+						Plug 'lambdalisue/lista.nvim'
+							nmap <Leader>b/ :Lista<CR>
+							nmap <Leader>b? :ListaCursorWord<CR>
+						"Plug 'osyo-manga/vim-hopping'
+							"nmap <Leader>b/ :HoppingStart<CR>
+					endif
+				"RANDOM
+					Plug 'machakann/vim-swap'
+						let g:swap_no_default_key_mappings = 1
+						nmap g<			<Plug>(swap-prev)
+						nmap g>			<Plug>(swap-next)
+						nmap <Leader>zs <Plug>(swap-interactive)
+
+						onoremap id <Plug>(swap-textobject-i)
+						onoremap ad <Plug>(swap-textobject-a)
+					"Plug 'terryma/vim-expand-region'
+						""CONFIGURATION
+							""let g:expand_region_text_objects = {
+								""\'iw'  :0,
+								""\'iW'  :0,
+								""\'i"'  :0,
+								""\'i''' :0,
+								""\'i]'  :1,
+								""\'ib'  :1,
+								""\'iB'  :1,
+								""\'il'  :0,
+								""\'ip'  :0,
+								""\'ie'  :0,
+							""\}
+							""call expand_region#custom_text_objects({
+								""\ "\/\\n\\n\<CR>": 1, " Motions are supported as well. Here's a search motion that finds a blank line
+								""\ 'a]' :1, " Support nesting of 'around' brackets
+								""\ 'ab' :1, " Support nesting of 'around' parentheses
+								""\ 'aB' :1, " Support nesting of 'around' braces
+								""\ 'ii' :0, " 'inside indent'. Available through https://github.com/kana/vim-textobj-indent
+								""\ 'ai' :0, " 'around indent'. Available through https://github.com/kana/vim-textobj-indent
+								""\ })
+						""MAPPINGS
+							""map <C-=> <Plug>(expand_region_expand)
+							""map <C-+> <Plug>(expand_region_shrink)
+					Plug 'terryma/vim-multiple-cursors'
+						let g:multi_cursor_use_default_mapping = 0
+						let g:multi_cursor_quit_key			   = '<Esc>'
+						let g:multi_cursor_start_word_key	   = '<C-n>'
+						let g:multi_cursor_start_key		   = 'g<C-n>'
+						let g:multi_cursor_next_key			   = '<C-n>'
+						let g:multi_cursor_prev_key			   = '<C-p>'
+						let g:multi_cursor_skip_key			   = '<C-x>'
+						let g:multi_cursor_select_all_word_key = '<A-a>'
+						let g:multi_cursor_select_all_key	   = 'g<A-a>'
+					Plug 'dkarter/bullets.vim'
+						let g:bullets_set_mappings = 0
+						let g:bullets_enabled_file_types = [
+							\ 'markdown',
+							\ 'text',
+							\ 'gitcommit',
+							\ 'scratch',
+						\]
+						let g:bullets_delete_last_bullet_if_empty = 1
+						let g:bullets_pad_right = 1
+						let g:bullets_max_alpha_characters = 2
+			"SYSTEM
+				Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': { -> fzf#install() }}
 					"CONFIGURATION
-						let g:startify_session_sort        = 1
-						let g:startify_change_to_vcs_root  = 1
-						let g:startify_fortune_use_unicode = 1
-						let g:startify_session_dir         = g:jaat_tmp_path . 'sessions'
+						let g:fzf_action = {
+							\'ALT-t': 'tab split',
+							\'ALT-h': 'split',
+							\'ALT-v': 'vsplit',
+							\'ALT-m': 'Glow',
+							\'ALT-c': 'cd',
+							\'ALT-e': 'Vifm',
+							\'ALT-o': 'Open',
+						\}
+							"'SaveAs'
+							"'SaveAs!'
+							"'NewFile'
+							"'NewDirectory'
+							"'DeleteFile'
+							"'DeleteDirectory'
+							"'DeleteDirectory!'
+						"let g:fzf_layout = {}
+						"let g:fzf_colors = {
+							"\'fg':		 ['fg', 'Normal'],
+							"\'bg':		 ['bg', 'Normal'],
+							"\'hl':		 ['fg', 'Comment'],
+							"\'fg+':	 ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+							"\'bg+':	 ['bg', 'CursorLine', 'CursorColumn'],
+							"\'hl+':	 ['fg', 'Statement'],
+							"\'info':	 ['fg', 'PreProc'],
+							"\'border':  ['fg', 'Ignore'],
+							"\'prompt':  ['fg', 'Conditional'],
+							"\'pointer': ['fg', 'Exception'],
+							"\'marker':  ['fg', 'Keyword'],
+							"\'spinner': ['fg', 'Label'],
+							"\'header':  ['fg', 'Comment'],
+						"\}
+						"let g:fzf_history_dir = {}
+						"let g:fzf_launcher = {}
 					"AUTOCOMMANDS
-						autocmd User StartifyReady setl foldlevel=99
-				Plug 'itchyny/vim-highlighturl'
-					"let g:highlighturl_ctermfg   = ''
-					"let g:highlighturl_guifg	  = ''
-					"let g:highlighturl_underline = 0
-			"DISABLED
-				"Plug 'haya14busa/vim-keeppad'
-				"Plug 'zefei/vim-colortuner'
-				"Plug 'Yggdroot/indentLine'
-					"let g:indentLine_enabled = 1
-					"let g:indentLine_setColors = 0
-					"let g:indentLine_char_list = ['│', '|', '¦', '┆', '┊']
-		"MANAGEMENT
-		"PROGRAMMING
-			"SYNTAX
-				Plug 'sheerun/vim-polyglot'
-				Plug 'chrisbra/csv.vim'
-				Plug 'plasticboy/vim-markdown'
-					let g:vim_markdown_no_default_key_mappings = 1
-				"Plug 'vim-syntastic/syntastic'
-				"Plug 'coachshea/jade-vim'
-			"VCS:GIT
-				Plug 'tpope/vim-fugitive'
-					"TODO
-					nnoremap <Leader>gas :Gstatus<CR>
-				Plug 'rhysd/git-messenger.vim'
-					"CONFIGURATION
-						let g:git_messenger_include_diff        = "none"
-						let g:git_messenger_max_popup_width     = 200
-						let g:git_messenger_max_popup_height    = 40
-						let g:git_messenger_no_default_mappings = v:true
-					"HIGHLIGHTS
+						autocmd! FileType fzf
+						autocmd  FileType fzf set laststatus=0 | autocmd BufLeave <buffer> set laststatus=2
+					"FUNCTIONS
+						function! FZFFiles(path, ...)
+							call fzf#run(fzf#wrap({
+								\'source': g:jaat_find_files_command . ' ' . a:path,
+							\}))
+						endfunction
+
+						function! FZFDirectories(path, ...)
+							call fzf#run(fzf#wrap({
+								\'source': g:jaat_find_directories_command . ' ' . a:path,
+							\}))
+						endfunction
 					"MAPPINGS
-						nmap <silent> <Leader>gm <Plug>(git-messenger)
-			"LSP
-				if has('node') && version >= 800
-					Plug 'neoclide/coc.nvim', {'branch': 'release'}
+						"nnoremap <silent> <Leader>ffr :call FZFFindFiles()<CR>
+						nnoremap <silent> <Leader>ff/ :call FZFFiles(g:jaat_root_path)<CR>
+						nnoremap <silent> <Leader>ffh :call FZFFiles(g:jaat_home_path)<CR>
+						nnoremap <silent> <Leader>ffd :call FZFFiles(g:jaat_drive_path)<CR>
+						nnoremap <silent> <Leader>ffp :call FZFFiles('')<CR>
+						nnoremap <silent> <Leader>ffc :call FZFFiles(expand('%:h'))<CR>
+
+						"nnoremap <silent> <Leader>fdr :call FZFFindDirectories()<CR>
+						nnoremap <silent> <Leader>fd/ :call FZFDirectories(g:jaat_root_path)<CR>
+						nnoremap <silent> <Leader>fdh :call FZFDirectories(g:jaat_home_path)<CR>
+						nnoremap <silent> <Leader>fdd :call FZFDirectories(g:jaat_drive_path)<CR>
+						nnoremap <silent> <Leader>fdp :call FZFDirectories('')<CR>
+						nnoremap <silent> <Leader>fdc :call FZFDirectories(expand('%:h'))<CR>
+					"EXTENSIONS
+						Plug 'junegunn/fzf.vim'
+							"MAPPINGS
+								nmap <silent> <Leader><TAB> <plug>(fzf-maps-n)
+								xmap <silent> <Leader><TAB> <plug>(fzf-maps-x)
+								omap <silent> <Leader><TAB> <plug>(fzf-maps-o)
+								imap <silent> ;<TAB> <plug>(fzf-maps-i)
+							"INBUILT
+								nnoremap <silent> <Leader>bl :Buffers<CR>
+								"nnoremap <silent> <Leader>b/ :BLines<CR>
+								nnoremap <silent> <Leader>b? :Lines<CR>
+
+								nnoremap <silent> <Leader>bf :Filetypes<CR>
+
+								nnoremap <silent> <Leader>vhc :Commands<CR>
+								nnoremap <silent> <Leader>vhh :Helptags<CR>
+								nnoremap <silent> <Leader>vhm :Maps<CR>
+
+								nnoremap <silent> <Leader>v/ :History/<CR>
+								nnoremap <silent> <Leader>v: :History:<CR>
+
+								nnoremap <silent> <Leader>vC :Colors<CR>
+
+								"nnoremap <silent> <Leader>nt :Tags<CR>
+								"nnoremap <silent> <Leader>nT :BTags<CR>
+							"COMPLETION
+								imap		;w <plug>(fzf-complete-word)
+								imap		;p <plug>(fzf-complete-path)
+								imap		;f <plug>(fzf-complete-file-ag)
+								imap		;l <plug>(fzf-complete-line)
+								imap		;L <plug>(fzf-complete-buffer-line)
+								imap <expr> ;cp fzf#complete('find ~/Google\ Drive')
+								imap <expr> ;cf fzf#complete('find ~/Google\ Drive -type f')
+								imap <expr> ;cd fzf#complete('find ~/Google\ Drive -type d')
+						Plug 'yuki-ycino/fzf-preview.vim', { 'branch': 'release/rpc' }
+						Plug 'dominickng/fzf-session.vim'
+							"CONFIGURATION
+								let g:fzf_session_path = g:jaat_tmp_path . 'sessions'
+							"MAPPINGS
+								nnoremap <silent> <Leader>Sl :Sessions<CR>
+								nnoremap <silent> <Leader>Sn :Session<space>
+								nnoremap <silent> <Leader>Sd :SDelete<space>
+								nnoremap <silent> <Leader>So :SLoad<space>
+								nnoremap <silent> <Leader>Sc :SQuit<CR>
+						Plug 'pbogut/fzf-mru.vim'
+							"nnoremap <silent> <Leader>fr :<C-u>FZFMru<CR>
+							nnoremap <silent> <A-m> :<C-u>FZFMru<CR>
+				Plug 'voldikss/vim-floaterm'
+					nnoremap <silent> <Leader>tt :FloatermToggle<CR>
+					nnoremap <silent> <Leader>tf :FloatermNew<CR>
+					nnoremap <silent> <Leader>td :FloatermKill<CR>
+					nnoremap <silent> <Leader>tn :FloatermNext<CR>
+					nnoremap <silent> <Leader>tp :FloatermPrev<CR>
+
+					execute 'nnoremap <silent> <' . g:action_leader . '-`> :FloatermToggle<CR>'
+					execute 'tnoremap <silent> <' . g:action_leader . '-`> <C-\><C-n>:FloatermToggle<CR>'
+					execute 'tnoremap <silent> <' . g:action_leader . '-f> <C-\><C-n>:FloatermNew<CR>'
+					execute 'tnoremap <silent> <' . g:action_leader . '-d> <C-\><C-n>:FloatermKill<CR>'
+					execute 'tnoremap <silent> <' . g:action_leader . '-p> <C-\><C-n>:FloatermNext<CR>'
+					execute 'tnoremap <silent> <' . g:action_leader . '-n> <C-\><C-n>:FloatermPrev<CR>'
+			"LOOK&FEEL
+				"STATUSLINE
+					if IsNix()
+						Plug 'vim-airline/vim-airline'
+							"CONFIGURATION
+								let g:airline_theme           = 'bubblegum'
+								let g:airline_powerline_fonts = 0
+							"TABLINE
+								let g:airline#extensions#tabline#enabled           = 1
+								"let g:airline#extensions#tabline#left_sep          = ' '
+								"let g:airline#extensions#tabline#left_alt_sep      = '|'
+								"let g:airline#extensions#tabline#right_sep         = ' '
+								"let g:airline#extensions#tabline#right_alt_sep     = '|'
+								"let g:airline#extensions#tabline#show_splits       = 1
+								"let g:airline#extensions#tabline#show_close_button = 1
+								"let g:airline#extensions#tabline#close_symbol      = '✖ '
+							"TMUXLINE
+								"let airline#extensions#tmuxline#color_template = 'normal'
+								"let airline#extensions#tmuxline#color_template = 'insert'
+								"let airline#extensions#tmuxline#color_template = 'visual'
+								"let airline#extensions#tmuxline#color_template = 'replace'
+							"BUFFERLINE
+							"CUSTOMIZATION
+								let g:airline#extensions#default#layout = [
+									\ [ 'a', 'b', 'c'],
+									\ [ 'x', 'y', 'z', 'error', 'warning']
+								\]
+								let g:airline#extensions#default#section_truncate_width = {
+									\ 'b': 79,
+									\ 'x': 60,
+									\ 'y': 88,
+									\ 'z': 45,
+									\ 'warning': 80,
+									\ 'error': 80,
+									\ }
+								let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
+							"EXTENSIONS
+								let g:airline#extensions#wordcount#enabled                   = 0
+								"let g:airline#extensions#wordcount#filetypes                 = []
+								"let g:airline#extensions#whitespace#enabled                  = 1
+								"let g:airline#extensions#whitespace#mixed_indent_algo        = 0
+								"let g:airline#extensions#whitespace#symbol                   = '!'
+								"let g:airline#extensions#whitespace#checks                   = ['indent', 'trailing', 'long', 'mixed-indent-file']
+								"let g:airline#extensions#whitespace#trailing_format          = 'trailing[%s]'
+								"let g:airline#extensions#whitespace#mixed_indent_format      = 'mixed-indent[%s]'
+								"let g:airline#extensions#whitespace#long_format              = 'long[%s]'
+								"let g:airline#extensions#whitespace#mixed_indent_file_format = 'mix-indent-file[%s]'
+								"let g:airline#extensions#whitespace#trailing_regexp          = '\s$'
+						Plug 'vim-airline/vim-airline-themes'
+						Plug 'augustold/vim-airline-colornum'
+						Plug 'gcavallanti/vim-noscrollbar'
+							function! Noscrollbar(...)
+								let w:airline_section_z = '%{noscrollbar#statusline(20," ", "█")}'
+								"let w:airline_section_z = '%{noscrollbar#statusline(20," ", "▌")}'
+								"let w:airline_section_z = '%{noscrollbar#statusline(20," ", "▐")}'
+							endfunction
+							"call airline#add_statusline_func('Noscrollbar')
+					elseif IsWindows()
+						Plug 'itchyny/lightline.vim'
+							"CONFIGURATION
+								let g:lightline = {
+									\'enable': {
+										\'statusline': 1,
+										\'tabline': 1,
+									\},
+									\'active': {
+										\'left': [
+											\['mode', 'paste'],
+											\['gitbranch', 'readonly', 'filename', 'modified', 'directory', 'vim-capslock'],
+										\],
+										\'right': [
+											\['lineinfo'],
+											\['percent'],
+											\['fileformat', 'fileencoding', 'filetype'],
+										\],
+									\},
+								\}
+								let g:lightline.colorscheme = 'neodark'
+									"powerline
+									"powerlineish
+									"wombat
+									"solarized
+									"jellybeans
+									"molokai
+									"seoul256
+									"dracula
+									"selenized_dark|black|light|white
+									"Tomorrow[_Night][_Blue|Bright|Eigthies]
+									"PaperColor
+									"landscape
+									"one
+									"materia
+									"material
+									"OldHope
+									"nord
+									"deus
+									"simpleblack
+									"srcery_drk
+									"ayu_mirage|light|dark
+									"16color
+								let g:lightline.mode_map = {
+									\'n'	  : 'NORMAL',
+									\'i'	  : 'INSERT',
+									\'R'	  : 'REPLACE',
+									\'v'	  : 'VISUAL',
+									\'V'	  : 'V-LINE',
+									\"\<C-v>" : 'V-BLOCK',
+									\'t'	  : 'TERMINAL',
+									\'c'	  : 'COMMAND',
+									\'s'	  : 'SELECT',
+									\'S'	  : 'S-LINE',
+									\"\<C-s>" : 'S-BLOCK',
+								\}
+								let g:lightline.component = {}
+								let g:lightline.component_function = {
+									\'directory'    : 'GetCurrentDirectoryName',
+									\'vim-capslock' : 'CapsLock',
+									\'gitbranch'    : 'FugitiveHead'
+								\}
+							"FUNCTIONS
+								function! CapsLock()
+									return exists('*CapsLockStatusline') ? CapsLockStatusline('CAPS') : ''
+								endfunction
+						Plug 'mengelbrecht/lightline-bufferline'
+							"CONFIGURATION
+								set showtabline=2
+								let g:lightline#bufferline#filename_modifier = ':t'
+								let g:lightline#bufferline#show_number		 = 2
+								let g:lightline#bufferline#shorten_path		 = 0
+								let g:lightline#bufferline#unnamed			 = '[No Name]'
+								let g:lightline#bufferline#unicode_symbols	 = 0
+								let g:lightline#bufferline#enable_devicons	 = 0
+								let g:lightline#bufferline#number_separator = ':'
+								let g:lightline#bufferline#read_only		= '[ℝ]'
+								let g:lightline#bufferline#more_buffers		= '…'
+								let g:lightline#bufferline#modified			= '[+]'
+
+								let g:lightline.tabline			 = {'left': [['buffers']], 'right': [['close']]}
+								let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
+								let g:lightline.component_type	 = {'buffers': 'tabsel'}
+							"MAPPINGS
+								nmap <Leader>1 <Plug>lightline#bufferline#go(1)
+								nmap <Leader>2 <Plug>lightline#bufferline#go(2)
+								nmap <Leader>3 <Plug>lightline#bufferline#go(3)
+								nmap <Leader>4 <Plug>lightline#bufferline#go(4)
+								nmap <Leader>5 <Plug>lightline#bufferline#go(5)
+								nmap <Leader>6 <Plug>lightline#bufferline#go(6)
+								nmap <Leader>7 <Plug>lightline#bufferline#go(7)
+								nmap <Leader>8 <Plug>lightline#bufferline#go(8)
+								nmap <Leader>9 <Plug>lightline#bufferline#go(9)
+					endif
+				"TABLINE
+					"Plug 'romgrk/barbar.nvim'
+					"Plug 'akinsho/nvim-bufferline.lua'
+					"Plug 'bling/vim-bufferline'
+						let g:bufferline_echo				 = 1
+						let g:bufferline_active_buffer_left  = '['
+						let g:bufferline_active_buffer_right = ']'
+						let g:bufferline_modified			 = '+'
+						let g:bufferline_rotate				 = 0
+						let g:bufferline_show_bufnr			 = 0
+						let g:bufferline_fname_mod			 = ':t'
+						let g:bufferline_active_highlight	 = 'StatusLineNC'
+						let g:bufferline_inactive_highlight  = 'StatusLineNC'
+						let g:bufferline_solo_highlight		 = 0
+						let g:bufferline_pathshorten		 = 0
+					"Plug 'edkolev/tmuxline.vim'
+					"Plug 'edkolev/promptline.vim'
+				"COLORSCHEMES
+					Plug 'flazz/vim-colorschemes'
+					Plug 'rafi/awesome-vim-colorschemes'
+					Plug 'chriskempson/base16-vim'
+					Plug 'KeitaNakamura/neodark.vim'
+						let g:neodark#use_256color		   = 1
+						let g:neodark#solid_vertsplit	   = 1
+						let g:neodark#background		   = '#202020'
+						"let g:lightline					= {}
+						"let g:lightline.colorscheme		= 'neodark'
+						"let g:neodark#terminal_transparent = 1
+					Plug 'sindresorhus/focus'
+					Plug 'KabbAmine/yowish.vim'
+					Plug 'ayu-theme/ayu-vim'
+					Plug 'tyrannicaltoucan/vim-quantum'
+					Plug 'raphamorim/lucario'
+					Plug 'paranoida/vim-airlineish'
+					Plug 'arzg/vim-corvine'
+					"REFERENCE
+						"TYPE:LIGHT
+							"*SOLARIZED8-LIGHT*|CORVINE-LIGHT=1
+							"XCODE=1
+						"TYPE:DARK:HIGH
+							"VIM-MATERIAL=1
+							"BASE16-MATERIAL-VIVID|DARKER=1
+						"TYPE:DARK:MEDIUM
+							"MONOKAI|MOLOKAI|MONOKAIN|BEEKAI=1
+						"TYPE:DARK:LOW
+							"ONEDARK=1:TUI
+							"SOLARIZED8-*
+							"MATERIAL|MATERIAL-BOX|MATERIAL-THEME
+						"TYPE:DULL
+							"CORVINE=2:TUI
+							"NEODARK
+						"RANDOM
+							"*MATERIAL*
+				"RANDOM
+					Plug 'kyazdani42/nvim-web-devicons'
+					Plug 'ryanoasis/vim-devicons'
+					Plug 'mhinz/vim-startify'
 						"CONFIGURATION
-						"PLUGINS
-							Plug 'Shougo/neco-vim'
-							Plug 'neoclide/coc-neco'
-						"EXTENSIONS
-							"META
-								let g:coc_global_extensions = [
-									\ 'coc-marketplace',
-									\ 'coc-explorer',
-									\ 'coc-floatinput',
-									\ 'coc-yank',
-								\]
-							"LSP
-								let g:coc_global_extensions += [
-									\ 'coc-vimlsp',
-									\ 'coc-lua',
-									\ 'coc-clangd',
-									\ 'coc-html',
-									\ 'coc-svg',
-									\ 'coc-css',
-									\ 'coc-cssmodules',
-									\ 'coc-tsserver',
-									\ 'coc-rome',
-									\ 'coc-pyright',
-									\ 'coc-java',
-									\ 'coc-omnisharp',
-									\ 'coc-sh',
-									\ 'coc-sql',
-									\ 'coc-graphql',
-									\ 'coc-metals',
-									\ 'coc-fsharp',
-									\ 'coc-go',
-									\ 'coc-r-lsp',
-									\ 'coc-xml',
-									\ 'coc-json',
-									\ 'coc-yaml',
-									\ 'coc-toml',
-									\ 'coc-styled-components',
-									\ 'coc-docker',
-								\]
-							"TOOLING
-								let g:coc_global_extensions += [
-									\ 'coc-git',
-									\ 'coc-gitignore',
-									\ 'coc-github',
-									\ 'coc-gist',
-									\ 'coc-flow',
-									\ 'coc-eslint',
-									\ 'coc-tslint-plugin',
-									\ 'coc-stylelint',
-									\ 'coc-stylelintplus',
-									\ 'coc-diagnostic',
-									\ 'coc-style-helper',
-									\ 'coc-jest',
-									\ 'coc-inline-jest',
-									\ 'coc-markdownlint',
-									\ 'coc-prettier',
-									\ 'coc-react-refactor',
-									\ 'coc-format-json',
-									\ 'coc-import-cost',
-									\ 'coc-docthis',
-									\ 'coc-snippets',
-									\ 'coc-zi',
-									\ 'coc-pairs',
-									\ 'coc-emmet',
-									\ 'coc-tabnine',
-									\ 'coc-syntax',
-									\ 'coc-highlight',
-									\ 'coc-restclient',
-									\ 'coc-db',
-								\]
-							"RANDOM
-								let g:coc_global_extensions += [
-									\ 'coc-lists',
-									\ 'coc-markmap',
-									\ 'coc-template',
-									\ 'coc-leetcode',
-									\ 'coc-browser',
-									\ 'coc-spell-checker',
-									\ 'coc-emoji',
-									\ 'coc-emoji-shortcodes',
-									\ 'coc-calc',
-								\]
-						"FUNCTIONS
-							function! s:checkBackspace() abort
-								let col = col('.') - 1
-								return !col || getline('.')[col - 1]	=~# '\s'
+							let g:startify_session_sort        = 1
+							let g:startify_change_to_vcs_root  = 1
+							let g:startify_fortune_use_unicode = 1
+							let g:startify_session_dir         = g:jaat_tmp_path . 'sessions'
+						"AUTOCOMMANDS
+							autocmd User StartifyReady setl foldlevel=99
+					Plug 'itchyny/vim-highlighturl'
+						"let g:highlighturl_ctermfg   = ''
+						"let g:highlighturl_guifg	  = ''
+						"let g:highlighturl_underline = 0
+				"DISABLED
+					"Plug 'haya14busa/vim-keeppad'
+					"Plug 'zefei/vim-colortuner'
+					"Plug 'Yggdroot/indentLine'
+						"let g:indentLine_enabled = 1
+						"let g:indentLine_setColors = 0
+						"let g:indentLine_char_list = ['│', '|', '¦', '┆', '┊']
+			"MANAGEMENT
+			"PROGRAMMING
+				"SYNTAX
+					Plug 'sheerun/vim-polyglot'
+					Plug 'chrisbra/csv.vim'
+					Plug 'plasticboy/vim-markdown'
+						let g:vim_markdown_no_default_key_mappings = 1
+					"Plug 'vim-syntastic/syntastic'
+					"Plug 'coachshea/jade-vim'
+				"VCS:GIT
+					Plug 'tpope/vim-fugitive'
+						"TODO
+						nnoremap <Leader>gas :Gstatus<CR>
+					Plug 'rhysd/git-messenger.vim'
+						"CONFIGURATION
+							let g:git_messenger_include_diff        = "none"
+							let g:git_messenger_max_popup_width     = 200
+							let g:git_messenger_max_popup_height    = 40
+							let g:git_messenger_no_default_mappings = v:true
+						"HIGHLIGHTS
+						"MAPPINGS
+							nmap <silent> <Leader>gm <Plug>(git-messenger)
+				"LSP
+					if has('node') && version >= 800
+						Plug 'neoclide/coc.nvim', {'branch': 'release'}
+							"CONFIGURATION
+							"PLUGINS
+								Plug 'Shougo/neco-vim'
+								Plug 'neoclide/coc-neco'
+							"EXTENSIONS
+								"META
+									let g:coc_global_extensions = [
+										\ 'coc-marketplace',
+										\ 'coc-explorer',
+										\ 'coc-floatinput',
+										\ 'coc-yank',
+									\]
+								"LSP
+									let g:coc_global_extensions += [
+										\ 'coc-vimlsp',
+										\ 'coc-lua',
+										\ 'coc-clangd',
+										\ 'coc-html',
+										\ 'coc-svg',
+										\ 'coc-css',
+										\ 'coc-cssmodules',
+										\ 'coc-tsserver',
+										\ 'coc-rome',
+										\ 'coc-pyright',
+										\ 'coc-java',
+										\ 'coc-omnisharp',
+										\ 'coc-sh',
+										\ 'coc-sql',
+										\ 'coc-graphql',
+										\ 'coc-metals',
+										\ 'coc-fsharp',
+										\ 'coc-go',
+										\ 'coc-r-lsp',
+										\ 'coc-xml',
+										\ 'coc-json',
+										\ 'coc-yaml',
+										\ 'coc-toml',
+										\ 'coc-styled-components',
+										\ 'coc-docker',
+									\]
+								"TOOLING
+									let g:coc_global_extensions += [
+										\ 'coc-git',
+										\ 'coc-gitignore',
+										\ 'coc-github',
+										\ 'coc-gist',
+										\ 'coc-flow',
+										\ 'coc-eslint',
+										\ 'coc-tslint-plugin',
+										\ 'coc-stylelint',
+										\ 'coc-stylelintplus',
+										\ 'coc-diagnostic',
+										\ 'coc-style-helper',
+										\ 'coc-jest',
+										\ 'coc-inline-jest',
+										\ 'coc-markdownlint',
+										\ 'coc-prettier',
+										\ 'coc-react-refactor',
+										\ 'coc-format-json',
+										\ 'coc-import-cost',
+										\ 'coc-docthis',
+										\ 'coc-snippets',
+										\ 'coc-zi',
+										\ 'coc-pairs',
+										\ 'coc-emmet',
+										\ 'coc-tabnine',
+										\ 'coc-syntax',
+										\ 'coc-highlight',
+										\ 'coc-restclient',
+										\ 'coc-db',
+									\]
+								"RANDOM
+									let g:coc_global_extensions += [
+										\ 'coc-lists',
+										\ 'coc-markmap',
+										\ 'coc-template',
+										\ 'coc-leetcode',
+										\ 'coc-browser',
+										\ 'coc-spell-checker',
+										\ 'coc-emoji',
+										\ 'coc-emoji-shortcodes',
+										\ 'coc-calc',
+									\]
+							"FUNCTIONS
+								function! s:checkBackspace() abort
+									let col = col('.') - 1
+									return !col || getline('.')[col - 1]	=~# '\s'
+								endfunction
+
+								function! s:showDocumentation()
+									if (index(['vim','help'], &filetype) >= 0)
+										execute 'h '.expand('<cword>')
+									else
+										call CocAction('doHover')
+									endif
+								endfunction
+							"COMMANDS
+								command! -nargs=0 COCFormat          :call CocAction('format')
+								command! -nargs=? COCFold            :call CocAction('fold', <f-args>)
+								command! -nargs=0 COCOrganizeImports :call CocAction('runCommand', 'editor.action.organizeImport')
+							"AUTOCOMMANDS
+								augroup COC
+									autocmd!
+									autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+									autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+								augroup end
+
+								autocmd CursorHold * silent call CocActionAsync('highlight')
+							"MAPPINGS
+								"COC-GOTO
+									nmap <silent> <Leader>lgd <Plug>(coc-definition)
+									nmap <silent> <Leader>lgD <Plug>(coc-type-definition)
+									nmap <silent> <Leader>lgi <Plug>(coc-implementation)
+									nmap <silent> <Leader>lgr <Plug>(coc-references)
+								"COC-COMPLETION
+									inoremap <silent> <expr> <C-SPACE> coc#refresh()
+									inoremap <silent> <expr> <CR> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
+									inoremap <silent> <expr> <TAB>
+										\ pumvisible() ? "\<C-n>" :
+										\ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+										\ <SID>checkBackspace() ? "\<TAB>" :
+										\ coc#refresh()
+									inoremap <silent> <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
+								"COC-SNIPPETS
+									"imap <C-l>     <Plug>(coc-snippets-expand)
+									"imap <C-j>     <Plug>(coc-snippets-select)
+									"imap <C-j>     <Plug>(coc-snippets-expand-jump)
+									"xmap <leader>x <Plug>(coc-convert-snippet)
+								"COC-DIAGNOSTICS
+									nmap <silent> [e <Plug>(coc-diagnostic-prev)
+									nmap <silent> ]e <Plug>(coc-diagnostic-next)
+								"COC-ACTIONS
+									nmap <leader>lac <Plug>(coc-codeaction)
+									nmap <leader>laq <Plug>(coc-fix-current)
+									xmap <leader>laf <Plug>(coc-format-selected)
+									nmap <leader>laf <Plug>(coc-format-selected)
+									nmap <leader>laF :COCFormat<CR>
+									nmap <leader>lao :COCOrganizeImports<CR>
+
+									nmap <C-A-a>  <Plug>(coc-codeaction-selected)
+									xmap <C-A-a>  <Plug>(coc-codeaction-selected)
+								"COC-DOCUMENTATION
+									nnoremap <silent> K :call s:showDocumentation()<CR>
+								"COC-OBJECTS
+									"NOTE: Requires 'textDocument.documentSymbol' support from the language server.
+									xmap <LocalLeader>if <Plug>(coc-funcobj-i)
+									omap <LocalLeader>if <Plug>(coc-funcobj-i)
+									xmap <LocalLeader>af <Plug>(coc-funcobj-a)
+									omap <LocalLeader>af <Plug>(coc-funcobj-a)
+									xmap <LocalLeader>ic <Plug>(coc-classobj-i)
+									omap <LocalLeader>ic <Plug>(coc-classobj-i)
+									xmap <LocalLeader>ac <Plug>(coc-classobj-a)
+									omap <LocalLeader>ac <Plug>(coc-classobj-a)
+								"COC-LIST
+									nnoremap <silent><nowait> <Leader>lL  :<C-u>CocList<CR>
+									nnoremap <silent><nowait> <Leader>ll  :<C-u>CocListResume<CR>
+									nnoremap <silent><nowait> <Leader>le  :<C-u>CocList diagnostics<CR>
+									nnoremap <silent><nowait> <Leader>lc  :<C-u>CocList commands<CR>
+									nnoremap <silent><nowait> <Leader>lo  :<C-u>CocList outline<CR>
+									nnoremap <silent><nowait> <Leader>ls  :<C-u>CocList -I symbols<CR>
+
+									nnoremap <silent><nowait> <Leader>ln  :<C-u>CocNext<CR>
+									nnoremap <silent><nowait> <Leader>lp  :<C-u>CocPrev<CR>
+								"RANDOM
+									nmap          <Leader>lr <Plug>(coc-rename)
+									nmap <silent> <C-s>      <Plug>(coc-range-select)
+									xmap <silent> <C-s>      <Plug>(coc-range-select)
+					endif
+					Plug 'liuchengxu/vista.vim'
+						"CONFIGURATION
+							let g:vista_default_executive = 'coc'
+							let g:vista#renderer#enable_icon = 1
+							let g:vista_sidebar_width = 45
+							let g:vista_fzf_preview = ['right:50%']
+							let g:vista_echo_cursor_strategy = 'echo'
+						"MAPPINGS
+							nnoremap <silent> <Leader>lt :Vista!!<CR>
+							nnoremap <silent> <Leader>lT :Vista finder fzf<CR>
+						"STATUSLINE
+							function! NearestMethodOrFunction() abort
+								return get(b:, 'vista_nearest_method_or_function', '')
 							endfunction
 
-							function! s:showDocumentation()
-								if (index(['vim','help'], &filetype) >= 0)
-									execute 'h '.expand('<cword>')
-								else
-									call CocAction('doHover')
+							set statusline+=%{NearestMethodOrFunction()}
+							autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
+				"TREESITTER
+				"COMMENTS
+					"Plug 'tpope/vim-commentary'
+					Plug 'scrooloose/nerdcommenter'
+						"CONFIGURATION
+							let g:NERDCreateDefaultMappings  = 0
+							let g:NERDSpaceDelims            = 1
+							let g:NERDCompactSexyComs        = 1
+							let g:NERDDefaultAlign           = 'left'
+							let g:NERDAltDelims_java         = 1
+							let g:NERDCustomDelimiters       = { 'c': { 'left': '/**','right': '*/' } }
+							let g:NERDCommentEmptyLines      = 1
+							let g:NERDTrimTrailingWhitespace = 1
+							let g:NERDToggleCheckAllLines    = 1
+						"MAPPINGS
+							xmap gkc <plug>NERDCommenterToggle
+							xmap gkC <plug>NERDCommenterNested
+							xmap gki <plug>NERDCommenterInvert
+							xmap gkm <plug>NERDCommenterAltDelims
+							xmap gkM <plug>NERDCommenterMinimal
+							xmap gks <plug>NERDCommenterSexy
+							xmap gky <plug>NERDCommenterYank
+							nmap gk9 <plug>NERDCommenterToEOL
+							nmap gka <plug>NERDCommenterAppend
+				"DATABASE
+					Plug 'tpope/vim-dadbod'
+					Plug 'kristijanhusak/vim-dadbod-ui'
+				"SNIPPETS
+					Plug 'honza/vim-snippets'
+					Plug 'epilande/vim-react-snippets'
+				"DEBUGGING
+				"PLAYGROUND
+					Plug 'metakirby5/codi.vim'
+						let g:codi#width	  = 80
+						let g:codi#rightalign = 0
+						nmap <LocalLeader>ci :Codi!!<CR>
+					Plug 'arkwright/vim-whiteboard'
+						"CONFIGURATION
+							let g:whiteboard_temp_directory = g:jaat_tmp_path . 'whiteboard'
+							let g:whiteboard_interpreters = {
+								\'python'     :{'extension': 'py'     ,'command': 'python3'  },
+								\'r'          :{'extension': 'r'      ,'command': 'r'        },
+								\'javascript' :{'extension': 'js'     ,'command': 'node'     },
+								\'java'       :{'extension': 'java'   ,'command': 'jshell'   },
+								\'lua'        :{'extension': 'lua'    ,'command': 'lua'      },
+								\'php'        :{'extension': 'php'    ,'command': 'php'      },
+								\'ruby'       :{'extension': 'rb'     ,'command': 'ruby'     },
+								\'haskell'    :{'extension': 'hs'     ,'command': 'ghci'     },
+								\'scala'      :{'extension': 'scala'  ,'command': 'scala'    },
+								\'perl'       :{'extension': 'pl'     ,'command': 'perl'     },
+								\'go'         :{'extension': 'go'     ,'command': 'gore'     },
+								\'typescript' :{'extension': 'ts'     ,'command': 'ts-node'  },
+								\'sh'         :{'extension': 'sh'     ,'command': 'bash'     },
+								\'bash'       :{'extension': 'bash'   ,'command': 'bash'     },
+								\'zsh'        :{'extension': 'zsh'    ,'command': 'zsh'      },
+								\'fish'       :{'extension': 'fsh'    ,'command': 'fsh'      },
+								\'pandoc'     :{'extension': 'pandoc' ,'command': 'pandoc'   },
+								\'redis'      :{'extension': 'redis'  ,'command': 'redis-cli'},
+								\'mongo'      :{'extension': 'mongo'  ,'command': 'mongo'    },
+								\'mysql'      :{'extension': 'mysql'  ,'command': 'mysql'    },
+								\'sqlite'     :{'extension': 'sqlite' ,'command': 'sqlite'   },
+								\'dosbatch'   :{'extension': 'cmd'    ,'command': 'cmd'      },
+								\'git'        :{'extension': 'git'    ,'command': 'gitsome'  },
+								\'lisp'       :{'extension': 'lisp'   ,'command': 'sbcl'     }}
+						"MAPPINGS
+							nnoremap <LocalLeader>cs :execute "Whiteboard "  . &filetype<CR>
+							nnoremap <LocalLeader>cS :execute "Whiteboard! " . &filetype<CR>
+				"RANDOM
+					Plug 'mattn/emmet-vim'
+						let g:user_emmet_install_global = 0
+						let g:user_emmet_leader_key='<TAB>'
+						autocmd FileType html,css,jsx,js,ts,tsx EmmetInstall
+					"Plug 'tpope/vim-abolish'
+					Plug 'arthurxavierx/vim-caser'
+						"CONFIGURATIONS
+							let g:caser_no_mappings = 1
+							let g:caser_prefix = 'gc'
+						"MAPPINGS
+							nmap <silent> gcc <Plug>CaserCamelCase
+							vmap <silent> gcc <Plug>CaserVCamelCase
+
+							nmap <silent> gcp <Plug>CaserMixedCase
+							vmap <silent> gcp <Plug>CaserVMixedCase
+
+							nmap <silent> gc. <Plug>CaserDotCase
+							vmap <silent> gc. <Plug>CaserVDotCase
+
+							nmap <silent> gc- <Plug>CaserKebabCase
+							vmap <silent> gc- <Plug>CaserVKebabCase
+
+							nmap <silent> gc_ <Plug>CaserSnakeCase
+							vmap <silent> gc_ <Plug>CaserVSnakeCase
+
+							nmap <silent> gc<space> <Plug>CaserSpaceCase
+							vmap <silent> gc<space> <Plug>CaserVMixSpaceCase
+
+							nmap <silent> gcT <Plug>CaserTitleKebabCase
+							vmap <silent> gcT <Plug>CaserVTitleKebabCase
+
+							nmap <silent> gct <Plug>CaserTitleCase
+							vmap <silent> gct <Plug>CaserVTitleCase
+
+							nmap <silent> gcs <Plug>CaserSentenceCase
+							vmap <silent> gcs <Plug>CaserVSentenceCase
+
+							nnoremap <silent> gcl gu
+							vnoremap <silent> gcl gu
+
+							nmap <silent> gcu <Plug>CaserUpperCase
+							vmap <silent> gcu <Plug>CaserVUpperCase
+					if has('nvim') || (has('vim') && v:version >= 800)
+						Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+							let g:mkdp_auto_start = 0
+							let g:mkdp_auto_close = 1
+							let g:mkdp_refresh_slow = 0
+							let g:mkdp_command_for_global = 0
+							let g:mkdp_open_to_the_world = 0
+							let g:mkdp_open_ip = ''
+							let g:mkdp_browser = ''
+							let g:mkdp_echo_preview_url = 0
+							let g:mkdp_browserfunc = ''
+							let g:mkdp_preview_options = {
+									\ 'mkit': {},
+									\ 'katex': {},
+									\ 'uml': {},
+									\ 'maid': {},
+									\ 'disable_sync_scroll': 0,
+									\ 'sync_scroll_type': 'middle',
+									\ 'hide_yaml_meta': 1,
+									\ 'sequence_diagrams': {},
+									\ 'flowchart_diagrams': {},
+									\ 'content_editable': v:false,
+									\ 'disable_filename': 0
+									\ }
+							let g:mkdp_markdown_css = ''
+							let g:mkdp_highlight_css = ''
+							let g:mkdp_port = ''
+							let g:mkdp_page_title = '?${name}?'
+							let g:mkdp_filetypes = ['markdown']
+					else
+						"install instant-markdown-d usig NPM
+						Plug 'suan/vim-instant-markdown'
+					endif
+				"DOCUMENTATION
+			"EXTENSIONS
+				Plug 'tpope/vim-repeat'
+				Plug 'tpope/vim-capslock'
+					nmap <silent> <LocalLeader><LocalLeader> <Plug>CapsLockToggle
+					imap ;; <Plug>CapsLockToggle
+				Plug 'liuchengxu/vim-which-key'
+					"CONFIGURATION
+						let g:which_key_sep				   = '→'
+						let g:which_key_hspace			   = 5
+						let g:which_key_flatten			   = 1
+						let g:which_key_max_size		   = 0
+						let g:which_key_sort_horizontal    = 0
+						let g:which_key_vertical		   = 0
+						let g:which_key_use_floating_win   = 0
+						let g:which_key_align_by_seperator = 1
+						let g:which_key_display_names	   = {
+							\' '	 : 'SPC',
+							\'<C-H>' : 'BS'
+						\}
+						let g:which_key_map				   = {}
+
+						"hiding statusline
+						autocmd! FileType which_key
+						autocmd  FileType which_key set laststatus=0 noshowmode noruler
+							\| autocmd BufLeave <buffer> set laststatus=2 noshowmode ruler
+
+						let g:which_key_map['*']   = "which_key_ignore"
+						let g:which_key_map['"']   = "which_key_ignore"
+						let g:which_key_map['/']   = "which_key_ignore"
+						let g:which_key_map['?']   = "which_key_ignore"
+						let g:which_key_map['@']   = "which_key_ignore"
+
+						let g:which_key_map['1-9'] = "open-buffer"
+							let g:which_key_map['1']   = "which_key_ignore"
+							let g:which_key_map['2']   = "which_key_ignore"
+							let g:which_key_map['3']   = "which_key_ignore"
+							let g:which_key_map['4']   = "which_key_ignore"
+							let g:which_key_map['5']   = "which_key_ignore"
+							let g:which_key_map['6']   = "which_key_ignore"
+							let g:which_key_map['7']   = "which_key_ignore"
+							let g:which_key_map['8']   = "which_key_ignore"
+							let g:which_key_map['9']   = "which_key_ignore"
+						let g:which_key_map['`']   = "open-last-buffer"
+
+						let g:which_key_map['<Tab>'] = "show-mappings"
+						let g:which_key_map[' '] = {'name':'+miscellanous'}
+
+						let g:which_key_map['a'] = {
+							\'name' : 'which_key_ignore',
+						\}
+						let g:which_key_map['b'] = {
+							\'name' : '+buffers',
+							\'l'	: 'list-buffers',
+							\'a'	: 'add-buffer',
+							\'c'	: 'close-buffer',
+							\'d'	: 'delete-buffer',
+							\'D'	: 'DELETE-buffer',
+							\'w'	: 'WRITE-buffer',
+							\'s'	: 'scratch-buffer',
+							\'S'	: 'scratch-buffer-filetype',
+							\'/'	: 'buffer-lines',
+							\'?'	: 'all-buffer-lines',
+						\}
+						let g:which_key_map['c'] = {
+							\'name' : 'which_key_ignore',
+						\}
+						let g:which_key_map['d'] = {
+							\'name' : 'which_key_ignore',
+						\}
+						let g:which_key_map['e'] = {
+							\'name' : 'which_key_ignore',
+						\}
+						let g:which_key_map['f'] = {
+							\'name' : 'which_key_ignore',
+						\}
+						let g:which_key_map['g'] = {
+							\'name' : '+git',
+						\}
+						let g:which_key_map['h'] = {
+							\'name' : 'which_key_ignore',
+						\}
+						let g:which_key_map['i'] = {
+							\'name' : 'which_key_ignore',
+						\}
+						let g:which_key_map['j'] = {
+							\'name' : '+jump',
+						\}
+						let g:which_key_map['k'] = {
+							\'name' : 'which_key_ignore',
+						\}
+						let g:which_key_map['l'] = {
+							\'name' : '+lsp',
+							\'g': {
+								\'name': '+goto',
+								\'d': 'goto-definition',
+								\'D': 'goto-type-definition',
+								\'i': 'goto-implementation',
+								\'r': 'goto-references',
+							\},
+							\'c': 'show-commands',
+							\'e': 'show-errors',
+							\'s': 'show-symbols',
+							\'o': 'show-outline',
+							\'r': 'rename-symbol',
+							\'f': 'format-selected',
+							\'F': 'format-buffer',
+							\'q': 'quickfix',
+							\'l': 'coc-list',
+							\'L': 'coc-list-resume',
+						\}
+						let g:which_key_map['m'] = {
+							\'name' : 'which_key_ignore',
+						\}
+						let g:which_key_map['n'] = {
+							\'name' : 'which_key_ignore',
+						\}
+						let g:which_key_map['o'] = {
+							\'name' : '+browse',
+							\'g'	: 'search-github',
+							\'d'	: 'search-duckduckgo',
+							\'w'	: 'search-wikipedia',
+						\}
+						let g:which_key_map['p'] = {
+							\'name' : '+projects',
+							\'l'	: '-list-projects',
+							\'n'	: '-new-project',
+							\'o'	: 'open-project',
+							\'O'	: '-open-last-project',
+							\'c'	: '-close-project',
+							\'f'	: 'open-project-file',
+							\'t'	: 'search-project',
+							\'e'	: 'open-project-directory',
+							\'E'	: 'open-file-directory',
+						\}
+						let g:which_key_map['q'] = {
+							\'name' : 'which_key_ignore',
+						\}
+						let g:which_key_map['r'] = {
+							\'name' : 'which_key_ignore',
+						\}
+						let g:which_key_map['S'] = {
+							\'name' : '+sessions',
+							\'l'	: 'list-sessions',
+							\'n'	: 'new-session',
+							\'d'	: 'delete-session',
+							\'s'	: '-save-session',
+							\'o'	: 'open-session',
+							\'c'	: 'close-session',
+						\}
+						let g:which_key_map['s'] = {
+							\'name' : '+scratch-window',
+							\'p'	: 'preview-scratch',
+							\'o'	: 'open-scratch',
+							\'s'	: 'send-selection',
+						\}
+						let g:which_key_map['t'] = {
+							\'name' : '+terminals',
+							\'l'	: 'list-terminals',
+							\'b'	: 'buffer-terminal',
+							\'f'	: 'float-terminal',
+							\'v'	: 'vertical-terminal',
+							\'h'	: 'horizontal-terminal',
+							\'t'	: 'toggle-terminal',
+							\'d'	: 'delete-terminal',
+							\'n'	: 'next-terminal',
+							\'p'	: 'previous-terminal',
+							\'B'	: 'buffer-terminal-lcd',
+							\'F'	: '-float-terminal-lcd',
+							\'V'	: 'vertical-terminal-lcd',
+							\'H'	: 'horizontal-terminal-lcd',
+						\}
+						let g:which_key_map['T'] = {
+							\'name' : '+tabs',
+							\'l'	: 'list-tabs',
+							\'a'	: 'add-tab',
+							\'d'	: 'delete-tab',
+							\'n'	: 'next-tab',
+							\'p'	: 'previous-tab',
+							\'N'	: 'move-tab-right',
+							\'P'	: 'move-tab-left',
+						\}
+						let g:which_key_map['u'] = {
+							\'name' : 'which_key_ignore',
+						\}
+						let g:which_key_map['v'] = {
+							\'name' : '+vim',
+							\'c' : 'open-config-file',
+							\'s' : 'source-config-file',
+							\'C' : 'set-colorscheme',
+							\'/' : 'search-history',
+							\':' : 'command-history',
+							\'h' : {
+								\'name' : '+help',
+								\'c'	: 'commands',
+								\'h'	: 'help',
+								\'m'	: 'maps',
+							\},
+							\'p' : {
+								\'name' : '+plugin-manager',
+								\'l'	: 'list-plugins',
+								\'a'	: 'install-plugins',
+								\'d'	: 'uninstall-plugins',
+								\'u'	: 'update-plugins',
+								\'U'	: 'update-plugin',
+								\'p'	: 'update-plugin-manager',
+							\},
+							\'t' : {
+								\'name' : '+toggles',
+								\'w'	: 'autosave-toggle',
+								\'c'	: 'autocorrect-toggle',
+								\'f'	: 'autoformat-toggle',
+								\'p'	: 'pencil-toggle',
+								\'d'	: 'distraction-mode',
+								\'l'	: 'limelight',
+							\},
+						\}
+						let g:which_key_map['w'] = {
+							\'name' : '+windows',
+							\'h'	: 'horizontal-split',
+							\'v'	: 'vertical-split',
+							\'c'	: 'close-split',
+							\'o'	: 'only-split',
+							\'m'	: 'maximize-split',
+							\'H'	: 'empty-horizontal-split',
+							\'V'	: 'empty-vertical-split',
+						\}
+						let g:which_key_map['x'] = {
+							\'name' : 'which_key_ignore',
+						\}
+						let g:which_key_map['y'] = {
+							\'name' : 'which_key_ignore',
+						\}
+						let g:which_key_map['z'] = {
+							\'name' : '+miscelleanous',
+						\}
+					"MAPPINGS
+						nnoremap <silent> <Leader>		:<C-U>WhichKey		 '<SPACE>' <CR>
+						vnoremap <silent> <Leader>		:<C-U>WhichKeyVisual '<SPACE>' <CR>
+						nnoremap <silent> <LocalLeader> :<C-U>WhichKey		 ','	   <CR>
+				Plug 'szw/vim-maximizer'
+					nnoremap <silent> <Leader>wm :MaximizerToggle<CR>
+				Plug 'mbbill/undotree'
+					"CONFIGURATIONS
+						let g:undotree_WindowLayout = 2
+						let g:undotree_ShortIndicators = 1
+						let g:undotree_SplitWidth = 30
+						let g:undotree_DiffpanelHeight = 10
+						let g:undotree_SetFocusWhenToggle = 1
+						let g:undotree_TreeNodeShape = '◉'
+						" let g:undotree_DiffCommand = "Delta"
+						let g:undotree_HighlightChangedText = 1
+						let g:undotree_HighlightChangedWithSign = 1
+						let g:undotree_HighlightSyntaxAdd = "DiffAdd"
+						let g:undotree_HighlightSyntaxChange = "DiffChange"
+						let g:undotree_HighlightSyntaxDel = "DiffDelete"
+						let g:undotree_HelpLine = 0
+						let g:undotree_CursorLine = 1
+					"MAPPINGS
+						nnoremap <Leader>vu :UndotreeToggle<CR>
+				Plug 'junegunn/vim-peekaboo'
+					let g:peekaboo_window  = 'vert bo 80new'
+					let g:peekaboo_compact = 0
+				if has('folding')
+					Plug 'pseewald/vim-anyfold'
+						"CONFIGURATION
+							let g:anyfold_motion            = 0
+							let g:anyfold_fold_comments     = 0
+							let g:anyfold_identify_comments = 0
+							let g:anyfold_fold_toplevel     = 1
+							let g:anyfold_comments          = []
+							let g:anyfold_fold_level_str    = ''
+							let g:anyfold_fold_size_str     = '%s Lines   '
+						"HIGHLIGHT
+							"hi Folded ctermfg= ctermbg= guifg= guibg
+						"AUTOCOMMANDS
+							autocmd FileType jproperties AnyFoldActivate
+						"MAPPINGS
+					"Plug 'arecarn/vim-fold-cycle'
+						"let g:fold_cycle_default_mapping = 0
+						"nmap <TAB>	 <Plug>(fold-cycle-open)
+						"nmap <S-TAB> <Plug>(fold-cycle-close)
+				endif
+				if has('signs')
+					Plug 'kshenoy/vim-signature'
+				endif
+			"CLIENTS
+				if has('nvim')
+					Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+				endif
+			"WRITTING
+				Plug 'reedes/vim-pencil'
+					nnoremap <silent> <Leader>vtp :PencilToggle<CR>
+				Plug 'panozzaj/vim-autocorrect'
+					nnoremap <silent> <Leader>vtc :call AutoCorrect()<CR>
+				Plug 'davidbeckingsale/writegood.vim'
+				Plug 'dbmrq/vim-ditto'
+				Plug 'reedes/vim-lexical'
+					nnoremap <silent> <Leader><Leader>s :set spell!<CR>
+					let g:lexical#spell = 1
+					let g:lexical#spell_key = '<leader>zs'
+					let g:lexical#spelllang = ['en_us', 'en_ca',]
+					"let g:lexical#dictionary = ['/usr/share/dict/words',]
+					let g:lexical#thesaurus = ['~/.config/nvim/spell/mthesaurus.txt/',]
+					let g:lexical#spellfile = ['~/.config/spell/en.utf-8.add',]
+			"RANDOM
+				Plug 'mtth/scratch.vim'
+					let g:scratch_no_mappings      = 1
+					let g:scratch_height           = 0.3
+					let g:scratch_top              = 0
+					let g:scratch_persistence_file = g:jaat_tmp_path . 'scratch'
+
+					nnoremap <silent> <Leader>so :Scratch<CR>
+					nnoremap <silent> <Leader>sp :ScratchPreview<CR>
+					vnoremap <silent> <Leader>ss :ScratchSelection<CR>
+
+					augroup SCRATCH_ENTER
+						autocmd!
+						autocmd FileType scratch nnoremap <buffer> <esc> :q<CR>
+						autocmd FileType scratch set syntax=jproperties
+					augroup END
+				Plug 'tyru/open-browser.vim'
+					"CONFIGURATION
+						"if something' not working run :VimProcInstall"
+						let g:netrw_nogx = 1
+						let g:openbrowser_search_engines = {
+							\'askubuntu'   : 'http://askubuntu.com/search?q={query}',
+							\'duckduckgo'  : 'http://duckduckgo.com/?q={query}',
+							\'github'	   : 'http://github.com/search?q={query}',
+							\'google'	   : 'http://google.com/search?q={query}',
+							\'vim'		   : 'http://www.google.com/cse?cx=partner-pub-3005259998294962%3Abvyni59kjr1&ie=ISO-8859-1&q={query}&sa=Search&siteurl=www.vim.org%2F#gsc.tab=0&gsc.q={query}&gsc.page=1',
+							\'flipkart'    : 'https://www.flipkart.com/search?q={query}&otracker=start&as-show=off&as=off',
+							\'wikipedia'   : 'http://en.wikipedia.org/wiki/{query}',
+							\'wikivoyage'  : 'https://en.wikivoyage.org/wiki/{query}',
+							\'wiktionary'  : 'https://en.wiktionary.org/wiki/{query}',
+							\'wikinews'    : 'https://en.wikinews.org/wiki/{query}',
+							\'wikisource'  : 'https://en.wikisource.org/wiki/{query}',
+							\'wikibooks'   : 'https://en.wikibooks.org/wiki/{query}',
+							\'wikidata'    : 'https://en.wikidata.org/wiki/{query}',
+							\'wikispecies' : 'https://species.wikimedia.org/wiki/{query}',
+							\'wikiquote'   : 'https://en.wikiquote.org/wiki/{query}',
+						\ }
+					"FUNCTIONS
+						function! OpenUnderCursor()
+							let l:word = GetWORDUnderCursor()
+
+							if l:word !~  '^http'
+								let l:word = 'https://' . l:word
+							endif
+
+							execute 'OpenBrowser ' . l:word
+						endfunction
+					"OPERATORS
+						"OPERATOR-BROWSER
+							function! OperatorOpenBrowser(visual, ...)
+								let [lineStart, columnStart] = getpos(a:0 ? "'<" : "'[")[1:2]
+								let [lineEnd, columnEnd]	 = getpos(a:0 ? "'>" : "']")[1:2]
+								let lines					 = getline(lineStart, lineEnd)
+
+								if len(lines) == 0
+									return
+								endif
+
+								if a:visual == 'block' || a:visual == "\<c-v>"
+									call PEchoError('Operator not defined for VISUAL-BLOCK mode')
+									return
+								elseif a:visual == 'line' || a:visual ==# 'V'
+									execute 'OpenBrowserSmartSearch ' . join(lines, '\n')
+								elseif a:visual == 'char' || a:visual ==# 'v'
+									let lines[-1] = lines[-1][: columnEnd - (&selection == 'inclusive' ? 1 : 2)]
+									let lines[0]  = lines[0][columnStart - 1:]
+									execute 'OpenBrowserSmartSearch ' . join(lines, '\n')
 								endif
 							endfunction
-						"COMMANDS
-							command! -nargs=0 COCFormat          :call CocAction('format')
-							command! -nargs=? COCFold            :call CocAction('fold', <f-args>)
-							command! -nargs=0 COCOrganizeImports :call CocAction('runCommand', 'editor.action.organizeImport')
-						"AUTOCOMMANDS
-							augroup COC
-								autocmd!
-								autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-								autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-							augroup end
 
-							autocmd CursorHold * silent call CocActionAsync('highlight')
-						"MAPPINGS
-							"COC-GOTO
-								nmap <silent> <Leader>lgd <Plug>(coc-definition)
-								nmap <silent> <Leader>lgD <Plug>(coc-type-definition)
-								nmap <silent> <Leader>lgi <Plug>(coc-implementation)
-								nmap <silent> <Leader>lgr <Plug>(coc-references)
-							"COC-COMPLETION
-								inoremap <silent> <expr> <C-SPACE> coc#refresh()
-								inoremap <silent> <expr> <CR> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
-								inoremap <silent> <expr> <TAB>
-									\ pumvisible() ? "\<C-n>" :
-									\ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-									\ <SID>checkBackspace() ? "\<TAB>" :
-									\ coc#refresh()
-								inoremap <silent> <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
-							"COC-SNIPPETS
-								"imap <C-l>     <Plug>(coc-snippets-expand)
-								"imap <C-j>     <Plug>(coc-snippets-select)
-								"imap <C-j>     <Plug>(coc-snippets-expand-jump)
-								"xmap <leader>x <Plug>(coc-convert-snippet)
-							"COC-DIAGNOSTICS
-								nmap <silent> [e <Plug>(coc-diagnostic-prev)
-								nmap <silent> ]e <Plug>(coc-diagnostic-next)
-							"COC-ACTIONS
-								nmap <leader>lac <Plug>(coc-codeaction)
-								nmap <leader>laq <Plug>(coc-fix-current)
-								xmap <leader>laf <Plug>(coc-format-selected)
-								nmap <leader>laf <Plug>(coc-format-selected)
-								nmap <leader>laF :COCFormat<CR>
-								nmap <leader>lao :COCOrganizeImports<CR>
+							nnoremap <silent> gb :set opfunc=OperatorOpenBrowser<CR>g@
+							vnoremap <silent> gb :<C-U>call OperatorOpenBrowser(visualmode(), 1)<CR>
 
-								nmap <C-A-a>  <Plug>(coc-codeaction-selected)
-								xmap <C-A-a>  <Plug>(coc-codeaction-selected)
-							"COC-DOCUMENTATION
-								nnoremap <silent> K :call s:showDocumentation()<CR>
-							"COC-OBJECTS
-								"NOTE: Requires 'textDocument.documentSymbol' support from the language server.
-								xmap <LocalLeader>if <Plug>(coc-funcobj-i)
-								omap <LocalLeader>if <Plug>(coc-funcobj-i)
-								xmap <LocalLeader>af <Plug>(coc-funcobj-a)
-								omap <LocalLeader>af <Plug>(coc-funcobj-a)
-								xmap <LocalLeader>ic <Plug>(coc-classobj-i)
-								omap <LocalLeader>ic <Plug>(coc-classobj-i)
-								xmap <LocalLeader>ac <Plug>(coc-classobj-a)
-								omap <LocalLeader>ac <Plug>(coc-classobj-a)
-							"COC-LIST
-								nnoremap <silent><nowait> <Leader>lL  :<C-u>CocList<CR>
-								nnoremap <silent><nowait> <Leader>ll  :<C-u>CocListResume<CR>
-								nnoremap <silent><nowait> <Leader>le  :<C-u>CocList diagnostics<CR>
-								nnoremap <silent><nowait> <Leader>lc  :<C-u>CocList commands<CR>
-								nnoremap <silent><nowait> <Leader>lo  :<C-u>CocList outline<CR>
-								nnoremap <silent><nowait> <Leader>ls  :<C-u>CocList -I symbols<CR>
+							nnoremap <silent> gbb :call OpenUnderCursor()<CR>
+					"MAPPINGS
+						"CUSTOM
+							nmap <Leader>og :execute ":OpenBrowserSearch -github " GetWordUnderCursor() <CR>
+							vmap <Leader>og :<C-w>execute ":OpenBrowserSearch -github " GetSelectedText() <CR>
 
-								nnoremap <silent><nowait> <Leader>ln  :<C-u>CocNext<CR>
-								nnoremap <silent><nowait> <Leader>lp  :<C-u>CocPrev<CR>
-							"RANDOM
-								nmap          <Leader>lr <Plug>(coc-rename)
-								nmap <silent> <C-s>      <Plug>(coc-range-select)
-								xmap <silent> <C-s>      <Plug>(coc-range-select)
+							nmap <Leader>od :execute ":OpenBrowserSearch -duckduckgo " GetWordUnderCursor() <CR>
+							vmap <Leader>od :<C-w>execute ":OpenBrowserSearch -duckduckgo " GetSelectedText() <CR>
+
+							nmap <Leader>ow :execute ":OpenBrowserSearch -wikipedia " GetWordUnderCursor() <CR>
+							vmap <Leader>ow :<C-w>execute ":OpenBrowserSearch -wikipedia " GetSelectedText() <CR>
+			"LIBRARIES
+			"DEPENDENCIES
+				Plug 'Shougo/vimproc.vim'
+			"LIBRARIES
+				Plug 'kana/vim-textobj-user'
+				Plug 'kana/vim-operator-user'
+				"Plug 'mattn/webapi-vim'
+				"Plug 'lucerion/vim-buffr'
+				"Plug 'kana/vim-submode'
+					let g:submode_always_show_submode = 1
+					"let g:submode_keep_leaving_key = 1
+					"let g:submode_timeout = 0
+					let g:submode_timeoutlen = 1000
+				"Plug 'vim-scripts/vim-easy-submode'
+					" call easysubmode#load()
+
+					" SubmodeDefine buffers
+					" Submode n <enter> <Leader>b. :bnext<CR>
+					" Submode n h :bnext<CR>
+					" Submode n l :bprevious<CR>
+					" SubmodeDefineEnd
+
+					" SubmodeDefine tabs
+					" Submode n <enter> <Leader>t. :tabnext<CR>
+					" Submode n n :tabnext<CR>
+					" Submode n p :tabprevious<CR>
+					" Submode n h :tabmove +1<CR>
+					" Submode n l :tabmove -1<CR>
+					" SubmodeDefineEnd
+
+
+					" SubmodeDefine windows
+					" Submode n <enter> <Leader>w. <C-W><C-L>
+					" Submode n h <C-W><C-H>
+					" Submode n j <C-W><C-J>
+					" Submode n k <C-W><C-K>
+					" Submode n l <C-W><C-L>
+
+					" Submode n <S-h> <C-W><S-H>
+					" Submode n <S-j> <C-W><S-J>
+					" Submode n <S-k> <C-W><S-K>
+					" Submode n <S-l> <C-W><S-L>
+
+					" Submode n r <C-W><C-R>
+					" Submode n R <C-W><S-R>
+					" SubmodeDefineEnd
+				"Plug 'kana/vim-arpeggio'
+				"Plug 'vim-scripts/tinymode.vim'
+				"Plug 'tyru/stickykey.vim'
+				"Plug 'luzhlon/popup.vim'
+				"Plug 'skywind3000/quickmenu.vim'
+			"TODO:DEVELOPMENT
+				"VCS
+					"Plug 'airblade/vim-gitgutter'
+					"Plug 'mhinz/vim-signify'
+			"MESS:EXTENDING-VIM
+				Plug 'svermeulen/vim-yoink'
+					let g:yoinkMaxItems				   = 10
+					let g:yoinkSyncNumberedRegisters   = 1
+					let g:yoinkIncludeDeleteOperations = 1
+					let g:yoinkAutoFormatPaste		   = 0
+					let g:yoinkIncludeNamedRegisters   = 0
+
+					"nmap y <plug>(YoinkYankPreserveCursorPosition)
+					"xmap y <plug>(YoinkYankPreserveCursorPosition)
+					"nmap <expr> p yoink#canSwap() ? '<plug>(YoinkPostPasteSwapBack)' : '<plug>(YoinkPaste_p)'
+					"nmap <expr> P yoink#canSwap() ? '<plug>(YoinkPostPasteSwapForward)' : '<plug>(YoinkPaste_P)'
+				"Plug 'vim-scripts/repmo.vim'
+					let repmo_key = ";"
+					let repmo_revkey = ","
+				if has('macunix')
+					Plug 'gastonsimone/vim-dokumentary'
 				endif
-				Plug 'liuchengxu/vista.vim'
-					"CONFIGURATION
-						let g:vista_default_executive = 'coc'
-						let g:vista#renderer#enable_icon = 1
-						let g:vista_sidebar_width = 45
-						let g:vista_fzf_preview = ['right:50%']
-						let g:vista_echo_cursor_strategy = 'echo'
-					"MAPPINGS
-						nnoremap <silent> <Leader>lt :Vista!!<CR>
-						nnoremap <silent> <Leader>lT :Vista finder fzf<CR>
-					"STATUSLINE
-						function! NearestMethodOrFunction() abort
-							return get(b:, 'vista_nearest_method_or_function', '')
-						endfunction
+				"Plug 'joeytwiddle/sexy_scroller.vim'
+					let g:SexyScoller_ScrollTime = 10
+					let g:SexyScroller_CursorTime = 5
+					let g:SexyScroller_MaxTime = 200
+					let g:SexyScroller_EasingStyle = 1
+				"Plug 'terryma/vim-smooth-scroll'
+				"Plug 'jiangmiao/auto-pairs'
+				"Plug 'tpope/vim-speeddating'
+			"MESS
+				Plug 'vim-scripts/DrawIt'
+				Plug 'alpertuna/vim-header'
+					let g:header_auto_add_header = 0
+					"let g:header_alignment = 1
+					let g:header_field_filename = 0
+					let g:header_field_modified_by = 0
+					let g:header_field_author = 'Sahil Sehwag'
+					let g:header_field_author_email = 'sehwagsahil002@gmail.com'
 
-						set statusline+=%{NearestMethodOrFunction()}
-						autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
-			"TREESITTER
-			"COMMENTS
-				"Plug 'tpope/vim-commentary'
-				Plug 'scrooloose/nerdcommenter'
-					"CONFIGURATION
-						let g:NERDCreateDefaultMappings  = 0
-						let g:NERDSpaceDelims            = 1
-						let g:NERDCompactSexyComs        = 1
-						let g:NERDDefaultAlign           = 'left'
-						let g:NERDAltDelims_java         = 1
-						let g:NERDCustomDelimiters       = { 'c': { 'left': '/**','right': '*/' } }
-						let g:NERDCommentEmptyLines      = 1
-						let g:NERDTrimTrailingWhitespace = 1
-						let g:NERDToggleCheckAllLines    = 1
-					"MAPPINGS
-						xmap gkc <plug>NERDCommenterToggle
-						xmap gkC <plug>NERDCommenterNested
-						xmap gki <plug>NERDCommenterInvert
-						xmap gkm <plug>NERDCommenterAltDelims
-						xmap gkM <plug>NERDCommenterMinimal
-						xmap gks <plug>NERDCommenterSexy
-						xmap gky <plug>NERDCommenterYank
-						nmap gk9 <plug>NERDCommenterToEOL
-						nmap gka <plug>NERDCommenterAppend
-			"DATABASE
-				Plug 'tpope/vim-dadbod'
-				Plug 'kristijanhusak/vim-dadbod-ui'
-			"SNIPPETS
-				Plug 'honza/vim-snippets'
-				Plug 'epilande/vim-react-snippets'
-			"DEBUGGING
-			"PLAYGROUND
-				Plug 'metakirby5/codi.vim'
-					let g:codi#width	  = 80
-					let g:codi#rightalign = 0
-					nmap <LocalLeader>ci :Codi!!<CR>
-				Plug 'arkwright/vim-whiteboard'
-					"CONFIGURATION
-						let g:whiteboard_temp_directory = g:jaat_tmp_path . 'whiteboard'
-						let g:whiteboard_interpreters = {
-							\'python'     :{'extension': 'py'     ,'command': 'python3'  },
-							\'r'          :{'extension': 'r'      ,'command': 'r'        },
-							\'javascript' :{'extension': 'js'     ,'command': 'node'     },
-							\'java'       :{'extension': 'java'   ,'command': 'jshell'   },
-							\'lua'        :{'extension': 'lua'    ,'command': 'lua'      },
-							\'php'        :{'extension': 'php'    ,'command': 'php'      },
-							\'ruby'       :{'extension': 'rb'     ,'command': 'ruby'     },
-							\'haskell'    :{'extension': 'hs'     ,'command': 'ghci'     },
-							\'scala'      :{'extension': 'scala'  ,'command': 'scala'    },
-							\'perl'       :{'extension': 'pl'     ,'command': 'perl'     },
-							\'go'         :{'extension': 'go'     ,'command': 'gore'     },
-							\'typescript' :{'extension': 'ts'     ,'command': 'ts-node'  },
-							\'sh'         :{'extension': 'sh'     ,'command': 'bash'     },
-							\'bash'       :{'extension': 'bash'   ,'command': 'bash'     },
-							\'zsh'        :{'extension': 'zsh'    ,'command': 'zsh'      },
-							\'fish'       :{'extension': 'fsh'    ,'command': 'fsh'      },
-							\'pandoc'     :{'extension': 'pandoc' ,'command': 'pandoc'   },
-							\'redis'      :{'extension': 'redis'  ,'command': 'redis-cli'},
-							\'mongo'      :{'extension': 'mongo'  ,'command': 'mongo'    },
-							\'mysql'      :{'extension': 'mysql'  ,'command': 'mysql'    },
-							\'sqlite'     :{'extension': 'sqlite' ,'command': 'sqlite'   },
-							\'dosbatch'   :{'extension': 'cmd'    ,'command': 'cmd'      },
-							\'git'        :{'extension': 'git'    ,'command': 'gitsome'  },
-							\'lisp'       :{'extension': 'lisp'   ,'command': 'sbcl'     }}
-					"MAPPINGS
-						nnoremap <LocalLeader>cs :execute "Whiteboard "  . &filetype<CR>
-						nnoremap <LocalLeader>cS :execute "Whiteboard! " . &filetype<CR>
-			"RANDOM
-				Plug 'mattn/emmet-vim'
-					let g:user_emmet_install_global = 0
-					let g:user_emmet_leader_key='<TAB>'
-					autocmd FileType html,css,jsx,js,ts,tsx EmmetInstall
-				"Plug 'tpope/vim-abolish'
-				Plug 'arthurxavierx/vim-caser'
-					"CONFIGURATIONS
-						let g:caser_no_mappings = 1
-						let g:caser_prefix = 'gc'
-					"MAPPINGS
-						nmap <silent> gcc <Plug>CaserCamelCase
-						vmap <silent> gcc <Plug>CaserVCamelCase
+					map <Leader>zh :AddHeader<CR>
+					map <Leader>zH :AddMinHeader<CR>
+					map <Leader>zlm :AddMITLicense<CR>
+					map <Leader>zla :AddApacheLicense<CR>
+					map <Leader>zlg :AddGNULicense<CR>
+				Plug 'itchyny/calendar.vim'
+					nnoremap <Leader>zcy :Calendar -view=year<CR>
+					nnoremap <Leader>zcm :Calendar -view=month<CR>
+					nnoremap <Leader>zcw :Calendar -view=week<CR>
+					nnoremap <Leader>zcd :Calendar -view=day<CR>
+					nnoremap <Leader>zcD :Calendar -view=days<CR>
+					nnoremap <Leader>zcc :Calendar -view=clock<CR>
+					nnoremap <Leader>zce :Calendar -view=event<CR>
+					nnoremap <Leader>zca :Calendar -view=agenda<CR>
+				Plug 'shanzi/autoHEADER'
+				Plug 'itchyny/dictionary.vim'
+					nnoremap <Leader>zd :Dictionary<CR>
+					nnoremap <Leader>zD :Dictionary -cursor-word<CR>
+				Plug 'leothelocust/vim-makecols'
+				Plug 'tweekmonster/startuptime.vim'
+				Plug 'sbdchd/vim-shebang'
+				Plug 'vim-utils/vim-read'
+				Plug 'antoyo/vim-licenses'
+				Plug 'vim-scripts/WholeLineColor'
+					let g:wholelinecolor_leader = ','
+					highlight WLCBlackBackground  ctermbg=233 guibg=#121212
+					highlight WLCRedBackground	  ctermbg=52  guibg=#882323
+					highlight WLCBlueBackground   ctermbg=17  guibg=#003366
+					highlight WLCPurpleBackground ctermbg=53  guibg=#732c7b
+					highlight WLCGreyBackground   ctermbg=238 guibg=#464646
+					highlight WLCGreenBackground  ctermbg=22  guibg=#005500
+				Plug 'junegunn/goyo.vim'
+					let g:goyo_width = "75%"
+					"let g:goyo_height = "90%"
+					let g:goyo_linenr = 1
 
-						nmap <silent> gcp <Plug>CaserMixedCase
-						vmap <silent> gcp <Plug>CaserVMixedCase
-
-						nmap <silent> gc. <Plug>CaserDotCase
-						vmap <silent> gc. <Plug>CaserVDotCase
-
-						nmap <silent> gc- <Plug>CaserKebabCase
-						vmap <silent> gc- <Plug>CaserVKebabCase
-
-						nmap <silent> gc_ <Plug>CaserSnakeCase
-						vmap <silent> gc_ <Plug>CaserVSnakeCase
-
-						nmap <silent> gc<space> <Plug>CaserSpaceCase
-						vmap <silent> gc<space> <Plug>CaserVMixSpaceCase
-
-						nmap <silent> gcT <Plug>CaserTitleKebabCase
-						vmap <silent> gcT <Plug>CaserVTitleKebabCase
-
-						nmap <silent> gct <Plug>CaserTitleCase
-						vmap <silent> gct <Plug>CaserVTitleCase
-
-						nmap <silent> gcs <Plug>CaserSentenceCase
-						vmap <silent> gcs <Plug>CaserVSentenceCase
-
-						nnoremap <silent> gcl gu
-						vnoremap <silent> gcl gu
-
-						nmap <silent> gcu <Plug>CaserUpperCase
-						vmap <silent> gcu <Plug>CaserVUpperCase
-				if has('nvim') || (has('vim') && v:version >= 800)
-					Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
-						let g:mkdp_auto_start = 0
-						let g:mkdp_auto_close = 1
-						let g:mkdp_refresh_slow = 0
-						let g:mkdp_command_for_global = 0
-						let g:mkdp_open_to_the_world = 0
-						let g:mkdp_open_ip = ''
-						let g:mkdp_browser = ''
-						let g:mkdp_echo_preview_url = 0
-						let g:mkdp_browserfunc = ''
-						let g:mkdp_preview_options = {
-								\ 'mkit': {},
-								\ 'katex': {},
-								\ 'uml': {},
-								\ 'maid': {},
-								\ 'disable_sync_scroll': 0,
-								\ 'sync_scroll_type': 'middle',
-								\ 'hide_yaml_meta': 1,
-								\ 'sequence_diagrams': {},
-								\ 'flowchart_diagrams': {},
-								\ 'content_editable': v:false,
-								\ 'disable_filename': 0
-								\ }
-						let g:mkdp_markdown_css = ''
-						let g:mkdp_highlight_css = ''
-						let g:mkdp_port = ''
-						let g:mkdp_page_title = '?${name}?'
-						let g:mkdp_filetypes = ['markdown']
-				else
-					"install instant-markdown-d usig NPM
-					Plug 'suan/vim-instant-markdown'
+					nnoremap <Leader>vtd  :Goyo<CR>
+				Plug 'junegunn/limelight.vim'
+					nnoremap <Leader>vtl  :Limelight!!<CR>
+				"Plug 'natw/keyboard_cat.vim'
+				if !IsWindows()
+					"Plug 'MrPeterLee/VimWordpress'
+						nnoremap <LocalLeader>wl :call RunInNewBuffer('BlogList', 'wordpress')<CR>
+						nnoremap <LocalLeader>wn :call RunInNewBuffer('BlogNew',  'wordpress')<CR>
+						nnoremap <LocalLeader>wd :BlogSave draft<CR>
+						nnoremap <LocalLeader>wP :BlogSave publish<CR>
+						nnoremap <LocalLeader>wD :BlogPreview draft<CR>
+						nnoremap <LocalLeader>wp :BlogPreview publish<CR>
+						nnoremap <LocalLeader>wc :BlogCode python<CR>
+						nnoremap <LocalLeader>wu :BlogUpload<space><CR>
 				endif
-			"DOCUMENTATION
-		"EXTENSIONS
-			Plug 'tpope/vim-repeat'
-			Plug 'tpope/vim-capslock'
-				nmap <silent> <LocalLeader><LocalLeader> <Plug>CapsLockToggle
-				imap ;; <Plug>CapsLockToggle
-			Plug 'liuchengxu/vim-which-key'
-				"CONFIGURATION
-					let g:which_key_sep				   = '→'
-					let g:which_key_hspace			   = 5
-					let g:which_key_flatten			   = 1
-					let g:which_key_max_size		   = 0
-					let g:which_key_sort_horizontal    = 0
-					let g:which_key_vertical		   = 0
-					let g:which_key_use_floating_win   = 0
-					let g:which_key_align_by_seperator = 1
-					let g:which_key_display_names	   = {
-						\' '	 : 'SPC',
-						\'<C-H>' : 'BS'
-					\}
-					let g:which_key_map				   = {}
+				"Plug 'vim-scripts/autoscroll.vim'
+					let g:AutoScrollSpeed = 100
+				"Plug 'fadein/vim-FIGlet'
+					nnoremap <Leader>zf :FIGlet<CR>
+					nnoremap <Leader>zF :FIGlet -f<space>
+					vnoremap <Leader>zf :FIGlet<CR>
+					vnoremap <Leader>zF :FIGlet -f<space>
+				"Plug 'chrisbra/changesPlugin'
+				"Plug 'guns/xterm-color-table.vim'
+				"Plug 'vim-scripts/ScrollColors'
+				"Plug 'gorodinskiy/vim-coloresque'
+				"Plug 'tweekmonster/nvim-api-viewer'
+				"Plug 'kyuhi/vim-emoji-complete'
+			"TOTEST
+				if has('nvim')
+					"TODO:NOT-WORKING
+					"Plug 'ripxorip/aerojump.nvim', { 'do': ':UpdateRemotePlugins' }
+						"nmap <Leader>as <Plug>(AerojumpSpace)
+						"nmap <Leader>ab <Plug>(AerojumpBolt)
+						"nmap <Leader>aa <Plug>(AerojumpFromCursorBolt)
+						"nmap <Leader>ad <Plug>(AerojumpDefault)
+				endif
+			"TODECIDE
+				Plug 'kopischke/vim-fetch'
+				Plug 'rhysd/conflict-marker.vim'
+				"Plug 'camspiers/animate.vim'
+					""CONFIGURATION
+						"let g:fzf_layout = {'window': 'new | wincmd J | resize 1 | call animate#window_percent_height(0.5)'}
+					""MAPPINGS
+						"nnoremap <silent> <up>    :call animate#window_delta_height(10)<CR>
+						"nnoremap <silent> <down>  :call animate#window_delta_height(-10)<CR>
+						"nnoremap <silent> <left>  :call animate#window_delta_width(10)<CR>
+						"nnoremap <silent> <right> :call animate#window_delta_width(-10)<CR>
+				"Plug 'camspiers/lens.vim'
+					let g:lens#animate = 1
+				"Plug 'gyim/vim-boxdraw'
+				"Plug 'tweekmonster/fzf-filemru'
+				"Plug 'fmoralesc/vim-pad'
+				"Plug 'tenfyzhong/axring.vim'
+					"let g:axring_rings = [
+					"\ ]
 
-					"hiding statusline
-					autocmd! FileType which_key
-					autocmd  FileType which_key set laststatus=0 noshowmode noruler
-						\| autocmd BufLeave <buffer> set laststatus=2 noshowmode ruler
+					"augroup AXRING
+						"au!
+						"au Filetype python execute "let g:axring_rings_" . &filetype . " = s:languages['" . &filetype . "'].axrings"
+					"augroup END
+				Plug 'svermeulen/vim-macrobatics'
+					nmap qp <plug>(Mac_Play)
+					nmap qr <plug>(Mac_RecordNew)
+				if v:version >= 800
+					"TODO:FIX
+					"Plug 'TaDaa/vimade'
+				endif
+				"Plug 'tyru/capture.vim'
+				Plug 'unblevable/quick-scope'
+				Plug 'haya14busa/vim-signjk-motion'
+				Plug 'haya14busa/vim-over'
+					"TODO:FIX|DECIDE
+					"nmap <Leader>fR :OverCommandLine<CR>
+				"Plug 'vim-scripts/MultipleSearch'
+				"Plug 'henrik/vim-indexed-search'
+				Plug 'zirrostig/vim-schlepp'
+					vmap <up>	 <Plug>SchleppUp
+					vmap <down>  <Plug>SchleppDown
+					vmap <left>  <Plug>SchleppLeft
+					vmap <right> <Plug>SchleppRight
 
-					let g:which_key_map['*']   = "which_key_ignore"
-					let g:which_key_map['"']   = "which_key_ignore"
-					let g:which_key_map['/']   = "which_key_ignore"
-					let g:which_key_map['?']   = "which_key_ignore"
-					let g:which_key_map['@']   = "which_key_ignore"
-
-					let g:which_key_map['1-9'] = "open-buffer"
-						let g:which_key_map['1']   = "which_key_ignore"
-						let g:which_key_map['2']   = "which_key_ignore"
-						let g:which_key_map['3']   = "which_key_ignore"
-						let g:which_key_map['4']   = "which_key_ignore"
-						let g:which_key_map['5']   = "which_key_ignore"
-						let g:which_key_map['6']   = "which_key_ignore"
-						let g:which_key_map['7']   = "which_key_ignore"
-						let g:which_key_map['8']   = "which_key_ignore"
-						let g:which_key_map['9']   = "which_key_ignore"
-					let g:which_key_map['`']   = "open-last-buffer"
-
-					let g:which_key_map['<Tab>'] = "show-mappings"
-					let g:which_key_map[' '] = {'name':'+miscellanous'}
-
-					let g:which_key_map['a'] = {
-						\'name' : 'which_key_ignore',
-					\}
-					let g:which_key_map['b'] = {
-						\'name' : '+buffers',
-						\'l'	: 'list-buffers',
-						\'a'	: 'add-buffer',
-						\'c'	: 'close-buffer',
-						\'d'	: 'delete-buffer',
-						\'D'	: 'DELETE-buffer',
-						\'w'	: 'WRITE-buffer',
-						\'s'	: 'scratch-buffer',
-						\'S'	: 'scratch-buffer-filetype',
-						\'/'	: 'buffer-lines',
-						\'?'	: 'all-buffer-lines',
-					\}
-					let g:which_key_map['c'] = {
-						\'name' : 'which_key_ignore',
-					\}
-					let g:which_key_map['d'] = {
-						\'name' : 'which_key_ignore',
-					\}
-					let g:which_key_map['e'] = {
-						\'name' : 'which_key_ignore',
-					\}
-					let g:which_key_map['f'] = {
-						\'name' : 'which_key_ignore',
-					\}
-					let g:which_key_map['g'] = {
-						\'name' : '+git',
-					\}
-					let g:which_key_map['h'] = {
-						\'name' : 'which_key_ignore',
-					\}
-					let g:which_key_map['i'] = {
-						\'name' : 'which_key_ignore',
-					\}
-					let g:which_key_map['j'] = {
-						\'name' : '+jump',
-					\}
-					let g:which_key_map['k'] = {
-						\'name' : 'which_key_ignore',
-					\}
-					let g:which_key_map['l'] = {
-						\'name' : '+lsp',
-						\'g': {
-							\'name': '+goto',
-							\'d': 'goto-definition',
-							\'D': 'goto-type-definition',
-							\'i': 'goto-implementation',
-							\'r': 'goto-references',
-						\},
-						\'c': 'show-commands',
-						\'e': 'show-errors',
-						\'s': 'show-symbols',
-						\'o': 'show-outline',
-						\'r': 'rename-symbol',
-						\'f': 'format-selected',
-						\'F': 'format-buffer',
-						\'q': 'quickfix',
-						\'l': 'coc-list',
-						\'L': 'coc-list-resume',
-					\}
-					let g:which_key_map['m'] = {
-						\'name' : 'which_key_ignore',
-					\}
-					let g:which_key_map['n'] = {
-						\'name' : 'which_key_ignore',
-					\}
-					let g:which_key_map['o'] = {
-						\'name' : '+browse',
-						\'g'	: 'search-github',
-						\'d'	: 'search-duckduckgo',
-						\'w'	: 'search-wikipedia',
-					\}
-					let g:which_key_map['p'] = {
-						\'name' : '+projects',
-						\'l'	: '-list-projects',
-						\'n'	: '-new-project',
-						\'o'	: 'open-project',
-						\'O'	: '-open-last-project',
-						\'c'	: '-close-project',
-						\'f'	: 'open-project-file',
-						\'t'	: 'search-project',
-						\'e'	: 'open-project-directory',
-						\'E'	: 'open-file-directory',
-					\}
-					let g:which_key_map['q'] = {
-						\'name' : 'which_key_ignore',
-					\}
-					let g:which_key_map['r'] = {
-						\'name' : 'which_key_ignore',
-					\}
-					let g:which_key_map['S'] = {
-						\'name' : '+sessions',
-						\'l'	: 'list-sessions',
-						\'n'	: 'new-session',
-						\'d'	: 'delete-session',
-						\'s'	: '-save-session',
-						\'o'	: 'open-session',
-						\'c'	: 'close-session',
-					\}
-					let g:which_key_map['s'] = {
-						\'name' : '+scratch-window',
-						\'p'	: 'preview-scratch',
-						\'o'	: 'open-scratch',
-						\'s'	: 'send-selection',
-					\}
-					let g:which_key_map['t'] = {
-						\'name' : '+terminals',
-						\'l'	: 'list-terminals',
-						\'b'	: 'buffer-terminal',
-						\'f'	: 'float-terminal',
-						\'v'	: 'vertical-terminal',
-						\'h'	: 'horizontal-terminal',
-						\'t'	: 'toggle-terminal',
-						\'d'	: 'delete-terminal',
-						\'n'	: 'next-terminal',
-						\'p'	: 'previous-terminal',
-						\'B'	: 'buffer-terminal-lcd',
-						\'F'	: '-float-terminal-lcd',
-						\'V'	: 'vertical-terminal-lcd',
-						\'H'	: 'horizontal-terminal-lcd',
-					\}
-					let g:which_key_map['T'] = {
-						\'name' : '+tabs',
-						\'l'	: 'list-tabs',
-						\'a'	: 'add-tab',
-						\'d'	: 'delete-tab',
-						\'n'	: 'next-tab',
-						\'p'	: 'previous-tab',
-						\'N'	: 'move-tab-right',
-						\'P'	: 'move-tab-left',
-					\}
-					let g:which_key_map['u'] = {
-						\'name' : 'which_key_ignore',
-					\}
-					let g:which_key_map['v'] = {
-						\'name' : '+vim',
-						\'c' : 'open-config-file',
-						\'s' : 'source-config-file',
-						\'C' : 'set-colorscheme',
-						\'/' : 'search-history',
-						\':' : 'command-history',
-						\'h' : {
-							\'name' : '+help',
-							\'c'	: 'commands',
-							\'h'	: 'help',
-							\'m'	: 'maps',
-						\},
-						\'p' : {
-							\'name' : '+plugin-manager',
-							\'l'	: 'list-plugins',
-							\'a'	: 'install-plugins',
-							\'d'	: 'uninstall-plugins',
-							\'u'	: 'update-plugins',
-							\'U'	: 'update-plugin',
-							\'p'	: 'update-plugin-manager',
-						\},
-						\'t' : {
-							\'name' : '+toggles',
-							\'w'	: 'autosave-toggle',
-							\'c'	: 'autocorrect-toggle',
-							\'f'	: 'autoformat-toggle',
-							\'p'	: 'pencil-toggle',
-							\'d'	: 'distraction-mode',
-							\'l'	: 'limelight',
-						\},
-					\}
-					let g:which_key_map['w'] = {
-						\'name' : '+windows',
-						\'h'	: 'horizontal-split',
-						\'v'	: 'vertical-split',
-						\'c'	: 'close-split',
-						\'o'	: 'only-split',
-						\'m'	: 'maximize-split',
-						\'H'	: 'empty-horizontal-split',
-						\'V'	: 'empty-vertical-split',
-					\}
-					let g:which_key_map['x'] = {
-						\'name' : 'which_key_ignore',
-					\}
-					let g:which_key_map['y'] = {
-						\'name' : 'which_key_ignore',
-					\}
-					let g:which_key_map['z'] = {
-						\'name' : '+miscelleanous',
-					\}
-				"MAPPINGS
-					nnoremap <silent> <Leader>		:<C-U>WhichKey		 '<SPACE>' <CR>
-					vnoremap <silent> <Leader>		:<C-U>WhichKeyVisual '<SPACE>' <CR>
-					nnoremap <silent> <LocalLeader> :<C-U>WhichKey		 ','	   <CR>
-			Plug 'szw/vim-maximizer'
-				nnoremap <silent> <Leader>wm :MaximizerToggle<CR>
-			Plug 'mbbill/undotree'
-				"CONFIGURATIONS
-					let g:undotree_WindowLayout = 2
-					let g:undotree_ShortIndicators = 1
-					let g:undotree_SplitWidth = 30
-					let g:undotree_DiffpanelHeight = 10
-					let g:undotree_SetFocusWhenToggle = 1
-					let g:undotree_TreeNodeShape = '◉'
-					" let g:undotree_DiffCommand = "Delta"
-					let g:undotree_HighlightChangedText = 1
-					let g:undotree_HighlightChangedWithSign = 1
-					let g:undotree_HighlightSyntaxAdd = "DiffAdd"
-					let g:undotree_HighlightSyntaxChange = "DiffChange"
-					let g:undotree_HighlightSyntaxDel = "DiffDelete"
-					let g:undotree_HelpLine = 0
-					let g:undotree_CursorLine = 1
-				"MAPPINGS
-					nnoremap <Leader>vu :UndotreeToggle<CR>
-			Plug 'junegunn/vim-peekaboo'
-				let g:peekaboo_window  = 'vert bo 80new'
-				let g:peekaboo_compact = 0
-			if has('folding')
-				Plug 'pseewald/vim-anyfold'
+					vmap Dk <Plug>SchleppDupUp
+					vmap Dj <Plug>SchleppDupDown
+					vmap Dh <Plug>SchleppDupLeft
+					vmap Dl <Plug>SchleppDupRight
+				Plug 'dohsimpson/vim-macroeditor'
+					nnoremap <Leader>zm :execute "MacroEdit " nr2char(getchar()) <CR>
+				"Plug 'majutsushi/tagbar'
+					nnoremap <Leader>nT :TagbarToggle<CR>
+				"Plug 'andymass/vim-matchup'
+				"Plug 'romainl/vim-qf'
+				"Plug 'tpope/vim-obsession'
+				"Plug 'syngan/vim-operator-keeppos'
+				"Plug 'blackbeltscripting/vim-paste-operator'
+				"Plug 'tommcdo/vim-centaur'
+				"Plug 'osyo-manga/vim-operator-blockwise'
+				"Plug 'osyo-manga/vim-operator-stay-cursor'
+				"Plug 'syngan/vim-operator-furround'
+				"Plug 'luochen1990/rainbow'
+				"Plug 'thinca/vim-operator-sequence'
+				"Plug 'wellle/visual-split.vim'
+				"Plug 'spiiph/vim-space'
+				"Plug 'gcmt/wildfire.vim'
+				"Plug 'lambacck/preserve-vim'
+				"Plug 'godlygeek/tabular'
+				"Plug 'tpope/vim-unimpaired'
+				"Plug 'jeanCarloMachado/vim-toop'
+				"Plug 't9md/vim-transform'
+				"Plug 'lfv89/vim-foldfocus'
+				"Plug 'anschnapp/move-less'
+				"Plug 'fergdev/vim-cursor-hist'
+				Plug 'osyo-manga/vim-anzu'
+					"nmap n <Plug>(incsearch-nohl-n)<Plug>(anzu-mode-n)
+					"nmap N <Plug>(incsearch-nohl-N)<Plug>(anzu-mode-N)
+					"nmap * <Plug>(anzu-star-with-echo)
+					"nmap # <Plug>(anzu-sharp-with-echo)
+				"Plug 'sickill/vim-pasta'
+					let g:pasta_paste_before_mapping = 'P'
+					let g:pasta_paste_after_mapping = 'p'
+				Plug 'liuchengxu/vim-clap'
+				"Plug 'liuchengxu/vista.vim'
+				Plug 'ap/vim-css-color'
+				Plug 'tommcdo/vim-ninja-feet'
+				"Plug 'RRethy/vim-illuminate'
 					"CONFIGURATION
-						let g:anyfold_motion            = 0
-						let g:anyfold_fold_comments     = 0
-						let g:anyfold_identify_comments = 0
-						let g:anyfold_fold_toplevel     = 1
-						let g:anyfold_comments          = []
-						let g:anyfold_fold_level_str    = ''
-						let g:anyfold_fold_size_str     = '%s Lines   '
-					"HIGHLIGHT
-						"hi Folded ctermfg= ctermbg= guifg= guibg
-					"AUTOCOMMANDS
-						autocmd FileType jproperties AnyFoldActivate
-					"MAPPINGS
-				"Plug 'arecarn/vim-fold-cycle'
-					"let g:fold_cycle_default_mapping = 0
-					"nmap <TAB>	 <Plug>(fold-cycle-open)
-					"nmap <S-TAB> <Plug>(fold-cycle-close)
-			endif
-			if has('signs')
-				Plug 'kshenoy/vim-signature'
-			endif
-		"CLIENTS
-			if has('nvim')
-				Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
-			endif
-		"WRITTING
-			Plug 'reedes/vim-pencil'
-				nnoremap <silent> <Leader>vtp :PencilToggle<CR>
-			Plug 'panozzaj/vim-autocorrect'
-				nnoremap <silent> <Leader>vtc :call AutoCorrect()<CR>
-			Plug 'davidbeckingsale/writegood.vim'
-			Plug 'dbmrq/vim-ditto'
-			Plug 'reedes/vim-lexical'
-				nnoremap <silent> <Leader><Leader>s :set spell!<CR>
-				let g:lexical#spell = 1
-				let g:lexical#spell_key = '<leader>zs'
-				let g:lexical#spelllang = ['en_us', 'en_ca',]
-				"let g:lexical#dictionary = ['/usr/share/dict/words',]
-				let g:lexical#thesaurus = ['~/.config/nvim/spell/mthesaurus.txt/',]
-				let g:lexical#spellfile = ['~/.config/spell/en.utf-8.add',]
-		"RANDOM
-			Plug 'mtth/scratch.vim'
-				let g:scratch_no_mappings      = 1
-				let g:scratch_height           = 0.3
-				let g:scratch_top              = 0
-				let g:scratch_persistence_file = g:jaat_tmp_path . 'scratch'
+						let g:Illuminate_delay = 0
+						"TODO:FIX hi illuminatedWord ctermfg=grey ctermbg=darkblue
+				"Plug 'itchyny/vim-cursorword'
+				"Plug 'lucerion/vim-executor'
+				"Plug 'vim-scripts/Omap.vim'
+				"Plug 'tyru/capture.vim'
+				"Plug 'JarrodCTaylor/vim-shell-executor'
+				"Plug 'tommcdo/vim-express'
+				"Plug 'syngan/vim-operator-evalf'
+				"Plug 'neitanod/vim-sade'
+		call plug#end()
 
-				nnoremap <silent> <Leader>so :Scratch<CR>
-				nnoremap <silent> <Leader>sp :ScratchPreview<CR>
-				vnoremap <silent> <Leader>ss :ScratchSelection<CR>
-
-				augroup SCRATCH_ENTER
-					autocmd!
-					autocmd FileType scratch nnoremap <buffer> <esc> :q<CR>
-					autocmd FileType scratch set syntax=jproperties
-				augroup END
-			Plug 'tyru/open-browser.vim'
-				"CONFIGURATION
-					"if something' not working run :VimProcInstall"
-					let g:netrw_nogx = 1
-					let g:openbrowser_search_engines = {
-						\'askubuntu'   : 'http://askubuntu.com/search?q={query}',
-						\'duckduckgo'  : 'http://duckduckgo.com/?q={query}',
-						\'github'	   : 'http://github.com/search?q={query}',
-						\'google'	   : 'http://google.com/search?q={query}',
-						\'vim'		   : 'http://www.google.com/cse?cx=partner-pub-3005259998294962%3Abvyni59kjr1&ie=ISO-8859-1&q={query}&sa=Search&siteurl=www.vim.org%2F#gsc.tab=0&gsc.q={query}&gsc.page=1',
-						\'flipkart'    : 'https://www.flipkart.com/search?q={query}&otracker=start&as-show=off&as=off',
-						\'wikipedia'   : 'http://en.wikipedia.org/wiki/{query}',
-						\'wikivoyage'  : 'https://en.wikivoyage.org/wiki/{query}',
-						\'wiktionary'  : 'https://en.wiktionary.org/wiki/{query}',
-						\'wikinews'    : 'https://en.wikinews.org/wiki/{query}',
-						\'wikisource'  : 'https://en.wikisource.org/wiki/{query}',
-						\'wikibooks'   : 'https://en.wikibooks.org/wiki/{query}',
-						\'wikidata'    : 'https://en.wikidata.org/wiki/{query}',
-						\'wikispecies' : 'https://species.wikimedia.org/wiki/{query}',
-						\'wikiquote'   : 'https://en.wikiquote.org/wiki/{query}',
-					\ }
-				"FUNCTIONS
-					function! OpenUnderCursor()
-						let l:word = GetWORDUnderCursor()
-
-						if l:word !~  '^http'
-							let l:word = 'https://' . l:word
-						endif
-
-						execute 'OpenBrowser ' . l:word
-					endfunction
-				"OPERATORS
-					"OPERATOR-BROWSER
-						function! OperatorOpenBrowser(visual, ...)
-							let [lineStart, columnStart] = getpos(a:0 ? "'<" : "'[")[1:2]
-							let [lineEnd, columnEnd]	 = getpos(a:0 ? "'>" : "']")[1:2]
-							let lines					 = getline(lineStart, lineEnd)
-
-							if len(lines) == 0
-								return
-							endif
-
-							if a:visual == 'block' || a:visual == "\<c-v>"
-								call PEchoError('Operator not defined for VISUAL-BLOCK mode')
-								return
-							elseif a:visual == 'line' || a:visual ==# 'V'
-								execute 'OpenBrowserSmartSearch ' . join(lines, '\n')
-							elseif a:visual == 'char' || a:visual ==# 'v'
-								let lines[-1] = lines[-1][: columnEnd - (&selection == 'inclusive' ? 1 : 2)]
-								let lines[0]  = lines[0][columnStart - 1:]
-								execute 'OpenBrowserSmartSearch ' . join(lines, '\n')
-							endif
-						endfunction
-
-						nnoremap <silent> gb :set opfunc=OperatorOpenBrowser<CR>g@
-						vnoremap <silent> gb :<C-U>call OperatorOpenBrowser(visualmode(), 1)<CR>
-
-						nnoremap <silent> gbb :call OpenUnderCursor()<CR>
-				"MAPPINGS
-					"CUSTOM
-						nmap <Leader>og :execute ":OpenBrowserSearch -github " GetWordUnderCursor() <CR>
-						vmap <Leader>og :<C-w>execute ":OpenBrowserSearch -github " GetSelectedText() <CR>
-
-						nmap <Leader>od :execute ":OpenBrowserSearch -duckduckgo " GetWordUnderCursor() <CR>
-						vmap <Leader>od :<C-w>execute ":OpenBrowserSearch -duckduckgo " GetSelectedText() <CR>
-
-						nmap <Leader>ow :execute ":OpenBrowserSearch -wikipedia " GetWordUnderCursor() <CR>
-						vmap <Leader>ow :<C-w>execute ":OpenBrowserSearch -wikipedia " GetSelectedText() <CR>
-		"LIBRARIES
-		"DEPENDENCIES
-			Plug 'Shougo/vimproc.vim'
-		"LIBRARIES
-			Plug 'kana/vim-textobj-user'
-			Plug 'kana/vim-operator-user'
-			"Plug 'mattn/webapi-vim'
-			"Plug 'lucerion/vim-buffr'
-			"Plug 'kana/vim-submode'
-				let g:submode_always_show_submode = 1
-				"let g:submode_keep_leaving_key = 1
-				"let g:submode_timeout = 0
-				let g:submode_timeoutlen = 1000
-			"Plug 'vim-scripts/vim-easy-submode'
-				" call easysubmode#load()
-
-				" SubmodeDefine buffers
-				" Submode n <enter> <Leader>b. :bnext<CR>
-				" Submode n h :bnext<CR>
-				" Submode n l :bprevious<CR>
-				" SubmodeDefineEnd
-
-				" SubmodeDefine tabs
-				" Submode n <enter> <Leader>t. :tabnext<CR>
-				" Submode n n :tabnext<CR>
-				" Submode n p :tabprevious<CR>
-				" Submode n h :tabmove +1<CR>
-				" Submode n l :tabmove -1<CR>
-				" SubmodeDefineEnd
-
-
-				" SubmodeDefine windows
-				" Submode n <enter> <Leader>w. <C-W><C-L>
-				" Submode n h <C-W><C-H>
-				" Submode n j <C-W><C-J>
-				" Submode n k <C-W><C-K>
-				" Submode n l <C-W><C-L>
-
-				" Submode n <S-h> <C-W><S-H>
-				" Submode n <S-j> <C-W><S-J>
-				" Submode n <S-k> <C-W><S-K>
-				" Submode n <S-l> <C-W><S-L>
-
-				" Submode n r <C-W><C-R>
-				" Submode n R <C-W><S-R>
-				" SubmodeDefineEnd
-			"Plug 'kana/vim-arpeggio'
-			"Plug 'vim-scripts/tinymode.vim'
-			"Plug 'tyru/stickykey.vim'
-			"Plug 'luzhlon/popup.vim'
-			"Plug 'skywind3000/quickmenu.vim'
-		"TODO:DEVELOPMENT
-			"VCS
-				"Plug 'airblade/vim-gitgutter'
-				"Plug 'mhinz/vim-signify'
-		"MESS:EXTENDING-VIM
-			Plug 'svermeulen/vim-yoink'
-				let g:yoinkMaxItems				   = 10
-				let g:yoinkSyncNumberedRegisters   = 1
-				let g:yoinkIncludeDeleteOperations = 1
-				let g:yoinkAutoFormatPaste		   = 0
-				let g:yoinkIncludeNamedRegisters   = 0
-
-				"nmap y <plug>(YoinkYankPreserveCursorPosition)
-				"xmap y <plug>(YoinkYankPreserveCursorPosition)
-				"nmap <expr> p yoink#canSwap() ? '<plug>(YoinkPostPasteSwapBack)' : '<plug>(YoinkPaste_p)'
-				"nmap <expr> P yoink#canSwap() ? '<plug>(YoinkPostPasteSwapForward)' : '<plug>(YoinkPaste_P)'
-			"Plug 'vim-scripts/repmo.vim'
-				let repmo_key = ";"
-				let repmo_revkey = ","
-			if has('macunix')
-				Plug 'gastonsimone/vim-dokumentary'
-			endif
-			"Plug 'joeytwiddle/sexy_scroller.vim'
-				let g:SexyScoller_ScrollTime = 10
-				let g:SexyScroller_CursorTime = 5
-				let g:SexyScroller_MaxTime = 200
-				let g:SexyScroller_EasingStyle = 1
-			"Plug 'terryma/vim-smooth-scroll'
-			"Plug 'jiangmiao/auto-pairs'
-			"Plug 'tpope/vim-speeddating'
-		"MESS
-			Plug 'vim-scripts/DrawIt'
-			Plug 'alpertuna/vim-header'
-				let g:header_auto_add_header = 0
-				"let g:header_alignment = 1
-				let g:header_field_filename = 0
-				let g:header_field_modified_by = 0
-				let g:header_field_author = 'Sahil Sehwag'
-				let g:header_field_author_email = 'sehwagsahil002@gmail.com'
-
-				map <Leader>zh :AddHeader<CR>
-				map <Leader>zH :AddMinHeader<CR>
-				map <Leader>zlm :AddMITLicense<CR>
-				map <Leader>zla :AddApacheLicense<CR>
-				map <Leader>zlg :AddGNULicense<CR>
-			Plug 'itchyny/calendar.vim'
-				nnoremap <Leader>zcy :Calendar -view=year<CR>
-				nnoremap <Leader>zcm :Calendar -view=month<CR>
-				nnoremap <Leader>zcw :Calendar -view=week<CR>
-				nnoremap <Leader>zcd :Calendar -view=day<CR>
-				nnoremap <Leader>zcD :Calendar -view=days<CR>
-				nnoremap <Leader>zcc :Calendar -view=clock<CR>
-				nnoremap <Leader>zce :Calendar -view=event<CR>
-				nnoremap <Leader>zca :Calendar -view=agenda<CR>
-			Plug 'shanzi/autoHEADER'
-			Plug 'itchyny/dictionary.vim'
-				nnoremap <Leader>zd :Dictionary<CR>
-				nnoremap <Leader>zD :Dictionary -cursor-word<CR>
-			Plug 'leothelocust/vim-makecols'
-			Plug 'tweekmonster/startuptime.vim'
-			Plug 'sbdchd/vim-shebang'
-			Plug 'vim-utils/vim-read'
-			Plug 'antoyo/vim-licenses'
-			Plug 'vim-scripts/WholeLineColor'
-				let g:wholelinecolor_leader = ','
-				highlight WLCBlackBackground  ctermbg=233 guibg=#121212
-				highlight WLCRedBackground	  ctermbg=52  guibg=#882323
-				highlight WLCBlueBackground   ctermbg=17  guibg=#003366
-				highlight WLCPurpleBackground ctermbg=53  guibg=#732c7b
-				highlight WLCGreyBackground   ctermbg=238 guibg=#464646
-				highlight WLCGreenBackground  ctermbg=22  guibg=#005500
-			Plug 'junegunn/goyo.vim'
-				let g:goyo_width = "75%"
-				"let g:goyo_height = "90%"
-				let g:goyo_linenr = 1
-
-				nnoremap <Leader>vtd  :Goyo<CR>
-			Plug 'junegunn/limelight.vim'
-				nnoremap <Leader>vtl  :Limelight!!<CR>
-			"Plug 'natw/keyboard_cat.vim'
-			if !IsWindows()
-				"Plug 'MrPeterLee/VimWordpress'
-					nnoremap <LocalLeader>wl :call RunInNewBuffer('BlogList', 'wordpress')<CR>
-					nnoremap <LocalLeader>wn :call RunInNewBuffer('BlogNew',  'wordpress')<CR>
-					nnoremap <LocalLeader>wd :BlogSave draft<CR>
-					nnoremap <LocalLeader>wP :BlogSave publish<CR>
-					nnoremap <LocalLeader>wD :BlogPreview draft<CR>
-					nnoremap <LocalLeader>wp :BlogPreview publish<CR>
-					nnoremap <LocalLeader>wc :BlogCode python<CR>
-					nnoremap <LocalLeader>wu :BlogUpload<space><CR>
-			endif
-			"Plug 'vim-scripts/autoscroll.vim'
-				let g:AutoScrollSpeed = 100
-			"Plug 'fadein/vim-FIGlet'
-				nnoremap <Leader>zf :FIGlet<CR>
-				nnoremap <Leader>zF :FIGlet -f<space>
-				vnoremap <Leader>zf :FIGlet<CR>
-				vnoremap <Leader>zF :FIGlet -f<space>
-			"Plug 'chrisbra/changesPlugin'
-			"Plug 'guns/xterm-color-table.vim'
-			"Plug 'vim-scripts/ScrollColors'
-			"Plug 'gorodinskiy/vim-coloresque'
-			"Plug 'tweekmonster/nvim-api-viewer'
-			"Plug 'kyuhi/vim-emoji-complete'
-		"TOTEST
-			if has('nvim')
-				"TODO:NOT-WORKING
-				"Plug 'ripxorip/aerojump.nvim', { 'do': ':UpdateRemotePlugins' }
-					"nmap <Leader>as <Plug>(AerojumpSpace)
-					"nmap <Leader>ab <Plug>(AerojumpBolt)
-					"nmap <Leader>aa <Plug>(AerojumpFromCursorBolt)
-					"nmap <Leader>ad <Plug>(AerojumpDefault)
-			endif
-		"TODECIDE
-			Plug 'kopischke/vim-fetch'
-			Plug 'rhysd/conflict-marker.vim'
-			"Plug 'camspiers/animate.vim'
-				""CONFIGURATION
-					"let g:fzf_layout = {'window': 'new | wincmd J | resize 1 | call animate#window_percent_height(0.5)'}
-				""MAPPINGS
-					"nnoremap <silent> <up>    :call animate#window_delta_height(10)<CR>
-					"nnoremap <silent> <down>  :call animate#window_delta_height(-10)<CR>
-					"nnoremap <silent> <left>  :call animate#window_delta_width(10)<CR>
-					"nnoremap <silent> <right> :call animate#window_delta_width(-10)<CR>
-			"Plug 'camspiers/lens.vim'
-				let g:lens#animate = 1
-			"Plug 'gyim/vim-boxdraw'
-			"Plug 'tweekmonster/fzf-filemru'
-			"Plug 'fmoralesc/vim-pad'
-			"Plug 'tenfyzhong/axring.vim'
-				"let g:axring_rings = [
-				"\ ]
-
-				"augroup AXRING
-					"au!
-					"au Filetype python execute "let g:axring_rings_" . &filetype . " = s:languages['" . &filetype . "'].axrings"
-				"augroup END
-			Plug 'svermeulen/vim-macrobatics'
-				nmap qp <plug>(Mac_Play)
-				nmap qr <plug>(Mac_RecordNew)
-			if v:version >= 800
-				"TODO:FIX
-				"Plug 'TaDaa/vimade'
-			endif
-			"Plug 'tyru/capture.vim'
-			Plug 'unblevable/quick-scope'
-			Plug 'haya14busa/vim-signjk-motion'
-			Plug 'haya14busa/vim-over'
-				"TODO:FIX|DECIDE
-				"nmap <Leader>fR :OverCommandLine<CR>
-			"Plug 'vim-scripts/MultipleSearch'
-			"Plug 'henrik/vim-indexed-search'
-			Plug 'zirrostig/vim-schlepp'
-				vmap <up>	 <Plug>SchleppUp
-				vmap <down>  <Plug>SchleppDown
-				vmap <left>  <Plug>SchleppLeft
-				vmap <right> <Plug>SchleppRight
-
-				vmap Dk <Plug>SchleppDupUp
-				vmap Dj <Plug>SchleppDupDown
-				vmap Dh <Plug>SchleppDupLeft
-				vmap Dl <Plug>SchleppDupRight
-			Plug 'dohsimpson/vim-macroeditor'
-				nnoremap <Leader>zm :execute "MacroEdit " nr2char(getchar()) <CR>
-			"Plug 'majutsushi/tagbar'
-				nnoremap <Leader>nT :TagbarToggle<CR>
-			"Plug 'andymass/vim-matchup'
-			"Plug 'romainl/vim-qf'
-			"Plug 'tpope/vim-obsession'
-			"Plug 'syngan/vim-operator-keeppos'
-			"Plug 'blackbeltscripting/vim-paste-operator'
-			"Plug 'tommcdo/vim-centaur'
-			"Plug 'osyo-manga/vim-operator-blockwise'
-			"Plug 'osyo-manga/vim-operator-stay-cursor'
-			"Plug 'syngan/vim-operator-furround'
-			"Plug 'luochen1990/rainbow'
-			"Plug 'thinca/vim-operator-sequence'
-			"Plug 'wellle/visual-split.vim'
-			"Plug 'spiiph/vim-space'
-			"Plug 'gcmt/wildfire.vim'
-			"Plug 'lambacck/preserve-vim'
-			"Plug 'godlygeek/tabular'
-			"Plug 'tpope/vim-unimpaired'
-			"Plug 'jeanCarloMachado/vim-toop'
-			"Plug 't9md/vim-transform'
-			"Plug 'lfv89/vim-foldfocus'
-			"Plug 'anschnapp/move-less'
-			"Plug 'fergdev/vim-cursor-hist'
-			Plug 'osyo-manga/vim-anzu'
-				"nmap n <Plug>(incsearch-nohl-n)<Plug>(anzu-mode-n)
-				"nmap N <Plug>(incsearch-nohl-N)<Plug>(anzu-mode-N)
-				"nmap * <Plug>(anzu-star-with-echo)
-				"nmap # <Plug>(anzu-sharp-with-echo)
-			"Plug 'sickill/vim-pasta'
-				let g:pasta_paste_before_mapping = 'P'
-				let g:pasta_paste_after_mapping = 'p'
-			Plug 'liuchengxu/vim-clap'
-			"Plug 'liuchengxu/vista.vim'
-			Plug 'ap/vim-css-color'
-			Plug 'tommcdo/vim-ninja-feet'
-			"Plug 'RRethy/vim-illuminate'
-				"CONFIGURATION
-					let g:Illuminate_delay = 0
-					"TODO:FIX hi illuminatedWord ctermfg=grey ctermbg=darkblue
-			"Plug 'itchyny/vim-cursorword'
-			"Plug 'lucerion/vim-executor'
-			"Plug 'vim-scripts/Omap.vim'
-			"Plug 'tyru/capture.vim'
-			"Plug 'JarrodCTaylor/vim-shell-executor'
-			"Plug 'tommcdo/vim-express'
-			"Plug 'syngan/vim-operator-evalf'
-			"Plug 'neitanod/vim-sade'
-	call plug#end()
-
-	"post-loading…
-	call which_key#register('<SPACE>', "g:which_key_map")
+		"post-loading…
+		call which_key#register('<SPACE>', "g:which_key_map")
+	CUSTOM
+	IDEAPAD
+	SCRATCHPAD
 "CONFIGURATION
 	"PYTHON-BINARIES
 		let g:loaded_python_provider  = 1
@@ -4498,7 +4502,7 @@
 				"➐	➑	➒	➓	➔	➕	➖	➗	➘	➙	➚	➛	➜	➝	➞	➟
 				"➠	➡	➢	➣	➤	➥	➦	➧	➨	➩	➪	➫	➬	➭	➮	➯
 				"➰	➱	➲	➳	➴	➵	➶	➷	➸	➹	➺	➻	➼	➽	➾	➿
-"TEMPORARY
+"TEMPORAL
 "EXPERIMENT
 	"FEATURES
 		"+VIMDIFF
