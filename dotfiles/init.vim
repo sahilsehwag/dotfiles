@@ -1909,6 +1909,11 @@
 				nnoremap <silent> <Leader>aM :execute 'FloatermNew --autoclose=0 glow ' . shellescape(expand('%:p'))<CR>
 			endif
 
+			if executable('ytfzf')
+				command! -nargs=1 YtFzf FloatermNew ytfzf <q-args>
+				command! -nargs=1 YtFzfMusic FloatermNew ytfzf -m <q-args>
+			endif
+
 			if has('mac')
 				command! -nargs=1 Typora :execute 'FloatermNew open -a Typora ' . shellescape(<q-args>)
 				nnoremap <Leader>at :execute 'Typora ' . expand('%:p')<CR>
