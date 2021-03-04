@@ -1910,8 +1910,11 @@
 			endif
 
 			if executable('ytfzf')
-				command! -nargs=1 YtFzf FloatermNew ytfzf <q-args>
-				command! -nargs=1 YtFzfMusic FloatermNew ytfzf -m <q-args>
+				command! -nargs=? YtFzf FloatermNew ytfzf <q-args>
+				command! -nargs=? YtFzfMusic FloatermNew ytfzf -m <q-args>
+
+				nnoremap <silent> <Leader>ay :YtFzf<CR>
+				nnoremap <silent> <Leader>aY :YtFzfMusic<CR>
 			endif
 
 			if has('mac')
