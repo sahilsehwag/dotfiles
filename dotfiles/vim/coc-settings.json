@@ -6,6 +6,42 @@
 	// words=9
 	// browser=10
 
+	// פּ                 
+	//   <>   	       ﱮ  塞       練蘒
+	"suggest.completionItemKindLabels": {
+		"method": "  ",
+		"function": "  ",
+		"variable": "[]",
+		"field": "  ",
+		"typeParameter": "<>",
+		"constant": "  ",
+		"class": "  ",
+		"interface": "  ",
+		"struct": "  ",
+		"event": "  ",
+		"operator": "  ",
+		"module": " פּ ",
+		"property": "  ",
+		"enum": " 練",
+		"reference": "  ",
+		"keyword": "  ",
+		"file": "  ",
+		"folder": " ﱮ ",
+		"color": "  ",
+		"unit": " 塞 ",
+		"snippet": "  ",
+		"text": "  ",
+		"constructor": "  ",
+		"value": "  ",
+		"enumMember": "  ",
+		"default": "  "
+	},
+
+	"codeLens.enable": true,
+
+	"list.indicator": ">",
+	"list.selectedSignText": " ",
+
 	//coc-emmet
 	"emmet.priority": 2,
 	"emmet.showSuggestionsAsSnippets": true,
@@ -72,7 +108,7 @@
 	"git.changeRemovedSign.hlGroup": "JatGitChange",
 	"git.blameUseRealTime": false,
 	"git.addGBlameToVirtualText": false,
-	"git.virtualTextPrefix": "     ",
+	"git.virtualTextPrefix": "		 ",
 	"git.conflict.current.hlGroup": "DiffChange",
 	"git.conflict.incoming.hlGroup": "DiffAdd",
 
