@@ -37,7 +37,7 @@
 		"default": "  "
 	},
 
-	"codeLens.enable": true,
+	"codeLens.enable": false,
 
 	"list.indicator": ">",
 	"list.selectedSignText": " ",
