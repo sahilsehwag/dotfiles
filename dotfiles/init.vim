@@ -2780,17 +2780,23 @@
 					if IsNix()
 						Plug 'vim-airline/vim-airline'
 							"CONFIGURATION
-								let g:airline_theme           = 'bubblegum'
+								"let g:airline_theme = 'bubblegum'
 								let g:airline_powerline_fonts = 0
+
+								function! AirlineInit()
+									let g:airline_section_c = airline#section#create(['%{expand("%:.")}'])
+								endfunction
+								autocmd User AirlineAfterInit call AirlineInit()
 							"TABLINE
-								let g:airline#extensions#tabline#enabled           = 1
-								"let g:airline#extensions#tabline#left_sep          = ' '
-								"let g:airline#extensions#tabline#left_alt_sep      = '|'
-								"let g:airline#extensions#tabline#right_sep         = ' '
-								"let g:airline#extensions#tabline#right_alt_sep     = '|'
-								"let g:airline#extensions#tabline#show_splits       = 1
+								let g:airline#extensions#tabline#enabled = 1
+								let g:airline#extensions#tabline#fnamemod = ':t'
+								"let g:airline#extensions#tabline#left_sep = ' '
+								"let g:airline#extensions#tabline#left_alt_sep = '|'
+								"let g:airline#extensions#tabline#right_sep = ' '
+								"let g:airline#extensions#tabline#right_alt_sep = '|'
+								"let g:airline#extensions#tabline#show_splits = 1
 								"let g:airline#extensions#tabline#show_close_button = 1
-								"let g:airline#extensions#tabline#close_symbol      = '✖ '
+								"let g:airline#extensions#tabline#close_symbol = '✖ '
 							"TMUXLINE
 								"let airline#extensions#tmuxline#color_template = 'normal'
 								"let airline#extensions#tmuxline#color_template = 'insert'
@@ -2812,17 +2818,17 @@
 									\ }
 								let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
 							"EXTENSIONS
-								let g:airline#extensions#wordcount#enabled                   = 0
-								"let g:airline#extensions#wordcount#filetypes                 = []
-								"let g:airline#extensions#whitespace#enabled                  = 1
-								"let g:airline#extensions#whitespace#mixed_indent_algo        = 0
-								"let g:airline#extensions#whitespace#symbol                   = '!'
-								"let g:airline#extensions#whitespace#checks                   = ['indent', 'trailing', 'long', 'mixed-indent-file']
-								"let g:airline#extensions#whitespace#trailing_format          = 'trailing[%s]'
-								"let g:airline#extensions#whitespace#mixed_indent_format      = 'mixed-indent[%s]'
-								"let g:airline#extensions#whitespace#long_format              = 'long[%s]'
+								let g:airline#extensions#wordcount#enabled = 0
+								"let g:airline#extensions#wordcount#filetypes = []
+								"let g:airline#extensions#whitespace#enabled = 1
+								"let g:airline#extensions#whitespace#mixed_indent_algo = 0
+								"let g:airline#extensions#whitespace#symbol = '!'
+								"let g:airline#extensions#whitespace#checks = ['indent', 'trailing', 'long', 'mixed-indent-file']
+								"let g:airline#extensions#whitespace#trailing_format = 'trailing[%s]'
+								"let g:airline#extensions#whitespace#mixed_indent_format = 'mixed-indent[%s]'
+								"let g:airline#extensions#whitespace#long_format = 'long[%s]'
 								"let g:airline#extensions#whitespace#mixed_indent_file_format = 'mix-indent-file[%s]'
-								"let g:airline#extensions#whitespace#trailing_regexp          = '\s$'
+								"let g:airline#extensions#whitespace#trailing_regexp = '\s$'
 						Plug 'vim-airline/vim-airline-themes'
 						Plug 'augustold/vim-airline-colornum'
 						Plug 'gcavallanti/vim-noscrollbar'
@@ -4168,7 +4174,7 @@
 			set nostartofline
 		"COLORSCHEME
 			if IsNix()
-				colorscheme molokai
+				colorscheme gruvbox
 			elseif IsWindows()
 				colorscheme solarized8_light_high
 			endif
