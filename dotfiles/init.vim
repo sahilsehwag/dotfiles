@@ -2950,23 +2950,24 @@
 					"Plug 'edkolev/tmuxline.vim'
 					"Plug 'edkolev/promptline.vim'
 				"COLORSCHEMES
-					Plug 'flazz/vim-colorschemes'
+					"Plug 'flazz/vim-colorschemes'
 					Plug 'rafi/awesome-vim-colorschemes'
-					Plug 'chriskempson/base16-vim'
-					Plug 'KeitaNakamura/neodark.vim'
-						let g:neodark#use_256color		   = 1
-						let g:neodark#solid_vertsplit	   = 1
-						let g:neodark#background		   = '#202020'
+					"Plug 'chriskempson/base16-vim'
+					"Plug 'KeitaNakamura/neodark.vim'
+						let g:neodark#use_256color			 = 1
+						let g:neodark#solid_vertsplit		 = 1
+						let g:neodark#background			 = '#202020'
 						"let g:lightline					= {}
 						"let g:lightline.colorscheme		= 'neodark'
 						"let g:neodark#terminal_transparent = 1
-					Plug 'sindresorhus/focus'
-					Plug 'KabbAmine/yowish.vim'
-					Plug 'ayu-theme/ayu-vim'
-					Plug 'tyrannicaltoucan/vim-quantum'
-					Plug 'raphamorim/lucario'
-					Plug 'paranoida/vim-airlineish'
-					Plug 'arzg/vim-corvine'
+					"Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
+					"Plug 'sindresorhus/focus'
+					"Plug 'KabbAmine/yowish.vim'
+					"Plug 'ayu-theme/ayu-vim'
+					"Plug 'tyrannicaltoucan/vim-quantum'
+					"Plug 'raphamorim/lucario'
+					"Plug 'paranoida/vim-airlineish'
+					"Plug 'arzg/vim-corvine'
 					"REFERENCE
 						"TYPE:LIGHT
 							"*SOLARIZED8-LIGHT*|CORVINE-LIGHT=1
@@ -2974,9 +2975,11 @@
 						"TYPE:DARK:HIGH
 							"VIM-MATERIAL=1
 							"BASE16-MATERIAL-VIVID|DARKER=1
+							"CHALLENGER-DEEP=1?:TUI
 						"TYPE:DARK:MEDIUM
 							"MONOKAI|MOLOKAI|MONOKAIN|BEEKAI=1
 						"TYPE:DARK:LOW
+							"GRUVBOX=1+:TUI
 							"ONEDARK=1:TUI
 							"SOLARIZED8-*
 							"MATERIAL|MATERIAL-BOX|MATERIAL-THEME
