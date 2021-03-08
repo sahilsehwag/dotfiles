@@ -3379,6 +3379,17 @@
 					if has('nvim-0.5') || v:version >= 820
 						Plug 'wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'}
 					endif
+				"WINDOW
+					Plug 'camspiers/animate.vim'
+						"CONFIGURATION
+							"let g:fzf_layout = {'window': 'new | wincmd J | resize 1 | call animate#window_percent_height(0.5)'}
+						"MAPPINGS
+							nnoremap <silent> <up>    :call animate#window_delta_height(10)<CR>
+							nnoremap <silent> <down>  :call animate#window_delta_height(-10)<CR>
+							nnoremap <silent> <left>  :call animate#window_delta_width(10)<CR>
+							nnoremap <silent> <right> :call animate#window_delta_width(-10)<CR>
+					Plug 'camspiers/lens.vim'
+						let g:lens#animate = 1
 			"EXTENSIONS
 				Plug 'tpope/vim-repeat'
 				Plug 'tpope/vim-capslock'
