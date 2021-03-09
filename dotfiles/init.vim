@@ -3364,7 +3364,7 @@
 						Plug 'suan/vim-instant-markdown'
 					endif
 				"DOCUMENTATION
-			"INTERFACE
+			"FEATURES
 				"SCROLLBAR"
 					if has('nvim-0.5')
 						Plug 'dstein64/nvim-scrollview'
@@ -3382,7 +3382,18 @@
 					if has('nvim-0.5') || v:version >= 820
 						Plug 'wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'}
 					endif
-				"WINDOW
+				"INDENTLINE"
+					"Plug 'Yggdroot/indentLine'
+						let g:indentLine_enabled = 1
+						let g:indentLine_setColors = 1
+						let g:indentLine_char = '│'
+						let g:indentLine_concealcursor = 'inc'
+						let g:indentLine_conceallevel = 1
+						"let g:indentLine_char_list = ['│', '|', '¦', '┆', '┊']
+					if has('nvim-0.4')
+						"Plug 'lukas-reineke/indent-blankline.nvim'
+					endif
+				"ANIMATION
 					Plug 'camspiers/animate.vim'
 						"CONFIGURATION
 							"let g:fzf_layout = {'window': 'new | wincmd J | resize 1 | call animate#window_percent_height(0.5)'}
@@ -3393,7 +3404,9 @@
 							nnoremap <silent> <right> :call animate#window_delta_width(-10)<CR>
 					"Plug 'camspiers/lens.vim'
 						let g:lens#animate = 1
-			"EXTENSIONS
+				Plug 'abdalrahman-ali/vim-remembers'
+					let g:remembers_tmp_dir     = g:jaat_tmp_path . 'remembers_tmp'
+					let g:remembers_session_dir = g:jaat_tmp_path . 'remembers_sessions'
 				Plug 'tpope/vim-repeat'
 				Plug 'tpope/vim-capslock'
 					nmap <silent> <LocalLeader><LocalLeader> <Plug>CapsLockToggle
@@ -3698,6 +3711,7 @@
 					let g:lexical#thesaurus = ['~/.config/nvim/spell/mthesaurus.txt/',]
 					let g:lexical#spellfile = ['~/.config/spell/en.utf-8.add',]
 			"RANDOM
+				Plug 'dstein64/vim-startuptime'
 				Plug 'mtth/scratch.vim'
 					let g:scratch_no_mappings      = 1
 					let g:scratch_height           = 0.3
