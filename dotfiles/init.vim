@@ -3117,7 +3117,7 @@
 					execute 'tnoremap <silent> <' . g:action_leader . '-d> <C-\><C-n>:FloatermKill<CR>'
 					execute 'tnoremap <silent> <' . g:action_leader . '-p> <C-\><C-n>:FloatermNext<CR>'
 					execute 'tnoremap <silent> <' . g:action_leader . '-n> <C-\><C-n>:FloatermPrev<CR>'
-			"LOOK&FEEL
+			"AESTHETICS
 				"STATUSLINE
 					if IsNix()
 						Plug 'vim-airline/vim-airline'
@@ -3274,6 +3274,7 @@
 								nmap <Leader>8 <Plug>lightline#bufferline#go(8)
 								nmap <Leader>9 <Plug>lightline#bufferline#go(9)
 					endif
+				"BUFFERLINE
 				"TABLINE
 					"Plug 'romgrk/barbar.nvim'
 					"Plug 'akinsho/nvim-bufferline.lua'
@@ -3330,17 +3331,10 @@
 							"NEODARK
 						"RANDOM
 							"*MATERIAL*
-				"RANDOM
+				"ICONS
 					Plug 'kyazdani42/nvim-web-devicons'
 					Plug 'ryanoasis/vim-devicons'
-					Plug 'mhinz/vim-startify'
-						"CONFIGURATION
-							let g:startify_session_sort        = 1
-							let g:startify_change_to_vcs_root  = 1
-							let g:startify_fortune_use_unicode = 1
-							let g:startify_session_dir         = g:jaat_tmp_path . 'sessions'
-						"AUTOCOMMANDS
-							autocmd User StartifyReady setl foldlevel=99
+				"RANDOM
 					Plug 'itchyny/vim-highlighturl'
 						"let g:highlighturl_ctermfg   = ''
 						"let g:highlighturl_guifg	  = ''
@@ -3352,7 +3346,6 @@
 						"let g:indentLine_enabled = 1
 						"let g:indentLine_setColors = 0
 						"let g:indentLine_char_list = ['│', '|', '¦', '┆', '┊']
-			"MANAGEMENT
 			"PROGRAMMING
 				"SYNTAX
 					Plug 'sheerun/vim-polyglot'
@@ -3726,6 +3719,14 @@
 					let g:lexical#thesaurus = ['~/.config/nvim/spell/mthesaurus.txt/',]
 					let g:lexical#spellfile = ['~/.config/spell/en.utf-8.add',]
 			"RANDOM
+				Plug 'mhinz/vim-startify'
+					"CONFIGURATION
+						let g:startify_session_sort        = 1
+						let g:startify_change_to_vcs_root  = 1
+						let g:startify_fortune_use_unicode = 1
+						let g:startify_session_dir         = g:jaat_tmp_path . 'sessions'
+					"AUTOCOMMANDS
+						autocmd User StartifyReady setl foldlevel=99
 				Plug 'dstein64/vim-startuptime'
 				Plug 'tyru/open-browser.vim'
 					"CONFIGURATION
@@ -3796,9 +3797,6 @@
 							nmap <Leader>ow :execute ":OpenBrowserSearch -wikipedia " GetWordUnderCursor() <CR>
 							vmap <Leader>ow :<C-w>execute ":OpenBrowserSearch -wikipedia " GetSelectedText() <CR>
 			"LIBRARIES
-			"DEPENDENCIES
-				Plug 'Shougo/vimproc.vim'
-			"LIBRARIES
 				Plug 'kana/vim-textobj-user'
 				Plug 'kana/vim-operator-user'
 				"Plug 'mattn/webapi-vim'
@@ -3846,6 +3844,8 @@
 				"Plug 'tyru/stickykey.vim'
 				"Plug 'luzhlon/popup.vim'
 				"Plug 'skywind3000/quickmenu.vim'
+			"DEPENDENCIES
+				Plug 'Shougo/vimproc.vim'
 			"TODO:DEVELOPMENT
 				"VCS
 					"Plug 'airblade/vim-gitgutter'
