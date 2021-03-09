@@ -2692,6 +2692,9 @@
 						autocmd FileType scratch nnoremap <buffer> <esc> :q<CR>
 						autocmd FileType scratch set syntax=jproperties
 					augroup END
+				Plug 'blueyed/vim-diminactive'
+					let g:diminactive_use_syntax = 1
+					highlight ColorColumn ctermbg=0 guibg=#081C23
 				if has('folding')
 					Plug 'pseewald/vim-anyfold'
 						"CONFIGURATION
