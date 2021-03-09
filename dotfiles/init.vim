@@ -2373,6 +2373,348 @@
 	"INSTALLED
 		call plug#begin()
 			"DEFAULTS
+			"EDITOR
+				"SCROLLBAR"
+					if has('nvim-0.5')
+						Plug 'dstein64/nvim-scrollview'
+					elseif has('nvim')
+						Plug 'Xuyuanp/scrollbar.nvim'
+							"CONFIGURATION
+								augroup ScrollbarInit
+									autocmd!
+									autocmd CursorMoved,VimResized,QuitPre * silent! lua require('scrollbar').show()
+									autocmd WinEnter,FocusGained           * silent! lua require('scrollbar').show()
+									autocmd WinLeave,FocusLost             * silent! lua require('scrollbar').clear()
+								augroup end
+					endif
+				"MINIMAP
+					if has('nvim-0.5') || v:version >= 820
+						Plug 'wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'}
+					endif
+				"INDENTLINE"
+					"Plug 'Yggdroot/indentLine'
+						let g:indentLine_enabled = 1
+						let g:indentLine_setColors = 1
+						let g:indentLine_char = '│'
+						let g:indentLine_concealcursor = 'inc'
+						let g:indentLine_conceallevel = 1
+						"let g:indentLine_char_list = ['│', '|', '¦', '┆', '┊']
+					if has('nvim-0.4')
+						"Plug 'lukas-reineke/indent-blankline.nvim'
+					endif
+				"ANIMATION
+					Plug 'camspiers/animate.vim'
+						"CONFIGURATION
+							"let g:fzf_layout = {'window': 'new | wincmd J | resize 1 | call animate#window_percent_height(0.5)'}
+						"MAPPINGS
+							nnoremap <silent> <up>    :call animate#window_delta_height(10)<CR>
+							nnoremap <silent> <down>  :call animate#window_delta_height(-10)<CR>
+							nnoremap <silent> <left>  :call animate#window_delta_width(10)<CR>
+							nnoremap <silent> <right> :call animate#window_delta_width(-10)<CR>
+					"Plug 'camspiers/lens.vim'
+						let g:lens#animate = 1
+				Plug 'abdalrahman-ali/vim-remembers'
+					let g:remembers_tmp_dir     = g:jaat_tmp_path . 'remembers_tmp'
+					let g:remembers_session_dir = g:jaat_tmp_path . 'remembers_sessions'
+				Plug 'tpope/vim-repeat'
+				Plug 'tpope/vim-capslock'
+					nmap <silent> <LocalLeader><LocalLeader> <Plug>CapsLockToggle
+					imap ;; <Plug>CapsLockToggle
+				Plug 'liuchengxu/vim-which-key'
+					"CONFIGURATION
+						let g:which_key_sep				   = '→'
+						let g:which_key_hspace			   = 5
+						let g:which_key_flatten			   = 1
+						let g:which_key_max_size		   = 0
+						let g:which_key_sort_horizontal    = 0
+						let g:which_key_vertical		   = 0
+						let g:which_key_use_floating_win   = 0
+						let g:which_key_align_by_seperator = 1
+						let g:which_key_display_names	   = {
+							\' '	 : 'SPC',
+							\'<C-H>' : 'BS'
+						\}
+						let g:which_key_map				   = {}
+
+						"hiding statusline
+						autocmd! FileType which_key
+						autocmd  FileType which_key set laststatus=0 noshowmode noruler
+							\| autocmd BufLeave <buffer> set laststatus=2 noshowmode ruler
+
+						let g:which_key_map['*']   = "which_key_ignore"
+						let g:which_key_map['"']   = "which_key_ignore"
+						let g:which_key_map['/']   = "which_key_ignore"
+						let g:which_key_map['?']   = "which_key_ignore"
+						let g:which_key_map['@']   = "which_key_ignore"
+
+						let g:which_key_map['1-9'] = "open-buffer"
+							let g:which_key_map['1']   = "which_key_ignore"
+							let g:which_key_map['2']   = "which_key_ignore"
+							let g:which_key_map['3']   = "which_key_ignore"
+							let g:which_key_map['4']   = "which_key_ignore"
+							let g:which_key_map['5']   = "which_key_ignore"
+							let g:which_key_map['6']   = "which_key_ignore"
+							let g:which_key_map['7']   = "which_key_ignore"
+							let g:which_key_map['8']   = "which_key_ignore"
+							let g:which_key_map['9']   = "which_key_ignore"
+						let g:which_key_map['`']   = "open-last-buffer"
+
+						let g:which_key_map['<Tab>'] = "show-mappings"
+						let g:which_key_map[' '] = {'name':'+miscellanous'}
+
+						let g:which_key_map['a'] = {
+							\'name' : 'which_key_ignore',
+						\}
+						let g:which_key_map['b'] = {
+							\'name' : '+buffers',
+							\'l'	: 'list-buffers',
+							\'a'	: 'add-buffer',
+							\'c'	: 'close-buffer',
+							\'d'	: 'delete-buffer',
+							\'D'	: 'DELETE-buffer',
+							\'w'	: 'WRITE-buffer',
+							\'s'	: 'scratch-buffer',
+							\'S'	: 'scratch-buffer-filetype',
+							\'/'	: 'buffer-lines',
+							\'?'	: 'all-buffer-lines',
+						\}
+						let g:which_key_map['c'] = {
+							\'name' : 'which_key_ignore',
+						\}
+						let g:which_key_map['d'] = {
+							\'name' : 'which_key_ignore',
+						\}
+						let g:which_key_map['e'] = {
+							\'name' : 'which_key_ignore',
+						\}
+						let g:which_key_map['f'] = {
+							\'name' : 'which_key_ignore',
+						\}
+						let g:which_key_map['g'] = {
+							\'name' : '+git',
+						\}
+						let g:which_key_map['h'] = {
+							\'name' : 'which_key_ignore',
+						\}
+						let g:which_key_map['i'] = {
+							\'name' : 'which_key_ignore',
+						\}
+						let g:which_key_map['j'] = {
+							\'name' : '+jump',
+						\}
+						let g:which_key_map['k'] = {
+							\'name' : 'which_key_ignore',
+						\}
+						let g:which_key_map['l'] = {
+							\'name' : '+lsp',
+							\'g': {
+								\'name': '+goto',
+								\'d': 'goto-definition',
+								\'D': 'goto-type-definition',
+								\'i': 'goto-implementation',
+								\'r': 'goto-references',
+							\},
+							\'c': 'show-commands',
+							\'e': 'show-errors',
+							\'s': 'show-symbols',
+							\'o': 'show-outline',
+							\'r': 'rename-symbol',
+							\'f': 'format-selected',
+							\'F': 'format-buffer',
+							\'q': 'quickfix',
+							\'l': 'coc-list',
+							\'L': 'coc-list-resume',
+						\}
+						let g:which_key_map['m'] = {
+							\'name' : 'which_key_ignore',
+						\}
+						let g:which_key_map['n'] = {
+							\'name' : 'which_key_ignore',
+						\}
+						let g:which_key_map['o'] = {
+							\'name' : '+browse',
+							\'g'	: 'search-github',
+							\'d'	: 'search-duckduckgo',
+							\'w'	: 'search-wikipedia',
+						\}
+						let g:which_key_map['p'] = {
+							\'name' : '+projects',
+							\'l'	: '-list-projects',
+							\'n'	: '-new-project',
+							\'o'	: 'open-project',
+							\'O'	: '-open-last-project',
+							\'c'	: '-close-project',
+							\'f'	: 'open-project-file',
+							\'t'	: 'search-project',
+							\'e'	: 'open-project-directory',
+							\'E'	: 'open-file-directory',
+						\}
+						let g:which_key_map['q'] = {
+							\'name' : 'which_key_ignore',
+						\}
+						let g:which_key_map['r'] = {
+							\'name' : 'which_key_ignore',
+						\}
+						let g:which_key_map['S'] = {
+							\'name' : '+sessions',
+							\'l'	: 'list-sessions',
+							\'n'	: 'new-session',
+							\'d'	: 'delete-session',
+							\'s'	: '-save-session',
+							\'o'	: 'open-session',
+							\'c'	: 'close-session',
+						\}
+						let g:which_key_map['s'] = {
+							\'name' : '+scratch-window',
+							\'p'	: 'preview-scratch',
+							\'o'	: 'open-scratch',
+							\'s'	: 'send-selection',
+						\}
+						let g:which_key_map['t'] = {
+							\'name' : '+terminals',
+							\'l'	: 'list-terminals',
+							\'b'	: 'buffer-terminal',
+							\'f'	: 'float-terminal',
+							\'v'	: 'vertical-terminal',
+							\'h'	: 'horizontal-terminal',
+							\'t'	: 'toggle-terminal',
+							\'d'	: 'delete-terminal',
+							\'n'	: 'next-terminal',
+							\'p'	: 'previous-terminal',
+							\'B'	: 'buffer-terminal-lcd',
+							\'F'	: '-float-terminal-lcd',
+							\'V'	: 'vertical-terminal-lcd',
+							\'H'	: 'horizontal-terminal-lcd',
+						\}
+						let g:which_key_map['T'] = {
+							\'name' : '+tabs',
+							\'l'	: 'list-tabs',
+							\'a'	: 'add-tab',
+							\'d'	: 'delete-tab',
+							\'n'	: 'next-tab',
+							\'p'	: 'previous-tab',
+							\'N'	: 'move-tab-right',
+							\'P'	: 'move-tab-left',
+						\}
+						let g:which_key_map['u'] = {
+							\'name' : 'which_key_ignore',
+						\}
+						let g:which_key_map['v'] = {
+							\'name' : '+vim',
+							\'c' : 'open-config-file',
+							\'s' : 'source-config-file',
+							\'C' : 'set-colorscheme',
+							\'/' : 'search-history',
+							\':' : 'command-history',
+							\'h' : {
+								\'name' : '+help',
+								\'c'	: 'commands',
+								\'h'	: 'help',
+								\'m'	: 'maps',
+							\},
+							\'p' : {
+								\'name' : '+plugin-manager',
+								\'l'	: 'list-plugins',
+								\'a'	: 'install-plugins',
+								\'d'	: 'uninstall-plugins',
+								\'u'	: 'update-plugins',
+								\'U'	: 'update-plugin',
+								\'p'	: 'update-plugin-manager',
+							\},
+							\'t' : {
+								\'name' : '+toggles',
+								\'w'	: 'autosave-toggle',
+								\'c'	: 'autocorrect-toggle',
+								\'f'	: 'autoformat-toggle',
+								\'p'	: 'pencil-toggle',
+								\'d'	: 'distraction-mode',
+								\'l'	: 'limelight',
+							\},
+						\}
+						let g:which_key_map['w'] = {
+							\'name' : '+windows',
+							\'h'	: 'horizontal-split',
+							\'v'	: 'vertical-split',
+							\'c'	: 'close-split',
+							\'o'	: 'only-split',
+							\'m'	: 'maximize-split',
+							\'H'	: 'empty-horizontal-split',
+							\'V'	: 'empty-vertical-split',
+						\}
+						let g:which_key_map['x'] = {
+							\'name' : 'which_key_ignore',
+						\}
+						let g:which_key_map['y'] = {
+							\'name' : 'which_key_ignore',
+						\}
+						let g:which_key_map['z'] = {
+							\'name' : '+miscelleanous',
+						\}
+					"MAPPINGS
+						nnoremap <silent> <Leader>		:<C-U>WhichKey		 '<SPACE>' <CR>
+						vnoremap <silent> <Leader>		:<C-U>WhichKeyVisual '<SPACE>' <CR>
+						nnoremap <silent> <LocalLeader> :<C-U>WhichKey		 ','	   <CR>
+				Plug 'szw/vim-maximizer'
+					nnoremap <silent> <Leader>wm :MaximizerToggle<CR>
+				Plug 'mbbill/undotree'
+					"CONFIGURATIONS
+						let g:undotree_WindowLayout = 2
+						let g:undotree_ShortIndicators = 1
+						let g:undotree_SplitWidth = 30
+						let g:undotree_DiffpanelHeight = 10
+						let g:undotree_SetFocusWhenToggle = 1
+						let g:undotree_TreeNodeShape = '◉'
+						" let g:undotree_DiffCommand = "Delta"
+						let g:undotree_HighlightChangedText = 1
+						let g:undotree_HighlightChangedWithSign = 1
+						let g:undotree_HighlightSyntaxAdd = "DiffAdd"
+						let g:undotree_HighlightSyntaxChange = "DiffChange"
+						let g:undotree_HighlightSyntaxDel = "DiffDelete"
+						let g:undotree_HelpLine = 0
+						let g:undotree_CursorLine = 1
+					"MAPPINGS
+						nnoremap <Leader>vu :UndotreeToggle<CR>
+				Plug 'junegunn/vim-peekaboo'
+					let g:peekaboo_window  = 'vert bo 80new'
+					let g:peekaboo_compact = 0
+				Plug 'mtth/scratch.vim'
+					let g:scratch_no_mappings      = 1
+					let g:scratch_height           = 0.3
+					let g:scratch_top              = 0
+					let g:scratch_persistence_file = g:jaat_tmp_path . 'scratch'
+
+					nnoremap <silent> <Leader>so :Scratch<CR>
+					nnoremap <silent> <Leader>sp :ScratchPreview<CR>
+					vnoremap <silent> <Leader>ss :ScratchSelection<CR>
+
+					augroup SCRATCH_ENTER
+						autocmd!
+						autocmd FileType scratch nnoremap <buffer> <esc> :q<CR>
+						autocmd FileType scratch set syntax=jproperties
+					augroup END
+				if has('folding')
+					Plug 'pseewald/vim-anyfold'
+						"CONFIGURATION
+							let g:anyfold_motion            = 0
+							let g:anyfold_fold_comments     = 0
+							let g:anyfold_identify_comments = 0
+							let g:anyfold_fold_toplevel     = 1
+							let g:anyfold_comments          = []
+							let g:anyfold_fold_level_str    = ''
+							let g:anyfold_fold_size_str     = '%s Lines   '
+						"HIGHLIGHT
+							"hi Folded ctermfg= ctermbg= guifg= guibg
+						"AUTOCOMMANDS
+							autocmd FileType jproperties AnyFoldActivate
+						"MAPPINGS
+					"Plug 'arecarn/vim-fold-cycle'
+						"let g:fold_cycle_default_mapping = 0
+						"nmap <TAB>	 <Plug>(fold-cycle-open)
+						"nmap <S-TAB> <Plug>(fold-cycle-close)
+				endif
+				if has('signs')
+					Plug 'kshenoy/vim-signature'
+				endif
 			"EDITING
 				"OPERATORS
 					Plug 'haya14busa/vim-operator-flashy'
@@ -3364,333 +3706,6 @@
 						Plug 'suan/vim-instant-markdown'
 					endif
 				"DOCUMENTATION
-			"FEATURES
-				"SCROLLBAR"
-					if has('nvim-0.5')
-						Plug 'dstein64/nvim-scrollview'
-					elseif has('nvim')
-						Plug 'Xuyuanp/scrollbar.nvim'
-							"CONFIGURATION
-								augroup ScrollbarInit
-									autocmd!
-									autocmd CursorMoved,VimResized,QuitPre * silent! lua require('scrollbar').show()
-									autocmd WinEnter,FocusGained           * silent! lua require('scrollbar').show()
-									autocmd WinLeave,FocusLost             * silent! lua require('scrollbar').clear()
-								augroup end
-					endif
-				"MINIMAP
-					if has('nvim-0.5') || v:version >= 820
-						Plug 'wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'}
-					endif
-				"INDENTLINE"
-					"Plug 'Yggdroot/indentLine'
-						let g:indentLine_enabled = 1
-						let g:indentLine_setColors = 1
-						let g:indentLine_char = '│'
-						let g:indentLine_concealcursor = 'inc'
-						let g:indentLine_conceallevel = 1
-						"let g:indentLine_char_list = ['│', '|', '¦', '┆', '┊']
-					if has('nvim-0.4')
-						"Plug 'lukas-reineke/indent-blankline.nvim'
-					endif
-				"ANIMATION
-					Plug 'camspiers/animate.vim'
-						"CONFIGURATION
-							"let g:fzf_layout = {'window': 'new | wincmd J | resize 1 | call animate#window_percent_height(0.5)'}
-						"MAPPINGS
-							nnoremap <silent> <up>    :call animate#window_delta_height(10)<CR>
-							nnoremap <silent> <down>  :call animate#window_delta_height(-10)<CR>
-							nnoremap <silent> <left>  :call animate#window_delta_width(10)<CR>
-							nnoremap <silent> <right> :call animate#window_delta_width(-10)<CR>
-					"Plug 'camspiers/lens.vim'
-						let g:lens#animate = 1
-				Plug 'abdalrahman-ali/vim-remembers'
-					let g:remembers_tmp_dir     = g:jaat_tmp_path . 'remembers_tmp'
-					let g:remembers_session_dir = g:jaat_tmp_path . 'remembers_sessions'
-				Plug 'tpope/vim-repeat'
-				Plug 'tpope/vim-capslock'
-					nmap <silent> <LocalLeader><LocalLeader> <Plug>CapsLockToggle
-					imap ;; <Plug>CapsLockToggle
-				Plug 'liuchengxu/vim-which-key'
-					"CONFIGURATION
-						let g:which_key_sep				   = '→'
-						let g:which_key_hspace			   = 5
-						let g:which_key_flatten			   = 1
-						let g:which_key_max_size		   = 0
-						let g:which_key_sort_horizontal    = 0
-						let g:which_key_vertical		   = 0
-						let g:which_key_use_floating_win   = 0
-						let g:which_key_align_by_seperator = 1
-						let g:which_key_display_names	   = {
-							\' '	 : 'SPC',
-							\'<C-H>' : 'BS'
-						\}
-						let g:which_key_map				   = {}
-
-						"hiding statusline
-						autocmd! FileType which_key
-						autocmd  FileType which_key set laststatus=0 noshowmode noruler
-							\| autocmd BufLeave <buffer> set laststatus=2 noshowmode ruler
-
-						let g:which_key_map['*']   = "which_key_ignore"
-						let g:which_key_map['"']   = "which_key_ignore"
-						let g:which_key_map['/']   = "which_key_ignore"
-						let g:which_key_map['?']   = "which_key_ignore"
-						let g:which_key_map['@']   = "which_key_ignore"
-
-						let g:which_key_map['1-9'] = "open-buffer"
-							let g:which_key_map['1']   = "which_key_ignore"
-							let g:which_key_map['2']   = "which_key_ignore"
-							let g:which_key_map['3']   = "which_key_ignore"
-							let g:which_key_map['4']   = "which_key_ignore"
-							let g:which_key_map['5']   = "which_key_ignore"
-							let g:which_key_map['6']   = "which_key_ignore"
-							let g:which_key_map['7']   = "which_key_ignore"
-							let g:which_key_map['8']   = "which_key_ignore"
-							let g:which_key_map['9']   = "which_key_ignore"
-						let g:which_key_map['`']   = "open-last-buffer"
-
-						let g:which_key_map['<Tab>'] = "show-mappings"
-						let g:which_key_map[' '] = {'name':'+miscellanous'}
-
-						let g:which_key_map['a'] = {
-							\'name' : 'which_key_ignore',
-						\}
-						let g:which_key_map['b'] = {
-							\'name' : '+buffers',
-							\'l'	: 'list-buffers',
-							\'a'	: 'add-buffer',
-							\'c'	: 'close-buffer',
-							\'d'	: 'delete-buffer',
-							\'D'	: 'DELETE-buffer',
-							\'w'	: 'WRITE-buffer',
-							\'s'	: 'scratch-buffer',
-							\'S'	: 'scratch-buffer-filetype',
-							\'/'	: 'buffer-lines',
-							\'?'	: 'all-buffer-lines',
-						\}
-						let g:which_key_map['c'] = {
-							\'name' : 'which_key_ignore',
-						\}
-						let g:which_key_map['d'] = {
-							\'name' : 'which_key_ignore',
-						\}
-						let g:which_key_map['e'] = {
-							\'name' : 'which_key_ignore',
-						\}
-						let g:which_key_map['f'] = {
-							\'name' : 'which_key_ignore',
-						\}
-						let g:which_key_map['g'] = {
-							\'name' : '+git',
-						\}
-						let g:which_key_map['h'] = {
-							\'name' : 'which_key_ignore',
-						\}
-						let g:which_key_map['i'] = {
-							\'name' : 'which_key_ignore',
-						\}
-						let g:which_key_map['j'] = {
-							\'name' : '+jump',
-						\}
-						let g:which_key_map['k'] = {
-							\'name' : 'which_key_ignore',
-						\}
-						let g:which_key_map['l'] = {
-							\'name' : '+lsp',
-							\'g': {
-								\'name': '+goto',
-								\'d': 'goto-definition',
-								\'D': 'goto-type-definition',
-								\'i': 'goto-implementation',
-								\'r': 'goto-references',
-							\},
-							\'c': 'show-commands',
-							\'e': 'show-errors',
-							\'s': 'show-symbols',
-							\'o': 'show-outline',
-							\'r': 'rename-symbol',
-							\'f': 'format-selected',
-							\'F': 'format-buffer',
-							\'q': 'quickfix',
-							\'l': 'coc-list',
-							\'L': 'coc-list-resume',
-						\}
-						let g:which_key_map['m'] = {
-							\'name' : 'which_key_ignore',
-						\}
-						let g:which_key_map['n'] = {
-							\'name' : 'which_key_ignore',
-						\}
-						let g:which_key_map['o'] = {
-							\'name' : '+browse',
-							\'g'	: 'search-github',
-							\'d'	: 'search-duckduckgo',
-							\'w'	: 'search-wikipedia',
-						\}
-						let g:which_key_map['p'] = {
-							\'name' : '+projects',
-							\'l'	: '-list-projects',
-							\'n'	: '-new-project',
-							\'o'	: 'open-project',
-							\'O'	: '-open-last-project',
-							\'c'	: '-close-project',
-							\'f'	: 'open-project-file',
-							\'t'	: 'search-project',
-							\'e'	: 'open-project-directory',
-							\'E'	: 'open-file-directory',
-						\}
-						let g:which_key_map['q'] = {
-							\'name' : 'which_key_ignore',
-						\}
-						let g:which_key_map['r'] = {
-							\'name' : 'which_key_ignore',
-						\}
-						let g:which_key_map['S'] = {
-							\'name' : '+sessions',
-							\'l'	: 'list-sessions',
-							\'n'	: 'new-session',
-							\'d'	: 'delete-session',
-							\'s'	: '-save-session',
-							\'o'	: 'open-session',
-							\'c'	: 'close-session',
-						\}
-						let g:which_key_map['s'] = {
-							\'name' : '+scratch-window',
-							\'p'	: 'preview-scratch',
-							\'o'	: 'open-scratch',
-							\'s'	: 'send-selection',
-						\}
-						let g:which_key_map['t'] = {
-							\'name' : '+terminals',
-							\'l'	: 'list-terminals',
-							\'b'	: 'buffer-terminal',
-							\'f'	: 'float-terminal',
-							\'v'	: 'vertical-terminal',
-							\'h'	: 'horizontal-terminal',
-							\'t'	: 'toggle-terminal',
-							\'d'	: 'delete-terminal',
-							\'n'	: 'next-terminal',
-							\'p'	: 'previous-terminal',
-							\'B'	: 'buffer-terminal-lcd',
-							\'F'	: '-float-terminal-lcd',
-							\'V'	: 'vertical-terminal-lcd',
-							\'H'	: 'horizontal-terminal-lcd',
-						\}
-						let g:which_key_map['T'] = {
-							\'name' : '+tabs',
-							\'l'	: 'list-tabs',
-							\'a'	: 'add-tab',
-							\'d'	: 'delete-tab',
-							\'n'	: 'next-tab',
-							\'p'	: 'previous-tab',
-							\'N'	: 'move-tab-right',
-							\'P'	: 'move-tab-left',
-						\}
-						let g:which_key_map['u'] = {
-							\'name' : 'which_key_ignore',
-						\}
-						let g:which_key_map['v'] = {
-							\'name' : '+vim',
-							\'c' : 'open-config-file',
-							\'s' : 'source-config-file',
-							\'C' : 'set-colorscheme',
-							\'/' : 'search-history',
-							\':' : 'command-history',
-							\'h' : {
-								\'name' : '+help',
-								\'c'	: 'commands',
-								\'h'	: 'help',
-								\'m'	: 'maps',
-							\},
-							\'p' : {
-								\'name' : '+plugin-manager',
-								\'l'	: 'list-plugins',
-								\'a'	: 'install-plugins',
-								\'d'	: 'uninstall-plugins',
-								\'u'	: 'update-plugins',
-								\'U'	: 'update-plugin',
-								\'p'	: 'update-plugin-manager',
-							\},
-							\'t' : {
-								\'name' : '+toggles',
-								\'w'	: 'autosave-toggle',
-								\'c'	: 'autocorrect-toggle',
-								\'f'	: 'autoformat-toggle',
-								\'p'	: 'pencil-toggle',
-								\'d'	: 'distraction-mode',
-								\'l'	: 'limelight',
-							\},
-						\}
-						let g:which_key_map['w'] = {
-							\'name' : '+windows',
-							\'h'	: 'horizontal-split',
-							\'v'	: 'vertical-split',
-							\'c'	: 'close-split',
-							\'o'	: 'only-split',
-							\'m'	: 'maximize-split',
-							\'H'	: 'empty-horizontal-split',
-							\'V'	: 'empty-vertical-split',
-						\}
-						let g:which_key_map['x'] = {
-							\'name' : 'which_key_ignore',
-						\}
-						let g:which_key_map['y'] = {
-							\'name' : 'which_key_ignore',
-						\}
-						let g:which_key_map['z'] = {
-							\'name' : '+miscelleanous',
-						\}
-					"MAPPINGS
-						nnoremap <silent> <Leader>		:<C-U>WhichKey		 '<SPACE>' <CR>
-						vnoremap <silent> <Leader>		:<C-U>WhichKeyVisual '<SPACE>' <CR>
-						nnoremap <silent> <LocalLeader> :<C-U>WhichKey		 ','	   <CR>
-				Plug 'szw/vim-maximizer'
-					nnoremap <silent> <Leader>wm :MaximizerToggle<CR>
-				Plug 'mbbill/undotree'
-					"CONFIGURATIONS
-						let g:undotree_WindowLayout = 2
-						let g:undotree_ShortIndicators = 1
-						let g:undotree_SplitWidth = 30
-						let g:undotree_DiffpanelHeight = 10
-						let g:undotree_SetFocusWhenToggle = 1
-						let g:undotree_TreeNodeShape = '◉'
-						" let g:undotree_DiffCommand = "Delta"
-						let g:undotree_HighlightChangedText = 1
-						let g:undotree_HighlightChangedWithSign = 1
-						let g:undotree_HighlightSyntaxAdd = "DiffAdd"
-						let g:undotree_HighlightSyntaxChange = "DiffChange"
-						let g:undotree_HighlightSyntaxDel = "DiffDelete"
-						let g:undotree_HelpLine = 0
-						let g:undotree_CursorLine = 1
-					"MAPPINGS
-						nnoremap <Leader>vu :UndotreeToggle<CR>
-				Plug 'junegunn/vim-peekaboo'
-					let g:peekaboo_window  = 'vert bo 80new'
-					let g:peekaboo_compact = 0
-				if has('folding')
-					Plug 'pseewald/vim-anyfold'
-						"CONFIGURATION
-							let g:anyfold_motion            = 0
-							let g:anyfold_fold_comments     = 0
-							let g:anyfold_identify_comments = 0
-							let g:anyfold_fold_toplevel     = 1
-							let g:anyfold_comments          = []
-							let g:anyfold_fold_level_str    = ''
-							let g:anyfold_fold_size_str     = '%s Lines   '
-						"HIGHLIGHT
-							"hi Folded ctermfg= ctermbg= guifg= guibg
-						"AUTOCOMMANDS
-							autocmd FileType jproperties AnyFoldActivate
-						"MAPPINGS
-					"Plug 'arecarn/vim-fold-cycle'
-						"let g:fold_cycle_default_mapping = 0
-						"nmap <TAB>	 <Plug>(fold-cycle-open)
-						"nmap <S-TAB> <Plug>(fold-cycle-close)
-				endif
-				if has('signs')
-					Plug 'kshenoy/vim-signature'
-				endif
 			"CLIENTS
 				if has('nvim')
 					Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
@@ -3712,21 +3727,6 @@
 					let g:lexical#spellfile = ['~/.config/spell/en.utf-8.add',]
 			"RANDOM
 				Plug 'dstein64/vim-startuptime'
-				Plug 'mtth/scratch.vim'
-					let g:scratch_no_mappings      = 1
-					let g:scratch_height           = 0.3
-					let g:scratch_top              = 0
-					let g:scratch_persistence_file = g:jaat_tmp_path . 'scratch'
-
-					nnoremap <silent> <Leader>so :Scratch<CR>
-					nnoremap <silent> <Leader>sp :ScratchPreview<CR>
-					vnoremap <silent> <Leader>ss :ScratchSelection<CR>
-
-					augroup SCRATCH_ENTER
-						autocmd!
-						autocmd FileType scratch nnoremap <buffer> <esc> :q<CR>
-						autocmd FileType scratch set syntax=jproperties
-					augroup END
 				Plug 'tyru/open-browser.vim'
 					"CONFIGURATION
 						"if something' not working run :VimProcInstall"
@@ -3905,7 +3905,6 @@
 					nnoremap <Leader>zd :Dictionary<CR>
 					nnoremap <Leader>zD :Dictionary -cursor-word<CR>
 				Plug 'leothelocust/vim-makecols'
-				Plug 'tweekmonster/startuptime.vim'
 				Plug 'sbdchd/vim-shebang'
 				Plug 'vim-utils/vim-read'
 				Plug 'antoyo/vim-licenses'
