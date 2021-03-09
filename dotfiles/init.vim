@@ -3727,7 +3727,9 @@
 						let g:startify_session_dir         = g:jaat_tmp_path . 'sessions'
 					"AUTOCOMMANDS
 						autocmd User StartifyReady setl foldlevel=99
-				Plug 'dstein64/vim-startuptime'
+				if has('nvim-0.2') || v:version >= 800
+					"Plug 'dstein64/vim-startuptime'
+				endif
 				Plug 'tyru/open-browser.vim'
 					"CONFIGURATION
 						"if something' not working run :VimProcInstall"
