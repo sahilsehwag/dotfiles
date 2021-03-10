@@ -3132,15 +3132,8 @@
 							"TABLINE
 								let g:airline#extensions#tabline#enabled = 1
 								let g:airline#extensions#tabline#fnamemod = ':t'
-								"let g:airline#extensions#tabline#left_sep = ' '
-								"let g:airline#extensions#tabline#left_alt_sep = '|'
-								"let g:airline#extensions#tabline#right_sep = ' '
-								"let g:airline#extensions#tabline#right_alt_sep = '|'
-								"let g:airline#extensions#tabline#show_splits = 1
-								"let g:airline#extensions#tabline#show_close_button = 1
-								"let g:airline#extensions#tabline#close_symbol = '✖ '
 							"TMUXLINE
-								let airline#extensions#tmuxline#color_template = 'visual'
+								let airline#extensions#tmuxline#color_template = 'normal'
 							"CUSTOMIZATION
 								let g:airline#extensions#default#layout = [
 									\ [ 'a', 'b', 'c'],
@@ -3156,26 +3149,17 @@
 									\ }
 								let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
 							"EXTENSIONS
-								let g:airline#extensions#wordcount#enabled = 0
-								"let g:airline#extensions#wordcount#filetypes = []
-								"let g:airline#extensions#whitespace#enabled = 1
-								"let g:airline#extensions#whitespace#mixed_indent_algo = 0
-								"let g:airline#extensions#whitespace#symbol = '!'
-								"let g:airline#extensions#whitespace#checks = ['indent', 'trailing', 'long', 'mixed-indent-file']
-								"let g:airline#extensions#whitespace#trailing_format = 'trailing[%s]'
-								"let g:airline#extensions#whitespace#mixed_indent_format = 'mixed-indent[%s]'
-								"let g:airline#extensions#whitespace#long_format = 'long[%s]'
-								"let g:airline#extensions#whitespace#mixed_indent_file_format = 'mix-indent-file[%s]'
-								"let g:airline#extensions#whitespace#trailing_regexp = '\s$'
+								let g:airline#extensions#whitespace#enabled = 1
+								let g:airline#extensions#whitespace#mixed_indent_algo = 0
+								let g:airline#extensions#whitespace#symbol = ''
+								let g:airline#extensions#whitespace#checks = ['indent', 'trailing', 'mixed-indent-file, long']
+								let g:airline#extensions#whitespace#trailing_format = 'T[%s]'
+								let g:airline#extensions#whitespace#mixed_indent_format = 'MI[%s]'
+								let g:airline#extensions#whitespace#long_format = 'L[%s]'
+								let g:airline#extensions#whitespace#mixed_indent_file_format = 'MIF[%s]'
+								let g:airline#extensions#whitespace#trailing_regexp = '\s$'
 						Plug 'vim-airline/vim-airline-themes'
 						Plug 'augustold/vim-airline-colornum'
-						Plug 'gcavallanti/vim-noscrollbar'
-							function! Noscrollbar(...)
-								let w:airline_section_z = '%{noscrollbar#statusline(20," ", "█")}'
-								"let w:airline_section_z = '%{noscrollbar#statusline(20," ", "▌")}'
-								"let w:airline_section_z = '%{noscrollbar#statusline(20," ", "▐")}'
-							endfunction
-							"call airline#add_statusline_func('Noscrollbar')
 					elseif IsWindows()
 						Plug 'itchyny/lightline.vim'
 							"CONFIGURATION
@@ -4290,9 +4274,9 @@
 			"PATCHES
 				let g:vim_search_pulse_disable_auto_mappings = 1
 			"RANDOM
-				let g:airline_powerline_fonts							= 0
-				let g:airline_theme										= 'wombat'
-				let g:airline#extensions#bufferline#enabled				= 1
+				let g:airline_powerline_fonts = 0
+				let g:airline_theme = 'wombat'
+				let g:airline#extensions#bufferline#enabled = 1
 				let g:airline#extensions#bufferline#overwrite_variables = 1
 		endif
 	"FIRENVIM
