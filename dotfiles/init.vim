@@ -2413,9 +2413,6 @@
 							nnoremap <silent> <right> :call animate#window_delta_width(-10)<CR>
 					"Plug 'camspiers/lens.vim'
 						let g:lens#animate = 1
-				Plug 'abdalrahman-ali/vim-remembers'
-					let g:remembers_tmp_dir     = g:jaat_tmp_path . 'remembers_tmp'
-					let g:remembers_session_dir = g:jaat_tmp_path . 'remembers_sessions'
 				Plug 'tpope/vim-repeat'
 				Plug 'tpope/vim-capslock'
 					nmap <silent> <LocalLeader><LocalLeader> <Plug>CapsLockToggle
@@ -3133,6 +3130,7 @@
 									let g:airline_section_c = airline#section#create(['%{expand("%:.")}'])
 								endfunction
 								autocmd User AirlineAfterInit call AirlineInit()
+							"BUFFERLINE
 							"TABLINE
 								let g:airline#extensions#tabline#enabled = 1
 								let g:airline#extensions#tabline#fnamemod = ':t'
@@ -3144,11 +3142,7 @@
 								"let g:airline#extensions#tabline#show_close_button = 1
 								"let g:airline#extensions#tabline#close_symbol = '✖ '
 							"TMUXLINE
-								"let airline#extensions#tmuxline#color_template = 'normal'
-								"let airline#extensions#tmuxline#color_template = 'insert'
-								"let airline#extensions#tmuxline#color_template = 'visual'
-								"let airline#extensions#tmuxline#color_template = 'replace'
-							"BUFFERLINE
+								let airline#extensions#tmuxline#color_template = 'normal'
 							"CUSTOMIZATION
 								let g:airline#extensions#default#layout = [
 									\ [ 'a', 'b', 'c'],
@@ -3294,7 +3288,38 @@
 						let g:bufferline_inactive_highlight  = 'StatusLineNC'
 						let g:bufferline_solo_highlight		 = 0
 						let g:bufferline_pathshorten		 = 0
-					"Plug 'edkolev/tmuxline.vim'
+				"EXTERNAL
+					Plug 'edkolev/tmuxline.vim'
+						let g:tmuxline_powerline_separators = 1
+						"let g:tmuxline_separators = {
+							"\'left'      : '',
+							"\'left_alt'  : '>',
+							"\'right'     : '',
+							"\'right_alt' : '<',
+							"\'space'     : ' '
+						"\}
+						let g:tmuxline_preset = {
+							\'a':    '#S',
+							\'b':    '#W',
+							\'c':    '',
+							\'win':  '#W',
+							\'cwin': '#W#F',
+							\'x':    '%R %a %Y',
+							\'y':    '',
+							\'z':    '#(whoami)'
+						\}
+						"let g:tmuxline_theme = 'powerline'
+						"let g:tmuxline_theme = {
+							"\'a':    [ 236, 103 ],
+							"\'b':    [ 253, 239 ],
+							"\'c':    [ 244, 236 ],
+							"\'x':    [ 244, 236 ],
+							"\'y':    [ 253, 239 ],
+							"\'z':    [ 236, 103 ],
+							"\'win':  [ 103, 236 ],
+							"\'cwin': [ 236, 103 ],
+							"\'bg':   [ 244, 236 ],
+						"\}
 					"Plug 'edkolev/promptline.vim'
 				"COLORSCHEMES
 					"Plug 'flazz/vim-colorschemes'
@@ -3732,6 +3757,7 @@
 					"AUTOCOMMANDS
 						autocmd User StartifyReady setl foldlevel=99
 				if has('nvim-0.2') || v:version >= 800
+					"TODO:FIX
 					"Plug 'dstein64/vim-startuptime'
 				endif
 				Plug 'tyru/open-browser.vim'
