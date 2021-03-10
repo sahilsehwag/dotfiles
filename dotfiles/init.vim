@@ -3123,9 +3123,7 @@
 					if IsNix()
 						Plug 'vim-airline/vim-airline'
 							"CONFIGURATION
-								"let g:airline_theme = 'bubblegum'
-								let g:airline_powerline_fonts = 0
-
+								let g:airline_powerline_fonts = 1
 								function! AirlineInit()
 									let g:airline_section_c = airline#section#create(['%{expand("%:.")}'])
 								endfunction
@@ -3142,7 +3140,7 @@
 								"let g:airline#extensions#tabline#show_close_button = 1
 								"let g:airline#extensions#tabline#close_symbol = '✖ '
 							"TMUXLINE
-								let airline#extensions#tmuxline#color_template = 'normal'
+								let airline#extensions#tmuxline#color_template = 'visual'
 							"CUSTOMIZATION
 								let g:airline#extensions#default#layout = [
 									\ [ 'a', 'b', 'c'],
@@ -3303,8 +3301,8 @@
 							\'b':    '#W',
 							\'c':    '',
 							\'win':  '#W',
-							\'cwin': '#W#F',
-							\'x':    '%R %a %Y',
+							\'cwin': '#W',
+							\'x':    ['%R', '%A'],
 							\'y':    '',
 							\'z':    '#(whoami)'
 						\}
