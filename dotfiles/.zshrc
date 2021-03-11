@@ -54,9 +54,14 @@
 		export ZSH=~/.oh-my-zsh
 		export SSH_KEY_PATH="~/.ssh/rsa_id"
 
-		#ZSH_THEME="spaceship"
-		#ZSH_THEME="powerlevel9k/powerlevel9k"
-		#ZSH_THEME="powerlevel10k/powerlevel10k"
+		if [[ -f $HOME/.config/promptline.sh ]]  then
+			source $HOME/.config/promptline.sh
+		else
+			#ZSH_THEME="spaceship"
+			#ZSH_THEME="powerlevel9k/powerlevel9k"
+			ZSH_THEME="powerlevel10k/powerlevel10k"
+		fi
+
 		HYPHEN_INSENSITIVE="true"
 		ENABLE_CORRECTION="true"
 		ZSH_DISABLE_COMPFIX="true"
