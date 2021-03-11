@@ -133,6 +133,8 @@
 		type "thefuck" > /dev/null && eval $(thefuck --alias fuck)
 	#STARSHIP
 		eval "$(starship init zsh)"
+	#STARTSCREEN
+		type neofetch > /dev/null && neofetch
 #ALIASES
 	type exa            > /dev/null && alias ls='exa'
 	type bat            > /dev/null && alias less='bat'
@@ -148,3 +150,4 @@
 				source "$HB_CNF_HANDLER";
 			fi
 		fi
+#TEMPORAL
