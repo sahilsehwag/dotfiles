@@ -280,7 +280,7 @@
 	" nnoremap <left> <nop>
 "SETTINGS
 	"OPTIONS
-		colorscheme ph
+		colorscheme gruvbox
 		set vicmd=nvim
 		set trash
 		set history=100
