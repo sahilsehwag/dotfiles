@@ -3302,7 +3302,7 @@
 							"\'cwin': [ 236, 103 ],
 							"\'bg':   [ 244, 236 ],
 						"\}
-					"Plug 'edkolev/promptline.vim'
+					Plug 'edkolev/promptline.vim'
 				"COLORSCHEMES
 					"Plug 'flazz/vim-colorschemes'
 					Plug 'rafi/awesome-vim-colorschemes'
