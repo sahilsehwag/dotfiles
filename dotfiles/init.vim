@@ -2413,30 +2413,35 @@
 							nnoremap <silent> <right> :call animate#window_delta_width(-10)<CR>
 					"Plug 'camspiers/lens.vim'
 						let g:lens#animate = 1
+				Plug 'abdalrahman-ali/vim-remembers'
+					let g:remembers_ignore_empty_buffers = 1
+					let g:remembers_tmp_dir     = g:jaat_tmp_path . 'remembers/unnamed'
+					let g:remembers_session_dir = g:jaat_tmp_path . 'remembers/sessions'
 				Plug 'tpope/vim-repeat'
 				Plug 'tpope/vim-capslock'
 					nmap <silent> <LocalLeader><LocalLeader> <Plug>CapsLockToggle
 					imap ;; <Plug>CapsLockToggle
 				Plug 'liuchengxu/vim-which-key'
 					"CONFIGURATION
-						let g:which_key_sep				   = '→'
-						let g:which_key_hspace			   = 5
-						let g:which_key_flatten			   = 1
-						let g:which_key_max_size		   = 0
-						let g:which_key_sort_horizontal    = 0
-						let g:which_key_vertical		   = 0
-						let g:which_key_use_floating_win   = 0
+						let g:which_key_sep = '→'
+						let g:which_key_hspace = 5
+						let g:which_key_flatten = 1
+						let g:which_key_max_size = 0
+						let g:which_key_sort_horizontal = 0
+						let g:which_key_vertical = 0
+						let g:which_key_use_floating_win = 0
 						let g:which_key_align_by_seperator = 1
 						let g:which_key_display_names	   = {
 							\' '	 : 'SPC',
 							\'<C-H>' : 'BS'
 						\}
-						let g:which_key_map				   = {}
 
 						"hiding statusline
 						autocmd! FileType which_key
 						autocmd  FileType which_key set laststatus=0 noshowmode noruler
 							\| autocmd BufLeave <buffer> set laststatus=2 noshowmode ruler
+
+						let g:which_key_map = {}
 
 						let g:which_key_map['*']   = "which_key_ignore"
 						let g:which_key_map['"']   = "which_key_ignore"
@@ -2647,10 +2652,11 @@
 						let g:which_key_map['z'] = {
 							\'name' : '+miscelleanous',
 						\}
+
 					"MAPPINGS
-						nnoremap <silent> <Leader>		:<C-U>WhichKey		 '<SPACE>' <CR>
-						vnoremap <silent> <Leader>		:<C-U>WhichKeyVisual '<SPACE>' <CR>
-						nnoremap <silent> <LocalLeader> :<C-U>WhichKey		 ','	   <CR>
+						nnoremap <silent> <Leader>      :<C-U>WhichKey       '<SPACE>' <CR>
+						vnoremap <silent> <Leader>      :<C-U>WhichKeyVisual '<SPACE>' <CR>
+						nnoremap <silent> <LocalLeader> :<C-U>WhichKey       ','       <CR>
 				Plug 'szw/vim-maximizer'
 					nnoremap <silent> <Leader>wm :MaximizerToggle<CR>
 				Plug 'mbbill/undotree'
@@ -3622,7 +3628,7 @@
 						nmap <LocalLeader>ci :Codi!!<CR>
 					Plug 'arkwright/vim-whiteboard'
 						"CONFIGURATION
-							let g:whiteboard_temp_directory = g:jaat_tmp_path . 'whiteboard'
+							let g:whiteboard_temp_directory = g:jaat_tmp_path . 'whiteboard/'
 							let g:whiteboard_interpreters = {
 								\'python'     :{'extension': 'py'     ,'command': 'python3'  },
 								\'r'          :{'extension': 'r'      ,'command': 'r'        },
@@ -3649,8 +3655,8 @@
 								\'git'        :{'extension': 'git'    ,'command': 'gitsome'  },
 								\'lisp'       :{'extension': 'lisp'   ,'command': 'sbcl'     }}
 						"MAPPINGS
-							nnoremap <LocalLeader>cs :execute "Whiteboard "  . &filetype<CR>
-							nnoremap <LocalLeader>cS :execute "Whiteboard! " . &filetype<CR>
+							nnoremap <LocalLeader>cs :execute "Whiteboard! " . &filetype<CR>
+							nnoremap <LocalLeader>cS :execute "Whiteboard "  . &filetype<CR>
 				"RANDOM
 					Plug 'mattn/emmet-vim'
 						let g:user_emmet_install_global = 0
