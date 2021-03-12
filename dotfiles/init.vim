@@ -2058,13 +2058,18 @@
 				nnoremap <silent> <Leader>TP :tabmove +   <CR>
 			"BUFFERS
 				nnoremap <silent> <Leader>ba :enew<CR>
-				nnoremap <silent> <Leader>bcc :bp<bar>sp<bar>bn<bar>bd<CR>
-				nnoremap <silent> <Leader>bd :bdelete<CR>
+
+				nnoremap <silent> <Leader>bd :bp<bar>sp<bar>bn<bar>bd<CR>
 				nnoremap <silent> <Leader>bD :bdelete!<CR>
+				nnoremap <silent> <Leader>bcc :bp<bar>sp<bar>bn<bar>bd<CR>
+
 				nnoremap <silent> <Leader>bs :call ScratchBuffer('e')<CR>
 				nnoremap <silent> <Leader>bS :call ScratchBuffer('e', 1)<CR>
-				nnoremap <silent> <Leader>bw :write<CR>
-				nnoremap <silent> <Leader>bW :wall<CR>
+
+				nnoremap <silent> <Leader>bwc :write<CR>
+				nnoremap <silent> <Leader>bwa :wall<CR>
+				nnoremap <silent> <Leader>bwC :write!<CR>
+				nnoremap <silent> <Leader>bwA :wall!<CR>
 
 				nnoremap <Leader>` <C-^>
 
@@ -2477,25 +2482,30 @@
 						\}
 						let g:which_key_map['b'] = {
 							\'name' : '+buffers',
+							\'c': {
+								\'name': '+close',
+								\'a': '--close-all',
+								\'c': 'close-current',
+								\'o': 'close-others',
+								\'h': 'close-left-ones',
+								\'l': 'close-right-ones',
+							\},
+							\'w' : {
+								\'name': '+write',
+								\'c': 'write-current-buffer',
+								\'V': 'WRITE-current-buffer',
+								\'a': 'write-all-buffers',
+								\'A': 'WRITE-all-buffers',
+							\},
 							\'l'	: 'list-buffers',
 							\'t'	: 'open-buffer-tree',
 							\'a'	: 'add-buffer',
 							\'d'	: 'delete-buffer',
 							\'D'	: 'DELETE-buffer',
-							\'w'	: 'write-buffer',
-							\'W'	: 'write-all-buffer',
 							\'s'	: 'open-scratch',
 							\'S'	: 'open-scratch-filetype',
-							\'/'	: 'search-buffer',
-							\'?'	: 'search-buffers',
-							\'c': {
-								\'name': '+close',
-								\'c': 'close-current',
-								\'a': '--close-all',
-								\'o': 'close-others',
-								\'h': 'close-left-ones',
-								\'l': 'close-right-ones',
-							\}
+							\'/'	: 'search-current-buffer',
+							\'?'	: 'search-all-buffers',
 						\}
 						let g:which_key_map['c'] = {
 							\'name' : 'which_key_ignore',
