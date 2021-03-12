@@ -2034,7 +2034,8 @@
 		nnoremap ' "
 	"LEADER
 		"BASICS
-			nnoremap <Leader>vq :q<CR>
+			nnoremap <Leader>vq :qall<CR>
+			nnoremap <Leader>vQ :qall!<CR>
 			"TODO:FIX
 				"execute 'nnoremap <silent> <' . g:leader_2 . '-space> <ESC>'
 		"EDITING
