@@ -2493,7 +2493,7 @@
 							\'w' : {
 								\'name': '+write',
 								\'c': 'write-current-buffer',
-								\'V': 'WRITE-current-buffer',
+								\'C': 'WRITE-current-buffer',
 								\'a': 'write-all-buffers',
 								\'A': 'WRITE-all-buffers',
 							\},
@@ -3585,6 +3585,8 @@
 								"DOCUMENTATION
 									nnoremap <silent> K         <cmd>Lspsaga hover_doc<CR>
 									inoremap <silent> <A-space> <cmd>Lspsaga signature_help<CR>
+						Plug 'kosayoda/nvim-lightbulb'
+							autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()
 					elseif has('node') && (v:version >= 800 || has('nvim-0.4'))
 						Plug 'neoclide/coc.nvim', {'branch': 'release'}
 							"CONFIGURATION
