@@ -2491,9 +2491,9 @@
 								\'name': '+close',
 								\'c': 'close-current',
 								\'a': '--close-all',
-								\'o': '--close-others',
-								\'h': '--close-left-ones',
-								\'l': '--close-right-ones',
+								\'o': 'close-others',
+								\'h': 'close-left-ones',
+								\'l': 'close-right-ones',
 							\}
 						\}
 						let g:which_key_map['c'] = {
@@ -3356,8 +3356,29 @@
 						let g:bufferline_solo_highlight      = 0
 						let g:bufferline_pathshorten         = 0
 				"TABLINE
-					"Plug 'romgrk/barbar.nvim'
-					"Plug 'akinsho/nvim-bufferline.lua'
+					if has('nvim-0.5')
+						Plug 'romgrk/barbar.nvim'
+							"CONFIGURATION
+								let bufferline = {}
+								let bufferline.icon_close_tab_modified = '●'
+								let bufferline.no_name_title = v:null
+							"MAPPINGS
+								nnoremap <silent> <Leader>` :BufferLast<CR>
+								nnoremap <silent> <Leader>1 :BufferGoto 1<CR>
+								nnoremap <silent> <Leader>2 :BufferGoto 2<CR>
+								nnoremap <silent> <Leader>3 :BufferGoto 3<CR>
+								nnoremap <silent> <Leader>4 :BufferGoto 4<CR>
+								nnoremap <silent> <Leader>5 :BufferGoto 5<CR>
+								nnoremap <silent> <Leader>6 :BufferGoto 6<CR>
+								nnoremap <silent> <Leader>7 :BufferGoto 7<CR>
+								nnoremap <silent> <Leader>8 :BufferGoto 8<CR>
+								nnoremap <silent> <Leader>9 :BufferGoto 9<CR>
+								nnoremap <silent> <Leader>bp :BufferPick<CR>
+
+								nnoremap <silent> <Leader>bco :BufferCloseAllButCurrent<CR>
+								nnoremap <silent> <Leader>bch :BufferCloseBuffersLeft<CR>
+								nnoremap <silent> <Leader>bcl :BufferCloseBuffersRight<CR>
+					endif
 				"EXTERNAL
 					Plug 'edkolev/tmuxline.vim'
 						"'#(whoami)'
@@ -3485,7 +3506,7 @@
 						"MAPPINGS
 							nmap <silent> <Leader>gh <Plug>(git-messenger)
 				"LSP
-					if has('node') && version >= 800
+					if has('node') && (v:version >= 800 || has('nvim-0.4'))
 						Plug 'neoclide/coc.nvim', {'branch': 'release'}
 							"CONFIGURATION
 							"PLUGINS
@@ -3673,6 +3694,9 @@
 							set statusline+=%{NearestMethodOrFunction()}
 							autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
 				"TREESITTER
+					if has('nvim-0.5')
+						Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+					endif
 				"COMMENTS
 					"Plug 'tpope/vim-commentary'
 					Plug 'scrooloose/nerdcommenter'
@@ -4278,6 +4302,11 @@
 		set cmdheight=1
 		set cmdwinheight=10
 	"INTERFACE
+		"COLORS
+			if (has("termguicolors"))
+				set termguicolors
+				hi LineNr ctermbg=NONE guibg=NONE
+			endif
 		"BTW
 			"BUFFER
 				set nowrap
