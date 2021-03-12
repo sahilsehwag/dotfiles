@@ -4277,8 +4277,6 @@
 			lua require'lspconfig'.vimls.setup{}
 			lua require'lspconfig'.pyright.setup{}
 			lua require'lspconfig'.tsserver.setup{}
-		"NVIM-COMPE
-			luafile ~/.config/nvim/plugins/lsp/nvim_compe.lua
 	"CUSTOM
 	"IDEAPAD
 	"SCRATCHPAD
