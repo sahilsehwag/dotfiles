@@ -3567,6 +3567,9 @@
 								autocmd BufWritePre *.tsx lua vim.lsp.buf.formatting_sync(nil, 100)
 								autocmd BufWritePre *.py  lua vim.lsp.buf.formatting_sync(nil, 100)
 						Plug 'neovim/nvim-lspconfig'
+						Plug 'RishabhRD/nvim-lsputils'
+							"DEPENDENCIES
+								Plug 'RishabhRD/popfix'
 						Plug 'glepnir/lspsaga.nvim'
 							"CONFIGURATION
 							"MAPPINGS
@@ -4293,6 +4296,15 @@
 			lua require'lspconfig'.vimls.setup{}
 			lua require'lspconfig'.pyright.setup{}
 			lua require'lspconfig'.tsserver.setup{}
+		"NVIM-LSPUTILS
+			lua vim.lsp.handlers['textDocument/codeAction'] = require'lsputil.codeAction'.code_action_handler
+			lua vim.lsp.handlers['textDocument/references'] = require'lsputil.locations'.references_handler
+			lua vim.lsp.handlers['textDocument/definition'] = require'lsputil.locations'.definition_handler
+			lua vim.lsp.handlers['textDocument/declaration'] = require'lsputil.locations'.declaration_handler
+			lua vim.lsp.handlers['textDocument/typeDefinition'] = require'lsputil.locations'.typeDefinition_handler
+			lua vim.lsp.handlers['textDocument/implementation'] = require'lsputil.locations'.implementation_handler
+			lua vim.lsp.handlers['textDocument/documentSymbol'] = require'lsputil.symbols'.document_handler
+			lua vim.lsp.handlers['workspace/symbol'] = require'lsputil.symbols'.workspace_handler
 	"CUSTOM
 	"IDEAPAD
 	"SCRATCHPAD
