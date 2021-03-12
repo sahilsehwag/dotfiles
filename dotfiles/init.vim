@@ -4270,9 +4270,15 @@
 				"Plug 'syngan/vim-operator-evalf'
 				"Plug 'neitanod/vim-sade'
 		call plug#end()
-
-		"post-loading…
-		call which_key#register('<SPACE>', "g:which_key_map")
+	"POST-LOADING
+		"WHICH-KEY
+			call which_key#register('<SPACE>', "g:which_key_map")
+		"LSPCONFIG
+			lua require'lspconfig'.vimls.setup{}
+			lua require'lspconfig'.pyright.setup{}
+			lua require'lspconfig'.tsserver.setup{}
+		"NVIM-COMPE
+			luafile ~/.config/nvim/plugins/lsp/nvim_compe.lua
 	"CUSTOM
 	"IDEAPAD
 	"SCRATCHPAD
