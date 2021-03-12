@@ -3590,6 +3590,7 @@
 									inoremap <silent> <A-space> <cmd>Lspsaga signature_help<CR>
 						Plug 'kosayoda/nvim-lightbulb'
 							autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()
+						Plug 'onsails/lspkind-nvim'
 					elseif has('node') && (v:version >= 800 || has('nvim-0.4'))
 						Plug 'neoclide/coc.nvim', {'branch': 'release'}
 							"CONFIGURATION
@@ -4305,6 +4306,32 @@
 			lua vim.lsp.handlers['textDocument/implementation'] = require'lsputil.locations'.implementation_handler
 			lua vim.lsp.handlers['textDocument/documentSymbol'] = require'lsputil.symbols'.document_handler
 			lua vim.lsp.handlers['workspace/symbol'] = require'lsputil.symbols'.workspace_handler
+		"LSPKIND-NVIM
+			lua require('lspkind').init({
+				\with_text = true,
+				\symbol_map = {
+					\ Text        = '  ',
+					\ Method      = '  ',
+					\ Function    = '  ',
+					\ Constructor = '  ',
+					\ Variable    = '[]',
+					\ Class       = '  ',
+					\ Interface   = '  ',
+					\ Module      = ' פּ ',
+					\ Property    = '  ',
+					\ Unit        = ' 塞 ',
+					\ Value       = '  ',
+					\ Enum        = ' 練',
+					\ Keyword     = '  ',
+					\ Snippet     = '  ',
+					\ Color       = '  ',
+					\ File        = '  ',
+					\ Folder      = ' ﱮ ',
+					\ EnumMember  = '  ',
+					\ Constant    = '  ',
+					\ Struct      = '  '
+				\},
+			\})
 	"CUSTOM
 	"IDEAPAD
 	"SCRATCHPAD
