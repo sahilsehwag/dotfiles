@@ -2387,6 +2387,12 @@
 									autocmd WinLeave,FocusLost             * silent! lua require('scrollbar').clear()
 								augroup end
 					endif
+				"SMOOTHSCROLL
+					"Plug 'joeytwiddle/sexy_scroller.vim'
+						let g:SexyScoller_ScrollTime = 10
+						let g:SexyScroller_CursorTime = 5
+						let g:SexyScroller_MaxTime = 200
+						let g:SexyScroller_EasingStyle = 1
 				"MINIMAP
 					if has('nvim-0.5') || v:version >= 820
 						Plug 'wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'}
@@ -2470,15 +2476,16 @@
 						let g:which_key_map['b'] = {
 							\'name' : '+buffers',
 							\'l'	: 'list-buffers',
+							\'t'	: 'open-buffer-tree',
 							\'a'	: 'add-buffer',
 							\'c'	: 'close-buffer',
 							\'d'	: 'delete-buffer',
 							\'D'	: 'DELETE-buffer',
 							\'w'	: 'WRITE-buffer',
-							\'s'	: 'scratch-buffer',
-							\'S'	: 'scratch-buffer-filetype',
-							\'/'	: 'buffer-lines',
-							\'?'	: 'all-buffer-lines',
+							\'s'	: 'open-scratch',
+							\'S'	: 'open-scratch-filetype',
+							\'/'	: 'search-current-buffer',
+							\'?'	: 'search-buffers',
 						\}
 						let g:which_key_map['c'] = {
 							\'name' : 'which_key_ignore',
@@ -2677,6 +2684,9 @@
 						let g:undotree_CursorLine = 1
 					"MAPPINGS
 						nnoremap <Leader>vu :UndotreeToggle<CR>
+				Plug 'el-iot/buffer-tree-explorer'
+					let g:buffer_tree_explorer_compress = v:true
+					nnoremap <Leader>bt :Tree<CR>
 				Plug 'junegunn/vim-peekaboo'
 					let g:peekaboo_window  = 'vert bo 80new'
 					let g:peekaboo_compact = 0
