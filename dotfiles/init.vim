@@ -2034,6 +2034,7 @@
 		nnoremap ' "
 	"LEADER
 		"BASICS
+			nnoremap <Leader>vq :q<CR>
 			"TODO:FIX
 				"execute 'nnoremap <silent> <' . g:leader_2 . '-space> <ESC>'
 		"EDITING
@@ -2056,13 +2057,13 @@
 				nnoremap <silent> <Leader>TP :tabmove +   <CR>
 			"BUFFERS
 				nnoremap <silent> <Leader>ba :enew<CR>
-				nnoremap <silent> <Leader>bc :bp<bar>sp<bar>bn<bar>bd<CR>
+				nnoremap <silent> <Leader>bcc :bp<bar>sp<bar>bn<bar>bd<CR>
 				nnoremap <silent> <Leader>bd :bdelete<CR>
 				nnoremap <silent> <Leader>bD :bdelete!<CR>
 				nnoremap <silent> <Leader>bs :call ScratchBuffer('e')<CR>
 				nnoremap <silent> <Leader>bS :call ScratchBuffer('e', 1)<CR>
-				nnoremap <silent> <Leader>bw :write!<CR>
-
+				nnoremap <silent> <Leader>bw :write<CR>
+				nnoremap <silent> <Leader>bW :wall<CR>
 
 				nnoremap <Leader>` <C-^>
 
@@ -2478,14 +2479,22 @@
 							\'l'	: 'list-buffers',
 							\'t'	: 'open-buffer-tree',
 							\'a'	: 'add-buffer',
-							\'c'	: 'close-buffer',
 							\'d'	: 'delete-buffer',
 							\'D'	: 'DELETE-buffer',
-							\'w'	: 'WRITE-buffer',
+							\'w'	: 'write-buffer',
+							\'W'	: 'write-all-buffer',
 							\'s'	: 'open-scratch',
 							\'S'	: 'open-scratch-filetype',
-							\'/'	: 'search-current-buffer',
+							\'/'	: 'search-buffer',
 							\'?'	: 'search-buffers',
+							\'c': {
+								\'name': '+close',
+								\'c': 'close-current',
+								\'a': '--close-all',
+								\'o': '--close-others',
+								\'h': '--close-left-ones',
+								\'l': '--close-right-ones',
+							\}
 						\}
 						let g:which_key_map['c'] = {
 							\'name' : 'which_key_ignore',
@@ -2501,6 +2510,57 @@
 						\}
 						let g:which_key_map['g'] = {
 							\'name' : '+git',
+							\'i' : 'git-init',
+							\'C' : 'git-clone',
+							\'a' : {
+								\'name': '+staging-area',
+								\'s': 'git-status',
+								\'d': '--git-diff',
+								\'a': '--git-add',
+								\'r': '--reset-working-area',
+							\},
+							\'b' : {
+								\'name': '+branch',
+								\'l': '--list-branches',
+								\'n': '--new-branch',
+								\'N': '--new-branch->checkout',
+								\'c': '--git-checkout',
+								\'C': '--git-checkout-last-branch',
+								\'m': '--git-merge',
+								\'M': '--git-merge-no-ff',
+								\'r': '--git-rebase',
+								\'R': '--git-rebase-interactive',
+							\},
+							\'c' : {
+								\'name': '+commits',
+								\'l': '--git-log-oneline',
+								\'L': '--git-log-graph',
+								\'m': '--git-commit',
+								\'a': '--git-commit-amend',
+								\'u': '--undo-commit',
+								\'d': '--delete-commit',
+							\},
+							\'r' : {
+								\'name': '+remote',
+								\'p': '--git-pull',
+								\'P': '--git-push',
+								\'l': '--git-remote-show',
+								\'a': '--git-remote-add',
+								\'d': '--git-remote-remove',
+								\'r': '--git-remote-rename',
+							\},
+							\'s' : {
+								\'name': '+stash',
+								\'s': '--git-stash',
+								\'l': '--git-stash-list',
+								\'a': '--git-stash-apply',
+								\'p': '--git-stash-pop',
+								\'d': '--git-stash-drop',
+								\'c': '--git-stash-clear',
+							\},
+							\'o' : 'open-git-file',
+							\'O' : 'open-modified-file',
+							\'h' : 'show-line-commit-history',
 						\}
 						let g:which_key_map['h'] = {
 							\'name' : 'which_key_ignore',
@@ -2516,6 +2576,14 @@
 						\}
 						let g:which_key_map['l'] = {
 							\'name' : '+lsp',
+							\'a': {
+								\'name': '+actions',
+								\'f': 'format',
+								\'F': 'format-selected',
+								\'l': 'list-actions',
+								\'o': 'organize-imports',
+								\'q': 'quickfix',
+							\},
 							\'g': {
 								\'name': '+goto',
 								\'d': 'goto-definition',
@@ -2523,14 +2591,16 @@
 								\'i': 'goto-implementation',
 								\'r': 'goto-references',
 							\},
+							\'s': {
+								\'name': '+symbols',
+								\'l': 'list-symbols',
+								\'r': 'rename-symbol',
+								\'t': 'show-file-tags',
+								\'T': 'show-project-tags',
+								\'o': 'show-outline',
+							\},
 							\'c': 'show-commands',
 							\'e': 'show-errors',
-							\'s': 'show-symbols',
-							\'o': 'show-outline',
-							\'r': 'rename-symbol',
-							\'f': 'format-selected',
-							\'F': 'format-buffer',
-							\'q': 'quickfix',
 							\'l': 'coc-list',
 							\'L': 'coc-list-resume',
 						\}
@@ -2548,12 +2618,14 @@
 						\}
 						let g:which_key_map['p'] = {
 							\'name' : '+projects',
-							\'l'	: '-list-projects',
-							\'n'	: '-new-project',
+							\'l'	: '--list-projects',
+							\'n'	: '--new-project',
 							\'o'	: 'open-project',
-							\'O'	: '-open-last-project',
-							\'c'	: '-close-project',
+							\'O'	: '--open-last-project',
+							\'c'	: '--close-project',
 							\'f'	: 'open-project-file',
+							\'r'	: 'open-project-mru',
+							\'R'	: 'open-project-mrw',
 							\'t'	: 'search-project',
 							\'e'	: 'open-project-directory',
 							\'E'	: 'open-file-directory',
@@ -2581,19 +2653,19 @@
 						\}
 						let g:which_key_map['t'] = {
 							\'name' : '+terminals',
-							\'l'	: 'list-terminals',
-							\'b'	: 'buffer-terminal',
-							\'f'	: 'float-terminal',
-							\'v'	: 'vertical-terminal',
-							\'h'	: 'horizontal-terminal',
+							\'l'	: '--list-terminals',
+							\'b'	: 'new-buffer-terminal',
+							\'f'	: 'new-flaating-terminal',
+							\'v'	: 'new-vertical-terminal',
+							\'h'	: 'new-horizontal-terminal',
 							\'t'	: 'toggle-terminal',
-							\'d'	: 'delete-terminal',
+							\'k'	: 'kill-terminal',
 							\'n'	: 'next-terminal',
 							\'p'	: 'previous-terminal',
-							\'B'	: 'buffer-terminal-lcd',
-							\'F'	: '-float-terminal-lcd',
-							\'V'	: 'vertical-terminal-lcd',
-							\'H'	: 'horizontal-terminal-lcd',
+							\'B'	: 'new-buffer-terminal-lcd',
+							\'F'	: '--new-floating-terminal-lcd',
+							\'V'	: 'new-vertical-terminal-lcd',
+							\'H'	: 'new-horizontal-terminal-lcd',
 						\}
 						let g:which_key_map['T'] = {
 							\'name' : '+tabs',
@@ -2610,11 +2682,12 @@
 						\}
 						let g:which_key_map['v'] = {
 							\'name' : '+vim',
-							\'c' : 'open-config-file',
-							\'s' : 'source-config-file',
-							\'C' : 'set-colorscheme',
+							\'c' : 'open-config',
+							\'s' : 'source-config',
+							\'C' : 'select-colorscheme',
 							\'/' : 'search-history',
 							\':' : 'command-history',
+							\'q' : 'quit-vim',
 							\'h' : {
 								\'name' : '+help',
 								\'c'	: 'commands',
@@ -2624,10 +2697,10 @@
 							\'p' : {
 								\'name' : '+plugin-manager',
 								\'l'	: 'list-plugins',
-								\'a'	: 'install-plugins',
+								\'i'	: 'install-plugins',
 								\'d'	: 'uninstall-plugins',
 								\'u'	: 'update-plugins',
-								\'U'	: 'update-plugin',
+								\'U'	: '--update-plugin',
 								\'p'	: 'update-plugin-manager',
 							\},
 							\'t' : {
@@ -2659,7 +2732,6 @@
 						let g:which_key_map['z'] = {
 							\'name' : '+miscelleanous',
 						\}
-
 					"MAPPINGS
 						nnoremap <silent> <Leader>      :<C-U>WhichKey       '<SPACE>' <CR>
 						vnoremap <silent> <Leader>      :<C-U>WhichKeyVisual '<SPACE>' <CR>
@@ -3411,7 +3483,7 @@
 							let g:git_messenger_no_default_mappings = v:true
 						"HIGHLIGHTS
 						"MAPPINGS
-							nmap <silent> <Leader>gm <Plug>(git-messenger)
+							nmap <silent> <Leader>gh <Plug>(git-messenger)
 				"LSP
 					if has('node') && version >= 800
 						Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -3573,13 +3645,13 @@
 									nnoremap <silent><nowait> <Leader>ll  :<C-u>CocListResume<CR>
 									nnoremap <silent><nowait> <Leader>le  :<C-u>CocList diagnostics<CR>
 									nnoremap <silent><nowait> <Leader>lc  :<C-u>CocList commands<CR>
-									nnoremap <silent><nowait> <Leader>lo  :<C-u>CocList outline<CR>
-									nnoremap <silent><nowait> <Leader>ls  :<C-u>CocList -I symbols<CR>
+									nnoremap <silent><nowait> <Leader>lso  :<C-u>CocList outline<CR>
+									nnoremap <silent><nowait> <Leader>lsl  :<C-u>CocList -I symbols<CR>
 
 									nnoremap <silent><nowait> <Leader>ln  :<C-u>CocNext<CR>
 									nnoremap <silent><nowait> <Leader>lp  :<C-u>CocPrev<CR>
 								"RANDOM
-									nmap          <Leader>lr <Plug>(coc-rename)
+									nmap          <Leader>lsr <Plug>(coc-rename)
 									nmap <silent> <C-s>      <Plug>(coc-range-select)
 									xmap <silent> <C-s>      <Plug>(coc-range-select)
 					endif
