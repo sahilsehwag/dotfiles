@@ -2578,31 +2578,45 @@
 							\'name' : '+lsp',
 							\'a': {
 								\'name': '+actions',
-								\'f': 'format',
-								\'F': 'format-selected',
-								\'l': 'list-actions',
-								\'o': 'organize-imports',
-								\'q': 'quickfix',
+								\'a': 'show-actions',
+								\'f': 'format-buffer',
+								\'o': '--organize-imports',
+								\'q': '--quickfix',
 							\},
 							\'g': {
 								\'name': '+goto',
 								\'d': 'goto-definition',
-								\'D': 'goto-type-definition',
+								\'D': 'goto-declaration',
+								\'t': 'goto-type-definition',
 								\'i': 'goto-implementation',
 								\'r': 'goto-references',
+								\'p': 'preview-definition',
 							\},
 							\'s': {
 								\'name': '+symbols',
-								\'l': 'list-symbols',
+								\'d': '__show-document-symbols',
+								\'w': '--show-workspace-symbols',
+								\'t': '__show-document-tags',
+								\'T': '__search-document-tags',
+								\'o': '__show-outline',
 								\'r': 'rename-symbol',
-								\'t': 'show-file-tags',
-								\'T': 'show-project-tags',
-								\'o': 'show-outline',
 							\},
-							\'c': 'show-commands',
-							\'e': 'show-errors',
-							\'l': 'coc-list',
-							\'L': 'coc-list-resume',
+							\'d': {
+								\'name': '+diagnostics',
+								\'a': '--show-all-diagnostics',
+								\'l': 'show-line-diagnostics',
+								\'n': 'goto-next-diagnostic',
+								\'p': 'goto-prev-diagnostic',
+							\},
+							\'h': {
+								\'name': '+help',
+								\'h': 'hover-documentation',
+								\'s': 'signature-help',
+							\},
+							\'e': '__show-errors',
+							\'c': '__show-commands',
+							\'l': '__coc-list',
+							\'L': '__coc-list-resume',
 						\}
 						let g:which_key_map['m'] = {
 							\'name' : 'which_key_ignore',
@@ -3506,7 +3520,61 @@
 						"MAPPINGS
 							nmap <silent> <Leader>gh <Plug>(git-messenger)
 				"LSP
-					if has('node') && (v:version >= 800 || has('nvim-0.4'))
+					if has('nvim-0.5')
+						"CONFIGURATION
+							"GOTO
+								nnoremap <silent> <Leader>lgd <cmd>lua vim.lsp.buf.definition()<CR>
+								nnoremap <silent> <Leader>lgD <cmd>lua vim.lsp.buf.declaration()<CR>
+								nnoremap <silent> <Leader>lgt <cmd>lua vim.lsp.buf.type_definition()<CR>
+								nnoremap <silent> <Leader>lgi <cmd>lua vim.lsp.buf.implementation()<CR>
+								nnoremap <silent> <Leader>lgr <cmd>lua vim.lsp.buf.references()<CR>
+
+								nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
+								nnoremap <silent> gD <cmd>lua vim.lsp.buf.declaration()<CR>
+								nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>
+							"DOCUMENTATION
+								nnoremap <silent> <Leader>lhh <cmd>lua vim.lsp.buf.hover()<CR>
+								nnoremap <silent> <Leader>lhs <cmd>lua vim.lsp.buf.signature_help()<CR>
+							"DIAGNOSTICS"
+								nnoremap <silent> <Leader>ldl <cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
+								nnoremap <silent> <Leader>ldn <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
+								nnoremap <silent> <Leader>ldp <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
+							"CODE-ACTIONS
+								nnoremap <silent> <Leader>laa <cmd>lua vim.lsp.buf.code_action()<CR>
+								vnoremap <silent> <Leader>laa <cmd>lua vim.lsp.buf.range_code_action()<CR>
+							"SYMBOLS
+								nnoremap <silent> <Leader>lsr <cmd>lua vim.lsp.buf.rename()<CR>
+								nnoremap <silent> <Leader>lsd <cmd>lua vim.lsp.buf.document_symbol()<CR>
+								nnoremap <silent> <Leader>lsw <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
+							"FORMATTING
+								nnoremap <silent> <Leader>laf <cmd>lua vim.lsp.buf.formatting()<CR>
+								vnoremap <silent> <Leader>laf <cmd>lua vim.lsp.buf.range_formatting()<CR>
+
+								autocmd BufWritePre *.js  lua vim.lsp.buf.formatting_sync(nil, 100)
+								autocmd BufWritePre *.ts  lua vim.lsp.buf.formatting_sync(nil, 100)
+								autocmd BufWritePre *.jsx lua vim.lsp.buf.formatting_sync(nil, 100)
+								autocmd BufWritePre *.tsx lua vim.lsp.buf.formatting_sync(nil, 100)
+								autocmd BufWritePre *.py  lua vim.lsp.buf.formatting_sync(nil, 100)
+						Plug 'neovim/nvim-lspconfig'
+						Plug 'glepnir/lspsaga.nvim'
+							"CONFIGURATION
+							"MAPPINGS
+								"GOTO
+									nnoremap <silent> <Leader>lgr <cmd>Lspsaga lsp_finder<CR>
+									nnoremap <silent> <Leader>lgp <cmd>Lspsaga preview_definition<CR>
+								"ACTIONS
+									nnoremap <silent> <Leader>laa <cmd>Lspsaga code_action<CR>
+									vnoremap <silent> <Leader>laa <cmd>Lspsaga range_code_action<CR>
+								"SYMBOLS
+									nnoremap <silent> <Leader>lsr <cmd>Lspsaga rename<CR>
+								"DIAGNOSTICS
+									nnoremap <silent> [e          <cmd>Lspsaga diagnostic_jump_prev<CR>
+									nnoremap <silent> ]e          <cmd>Lspsaga diagnostic_jump_next<CR>
+									nnoremap <silent> <Leader>ldl <cmd>Lspsaga show_line_diagnostics<CR>
+								"DOCUMENTATION
+									nnoremap <silent> K         <cmd>Lspsaga hover_doc<CR>
+									inoremap <silent> <A-space> <cmd>Lspsaga signature_help<CR>
+					elseif has('node') && (v:version >= 800 || has('nvim-0.4'))
 						Plug 'neoclide/coc.nvim', {'branch': 'release'}
 							"CONFIGURATION
 							"PLUGINS
