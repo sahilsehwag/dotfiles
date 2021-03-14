@@ -1919,11 +1919,15 @@
 
 			if has('mac')
 				command! -nargs=1 Typora :execute 'FloatermNew open -a Typora ' . shellescape(<q-args>)
-				nnoremap <Leader>at :execute 'Typora ' . expand('%:p')<CR>
 			endif
 
 			if executable('lazygit')
 				nnoremap <silent> <Leader>ag :FloatermNew lazygit<CR>
+			endif
+
+			if executable('mitype')
+				command! MiType :FloatermNew mitype
+				nnoremap <silent> <Leader>at :MiType<CR>
 			endif
 
 			if executable('bat')
