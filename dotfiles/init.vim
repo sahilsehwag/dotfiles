@@ -2523,6 +2523,7 @@
 							\'name' : '+git',
 							\'i' : 'git-init',
 							\'C' : 'git-clone',
+							\'B' : 'git-blame',
 							\'a' : {
 								\'name': '+staging-area',
 								\'s': 'git-status',
@@ -3956,8 +3957,7 @@
 						let g:startify_session_dir         = g:jaat_tmp_path . 'sessions'
 					"AUTOCOMMANDS
 						autocmd User StartifyReady setl foldlevel=99
-				if has('nvim-0.2') || v:version >= 800
-					"TODO:FIX
+				if has('nvim-0.2.2') || v:version >= 800
 					"Plug 'dstein64/vim-startuptime'
 				endif
 				Plug 'tyru/open-browser.vim'
