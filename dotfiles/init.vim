@@ -2482,7 +2482,14 @@
 						let g:which_key_map[' '] = {'name':'+miscellanous'}
 
 						let g:which_key_map['a'] = {
-							\'name' : 'which_key_ignore',
+							\'name' : 'applications(tui)',
+							\'e' : 'explorer',
+							\'m' : 'markdown',
+							\'M' : 'markdown-current-file',
+							\'g' : 'git',
+							\'t' : 'typing',
+							\'y' : 'youtube',
+							\'Y' : 'youtube-music',
 						\}
 						let g:which_key_map['b'] = {
 							\'name' : '+buffers',
