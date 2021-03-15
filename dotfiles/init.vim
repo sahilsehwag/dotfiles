@@ -1932,9 +1932,6 @@
 
 			if executable('bat')
 				command! -nargs=1 Bat :FloatermNew bat <q-args>
-
-				nnoremap <silent> <Leader>ab :execute 'FloatermNew bat    --file-name=' . expand('%:p:t') . ' ' .expand('%:p')<CR>
-				nnoremap <silent> <Leader>aB :execute 'FloatermNew bat -d --file-name=' . expand('%:p:t') . ' ' .expand('%:p')<CR>
 			endif
 
 			if executable('open')
@@ -1942,11 +1939,11 @@
 			endif
 
 			if executable('slack-term')
-				nnoremap <silent> <Leader>as :FloatermNew slack-term<CR>
+				command! Slack :FloatermNew slack-term
 			endif
 
 			if executable('lazynpm')
-				nnoremap <silent> <Leader>an :FloatermNew lazynpm<CR>
+				command! Slack :FloatermNew lazynpm
 			endif
 
 			if executable('man') && executable('bat')
