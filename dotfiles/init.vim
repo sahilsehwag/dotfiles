@@ -2063,6 +2063,7 @@
 				nnoremap <silent> <Leader>bd :bp<bar>sp<bar>bn<bar>bd<CR>
 				nnoremap <silent> <Leader>bD :bdelete!<CR>
 				nnoremap <silent> <Leader>bcc :bp<bar>sp<bar>bn<bar>bd<CR>
+				nnoremap <silent> <Leader>bca :bufdo bwipeout<CR>
 
 				nnoremap <silent> <Leader>bs :call ScratchBuffer('e')<CR>
 				nnoremap <silent> <Leader>bS :call ScratchBuffer('e', 1)<CR>
@@ -2492,7 +2493,7 @@
 							\'name' : '+buffers',
 							\'c': {
 								\'name': '+close',
-								\'a': '--close-all',
+								\'a': 'close-all',
 								\'c': 'close-current',
 								\'o': 'close-others',
 								\'h': 'close-left-ones',
