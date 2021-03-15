@@ -2060,10 +2060,15 @@
 			"BUFFERS
 				nnoremap <silent> <Leader>ba :enew<CR>
 
-				nnoremap <silent> <Leader>bd :bp<bar>sp<bar>bn<bar>bd<CR>
-				nnoremap <silent> <Leader>bD :bdelete!<CR>
 				nnoremap <silent> <Leader>bcc :bp<bar>sp<bar>bn<bar>bd<CR>
+				nnoremap <silent> <Leader>bcC :bp<bar>sp<bar>bn<bar>bd!<CR>
+				nnoremap <silent> <Leader>bcd :bdelete<CR>
+				nnoremap <silent> <Leader>bcD :bdelete!<CR>
 				nnoremap <silent> <Leader>bca :bufdo bwipeout<CR>
+				nnoremap <silent> <Leader>bcA :bufdo bwipeout!<CR>
+
+				nnoremap <silent> <Leader>bd :bp<bar>sp<bar>bn<bar>bd<CR>
+				nnoremap <silent> <Leader>bD :bdelete<CR>
 
 				nnoremap <silent> <Leader>bs :call ScratchBuffer('e')<CR>
 				nnoremap <silent> <Leader>bS :call ScratchBuffer('e', 1)<CR>
@@ -2494,10 +2499,14 @@
 							\'c': {
 								\'name': '+close',
 								\'a': 'close-all',
+								\'A': 'CLOSE-all',
 								\'c': 'close-current',
+								\'C': 'CLOSE-current',
 								\'o': 'close-others',
 								\'h': 'close-left-ones',
 								\'l': 'close-right-ones',
+								\'d': 'delete-current',
+								\'D': 'DELETE-current',
 							\},
 							\'w' : {
 								\'name': '+write',
