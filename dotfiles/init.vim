@@ -3541,64 +3541,13 @@
 							nmap <silent> <Leader>gh <Plug>(git-messenger)
 				"LSP
 					if has('nvim-0.5')
-						"CONFIGURATION
-							"GOTO
-								nnoremap <silent> <Leader>lgd <cmd>lua vim.lsp.buf.definition()<CR>
-								nnoremap <silent> <Leader>lgD <cmd>lua vim.lsp.buf.declaration()<CR>
-								nnoremap <silent> <Leader>lgt <cmd>lua vim.lsp.buf.type_definition()<CR>
-								nnoremap <silent> <Leader>lgi <cmd>lua vim.lsp.buf.implementation()<CR>
-								nnoremap <silent> <Leader>lgr <cmd>lua vim.lsp.buf.references()<CR>
-
-								nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
-								nnoremap <silent> gD <cmd>lua vim.lsp.buf.declaration()<CR>
-								nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>
-							"DOCUMENTATION
-								nnoremap <silent> <Leader>lhh <cmd>lua vim.lsp.buf.hover()<CR>
-								nnoremap <silent> <Leader>lhs <cmd>lua vim.lsp.buf.signature_help()<CR>
-							"DIAGNOSTICS"
-								nnoremap <silent> <Leader>ldl <cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
-								nnoremap <silent> <Leader>ldn <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
-								nnoremap <silent> <Leader>ldp <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
-							"CODE-ACTIONS
-								nnoremap <silent> <Leader>laa <cmd>lua vim.lsp.buf.code_action()<CR>
-								vnoremap <silent> <Leader>laa <cmd>lua vim.lsp.buf.range_code_action()<CR>
-							"SYMBOLS
-								nnoremap <silent> <Leader>lsr <cmd>lua vim.lsp.buf.rename()<CR>
-								nnoremap <silent> <Leader>lsd <cmd>lua vim.lsp.buf.document_symbol()<CR>
-								nnoremap <silent> <Leader>lsw <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
-							"FORMATTING
-								nnoremap <silent> <Leader>laf <cmd>lua vim.lsp.buf.formatting()<CR>
-								vnoremap <silent> <Leader>laf <cmd>lua vim.lsp.buf.range_formatting()<CR>
-
-								autocmd BufWritePre *.js  lua vim.lsp.buf.formatting_sync(nil, 100)
-								autocmd BufWritePre *.ts  lua vim.lsp.buf.formatting_sync(nil, 100)
-								autocmd BufWritePre *.jsx lua vim.lsp.buf.formatting_sync(nil, 100)
-								autocmd BufWritePre *.tsx lua vim.lsp.buf.formatting_sync(nil, 100)
-								autocmd BufWritePre *.py  lua vim.lsp.buf.formatting_sync(nil, 100)
+						source ~/.config/nvim/lsp.vim
 						Plug 'neovim/nvim-lspconfig'
 						Plug 'RishabhRD/nvim-lsputils'
-							"DEPENDENCIES
-								Plug 'RishabhRD/popfix'
+							Plug 'RishabhRD/popfix'
 						Plug 'glepnir/lspsaga.nvim'
-							"CONFIGURATION
-							"MAPPINGS
-								"GOTO
-									nnoremap <silent> <Leader>lgr <cmd>Lspsaga lsp_finder<CR>
-									nnoremap <silent> <Leader>lgp <cmd>Lspsaga preview_definition<CR>
-								"ACTIONS
-									nnoremap <silent> <Leader>laa <cmd>Lspsaga code_action<CR>
-									vnoremap <silent> <Leader>laa <cmd>Lspsaga range_code_action<CR>
-								"SYMBOLS
-									nnoremap <silent> <Leader>lsr <cmd>Lspsaga rename<CR>
-								"DIAGNOSTICS
-									nnoremap <silent> [e          <cmd>Lspsaga diagnostic_jump_prev<CR>
-									nnoremap <silent> ]e          <cmd>Lspsaga diagnostic_jump_next<CR>
-									nnoremap <silent> <Leader>ldl <cmd>Lspsaga show_line_diagnostics<CR>
-								"DOCUMENTATION
-									nnoremap <silent> K         <cmd>Lspsaga hover_doc<CR>
-									inoremap <silent> <A-space> <cmd>Lspsaga signature_help<CR>
 						Plug 'kosayoda/nvim-lightbulb'
-							autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()
+						Plug 'hrsh7th/nvim-compe'
 						Plug 'onsails/lspkind-nvim'
 					elseif has('node') && (v:version >= 800 || has('nvim-0.4'))
 						Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -4302,45 +4251,16 @@
 	"POST-LOADING
 		"WHICH-KEY
 			call which_key#register('<SPACE>', "g:which_key_map")
-		"LSPCONFIG
-			lua require'lspconfig'.vimls.setup{}
-			lua require'lspconfig'.pyright.setup{}
-			lua require'lspconfig'.tsserver.setup{}
-		"NVIM-LSPUTILS
-			lua vim.lsp.handlers['textDocument/codeAction'] = require'lsputil.codeAction'.code_action_handler
-			lua vim.lsp.handlers['textDocument/references'] = require'lsputil.locations'.references_handler
-			lua vim.lsp.handlers['textDocument/definition'] = require'lsputil.locations'.definition_handler
-			lua vim.lsp.handlers['textDocument/declaration'] = require'lsputil.locations'.declaration_handler
-			lua vim.lsp.handlers['textDocument/typeDefinition'] = require'lsputil.locations'.typeDefinition_handler
-			lua vim.lsp.handlers['textDocument/implementation'] = require'lsputil.locations'.implementation_handler
-			lua vim.lsp.handlers['textDocument/documentSymbol'] = require'lsputil.symbols'.document_handler
-			lua vim.lsp.handlers['workspace/symbol'] = require'lsputil.symbols'.workspace_handler
-		"LSPKIND-NVIM
-			lua require('lspkind').init({
-				\with_text = true,
-				\symbol_map = {
-					\ Text        = '  ',
-					\ Method      = '  ',
-					\ Function    = '  ',
-					\ Constructor = '  ',
-					\ Variable    = '[]',
-					\ Class       = '  ',
-					\ Interface   = '  ',
-					\ Module      = ' פּ ',
-					\ Property    = '  ',
-					\ Unit        = ' 塞 ',
-					\ Value       = '  ',
-					\ Enum        = ' 練',
-					\ Keyword     = '  ',
-					\ Snippet     = '  ',
-					\ Color       = '  ',
-					\ File        = '  ',
-					\ Folder      = ' ﱮ ',
-					\ EnumMember  = '  ',
-					\ Constant    = '  ',
-					\ Struct      = '  '
-				\},
-			\})
+		if has('nvim-0.5')
+			luafile ~/.config/nvim/plugins/lsp/nvim-lspconfig.lua
+			luafile ~/.config/nvim/plugins/lsp/nvim-lsputils.lua
+			luafile ~/.config/nvim/plugins/lsp/lspsaga.nvim.lua
+			luafile ~/.config/nvim/plugins/lsp/nvim-lightbulb.lua
+			luafile ~/.config/nvim/plugins/lsp/nvim-compe.lua
+			luafile ~/.config/nvim/plugins/lsp/lspkind-nvim.lua
+			luafile ~/.config/nvim/plugins/vcs/nvim-blamer.lua
+			luafile ~/.config/nvim/plugins/aesthetics/nvim-colorizer.lua
+		endif
 	"CUSTOM
 	"IDEAPAD
 	"SCRATCHPAD
