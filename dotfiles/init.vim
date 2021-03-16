@@ -2624,12 +2624,12 @@
 							\},
 							\'s': {
 								\'name': '+symbols',
-								\'d': '__show-document-symbols',
-								\'w': '--show-workspace-symbols',
-								\'t': '__show-document-tags',
-								\'T': '__search-document-tags',
-								\'o': '__show-outline',
+								\'d': 'show-document-symbols',
+								\'w': 'show-workspace-symbols',
+								\'D': 'search-document-symbols',
 								\'r': 'rename-symbol',
+								\'t': 'tagbar',
+								\'o': '__show-outline',
 							\},
 							\'d': {
 								\'name': '+diagnostics',
@@ -3740,8 +3740,8 @@
 							let g:vista_fzf_preview = ['right:50%']
 							let g:vista_echo_cursor_strategy = 'echo'
 						"MAPPINGS
-							nnoremap <silent> <Leader>lt :Vista!!<CR>
-							nnoremap <silent> <Leader>lT :Vista finder fzf<CR>
+							nnoremap <silent> <Leader>lst :Vista!!<CR>
+							nnoremap <silent> <Leader>lsD :Vista finder fzf<CR>
 						"STATUSLINE
 							function! NearestMethodOrFunction() abort
 								return get(b:, 'vista_nearest_method_or_function', '')
@@ -4242,7 +4242,6 @@
 					let g:pasta_paste_before_mapping = 'P'
 					let g:pasta_paste_after_mapping = 'p'
 				Plug 'liuchengxu/vim-clap'
-				"Plug 'liuchengxu/vista.vim'
 				Plug 'ap/vim-css-color'
 				Plug 'tommcdo/vim-ninja-feet'
 				"Plug 'RRethy/vim-illuminate'
