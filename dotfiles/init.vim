@@ -4261,6 +4261,7 @@
 		"WHICH-KEY
 			call which_key#register('<SPACE>', "g:which_key_map")
 		if has('nvim-0.5')
+			luafile ~/.config/nvim/plugins/treesitter/nvim-treesitter.lua
 			luafile ~/.config/nvim/plugins/lsp/nvim-lspconfig.lua
 			luafile ~/.config/nvim/plugins/lsp/nvim-lsputils.lua
 			luafile ~/.config/nvim/plugins/lsp/lspsaga.nvim.lua
@@ -4305,7 +4306,7 @@
 		"JetBrainsMono-Regular
 		"Inconsolata
 		"OperatorMono?
-		"Menlo(GITLAB)?
+		"Menlo(GITLAB+VSCODE)
 		"IBMPlexMono(BlexMono)?
 	"FOLDING
 		if has('folding')
