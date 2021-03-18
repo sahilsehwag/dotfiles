@@ -3572,6 +3572,7 @@
 						Plug 'glepnir/lspsaga.nvim'
 						Plug 'kosayoda/nvim-lightbulb'
 						Plug 'hrsh7th/nvim-compe'
+							Plug 'tzachar/compe-tabnine', { 'do': './install.sh' }
 						Plug 'onsails/lspkind-nvim'
 					elseif has('node') && (v:version >= 800 || has('nvim-0.4'))
 						Plug 'neoclide/coc.nvim', {'branch': 'release'}

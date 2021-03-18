@@ -21,4 +21,15 @@ function! MinimalFoldText()
 	return line . expansionString . foldSizeStr . foldPercentage . foldLevelStr
 endf
 
+
+"WIP
+function! GetFoldText() abort
+	let l:lines  = v:foldend - v:foldstart + 1
+	let l:first  = substitute(getline(v:foldstart), '\v *', '', '')
+	let l:dashes = substitute(v:folddashes, '-', '', 'g')
+
+	return ' ▵' . ' [' . l:lines . '] ' . l:first
+endfunction
+
+
 set foldtext=MinimalFoldText()

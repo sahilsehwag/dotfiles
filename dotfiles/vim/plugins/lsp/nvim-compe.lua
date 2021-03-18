@@ -15,18 +15,17 @@ require'compe'.setup {
   documentation = true;
 
   source = {
-    path = true;
-    tags = true;
-    buffer = true;
-    spell = true;
-    calc = true;
-
-    nvim_lsp = true;
-    treesitter = true;
-
+    nvim_lsp      = true;
+    nvim_lua      = true;
+    treesitter    = true;
+    path          = true;
+    tags          = true;
+    buffer        = true;
+    spell         = true;
+    calc          = true;
+    tabnine       = true;
     snippets_nvim = false;
-    vsnip = false;
-    nvim_lua = false;
+    vsnip         = false;
   };
 }
 
@@ -65,5 +64,6 @@ vim.api.nvim_set_keymap('i', '<Tab>'  , 'v:lua.tab_complete()'  , { noremap = tr
 vim.api.nvim_set_keymap('s', '<Tab>'  , 'v:lua.tab_complete()'  , { noremap = true , expr = true , silent = true})
 vim.api.nvim_set_keymap('i', '<S-Tab>', 'v:lua.s_tab_complete()', { noremap = true , expr = true , silent = true})
 vim.api.nvim_set_keymap('s', '<S-Tab>', 'v:lua.s_tab_complete()', { noremap = true , expr = true , silent = true})
-vim.api.nvim_set_keymap('i', '<CR>'   , 'compe#complete("<CR>")', { noremap = true , expr = true , silent = true})
+vim.api.nvim_set_keymap('i', '<CR>'   , 'compe#confirm("<CR>")' , { noremap = true , expr = true , silent = true})
+
 
