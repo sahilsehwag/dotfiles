@@ -2516,6 +2516,7 @@
 								\'A': 'WRITE-all-buffers',
 							\},
 							\'l'	: 'list-buffers',
+							\'j'	: 'jump-to-buffer',
 							\'t'	: 'open-buffer-tree',
 							\'a'	: 'add-buffer',
 							\'d'	: 'delete-buffer',
@@ -3421,7 +3422,7 @@
 								nnoremap <silent> <Leader>7 :BufferGoto 7<CR>
 								nnoremap <silent> <Leader>8 :BufferGoto 8<CR>
 								nnoremap <silent> <Leader>9 :BufferGoto 9<CR>
-								nnoremap <silent> <Leader>bp :BufferPick<CR>
+								nnoremap <silent> <Leader>bj :BufferPick<CR>
 
 								nnoremap <silent> <Leader>bco :BufferCloseAllButCurrent<CR>
 								nnoremap <silent> <Leader>bch :BufferCloseBuffersLeft<CR>
@@ -3767,6 +3768,7 @@
 						Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 						Plug 'nvim-treesitter/playground'
 						Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+						Plug 'nvim-treesitter/nvim-treesitter-refactor'
 					endif
 				"COMMENTS
 					"Plug 'tpope/vim-commentary'
