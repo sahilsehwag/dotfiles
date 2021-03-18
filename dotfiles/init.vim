@@ -3766,6 +3766,7 @@
 					if has('nvim-0.5')
 						Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 						Plug 'nvim-treesitter/playground'
+						Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 					endif
 				"COMMENTS
 					"Plug 'tpope/vim-commentary'
