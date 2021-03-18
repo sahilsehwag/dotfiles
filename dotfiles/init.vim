@@ -2633,7 +2633,7 @@
 							\},
 							\'d': {
 								\'name': '+diagnostics',
-								\'a': '--show-all-diagnostics',
+								\'a': 'show-all-diagnostics',
 								\'l': 'show-line-diagnostics',
 								\'n': 'goto-next-diagnostic',
 								\'p': 'goto-prev-diagnostic',
@@ -2825,25 +2825,29 @@
 					let g:diminactive_use_syntax = 1
 					let g:diminactive_use_colorcolumn = 0
 					"highlight ColorColumn ctermbg=0 guibg=#081C23
+				if has('nvim')
+					Plug 'kevinhwang91/nvim-bqf'
+				endif
 				if has('folding')
 					Plug 'pseewald/vim-anyfold'
 						"CONFIGURATION
 							let g:anyfold_motion            = 0
 							let g:anyfold_fold_comments     = 0
 							let g:anyfold_identify_comments = 0
-							let g:anyfold_fold_toplevel     = 1
+							let g:anyfold_fold_toplevel     = 0
 							let g:anyfold_comments          = []
 							let g:anyfold_fold_level_str    = ''
 							let g:anyfold_fold_size_str     = '%s Lines   '
 						"HIGHLIGHT
 							"hi Folded ctermfg= ctermbg= guifg= guibg
 						"AUTOCOMMANDS
+							autocmd FileType text AnyFoldActivate
 							autocmd FileType jproperties AnyFoldActivate
 						"MAPPINGS
-					"Plug 'arecarn/vim-fold-cycle'
-						"let g:fold_cycle_default_mapping = 0
-						"nmap <TAB>	 <Plug>(fold-cycle-open)
-						"nmap <S-TAB> <Plug>(fold-cycle-close)
+					Plug 'arecarn/vim-fold-cycle'
+						let g:fold_cycle_default_mapping = 0
+						nmap <TAB>	 <Plug>(fold-cycle-open)
+						nmap <S-TAB> <Plug>(fold-cycle-close)
 				endif
 				if has('signs')
 					Plug 'kshenoy/vim-signature'
@@ -3422,6 +3426,9 @@
 								nnoremap <silent> <Leader>bco :BufferCloseAllButCurrent<CR>
 								nnoremap <silent> <Leader>bch :BufferCloseBuffersLeft<CR>
 								nnoremap <silent> <Leader>bcl :BufferCloseBuffersRight<CR>
+
+								execute 'nnoremap <silent> <' . g:action_leader . '-p> :BufferPrevious<CR>'
+								execute 'nnoremap <silent> <' . g:action_leader . '-n> :BufferNext<CR>'
 					endif
 				"EXTERNAL
 					Plug 'edkolev/tmuxline.vim'
@@ -3521,6 +3528,9 @@
 						"let g:highlighturl_ctermfg   = ''
 						"let g:highlighturl_guifg	  = ''
 						"let g:highlighturl_underline = 0
+					if has('nvim')
+						Plug 'norcalli/nvim-colorizer.lua'
+					endif
 				"DISABLED
 					"Plug 'haya14busa/vim-keeppad'
 					"Plug 'zefei/vim-colortuner'
@@ -3549,6 +3559,9 @@
 						"HIGHLIGHTS
 						"MAPPINGS
 							nmap <silent> <Leader>gh <Plug>(git-messenger)
+					if has('nvim')
+						Plug 'ttys3/nvim-blamer.lua'
+					endif
 				"LSP
 					if has('nvim-0.5')
 						source ~/.config/nvim/lsp.vim
@@ -4209,10 +4222,7 @@
 					vmap Dl <Plug>SchleppDupRight
 				Plug 'dohsimpson/vim-macroeditor'
 					nnoremap <Leader>zm :execute "MacroEdit " nr2char(getchar()) <CR>
-				"Plug 'majutsushi/tagbar'
-					nnoremap <Leader>nT :TagbarToggle<CR>
 				"Plug 'andymass/vim-matchup'
-				"Plug 'romainl/vim-qf'
 				"Plug 'tpope/vim-obsession'
 				"Plug 'syngan/vim-operator-keeppos'
 				"Plug 'blackbeltscripting/vim-paste-operator'
@@ -4241,7 +4251,7 @@
 				"Plug 'sickill/vim-pasta'
 					let g:pasta_paste_before_mapping = 'P'
 					let g:pasta_paste_after_mapping = 'p'
-				Plug 'liuchengxu/vim-clap'
+				"Plug 'liuchengxu/vim-clap'
 				Plug 'ap/vim-css-color'
 				Plug 'tommcdo/vim-ninja-feet'
 				"Plug 'RRethy/vim-illuminate'
@@ -4272,6 +4282,7 @@
 			luafile ~/.config/nvim/plugins/aesthetics/nvim-colorizer.lua
 		endif
 	"CUSTOM
+		source ~/.config/nvim/plugins/aesthetics/custom/minimalistic-folds.vim
 	"IDEAPAD
 	"SCRATCHPAD
 "CONFIGURATION
@@ -4312,6 +4323,7 @@
 		if has('folding')
 			set foldlevel=0
 			set foldignore=
+			set foldlevelstart=99
 		endif
 	"INDENTATION
 		set autoindent
