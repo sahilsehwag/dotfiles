@@ -1,35 +1,49 @@
-function! MinimalFoldText()
+function! Minimal(config) abort
 	let fs = v:foldstart
 
 	while getline(fs) =~ '^\s*$' | let fs = nextnonblank(fs + 1)
 	endwhile
 
 	if fs > v:foldend
-		let line = getline(v:foldstart)
+		let l:line = getline(v:foldstart)
 	else
-		let line = substitute(getline(fs), '\t', repeat(' ', &tabstop), 'g')
+		let l:line = substitute(getline(fs), '\t', repeat(' ', &tabstop), 'g')
 	endif
 
-	let width = winwidth(0) - &foldcolumn - (&number ? 8 : 0)
-	let foldSize = 1 + v:foldend - v:foldstart
-	let lineCount = line("$")
+	let l:width = winwidth(0) - &foldcolumn - (&number ? 8 : 0)
+	let l:noOfLinesInFold = 1 + v:foldend - v:foldstart
+	let l:totalLines = line("$")
 
-	let foldSizeStr = " " . foldSize . " Lines "
-	let foldLevelStr = repeat("", v:foldlevel)
-	let foldPercentage = printf("(%.1f", (foldSize * 1.0) / lineCount * 100) . "%) "
-	let expansionString = repeat(" ", width - strwidth(foldSizeStr.line.foldLevelStr.foldPercentage) + 2)
-	return line . expansionString . foldSizeStr . foldPercentage . foldLevelStr
+	let prefixComponent = ""
+	let percentageComponent = ""
+	let levelComponent = ""
+	let sizeComponent = ""
+
+	if a:config.prefix == v:true
+		let prefixComponent = "  "
+	endif
+
+	if a:config.size == v:true
+		let sizeComponent = " " . l:noOfLinesInFold . " Lines "
+	endif
+
+	if a:config.percentage == v:true
+		let percentageComponent = printf("(%.1f", (l:noOfLinesInFold * 1.0) / l:totalLines * 100) . "%) "
+	endif
+
+	if a:config.level == v:true
+		let levelComponent = '[' . v:foldlevel . ']'
+	endif
+
+	let expansionString = repeat(" ", l:width - strwidth(l:line . prefixComponent . levelComponent . sizeComponent . percentageComponent) + 2)
+	return l:line . prefixComponent . levelComponent . expansionString . sizeComponent . percentageComponent
 endf
 
 
-"WIP
-function! GetFoldText() abort
-	let l:lines  = v:foldend - v:foldstart + 1
-	let l:first  = substitute(getline(v:foldstart), '\v *', '', '')
-	let l:dashes = substitute(v:folddashes, '-', '', 'g')
-
-	return ' ▵' . ' [' . l:lines . '] ' . l:first
-endfunction
-
-
-set foldtext=MinimalFoldText()
+let foldConfig = {
+	\'prefix'     : v:true,
+	\'size'       : v:true,
+	\'level'      : v:true,
+	\'percentage' : v:true
+\}
+set foldtext=Minimal(foldConfig)
