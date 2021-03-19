@@ -1,6 +1,6 @@
 require'nvim-treesitter.configs'.setup {
 	highlight = { enable = true, },
-	indent = { enable = true, },
+	indent = { enable = false, },
 	rainbow = { enable = true, },
 	textobjects = {
 		select = {
@@ -18,7 +18,7 @@ require'nvim-treesitter.configs'.setup {
 	},
 	refactor = {
 		highlight_definitions = { enable = true },
-		highlight_current_scope = { enable = true },
+		highlight_current_scope = { enable = false },
 		smart_rename = {
 			enable = true,
 			keymaps = {
@@ -35,6 +35,10 @@ require'nvim-treesitter.configs'.setup {
 				--list_definitions_toc = "<Leader>lsd",
 			},
 		},
+	},
+	autotag = {
+		enable = true,
+		filetypes = { 'html', 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'svelte', 'vue' }
 	},
 }
 
