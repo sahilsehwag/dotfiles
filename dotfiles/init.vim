@@ -3567,6 +3567,7 @@
 					if has('nvim-0.5')
 						source ~/.config/nvim/lsp.vim
 						Plug 'neovim/nvim-lspconfig'
+						Plug 'alexaandru/nvim-lspupdate'
 						Plug 'RishabhRD/nvim-lsputils'
 							Plug 'RishabhRD/popfix'
 						Plug 'glepnir/lspsaga.nvim'
@@ -3762,14 +3763,15 @@
 								return get(b:, 'vista_nearest_method_or_function', '')
 							endfunction
 
-							set statusline+=%{NearestMethodOrFunction()}
-							autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
+							"set statusline+=%{NearestMethodOrFunction()}
+							"autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
 				"TREESITTER
 					if has('nvim-0.5')
 						Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 						Plug 'nvim-treesitter/playground'
 						Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 						Plug 'nvim-treesitter/nvim-treesitter-refactor'
+						Plug 'windwp/nvim-ts-autotag'
 					endif
 				"COMMENTS
 					"Plug 'tpope/vim-commentary'
