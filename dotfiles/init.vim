@@ -4556,6 +4556,7 @@
 		highlight JatCyanFG  ctermfg=235 ctermbg=39 guifg=#61AFEF guibg=#282C34
 		highlight JatCyanBG ctermfg=235 ctermbg=39 guifg=#282C34 guibg=#61AFEF
 	"RANDOM
+		highlight! link SignColumn LineNr
 "REFERENCE
 	"UNICODE
 		"LAYOUT
