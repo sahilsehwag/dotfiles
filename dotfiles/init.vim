@@ -3537,7 +3537,7 @@
 						"let g:highlighturl_ctermfg   = ''
 						"let g:highlighturl_guifg	  = ''
 						"let g:highlighturl_underline = 0
-					if has('nvim')
+					if has('nvim-0.5')
 						Plug 'norcalli/nvim-colorizer.lua'
 					endif
 				"DISABLED
@@ -3570,8 +3570,12 @@
 							nmap <silent> <Leader>gch <Plug>(git-messenger)
 					if has('nvim')
 						Plug 'ttys3/nvim-blamer.lua'
+					endif
+					if has('nvim-0.5')
 						Plug 'lewis6991/gitsigns.nvim'
 							Plug 'nvim-lua/plenary.nvim'
+					else
+						Plug 'airblade/vim-gitgutter'
 					endif
 				"LSP
 					if has('nvim-0.5')
@@ -4075,10 +4079,6 @@
 				"Plug 'skywind3000/quickmenu.vim'
 			"DEPENDENCIES
 				Plug 'Shougo/vimproc.vim'
-			"TODO:DEVELOPMENT
-				"VCS
-					"Plug 'airblade/vim-gitgutter'
-					"Plug 'mhinz/vim-signify'
 			"MESS:EXTENDING-VIM
 				Plug 'svermeulen/vim-yoink'
 					let g:yoinkMaxItems				   = 10
