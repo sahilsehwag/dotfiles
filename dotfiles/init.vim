@@ -2570,6 +2570,15 @@
 								\'a': '--git-commit-amend',
 								\'u': '--undo-commit',
 								\'d': '--delete-commit',
+								\'h' : 'show-line-commit-history',
+							\},
+							\'h' : {
+								\'name': '+hunks',
+								\'s': 'stage-hunk',
+								\'u': 'undo-stage-hunk',
+								\'p': 'preview-hunk',
+								\'r': 'reset-hunk',
+								\'R': 'reset-buffer',
 							\},
 							\'r' : {
 								\'name': '+remote',
@@ -2591,7 +2600,6 @@
 							\},
 							\'o' : 'open-git-file',
 							\'O' : 'open-modified-file',
-							\'h' : 'show-line-commit-history',
 						\}
 						let g:which_key_map['h'] = {
 							\'name' : 'which_key_ignore',
@@ -3559,9 +3567,11 @@
 							let g:git_messenger_no_default_mappings = v:true
 						"HIGHLIGHTS
 						"MAPPINGS
-							nmap <silent> <Leader>gh <Plug>(git-messenger)
+							nmap <silent> <Leader>gch <Plug>(git-messenger)
 					if has('nvim')
 						Plug 'ttys3/nvim-blamer.lua'
+						Plug 'lewis6991/gitsigns.nvim'
+							Plug 'nvim-lua/plenary.nvim'
 					endif
 				"LSP
 					if has('nvim-0.5')
@@ -4284,6 +4294,7 @@
 			luafile ~/.config/nvim/plugins/lsp/nvim-lightbulb.lua
 			luafile ~/.config/nvim/plugins/lsp/nvim-compe.lua
 			luafile ~/.config/nvim/plugins/lsp/lspkind-nvim.lua
+			luafile ~/.config/nvim/plugins/vcs/gitsigns.nvim.lua
 			luafile ~/.config/nvim/plugins/vcs/nvim-blamer.lua
 			luafile ~/.config/nvim/plugins/aesthetics/nvim-colorizer.lua
 		endif
