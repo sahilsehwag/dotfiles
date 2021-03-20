@@ -4533,22 +4533,28 @@
 		"highlight PmenuSel ctermfg=15
 		highlight Pmenu ctermbg=238 gui=bold
 	"GIT|DIFF
-		"highlight GitAdd          ctermfg=235 ctermbg=114 guifg=#282C34 guibg=#98C379
-		"highlight GitDelete       ctermfg=235 ctermbg=204 guifg=#282C34 guibg=#E06C75
-		"highlight GitChange       ctermfg=235 ctermbg=180 guifg=#282C34 guibg=#E5C07B
-		"highlight GitChangeDelete ctermfg=235 ctermbg=180 guifg=#282C34 guibg=#61AFEF
+		highlight JatAddFG          ctermfg=114 guifg=#98C379
+		highlight JatDeleteFG       ctermfg=204 guifg=#E06C75
+		highlight JatChangeFG       ctermfg=180 guifg=#E5C07B
+		highlight JatChangeDeleteFG ctermfg=180 guifg=#61AFEF
 
-		highlight JatGitAdd          ctermfg=114 ctermbg=114 guifg=#98C379 guibg=#98C379
-		highlight JatGitDelete       ctermfg=204 ctermbg=204 guifg=#E06C75 guibg=#E06C75
-		highlight JatGitChange       ctermfg=180 ctermbg=180 guifg=#E5C07B guibg=#E5C07B
-		highlight JatGitChangeDelete ctermfg=180 ctermbg=180 guifg=#61AFEF guibg=#61AFEF
+		highlight JatAddBG          ctermbg=114 guibg=#98C379
+		highlight JatDeleteBG       ctermbg=204 guibg=#E06C75
+		highlight JatChangeBG       ctermbg=180 guibg=#E5C07B
+		highlight JatChangeDeleteBG ctermbg=180 guibg=#61AFEF
 	"DIAGNOSTICS
-		highlight JatDiagnosticsError   ctermfg=204 guifg=#E06C75
-		highlight JatDiagnosticsWarning ctermfg=180 guifg=#E5C07B
-		highlight JatDiagnosticsInfo    ctermfg=180 guifg=#61AFEF
+		highlight JatErrorFG   ctermfg=204 guifg=#E06C75
+		highlight JatWarningFG ctermfg=180 guifg=#E5C07B
+		highlight JatInfoFG    ctermfg=180 guifg=#61AFEF
+		highlight JatHintFG    ctermfg=180 guifg=#61AFEF
+
+		highlight JatErrorBG   ctermbg=204 guibg=#E06C75
+		highlight JatWarningBG ctermbg=180 guibg=#E5C07B
+		highlight JatInfoBG    ctermbg=180 guibg=#61AFEF
+		highlight JatHintBG    ctermbg=180 guibg=#61AFEF
 	"COLORS
-		highlight JatCyan  ctermfg=235 ctermbg=39 guifg=#61AFEF guibg=#282C34
-		highlight JatCyanI ctermfg=235 ctermbg=39 guifg=#282C34 guibg=#61AFEF
+		highlight JatCyanFG  ctermfg=235 ctermbg=39 guifg=#61AFEF guibg=#282C34
+		highlight JatCyanBG ctermfg=235 ctermbg=39 guifg=#282C34 guibg=#61AFEF
 	"RANDOM
 "REFERENCE
 	"UNICODE
