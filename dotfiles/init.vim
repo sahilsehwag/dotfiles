@@ -3294,15 +3294,22 @@
 									\ }
 								let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
 							"EXTENSIONS
-								let g:airline#extensions#whitespace#enabled = 1
-								let g:airline#extensions#whitespace#mixed_indent_algo = 0
-								let g:airline#extensions#whitespace#symbol = ''
-								let g:airline#extensions#whitespace#checks = ['indent', 'trailing', 'mixed-indent-file, long']
-								let g:airline#extensions#whitespace#trailing_format = 'T[%s]'
-								let g:airline#extensions#whitespace#mixed_indent_format = 'MI[%s]'
-								let g:airline#extensions#whitespace#long_format = 'L[%s]'
-								let g:airline#extensions#whitespace#mixed_indent_file_format = 'MIF[%s]'
-								let g:airline#extensions#whitespace#trailing_regexp = '\s$'
+									let g:airline#extensions#fugitiive#enabled= 1
+									let g:airline#extensions#fzf#enabled= 1
+									let g:airline#extensions#hunks#enabled = 1
+									let g:airline#extensions#nvimlsp#enabled = 1
+									let g:airline#extensions#vista#enabled = 1
+										let g:airline#extensions#nvimlsp#error_symbol = '  '
+										let g:airline#extensions#nvimlsp#warning_symbol = '  '
+									let g:airline#extensions#whitespace#enabled = 1
+										let g:airline#extensions#whitespace#mixed_indent_algo = 0
+										let g:airline#extensions#whitespace#symbol = ''
+										let g:airline#extensions#whitespace#checks = ['indent', 'trailing', 'mixed-indent-file, long']
+										let g:airline#extensions#whitespace#trailing_format = 'T[%s]'
+										let g:airline#extensions#whitespace#mixed_indent_format = 'MI[%s]'
+										let g:airline#extensions#whitespace#long_format = 'L[%s]'
+										let g:airline#extensions#whitespace#mixed_indent_file_format = 'MIF[%s]'
+										let g:airline#extensions#whitespace#trailing_regexp = '\s$'
 						Plug 'vim-airline/vim-airline-themes'
 						Plug 'augustold/vim-airline-colornum'
 					elseif IsWindows()
@@ -3816,6 +3823,11 @@
 				"SNIPPETS
 					Plug 'honza/vim-snippets'
 					Plug 'epilande/vim-react-snippets'
+				"COMPLETION
+					Plug 'mattn/emmet-vim'
+						let g:user_emmet_install_global = 0
+						let g:user_emmet_leader_key='<A-e>'
+						autocmd! FileType html,css,javascript,javascriptreact,typescript,typescriptreact EmmetInstall
 				"DEBUGGING
 				"PLAYGROUND
 					Plug 'metakirby5/codi.vim'
@@ -3854,10 +3866,8 @@
 							nnoremap <LocalLeader>cs :execute "Whiteboard! " . &filetype<CR>
 							nnoremap <LocalLeader>cS :execute "Whiteboard "  . &filetype<CR>
 				"RANDOM
-					Plug 'mattn/emmet-vim'
-						let g:user_emmet_install_global = 0
-						let g:user_emmet_leader_key='<TAB>'
-						autocmd FileType html,css,jsx,js,ts,tsx EmmetInstall
+					Plug 'luochen1990/rainbow'
+						let g:rainbow_active = 1
 					"Plug 'tpope/vim-abolish'
 					Plug 'arthurxavierx/vim-caser'
 						"CONFIGURATIONS
@@ -4246,7 +4256,6 @@
 				"Plug 'osyo-manga/vim-operator-blockwise'
 				"Plug 'osyo-manga/vim-operator-stay-cursor'
 				"Plug 'syngan/vim-operator-furround'
-				"Plug 'luochen1990/rainbow'
 				"Plug 'thinca/vim-operator-sequence'
 				"Plug 'wellle/visual-split.vim'
 				"Plug 'spiiph/vim-space'
