@@ -2077,11 +2077,10 @@
 				nnoremap <silent> <Leader>bwa :wall<CR>
 				nnoremap <silent> <Leader>bwC :write!<CR>
 				nnoremap <silent> <Leader>bwA :wall!<CR>
+				execute 'nnoremap <silent> <' . g:action_leader . '-s> :wall<CR>'
 
 				nnoremap <Leader>` <C-^>
 
-				nnoremap <silent> ]b :bnext<CR>
-				nnoremap <silent> [b :bprevious<CR>
 				execute 'map <silent> <' . g:action_leader . '-p> :bprevious<CR>'
 				execute 'map <silent> <' . g:action_leader . '-n> :bnext<CR>'
 			"WINDOWS
@@ -3248,8 +3247,8 @@
 								nnoremap <silent> <Leader>So :SLoad<space>
 								nnoremap <silent> <Leader>Sc :SQuit<CR>
 						Plug 'pbogut/fzf-mru.vim'
-							"nnoremap <silent> <Leader>fr :<C-u>FZFMru<CR>
-							nnoremap <silent> <A-m> :<C-u>FZFMru<CR>
+							nnoremap <silent> <Leader>fr :<C-u>FZFMru<CR>
+							nnoremap <silent> <A-r> :<C-u>FZFMru<CR>
 				Plug 'voldikss/vim-floaterm'
 					nnoremap <silent> <Leader>tt :FloatermToggle<CR>
 					nnoremap <silent> <Leader>tf :FloatermNew<CR>
@@ -3445,6 +3444,9 @@
 
 								execute 'nnoremap <silent> <' . g:action_leader . '-p> :BufferPrevious<CR>'
 								execute 'nnoremap <silent> <' . g:action_leader . '-n> :BufferNext<CR>'
+
+								execute 'nnoremap <silent> <' . g:action_leader . '--> :BufferMovePrevious<CR>'
+								execute 'nnoremap <silent> <' . g:action_leader . '-=> :BufferMoveNext<CR>'
 					endif
 				"EXTERNAL
 					Plug 'edkolev/tmuxline.vim'
@@ -3501,6 +3503,8 @@
 					"Plug 'flazz/vim-colorschemes'
 					Plug 'rafi/awesome-vim-colorschemes'
 					"Plug 'chriskempson/base16-vim'
+					"Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
+					"Plug 'pineapplegiant/spaceduck'
 					"Plug 'KeitaNakamura/neodark.vim'
 						let g:neodark#use_256color			 = 1
 						let g:neodark#solid_vertsplit		 = 1
@@ -3508,7 +3512,6 @@
 						"let g:lightline					= {}
 						"let g:lightline.colorscheme		= 'neodark'
 						"let g:neodark#terminal_transparent = 1
-					"Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
 					"Plug 'sindresorhus/focus'
 					"Plug 'KabbAmine/yowish.vim'
 					"Plug 'ayu-theme/ayu-vim'
@@ -3521,6 +3524,7 @@
 							"*SOLARIZED8-LIGHT*|CORVINE-LIGHT=1
 							"XCODE=1
 						"TYPE:DARK:HIGH
+							"SPACE-DUCK=1
 							"VIM-MATERIAL=1
 							"BASE16-MATERIAL-VIVID|DARKER=1
 							"CHALLENGER-DEEP=1?:TUI
