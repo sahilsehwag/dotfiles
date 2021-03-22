@@ -2872,26 +2872,62 @@
 					Plug 'junegunn/vim-easy-align'
 						xmap gl <Plug>(EasyAlign)
 						nmap gl <Plug>(EasyAlign)
+					Plug 'svermeulen/vim-subversive'
+						nmap gs <plug>(SubversiveSubstituteRange)
+						xmap gs <plug>(SubversiveSubstituteRange)
 					Plug 'tommcdo/vim-exchange'
 						let g:exchange_no_mappings = 1
 						nmap gx  <Plug>(Exchange)
 						nmap gxx <Plug>(ExchangeLine)
 						xmap X	 <Plug>(Exchange)
 						nmap gxc <Plug>(ExchangeClear)
-					Plug 'svermeulen/vim-subversive'
-						nmap gs <plug>(SubversiveSubstituteRange)
-						xmap gs <plug>(SubversiveSubstituteRange)
-					Plug 'deris/vim-operator-insert'
-						"TODO:FIX|DECIDE
-						nmap gi <Plug>(operator-insert-i)
-						nmap ga <Plug>(operator-insert-a)
+					Plug 'arthurxavierx/vim-caser'
+						"CONFIGURATIONS
+							let g:caser_no_mappings = 1
+							let g:caser_prefix = 'gc'
+						"MAPPINGS
+							nmap <silent> gcc <Plug>CaserCamelCase
+							vmap <silent> gcc <Plug>CaserVCamelCase
+
+							nmap <silent> gcp <Plug>CaserMixedCase
+							vmap <silent> gcp <Plug>CaserVMixedCase
+
+							nmap <silent> gc. <Plug>CaserDotCase
+							vmap <silent> gc. <Plug>CaserVDotCase
+
+							nmap <silent> gc- <Plug>CaserKebabCase
+							vmap <silent> gc- <Plug>CaserVKebabCase
+
+							nmap <silent> gc_ <Plug>CaserSnakeCase
+							vmap <silent> gc_ <Plug>CaserVSnakeCase
+
+							nmap <silent> gc<space> <Plug>CaserSpaceCase
+							vmap <silent> gc<space> <Plug>CaserVMixSpaceCase
+
+							nmap <silent> gcT <Plug>CaserTitleKebabCase
+							vmap <silent> gcT <Plug>CaserVTitleKebabCase
+
+							nmap <silent> gct <Plug>CaserTitleCase
+							vmap <silent> gct <Plug>CaserVTitleCase
+
+							nmap <silent> gcs <Plug>CaserSentenceCase
+							vmap <silent> gcs <Plug>CaserVSentenceCase
+
+							nnoremap <silent> gcl gu
+							vnoremap <silent> gcl gu
+
+							nmap <silent> gcu <Plug>CaserUpperCase
+							vmap <silent> gcu <Plug>CaserVUpperCase
 					Plug 'gustavo-hms/vim-duplicate'
-						"TODO:NOT-USED-MUCH
 						map gy <Plug>(operator-duplicate)
-					Plug 'rjayatilleka/vim-operator-goto'
-						map g[ <Plug>(operator-gotostart)
-						map g] <Plug>(operator-gotoend)
-					Plug 'christoomey/vim-titlecase'
+					"TODO:DECIDE
+						Plug 'rjayatilleka/vim-operator-goto'
+							map g[ <Plug>(operator-gotostart)
+							map g] <Plug>(operator-gotoend)
+						Plug 'deris/vim-operator-insert'
+							"TODO:FIX|DECIDE
+							nmap gi <Plug>(operator-insert-i)
+							nmap ga <Plug>(operator-insert-a)
 				"OBJECTS
 					Plug 'wellle/targets.vim'
 					Plug 'michaeljsmith/vim-indent-object'
@@ -3519,6 +3555,16 @@
 					"Plug 'raphamorim/lucario'
 					"Plug 'paranoida/vim-airlineish'
 					"Plug 'arzg/vim-corvine'
+					"MATERIAL
+						if has('vim')
+							"Plug 'kaicataldo/material.vim', { 'branch': 'main' }
+								"let g:material_terminal_italics = 1
+								"let g:material_theme_style = 'default'
+						elseif has('nvim')
+							"Plug 'marko-cerovac/material.nvim'
+								"Plug 'tjdevries/colorbuddy.nvim'
+								"let g:material_style = 'deep ocean'
+						endif
 					"REFERENCE
 						"TYPE:LIGHT
 							"*SOLARIZED8-LIGHT*|CORVINE-LIGHT=1
@@ -3870,79 +3916,47 @@
 							nnoremap <LocalLeader>cs :execute "Whiteboard! " . &filetype<CR>
 							nnoremap <LocalLeader>cS :execute "Whiteboard "  . &filetype<CR>
 				"RANDOM
-					Plug 'luochen1990/rainbow'
-						let g:rainbow_active = 1
+					"RAINBOW
+						Plug 'luochen1990/rainbow'
+							let g:rainbow_active = 1
+						if has('nvim-0.5')
+							Plug 'p00f/nvim-ts-rainbow'
+						endif
 					"Plug 'tpope/vim-abolish'
-					Plug 'arthurxavierx/vim-caser'
-						"CONFIGURATIONS
-							let g:caser_no_mappings = 1
-							let g:caser_prefix = 'gc'
-						"MAPPINGS
-							nmap <silent> gcc <Plug>CaserCamelCase
-							vmap <silent> gcc <Plug>CaserVCamelCase
-
-							nmap <silent> gcp <Plug>CaserMixedCase
-							vmap <silent> gcp <Plug>CaserVMixedCase
-
-							nmap <silent> gc. <Plug>CaserDotCase
-							vmap <silent> gc. <Plug>CaserVDotCase
-
-							nmap <silent> gc- <Plug>CaserKebabCase
-							vmap <silent> gc- <Plug>CaserVKebabCase
-
-							nmap <silent> gc_ <Plug>CaserSnakeCase
-							vmap <silent> gc_ <Plug>CaserVSnakeCase
-
-							nmap <silent> gc<space> <Plug>CaserSpaceCase
-							vmap <silent> gc<space> <Plug>CaserVMixSpaceCase
-
-							nmap <silent> gcT <Plug>CaserTitleKebabCase
-							vmap <silent> gcT <Plug>CaserVTitleKebabCase
-
-							nmap <silent> gct <Plug>CaserTitleCase
-							vmap <silent> gct <Plug>CaserVTitleCase
-
-							nmap <silent> gcs <Plug>CaserSentenceCase
-							vmap <silent> gcs <Plug>CaserVSentenceCase
-
-							nnoremap <silent> gcl gu
-							vnoremap <silent> gcl gu
-
-							nmap <silent> gcu <Plug>CaserUpperCase
-							vmap <silent> gcu <Plug>CaserVUpperCase
-					if has('nvim') || (has('vim') && v:version >= 800)
-						Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
-							let g:mkdp_auto_start = 0
-							let g:mkdp_auto_close = 1
-							let g:mkdp_refresh_slow = 0
-							let g:mkdp_command_for_global = 0
-							let g:mkdp_open_to_the_world = 0
-							let g:mkdp_open_ip = ''
-							let g:mkdp_browser = ''
-							let g:mkdp_echo_preview_url = 0
-							let g:mkdp_browserfunc = ''
-							let g:mkdp_preview_options = {
-								\ 'mkit': {},
-								\ 'katex': {},
-								\ 'uml': {},
-								\ 'maid': {},
-								\ 'disable_sync_scroll': 0,
-								\ 'sync_scroll_type': 'middle',
-								\ 'hide_yaml_meta': 1,
-								\ 'sequence_diagrams': {},
-								\ 'flowchart_diagrams': {},
-								\ 'content_editable': v:false,
-								\ 'disable_filename': 0
-							\}
-							let g:mkdp_markdown_css = ''
-							let g:mkdp_highlight_css = ''
-							let g:mkdp_port = ''
-							let g:mkdp_page_title = '?${name}?'
-							let g:mkdp_filetypes = ['markdown']
-					else
-						"install instant-markdown-d usig NPM
-						Plug 'suan/vim-instant-markdown'
-					endif
+					"MARKDOWN-PREVIEW"
+						if has('nvim') || (has('vim') && v:version >= 800)
+							Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+								let g:mkdp_auto_start = 0
+								let g:mkdp_auto_close = 1
+								let g:mkdp_refresh_slow = 0
+								let g:mkdp_command_for_global = 0
+								let g:mkdp_open_to_the_world = 0
+								let g:mkdp_open_ip = ''
+								let g:mkdp_browser = ''
+								let g:mkdp_echo_preview_url = 0
+								let g:mkdp_browserfunc = ''
+								let g:mkdp_preview_options = {
+									\ 'mkit': {},
+									\ 'katex': {},
+									\ 'uml': {},
+									\ 'maid': {},
+									\ 'disable_sync_scroll': 0,
+									\ 'sync_scroll_type': 'middle',
+									\ 'hide_yaml_meta': 1,
+									\ 'sequence_diagrams': {},
+									\ 'flowchart_diagrams': {},
+									\ 'content_editable': v:false,
+									\ 'disable_filename': 0
+								\}
+								let g:mkdp_markdown_css = ''
+								let g:mkdp_highlight_css = ''
+								let g:mkdp_port = ''
+								let g:mkdp_page_title = '?${name}?'
+								let g:mkdp_filetypes = ['markdown']
+						else
+							"install instant-markdown-d usig NPM
+							Plug 'suan/vim-instant-markdown'
+						endif
 				"DOCUMENTATION
 			"CLIENTS
 				if has('nvim')
