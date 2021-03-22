@@ -3606,6 +3606,12 @@
 						"let g:indentLine_char_list = ['│', '|', '¦', '┆', '┊']
 			"PROGRAMMING
 				"SYNTAX
+					"RAINBOW
+						Plug 'luochen1990/rainbow'
+							let g:rainbow_active = 1
+						if has('nvim-0.5')
+							Plug 'p00f/nvim-ts-rainbow'
+						endif
 					Plug 'sheerun/vim-polyglot'
 					Plug 'chrisbra/csv.vim'
 					Plug 'plasticboy/vim-markdown'
@@ -3916,12 +3922,6 @@
 							nnoremap <LocalLeader>cs :execute "Whiteboard! " . &filetype<CR>
 							nnoremap <LocalLeader>cS :execute "Whiteboard "  . &filetype<CR>
 				"RANDOM
-					"RAINBOW
-						Plug 'luochen1990/rainbow'
-							let g:rainbow_active = 1
-						if has('nvim-0.5')
-							Plug 'p00f/nvim-ts-rainbow'
-						endif
 					"Plug 'tpope/vim-abolish'
 					"MARKDOWN-PREVIEW"
 						if has('nvim') || (has('vim') && v:version >= 800)
