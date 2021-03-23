@@ -1391,7 +1391,8 @@
 						\ 'options' : '--prompt "open-project-file> "'
 					\}))<CR>
 
-					command! ProjectinatorSearchProject :call fzf#run(fzf#wrap({
+					"TODO:FIX
+					command! ProjectinatorSearchText :call fzf#run(fzf#wrap({
 						\ 'source'  : g:jaat_find_lines_command,
 						\ 'sink'    : 'edit',
 						\ 'options' : '--prompt "search-project> "'
@@ -1400,10 +1401,7 @@
 					if ExistsAndTrue('g:projectinator_enable_default_mappings')
 						nnoremap <silent> <Leader>po :ProjectinatorOpenProject<CR>
 						nnoremap <silent> <Leader>pf :ProjectinatorOpenFile<CR>
-						nnoremap <silent> <Leader>pe :CocCommand explorer<CR>
-						nnoremap <silent> <Leader>pr :FzfPreviewProjectMruFilesRpc<CR>
-						nnoremap <silent> <Leader>pR :FzfPreviewProjectMrwFilesRpc<CR>
-						nnoremap <silent> <Leader>pt :ProjectinatorSearchProject<CR>
+						nnoremap <silent> <Leader>pt :ProjectinatorSearchText<CR>
 					endif
 			"TODO:PACKMAN
 			"TODO:FRAMEWORKS
@@ -1985,9 +1983,10 @@
 			let g:jaat_grep_command = 'grep -rHnas --color --exclude-dir=".git" --exclude-dir="node_modules" -i . *'
 				"TODO:FIX
 			let g:jaat_ag_command	= 'ag --nogroup -s .+'
+			let g:jaat_rg_command = 'rg --hidden --follow --no-ignore-vcs --ignore -g "!{node_modules/*,.git/*}"'
 		"FINDISH
-			let g:jaat_fd_command_files		  = "fd -tf '.*'"
-			let g:jaat_fd_command_directories = "fd -td '.*'"
+			let g:jaat_fd_command_files			= "fd -tf --hidden --exclude .git --exclude node_modules '.*'"
+			let g:jaat_fd_command_directories = "fd -td --hidden --exclude .git --exclude node_modules '.*'"
 
 			let g:jaat_find_command_files		= 'find -type f -iname'
 			let g:jaat_find_command_directories = 'find -type d -iname'
@@ -2011,7 +2010,9 @@
 			\ ? g:jaat_ranger_command
 			\ : ''
 		let g:jaat_find_lines_command =
-			\ executable('ag')
+			\ executable('rg')
+			\ ? g:jaat_rg_command
+			\ : executable('ag')
 			\ ? g:jaat_ag_command
 			\ : g:jaat_grep_command
 		let g:jaat_find_files_command =
@@ -2533,11 +2534,12 @@
 								\'a': 'write-all-buffers',
 								\'A': 'WRITE-all-buffers',
 							\},
-							\'l'	: 'list-buffers',
-							\'g'	: 'goto-buffer',
-							\'t'	: 'open-buffer-tree',
-							\'/'	: 'search-current-buffer',
-							\'?'	: 'search-all-buffers',
+							\'l': 'list-buffers',
+							\'g': 'goto-buffer',
+							\'t': 'open-buffer-tree',
+							\'f': 'change-buffer-filetype',
+							\'/': 'search-current-buffer',
+							\'?': 'search-all-buffers',
 						\}
 						let g:which_key_map['c'] = {
 							\'name' : 'which_key_ignore',
@@ -2577,8 +2579,8 @@
 							\},
 							\'c' : {
 								\'name': '+commits',
-								\'l': '--git-log-oneline',
-								\'L': '--git-log-graph',
+								\'l': 'git-log',
+								\'L': 'git-log-buffer',
 								\'m': '--git-commit',
 								\'a': '--git-commit-amend',
 								\'u': '--undo-commit',
@@ -2611,8 +2613,8 @@
 								\'d': '--git-stash-drop',
 								\'c': '--git-stash-clear',
 							\},
-							\'o' : 'open-git-file',
-							\'O' : 'open-modified-file',
+							\'F' : 'open-git-file',
+							\'f' : 'open-modified-file',
 						\}
 						let g:which_key_map['h'] = {
 							\'name' : 'which_key_ignore',
@@ -2690,9 +2692,10 @@
 							\'O'	: '--open-last-project',
 							\'c'	: '--close-project',
 							\'f'	: 'open-project-file',
+							\'m'	: 'open-modified-file',
 							\'r'	: 'open-project-mru',
 							\'R'	: 'open-project-mrw',
-							\'t'	: 'search-project',
+							\'t'	: 'search-project-text',
 							\'e'	: 'open-project-directory',
 							\'E'	: 'open-file-directory',
 						\}
@@ -3286,7 +3289,20 @@
 								imap <expr> ;cp fzf#complete('find ~/Google\ Drive')
 								imap <expr> ;cf fzf#complete('find ~/Google\ Drive -type f')
 								imap <expr> ;cd fzf#complete('find ~/Google\ Drive -type d')
+							"GIT
+								nnoremap <Leader>gcl :Commits<CR>
+								nnoremap <Leader>gcL :BCommits<CR>
+								nnoremap <Leader>gf  :GFiles?<CR>
+								nnoremap <Leader>gF  :GFiles<CR>
 						Plug 'yuki-ycino/fzf-preview.vim', { 'branch': 'release/rpc' }
+							"MAPPINGS
+								"PROJECT
+									"nnoremap <silent> <Leader>pf :FzfPreviewProjectFilesRpc<CR>
+									nnoremap <silent> <Leader>pr :FzfPreviewProjectMruFilesRpc<CR>
+									nnoremap <silent> <Leader>pR :FzfPreviewProjectMrwFilesRpc<CR>
+									nnoremap <silent> <Leader>pt :FzfPreviewProjectGrepRpc<CR>
+								"GIT
+									nnoremap <silent> <Leader>pF :FzfPreviewGitFilesRpc<CR>
 						Plug 'dominickng/fzf-session.vim'
 							"CONFIGURATION
 								let g:fzf_session_path = g:jaat_tmp_path . 'sessions'
@@ -3343,7 +3359,7 @@
 									\ }
 								let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
 							"EXTENSIONS
-									let g:airline#extensions#fugitiive#enabled= 1
+									let g:airline#extensions#fugitive#enabled= 1
 									let g:airline#extensions#fzf#enabled= 1
 									let g:airline#extensions#hunks#enabled = 1
 									let g:airline#extensions#nvimlsp#enabled = 1
