@@ -2718,7 +2718,7 @@
 							\'l'	: 'list-sessions',
 							\'n'	: 'new-session',
 							\'d'	: 'delete-session',
-							\'s'	: '-save-session',
+							\'s'	: '--save-session',
 							\'o'	: 'open-session',
 							\'c'	: 'close-session',
 						\}
@@ -2729,7 +2729,7 @@
 							\'s'	: 'send-selection',
 						\}
 						let g:which_key_map['t'] = {
-							\'name' : '+terminals',
+							\'name' : '+terminal',
 							\'l'	: '--list-terminals',
 							\'b'	: 'new-buffer-terminal',
 							\'f'	: 'new-flaating-terminal',
@@ -2739,10 +2739,10 @@
 							\'k'	: 'kill-terminal',
 							\'n'	: 'next-terminal',
 							\'p'	: 'previous-terminal',
-							\'B'	: 'new-buffer-terminal-lcd',
+							\'B'	: '--new-buffer-terminal-lcd',
 							\'F'	: '--new-floating-terminal-lcd',
-							\'V'	: 'new-vertical-terminal-lcd',
-							\'H'	: 'new-horizontal-terminal-lcd',
+							\'V'	: '--new-vertical-terminal-lcd',
+							\'H'	: '--new-horizontal-terminal-lcd',
 						\}
 						let g:which_key_map['T'] = {
 							\'name' : '+tabs',
@@ -3324,18 +3324,32 @@
 							nnoremap <silent> <Leader>fr :<C-u>FZFMru<CR>
 							nnoremap <silent> <A-r> :<C-u>FZFMru<CR>
 				Plug 'voldikss/vim-floaterm'
-					nnoremap <silent> <Leader>tt :FloatermToggle<CR>
-					nnoremap <silent> <Leader>tf :FloatermNew<CR>
-					nnoremap <silent> <Leader>td :FloatermKill<CR>
-					nnoremap <silent> <Leader>tn :FloatermNext<CR>
-					nnoremap <silent> <Leader>tp :FloatermPrev<CR>
+					"CONFIGURATION
+						"let g:floaterm_autoinsert = 1
+						"let g:floaterm_autohide = 1
+						let g:floaterm_autoclose = 1
+						let g:floaterm_width = 0.9
+						let g:floaterm_height = 0.9
+					"MAPPINGS
+						nnoremap <silent> <Leader>tt :FloatermToggle<CR>
 
-					execute 'nnoremap <silent> <' . g:action_leader . '-`> :FloatermToggle<CR>'
-					execute 'tnoremap <silent> <' . g:action_leader . '-`> <C-\><C-n>:FloatermToggle<CR>'
-					execute 'tnoremap <silent> <' . g:action_leader . '-f> <C-\><C-n>:FloatermNew<CR>'
-					execute 'tnoremap <silent> <' . g:action_leader . '-d> <C-\><C-n>:FloatermKill<CR>'
-					execute 'tnoremap <silent> <' . g:action_leader . '-p> <C-\><C-n>:FloatermNext<CR>'
-					execute 'tnoremap <silent> <' . g:action_leader . '-n> <C-\><C-n>:FloatermPrev<CR>'
+						nnoremap <silent> <Leader>tf :FloatermNew --wintype=float<CR>
+						nnoremap <silent> <Leader>th :FloatermNew --wintype=split --height=0.4<CR>
+						nnoremap <silent> <Leader>tv :FloatermNew --wintype=vsplit --width=0.5<CR>
+
+						nnoremap <silent> <Leader>tk :FloatermKill<CR>
+						nnoremap <silent> <Leader>tn :FloatermNext<CR>
+						nnoremap <silent> <Leader>tp :FloatermPrev<CR>
+
+						execute 'nnoremap <silent> <' . g:action_leader . '-`> :FloatermToggle<CR>'
+
+						execute 'tnoremap <silent> <' . g:action_leader . '-`> <C-\><C-n>:FloatermToggle<CR>'
+						execute 'tnoremap <silent> <' . g:action_leader . '-f> <C-\><C-n>:FloatermNew<CR>'
+						execute 'tnoremap <silent> <' . g:action_leader . '-h> <C-\><C-n>:FloatermNew --wintype=split --height=0.4<CR>'
+						execute 'tnoremap <silent> <' . g:action_leader . '-v> <C-\><C-n>:FloatermNew --wintype=vsplit --width=0.5<CR>'
+						execute 'tnoremap <silent> <' . g:action_leader . '-k> <C-\><C-n>:FloatermKill<CR>'
+						execute 'tnoremap <silent> <' . g:action_leader . '-p> <C-\><C-n>:FloatermNext<CR>'
+						execute 'tnoremap <silent> <' . g:action_leader . '-n> <C-\><C-n>:FloatermPrev<CR>'
 			"AESTHETICS
 				"STATUSLINE
 					if IsNix()
