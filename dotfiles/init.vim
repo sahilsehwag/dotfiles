@@ -2495,17 +2495,17 @@
 							\'m' : 'markdown',
 							\'M' : 'markdown-current-file',
 							\'g' : 'git',
-							\'t' : 'typing',
+							\'t' : 'typing-practise',
 							\'y' : 'youtube',
 							\'Y' : 'youtube-music',
 						\}
 						let g:which_key_map['b'] = {
 							\'name' : '+buffers',
 							\'a': {
-								\'name': '+add',
+								\'name': '+new',
 								\'n': 'new-buffer',
-								\'s': 'scratch-buffer',
-								\'S': 'scratch-buffer-filetype',
+								\'s': 'new-scratch-buffer',
+								\'S': 'new-scratch-buffer-filetype',
 							\},
 							\'c': {
 								\'name': '+close',
@@ -2523,9 +2523,9 @@
 								\'C': 'DELETE-current',
 								\'a': 'delete-all',
 								\'A': 'DELETE-all',
-								\'o': 'delete-others',
-								\'h': 'delete-left-ones',
-								\'l': 'delete-right-ones',
+								\'o': '--delete-others',
+								\'h': '--delete-left-ones',
+								\'l': '--delete-right-ones',
 							\},
 							\'w' : {
 								\'name': '+write',
