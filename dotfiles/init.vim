@@ -2551,7 +2551,23 @@
 							\'name' : 'which_key_ignore',
 						\}
 						let g:which_key_map['f'] = {
-							\'name' : 'which_key_ignore',
+							\'name' : '+fuzzy',
+							\'f' : {
+								\'name': '+files',
+								\'/': 'search-/',
+								\'h': 'search-home',
+								\'d': 'search-drive',
+								\'p': 'search-current-directory',
+								\'c': 'search-curent-buffer-directory',
+							\},
+							\'d' : {
+								\'name': '+directories',
+								\'/': 'search-/',
+								\'h': 'search-home',
+								\'d': 'search-drive',
+								\'p': 'search-current-directory',
+								\'c': 'search-curent-buffer-directory',
+							\},
 						\}
 						let g:which_key_map['g'] = {
 							\'name' : '+git',
