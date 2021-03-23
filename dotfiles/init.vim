@@ -2568,12 +2568,12 @@
 								\'p': 'search-current-directory',
 								\'c': 'search-curent-buffer-directory',
 							\},
+							\'r': 'open-recent-file'
 						\}
 						let g:which_key_map['g'] = {
 							\'name' : '+git',
 							\'i' : 'git-init',
 							\'C' : 'git-clone',
-							\'B' : 'git-blame',
 							\'a' : {
 								\'name': '+staging-area',
 								\'s': 'git-status',
@@ -2602,6 +2602,7 @@
 								\'u': '--undo-commit',
 								\'d': '--delete-commit',
 								\'h' : 'show-line-commit-history',
+								\'b' : 'git-blame',
 							\},
 							\'h' : {
 								\'name': '+hunks',
@@ -2698,11 +2699,7 @@
 						\}
 						let g:which_key_map['p'] = {
 							\'name' : '+projects',
-							\'l'	: '--list-projects',
-							\'n'	: '--new-project',
 							\'o'	: 'open-project',
-							\'O'	: '--open-last-project',
-							\'c'	: '--close-project',
 							\'f'	: 'open-project-file',
 							\'r'	: 'open-project-mru',
 							\'R'	: 'open-project-mrw',
