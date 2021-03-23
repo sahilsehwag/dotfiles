@@ -2692,7 +2692,6 @@
 							\'O'	: '--open-last-project',
 							\'c'	: '--close-project',
 							\'f'	: 'open-project-file',
-							\'m'	: 'open-modified-file',
 							\'r'	: 'open-project-mru',
 							\'R'	: 'open-project-mrw',
 							\'t'	: 'search-project-text',
@@ -3511,11 +3510,6 @@
 								nnoremap <silent> <Leader>bco :BufferCloseAllButCurrent<CR>
 								nnoremap <silent> <Leader>bch :BufferCloseBuffersLeft<CR>
 								nnoremap <silent> <Leader>bcl :BufferCloseBuffersRight<CR>
-
-								nnoremap <silent> <Leader>bdc :BufferDelete<CR>
-								nnoremap <silent> <Leader>bdC :BufferDelete!<CR>
-								nnoremap <silent> <Leader>bdA :bufdo BufferDelete<CR>
-								nnoremap <silent> <Leader>bdA :bufdo BufferDelete!<CR>
 
 								"nnoremap <silent> <Leader>bd :BufferClose<CR>
 								"nnoremap <silent> <Leader>bD :BufferDelete<CR>
