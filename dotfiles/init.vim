@@ -2963,6 +2963,8 @@
 					Plug 'coderifous/textobj-word-column.vim'
 					Plug 'rhysd/vim-textobj-anyblock'
 					Plug 'thinca/vim-textobj-between'
+					Plug 'sgur/vim-textobj-parameter'
+						let g:vim_textobj_parameter_mapping = 'a'
 					Plug 'haya14busa/vim-easyoperator-line'
 						omap gr <Plug>(easyoperator-line-select)
 						xmap gr <Plug>(easyoperator-line-select)
@@ -3151,6 +3153,7 @@
 
 						onoremap id <Plug>(swap-textobject-i)
 						onoremap ad <Plug>(swap-textobject-a)
+					Plug 'AndrewRadev/splitjoin.vim'
 					"Plug 'terryma/vim-expand-region'
 						""CONFIGURATION
 							""let g:expand_region_text_objects = {
@@ -3883,7 +3886,7 @@
 					endif
 					Plug 'liuchengxu/vista.vim'
 						"CONFIGURATION
-							let g:vista_default_executive = 
+							let g:vista_default_executive =
 								\ has('nvim-0.5')
 								\ ? 'nvim_lsp'
 								\ : 'coc'
