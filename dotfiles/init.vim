@@ -2648,7 +2648,7 @@
 							\'name' : '+lsp',
 							\'a': {
 								\'name': '+actions',
-								\'a': 'show-actions',
+								\'a': 'show-code-actions',
 								\'f': 'format-buffer',
 								\'o': '--organize-imports',
 								\'q': '--quickfix',
@@ -2666,14 +2666,14 @@
 								\'name': '+symbols',
 								\'d': 'show-document-symbols',
 								\'w': 'show-workspace-symbols',
-								\'D': 'search-document-symbols',
 								\'r': 'rename-symbol',
+								\'R': 'rename-symbol-treesitter',
 								\'t': 'tagbar',
-								\'o': '__show-outline',
 							\},
 							\'d': {
 								\'name': '+diagnostics',
-								\'a': 'show-all-diagnostics',
+								\'w': 'show-workspace-diagnostics',
+								\'d': 'show-document-diagnostics',
 								\'l': 'show-line-diagnostics',
 								\'n': 'goto-next-diagnostic',
 								\'p': 'goto-prev-diagnostic',
@@ -2683,10 +2683,6 @@
 								\'h': 'hover-documentation',
 								\'s': 'signature-help',
 							\},
-							\'e': '__show-errors',
-							\'c': '__show-commands',
-							\'l': '__coc-list',
-							\'L': '__coc-list-resume',
 						\}
 						let g:which_key_map['m'] = {
 							\'name' : 'which_key_ignore',

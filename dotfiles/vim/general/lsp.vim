@@ -22,7 +22,7 @@ nnoremap <silent> <Leader>lhh <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <silent> <Leader>lhs <cmd>lua vim.lsp.buf.signature_help()<CR>
 
 "DIAGNOSTICS
-nnoremap <silent> <Leader>lda <cmd>lua vim.lsp.diagnostic.set_loclist()<CR>
+nnoremap <silent> <Leader>ldd <cmd>lua vim.lsp.diagnostic.set_loclist()<CR>
 nnoremap <silent> <Leader>ldl <cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
 nnoremap <silent> <Leader>ldn <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
 nnoremap <silent> <Leader>ldp <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
