@@ -2058,14 +2058,19 @@
 				nnoremap <silent> <Leader>TN :tabmove -   <CR>
 				nnoremap <silent> <Leader>TP :tabmove +   <CR>
 			"BUFFERS
-				nnoremap <silent> <Leader>ba :enew<CR>
+				nnoremap <silent> <Leader>ban :enew<CR>
+				nnoremap <silent> <Leader>bas :call ScratchBuffer('e')<CR>
+				nnoremap <silent> <Leader>baS :call ScratchBuffer('e', 1)<CR>
 
 				nnoremap <silent> <Leader>bcc :bp<bar>sp<bar>bn<bar>bd<CR>
 				nnoremap <silent> <Leader>bcC :bp<bar>sp<bar>bn<bar>bd!<CR>
-				nnoremap <silent> <Leader>bcd :bdelete<CR>
-				nnoremap <silent> <Leader>bcD :bdelete!<CR>
-				nnoremap <silent> <Leader>bca :bufdo bwipeout<CR>
-				nnoremap <silent> <Leader>bcA :bufdo bwipeout!<CR>
+				nnoremap <silent> <Leader>bcA :bufdo bp<bar>sp<bar>bn<bar>bd<CR>
+				nnoremap <silent> <Leader>bcA :bufdo bp<bar>sp<bar>bn<bar>bd!<CR>
+
+				nnoremap <silent> <Leader>bdc :bdelete<CR>
+				nnoremap <silent> <Leader>bdC :bdelete!<CR>
+				nnoremap <silent> <Leader>bda :bufdo bdelete<CR>
+				nnoremap <silent> <Leader>bdA :bufdo bdelete!<CR>
 
 				nnoremap <silent> <Leader>bd :bp<bar>sp<bar>bn<bar>bd<CR>
 				nnoremap <silent> <Leader>bD :bdelete<CR>
@@ -2495,17 +2500,31 @@
 						\}
 						let g:which_key_map['b'] = {
 							\'name' : '+buffers',
+							\'a': {
+								\'name': '+add',
+								\'n': 'new-buffer',
+								\'s': 'scratch-buffer',
+								\'S': 'scratch-buffer-filetype',
+							\},
 							\'c': {
 								\'name': '+close',
-								\'a': 'close-all',
-								\'A': 'CLOSE-all',
 								\'c': 'close-current',
 								\'C': 'CLOSE-current',
+								\'a': 'close-all',
+								\'A': 'CLOSE-all',
 								\'o': 'close-others',
 								\'h': 'close-left-ones',
 								\'l': 'close-right-ones',
-								\'d': 'delete-current',
-								\'D': 'DELETE-current',
+							\},
+							\'d': {
+								\'name': '+delete',
+								\'c': 'delete-current',
+								\'C': 'DELETE-current',
+								\'a': 'delete-all',
+								\'A': 'DELETE-all',
+								\'o': 'delete-others',
+								\'h': 'delete-left-ones',
+								\'l': 'delete-right-ones',
 							\},
 							\'w' : {
 								\'name': '+write',
@@ -2515,13 +2534,8 @@
 								\'A': 'WRITE-all-buffers',
 							\},
 							\'l'	: 'list-buffers',
-							\'j'	: 'jump-to-buffer',
+							\'g'	: 'goto-buffer',
 							\'t'	: 'open-buffer-tree',
-							\'a'	: 'add-buffer',
-							\'d'	: 'delete-buffer',
-							\'D'	: 'DELETE-buffer',
-							\'s'	: 'open-scratch',
-							\'S'	: 'open-scratch-filetype',
 							\'/'	: 'search-current-buffer',
 							\'?'	: 'search-all-buffers',
 						\}
@@ -3472,11 +3486,23 @@
 								nnoremap <silent> <Leader>7 :BufferGoto 7<CR>
 								nnoremap <silent> <Leader>8 :BufferGoto 8<CR>
 								nnoremap <silent> <Leader>9 :BufferGoto 9<CR>
-								nnoremap <silent> <Leader>bj :BufferPick<CR>
+								nnoremap <silent> <Leader>bg :BufferPick<CR>
 
+								nnoremap <silent> <Leader>bcc :BufferClose<CR>
+								nnoremap <silent> <Leader>bcC :BufferClose!<CR>
+								nnoremap <silent> <Leader>bcA :bufdo BufferClose<CR>
+								nnoremap <silent> <Leader>bcA :bufdo BufferClose!<CR>
 								nnoremap <silent> <Leader>bco :BufferCloseAllButCurrent<CR>
 								nnoremap <silent> <Leader>bch :BufferCloseBuffersLeft<CR>
 								nnoremap <silent> <Leader>bcl :BufferCloseBuffersRight<CR>
+
+								nnoremap <silent> <Leader>bdc :BufferDelete<CR>
+								nnoremap <silent> <Leader>bdC :BufferDelete!<CR>
+								nnoremap <silent> <Leader>bdA :bufdo BufferDelete<CR>
+								nnoremap <silent> <Leader>bdA :bufdo BufferDelete!<CR>
+
+								"nnoremap <silent> <Leader>bd :BufferClose<CR>
+								"nnoremap <silent> <Leader>bD :BufferDelete<CR>
 
 								execute 'nnoremap <silent> <' . g:action_leader . '-p> :BufferPrevious<CR>'
 								execute 'nnoremap <silent> <' . g:action_leader . '-n> :BufferNext<CR>'
