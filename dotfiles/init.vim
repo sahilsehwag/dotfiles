@@ -2417,15 +2417,38 @@
 						Plug 'wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'}
 					endif
 				"INDENTLINE"
-					"Plug 'Yggdroot/indentLine'
-						let g:indentLine_enabled = 1
-						let g:indentLine_setColors = 1
-						let g:indentLine_char = '│'
-						let g:indentLine_concealcursor = 'inc'
-						let g:indentLine_conceallevel = 1
-						"let g:indentLine_char_list = ['│', '|', '¦', '┆', '┊']
-					if has('nvim-0.4')
-						"Plug 'lukas-reineke/indent-blankline.nvim'
+					if has('nvim-0.5')
+						"remove lua branch when neovim-0.5 is released, since this will be
+						"moved to the the main branch
+						Plug 'lukas-reineke/indent-blankline.nvim', { 'branch': 'lua' }
+							let g:indent_blankline_enabled = v:true
+
+							let g:indent_blankline_char = '│'
+							let g:indent_blankline_char_list = []
+							let g:indent_blankline_char_highlight = 'SpecialKey'
+							let g:indent_blankline_char_highlight_list = []
+
+							let g:indent_blankline_show_first_indent_level = v:false
+							let g:indent_blankline_indent_level = 10
+
+							let g:indent_blankline_filetype = ['html', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'python']
+							let g:indent_blankline_filetype_exclude = ['help', 'startify', 'floaterm']
+							let g:indent_blankline_buftype_exclude = ['terminal']
+							let g:indent_blankline_bufname_exclude = ['README.md', '.*\.py']
+
+							let g:indent_blankline_use_treesitter = v:true
+							let g:indent_blankline_show_current_context = v:true
+							let g:indent_blankline_context_highlight = ['class', 'function', 'method']
+							let g:indent_blankline_context_highlight = 'ModeMsg'
+					elseif has('conceal')
+						"Plug 'Yggdroot/indentLine'
+							"let g:indentLine_enabled = 1
+							"let g:indentLine_char = '│'
+							"let g:indentLine_setColors = 1
+							"let g:indentLine_defaultGroup = 'VertSplit'
+							"let g:indentLine_concealcursor = 'inc'
+							"let g:indentLine_conceallevel = 1
+							"let g:indentLine_char_list = ['│', '|', '¦', '┆', '┊']
 					endif
 				"ANIMATION
 					Plug 'camspiers/animate.vim'
@@ -3662,10 +3685,6 @@
 				"DISABLED
 					"Plug 'haya14busa/vim-keeppad'
 					"Plug 'zefei/vim-colortuner'
-					"Plug 'Yggdroot/indentLine'
-						"let g:indentLine_enabled = 1
-						"let g:indentLine_setColors = 0
-						"let g:indentLine_char_list = ['│', '|', '¦', '┆', '┊']
 			"PROGRAMMING
 				"SYNTAX
 					"RAINBOW
@@ -4633,7 +4652,7 @@
 		"highlight Pmenu ctermbg=232 ctermfg=7
 		"highlight PmenuSel ctermfg=15
 		highlight Pmenu ctermbg=238 gui=bold
-	"GIT|DIFF
+	"DIFFING
 		highlight JatAddFG          ctermfg=114 guifg=#98C379
 		highlight JatDeleteFG       ctermfg=204 guifg=#E06C75
 		highlight JatChangeFG       ctermfg=180 guifg=#E5C07B
@@ -4643,12 +4662,14 @@
 		highlight JatDeleteBG       ctermbg=204 guibg=#E06C75
 		highlight JatChangeBG       ctermbg=180 guibg=#E5C07B
 		highlight JatChangeDeleteBG ctermbg=180 guibg=#61AFEF
-	"DIAGNOSTICS
+	"STATUS
+		highlight JatSuccessFG ctermfg=114 guifg=#98C379
 		highlight JatErrorFG   ctermfg=204 guifg=#E06C75
 		highlight JatWarningFG ctermfg=180 guifg=#E5C07B
 		highlight JatInfoFG    ctermfg=180 guifg=#61AFEF
 		highlight JatHintFG    ctermfg=180 guifg=#61AFEF
 
+		highlight JatSuccessBG ctermbg=114 guibg=#98C379
 		highlight JatErrorBG   ctermbg=204 guibg=#E06C75
 		highlight JatWarningBG ctermbg=180 guibg=#E5C07B
 		highlight JatInfoBG    ctermbg=180 guibg=#61AFEF
@@ -4658,6 +4679,7 @@
 		highlight JatCyanBG ctermfg=235 ctermbg=39 guifg=#282C34 guibg=#61AFEF
 	"RANDOM
 		highlight! link SignColumn LineNr
+	"PLUGINS
 "REFERENCE
 	"UNICODE
 		"LAYOUT
