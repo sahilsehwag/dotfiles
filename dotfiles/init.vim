@@ -3911,6 +3911,7 @@
 						Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 						Plug 'nvim-treesitter/nvim-treesitter-refactor'
 						Plug 'windwp/nvim-ts-autotag'
+						Plug 'JoosepAlviste/nvim-ts-context-commentstring'
 					endif
 				"COMMENTS
 					"Plug 'tpope/vim-commentary'

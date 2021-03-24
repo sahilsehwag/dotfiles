@@ -40,6 +40,9 @@ require'nvim-treesitter.configs'.setup {
 		enable = true,
 		filetypes = { 'html', 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'svelte', 'vue' }
 	},
+	context_commentstring = {
+    enable = true,
+  },
 }
 
 vim.cmd [[set foldmethod=expr]]
