@@ -1896,8 +1896,8 @@
 		"FLOATERM
 			if executable('vifm')
 				command! -nargs=1 Vifm :execute 'FloatermNew ' g:jaat_explorer_command . ' ' . shellescape(<q-args>)
-				nnoremap <silent> <Leader>ae :execute 'FloatermNew ' . g:jaat_explorer_command<CR>
-				nnoremap <silent> <Leader>pE :execute 'FloatermNew ' . g:jaat_explorer_command . ' ' . shellescape(getcwd())<CR>
+				nnoremap <silent> <Leader>ae :execute 'FloatermNew ' . g:jaat_explorer_command . ' ' . shellescape(getcwd())<CR>
+				nnoremap <silent> <Leader>aE :execute 'FloatermNew ' . g:jaat_explorer_command<CR>
 			endif
 
 			if executable('glow')
