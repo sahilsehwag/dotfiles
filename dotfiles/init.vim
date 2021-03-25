@@ -2392,6 +2392,329 @@
 	"INSTALLED
 		call plug#begin()
 			"DEFAULTS
+			"EDITING
+				"OPERATORS
+					Plug 'haya14busa/vim-operator-flashy'
+						"CONFIGURATION
+							let g:operator#flashy#group = 'Visual'
+						"MAPPINGS
+							map y <Plug>(operator-flashy)
+							map Y <Plug>(operator-flashy)$
+					Plug 'tpope/vim-surround'
+					Plug 'junegunn/vim-easy-align'
+						xmap gl <Plug>(EasyAlign)
+						nmap gl <Plug>(EasyAlign)
+					Plug 'svermeulen/vim-subversive'
+						nmap gs <plug>(SubversiveSubstituteRange)
+						xmap gs <plug>(SubversiveSubstituteRange)
+					Plug 'tommcdo/vim-exchange'
+						let g:exchange_no_mappings = 1
+						nmap gx  <Plug>(Exchange)
+						nmap gxx <Plug>(ExchangeLine)
+						xmap X	 <Plug>(Exchange)
+						nmap gxc <Plug>(ExchangeClear)
+					Plug 'arthurxavierx/vim-caser'
+						"CONFIGURATIONS
+							let g:caser_no_mappings = 1
+							let g:caser_prefix = 'gc'
+						"MAPPINGS
+							nmap <silent> gcc <Plug>CaserCamelCase
+							vmap <silent> gcc <Plug>CaserVCamelCase
+
+							nmap <silent> gcp <Plug>CaserMixedCase
+							vmap <silent> gcp <Plug>CaserVMixedCase
+
+							nmap <silent> gc. <Plug>CaserDotCase
+							vmap <silent> gc. <Plug>CaserVDotCase
+
+							nmap <silent> gc- <Plug>CaserKebabCase
+							vmap <silent> gc- <Plug>CaserVKebabCase
+
+							nmap <silent> gc_ <Plug>CaserSnakeCase
+							vmap <silent> gc_ <Plug>CaserVSnakeCase
+
+							nmap <silent> gc<space> <Plug>CaserSpaceCase
+							vmap <silent> gc<space> <Plug>CaserVMixSpaceCase
+
+							nmap <silent> gcT <Plug>CaserTitleKebabCase
+							vmap <silent> gcT <Plug>CaserVTitleKebabCase
+
+							nmap <silent> gct <Plug>CaserTitleCase
+							vmap <silent> gct <Plug>CaserVTitleCase
+
+							nmap <silent> gcs <Plug>CaserSentenceCase
+							vmap <silent> gcs <Plug>CaserVSentenceCase
+
+							nnoremap <silent> gcl gu
+							vnoremap <silent> gcl gu
+
+							nmap <silent> gcu <Plug>CaserUpperCase
+							vmap <silent> gcu <Plug>CaserVUpperCase
+					Plug 'gustavo-hms/vim-duplicate'
+						map gy <Plug>(operator-duplicate)
+					"TODO:DECIDE
+						Plug 'rjayatilleka/vim-operator-goto'
+							map g[ <Plug>(operator-gotostart)
+							map g] <Plug>(operator-gotoend)
+						Plug 'deris/vim-operator-insert'
+							"TODO:FIX|DECIDE
+							nmap gi <Plug>(operator-insert-i)
+							nmap ga <Plug>(operator-insert-a)
+				"OBJECTS
+					Plug 'wellle/targets.vim'
+					Plug 'michaeljsmith/vim-indent-object'
+					Plug 'Julian/vim-textobj-variable-segment'
+					Plug 'saaguero/vim-textobj-pastedtext'
+						let g:pastedtext_select_key = 'gp'
+					Plug 'rhysd/vim-textobj-lastinserted'
+					Plug 'coderifous/textobj-word-column.vim'
+					Plug 'rhysd/vim-textobj-anyblock'
+					Plug 'thinca/vim-textobj-between'
+					Plug 'sgur/vim-textobj-parameter'
+						let g:vim_textobj_parameter_mapping = 'a'
+					Plug 'haya14busa/vim-easyoperator-line'
+						omap gr <Plug>(easyoperator-line-select)
+						xmap gr <Plug>(easyoperator-line-select)
+					Plug 'haya14busa/vim-easyoperator-phrase'
+						omap gR <Plug>(easyoperator-phrase-select)
+						xmap gR <Plug>(easyoperator-phrase-select)
+					Plug 'glts/vim-textobj-comment'
+						let g:textobj_comment_no_default_mappings = 1
+						xmap ak <Plug>(textobj-comment-a)
+						xmap ik <Plug>(textobj-comment-i)
+						omap ak <Plug>(textobj-comment-a)
+						omap ik <Plug>(textobj-comment-i)
+				"MOTIONS
+					Plug 'chaoren/vim-wordmotion'
+					Plug 'haya14busa/vim-edgemotion'
+						"map <C-j> <Plug>(edgemotion-j)
+						"map <C-k> <Plug>(edgemotion-k)
+				"SEARCH
+					"Plug 'romainl/vim-cool'
+						"TODO:DECIDE|CHECK-IF-NEEDED
+					Plug 'inside/vim-search-pulse'
+						"CONFIGURATION
+							let g:vim_search_pulse_mode = 'cursor_line'
+						"MAPPINGS
+							map n  <Plug>(incsearch-nohl-n)<Plug>Pulse
+							map N  <Plug>(incsearch-nohl-N)<Plug>Pulse
+							map *  <Plug>(incsearch-nohl-*)<Plug>Pulse
+							map #  <Plug>(incsearch-nohl-#)<Plug>Pulse
+							map g* <Plug>(incsearch-nohl-g*)<Plug>Pulse
+							map g# <Plug>(incsearch-nohl-g#)<Plug>Pulse
+					Plug 'haya14busa/vim-asterisk'
+						"CONFIGURATION
+							"TODO:NOT-WORKING
+							let g:asterisk#keeppos = 1
+						"MAPPINGS
+							map *  <Plug>(asterisk-z*)
+							map #  <Plug>(asterisk-z#)
+							map g* <Plug>(asterisk-gz*)
+							map g# <Plug>(asterisk-gz#)
+					Plug 'bronson/vim-visual-star-search'
+					Plug 'rhysd/clever-f.vim'
+						let g:clever_f_ignore_case           = 1
+						let g:clever_f_smart_case            = 1
+						let g:clever_f_across_no_line        = 0
+						let g:clever_f_chars_match_any_signs = '['
+					Plug 'justinmk/vim-sneak'
+						"CONFIGURATION
+							let g:sneak#label	   = 0
+							let g:sneak#s_next	   = 1
+							let g:sneak#use_ic_scs = 1
+						"MAPPINGS
+							"map f <Plug>Sneak_s
+							"map F <Plug>Sneak_S
+							"map t <Plug>Sneak_t
+								"not-working"
+							"map T <Plug>Sneak_T
+								"not-working"
+					Plug 'haya14busa/incsearch.vim'
+						"CONFIGURATION
+						"MAPPINGS
+							"SEARCH
+								map / <Plug>(incsearch-forward)
+									"map / <Plug>(incsearch-stay)
+								map ? <Plug>(incsearch-backward)
+							"NOHL
+								""using "vim-cool"
+								"set hlsearch
+								"let g:incsearch#auto_nohlsearch = 1
+								"map n	<Plug>(incsearch-nohl-n)
+								"map N	<Plug>(incsearch-nohl-N)
+								"map *	<Plug>(incsearch-nohl-*)
+								"map #	<Plug>(incsearch-nohl-#)
+								"map g* <Plug>(incsearch-nohl-g*)
+								"map g# <Plug>(incsearch-nohl-g#)
+						"EXTENSIONS
+							Plug 'haya14busa/incsearch-fuzzy.vim'
+								map <Leader>/ <Plug>(incsearch-fuzzy-/)
+									"map <Leader>/ <Plug>(incsearch-fuzzy-stay)
+								map <Leader>? <Plug>(incsearch-fuzzy-?)
+					Plug 'lambdalisue/reword.vim'
+					Plug 'easymotion/vim-easymotion'
+						"CONFIGURATION
+							let g:EasyMotion_do_mapping		  = 0
+							let g:EasyMotion_smartcase		  = 1
+							let g:EasyMotion_use_upper		  = 0
+							let g:EasyMotion_enter_jump_first = 1
+							let g:EasyMotion_space_jump_first = 1
+							"nmap <Leader>j <Plug>(easymotion-prefix)
+							"let g:EasyMotion_keys = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ;'
+							"hi link EasyMotionTarget Search
+						"MAPPINGS
+							"LEVEL=1
+								"MODE:NORMAL
+									nmap <Leader>jw <Plug>(easymotion-overwin-w)
+									nmap <Leader>jl <Plug>(easymotion-overwin-line)
+									nmap <Leader>je <Plug>(easymotion-bd-e)
+									nmap <Leader>jf <Plug>(easymotion-overwin-f)
+									nmap <Leader>js <Plug>(easymotion-overwin-f2)
+									nmap <Leader>jj <Plug>(easymotion-j)
+									nmap <Leader>jk <Plug>(easymotion-k)
+									nmap <Leader>jJ <Plug>(easymotion-eol-j)
+									nmap <Leader>jK <Plug>(easymotion-eol-k)
+									nmap <Leader>j. <Plug>(easymotion-repeat)
+									nmap <Leader>ja <Plug>(easymotion-jumptoanywhere)
+									nmap <Leader>j/ <Plug>(easymotion-sn)
+									nmap <Leader>j? <Plug>(easymotion-tn)
+								"MODE:OPERATOR
+									"omap <Leader>w <Plug>(easymotion-bd-w)
+									"omap <Leader>W <Plug>(easymotion-bd-W)
+									"omap <Leader>e <Plug>(easymotion-bd-e)
+									"omap <Leader>E <Plug>(easymotion-bd-E)
+									"omap <Leader>l <Plug>(easymotion-bd-jk)
+									"omap <Leader>j <Plug>(easymotion-j)
+									"omap <Leader>k <Plug>(easymotion-k)
+									"omap <Leader>J <Plug>(easymotion-eol-j)
+									"omap <Leader>K <Plug>(easymotion-eol-K)
+									"omap <Leader>f <Plug>(easymotion-bd-f)
+									"omap <Leader>s <Plug>(easymotion-bd-f2)
+									"omap <Leader>t <Plug>(easymotion-bd-t)
+									"omap <Leader>S <Plug>(easymotion-bd-t2)
+									"omap <Leader>/ <Plug>(easymotion-sn)
+									"omap <Leader>? <Plug>(easymotion-tn)
+									"omap <Leader>n <Plug>(easymotion-bd-n)
+									"omap <Leader>. <Plug>(easymotion-repeat)
+									"omap <Leader>v <Plug>(easymotion-segments-LF)
+									"omap <Leader>V <Plug>(easymotion-segments-LB)
+									"omap <Leader>gv <Plug>(easymotion-segments-RF)
+									"omap <Leader>gV <Plug>(easymotion-segments-RB)
+									"omap <Leader>a <Plug>(easymotion-jumptoanywhere)
+								"MODE:VISUAL
+									xmap <Leader>w <Plug>(easymotion-bd-w)
+									xmap <Leader>W <Plug>(easymotion-bd-W)
+									xmap <Leader>e <Plug>(easymotion-bd-e)
+									xmap <Leader>E <Plug>(easymotion-bd-E)
+									xmap <Leader>l <Plug>(easymotion-bd-jk)
+									xmap <Leader>j <Plug>(easymotion-j)
+									xmap <Leader>k <Plug>(easymotion-k)
+									xmap <Leader>J <Plug>(easymotion-eol-j)
+									xmap <Leader>K <Plug>(easymotion-eol-K)
+									xmap <Leader>f <Plug>(easymotion-bd-f)
+									xmap <Leader>t <Plug>(easymotion-bd-t)
+									xmap <Leader>s <Plug>(easymotion-bd-f2)
+									xmap <Leader>S <Plug>(easymotion-bd-t2)
+									xmap <Leader>/ <Plug>(easymotion-sn)
+									xmap <Leader>? <Plug>(easymotion-tn)
+									xmap <Leader>n <Plug>(easymotion-bd-n)
+									xmap <Leader>. <Plug>(easymotion-repeat)
+									xmap <Leader>v <Plug>(easymotion-segments-LF)
+									xmap <Leader>V <Plug>(easymotion-segments-LB)
+									xmap <Leader>gv <Plug>(easymotion-segments-RF)
+									xmap <Leader>gV <Plug>(easymotion-segments-RB)
+									xmap <Leader>a <Plug>(easymotion-jumptoanywhere)
+							"LEVEL=2
+							"LEVEL=3
+						"EXTENSIONS
+							Plug 'haya14busa/incsearch-easymotion.vim'
+								map <Leader><Leader>/ <Plug>(incsearch-easymotion-/)
+									"map <Leader><Leader>/ <Plug>(incsearch-easymotion-stay)
+								map <Leader><Leader>? <Plug>(incsearch-easymotion-?)
+							"incsearch-easymotion-fuzzy
+								"FUNCTIONS
+									function! s:config_easyfuzzymotion(...) abort
+										return extend(copy({
+											\	'converters': [incsearch#config#fuzzy#converter()],
+											\	'modules': [incsearch#config#easymotion#module()],
+											\	'keymap': {"\<CR>": '<Over>(easymotion)'},
+											\	'is_expr': 0,
+											\	'is_stay': 0
+											\ }), get(a:, 1, {}))
+									endfunction
+								"MAPPINGS
+									noremap <silent><expr> <Leader><Leader>g/ incsearch#go(<SID>config_easyfuzzymotion())
+					if has('nvim') && IsNix()
+						Plug 'lambdalisue/lista.nvim'
+							nmap <Leader>b/ :Lista<CR>
+							nmap <Leader>b? :ListaCursorWord<CR>
+						"Plug 'osyo-manga/vim-hopping'
+							"nmap <Leader>b/ :HoppingStart<CR>
+					endif
+					if v:version >= 740
+						Plug 'andymass/vim-matchup'
+					endif
+				"RANDOM
+					Plug 'machakann/vim-swap'
+						let g:swap_no_default_key_mappings = 1
+						nmap g<			<Plug>(swap-prev)
+						nmap g>			<Plug>(swap-next)
+						nmap <Leader>zs <Plug>(swap-interactive)
+
+						onoremap id <Plug>(swap-textobject-i)
+						onoremap ad <Plug>(swap-textobject-a)
+					Plug 'AndrewRadev/splitjoin.vim'
+					Plug 'jiangmiao/auto-pairs'
+						let g:AutoPairsShortcutToggle = ''
+						let g:AutoPairsShortcutJump = ''
+						let g:AutoPairsFastWrap = ''
+						let g:AutoPairsShortcutBackInsert = ''
+					"Plug 'terryma/vim-expand-region'
+						""CONFIGURATION
+							""let g:expand_region_text_objects = {
+								""\'iw'  :0,
+								""\'iW'  :0,
+								""\'i"'  :0,
+								""\'i''' :0,
+								""\'i]'  :1,
+								""\'ib'  :1,
+								""\'iB'  :1,
+								""\'il'  :0,
+								""\'ip'  :0,
+								""\'ie'  :0,
+							""\}
+							""call expand_region#custom_text_objects({
+								""\ "\/\\n\\n\<CR>": 1, " Motions are supported as well. Here's a search motion that finds a blank line
+								""\ 'a]' :1, " Support nesting of 'around' brackets
+								""\ 'ab' :1, " Support nesting of 'around' parentheses
+								""\ 'aB' :1, " Support nesting of 'around' braces
+								""\ 'ii' :0, " 'inside indent'. Available through https://github.com/kana/vim-textobj-indent
+								""\ 'ai' :0, " 'around indent'. Available through https://github.com/kana/vim-textobj-indent
+								""\ })
+						""MAPPINGS
+							""map <C-=> <Plug>(expand_region_expand)
+							""map <C-+> <Plug>(expand_region_shrink)
+					Plug 'terryma/vim-multiple-cursors'
+						let g:multi_cursor_use_default_mapping = 0
+						let g:multi_cursor_quit_key            = '<Esc>'
+						let g:multi_cursor_start_word_key      = '<C-n>'
+						let g:multi_cursor_start_key           = 'g<C-n>'
+						let g:multi_cursor_next_key            = '<C-n>'
+						let g:multi_cursor_prev_key            = '<C-p>'
+						let g:multi_cursor_skip_key            = '<C-x>'
+						let g:multi_cursor_select_all_word_key = '<A-a>'
+						let g:multi_cursor_select_all_key      = 'g<A-a>'
+					Plug 'dkarter/bullets.vim'
+						let g:bullets_set_mappings = 0
+						let g:bullets_enabled_file_types = [
+							\ 'markdown',
+							\ 'text',
+							\ 'gitcommit',
+							\ 'scratch',
+						\]
+						let g:bullets_delete_last_bullet_if_empty = 1
+						let g:bullets_pad_right = 1
+						let g:bullets_max_alpha_characters = 2
 			"EDITOR
 				"SCROLLBAR"
 					if has('nvim-0.5')
@@ -2920,326 +3243,6 @@
 				if has('signs')
 					Plug 'kshenoy/vim-signature'
 				endif
-			"EDITING
-				"OPERATORS
-					Plug 'haya14busa/vim-operator-flashy'
-						"CONFIGURATION
-							let g:operator#flashy#group = 'Visual'
-						"MAPPINGS
-							map y <Plug>(operator-flashy)
-							map Y <Plug>(operator-flashy)$
-					Plug 'tpope/vim-surround'
-					Plug 'junegunn/vim-easy-align'
-						xmap gl <Plug>(EasyAlign)
-						nmap gl <Plug>(EasyAlign)
-					Plug 'svermeulen/vim-subversive'
-						nmap gs <plug>(SubversiveSubstituteRange)
-						xmap gs <plug>(SubversiveSubstituteRange)
-					Plug 'tommcdo/vim-exchange'
-						let g:exchange_no_mappings = 1
-						nmap gx  <Plug>(Exchange)
-						nmap gxx <Plug>(ExchangeLine)
-						xmap X	 <Plug>(Exchange)
-						nmap gxc <Plug>(ExchangeClear)
-					Plug 'arthurxavierx/vim-caser'
-						"CONFIGURATIONS
-							let g:caser_no_mappings = 1
-							let g:caser_prefix = 'gc'
-						"MAPPINGS
-							nmap <silent> gcc <Plug>CaserCamelCase
-							vmap <silent> gcc <Plug>CaserVCamelCase
-
-							nmap <silent> gcp <Plug>CaserMixedCase
-							vmap <silent> gcp <Plug>CaserVMixedCase
-
-							nmap <silent> gc. <Plug>CaserDotCase
-							vmap <silent> gc. <Plug>CaserVDotCase
-
-							nmap <silent> gc- <Plug>CaserKebabCase
-							vmap <silent> gc- <Plug>CaserVKebabCase
-
-							nmap <silent> gc_ <Plug>CaserSnakeCase
-							vmap <silent> gc_ <Plug>CaserVSnakeCase
-
-							nmap <silent> gc<space> <Plug>CaserSpaceCase
-							vmap <silent> gc<space> <Plug>CaserVMixSpaceCase
-
-							nmap <silent> gcT <Plug>CaserTitleKebabCase
-							vmap <silent> gcT <Plug>CaserVTitleKebabCase
-
-							nmap <silent> gct <Plug>CaserTitleCase
-							vmap <silent> gct <Plug>CaserVTitleCase
-
-							nmap <silent> gcs <Plug>CaserSentenceCase
-							vmap <silent> gcs <Plug>CaserVSentenceCase
-
-							nnoremap <silent> gcl gu
-							vnoremap <silent> gcl gu
-
-							nmap <silent> gcu <Plug>CaserUpperCase
-							vmap <silent> gcu <Plug>CaserVUpperCase
-					Plug 'gustavo-hms/vim-duplicate'
-						map gy <Plug>(operator-duplicate)
-					"TODO:DECIDE
-						Plug 'rjayatilleka/vim-operator-goto'
-							map g[ <Plug>(operator-gotostart)
-							map g] <Plug>(operator-gotoend)
-						Plug 'deris/vim-operator-insert'
-							"TODO:FIX|DECIDE
-							nmap gi <Plug>(operator-insert-i)
-							nmap ga <Plug>(operator-insert-a)
-				"OBJECTS
-					Plug 'wellle/targets.vim'
-					Plug 'michaeljsmith/vim-indent-object'
-					Plug 'Julian/vim-textobj-variable-segment'
-					Plug 'saaguero/vim-textobj-pastedtext'
-						let g:pastedtext_select_key = 'gp'
-					Plug 'rhysd/vim-textobj-lastinserted'
-					Plug 'coderifous/textobj-word-column.vim'
-					Plug 'rhysd/vim-textobj-anyblock'
-					Plug 'thinca/vim-textobj-between'
-					Plug 'sgur/vim-textobj-parameter'
-						let g:vim_textobj_parameter_mapping = 'a'
-					Plug 'haya14busa/vim-easyoperator-line'
-						omap gr <Plug>(easyoperator-line-select)
-						xmap gr <Plug>(easyoperator-line-select)
-					Plug 'haya14busa/vim-easyoperator-phrase'
-						omap gR <Plug>(easyoperator-phrase-select)
-						xmap gR <Plug>(easyoperator-phrase-select)
-					Plug 'glts/vim-textobj-comment'
-						let g:textobj_comment_no_default_mappings = 1
-						xmap ak <Plug>(textobj-comment-a)
-						xmap ik <Plug>(textobj-comment-i)
-						omap ak <Plug>(textobj-comment-a)
-						omap ik <Plug>(textobj-comment-i)
-				"MOTIONS
-					Plug 'chaoren/vim-wordmotion'
-					Plug 'haya14busa/vim-edgemotion'
-						"map <C-j> <Plug>(edgemotion-j)
-						"map <C-k> <Plug>(edgemotion-k)
-				"SEARCH
-					"Plug 'romainl/vim-cool'
-						"TODO:DECIDE|CHECK-IF-NEEDED
-					Plug 'inside/vim-search-pulse'
-						"CONFIGURATION
-							let g:vim_search_pulse_mode = 'cursor_line'
-						"MAPPINGS
-							map n  <Plug>(incsearch-nohl-n)<Plug>Pulse
-							map N  <Plug>(incsearch-nohl-N)<Plug>Pulse
-							map *  <Plug>(incsearch-nohl-*)<Plug>Pulse
-							map #  <Plug>(incsearch-nohl-#)<Plug>Pulse
-							map g* <Plug>(incsearch-nohl-g*)<Plug>Pulse
-							map g# <Plug>(incsearch-nohl-g#)<Plug>Pulse
-					Plug 'haya14busa/vim-asterisk'
-						"CONFIGURATION
-							"TODO:NOT-WORKING
-							let g:asterisk#keeppos = 1
-						"MAPPINGS
-							map *  <Plug>(asterisk-z*)
-							map #  <Plug>(asterisk-z#)
-							map g* <Plug>(asterisk-gz*)
-							map g# <Plug>(asterisk-gz#)
-					Plug 'bronson/vim-visual-star-search'
-					Plug 'rhysd/clever-f.vim'
-						let g:clever_f_ignore_case           = 1
-						let g:clever_f_smart_case            = 1
-						let g:clever_f_across_no_line        = 0
-						let g:clever_f_chars_match_any_signs = '['
-					Plug 'justinmk/vim-sneak'
-						"CONFIGURATION
-							let g:sneak#label	   = 0
-							let g:sneak#s_next	   = 1
-							let g:sneak#use_ic_scs = 1
-						"MAPPINGS
-							"map f <Plug>Sneak_s
-							"map F <Plug>Sneak_S
-							"map t <Plug>Sneak_t
-								"not-working"
-							"map T <Plug>Sneak_T
-								"not-working"
-					Plug 'haya14busa/incsearch.vim'
-						"CONFIGURATION
-						"MAPPINGS
-							"SEARCH
-								map / <Plug>(incsearch-forward)
-									"map / <Plug>(incsearch-stay)
-								map ? <Plug>(incsearch-backward)
-							"NOHL
-								""using "vim-cool"
-								"set hlsearch
-								"let g:incsearch#auto_nohlsearch = 1
-								"map n	<Plug>(incsearch-nohl-n)
-								"map N	<Plug>(incsearch-nohl-N)
-								"map *	<Plug>(incsearch-nohl-*)
-								"map #	<Plug>(incsearch-nohl-#)
-								"map g* <Plug>(incsearch-nohl-g*)
-								"map g# <Plug>(incsearch-nohl-g#)
-						"EXTENSIONS
-							Plug 'haya14busa/incsearch-fuzzy.vim'
-								map <Leader>/ <Plug>(incsearch-fuzzy-/)
-									"map <Leader>/ <Plug>(incsearch-fuzzy-stay)
-								map <Leader>? <Plug>(incsearch-fuzzy-?)
-					Plug 'lambdalisue/reword.vim'
-					Plug 'easymotion/vim-easymotion'
-						"CONFIGURATION
-							let g:EasyMotion_do_mapping		  = 0
-							let g:EasyMotion_smartcase		  = 1
-							let g:EasyMotion_use_upper		  = 0
-							let g:EasyMotion_enter_jump_first = 1
-							let g:EasyMotion_space_jump_first = 1
-							"nmap <Leader>j <Plug>(easymotion-prefix)
-							"let g:EasyMotion_keys = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ;'
-							"hi link EasyMotionTarget Search
-						"MAPPINGS
-							"LEVEL=1
-								"MODE:NORMAL
-									nmap <Leader>jw <Plug>(easymotion-overwin-w)
-									nmap <Leader>jl <Plug>(easymotion-overwin-line)
-									nmap <Leader>je <Plug>(easymotion-bd-e)
-									nmap <Leader>jf <Plug>(easymotion-overwin-f)
-									nmap <Leader>js <Plug>(easymotion-overwin-f2)
-									nmap <Leader>jj <Plug>(easymotion-j)
-									nmap <Leader>jk <Plug>(easymotion-k)
-									nmap <Leader>jJ <Plug>(easymotion-eol-j)
-									nmap <Leader>jK <Plug>(easymotion-eol-k)
-									nmap <Leader>j. <Plug>(easymotion-repeat)
-									nmap <Leader>ja <Plug>(easymotion-jumptoanywhere)
-									nmap <Leader>j/ <Plug>(easymotion-sn)
-									nmap <Leader>j? <Plug>(easymotion-tn)
-								"MODE:OPERATOR
-									"omap <Leader>w <Plug>(easymotion-bd-w)
-									"omap <Leader>W <Plug>(easymotion-bd-W)
-									"omap <Leader>e <Plug>(easymotion-bd-e)
-									"omap <Leader>E <Plug>(easymotion-bd-E)
-									"omap <Leader>l <Plug>(easymotion-bd-jk)
-									"omap <Leader>j <Plug>(easymotion-j)
-									"omap <Leader>k <Plug>(easymotion-k)
-									"omap <Leader>J <Plug>(easymotion-eol-j)
-									"omap <Leader>K <Plug>(easymotion-eol-K)
-									"omap <Leader>f <Plug>(easymotion-bd-f)
-									"omap <Leader>s <Plug>(easymotion-bd-f2)
-									"omap <Leader>t <Plug>(easymotion-bd-t)
-									"omap <Leader>S <Plug>(easymotion-bd-t2)
-									"omap <Leader>/ <Plug>(easymotion-sn)
-									"omap <Leader>? <Plug>(easymotion-tn)
-									"omap <Leader>n <Plug>(easymotion-bd-n)
-									"omap <Leader>. <Plug>(easymotion-repeat)
-									"omap <Leader>v <Plug>(easymotion-segments-LF)
-									"omap <Leader>V <Plug>(easymotion-segments-LB)
-									"omap <Leader>gv <Plug>(easymotion-segments-RF)
-									"omap <Leader>gV <Plug>(easymotion-segments-RB)
-									"omap <Leader>a <Plug>(easymotion-jumptoanywhere)
-								"MODE:VISUAL
-									xmap <Leader>w <Plug>(easymotion-bd-w)
-									xmap <Leader>W <Plug>(easymotion-bd-W)
-									xmap <Leader>e <Plug>(easymotion-bd-e)
-									xmap <Leader>E <Plug>(easymotion-bd-E)
-									xmap <Leader>l <Plug>(easymotion-bd-jk)
-									xmap <Leader>j <Plug>(easymotion-j)
-									xmap <Leader>k <Plug>(easymotion-k)
-									xmap <Leader>J <Plug>(easymotion-eol-j)
-									xmap <Leader>K <Plug>(easymotion-eol-K)
-									xmap <Leader>f <Plug>(easymotion-bd-f)
-									xmap <Leader>t <Plug>(easymotion-bd-t)
-									xmap <Leader>s <Plug>(easymotion-bd-f2)
-									xmap <Leader>S <Plug>(easymotion-bd-t2)
-									xmap <Leader>/ <Plug>(easymotion-sn)
-									xmap <Leader>? <Plug>(easymotion-tn)
-									xmap <Leader>n <Plug>(easymotion-bd-n)
-									xmap <Leader>. <Plug>(easymotion-repeat)
-									xmap <Leader>v <Plug>(easymotion-segments-LF)
-									xmap <Leader>V <Plug>(easymotion-segments-LB)
-									xmap <Leader>gv <Plug>(easymotion-segments-RF)
-									xmap <Leader>gV <Plug>(easymotion-segments-RB)
-									xmap <Leader>a <Plug>(easymotion-jumptoanywhere)
-							"LEVEL=2
-							"LEVEL=3
-						"EXTENSIONS
-							Plug 'haya14busa/incsearch-easymotion.vim'
-								map <Leader><Leader>/ <Plug>(incsearch-easymotion-/)
-									"map <Leader><Leader>/ <Plug>(incsearch-easymotion-stay)
-								map <Leader><Leader>? <Plug>(incsearch-easymotion-?)
-							"incsearch-easymotion-fuzzy
-								"FUNCTIONS
-									function! s:config_easyfuzzymotion(...) abort
-										return extend(copy({
-											\	'converters': [incsearch#config#fuzzy#converter()],
-											\	'modules': [incsearch#config#easymotion#module()],
-											\	'keymap': {"\<CR>": '<Over>(easymotion)'},
-											\	'is_expr': 0,
-											\	'is_stay': 0
-											\ }), get(a:, 1, {}))
-									endfunction
-								"MAPPINGS
-									noremap <silent><expr> <Leader><Leader>g/ incsearch#go(<SID>config_easyfuzzymotion())
-					if has('nvim') && IsNix()
-						Plug 'lambdalisue/lista.nvim'
-							nmap <Leader>b/ :Lista<CR>
-							nmap <Leader>b? :ListaCursorWord<CR>
-						"Plug 'osyo-manga/vim-hopping'
-							"nmap <Leader>b/ :HoppingStart<CR>
-					endif
-				"RANDOM
-					Plug 'machakann/vim-swap'
-						let g:swap_no_default_key_mappings = 1
-						nmap g<			<Plug>(swap-prev)
-						nmap g>			<Plug>(swap-next)
-						nmap <Leader>zs <Plug>(swap-interactive)
-
-						onoremap id <Plug>(swap-textobject-i)
-						onoremap ad <Plug>(swap-textobject-a)
-					Plug 'AndrewRadev/splitjoin.vim'
-					Plug 'jiangmiao/auto-pairs'
-						let g:AutoPairsShortcutToggle = ''
-						let g:AutoPairsShortcutJump = ''
-						let g:AutoPairsFastWrap = ''
-						let g:AutoPairsShortcutBackInsert = ''
-					"Plug 'terryma/vim-expand-region'
-						""CONFIGURATION
-							""let g:expand_region_text_objects = {
-								""\'iw'  :0,
-								""\'iW'  :0,
-								""\'i"'  :0,
-								""\'i''' :0,
-								""\'i]'  :1,
-								""\'ib'  :1,
-								""\'iB'  :1,
-								""\'il'  :0,
-								""\'ip'  :0,
-								""\'ie'  :0,
-							""\}
-							""call expand_region#custom_text_objects({
-								""\ "\/\\n\\n\<CR>": 1, " Motions are supported as well. Here's a search motion that finds a blank line
-								""\ 'a]' :1, " Support nesting of 'around' brackets
-								""\ 'ab' :1, " Support nesting of 'around' parentheses
-								""\ 'aB' :1, " Support nesting of 'around' braces
-								""\ 'ii' :0, " 'inside indent'. Available through https://github.com/kana/vim-textobj-indent
-								""\ 'ai' :0, " 'around indent'. Available through https://github.com/kana/vim-textobj-indent
-								""\ })
-						""MAPPINGS
-							""map <C-=> <Plug>(expand_region_expand)
-							""map <C-+> <Plug>(expand_region_shrink)
-					Plug 'terryma/vim-multiple-cursors'
-						let g:multi_cursor_use_default_mapping = 0
-						let g:multi_cursor_quit_key            = '<Esc>'
-						let g:multi_cursor_start_word_key      = '<C-n>'
-						let g:multi_cursor_start_key           = 'g<C-n>'
-						let g:multi_cursor_next_key            = '<C-n>'
-						let g:multi_cursor_prev_key            = '<C-p>'
-						let g:multi_cursor_skip_key            = '<C-x>'
-						let g:multi_cursor_select_all_word_key = '<A-a>'
-						let g:multi_cursor_select_all_key      = 'g<A-a>'
-					Plug 'dkarter/bullets.vim'
-						let g:bullets_set_mappings = 0
-						let g:bullets_enabled_file_types = [
-							\ 'markdown',
-							\ 'text',
-							\ 'gitcommit',
-							\ 'scratch',
-						\]
-						let g:bullets_delete_last_bullet_if_empty = 1
-						let g:bullets_pad_right = 1
-						let g:bullets_max_alpha_characters = 2
 			"SYSTEM
 				Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': { -> fzf#install() }}
 					"CONFIGURATION
