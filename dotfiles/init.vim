@@ -2797,10 +2797,89 @@
 							nnoremap <silent> <right> :call animate#window_delta_width(-10)<CR>
 					"Plug 'camspiers/lens.vim'
 						let g:lens#animate = 1
-				Plug 'abdalrahman-ali/vim-remembers'
-					let g:remembers_ignore_empty_buffers = 1
-					let g:remembers_tmp_dir     = g:jaat_tmp_path . 'remembers/unnamed'
-					let g:remembers_session_dir = g:jaat_tmp_path . 'remembers/sessions'
+				"UNDOTREE
+					Plug 'mbbill/undotree'
+						"CONFIGURATIONS
+							let g:undotree_WindowLayout = 2
+							let g:undotree_ShortIndicators = 1
+							let g:undotree_SplitWidth = 30
+							let g:undotree_DiffpanelHeight = 10
+							let g:undotree_SetFocusWhenToggle = 1
+							let g:undotree_TreeNodeShape = '◉'
+							" let g:undotree_DiffCommand = "Delta"
+							let g:undotree_HighlightChangedText = 1
+							let g:undotree_HighlightChangedWithSign = 1
+							let g:undotree_HighlightSyntaxAdd = "DiffAdd"
+							let g:undotree_HighlightSyntaxChange = "DiffChange"
+							let g:undotree_HighlightSyntaxDel = "DiffDelete"
+							let g:undotree_HelpLine = 0
+							let g:undotree_CursorLine = 1
+						"MAPPINGS
+							nnoremap <Leader>vu :UndotreeToggle<CR>
+				"COLOR-HIGHLIGHTER
+					if has('nvim-0.5')
+						Plug 'norcalli/nvim-colorizer.lua'
+					endif
+				"AUTOMATIC-SESSIONS
+					Plug 'abdalrahman-ali/vim-remembers'
+						let g:remembers_ignore_empty_buffers = 1
+						let g:remembers_tmp_dir     = g:jaat_tmp_path . 'remembers/unnamed'
+						let g:remembers_session_dir = g:jaat_tmp_path . 'remembers/sessions'
+				"BETTER-QUICKFIX
+					if has('nvim')
+						Plug 'kevinhwang91/nvim-bqf'
+					endif
+				"BETTER-FOLDING
+					if has('folding')
+						Plug 'pseewald/vim-anyfold'
+							"CONFIGURATION
+								let g:anyfold_motion            = 0
+								let g:anyfold_fold_comments     = 0
+								let g:anyfold_identify_comments = 0
+								let g:anyfold_fold_toplevel     = 0
+								let g:anyfold_comments          = []
+								let g:anyfold_fold_level_str    = ''
+								let g:anyfold_fold_size_str     = '%s Lines   '
+							"HIGHLIGHT
+								"hi Folded ctermfg= ctermbg= guifg= guibg
+							"AUTOCOMMANDS
+								autocmd FileType text AnyFoldActivate
+								autocmd FileType jproperties AnyFoldActivate
+							"MAPPINGS
+						Plug 'arecarn/vim-fold-cycle'
+							let g:fold_cycle_default_mapping = 0
+							nmap <TAB>	 <Plug>(fold-cycle-open)
+							nmap <S-TAB> <Plug>(fold-cycle-close)
+					endif
+				"BETTER-SIGNS
+					if has('signs')
+						Plug 'kshenoy/vim-signature'
+					endif
+				"BETTER-BTW
+					Plug 'szw/vim-maximizer'
+						nnoremap <silent> <Leader>wm :MaximizerToggle<CR>
+					Plug 'mtth/scratch.vim'
+						let g:scratch_no_mappings      = 1
+						let g:scratch_height           = 0.3
+						let g:scratch_top              = 0
+						let g:scratch_persistence_file = g:jaat_tmp_path . 'scratch'
+
+						nnoremap <silent> <Leader>so :Scratch<CR>
+						nnoremap <silent> <Leader>sp :ScratchPreview<CR>
+						vnoremap <silent> <Leader>ss :ScratchSelection<CR>
+
+						augroup SCRATCH_ENTER
+							autocmd!
+							autocmd FileType scratch nnoremap <buffer> <esc> :q<CR>
+							autocmd FileType scratch set syntax=jproperties
+						augroup END
+					Plug 'blueyed/vim-diminactive'
+						let g:diminactive_use_syntax = 1
+						let g:diminactive_use_colorcolumn = 0
+						"highlight ColorColumn ctermbg=0 guibg=#081C23
+					Plug 'el-iot/buffer-tree-explorer'
+						let g:buffer_tree_explorer_compress = v:true
+						nnoremap <Leader>bt :Tree<CR>
 				Plug 'tpope/vim-repeat'
 				Plug 'tpope/vim-capslock'
 					nmap <silent> <LocalLeader><LocalLeader> <Plug>CapsLockToggle
@@ -3171,78 +3250,9 @@
 						nnoremap <silent> <Leader>      :<C-U>WhichKey       '<SPACE>' <CR>
 						vnoremap <silent> <Leader>      :<C-U>WhichKeyVisual '<SPACE>' <CR>
 						nnoremap <silent> <LocalLeader> :<C-U>WhichKey       ','       <CR>
-				Plug 'szw/vim-maximizer'
-					nnoremap <silent> <Leader>wm :MaximizerToggle<CR>
-				Plug 'mbbill/undotree'
-					"CONFIGURATIONS
-						let g:undotree_WindowLayout = 2
-						let g:undotree_ShortIndicators = 1
-						let g:undotree_SplitWidth = 30
-						let g:undotree_DiffpanelHeight = 10
-						let g:undotree_SetFocusWhenToggle = 1
-						let g:undotree_TreeNodeShape = '◉'
-						" let g:undotree_DiffCommand = "Delta"
-						let g:undotree_HighlightChangedText = 1
-						let g:undotree_HighlightChangedWithSign = 1
-						let g:undotree_HighlightSyntaxAdd = "DiffAdd"
-						let g:undotree_HighlightSyntaxChange = "DiffChange"
-						let g:undotree_HighlightSyntaxDel = "DiffDelete"
-						let g:undotree_HelpLine = 0
-						let g:undotree_CursorLine = 1
-					"MAPPINGS
-						nnoremap <Leader>vu :UndotreeToggle<CR>
-				Plug 'el-iot/buffer-tree-explorer'
-					let g:buffer_tree_explorer_compress = v:true
-					nnoremap <Leader>bt :Tree<CR>
 				Plug 'junegunn/vim-peekaboo'
 					let g:peekaboo_window  = 'vert bo 80new'
 					let g:peekaboo_compact = 0
-				Plug 'mtth/scratch.vim'
-					let g:scratch_no_mappings      = 1
-					let g:scratch_height           = 0.3
-					let g:scratch_top              = 0
-					let g:scratch_persistence_file = g:jaat_tmp_path . 'scratch'
-
-					nnoremap <silent> <Leader>so :Scratch<CR>
-					nnoremap <silent> <Leader>sp :ScratchPreview<CR>
-					vnoremap <silent> <Leader>ss :ScratchSelection<CR>
-
-					augroup SCRATCH_ENTER
-						autocmd!
-						autocmd FileType scratch nnoremap <buffer> <esc> :q<CR>
-						autocmd FileType scratch set syntax=jproperties
-					augroup END
-				Plug 'blueyed/vim-diminactive'
-					let g:diminactive_use_syntax = 1
-					let g:diminactive_use_colorcolumn = 0
-					"highlight ColorColumn ctermbg=0 guibg=#081C23
-				if has('nvim')
-					Plug 'kevinhwang91/nvim-bqf'
-				endif
-				if has('folding')
-					Plug 'pseewald/vim-anyfold'
-						"CONFIGURATION
-							let g:anyfold_motion            = 0
-							let g:anyfold_fold_comments     = 0
-							let g:anyfold_identify_comments = 0
-							let g:anyfold_fold_toplevel     = 0
-							let g:anyfold_comments          = []
-							let g:anyfold_fold_level_str    = ''
-							let g:anyfold_fold_size_str     = '%s Lines   '
-						"HIGHLIGHT
-							"hi Folded ctermfg= ctermbg= guifg= guibg
-						"AUTOCOMMANDS
-							autocmd FileType text AnyFoldActivate
-							autocmd FileType jproperties AnyFoldActivate
-						"MAPPINGS
-					Plug 'arecarn/vim-fold-cycle'
-						let g:fold_cycle_default_mapping = 0
-						nmap <TAB>	 <Plug>(fold-cycle-open)
-						nmap <S-TAB> <Plug>(fold-cycle-close)
-				endif
-				if has('signs')
-					Plug 'kshenoy/vim-signature'
-				endif
 			"SYSTEM
 				Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': { -> fzf#install() }}
 					"CONFIGURATION
@@ -3699,9 +3709,6 @@
 						"let g:highlighturl_ctermfg   = ''
 						"let g:highlighturl_guifg	  = ''
 						"let g:highlighturl_underline = 0
-					if has('nvim-0.5')
-						Plug 'norcalli/nvim-colorizer.lua'
-					endif
 				"DISABLED
 					"Plug 'haya14busa/vim-keeppad'
 					"Plug 'zefei/vim-colortuner'
