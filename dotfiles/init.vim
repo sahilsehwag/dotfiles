@@ -3146,8 +3146,8 @@
 							\'r'    : 'open-project-mru',
 							\'R'    : 'open-project-mrw',
 							\'t'    : 'search-project-text',
-							\'e'    : 'open-project-directory',
-							\'E'    : 'open-file-directory',
+							\'e'    : 'open-explorer',
+							\'E'    : 'find-file-in-explorer',
 							\'g'    : 'open-modified-git-file',
 							\'G'    : 'open-git-file',
 						\}
