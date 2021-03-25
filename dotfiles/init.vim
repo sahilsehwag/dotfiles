@@ -3413,6 +3413,9 @@
 						execute 'tnoremap <silent> <' . g:action_leader . '-k> <C-\><C-n>:FloatermKill<CR>'
 						execute 'tnoremap <silent> <' . g:action_leader . '-p> <C-\><C-n>:FloatermNext<CR>'
 						execute 'tnoremap <silent> <' . g:action_leader . '-n> <C-\><C-n>:FloatermPrev<CR>'
+				if has('nvim-0.5')
+					Plug 'kyazdani42/nvim-tree.lua'
+				endif
 			"AESTHETICS
 				"STATUSLINE
 					if IsNix()
@@ -4424,15 +4427,20 @@
 			call which_key#register('<SPACE>', "g:which_key_map")
 		if has('nvim-0.5')
 			luafile ~/.config/nvim/plugins/treesitter/nvim-treesitter.lua
+
 			luafile ~/.config/nvim/plugins/lsp/nvim-lspconfig.lua
 			luafile ~/.config/nvim/plugins/lsp/nvim-lsputils.lua
 			luafile ~/.config/nvim/plugins/lsp/lspsaga.nvim.lua
 			luafile ~/.config/nvim/plugins/lsp/nvim-lightbulb.lua
 			luafile ~/.config/nvim/plugins/lsp/nvim-compe.lua
 			luafile ~/.config/nvim/plugins/lsp/lspkind-nvim.lua
+
 			luafile ~/.config/nvim/plugins/vcs/gitsigns.nvim.lua
 			luafile ~/.config/nvim/plugins/vcs/nvim-blamer.lua
+
 			luafile ~/.config/nvim/plugins/aesthetics/nvim-colorizer.lua
+
+			luafile ~/.config/nvim/plugins/system/nvim-tree.lua
 		endif
 	"CUSTOM
 		source ~/.config/nvim/plugins/aesthetics/custom/minimalistic-folds.vim
