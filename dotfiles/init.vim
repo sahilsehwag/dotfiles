@@ -3966,6 +3966,7 @@
 						Plug 'nvim-treesitter/playground'
 						Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 						Plug 'nvim-treesitter/nvim-treesitter-refactor'
+						Plug 'p00f/nvim-ts-rainbow'
 						Plug 'windwp/nvim-ts-autotag'
 						Plug 'JoosepAlviste/nvim-ts-context-commentstring'
 					endif
