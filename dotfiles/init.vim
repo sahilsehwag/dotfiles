@@ -3189,6 +3189,11 @@
 						onoremap id <Plug>(swap-textobject-i)
 						onoremap ad <Plug>(swap-textobject-a)
 					Plug 'AndrewRadev/splitjoin.vim'
+					Plug 'jiangmiao/auto-pairs'
+						let g:AutoPairsShortcutToggle = ''
+						let g:AutoPairsShortcutJump = ''
+						let g:AutoPairsFastWrap = ''
+						let g:AutoPairsShortcutBackInsert = ''
 					"Plug 'terryma/vim-expand-region'
 						""CONFIGURATION
 							""let g:expand_region_text_objects = {
