@@ -3147,9 +3147,7 @@
 							\'R'    : 'open-project-mrw',
 							\'t'    : 'search-project-text',
 							\'e'    : 'open-explorer',
-							\'E'    : 'find-file-in-explorer',
-							\'g'    : 'open-modified-git-file',
-							\'G'    : 'open-git-file',
+							\'g'    : 'open-modified-file',
 						\}
 						let g:which_key_map['q'] = {
 							\'name' : 'which_key_ignore',
