@@ -2596,7 +2596,6 @@
 						let g:which_key_map['g'] = {
 							\'name' : '+git',
 							\'i' : 'git-init',
-							\'C' : 'git-clone',
 							\'a' : {
 								\'name': '+staging-area',
 								\'s': 'git-status',
@@ -2653,8 +2652,6 @@
 								\'d': '--git-stash-drop',
 								\'c': '--git-stash-clear',
 							\},
-							\'F' : 'open-git-file',
-							\'f' : 'open-modified-file',
 						\}
 						let g:which_key_map['h'] = {
 							\'name' : 'which_key_ignore',
@@ -2722,13 +2719,15 @@
 						\}
 						let g:which_key_map['p'] = {
 							\'name' : '+projects',
-							\'o'	: 'open-project',
-							\'f'	: 'open-project-file',
-							\'r'	: 'open-project-mru',
-							\'R'	: 'open-project-mrw',
-							\'t'	: 'search-project-text',
-							\'e'	: 'open-project-directory',
-							\'E'	: 'open-file-directory',
+							\'o'    : 'open-project',
+							\'f'    : 'open-project-file',
+							\'r'    : 'open-project-mru',
+							\'R'    : 'open-project-mrw',
+							\'t'    : 'search-project-text',
+							\'e'    : 'open-project-directory',
+							\'E'    : 'open-file-directory',
+							\'g'    : 'open-modified-git-file',
+							\'G'    : 'open-git-file',
 						\}
 						let g:which_key_map['q'] = {
 							\'name' : 'which_key_ignore',
@@ -3326,8 +3325,8 @@
 							"GIT
 								nnoremap <Leader>gcl :Commits<CR>
 								nnoremap <Leader>gcL :BCommits<CR>
-								nnoremap <Leader>gf  :GFiles?<CR>
-								nnoremap <Leader>gF  :GFiles<CR>
+								nnoremap <Leader>pg  :GFiles?<CR>
+								nnoremap <Leader>pG  :GFiles<CR>
 						Plug 'yuki-ycino/fzf-preview.vim', { 'branch': 'release/rpc' }
 							"MAPPINGS
 								"PROJECT
@@ -4931,3 +4930,18 @@
 		"+CONCEAL
 		"+PREVIEW=pedit|ptag…
 	"DEFAULTS.vim
+	"OPERATOR-WITHOUT-MOVING
+		" gq wrapper that:
+		" - tries its best at keeping the cursor in place
+		" - tries to handle formatter errors
+		function! Format(type, ...)
+			normal! '[v']gq
+			if v:shell_error > 0
+				silent undo
+				redraw
+				echomsg 'formatprg "' . &formatprg . '" exited with status ' . v:shell_error
+			endif
+			call winrestview(w:gqview)
+			unlet w:gqview
+		endfunction
+		nmap <silent> GQ :let w:gqview = winsaveview()<CR>:set opfunc=Format<CR>g@
