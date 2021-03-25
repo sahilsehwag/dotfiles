@@ -3722,7 +3722,7 @@
 					endif
 				"LSP
 					if has('nvim-0.5')
-						source ~/.config/nvim/lsp.vim
+						source ~/.config/nvim/lsp.lua
 						Plug 'neovim/nvim-lspconfig'
 						Plug 'alexaandru/nvim-lspupdate'
 						Plug 'RishabhRD/nvim-lsputils'

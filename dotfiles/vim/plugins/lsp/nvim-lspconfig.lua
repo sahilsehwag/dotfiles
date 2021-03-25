@@ -72,9 +72,3 @@
   require('lspconfig').texlab.setup{}
 
   require('lspconfig').codeqlls.setup{}
---HIGHLIGHTS
-  --LSP
-    vim.fn.sign_define("LspDiagnosticsSignError"       , {text = " " , texthl="JatErrorFG"   , numhl = "" , linehl = ""})
-    vim.fn.sign_define("LspDiagnosticsSignWarning"     , {text = " " , texthl="JatWarningFG" , numhl = "" , linehl = ""})
-    vim.fn.sign_define("LspDiagnosticsSignInformation" , {text = " " , texthl="JatInfoFG"    , numhl = "" , linehl = ""})
-    vim.fn.sign_define("LspDiagnosticsSignHint"        , {text = " " , texthl="JatHintFG"    , numhl = "" , linehl = ""})
