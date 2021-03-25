@@ -2407,11 +2407,24 @@
 								augroup end
 					endif
 				"SMOOTHSCROLL
-					"Plug 'joeytwiddle/sexy_scroller.vim'
-						let g:SexyScoller_ScrollTime = 10
-						let g:SexyScroller_CursorTime = 5
-						let g:SexyScroller_MaxTime = 200
-						let g:SexyScroller_EasingStyle = 1
+					if has('nvim-0.3') || v:version >= 800
+						Plug 'psliwka/vim-smoothie'
+							let g:smoothie_enabled = v:true
+							let g:smoothie_no_default_mappings = v:true
+
+							nmap <silent> <C-f> <Plug>(SmoothieForwards)
+							nmap <silent> <C-b> <Plug>(SmoothieBackwards)
+							nmap <silent> <C-d> <Plug>(SmoothieDownwards)
+							nmap <silent> <C-u> <Plug>(SmoothieUpwards)
+							nmap <silent> G <Plug>(Smoothie_G)
+							nmap <silent> gg <Plug>(Smoothie_gg)
+					else
+						"Plug 'joeytwiddle/sexy_scroller.vim'
+							let g:SexyScoller_ScrollTime = 10
+							let g:SexyScroller_CursorTime = 5
+							let g:SexyScroller_MaxTime = 200
+							let g:SexyScroller_EasingStyle = 1
+					endif
 				"MINIMAP
 					if has('nvim-0.5') || v:version >= 820
 						Plug 'wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'}
@@ -3203,14 +3216,14 @@
 							""map <C-+> <Plug>(expand_region_shrink)
 					Plug 'terryma/vim-multiple-cursors'
 						let g:multi_cursor_use_default_mapping = 0
-						let g:multi_cursor_quit_key			   = '<Esc>'
-						let g:multi_cursor_start_word_key	   = '<C-n>'
-						let g:multi_cursor_start_key		   = 'g<C-n>'
-						let g:multi_cursor_next_key			   = '<C-n>'
-						let g:multi_cursor_prev_key			   = '<C-p>'
-						let g:multi_cursor_skip_key			   = '<C-x>'
+						let g:multi_cursor_quit_key            = '<Esc>'
+						let g:multi_cursor_start_word_key      = '<C-n>'
+						let g:multi_cursor_start_key           = 'g<C-n>'
+						let g:multi_cursor_next_key            = '<C-n>'
+						let g:multi_cursor_prev_key            = '<C-p>'
+						let g:multi_cursor_skip_key            = '<C-x>'
 						let g:multi_cursor_select_all_word_key = '<A-a>'
-						let g:multi_cursor_select_all_key	   = 'g<A-a>'
+						let g:multi_cursor_select_all_key      = 'g<A-a>'
 					Plug 'dkarter/bullets.vim'
 						let g:bullets_set_mappings = 0
 						let g:bullets_enabled_file_types = [
@@ -4206,13 +4219,6 @@
 				if has('macunix')
 					Plug 'gastonsimone/vim-dokumentary'
 				endif
-				"Plug 'joeytwiddle/sexy_scroller.vim'
-					let g:SexyScoller_ScrollTime = 10
-					let g:SexyScroller_CursorTime = 5
-					let g:SexyScroller_MaxTime = 200
-					let g:SexyScroller_EasingStyle = 1
-				"Plug 'terryma/vim-smooth-scroll'
-				"Plug 'jiangmiao/auto-pairs'
 				"Plug 'tpope/vim-speeddating'
 			"MESS
 				Plug 'vim-scripts/DrawIt'
