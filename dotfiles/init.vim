@@ -3769,6 +3769,7 @@
 						Plug 'hrsh7th/nvim-compe'
 							Plug 'tzachar/compe-tabnine', { 'do': './install.sh' }
 						Plug 'onsails/lspkind-nvim'
+						Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
 					elseif has('node') && (v:version >= 800 || has('nvim-0.4'))
 						Plug 'neoclide/coc.nvim', {'branch': 'release'}
 							"CONFIGURATION
@@ -4434,6 +4435,7 @@
 			luafile ~/.config/nvim/plugins/lsp/nvim-lightbulb.lua
 			luafile ~/.config/nvim/plugins/lsp/nvim-compe.lua
 			luafile ~/.config/nvim/plugins/lsp/lspkind-nvim.lua
+			luafile ~/.config/nvim/plugins/lsp/nvim-lsp-ts-utils.lua
 
 			luafile ~/.config/nvim/plugins/vcs/gitsigns.nvim.lua
 			luafile ~/.config/nvim/plugins/vcs/nvim-blamer.lua
