@@ -5,11 +5,65 @@ require'nvim-treesitter.configs'.setup {
 	textobjects = {
 		select = {
 			enable = true,
-			keymaps = { },
+			keymaps = {
+				['is'] = "@statement.inner",
+				['as'] = "@statement.outer",
+				['ib'] = "@block.inner",
+				['ab'] = "@block.outer",
+				['il'] = "@loop.inner",
+				['al'] = "@loop.outer",
+				['ic'] = "@conditional.inner",
+				['ac'] = "@conditional.outer",
+				['if'] = "@function.inner",
+				['af'] = "@function.outer",
+				['ia'] = "@call.inner",
+				['aa'] = "@call.outer",
+				--['ip'] = "@parameter.inner",
+				--['ap'] = "@parameter.outer",
+				--['ik'] = "@comment.inner",
+				--['ak'] = "@comment.outer",
+			},
 		},
 		move = {
 			enable = true,
-			keymaps = { },
+			goto_next_start = {
+				[']s'] = "@statement.inner",
+				[']S'] = "@statement.outer",
+				[']b'] = "@block.inner",
+				[']B'] = "@block.outer",
+				[']l'] = "@loop.inner",
+				[']L'] = "@loop.outer",
+				[']c'] = "@conditional.inner",
+				[']C'] = "@conditional.outer",
+				[']f'] = "@function.inner",
+				[']F'] = "@function.outer",
+				[']a'] = "@call.inner",
+				[']A'] = "@call.outer",
+				[']p'] = "@parameter.inner",
+				[']P'] = "@parameter.outer",
+				[']k'] = "@comment.inner",
+				[']K'] = "@comment.outer",
+			},
+			goto_previous_start = {
+				['[s'] = "@statement.inner",
+				['[S'] = "@statement.outer",
+				['[b'] = "@block.inner",
+				['[B'] = "@block.outer",
+				['[l'] = "@loop.inner",
+				['[L'] = "@loop.outer",
+				['[c'] = "@conditional.inner",
+				['[C'] = "@conditional.outer",
+				['[f'] = "@function.inner",
+				['[F'] = "@function.outer",
+				['[a'] = "@call.inner",
+				['[A'] = "@call.outer",
+				['[p'] = "@parameter.inner",
+				['[P'] = "@parameter.outer",
+				['[k'] = "@comment.inner",
+				['[K'] = "@comment.outer",
+			},
+			goto_next_end = { },
+			goto_previous_end = { },
 		},
 		swap = {
 			enable = true,
@@ -41,9 +95,9 @@ require'nvim-treesitter.configs'.setup {
 		filetypes = { 'html', 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'svelte', 'vue' }
 	},
 	context_commentstring = {
-    enable = true,
-  },
+		enable = true,
+	},
 }
 
-vim.cmd [[set foldmethod=expr]]
-vim.cmd [[set foldexpr=nvim_treesitter#foldexpr()]]
+vim.cmd [[ set foldmethod=expr ]]
+vim.cmd [[ set foldexpr=nvim_treesitter#foldexpr() ]]
