@@ -57,8 +57,8 @@
 		["d"]			= tree_cb("cut"),
 		["y"]			= tree_cb("copy"),
 		["p"]			= tree_cb("paste"),
-		["r"]			= tree_cb("rename"),
-		["R"]			= tree_cb("full_rename"),
+		["r"]			= tree_cb("full_rename"),
+		["R"]			= tree_cb("rename"),
 
 		["[g"]		= tree_cb("prev_git_item"),
 		["]g"]		= tree_cb("next_git_item"),

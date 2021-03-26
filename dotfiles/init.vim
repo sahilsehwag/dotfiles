@@ -2096,6 +2096,7 @@
 				nnoremap <silent> <Leader>wV :vnew<CR>
 				nnoremap <silent> <Leader>wo :only<CR>
 				nnoremap <silent> <Leader>wc :close<CR>
+				nnoremap <silent> <Leader>w= <C-w>=
 
 				if has('nvim')
 					execute 'nnoremap <silent> <' . g:action_leader . '-h> <C-w><C-h>'
