@@ -1921,6 +1921,7 @@
 
 			if executable('lazygit')
 				nnoremap <silent> <Leader>ag :FloatermNew lazygit<CR>
+				nnoremap <silent> <Leader>aG :FloatermNew --cwd=/ lazygit<CR>
 			endif
 
 			if executable('mitype')
