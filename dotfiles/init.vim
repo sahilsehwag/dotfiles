@@ -830,12 +830,12 @@
 					"FEATURE:STATE
 					"FEATURE:COUNT
 					"VERTICAL
-						nnoremap <C-j> :move .+1<CR>==
-						nnoremap <C-k> :move .-2<CR>==
-						inoremap <C-j> <Esc>:move .+1<CR>==gi
-						inoremap <C-k> <Esc>:move .-2<CR>==gi
-						vnoremap <C-j> :move '>+1<CR>gv=gv
-						vnoremap <C-k> :move '<-2<CR>gv=gv
+						nnoremap <silent> <C-j> :move .+1<CR>==
+						nnoremap <silent> <C-k> :move .-2<CR>==
+						inoremap <silent> <C-j> <Esc>:move .+1<CR>==gi
+						inoremap <silent> <C-k> <Esc>:move .-2<CR>==gi
+						vnoremap <silent> <C-j> :move '>+1<CR>gv=gv
+						vnoremap <silent> <C-k> :move '<-2<CR>gv=gv
 					"HORIZONTAL
 					"TODO:VISUAL-BLOCK
 				"TODO:INSERT-INDENT
@@ -3242,6 +3242,7 @@
 							\'m'	: 'maximize-split',
 							\'H'	: 'empty-horizontal-split',
 							\'V'	: 'empty-vertical-split',
+							\'='	: 'make-windows-equal',
 						\}
 						let g:which_key_map['x'] = {
 							\'name' : 'which_key_ignore',
@@ -3980,19 +3981,35 @@
 							let g:NERDDefaultAlign           = 'left'
 							let g:NERDAltDelims_java         = 1
 							let g:NERDCustomDelimiters       = { 'c': { 'left': '/**','right': '*/' } }
-							let g:NERDCommentEmptyLines      = 1
+							let g:NERDCommentEmptyLines      = 0
 							let g:NERDTrimTrailingWhitespace = 1
 							let g:NERDToggleCheckAllLines    = 1
 						"MAPPINGS
-							xmap gkc <plug>NERDCommenterToggle
-							xmap gkC <plug>NERDCommenterNested
+							nmap gkt <plug>NERDCommenterToggle
+							xmap gkt <plug>NERDCommenterToggle
+
+							nmap gkc <plug>NERDCommenterComment
+							xmap gkc <plug>NERDCommenterComment
+
+							nmap gku <plug>NERDCommenterUncomment
+							xmap gku <plug>NERDCommenterUncomment
+
+							xmap gkn <plug>NERDCommenterNested
 							xmap gki <plug>NERDCommenterInvert
-							xmap gkm <plug>NERDCommenterAltDelims
-							xmap gkM <plug>NERDCommenterMinimal
-							xmap gks <plug>NERDCommenterSexy
 							xmap gky <plug>NERDCommenterYank
+
+							"xmap gkm <plug>NERDCommenterAltDelims
+							xmap gkm <plug>NERDCommenterMinimal
+							xmap gks <plug>NERDCommenterSexy
+
 							nmap gk9 <plug>NERDCommenterToEOL
 							nmap gka <plug>NERDCommenterAppend
+
+							nmap <silent> <A-/> <plug>NERDCommenterToggle
+							xmap <silent> <A-/> <plug>NERDCommenterToggle
+
+							nmap <silent> <A-?> <plug>NERDCommenterMinimal
+							xmap <silent> <A-?> <plug>NERDCommenterMinimal
 				"DATABASE
 					Plug 'tpope/vim-dadbod'
 					Plug 'kristijanhusak/vim-dadbod-ui'
