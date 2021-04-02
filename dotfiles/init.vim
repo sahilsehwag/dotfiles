@@ -1896,8 +1896,8 @@
 		"FLOATERM
 			if executable('vifm')
 				command! -nargs=1 Vifm :execute 'FloatermNew ' g:jaat_explorer_command . ' ' . shellescape(<q-args>)
-				nnoremap <silent> <Leader>ae :execute 'FloatermNew ' . g:jaat_explorer_command . ' ' . shellescape(getcwd())<CR>
-				nnoremap <silent> <Leader>aE :execute 'FloatermNew ' . g:jaat_explorer_command<CR>
+				nnoremap <silent> <Leader>aE :execute 'FloatermNew ' . g:jaat_explorer_command . ' ' . shellescape(getcwd())<CR>
+				nnoremap <silent> <Leader>ae :execute 'FloatermNew ' . g:jaat_explorer_command<CR>
 			endif
 
 			if executable('glow')
@@ -2123,7 +2123,7 @@
 						execute 'tnoremap <silent> <' . g:action_leader . '-[> <C-\><C-n>'
 
 						"vim-registers
-						tnoremap <silent> <expr> <C-R> '<C-\><C-N>"'.nr2char(getchar()).'pi'
+						tnoremap <silent> <expr> <A-'> '<C-\><C-N>"'.nr2char(getchar()).'pi'
 					"ALIASES
 						"GIT
 							execute 'tnoremap <silent> ' . g:terminal_leader . 'g; git '
@@ -2776,7 +2776,7 @@
 							let g:indent_blankline_show_first_indent_level = v:false
 							let g:indent_blankline_indent_level = 10
 
-							let g:indent_blankline_filetype = ['html', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'python']
+							let g:indent_blankline_filetype = ['html', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'python', 'lua']
 							let g:indent_blankline_filetype_exclude = ['help', 'startify', 'floaterm']
 							let g:indent_blankline_buftype_exclude = ['terminal']
 							let g:indent_blankline_bufname_exclude = ['README.md', '.*\.py']
@@ -2834,6 +2834,10 @@
 						let g:remembers_ignore_empty_buffers = 1
 						let g:remembers_tmp_dir     = g:jaat_tmp_path . 'remembers/unnamed'
 						let g:remembers_session_dir = g:jaat_tmp_path . 'remembers/sessions'
+				"FIND-REPLACE
+					if has('nvim-0.5')
+						Plug 'windwp/nvim-spectre'
+					endif
 				"BETTER-QUICKFIX
 					if has('nvim')
 						Plug 'kevinhwang91/nvim-bqf'
@@ -4461,6 +4465,7 @@
 			luafile ~/.config/nvim/plugins/aesthetics/nvim-colorizer.lua
 
 			luafile ~/.config/nvim/plugins/system/nvim-tree.lua
+			luafile ~/.config/nvim/plugins/system/nvim-spectre.lua
 		endif
 	"CUSTOM
 		source ~/.config/nvim/plugins/aesthetics/custom/minimalistic-folds.vim
@@ -4499,6 +4504,7 @@
 		"Inconsolata
 		"OperatorMono?
 		"Menlo(GITLAB+VSCODE)
+		"RobotoMono (jsonformatter)?
 		"IBMPlexMono(BlexMono)?
 	"FOLDING
 		if has('folding')
