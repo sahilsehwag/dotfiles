@@ -2718,38 +2718,124 @@
 						let g:bullets_pad_right = 1
 						let g:bullets_max_alpha_characters = 2
 			"EDITOR
-				"SCROLLBAR"
-					if has('nvim-0.5')
-						Plug 'dstein64/nvim-scrollview'
-					elseif has('nvim')
-						Plug 'Xuyuanp/scrollbar.nvim'
-							"CONFIGURATION
-								augroup ScrollbarInit
-									autocmd!
-									autocmd CursorMoved,VimResized,QuitPre * silent! lua require('scrollbar').show()
-									autocmd WinEnter,FocusGained           * silent! lua require('scrollbar').show()
-									autocmd WinLeave,FocusLost             * silent! lua require('scrollbar').clear()
-								augroup end
-					endif
-				"SMOOTHSCROLL
-					if has('nvim-0.3') || v:version >= 800
-						Plug 'psliwka/vim-smoothie'
-							let g:smoothie_enabled = v:true
-							let g:smoothie_no_default_mappings = v:true
+				"BUFFER
+					"SCROLLBAR"
+						if has('nvim-0.5')
+							Plug 'dstein64/nvim-scrollview'
+						elseif has('nvim')
+							Plug 'Xuyuanp/scrollbar.nvim'
+								"CONFIGURATION
+									augroup ScrollbarInit
+										autocmd!
+										autocmd CursorMoved,VimResized,QuitPre * silent! lua require('scrollbar').show()
+										autocmd WinEnter,FocusGained           * silent! lua require('scrollbar').show()
+										autocmd WinLeave,FocusLost             * silent! lua require('scrollbar').clear()
+									augroup end
+						endif
+					"SMOOTHSCROLL
+						if has('nvim-0.3') || v:version >= 800
+							Plug 'psliwka/vim-smoothie'
+								let g:smoothie_enabled = v:true
+								let g:smoothie_no_default_mappings = v:true
 
-							nmap <silent> <C-f> <Plug>(SmoothieForwards)
-							nmap <silent> <C-b> <Plug>(SmoothieBackwards)
-							nmap <silent> <C-d> <Plug>(SmoothieDownwards)
-							nmap <silent> <C-u> <Plug>(SmoothieUpwards)
-							nmap <silent> G <Plug>(Smoothie_G)
-							nmap <silent> gg <Plug>(Smoothie_gg)
-					else
-						"Plug 'joeytwiddle/sexy_scroller.vim'
-							let g:SexyScoller_ScrollTime = 10
-							let g:SexyScroller_CursorTime = 5
-							let g:SexyScroller_MaxTime = 200
-							let g:SexyScroller_EasingStyle = 1
-					endif
+								nmap <silent> <C-f> <Plug>(SmoothieForwards)
+								nmap <silent> <C-b> <Plug>(SmoothieBackwards)
+								nmap <silent> <C-d> <Plug>(SmoothieDownwards)
+								nmap <silent> <C-u> <Plug>(SmoothieUpwards)
+								nmap <silent> G <Plug>(Smoothie_G)
+								nmap <silent> gg <Plug>(Smoothie_gg)
+						else
+							"Plug 'joeytwiddle/sexy_scroller.vim'
+								let g:SexyScoller_ScrollTime = 10
+								let g:SexyScroller_CursorTime = 5
+								let g:SexyScroller_MaxTime = 200
+								let g:SexyScroller_EasingStyle = 1
+						endif
+					"INDENTLINE"
+						if has('nvim-0.5')
+							"remove lua branch when neovim-0.5 is released, since this will be
+							"moved to the the main branch
+							Plug 'lukas-reineke/indent-blankline.nvim', { 'branch': 'lua' }
+								let g:indent_blankline_enabled = v:true
+
+								let g:indent_blankline_char = '│'
+								let g:indent_blankline_char_list = []
+								"let g:indent_blankline_char_highlight = 'SpecialKey'
+								let g:indent_blankline_char_highlight = 'NonText'
+								let g:indent_blankline_char_highlight_list = []
+
+								let g:indent_blankline_show_first_indent_level = v:false
+								let g:indent_blankline_indent_level = 10
+
+								let g:indent_blankline_filetype = ['html', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'python', 'lua']
+								let g:indent_blankline_filetype_exclude = ['help', 'startify', 'floaterm']
+								let g:indent_blankline_buftype_exclude = ['terminal']
+								let g:indent_blankline_bufname_exclude = ['README.md', '.*\.py']
+
+								let g:indent_blankline_use_treesitter = v:true
+								let g:indent_blankline_show_current_context = v:true
+								let g:indent_blankline_context_highlight = ['class', 'function', 'method']
+								"let g:indent_blankline_context_highlight = 'ModeMsg'
+								let g:indent_blankline_context_highlight = 'SpecialKey'
+						elseif has('conceal')
+							"Plug 'Yggdroot/indentLine'
+								"let g:indentLine_enabled = 1
+								"let g:indentLine_char = '│'
+								"let g:indentLine_setColors = 1
+								"let g:indentLine_defaultGroup = 'VertSplit'
+								"let g:indentLine_concealcursor = 'inc'
+								"let g:indentLine_conceallevel = 1
+								"let g:indentLine_char_list = ['│', '|', '¦', '┆', '┊']
+						endif
+					"COLOR-HIGHLIGHTER
+						if has('nvim-0.5')
+							Plug 'norcalli/nvim-colorizer.lua'
+						endif
+					"BETTER-FOLDING
+						if has('folding')
+							Plug 'pseewald/vim-anyfold'
+								"CONFIGURATION
+									let g:anyfold_motion            = 0
+									let g:anyfold_fold_comments     = 0
+									let g:anyfold_identify_comments = 0
+									let g:anyfold_fold_toplevel     = 0
+									let g:anyfold_comments          = []
+									let g:anyfold_fold_level_str    = ''
+									let g:anyfold_fold_size_str     = '%s Lines   '
+								"HIGHLIGHT
+									"hi Folded ctermfg= ctermbg= guifg= guibg
+								"AUTOCOMMANDS
+									autocmd FileType text AnyFoldActivate
+									autocmd FileType jproperties AnyFoldActivate
+								"MAPPINGS
+							Plug 'arecarn/vim-fold-cycle'
+								let g:fold_cycle_default_mapping = 0
+								nmap <TAB>	 <Plug>(fold-cycle-open)
+								nmap <S-TAB> <Plug>(fold-cycle-close)
+						endif
+					"BETTER-SIGNS
+						if has('signs')
+							Plug 'kshenoy/vim-signature'
+						endif
+					Plug 'itchyny/vim-cursorword'
+				"WINDOW
+					"ANIMATION
+						Plug 'camspiers/animate.vim'
+							"CONFIGURATION
+								"let g:fzf_layout = {'window': 'new | wincmd J | resize 1 | call animate#window_percent_height(0.5)'}
+							"MAPPINGS
+								nnoremap <silent> <up>    :call animate#window_delta_height(10)<CR>
+								nnoremap <silent> <down>  :call animate#window_delta_height(-10)<CR>
+								nnoremap <silent> <left>  :call animate#window_delta_width(10)<CR>
+								nnoremap <silent> <right> :call animate#window_delta_width(-10)<CR>
+						"Plug 'camspiers/lens.vim'
+							let g:lens#animate = 1
+					Plug 'szw/vim-maximizer'
+						nnoremap <silent> <Leader>wm :MaximizerToggle<CR>
+					Plug 'blueyed/vim-diminactive'
+						let g:diminactive_use_syntax = 1
+						let g:diminactive_use_colorcolumn = 0
+						"highlight ColorColumn ctermbg=0 guibg=#081C23
 				"MINIMAP
 					if has('nvim-0.5') || v:version >= 820
 						Plug 'wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'}
@@ -2761,53 +2847,6 @@
 							let g:minimap_block_buftypes = ['terminal']
 							let g:indent_blankline_bufname_exclude = ['README.md', '.*\.py']
 					endif
-				"INDENTLINE"
-					if has('nvim-0.5')
-						"remove lua branch when neovim-0.5 is released, since this will be
-						"moved to the the main branch
-						Plug 'lukas-reineke/indent-blankline.nvim', { 'branch': 'lua' }
-							let g:indent_blankline_enabled = v:true
-
-							let g:indent_blankline_char = '│'
-							let g:indent_blankline_char_list = []
-							"let g:indent_blankline_char_highlight = 'SpecialKey'
-							let g:indent_blankline_char_highlight = 'NonText'
-							let g:indent_blankline_char_highlight_list = []
-
-							let g:indent_blankline_show_first_indent_level = v:false
-							let g:indent_blankline_indent_level = 10
-
-							let g:indent_blankline_filetype = ['html', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'python', 'lua']
-							let g:indent_blankline_filetype_exclude = ['help', 'startify', 'floaterm']
-							let g:indent_blankline_buftype_exclude = ['terminal']
-							let g:indent_blankline_bufname_exclude = ['README.md', '.*\.py']
-
-							let g:indent_blankline_use_treesitter = v:true
-							let g:indent_blankline_show_current_context = v:true
-							let g:indent_blankline_context_highlight = ['class', 'function', 'method']
-							"let g:indent_blankline_context_highlight = 'ModeMsg'
-							let g:indent_blankline_context_highlight = 'SpecialKey'
-					elseif has('conceal')
-						"Plug 'Yggdroot/indentLine'
-							"let g:indentLine_enabled = 1
-							"let g:indentLine_char = '│'
-							"let g:indentLine_setColors = 1
-							"let g:indentLine_defaultGroup = 'VertSplit'
-							"let g:indentLine_concealcursor = 'inc'
-							"let g:indentLine_conceallevel = 1
-							"let g:indentLine_char_list = ['│', '|', '¦', '┆', '┊']
-					endif
-				"ANIMATION
-					Plug 'camspiers/animate.vim'
-						"CONFIGURATION
-							"let g:fzf_layout = {'window': 'new | wincmd J | resize 1 | call animate#window_percent_height(0.5)'}
-						"MAPPINGS
-							nnoremap <silent> <up>    :call animate#window_delta_height(10)<CR>
-							nnoremap <silent> <down>  :call animate#window_delta_height(-10)<CR>
-							nnoremap <silent> <left>  :call animate#window_delta_width(10)<CR>
-							nnoremap <silent> <right> :call animate#window_delta_width(-10)<CR>
-					"Plug 'camspiers/lens.vim'
-						let g:lens#animate = 1
 				"UNDOTREE
 					Plug 'mbbill/undotree'
 						"CONFIGURATIONS
@@ -2827,16 +2866,12 @@
 							let g:undotree_CursorLine = 1
 						"MAPPINGS
 							nnoremap <Leader>vu :UndotreeToggle<CR>
-				"COLOR-HIGHLIGHTER
-					if has('nvim-0.5')
-						Plug 'norcalli/nvim-colorizer.lua'
-					endif
-				"AUTOMATIC-SESSIONS
+				"SESSIONS
 					Plug 'abdalrahman-ali/vim-remembers'
 						let g:remembers_ignore_empty_buffers = 1
 						let g:remembers_tmp_dir     = g:jaat_tmp_path . 'remembers/unnamed'
 						let g:remembers_session_dir = g:jaat_tmp_path . 'remembers/sessions'
-				"FIND-REPLACE
+				"SEARCH
 					if has('nvim-0.5')
 						Plug 'windwp/nvim-spectre'
 					endif
@@ -2844,57 +2879,21 @@
 					if has('nvim')
 						Plug 'kevinhwang91/nvim-bqf'
 					endif
-				"BETTER-FOLDING
-					if has('folding')
-						Plug 'pseewald/vim-anyfold'
-							"CONFIGURATION
-								let g:anyfold_motion            = 0
-								let g:anyfold_fold_comments     = 0
-								let g:anyfold_identify_comments = 0
-								let g:anyfold_fold_toplevel     = 0
-								let g:anyfold_comments          = []
-								let g:anyfold_fold_level_str    = ''
-								let g:anyfold_fold_size_str     = '%s Lines   '
-							"HIGHLIGHT
-								"hi Folded ctermfg= ctermbg= guifg= guibg
-							"AUTOCOMMANDS
-								autocmd FileType text AnyFoldActivate
-								autocmd FileType jproperties AnyFoldActivate
-							"MAPPINGS
-						Plug 'arecarn/vim-fold-cycle'
-							let g:fold_cycle_default_mapping = 0
-							nmap <TAB>	 <Plug>(fold-cycle-open)
-							nmap <S-TAB> <Plug>(fold-cycle-close)
-					endif
-				"BETTER-SIGNS
-					if has('signs')
-						Plug 'kshenoy/vim-signature'
-					endif
-				"BETTER-BTW
-					Plug 'szw/vim-maximizer'
-						nnoremap <silent> <Leader>wm :MaximizerToggle<CR>
-					Plug 'mtth/scratch.vim'
-						let g:scratch_no_mappings      = 1
-						let g:scratch_height           = 0.3
-						let g:scratch_top              = 0
-						let g:scratch_persistence_file = g:jaat_tmp_path . 'scratch'
+				Plug 'mtth/scratch.vim'
+					let g:scratch_no_mappings      = 1
+					let g:scratch_height           = 0.3
+					let g:scratch_top              = 0
+					let g:scratch_persistence_file = g:jaat_tmp_path . 'scratch'
 
-						nnoremap <silent> <Leader>so :Scratch<CR>
-						nnoremap <silent> <Leader>sp :ScratchPreview<CR>
-						vnoremap <silent> <Leader>ss :ScratchSelection<CR>
+					nnoremap <silent> <Leader>so :Scratch<CR>
+					nnoremap <silent> <Leader>sp :ScratchPreview<CR>
+					vnoremap <silent> <Leader>ss :ScratchSelection<CR>
 
-						augroup SCRATCH_ENTER
-							autocmd!
-							autocmd FileType scratch nnoremap <buffer> <esc> :q<CR>
-							autocmd FileType scratch set syntax=jproperties
-						augroup END
-					Plug 'blueyed/vim-diminactive'
-						let g:diminactive_use_syntax = 1
-						let g:diminactive_use_colorcolumn = 0
-						"highlight ColorColumn ctermbg=0 guibg=#081C23
-					Plug 'el-iot/buffer-tree-explorer'
-						let g:buffer_tree_explorer_compress = v:true
-						nnoremap <Leader>bt :Tree<CR>
+					augroup SCRATCH_ENTER
+						autocmd!
+						autocmd FileType scratch nnoremap <buffer> <esc> :q<CR>
+						autocmd FileType scratch set syntax=jproperties
+					augroup END
 				Plug 'tpope/vim-repeat'
 				Plug 'tpope/vim-capslock'
 					nmap <silent> <LocalLeader><LocalLeader> <Plug>CapsLockToggle
@@ -3264,6 +3263,9 @@
 						nnoremap <silent> <Leader>      :<C-U>WhichKey       '<SPACE>' <CR>
 						vnoremap <silent> <Leader>      :<C-U>WhichKeyVisual '<SPACE>' <CR>
 						nnoremap <silent> <LocalLeader> :<C-U>WhichKey       ','       <CR>
+				Plug 'el-iot/buffer-tree-explorer'
+					let g:buffer_tree_explorer_compress = v:true
+					nnoremap <Leader>bt :Tree<CR>
 				Plug 'junegunn/vim-peekaboo'
 					let g:peekaboo_window  = 'vert bo 80new'
 					let g:peekaboo_compact = 0
