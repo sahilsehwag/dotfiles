@@ -2770,7 +2770,8 @@
 
 							let g:indent_blankline_char = '│'
 							let g:indent_blankline_char_list = []
-							let g:indent_blankline_char_highlight = 'SpecialKey'
+							"let g:indent_blankline_char_highlight = 'SpecialKey'
+							let g:indent_blankline_char_highlight = 'NonText'
 							let g:indent_blankline_char_highlight_list = []
 
 							let g:indent_blankline_show_first_indent_level = v:false
@@ -2784,7 +2785,8 @@
 							let g:indent_blankline_use_treesitter = v:true
 							let g:indent_blankline_show_current_context = v:true
 							let g:indent_blankline_context_highlight = ['class', 'function', 'method']
-							let g:indent_blankline_context_highlight = 'ModeMsg'
+							"let g:indent_blankline_context_highlight = 'ModeMsg'
+							let g:indent_blankline_context_highlight = 'SpecialKey'
 					elseif has('conceal')
 						"Plug 'Yggdroot/indentLine'
 							"let g:indentLine_enabled = 1
@@ -3671,6 +3673,7 @@
 					"Plug 'chriskempson/base16-vim'
 					"Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
 					"Plug 'pineapplegiant/spaceduck'
+					"Plug 'tomasiser/vim-code-dark'
 					"Plug 'KeitaNakamura/neodark.vim'
 						let g:neodark#use_256color			 = 1
 						let g:neodark#solid_vertsplit		 = 1
@@ -3705,6 +3708,7 @@
 							"BASE16-MATERIAL-VIVID|DARKER=1
 							"CHALLENGER-DEEP=1?:TUI
 						"TYPE:DARK:MEDIUM
+							"VIM-CODE-DARK=1 (VSCODE) (colorscheme + airline)
 							"MONOKAI|MOLOKAI|MONOKAIN|BEEKAI=1
 						"TYPE:DARK:LOW
 							"GRUVBOX=1+:TUI
