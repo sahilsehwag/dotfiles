@@ -2718,6 +2718,14 @@
 						let g:bullets_pad_right = 1
 						let g:bullets_max_alpha_characters = 2
 			"EDITOR
+				"MODES
+					if has('nvim-0.5')
+						Plug 'Iron-E/nvim-libmodal', { 'branch': 'feature' }
+					elseif has('nvim-0.4')
+						Plug 'Iron-E/nvim-libmodal', { 'branch': 'master' }
+					else
+						Plug 'Iron-E/vim-libmodal'
+					endif
 				"BUFFER
 					"SCROLLBAR"
 						if has('nvim-0.5')
@@ -2818,6 +2826,9 @@
 							Plug 'kshenoy/vim-signature'
 						endif
 					Plug 'itchyny/vim-cursorword'
+					if has('nvim-0.5')
+						Plug 'nacro90/numb.nvim'
+					endif
 				"WINDOW
 					"ANIMATION
 						Plug 'camspiers/animate.vim'
@@ -3690,6 +3701,7 @@
 					"Plug 'raphamorim/lucario'
 					"Plug 'paranoida/vim-airlineish'
 					"Plug 'arzg/vim-corvine'
+					"Plug 'i3d/vim-jimbothemes'
 					"MATERIAL
 						if has('vim')
 							"Plug 'kaicataldo/material.vim', { 'branch': 'main' }
@@ -4472,6 +4484,8 @@
 
 			luafile ~/.config/nvim/plugins/system/nvim-tree.lua
 			luafile ~/.config/nvim/plugins/system/nvim-spectre.lua
+
+			lua require('numb').setup()
 		endif
 	"CUSTOM
 		source ~/.config/nvim/plugins/aesthetics/custom/minimalistic-folds.vim
