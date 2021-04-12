@@ -3385,15 +3385,20 @@
 								nnoremap <Leader>gcL :BCommits<CR>
 								nnoremap <Leader>pg  :GFiles?<CR>
 								nnoremap <Leader>pG  :GFiles<CR>
+							"SEARCH
+								nnoremap <silent> <Leader>pt :Rg<space>
+								nnoremap <A-S-f> :Rg<space>
 						Plug 'yuki-ycino/fzf-preview.vim', { 'branch': 'release/rpc' }
 							"MAPPINGS
 								"PROJECT
 									"nnoremap <silent> <Leader>pf :FzfPreviewProjectFilesRpc<CR>
 									nnoremap <silent> <Leader>pr :FzfPreviewProjectMruFilesRpc<CR>
 									nnoremap <silent> <Leader>pR :FzfPreviewProjectMrwFilesRpc<CR>
-									nnoremap <silent> <Leader>pt :FzfPreviewProjectGrepRpc<CR>
+									"nnoremap <silent> <Leader>pt :FzfPreviewProjectGrepRpc<CR>
 								"GIT
 									nnoremap <silent> <Leader>pF :FzfPreviewGitFilesRpc<CR>
+								nnoremap <silent> <A-r> :FzfPreviewProjectMruFilesRpc<CR>
+								"nnoremap <A-S-f> :FzfPreviewProjectGrepRpc<space>
 						Plug 'dominickng/fzf-session.vim'
 							"CONFIGURATION
 								let g:fzf_session_path = g:jaat_tmp_path . 'sessions'
@@ -3772,6 +3777,7 @@
 						"HIGHLIGHTS
 						"MAPPINGS
 							nmap <silent> <Leader>gch <Plug>(git-messenger)
+					Plug 'rhysd/conflict-marker.vim'
 					if has('nvim')
 						Plug 'ttys3/nvim-blamer.lua'
 					endif
@@ -4370,19 +4376,7 @@
 				endif
 			"TODECIDE
 				Plug 'kopischke/vim-fetch'
-				Plug 'rhysd/conflict-marker.vim'
-				"Plug 'camspiers/animate.vim'
-					""CONFIGURATION
-						"let g:fzf_layout = {'window': 'new | wincmd J | resize 1 | call animate#window_percent_height(0.5)'}
-					""MAPPINGS
-						"nnoremap <silent> <up>    :call animate#window_delta_height(10)<CR>
-						"nnoremap <silent> <down>  :call animate#window_delta_height(-10)<CR>
-						"nnoremap <silent> <left>  :call animate#window_delta_width(10)<CR>
-						"nnoremap <silent> <right> :call animate#window_delta_width(-10)<CR>
-				"Plug 'camspiers/lens.vim'
-					let g:lens#animate = 1
 				"Plug 'gyim/vim-boxdraw'
-				"Plug 'tweekmonster/fzf-filemru'
 				"Plug 'fmoralesc/vim-pad'
 				"Plug 'tenfyzhong/axring.vim'
 					"let g:axring_rings = [
@@ -4419,7 +4413,6 @@
 					vmap Dl <Plug>SchleppDupRight
 				Plug 'dohsimpson/vim-macroeditor'
 					nnoremap <Leader>zm :execute "MacroEdit " nr2char(getchar()) <CR>
-				"Plug 'andymass/vim-matchup'
 				"Plug 'tpope/vim-obsession'
 				"Plug 'syngan/vim-operator-keeppos'
 				"Plug 'blackbeltscripting/vim-paste-operator'
@@ -4448,7 +4441,6 @@
 					let g:pasta_paste_before_mapping = 'P'
 					let g:pasta_paste_after_mapping = 'p'
 				"Plug 'liuchengxu/vim-clap'
-				Plug 'ap/vim-css-color'
 				Plug 'tommcdo/vim-ninja-feet'
 				"Plug 'RRethy/vim-illuminate'
 					"CONFIGURATION
@@ -4458,7 +4450,6 @@
 				"Plug 'lucerion/vim-executor'
 				"Plug 'vim-scripts/Omap.vim'
 				"Plug 'tyru/capture.vim'
-				"Plug 'JarrodCTaylor/vim-shell-executor'
 				"Plug 'tommcdo/vim-express'
 				"Plug 'syngan/vim-operator-evalf'
 				"Plug 'neitanod/vim-sade'
