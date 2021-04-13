@@ -1401,9 +1401,8 @@
 					if ExistsAndTrue('g:projectinator_enable_default_mappings')
 						nnoremap <silent> <Leader>po :ProjectinatorOpenProject<CR>
 						nnoremap <silent> <Leader>pf :ProjectinatorOpenFile<CR>
-						nnoremap <silent> <Leader>pt :ProjectinatorSearchText<CR>
 
-						nnoremap <silent> <M-g> :ProjectinatorOpenFile<CR>
+						nnoremap <silent> <A-f> :ProjectinatorOpenFile<CR>
 					endif
 			"TODO:PACKMAN
 			"TODO:FRAMEWORKS
@@ -2086,12 +2085,12 @@
 				nnoremap <silent> <Leader>bwa :wall<CR>
 				nnoremap <silent> <Leader>bwC :write!<CR>
 				nnoremap <silent> <Leader>bwA :wall!<CR>
-				execute 'nnoremap <silent> <' . g:action_leader . '-s> :wall<CR>'
+				nnoremap <silent> <A-s> :wall<CR>
 
 				nnoremap <Leader>` <C-^>
 
-				execute 'map <silent> <' . g:action_leader . '-p> :bprevious<CR>'
-				execute 'map <silent> <' . g:action_leader . '-n> :bnext<CR>'
+				nnoremap <silent> <A-n> :bprevious<CR>
+				nnoremap <silent> <A-p> :bnext<CR>
 			"WINDOWS
 				nnoremap <silent> <Leader>wh :sp<CR>
 				nnoremap <silent> <Leader>wv :vsp<CR>
@@ -3164,9 +3163,9 @@
 							\'o'    : 'open-project',
 							\'f'    : 'open-project-file',
 							\'r'    : 'open-project-mru',
-							\'R'    : 'open-project-mrw',
-							\'t'    : 'search-project-text',
-							\'e'    : 'open-explorer',
+							\'/'    : 'search-project',
+							\'e'    : 'open-file-directory',
+							\'E'    : 'open-project-directory',
 							\'g'    : 'open-modified-file',
 						\}
 						let g:which_key_map['q'] = {
@@ -3388,13 +3387,15 @@
 								nnoremap <Leader>pg  :GFiles?<CR>
 								nnoremap <Leader>pG  :GFiles<CR>
 							"SEARCH
-								nnoremap <silent> <Leader>pt :Rg<CR>
-								nnoremap <A-f> :Rg<CR>
+								nnoremap <silent> <Leader>p/ :Rg<CR>
+
+								nnoremap <A-/> :Rg<SPACE>
 						Plug 'yuki-ycino/fzf-preview.vim', { 'branch': 'release/rpc' }
 							"MAPPINGS
 								"PROJECT
 									nnoremap <silent> <Leader>pr :FzfPreviewProjectMruFilesRpc<CR>
 									nnoremap <silent> <Leader>pR :FzfPreviewProjectMrwFilesRpc<CR>
+
 								nnoremap <silent> <A-r> :FzfPreviewProjectMruFilesRpc<CR>
 						Plug 'dominickng/fzf-session.vim'
 							"CONFIGURATION
@@ -3623,12 +3624,13 @@
 
 								"nnoremap <silent> <Leader>bd :BufferClose<CR>
 								"nnoremap <silent> <Leader>bD :BufferDelete<CR>
+								nnoremap <silent> <A-d> :BufferClose<CR>
 
-								execute 'nnoremap <silent> <' . g:action_leader . '-p> :BufferPrevious<CR>'
-								execute 'nnoremap <silent> <' . g:action_leader . '-n> :BufferNext<CR>'
+								nnoremap <silent> <A-n> :BufferPrevious<CR>
+								nnoremap <silent> <A-p> :BufferNext<CR>
 
-								execute 'nnoremap <silent> <' . g:action_leader . '--> :BufferMovePrevious<CR>'
-								execute 'nnoremap <silent> <' . g:action_leader . '-=> :BufferMoveNext<CR>'
+								nnoremap <silent> <A--> :BufferMovePrevious<CR>
+								nnoremap <silent> <A-=> :BufferMoveNext<CR>
 					endif
 				"EXTERNAL
 					Plug 'edkolev/tmuxline.vim'
@@ -4030,11 +4032,8 @@
 							nmap gk9 <plug>NERDCommenterToEOL
 							nmap gka <plug>NERDCommenterAppend
 
-							nmap <silent> <A-/> <plug>NERDCommenterToggle
-							xmap <silent> <A-/> <plug>NERDCommenterToggle
-
-							nmap <silent> <A-?> <plug>NERDCommenterMinimal
-							xmap <silent> <A-?> <plug>NERDCommenterMinimal
+							nmap <silent> <A-c> <plug>NERDCommenterToggle
+							xmap <silent> <A-c> <plug>NERDCommenterToggle
 				"DATABASE
 					Plug 'tpope/vim-dadbod'
 					Plug 'kristijanhusak/vim-dadbod-ui'
