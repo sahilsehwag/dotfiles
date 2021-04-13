@@ -1402,6 +1402,8 @@
 						nnoremap <silent> <Leader>po :ProjectinatorOpenProject<CR>
 						nnoremap <silent> <Leader>pf :ProjectinatorOpenFile<CR>
 						nnoremap <silent> <Leader>pt :ProjectinatorSearchText<CR>
+
+						nnoremap <silent> <M-g> :ProjectinatorOpenFile<CR>
 					endif
 			"TODO:PACKMAN
 			"TODO:FRAMEWORKS
@@ -3386,19 +3388,14 @@
 								nnoremap <Leader>pg  :GFiles?<CR>
 								nnoremap <Leader>pG  :GFiles<CR>
 							"SEARCH
-								nnoremap <silent> <Leader>pt :Rg<space>
-								nnoremap <A-S-f> :Rg<space>
+								nnoremap <silent> <Leader>pt :Rg<CR>
+								nnoremap <A-f> :Rg<CR>
 						Plug 'yuki-ycino/fzf-preview.vim', { 'branch': 'release/rpc' }
 							"MAPPINGS
 								"PROJECT
-									"nnoremap <silent> <Leader>pf :FzfPreviewProjectFilesRpc<CR>
 									nnoremap <silent> <Leader>pr :FzfPreviewProjectMruFilesRpc<CR>
 									nnoremap <silent> <Leader>pR :FzfPreviewProjectMrwFilesRpc<CR>
-									"nnoremap <silent> <Leader>pt :FzfPreviewProjectGrepRpc<CR>
-								"GIT
-									nnoremap <silent> <Leader>pF :FzfPreviewGitFilesRpc<CR>
 								nnoremap <silent> <A-r> :FzfPreviewProjectMruFilesRpc<CR>
-								"nnoremap <A-S-f> :FzfPreviewProjectGrepRpc<space>
 						Plug 'dominickng/fzf-session.vim'
 							"CONFIGURATION
 								let g:fzf_session_path = g:jaat_tmp_path . 'sessions'
@@ -3410,7 +3407,6 @@
 								nnoremap <silent> <Leader>Sc :SQuit<CR>
 						Plug 'pbogut/fzf-mru.vim'
 							nnoremap <silent> <Leader>fr :<C-u>FZFMru<CR>
-							nnoremap <silent> <A-r> :<C-u>FZFMru<CR>
 				Plug 'voldikss/vim-floaterm'
 					"CONFIGURATION
 						"let g:floaterm_autoinsert = 1
