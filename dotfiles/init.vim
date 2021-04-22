@@ -3790,6 +3790,7 @@
 						source ~/.config/nvim/lsp.lua
 						Plug 'neovim/nvim-lspconfig'
 						Plug 'alexaandru/nvim-lspupdate'
+						Plug 'folke/lsp-trouble.nvim'
 						Plug 'RishabhRD/nvim-lsputils'
 							Plug 'RishabhRD/popfix'
 						Plug 'glepnir/lspsaga.nvim'
@@ -4456,6 +4457,7 @@
 			luafile ~/.config/nvim/plugins/treesitter/nvim-treesitter.lua
 
 			luafile ~/.config/nvim/plugins/lsp/nvim-lspconfig.lua
+			luafile ~/.config/nvim/plugins/lsp/lsp-trouble.lua
 			luafile ~/.config/nvim/plugins/lsp/nvim-lsputils.lua
 			luafile ~/.config/nvim/plugins/lsp/lspsaga.nvim.lua
 			luafile ~/.config/nvim/plugins/lsp/nvim-lightbulb.lua
