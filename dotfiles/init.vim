@@ -4142,11 +4142,16 @@
 							Plug 'p00f/nvim-ts-rainbow'
 						endif
 					"TAGS
-						if has('nvim-0.5')
-							Plug 'folke/todo-comments.nvim'
-						endif
 					Plug 'sheerun/vim-polyglot'
+					Plug 'jparise/vim-graphql'
 					Plug 'chrisbra/csv.vim'
+					if has('nvim-0.5')
+						Plug 'folke/lsp-colors.nvim'
+							"TODO
+					endif
+					if has('nvim-0.5')
+						Plug 'folke/todo-comments.nvim'
+					endif
 					Plug 'plasticboy/vim-markdown'
 						let g:vim_markdown_no_default_key_mappings = 1
 					"Plug 'vim-syntastic/syntastic'
