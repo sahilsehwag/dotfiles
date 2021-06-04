@@ -1,24 +1,105 @@
-"source
-source ~/dotfiles/dotfiles/vim/clients/ideavim.vim
-"source ~/.config/nvim/init.vim
-
 "settings
 set ideamarks
 set ideajoin
 set ideawrite
 
+set number
+set relativenumber
+set noshowmode
+set noshowcmd
+set nohls
+set incsearch
+set ignorecase
+set smartcase
+
 "plugins
 set surround
-set commentry
-set argtextobj
 set exchange
+set commentary
+set argtextobj
 set textobj-entire
 set textobj-indent
 set easymotion
-set highlightedyank
 set vim-paragraph-motion
+set highlightedyank
 set multiple-cursors
 
-"overrides
-nnoremap <leader>vc ~/.ideavimrc<CR>
-nnoremap <leader>vs source ~/.ideavimrc<CR>
+"leader
+let mapleader = " "
+
+"remaps
+nnoremap U <C-r>
+nnoremap ' "
+nnoremap " '
+
+"nops
+map Q <nop>
+map <C-r> <nop>
+
+"meta
+nnoremap <leader>vc :edit ~/.ideavimrc<CR>
+nnoremap <leader>vs :source ~/.ideavimrc<CR>
+
+"tabs
+nnoremap <leader>wh :split<CR>
+nnoremap <leader>wv :vsplit<CR>
+nnoremap <leader>wr :action ChangeSplitOrientation<CR>
+nnoremap <leader>wc :close<CR>
+nnoremap <leader>wo :only<CR>
+nnoremap <M-h> :action PreviousSplitter<CR>
+nnoremap <M-l> :action NextSplitter<CR>
+"nnoremap <M-j> :action EditorDown<CR>
+"nnoremap <M-k> :action EditorUp<CR>
+nnoremap <M-left> :action DecrementWindowWidth<CR>
+nnoremap <M-right> :action IncrementWindowWidth<CR>
+nnoremap <M-up> :action DecrementWindowHeight<CR>
+nnoremap <M-down> :action IncrementWindowHeight<CR>
+
+nnoremap <leader>bcc :action CloseActiveEditor<CR>
+nnoremap <leader>bca :action CloseAllEditors<CR>
+nnoremap <leader>bch :action CloseAllToTheRight<CR>
+nnoremap <leader>bcl :action CloseAllToTheLeft<CR>
+nnoremap <leader>bco :action CloseAllEditorsButActive<CR>
+nnoremap <leader>bcm :action CloseAllUnmodifiedEditors<CR>
+nnoremap <leader>bcp :action CloseAllUnpinnedEditors<CR>
+nnoremap <M-d> :close<CR>
+nnoremap <M-n> :tabnext<CR>
+nnoremap <M-p> :tabprevious<CR>
+
+"project
+nnoremap <leader>pc :action CloseProject<CR>
+"nnoremap <leader>pf :action GotoFile<CR>
+"nnoremap <leader>pr :action RecentFiles<CR>
+nnoremap <M-f> :action GotoFile<CR>
+nnoremap <M-r> :action RecentFiles<CR>
+
+"jumps
+nnoremap gd :action GotoDeclaration<CR>
+nnoremap gi :action GotoImplementation<CR>
+nnoremap [e :action GotoPreviousError<CR>
+nnoremap ]e :action GotoNextError<CR>
+
+"preview
+nnoremap <leader>lpd :action QuickDefinition<CR>
+nnoremap <leader>lpt :action QuickTypeDefinition<CR>
+nnoremap <leader>lpi :action QuickImplementations<CR>
+nnoremap <leader>lpq :action QuickPreview<CR>
+nnoremap <leader>lpD :action QuickDocumentation<CR>
+
+"symbols
+nnoremap <leader>lsc :action CallHierarchy<CR>
+
+"actions
+"reformat
+"rename
+"imports
+
+"build+execution
+"debugging
+"explorer
+"terminal
+"vcs
+
+"random
+nnoremap <C--> :action EditorIncreaseFontSize<CR>
+nnoremap <C-=> :action EditorDecreaseFontSize<CR>

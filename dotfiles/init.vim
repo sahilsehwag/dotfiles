@@ -2074,9 +2074,7 @@
 				nnoremap <silent> <Leader>bdC :bdelete!<CR>
 				nnoremap <silent> <Leader>bda :bufdo bdelete<CR>
 				nnoremap <silent> <Leader>bdA :bufdo bdelete!<CR>
-
-				nnoremap <silent> <Leader>bd :bp<bar>sp<bar>bn<bar>bd<CR>
-				nnoremap <silent> <Leader>bD :bdelete<CR>
+				nnoremap <silent> <A-d> :bp<bar>sp<bar>bn<bar>bd<CR>
 
 				nnoremap <silent> <Leader>bs :call ScratchBuffer('e')<CR>
 				nnoremap <silent> <Leader>bS :call ScratchBuffer('e', 1)<CR>
