@@ -1,0 +1,30 @@
+"settings
+set clipboard
+set hls
+set number
+set relativenumber
+set nostartofline
+set noshowcmd
+set noshowmode
+set incsearch
+set ignorecase
+set smartcase
+set gdefault
+
+set ideamarks
+set ideajoin
+set ideawrite
+
+"plugins
+set surround
+set commentry
+set argtextobj
+set exchange
+set textobj-entire
+set textobj-indent
+set easymotion
+set highlightedyank
+set vim-paragraph-motion
+set multiple-cursors
+
+"mappings
