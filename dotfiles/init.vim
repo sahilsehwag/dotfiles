@@ -4910,9 +4910,9 @@
 "SETTINGS
 	"FONTS
 		"JetBrainsMono-Regular
+		"Menlo(GITLAB+VSCODE)
 		"Inconsolata
 		"OperatorMono?
-		"Menlo(GITLAB+VSCODE)
 		"RobotoMono (jsonformatter)?
 		"IBMPlexMono(BlexMono)?
 	"FOLDING
