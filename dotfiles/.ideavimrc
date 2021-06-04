@@ -1,16 +1,8 @@
-"settings
-set clipboard
-set hls
-set number
-set relativenumber
-set nostartofline
-set noshowcmd
-set noshowmode
-set incsearch
-set ignorecase
-set smartcase
-set gdefault
+"source
+source ~/dotfiles/dotfiles/vim/clients/ideavim.vim
+"source ~/.config/nvim/init.vim
 
+"settings
 set ideamarks
 set ideajoin
 set ideawrite
@@ -27,4 +19,6 @@ set highlightedyank
 set vim-paragraph-motion
 set multiple-cursors
 
-"mappings
+"overrides
+nnoremap <leader>vc ~/.ideavimrc<CR>
+nnoremap <leader>vs source ~/.ideavimrc<CR>
