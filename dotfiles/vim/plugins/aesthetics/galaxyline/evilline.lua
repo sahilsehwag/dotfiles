@@ -209,7 +209,59 @@ sections.left[11] = {
   }
 }
 
+sections.left[12] = {
+  DiffAdd = {
+    provider = 'DiffAdd',
+    condition = checkwidth,
+    icon = '+',
+    highlight = {
+      colors.green,
+      colors.bg
+    },
+  }
+}
+
+sections.left[13] = {
+  DiffModified = {
+    provider = 'DiffModified',
+    condition = checkwidth,
+    icon = '~',
+    highlight = {
+      colors.orange,
+      colors.bg
+    },
+  }
+}
+
+sections.left[14] = {
+  DiffRemove = {
+    provider = 'DiffRemove',
+    condition = checkwidth,
+    icon = '-',
+    highlight = {
+      colors.red,
+      colors.bg
+    },
+  }
+}
+
 sections.right[1] = {
+  GetLspClient = {
+    provider = 'GetLspClient',
+    icon = '   ',
+    highlight = {
+      colors.magenta,
+      colors.bg,
+    },
+    separator = ' ',
+    separator_highlight = {
+      'NONE',
+      colors.bg
+    },
+  }
+}
+
+sections.right[2] = {
   FileEncode = {
     provider = 'FileEncode',
     separator = ' ',
@@ -225,7 +277,7 @@ sections.right[1] = {
   }
 }
 
-sections.right[2] = {
+sections.right[3] = {
   FileFormat = {
     provider = 'FileFormat',
     separator = ' ',
@@ -241,7 +293,7 @@ sections.right[2] = {
   }
 }
 
-sections.right[3] = {
+sections.right[4] = {
   GitIcon = {
     provider = function()
       return '  '
@@ -260,7 +312,7 @@ sections.right[3] = {
   }
 }
 
-sections.right[4] = {
+sections.right[5] = {
   GitBranch = {
     provider = 'GitBranch',
     condition = require('galaxyline.provider_vcs').check_git_workspace,
@@ -279,42 +331,6 @@ local checkwidth = function()
   end
   return false
 end
-
-sections.right[5] = {
-  DiffAdd = {
-    provider = 'DiffAdd',
-    condition = checkwidth,
-    icon = '+',
-    highlight = {
-      colors.green,
-      colors.bg
-    },
-  }
-}
-
-sections.right[6] = {
-  DiffModified = {
-    provider = 'DiffModified',
-    condition = checkwidth,
-    icon = '~',
-    highlight = {
-      colors.orange,
-      colors.bg
-    },
-  }
-}
-
-sections.right[7] = {
-  DiffRemove = {
-    provider = 'DiffRemove',
-    condition = checkwidth,
-    icon = '-',
-    highlight = {
-      colors.red,
-      colors.bg
-    },
-  }
-}
 
 sections.right[8] = {
   RainbowBlue = {
