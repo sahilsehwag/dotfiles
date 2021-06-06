@@ -248,7 +248,7 @@ sections.left[14] = {
 sections.right[1] = {
   GetLspClient = {
     provider = 'GetLspClient',
-    icon = '   ',
+    icon = '  ',
     highlight = {
       colors.magenta,
       colors.bg,

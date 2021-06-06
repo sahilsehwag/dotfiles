@@ -3823,7 +3823,9 @@
 				endif
 			"AESTHETICS
 				"STATUSLINE
-					if IsNix()
+					if has('nvim-0.5')
+						Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
+					elseif IsNix()
 						Plug 'vim-airline/vim-airline'
 							"CONFIGURATION
 								let g:airline_powerline_fonts = 1
@@ -3979,41 +3981,51 @@
 						let g:bufferline_pathshorten         = 0
 				"TABLINE
 					if has('nvim-0.5')
-						Plug 'romgrk/barbar.nvim'
-							"CONFIGURATION
-								let bufferline = {}
-								let bufferline.icon_close_tab_modified = '●'
-								let bufferline.no_name_title = v:null
-							"MAPPINGS
-								nnoremap <silent> <Leader>` :BufferLast<CR>
-								nnoremap <silent> <Leader>1 :BufferGoto 1<CR>
-								nnoremap <silent> <Leader>2 :BufferGoto 2<CR>
-								nnoremap <silent> <Leader>3 :BufferGoto 3<CR>
-								nnoremap <silent> <Leader>4 :BufferGoto 4<CR>
-								nnoremap <silent> <Leader>5 :BufferGoto 5<CR>
-								nnoremap <silent> <Leader>6 :BufferGoto 6<CR>
-								nnoremap <silent> <Leader>7 :BufferGoto 7<CR>
-								nnoremap <silent> <Leader>8 :BufferGoto 8<CR>
-								nnoremap <silent> <Leader>9 :BufferGoto 9<CR>
-								nnoremap <silent> <Leader>bg :BufferPick<CR>
+						if v:true
+							Plug 'akinsho/nvim-bufferline.lua'
+								nnoremap <silent> <A-n> :BufferLineCycleNext<CR>
+								nnoremap <silent> <A-p> :BufferLineCyclePrev<CR>
+								nnoremap <silent> <A-b> :BufferLinePick<CR>
 
-								nnoremap <silent> <Leader>bcc :BufferClose<CR>
-								nnoremap <silent> <Leader>bcC :BufferClose!<CR>
-								nnoremap <silent> <Leader>bcA :bufdo BufferClose<CR>
-								nnoremap <silent> <Leader>bcA :bufdo BufferClose!<CR>
-								nnoremap <silent> <Leader>bco :BufferCloseAllButCurrent<CR>
-								nnoremap <silent> <Leader>bch :BufferCloseBuffersLeft<CR>
-								nnoremap <silent> <Leader>bcl :BufferCloseBuffersRight<CR>
+								nnoremap <silent> <A-=> :BufferLineMoveNext<CR>
+								nnoremap <silent> <A--> :BufferLineMovePrev<CR>
+						else
+							Plug 'romgrk/barbar.nvim'
+								"CONFIGURATION
+									let bufferline = {}
+									let bufferline.icon_close_tab_modified = '●'
+									let bufferline.no_name_title = v:null
+								"MAPPINGS
+									nnoremap <silent> <Leader>` :BufferLast<CR>
+									nnoremap <silent> <Leader>1 :BufferGoto 1<CR>
+									nnoremap <silent> <Leader>2 :BufferGoto 2<CR>
+									nnoremap <silent> <Leader>3 :BufferGoto 3<CR>
+									nnoremap <silent> <Leader>4 :BufferGoto 4<CR>
+									nnoremap <silent> <Leader>5 :BufferGoto 5<CR>
+									nnoremap <silent> <Leader>6 :BufferGoto 6<CR>
+									nnoremap <silent> <Leader>7 :BufferGoto 7<CR>
+									nnoremap <silent> <Leader>8 :BufferGoto 8<CR>
+									nnoremap <silent> <Leader>9 :BufferGoto 9<CR>
+									nnoremap <silent> <Leader>bg :BufferPick<CR>
 
-								"nnoremap <silent> <Leader>bd :BufferClose<CR>
-								"nnoremap <silent> <Leader>bD :BufferDelete<CR>
-								nnoremap <silent> <A-d> :BufferClose<CR>
+									nnoremap <silent> <Leader>bcc :BufferClose<CR>
+									nnoremap <silent> <Leader>bcC :BufferClose!<CR>
+									nnoremap <silent> <Leader>bcA :bufdo BufferClose<CR>
+									nnoremap <silent> <Leader>bcA :bufdo BufferClose!<CR>
+									nnoremap <silent> <Leader>bco :BufferCloseAllButCurrent<CR>
+									nnoremap <silent> <Leader>bch :BufferCloseBuffersLeft<CR>
+									nnoremap <silent> <Leader>bcl :BufferCloseBuffersRight<CR>
 
-								nnoremap <silent> <A-n> :BufferPrevious<CR>
-								nnoremap <silent> <A-p> :BufferNext<CR>
+									"nnoremap <silent> <Leader>bd :BufferClose<CR>
+									"nnoremap <silent> <Leader>bD :BufferDelete<CR>
+									nnoremap <silent> <A-d> :BufferClose<CR>
 
-								nnoremap <silent> <A--> :BufferMovePrevious<CR>
-								nnoremap <silent> <A-=> :BufferMoveNext<CR>
+									nnoremap <silent> <A-n> :BufferPrevious<CR>
+									nnoremap <silent> <A-p> :BufferNext<CR>
+
+									nnoremap <silent> <A--> :BufferMovePrevious<CR>
+									nnoremap <silent> <A-=> :BufferMoveNext<CR>
+						endif
 					endif
 				"EXTERNAL
 					Plug 'edkolev/tmuxline.vim'
@@ -4845,35 +4857,40 @@
 	"POST-LOADING
 		"WHICH-KEY
 			call which_key#register('<SPACE>', "g:which_key_map")
-		if has('nvim-0.5')
-			"treesitter
-			luafile ~/.config/nvim/plugins/treesitter/nvim-treesitter.lua
+		"LUA
+			if has('nvim-0.5')
+				"treesitter
+				luafile ~/.config/nvim/plugins/treesitter/nvim-treesitter.lua
 
-			"lsp
-			luafile ~/.config/nvim/plugins/lsp/nvim-lspconfig.lua
-			luafile ~/.config/nvim/plugins/lsp/trouble.lua
-			luafile ~/.config/nvim/plugins/lsp/nvim-lsputils.lua
-			luafile ~/.config/nvim/plugins/lsp/lspsaga.nvim.lua
-			luafile ~/.config/nvim/plugins/lsp/nvim-lightbulb.lua
-			luafile ~/.config/nvim/plugins/lsp/nvim-compe.lua
-			luafile ~/.config/nvim/plugins/lsp/lspkind-nvim.lua
-			luafile ~/.config/nvim/plugins/lsp/nvim-lsp-ts-utils.lua
+				"lsp
+				luafile ~/.config/nvim/plugins/lsp/nvim-lspconfig.lua
+				luafile ~/.config/nvim/plugins/lsp/trouble.lua
+				luafile ~/.config/nvim/plugins/lsp/nvim-lsputils.lua
+				luafile ~/.config/nvim/plugins/lsp/lspsaga.nvim.lua
+				luafile ~/.config/nvim/plugins/lsp/nvim-lightbulb.lua
+				luafile ~/.config/nvim/plugins/lsp/nvim-compe.lua
+				luafile ~/.config/nvim/plugins/lsp/lspkind-nvim.lua
+				luafile ~/.config/nvim/plugins/lsp/nvim-lsp-ts-utils.lua
 
-			"vcs
-			luafile ~/.config/nvim/plugins/vcs/gitsigns.nvim.lua
-			luafile ~/.config/nvim/plugins/vcs/nvim-blamer.lua
+				"vcs
+				luafile ~/.config/nvim/plugins/vcs/gitsigns.nvim.lua
+				luafile ~/.config/nvim/plugins/vcs/nvim-blamer.lua
 
-			"syntax
-			luafile ~/.config/nvim/plugins/aesthetics/nvim-colorizer.lua
-			luafile ~/.config/nvim/plugins/syntax/todo-comments.lua
+				"syntax
+				luafile ~/.config/nvim/plugins/aesthetics/nvim-colorizer.lua
+				luafile ~/.config/nvim/plugins/syntax/todo-comments.lua
 
-			"system
-			luafile ~/.config/nvim/plugins/system/nvim-tree.lua
-			luafile ~/.config/nvim/plugins/system/nvim-spectre.lua
+				"system
+				luafile ~/.config/nvim/plugins/system/nvim-tree.lua
+				luafile ~/.config/nvim/plugins/system/nvim-spectre.lua
 
-			"editor
-			lua require('numb').setup()
-		endif
+				"editor
+				lua require('numb').setup()
+
+				"aesthetics
+				luafile ~/.config/nvim/plugins/aesthetics/galaxyline/evilline.lua
+				luafile ~/.config/nvim/plugins/aesthetics/nvim-bufferline.lua
+			endif
 	"CUSTOM
 		source ~/.config/nvim/plugins/aesthetics/custom/minimalistic-folds.vim
 	"IDEAPAD
