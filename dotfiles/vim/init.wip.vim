@@ -4451,6 +4451,8 @@
 						let g:user_emmet_leader_key='<A-e>'
 						autocmd! FileType html,css,javascript,javascriptreact,typescript,typescriptreact EmmetInstall
 				"DEBUGGING
+				"TAGS
+					"Plug 'ludovicchabant/vim-gutentags'
 				"PLAYGROUND
 					Plug 'metakirby5/codi.vim'
 						let g:codi#width	  = 80
