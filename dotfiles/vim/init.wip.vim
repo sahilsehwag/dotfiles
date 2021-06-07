@@ -3049,6 +3049,7 @@
 									\'a': {
 										\'name': '+actions',
 										\'a': 'show-code-actions',
+										\'d': 'generate-documentation',
 										\'f': 'format-buffer',
 										\'o': '--organize-imports',
 										\'q': '--quickfix',
@@ -4453,6 +4454,13 @@
 				"DEBUGGING
 				"TAGS
 					"Plug 'ludovicchabant/vim-gutentags'
+				"DOCUMENTATION
+					if has('nvim-0.5')
+						Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
+							let g:doge_enable_mappings = 0
+							let g:doge_mapping = '<Leader>lad'
+						"Plug 'nvim-treesitter/nvim-tree-docs'
+					endif
 				"PLAYGROUND
 					Plug 'metakirby5/codi.vim'
 						let g:codi#width	  = 80
@@ -4525,7 +4533,6 @@
 							"install instant-markdown-d usig NPM
 							Plug 'suan/vim-instant-markdown'
 						endif
-				"DOCUMENTATION
 			"CLIENTS
 				if has('nvim')
 					Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
