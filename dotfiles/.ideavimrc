@@ -90,7 +90,8 @@ nnoremap <leader>lpD :action QuickDocumentation<CR>
 nnoremap <leader>lsc :action CallHierarchy<CR>
 
 "actions
-"reformat
+nnoremap <leader>laf :action ReformatCode<CR>
+nnoremap <leader>laF :action ShowReformatFileDialog<CR>
 "rename
 "imports
 

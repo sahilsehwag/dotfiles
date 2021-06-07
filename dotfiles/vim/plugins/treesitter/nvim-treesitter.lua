@@ -97,6 +97,9 @@ require'nvim-treesitter.configs'.setup {
 	context_commentstring = {
 		enable = true,
 	},
+	--tree_docs = {
+	--  enable = true,
+	--},
 }
 
 vim.cmd [[ set foldmethod=expr ]]
