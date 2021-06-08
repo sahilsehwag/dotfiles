@@ -2209,8 +2209,8 @@
 		"PLUGINS
 			nnoremap <silent> <Leader>vpl :PlugStatus<CR>
 			nnoremap <silent> <Leader>vpi :PlugInstall<CR>
-			nnoremap <silent> <Leader>vpu :PlugClean<CR>
-			nnoremap <silent> <Leader>vpU :PlugUpdate<CR>
+			nnoremap <silent> <Leader>vpu :PlugUpdate<CR>
+			nnoremap <silent> <Leader>vpU :PlugClean<CR>
 	"LOCALLEADER
 		"CODING
 			nnoremap <silent> <LocalLeader>cm :make<CR>
