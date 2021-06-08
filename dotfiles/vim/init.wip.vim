@@ -4461,6 +4461,10 @@
 							let g:doge_mapping = '<Leader>lad'
 						"Plug 'nvim-treesitter/nvim-tree-docs'
 					endif
+				"PREVIEW
+					if has('nvim-0.5')
+						Plug 'rmagatti/goto-preview'
+					endif
 				"PLAYGROUND
 					Plug 'metakirby5/codi.vim'
 						let g:codi#width	  = 80
@@ -4895,6 +4899,7 @@
 
 				"editor
 				lua require('numb').setup()
+				luafile ~/.config/nvim/plugins/editor/goto-preview.lua
 
 				"aesthetics
 				luafile ~/.config/nvim/plugins/aesthetics/galaxyline/evilline.lua
