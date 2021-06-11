@@ -40,21 +40,22 @@ map <C-r> <nop>
 nnoremap <leader>vc :edit ~/.ideavimrc<CR>
 nnoremap <leader>vs :source ~/.ideavimrc<CR>
 
-"tabs
+"windows
 nnoremap <leader>wh :split<CR>
 nnoremap <leader>wv :vsplit<CR>
 nnoremap <leader>wr :action ChangeSplitOrientation<CR>
 nnoremap <leader>wc :close<CR>
 nnoremap <leader>wo :only<CR>
-nnoremap <M-h> :action PreviousSplitter<CR>
+"nnoremap <M-h> :action PreviousSplitter<CR>
 nnoremap <M-l> :action NextSplitter<CR>
 "nnoremap <M-j> :action EditorDown<CR>
 "nnoremap <M-k> :action EditorUp<CR>
-nnoremap <M-left> :action DecrementWindowWidth<CR>
-nnoremap <M-right> :action IncrementWindowWidth<CR>
-nnoremap <M-up> :action DecrementWindowHeight<CR>
-nnoremap <M-down> :action IncrementWindowHeight<CR>
+"nnoremap <M-left> :action DecrementWindowWidth<CR>
+"nnoremap <M-right> :action IncrementWindowWidth<CR>
+"nnoremap <M-up> :action DecrementWindowHeight<CR>
+"nnoremap <M-down> :action IncrementWindowHeight<CR>
 
+"buffers
 nnoremap <leader>bcc :action CloseActiveEditor<CR>
 nnoremap <leader>bca :action CloseAllEditors<CR>
 nnoremap <leader>bch :action CloseAllToTheRight<CR>
@@ -67,9 +68,16 @@ nnoremap <M-n> :tabnext<CR>
 nnoremap <M-p> :tabprevious<CR>
 
 "project
-nnoremap <leader>pc :action CloseProject<CR>
-"nnoremap <leader>pf :action GotoFile<CR>
-"nnoremap <leader>pr :action RecentFiles<CR>
+nnoremap <leader>pn :action NewProject<CR>
+nnoremap <leader>pr :action RenameFile<CR>
+nnoremap <leader>pR :action RenameProject<CR>
+nnoremap <leader>p] :action NextProjectWindow<CR>
+nnoremap <leader>p[ :action PreviousProjectWindow<CR>
+nnoremap <leader>pcc :action CloseProject<CR>
+nnoremap <leader>pca :action CloseAllProjects<CR>
+nnoremap <leader>pco :action CloseOtherProjects<CR>
+nnoremap <leader>pb :action ViewNavigationBar<CR>
+nnoremap <leader>pe :action ActivateProjectToolWindow<CR>
 nnoremap <M-f> :action GotoFile<CR>
 nnoremap <M-r> :action RecentFiles<CR>
 
@@ -88,19 +96,35 @@ nnoremap <leader>lpD :action QuickDocumentation<CR>
 
 "symbols
 nnoremap <leader>lsc :action CallHierarchy<CR>
+nnoremap <leader>lsr :action RenameElement<CR>
 
 "actions
 nnoremap <leader>laf :action ReformatCode<CR>
 nnoremap <leader>laF :action ShowReformatFileDialog<CR>
-"rename
-"imports
+nnoremap <leader>lai :action OrganizeImports<CR>
 
-"build+execution
-"debugging
-"explorer
-"terminal
+"ui
+nnoremap <leader>usp :action ActivateProjectToolWindow<CR>
+nnoremap <leader>usP :action ActivateProblemsViewToolWindow<CR>
+nnoremap <leader>ust :action ActivateTerminalToolWindow<CR>
+nnoremap <leader>usT :action ActivateTODOToolWindow<CR>
+nnoremap <leader>usd :action ActivateDebugToolWindow<CR>
+nnoremap <leader>usD :action ActivateDocumentationToolWindow<CR>
+nnoremap <leader>ush :action ActivateHierarchyToolWindow<CR>
+nnoremap <leader>usg :action ActivateVersionControlToolWindow<CR>
+nnoremap <leader>usc :action ActivateCommitToolWindow<CR>
+nnoremap <leader>usn :action ActivateNpmToolWindow<CR>
+nnoremap <leader>usf :action ActivateFavoritesToolWindow<CR>
+nnoremap <leader>uss :action ActivateStructureToolWindow<CR>
+nnoremap <leader>uha :action HideAllWindows<CR>
+nnoremap <leader>uhs :action HideSideWindows<CR>
+nnoremap <leader>uhc :action HideCurrentWindow<CR>
+
+"build+execution+debugging
+
 "vcs
+"nnoremap <leader>gbr :action Git.Rename.Local.Branch<CR>
 
 "random
-nnoremap <C--> :action EditorIncreaseFontSize<CR>
-nnoremap <C-=> :action EditorDecreaseFontSize<CR>
+nnoremap <C--> :action EditorDecreaseFontSize<CR>
+nnoremap <C-=> :action EditorIncreaseFontSize<CR>

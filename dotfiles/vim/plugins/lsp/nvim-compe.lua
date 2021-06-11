@@ -15,17 +15,23 @@ require'compe'.setup {
   documentation = true;
 
   source = {
-    nvim_lsp      = true;
-    nvim_lua      = true;
-    treesitter    = true;
-    path          = true;
-    tags          = true;
-    buffer        = true;
-    spell         = true;
-    calc          = true;
-    tabnine       = true;
-    snippets_nvim = false;
-    vsnip         = false;
+    ultisnips     = { priority = 10000000 };
+    vsnip         = { priority = 10000000 };
+    snippets_nvim = { priority = 10000000 };
+
+    nvim_lsp = { priority = 1000000 };
+    nvim_lua = { priority = 1000000 };
+
+    tabnine    = { priority = 1000 };
+    treesitter = { priority = 100000 };
+
+    tags   = { priority = 10000 };
+    buffer = { priority = 10000 };
+    spell  = { priority = 10000 };
+    path   = { priority = 10000 };
+
+    tmux = { priority = 1000 };
+    calc = { priority = 1000 };
   };
 }
 
