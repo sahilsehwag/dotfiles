@@ -4444,8 +4444,15 @@
 					Plug 'tpope/vim-dadbod'
 					Plug 'kristijanhusak/vim-dadbod-ui'
 				"SNIPPETS
-					Plug 'honza/vim-snippets'
-					Plug 'epilande/vim-react-snippets'
+					if has('nvim-0.4.4') || v:version >= 800
+						Plug 'hrsh7th/vim-vsnip'
+						Plug 'hrsh7th/vim-vsnip-integ'
+						Plug 'rafamadriz/friendly-snippets'
+					else
+						"Plug 'SirVer/ultisnips'
+						"Plug 'honza/vim-snippets'
+						"Plug 'epilande/vim-react-snippets'
+					endif
 				"COMPLETION
 					Plug 'mattn/emmet-vim'
 						let g:user_emmet_install_global = 0
