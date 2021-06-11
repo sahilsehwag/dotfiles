@@ -1,0 +1,109 @@
+#TYPES
+snippet types.type "type-alias" b
+type ${1} = {
+	${2}: ${3};
+};
+endsnippet
+
+snippet types.type.and "type-alias-and" b
+type ${1} = ${2} & {
+	${3}: ${4};
+};
+endsnippet
+
+snippet types.type.or "type-alias-or" b
+type ${1} = ${2} | ${3};
+endsnippet
+
+snippet types.type.function "type-alias-function" b
+type ${1} = (${2}: {
+	${3}: ${4};
+}) => {
+	${5}: ${6};
+};
+endsnippet
+
+snippet types.interface "interface" b
+interface ${1} {
+	${2}: ${3};
+};
+endsnippet
+
+snippet types.interface.extends "interface-extends" b
+interface ${1} extends ${2} {
+	${3}: ${4};
+};
+endsnippet
+
+
+#DEFINITIONS
+snippet definition.variable.const "const-definition" b
+const ${1}: ${2} = ${3};
+endsnippet
+
+snippet definition.variable.let "let-definition" b
+let ${1}: ${2} = ${3};
+endsnippet
+
+snippet definition.variable.var "var-definition" b
+var ${1}: ${2} = ${3};
+endsnippet
+
+snippet definition.function.arrow.arguments-1 "arrow-function-definition" b
+const ${1} = (${2}: ${3}) => ${4};
+endsnippet
+
+snippet definition.function.arrow.arguments-2 "arrow-function-definition" b
+const ${1} = (${2}: ${3}, ${4}: ${5}) => ${6};
+endsnippet
+
+snippet definition.function.arrow.arguments-3 "arrow-function-definition" b
+const ${1} = (${2}: ${3}, ${4}: ${5}, ${6}: ${7}) => ${8};
+endsnippet
+
+snippet definition.function.arrow.arguments-object "arrow-function-definition" b
+const ${1} = ({ ${2} }) => ${3};
+endsnippet
+
+snippet definition.function.arrow.arguments-object.body-object "arrow-function-definition" b
+const ${1} = ({ ${2} }) => ({
+	${3},
+});
+endsnippet
+
+snippet definition.function.arrow.arguments-object.body "arrow-function-definition" b
+const ${1} = ({ ${2} }) => {
+	${3};
+};
+endsnippet
+
+snippet definition.function.arrow.arguments-object-multiline.body "arrow-function-definition" b
+const ${1} = ({
+	${2},
+}) => {
+	${3};
+};
+endsnippet
+
+
+#DESTRUCTURING
+snippet definition.variable.destructing.array "array-destructuring-definition"
+const [${1}, ${2}] = ${3};
+endsnippet
+
+snippet definition.variable.destructing.object "object-destructuring-definition"
+const { ${1}, ${2} } = ${3};
+endsnippet
+	
+snippet definition.variable.destructing.object.multiline "object-destructuring-definition"
+const {
+	${1},
+	${2},
+} = ${3};
+endsnippet
+	
+
+#IMPORTS
+#EXPORTS
+#COMMENTS
+
