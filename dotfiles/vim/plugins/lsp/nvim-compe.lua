@@ -51,8 +51,10 @@ end
 _G.tab_complete = function()
   if vim.fn.pumvisible() == 1 then
     return t '<C-n>'
-  elseif vim.fn.call("vsnip#available", {1}) == 1 then
-    return t "<Plug>(vsnip-expand-or-jump)"
+  elseif vim.fn["UltiSnips#CanExpandSnippet"]() == 1 or vim.fn["UltiSnips#CanJumpForwards"]() == 1 then
+    return vim.api.nvim_replace_termcodes("<C-R>=UltiSnips#ExpandSnippetOrJump()<CR>", true, true, true)
+  --elseif vim.fn.call("vsnip#available", {1}) == 1 then
+  --  return t "<Plug>(vsnip-expand-or-jump)"
   elseif check_back_space() then
     return t '<Tab>'
   else
@@ -63,8 +65,10 @@ end
 _G.s_tab_complete = function()
   if vim.fn.pumvisible() == 1 then
     return t '<C-p>'
-  elseif vim.fn.call("vsnip#jumpable", {-1}) == 1 then
-    return t "<Plug>(vsnip-jump-prev)"
+  elseif vim.fn["UltiSnips#CanJumpBackwards"]() == 1 then
+    return vim.api.nvim_replace_termcodes("<C-R>=UltiSnips#JumpBackwards()<CR>", true, true, true)
+  --elseif vim.fn.call("vsnip#jumpable", {-1}) == 1 then
+  --  return t "<Plug>(vsnip-jump-prev)"
   else
     return t '<S-Tab>'
   end

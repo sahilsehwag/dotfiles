@@ -4444,13 +4444,18 @@
 					Plug 'tpope/vim-dadbod'
 					Plug 'kristijanhusak/vim-dadbod-ui'
 				"SNIPPETS
-					if has('nvim-0.4.4') || v:version >= 800
+					if false && has('nvim-0.5')
+						Plug 'norcalli/snippets.nvim'
+					elseif false && (has('nvim-0.4.4') || v:version >= 800)
 						Plug 'hrsh7th/vim-vsnip'
 						Plug 'hrsh7th/vim-vsnip-integ'
 						Plug 'rafamadriz/friendly-snippets'
 					else
-						"Plug 'SirVer/ultisnips'
-						"Plug 'honza/vim-snippets'
+						Plug 'SirVer/ultisnips'
+							let g:UltiSnipsExpandTrigger       = ""
+							let g:UltiSnipsJumpForwardTrigger  = ""
+							let g:UltiSnipsJumpBackwardTrigger = ""
+						Plug 'honza/vim-snippets'
 						"Plug 'epilande/vim-react-snippets'
 					endif
 				"COMPLETION
