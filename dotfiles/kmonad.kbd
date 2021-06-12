@@ -1,3 +1,14 @@
+#|------------------------------------------------
+(deflayer function
+  _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _              _              _    _    _    _    _
+)
+-------------------------------------------------|#
+
 (defcfg
   input (iokit-name "Apple Internal Keyboard / Trackpad")
   output (kext)
@@ -9,22 +20,99 @@
   esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
   tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
-  caps b    s    d    f    g    h    j    k    l    ;    '    ret
+  caps a    s    d    f    g    h    j    k    l    ;    '    ret
   lsft z    x    c    v    b    n    m    ,    .    /    rsft up
   fn   lctl lalt lmet           spc            rmet ralt left down rght
 )
 
 (defalias
-  esc-ctl (tap-next esc lctl)
-  spc-sft (tap-next spc lsft)
+  esc-ctl (tap-hold-next-release 175 esc lctl)
+  spc-sft (tap-hold-next-release 175 spc lsft)
+
+  #|------------------------------------------------
+  a-mod   (tap-hold-next-release 150 a lctl-lalt-a)
+  b-mod   (tap-hold-next-release 150 b lctl-lalt-b)
+  c-mod   (tap-hold-next-release 150 c lctl-lalt-c)
+  d-mod   (tap-hold-next-release 150 d lctl-lalt-d)
+  e-mod   (tap-hold-next-release 150 e lctl-lalt-e)
+  f-mod   (tap-hold-next-release 150 f lctl-lalt-f)
+  g-mod   (tap-hold-next-release 150 g lctl-lalt-g)
+  h-mod   (tap-hold-next-release 150 h lctl-lalt-h)
+  i-mod   (tap-hold-next-release 150 i lctl-lalt-i)
+  j-mod   (tap-hold-next-release 150 j lctl-lalt-j)
+  k-mod   (tap-hold-next-release 150 k lctl-lalt-k)
+  l-mod   (tap-hold-next-release 150 l lctl-lalt-l)
+  m-mod   (tap-hold-next-release 150 m lctl-lalt-m)
+  n-mod   (tap-hold-next-release 150 n lctl-lalt-n)
+  o-mod   (tap-hold-next-release 150 o lctl-lalt-o)
+  p-mod   (tap-hold-next-release 150 p lctl-lalt-p)
+  q-mod   (tap-hold-next-release 150 q lctl-lalt-q)
+  r-mod   (tap-hold-next-release 150 r lctl-lalt-r)
+  s-mod   (tap-hold-next-release 150 s lctl-lalt-s)
+  t-mod   (tap-hold-next-release 150 t lctl-lalt-t)
+  u-mod   (tap-hold-next-release 150 u lctl-lalt-u)
+  v-mod   (tap-hold-next-release 150 v lctl-lalt-v)
+  w-mod   (tap-hold-next-release 150 w lctl-lalt-w)
+  x-mod   (tap-hold-next-release 150 x lctl-lalt-x)
+  y-mod   (tap-hold-next-release 150 y lctl-lalt-y)
+  z-mod   (tap-hold-next-release 150 z lctl-lalt-z)
+
+  0-mod   (tap-hold-next-release 150 0 lctl-lalt-0)
+  1-mod   (tap-hold-next-release 150 1 lctl-lalt-1)
+  2-mod   (tap-hold-next-release 150 2 lctl-lalt-2)
+  3-mod   (tap-hold-next-release 150 3 lctl-lalt-3)
+  4-mod   (tap-hold-next-release 150 4 lctl-lalt-4)
+  5-mod   (tap-hold-next-release 150 5 lctl-lalt-5)
+  6-mod   (tap-hold-next-release 150 6 lctl-lalt-6)
+  7-mod   (tap-hold-next-release 150 7 lctl-lalt-7)
+  8-mod   (tap-hold-next-release 150 8 lctl-lalt-8)
+  9-mod   (tap-hold-next-release 150 9 lctl-lalt-9)
+
+  [-mod   (tap-hold-next-release 150 [ lctl-lalt-[)
+  ]-mod   (tap-hold-next-release 150 ] lctl-lalt-])
+  ;-mod   (tap-hold-next-release 150 ; lctl-lalt-;)
+  ,-mod   (tap-hold-next-release 150 , lctl-lalt-,)
+  .-mod   (tap-hold-next-release 150 . lctl-lalt-.)
+  '-mod   (tap-hold-next-release 150 ' lctl-lalt-')
+  /-mod   (tap-hold-next-release 150 / lctl-lalt-/)
+  --mod   (tap-hold-next-release 150 - lctl-lalt--)
+  =-mod   (tap-hold-next-release 150 = lctl-lalt-=)
+  \-mod   (tap-hold-next-release 150 \ lctl-lalt-\)
+  --------------------------------------------------|#
+
+  a-homerow-mod (tap-hold-next-release 150 a lsft)
+  s-homerow-mod (tap-hold-next-release 150 s lmet)
+  d-homerow-mod (tap-hold-next-release 150 d lalt)
+  f-homerow-mod (tap-hold-next-release 150 f lctl)
+  j-homerow-mod (tap-hold-next-release 150 j rctl)
+  k-homerow-mod (tap-hold-next-release 150 k ralt)
+  l-homerow-mod (tap-hold-next-release 150 l rmet)
+  ;-homerow-mod (tap-hold-next-release 150 ; rsft)
 )
 
 (deflayer base
   caps     f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
   grv      1    2    3    4    5    6    7    8    9    0    -    =    bspc
   tab      q    w    e    r    t    y    u    i    o    p    [    ]    \
-  @esc-ctl b    s    d    f    g    h    j    k    l    ;    '    ret
+  @esc-ctl a    s    d    f    g    h    j    k    l    ;    '    ret
   lsft     z    x    c    v    b    n    m    ,    .    /    rsft up
-  fn       lctl lalt lmet         @spc-sft         rmet ralt left down rght
+  fn       lctl lalt lmet       @spc-sft           rmet ralt left down rght
 )
 
+(deflayer homerow-mods
+  _    _                 _                 _                 _                 _    _    _                 _                 _                 _                 _    _
+  _    _                 _                 _                 _                 _    _    _                 _                 _                 _                 _    _    _
+  _    _                 _                 _                 _                 _    _    _                 _                 _                 _                 _    _    _
+  _    @a-homerow-mod    @s-homerow-mod    @d-homerow-mod    @f-homerow-mod    _    _    @j-homerow-mod    @k-homerow-mod    @l-homerow-mod    @;-homerow-mod    _    _
+  _    _                 _                 _                 _                 _    _    _                 _                 _                 _                 _    _
+  _    _                 _                 _                                        _                                        _                 _                 _    _    _
+)
+
+(deflayer homerow-numbers
+  _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    1    2    3    4    5    6    7    8    9    0    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _              _              _    _    _    _    _
+)
