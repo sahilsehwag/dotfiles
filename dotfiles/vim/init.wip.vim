@@ -2067,14 +2067,17 @@
 
 				nnoremap <silent> <Leader>bcc :bp<bar>sp<bar>bn<bar>bd<CR>
 				nnoremap <silent> <Leader>bcC :bp<bar>sp<bar>bn<bar>bd!<CR>
-				nnoremap <silent> <Leader>bcA :bufdo bp<bar>sp<bar>bn<bar>bd<CR>
+				nnoremap <silent> <Leader>bca :bufdo bp<bar>sp<bar>bn<bar>bd<CR>
 				nnoremap <silent> <Leader>bcA :bufdo bp<bar>sp<bar>bn<bar>bd!<CR>
+				"nnoremap <silent> <Leader>bco :%bp<bar>sp<bar>bn<bar>bd<bar>e#<CR>
+				"nnoremap <silent> <Leader>bcO :%bp<bar>sp<bar>bn<bar>bd!<bar>e#<CR>
 
 				nnoremap <silent> <Leader>bdc :bdelete<CR>
 				nnoremap <silent> <Leader>bdC :bdelete!<CR>
 				nnoremap <silent> <Leader>bda :bufdo bdelete<CR>
 				nnoremap <silent> <Leader>bdA :bufdo bdelete!<CR>
-				nnoremap <silent> <A-d> :bp<bar>sp<bar>bn<bar>bd<CR>
+				"nnoremap <silent> <Leader>bdo :%bd<bar>e#<CR>
+				"nnoremap <silent> <Leader>bdO :%bd!<bar>e#<CR>
 
 				nnoremap <silent> <Leader>bs :call ScratchBuffer('e')<CR>
 				nnoremap <silent> <Leader>bS :call ScratchBuffer('e', 1)<CR>
@@ -2085,8 +2088,9 @@
 				nnoremap <silent> <Leader>bwA :wall!<CR>
 				nnoremap <silent> <A-s> :wall<CR>
 
+				"shortcuts
 				nnoremap <Leader>` <C-^>
-
+				nnoremap <silent> <A-d> :bp<bar>sp<bar>bn<bar>bd<CR>
 				nnoremap <silent> <A-n> :bprevious<CR>
 				nnoremap <silent> <A-p> :bnext<CR>
 			"WINDOWS

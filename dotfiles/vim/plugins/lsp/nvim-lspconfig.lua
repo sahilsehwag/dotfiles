@@ -1,74 +1,190 @@
---SERVERS
-  require('lspconfig').diagnosticls.setup{}
-  require('lspconfig').efm.setup{}
+--UTILTIES
+  local root_pattern = require('lspconfig').util.root_pattern
+--CORE
+  --CAPABILITIES
+      local capabilities = vim.lsp.protocol.make_client_capabilities()
+      capabilities.textDocument.completion.completionItem.snippetSupport = true
+      capabilities.textDocument.completion.completionItem.resolveSupport = {
+        properties = {
+          'documentation',
+          'detail',
+          'additionalTextEdits',
+        }
+      }
+--GENERAL
+  --DIAGNOSTICLS
+    --require('lspconfig').diagnosticls.setup({})
+  --EFM
+    require('lspconfig').efm.setup({
+      init_options = {documentFormatting = true},
+      settings = {
+        rootMarkers = {".git/"},
+        languages = {
+          lua = {
+            {formatCommand = "lua-format -i", formatStdin = true}
+          }
+        }
+      }
+    })
+	--CODEQLLS
+    --require('lspconfig').codeqlls.setup{}
+--COMMON
+	--VIM
+		--VIMLS
+      require('lspconfig').vimls.setup({})
+	--LUA
+		--SUMNEKO_LUA
+      --require('lspconfig').sumneko_lua.setup{}
+	--PYTHON
+		--PYRIGHT
+      require('lspconfig').pyright.setup{}
+		--JEDI-LANGUAGE-SERVER
+      --require('lspconfig').jedi_language_server.setup{}
+		--PYLS
+      --require('lspconfig').pyls.setup{}
+		--PYLS-MS
+      --require('lspconfig').pyls_ms.setup{}
+--FRONTEND
+	--HTML
+    require('lspconfig').html.setup{}
+	--CSS
+    require('lspconfig').cssls.setup{}
+	--JAVASRIPT
+		--TSSERVER
+      require('lspconfig').tsserver.setup({
+        cmd = { "typescript-language-server", "--stdio" };
+        filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" };
+        root_dir = root_pattern("package.json", "tsconfig.json", "jsconfig.json", ".git");
+        --root_dir = root_pattern("node_modules", "tsconfig.json", "jsconfig.json", ".git");
+        capabilities = capabilities,
+      })
+		--ROME
+      --require('lspconfig').rome.setup{}
+		--DENOLS
+      --require('lspconfig').denols.setup{}
+		--FLOW
+      --require('lspconfig').flow.setup{}
+	--FRAMEWORKS
+		--VUELS
+      require('lspconfig').vuels.setup{}
+		--ANGULARLS
+      require('lspconfig').angularls.setup{}
+		--SVELTE
+      require('lspconfig').svelte.setup{}
+--FUNCTIONAL
+	--HASKELL
+		--HLS
+      require('lspconfig').hls.setup{}
+	--FSHARP
+		--FSAUTOCOMPLETE
+      require('lspconfig').fsautocomplete.setup{}
+  --LISP
+	--ELM
+		--ELMLS
+      require('lspconfig').elmls.setup{}
+	--NIM
+		--NIMLS
+      require('lspconfig').nimls.setup{}
+	--CLOJURE
+		--CLOJURE-LSP
+      require('lspconfig').clojure_lsp.setup{}
+	--PURESCRIPT
+		--PURESCRIPTLS
+      require('lspconfig').purescriptls.setup{}
+	--OCAML
+		--OCAMLLS
+      require('lspconfig').ocamlls.setup{}
+		--OCAMLLSP
+      --require('lspconfig').ocamllsp.setup{}
+	--ELIXIR
+		--ELIXIRLS
+      require('lspconfig').elixirls.setup{}
+	--ERLANG
+		--ERLANGLS
+      require('lspconfig').erlangls.setup{}
+	--GROOVY
+		--GROOVYLS
+      require('lspconfig').groovyls.setup{}
+--SYSTEMS
+	--C|CPP
+		--CCLS
+      require('lspconfig').ccls.setup{}
+		--CLANGD
+      require('lspconfig').clangd.setup{}
+	--GO
+		--GOPLS
+      require('lspconfig').gopls.setup{}
+	--RUST
+		--RUST-ANALYZER
+      require('lspconfig').rust_analyzer.setup{}
+		--RLS
+      --require('lspconfig').rls.setup{}
+	--SWIFT
+		--SOURCEKIT
+      require('lspconfig').sourcekit.setup{}
+--SCRIPTING
+	--RUBY
+		--SOLARGRAPH
+      require('lspconfig').solargraph.setup{}
+		--SORBET
+      require('lspconfig').sorbet.setup{}
+	--PERL
+		--PERLLS
+      require('lspconfig').perlls.setup{}
+--ICLS
+	--JAVA
+		--JDTLS
+      require('lspconfig').jdtls.setup{}
+	--SCALA
+		--METALS
+      require('lspconfig').metals.setup{}
+	--CSHARP
+		--OMNISHARP
+      require('lspconfig').omnisharp.setup{}
+	--KOTLIN
+		--KOTLIN-LANGUAGE-SERVER
+      require('lspconfig').kotlin_language_server.setup{}
+--DATASCIENCE
+	--R
+		--R-LANGUAGE-SERVER
+      require('lspconfig').r_language_server.setup{}
+--DBMS
+	--SQLLS
+    require('lspconfig').sqlls.setup{}
+    --require('lspconfig').sqls.setup{}
+	--GRAPHQL
+    require('lspconfig').graphql.setup{}
+--SHELL
+	--BASHLS
+    require('lspconfig').bashls.setup{}
+	--RNIX
+    require('lspconfig').rnix.setup{}
+--DSL
+	--JSONLS
+    require('lspconfig').jsonls.setup{}
+	--YAMLLS
+    require('lspconfig').yamlls.setup{}
+  --DHALL
+    --require('lspconfig').dhall_lsp_server.setup{}
+	--CMAKE
+    require('lspconfig').cmake.setup{}
+	--DOCKERLS
+    require('lspconfig').dockerls.setup{}
+	--TERRAFORMLS
+    require('lspconfig').terraformls.setup{}
+	--TEXLAB
+    require('lspconfig').texlab.setup{}
+--RANDOM
+	--DART
+		--DARTLS
+      require('lspconfig').dartls.setup{}
+	--HAXE
+		--HAXE-LANGUAGE-SERVER
+      require('lspconfig').haxe_language_server.setup{}
+	--CRYSTAL
+		--SCRY
+      require('lspconfig').scry.setup{}
+  --JULIA
+    --JULIALS
+      require('lspconfig').julials.setup{}
 
-  require('lspconfig').vimls.setup{}
-  require('lspconfig').sumneko_lua.setup{}
-
-  require('lspconfig').pyright.setup{}
-  require('lspconfig').jedi_language_server.setup{}
-  require('lspconfig').pyls.setup{}
-  require('lspconfig').pyls_ms.setup{}
-  require('lspconfig').r_language_server.setup{}
-
-  require('lspconfig').html.setup{}
-  require('lspconfig').cssls.setup{}
-  require('lspconfig').tsserver.setup{}
-  require('lspconfig').rome.setup{}
-  require('lspconfig').denols.setup{}
-  require('lspconfig').flow.setup{}
-
-  require('lspconfig').vuels.setup{}
-  require('lspconfig').angularls.setup{}
-  require('lspconfig').svelte.setup{}
-
-  require('lspconfig').metals.setup{}
-  require('lspconfig').omnisharp.setup{}
-  require('lspconfig').jdtls.setup{}
-
-  require('lspconfig').jsonls.setup{}
-  require('lspconfig').yamlls.setup{}
-  require('lspconfig').dhall_lsp_server.setup{}
-
-  require('lspconfig').graphql.setup{}
-  require('lspconfig').sqlls.setup{}
-  require('lspconfig').sqls.setup{}
-
-  require('lspconfig').bashls.setup{}
-  require('lspconfig').rnix.setup{}
-
-  require('lspconfig').cmake.setup{}
-  require('lspconfig').dockerls.setup{}
-  require('lspconfig').terraformls.setup{}
-
-  require('lspconfig').ccls.setup{}
-  require('lspconfig').clangd.setup{}
-  require('lspconfig').sourcekit.setup{}
-  require('lspconfig').rust_analyzer.setup{}
-  require('lspconfig').rls.setup{}
-  require('lspconfig').gopls.setup{}
-
-  require('lspconfig').hls.setup{}
-  require('lspconfig').elmls.setup{}
-  require('lspconfig').nimls.setup{}
-  require('lspconfig').fsautocomplete.setup{}
-  require('lspconfig').clojure_lsp.setup{}
-  require('lspconfig').ocamlls.setup{}
-  require('lspconfig').ocamllsp.setup{}
-
-  require('lspconfig').elixirls.setup{}
-  require('lspconfig').erlangls.setup{}
-  require('lspconfig').kotlin_language_server.setup{}
-  require('lspconfig').dartls.setup{}
-  require('lspconfig').groovyls.setup{}
-  require('lspconfig').perlls.setup{}
-  require('lspconfig').julials.setup{}
-  require('lspconfig').purescriptls.setup{}
-  require('lspconfig').haxe_language_server.setup{}
-  require('lspconfig').scry.setup{}
-  require('lspconfig').solargraph.setup{}
-  require('lspconfig').sorbet.setup{}
-
-  require('lspconfig').texlab.setup{}
-
-  require('lspconfig').codeqlls.setup{}
