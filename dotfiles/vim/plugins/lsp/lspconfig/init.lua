@@ -1,5 +1,20 @@
---UTILTIES
-  local root_pattern = require('lspconfig').util.root_pattern
+--utilities
+local rootPattern = require('lspconfig').util.root_pattern
+
+--constants
+local ROOT_PATH = 'plugins/lsp/lspconfig'
+local SERVERS_PATH = ROOT_PATH .. '/servers'
+
+local SERVERS = {
+  'efm',
+  'sumneko_lua',
+}
+
+for i,server in ipairs(SERVERS) do
+  require(SERVERS_PATH .. '/' .. server)
+end
+
+--HELPERS
 --CORE
   --CAPABILITIES
       local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -14,27 +29,12 @@
 --GENERAL
   --DIAGNOSTICLS
     --require('lspconfig').diagnosticls.setup({})
-  --EFM
-    require('lspconfig').efm.setup({
-      init_options = {documentFormatting = true},
-      settings = {
-        rootMarkers = {".git/"},
-        languages = {
-          lua = {
-            {formatCommand = "lua-format -i", formatStdin = true}
-          }
-        }
-      }
-    })
 	--CODEQLLS
     --require('lspconfig').codeqlls.setup{}
 --COMMON
 	--VIM
 		--VIMLS
       require('lspconfig').vimls.setup({})
-	--LUA
-		--SUMNEKO_LUA
-      --require('lspconfig').sumneko_lua.setup{}
 	--PYTHON
 		--PYRIGHT
       require('lspconfig').pyright.setup{}
@@ -52,10 +52,17 @@
 	--JAVASRIPT
 		--TSSERVER
       require('lspconfig').tsserver.setup({
-        cmd = { "typescript-language-server", "--stdio" };
-        filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" };
-        root_dir = root_pattern("package.json", "tsconfig.json", "jsconfig.json", ".git");
-        --root_dir = root_pattern("node_modules", "tsconfig.json", "jsconfig.json", ".git");
+        cmd = {"typescript-language-server", "--stdio"};
+        filetypes = {
+          "javascript",
+          "javascriptreact",
+          "javascript.jsx",
+          "typescript",
+          "typescriptreact",
+          "typescript.tsx",
+        },
+        root_dir = rootPattern("package.json", "tsconfig.json", "jsconfig.json", ".git"),
+        --root_dir = rootPattern("node_modules", "tsconfig.json", "jsconfig.json", ".git"),
         capabilities = capabilities,
       })
 		--ROME
