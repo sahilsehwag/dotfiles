@@ -2065,19 +2065,19 @@
 				nnoremap <silent> <Leader>bas :call ScratchBuffer('e')<CR>
 				nnoremap <silent> <Leader>baS :call ScratchBuffer('e', 1)<CR>
 
-				nnoremap <silent> <Leader>bcc :bp<bar>sp<bar>bn<bar>bd<CR>
-				nnoremap <silent> <Leader>bcC :bp<bar>sp<bar>bn<bar>bd!<CR>
-				nnoremap <silent> <Leader>bca :bufdo bp<bar>sp<bar>bn<bar>bd<CR>
-				nnoremap <silent> <Leader>bcA :bufdo bp<bar>sp<bar>bn<bar>bd!<CR>
+				nnoremap <silent> <Leader>bcc :bprevious<bar>split<bar>bnext<bar>bdelete<CR>
+				nnoremap <silent> <Leader>bcC :bprevious<bar>split<bar>bnext<bar>bdelete!<CR>
+				"nnoremap <silent> <Leader>bca :bufdo bp<bar>sp<bar>bn<bar>bd<CR>
+				"nnoremap <silent> <Leader>bcA :bufdo bp<bar>sp<bar>bn<bar>bd!<CR>
 				"nnoremap <silent> <Leader>bco :%bp<bar>sp<bar>bn<bar>bd<bar>e#<CR>
 				"nnoremap <silent> <Leader>bcO :%bp<bar>sp<bar>bn<bar>bd!<bar>e#<CR>
 
 				nnoremap <silent> <Leader>bdc :bdelete<CR>
 				nnoremap <silent> <Leader>bdC :bdelete!<CR>
-				nnoremap <silent> <Leader>bda :bufdo bdelete<CR>
-				nnoremap <silent> <Leader>bdA :bufdo bdelete!<CR>
-				"nnoremap <silent> <Leader>bdo :%bd<bar>e#<CR>
-				"nnoremap <silent> <Leader>bdO :%bd!<bar>e#<CR>
+				nnoremap <silent> <Leader>bda :%bdelete<CR>
+				nnoremap <silent> <Leader>bdA :%bdelete!<CR>
+				nnoremap <silent> <Leader>bdo :%bdelete<bar>edit#<bar>bnext<bar>bdelete<CR>
+				nnoremap <silent> <Leader>bdO :%bdelete!<bar>edit#<bar>bnext<bar>bdelete!<CR>
 
 				nnoremap <silent> <Leader>bs :call ScratchBuffer('e')<CR>
 				nnoremap <silent> <Leader>bS :call ScratchBuffer('e', 1)<CR>
