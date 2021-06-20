@@ -3994,6 +3994,9 @@
 
 								nnoremap <silent> <A-=> :BufferLineMoveNext<CR>
 								nnoremap <silent> <A--> :BufferLineMovePrev<CR>
+
+								nnoremap <silent> <Leader>bch :BufferLineCloseLeft<CR>
+								nnoremap <silent> <Leader>bcl :BufferLineCloseRight<CR>
 						else
 							Plug 'romgrk/barbar.nvim'
 								"CONFIGURATION
@@ -4889,37 +4892,37 @@
 		"LUA
 			if has('nvim-0.5')
 				"treesitter
-				luafile ~/.config/nvim/plugins/treesitter/nvim-treesitter.lua
+				lua require('plugins/treesitter/treesitter')
 
 				"lsp
-				luafile ~/.config/nvim/plugins/lsp/nvim-lspconfig.lua
-				luafile ~/.config/nvim/plugins/lsp/trouble.lua
-				luafile ~/.config/nvim/plugins/lsp/nvim-lsputils.lua
-				luafile ~/.config/nvim/plugins/lsp/lspsaga.nvim.lua
-				luafile ~/.config/nvim/plugins/lsp/nvim-lightbulb.lua
-				luafile ~/.config/nvim/plugins/lsp/nvim-compe.lua
-				luafile ~/.config/nvim/plugins/lsp/lspkind-nvim.lua
-				luafile ~/.config/nvim/plugins/lsp/nvim-lsp-ts-utils.lua
+				lua require('plugins/lsp/lspconfig')
+				lua require('plugins/lsp/trouble')
+				lua require('plugins/lsp/lsputils')
+				lua require('plugins/lsp/lspsaga')
+				lua require('plugins/lsp/lightbulb')
+				lua require('plugins/lsp/compe')
+				lua require('plugins/lsp/lspkind')
+				lua require('plugins/lsp/lsp-ts-utils')
 
 				"vcs
-				luafile ~/.config/nvim/plugins/vcs/gitsigns.nvim.lua
-				luafile ~/.config/nvim/plugins/vcs/nvim-blamer.lua
+				lua require('plugins/vcs/gitsigns')
+				lua require('plugins/vcs/blamer')
 
 				"syntax
-				luafile ~/.config/nvim/plugins/aesthetics/nvim-colorizer.lua
-				luafile ~/.config/nvim/plugins/syntax/todo-comments.lua
+				lua require('plugins/aesthetics/nvim-colorizer')
+				lua require('plugins/syntax/todo-comments')
 
 				"system
-				luafile ~/.config/nvim/plugins/system/nvim-tree.lua
-				luafile ~/.config/nvim/plugins/system/nvim-spectre.lua
+				lua require('plugins/system/nvim-tree')
+				lua require('plugins/system/spectre')
 
 				"editor
 				lua require('numb').setup()
-				luafile ~/.config/nvim/plugins/editor/goto-preview.lua
+				lua require('plugins/editor/goto-preview')
 
 				"aesthetics
-				luafile ~/.config/nvim/plugins/aesthetics/galaxyline/evilline.lua
-				luafile ~/.config/nvim/plugins/aesthetics/nvim-bufferline.lua
+				lua require('plugins/aesthetics/galaxyline/evilline')
+				lua require('plugins/aesthetics/nvim-bufferline')
 			endif
 	"CUSTOM
 		source ~/.config/nvim/plugins/aesthetics/custom/minimalistic-folds.vim

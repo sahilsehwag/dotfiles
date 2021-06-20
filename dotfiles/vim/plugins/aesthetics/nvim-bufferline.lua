@@ -1,15 +1,15 @@
 local colors = {
   bg       = '#202328',
-  fg       = '#bbc2cf',
-  yellow   = '#fabd2f',
+  blue     = '#51afef';
   cyan     = '#008080',
   darkblue = '#081633',
+  fg       = '#bbc2cf',
   green    = '#98be65',
-  orange   = '#FF8800',
-  violet   = '#a9a1e1',
   magenta  = '#c678dd',
-  blue     = '#51afef';
+  orange   = '#FF8800',
   red      = '#ec5f67';
+  violet   = '#a9a1e1',
+  yellow   = '#fabd2f',
 }
 
 require('bufferline').setup({
