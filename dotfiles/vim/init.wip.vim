@@ -4199,7 +4199,7 @@
 					endif
 				"LSP
 					if has('nvim-0.5')
-						source ~/.config/nvim/lsp.lua
+						luafile ~/.config/nvim/lsp.lua
 						Plug 'neovim/nvim-lspconfig'
 						Plug 'alexaandru/nvim-lspupdate'
 						Plug 'folke/trouble.nvim'
@@ -4805,6 +4805,9 @@
 						"nmap <Leader>ab <Plug>(AerojumpBolt)
 						"nmap <Leader>aa <Plug>(AerojumpFromCursorBolt)
 						"nmap <Leader>ad <Plug>(AerojumpDefault)
+				endif
+				if has('nvim-0.5')
+					Plug 'L3MON4D3/LuaSnip'
 				endif
 			"TODECIDE
 				Plug 'kopischke/vim-fetch'

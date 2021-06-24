@@ -1,4 +1,4 @@
-require('gitsigns').setup {
+require('gitsigns').setup({
 	signs = {
 		add					 = {hl = 'JatAddFG',          text = ' █', numhl='', linehl='JatAddFG'},
 		change			 = {hl = 'JatChangeFG',       text = ' █', numhl='', linehl='JatChangeFG'},
@@ -35,4 +35,4 @@ require('gitsigns').setup {
 	status_formatter = nil, -- Use default
 	use_decoration_api = true,
 	use_internal_diff = true,  -- If luajit is present
-█}
+})

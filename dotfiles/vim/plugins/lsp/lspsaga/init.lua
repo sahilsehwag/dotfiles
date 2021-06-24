@@ -15,3 +15,6 @@ vim.api.nvim_set_keymap("i" , "<A-space>"   , "<cmd>Lspsaga signature_help<CR>" 
 
 vim.api.nvim_set_keymap("n" , "<Leader>lgr" , "<cmd>Lspsaga lsp_finder<CR>"            , { noremap = true , silent = true })
 vim.api.nvim_set_keymap("n" , "<Leader>lgp" , "<cmd>Lspsaga preview_definition<CR>"    , { noremap = true , silent = true })
+
+--AUTOMATIC-SIGNATURE
+require('plugins/lsp/lspsaga/auto-signature-help')
