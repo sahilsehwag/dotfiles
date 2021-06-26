@@ -1,3 +1,4 @@
+#META
 #EVIL
 	git clone https://github.com/emacs-evil/evil/                      ~/.emacs.d/packages/evil
 	git clone https://github.com/cofi/evil-leader/                     ~/.emacs.d/packages/evil-leader
@@ -35,7 +36,6 @@
 #PRODUCTIVITY
 	git clone https://github.com/emacs-helm/helm ~/.emacs.d/packages/helm
 	git clone https://github.com/justbur/emacs-which-key ~/.emacs.d/packages/emacs-which-key
-#META
 #DEVELOPMENT
 	git clone https://github.com/syohex/emacs-quickrun ~/.emacs.d/packages/emacs-quickrun
 #LANGUAGES
