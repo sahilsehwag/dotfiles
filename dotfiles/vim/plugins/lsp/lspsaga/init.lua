@@ -1,7 +1,7 @@
 
 --MAPPINGS
-vim.api.nvim_set_keymap("n" , "<Leader>laa" , "<cmd>Lspsaga code_action<CR>"           , { noremap = true , silent = true })
-vim.api.nvim_set_keymap("v" , "<Leader>laa" , "<cmd>Lspsaga range_code_action<CR>"     , { noremap = true , silent = true })
+vim.api.nvim_set_keymap("n" , "<Leader>la." , "<cmd>Lspsaga code_action<CR>"           , { noremap = true , silent = true })
+vim.api.nvim_set_keymap("v" , "<Leader>la." , "<cmd>Lspsaga range_code_action<CR>"     , { noremap = true , silent = true })
 
 vim.api.nvim_set_keymap("n" , "<Leader>lsr" , "<cmd>Lspsaga rename<CR>"                , { noremap = true , silent = true })
 

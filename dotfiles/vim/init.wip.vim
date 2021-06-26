@@ -3052,7 +3052,7 @@
 									\'name' : '+lsp',
 									\'a': {
 										\'name': '+actions',
-										\'a': 'show-code-actions',
+										\'.': 'show-code-actions',
 										\'d': 'generate-documentation',
 										\'f': 'format-buffer',
 										\'o': '--organize-imports',
