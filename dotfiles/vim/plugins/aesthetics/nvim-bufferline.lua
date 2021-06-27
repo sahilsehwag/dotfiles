@@ -59,11 +59,18 @@ require('bufferline').setup({
 
     --offsets
     --offsets = {{filetype = 'NvimTree', text = 'File Explorer', text_align = 'left' | 'center' | 'right'}},
-    offsets = {{
-      filetype   = 'NvimTree',
-      text       = 'File Explorer',
-      text_align = 'center',
-    }},
+    offsets = {
+      {
+        filetype   = 'NvimTree',
+        text       = 'FileExplorer',
+        text_align = 'center',
+      },
+      {
+        filetype   = 'DiffviewFiles',
+        text       = 'DiffView',
+        text_align = 'center',
+      },
+    },
 
     --icons
     --indicator_icon     = '?',

@@ -3009,6 +3009,10 @@
 										\'d': '--delete-commit',
 										\'h': 'show-line-commit-history',
 									\},
+									\'d' : {
+										\'name': '+diff',
+										\'.': 'diff-view',
+									\},
 									\'h' : {
 										\'name': '+hunks',
 										\'s': 'stage-hunk',
@@ -4194,6 +4198,7 @@
 					if has('nvim-0.5')
 						Plug 'lewis6991/gitsigns.nvim'
 							Plug 'nvim-lua/plenary.nvim'
+						Plug 'sindrets/diffview.nvim'
 					else
 						Plug 'airblade/vim-gitgutter'
 					endif
@@ -4910,6 +4915,7 @@
 				"vcs
 				lua require('plugins/vcs/gitsigns')
 				lua require('plugins/vcs/blamer')
+				lua require('plugins/vcs/diffview')
 
 				"syntax
 				lua require('plugins/aesthetics/nvim-colorizer')
