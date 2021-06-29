@@ -1,9 +1,9 @@
 require('gitsigns').setup({
 	signs = {
-		add					 = {hl = 'JatAddFG',          text = ' █', numhl='', linehl='JatAddFG'},
-		change			 = {hl = 'JatChangeFG',       text = ' █', numhl='', linehl='JatChangeFG'},
-		delete			 = {hl = 'JatDeleteFG',       text = ' ', numhl='', linehl='JatDeleteFG'},
-		topdelete		 = {hl = 'JatDeleteFG',       text = ' ', numhl='', linehl='JatDeleteFG'},
+		add          = {hl = 'JatAddFG',          text = ' █', numhl='', linehl='JatAddFG'},
+		change       = {hl = 'JatChangeFG',       text = ' █', numhl='', linehl='JatChangeFG'},
+		delete       = {hl = 'JatDeleteFG',       text = ' ', numhl='', linehl='JatDeleteFG'},
+		topdelete    = {hl = 'JatDeleteFG',       text = ' ', numhl='', linehl='JatDeleteFG'},
 		changedelete = {hl = 'JatChangeDeleteFG', text = ' ~', numhl='', linehl='JatChangeDeleteFG'},
 	},
 	numhl = false,

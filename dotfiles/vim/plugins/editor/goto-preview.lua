@@ -3,7 +3,12 @@ require('goto-preview').setup({
 	height = 30;
 	default_mappings = false;
 	opacity = nil;
-	post_open_hook = nil;
+	post_open_hook = function(buffer, window)
+		vim.api.nvim_buf_set_keymap(buffer, 'n', '<LocalLeader>d', '<cmd>lua require("goto-preview").goto_preview_definition()<CR>'    , {noremap = true})
+		vim.api.nvim_buf_set_keymap(buffer, 'n', '<LocalLeader>i', '<cmd>lua require("goto-preview").goto_preview_implementation()<CR>', {noremap = true})
+		vim.api.nvim_buf_set_keymap(buffer, 'n', '<LocalLeader>q', '<cmd>lua require("goto-preview").close_all_win()<CR>'              , {noremap = true})
+		vim.api.nvim_buf_set_keymap(buffer, 'n', '<LocalLeader>m', '<cmd>MaximizerToggle<CR>'                                          , {noremap = true})
+	end;
 	debug = false;
 })
 
@@ -13,3 +18,19 @@ vim.cmd [[nnoremap <leader>lpq <cmd>lua require('goto-preview').close_all_win()<
 
 vim.cmd [[nnoremap gp <cmd>lua require('goto-preview').goto_preview_definition()<CR>]]
 vim.cmd [[nnoremap gP <cmd>lua require('goto-preview').goto_preview_implementation()<CR>]]
+
+vim.cmd [[command! GotoPreviewDefinition     lua require('goto-preview').goto_preview_definition()]]
+vim.cmd [[command! GotoPreviewImplementation lua require('goto-preview').goto_preview_implementation()]]
+vim.cmd [[command! GotoPreviewCloseAll       lua require('goto-preview').close_all_win()]]
+
+--vim.cmd [[nnoremap gp <cmd>lua require('plugins/editor/goto-preview').extensions.openMaxmizedPreview()<CR>]]
+--vim.cmd [[nnoremap gP <cmd>lua require('goto-preview').goto_preview_definition()<CR>]]
+
+return {
+	extensions = {
+		openMaxmizedPreview = function()
+			vim.cmd [[ lua require("goto-preview").goto_preview_definition() ]]
+			--vim.cmd [[ GotoPreviewDefinition | MaximizerToggle ]]
+		end,
+	},
+}
