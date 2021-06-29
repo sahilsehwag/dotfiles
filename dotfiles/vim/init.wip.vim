@@ -2102,6 +2102,15 @@
 				nnoremap <silent> <Leader>wc :close<CR>
 				nnoremap <silent> <Leader>w= <C-w>=
 
+				"layouts
+				nnoremap <silent> <Leader>w3v :only<bar>vsplit<bar>split<bar>wincmd h<CR>
+				nnoremap <silent> <Leader>w3h :only<bar>split<bar>vsplit<bar>wincmd k<CR>
+				nnoremap <silent> <Leader>w4d :only<bar>vsplit<bar>split<bar>wincmd h<bar>split<bar>wincmd k<CR>
+				nnoremap <silent> <Leader>w4v :only<bar>vsplit<bar>split<bar>split<bar>wincmd h<CR>
+				nnoremap <silent> <Leader>w4h :only<bar>split<bar>vsplit<bar>vsplit<bar>wincmd k<CR>
+				nnoremap <silent> <Leader>w5v :only<bar>vsplit<bar>split<bar>split<bar>split<bar>wincmd h<CR>
+				nnoremap <silent> <Leader>w5h :only<bar>split<bar>vsplit<bar>vsplit<bar>vsplit<bar>wincmd k<CR>
+
 				if has('nvim')
 					execute 'nnoremap <silent> <' . g:action_leader . '-h> <C-w><C-h>'
 					execute 'nnoremap <silent> <' . g:action_leader . '-j> <C-w><C-j>'
