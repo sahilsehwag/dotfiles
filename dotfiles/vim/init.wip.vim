@@ -4100,31 +4100,6 @@
 							"\'space'      : ' '
 						"\}
 				"COLORSCHEMES
-					"Plug 'flazz/vim-colorschemes'
-					Plug 'rafi/awesome-vim-colorschemes'
-					"Plug 'chriskempson/base16-vim'
-					if has('nvim-0.5')
-						Plug 'Mofiqul/vscode.nvim'
-						let g:vscode_style = "dark"
-					endif
-					"Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
-					"Plug 'pineapplegiant/spaceduck'
-					"Plug 'tomasiser/vim-code-dark'
-					"Plug 'KeitaNakamura/neodark.vim'
-						let g:neodark#use_256color			 = 1
-						let g:neodark#solid_vertsplit		 = 1
-						let g:neodark#background			 = '#202020'
-						"let g:lightline					= {}
-						"let g:lightline.colorscheme		= 'neodark'
-						"let g:neodark#terminal_transparent = 1
-					"Plug 'sindresorhus/focus'
-					"Plug 'KabbAmine/yowish.vim'
-					"Plug 'ayu-theme/ayu-vim'
-					"Plug 'tyrannicaltoucan/vim-quantum'
-					"Plug 'raphamorim/lucario'
-					"Plug 'paranoida/vim-airlineish'
-					"Plug 'arzg/vim-corvine'
-					"Plug 'i3d/vim-jimbothemes'
 					"MATERIAL
 						if has('vim')
 							"Plug 'kaicataldo/material.vim', { 'branch': 'main' }
@@ -4135,6 +4110,54 @@
 								"Plug 'tjdevries/colorbuddy.nvim'
 								"let g:material_style = 'deep ocean'
 						endif
+					"VSCODE
+						if has('nvim-0.5')
+							Plug 'Mofiqul/vscode.nvim'
+								let g:vscode_style = "dark"
+						else
+							Plug 'tomasiser/vim-code-dark'
+						endif
+					"TOKYONIGHT
+						if has('nvim-0.5')
+							Plug 'folke/tokyonight.nvim'
+							let g:tokyonight_style = 'night' "day|night|storm
+							let g:tokyonight_italic_functions = 1
+							let g:tokyonight_sidebars = ['qf', 'vista_kind', 'terminal', 'packer']
+							"let g:lightline = {'colorscheme': 'tokyonight'}
+						else
+							Plug 'ghifarit53/tokyonight-vim'
+							let g:tokyonight_style = 'night' "night|storm
+							let g:tokyonight_enable_italic = 1
+							let g:tokyonight_disable_italic_comment = 0
+							let g:tokyonight_transparent_background = 1
+							let g:tokyonight_menu_selection_background = 'green' "green|red|blue
+							let g:tokyonight_cursor = 'auto' "auto|red|green|blue
+							let g:tokyonight_current_word = 'grey background' "bold|underline|itatlic|grey background
+							"let g:airline_theme = "tokyonight"
+							"let g:lightline = {'colorscheme' : 'tokyonight'}
+						endif
+					"SPACEDUCK
+						"Plug 'pineapplegiant/spaceduck'
+					"CHALLENGER-DEEP
+						"Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
+					"COLLECTIONS
+						Plug 'flazz/vim-colorschemes'
+						Plug 'rafi/awesome-vim-colorschemes'
+						Plug 'chriskempson/base16-vim'
+					"RANDOM
+						Plug 'KeitaNakamura/neodark.vim'
+							let g:neodark#background      = '#202020'
+							let g:neodark#use_256color    = 1
+							let g:neodark#solid_vertsplit = 1
+							let g:neodark#terminal_transparent = 1
+						"Plug 'sindresorhus/focus'
+						"Plug 'KabbAmine/yowish.vim'
+						"Plug 'ayu-theme/ayu-vim'
+						"Plug 'tyrannicaltoucan/vim-quantum'
+						"Plug 'raphamorim/lucario'
+						"Plug 'paranoida/vim-airlineish'
+						"Plug 'arzg/vim-corvine'
+						"Plug 'i3d/vim-jimbothemes'
 					"REFERENCE
 						"TYPE:LIGHT
 							"*SOLARIZED8-LIGHT*|CORVINE-LIGHT=1
