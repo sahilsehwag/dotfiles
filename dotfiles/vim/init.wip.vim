@@ -4424,6 +4424,7 @@
 						Plug 'p00f/nvim-ts-rainbow'
 						Plug 'windwp/nvim-ts-autotag'
 						Plug 'JoosepAlviste/nvim-ts-context-commentstring'
+						Plug 'romgrk/nvim-treesitter-context'
 					endif
 				"COMMENTS
 					"Plug 'tpope/vim-commentary'
