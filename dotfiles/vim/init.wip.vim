@@ -4420,11 +4420,11 @@
 						Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 						Plug 'nvim-treesitter/playground'
 						Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+						Plug 'romgrk/nvim-treesitter-context'
 						Plug 'nvim-treesitter/nvim-treesitter-refactor'
 						Plug 'p00f/nvim-ts-rainbow'
 						Plug 'windwp/nvim-ts-autotag'
 						Plug 'JoosepAlviste/nvim-ts-context-commentstring'
-						Plug 'romgrk/nvim-treesitter-context'
 					endif
 				"COMMENTS
 					"Plug 'tpope/vim-commentary'
