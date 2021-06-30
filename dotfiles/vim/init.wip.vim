@@ -4103,6 +4103,10 @@
 					"Plug 'flazz/vim-colorschemes'
 					Plug 'rafi/awesome-vim-colorschemes'
 					"Plug 'chriskempson/base16-vim'
+					if has('nvim-0.5')
+						Plug 'Mofiqul/vscode.nvim'
+						let g:vscode_style = "dark"
+					endif
 					"Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
 					"Plug 'pineapplegiant/spaceduck'
 					"Plug 'tomasiser/vim-code-dark'
@@ -5096,7 +5100,7 @@
 			set nostartofline
 		"COLORSCHEME
 			if IsNix()
-				colorscheme gruvbox
+				colorscheme vscode
 			elseif IsWindows()
 				colorscheme solarized8_light_high
 			endif
