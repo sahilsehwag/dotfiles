@@ -19,12 +19,12 @@ vim.cmd [[nnoremap <leader>lpq <cmd>lua require('goto-preview').close_all_win()<
 vim.cmd [[nnoremap gp <cmd>lua require('goto-preview').goto_preview_definition()<CR>]]
 vim.cmd [[nnoremap gP <cmd>lua require('goto-preview').goto_preview_implementation()<CR>]]
 
+--vim.cmd [[nnoremap gP <cmd>lua require('goto-preview').goto_preview_definition()<CR>]]
+--vim.cmd [[nnoremap gp <cmd>execute "normal gP wm"<CR>]]
+
 vim.cmd [[command! GotoPreviewDefinition     lua require('goto-preview').goto_preview_definition()]]
 vim.cmd [[command! GotoPreviewImplementation lua require('goto-preview').goto_preview_implementation()]]
 vim.cmd [[command! GotoPreviewCloseAll       lua require('goto-preview').close_all_win()]]
-
---vim.cmd [[nnoremap gp <cmd>lua require('plugins/editor/goto-preview').extensions.openMaxmizedPreview()<CR>]]
---vim.cmd [[nnoremap gP <cmd>lua require('goto-preview').goto_preview_definition()<CR>]]
 
 return {
 	extensions = {

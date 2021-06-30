@@ -4420,6 +4420,10 @@
 						Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 						Plug 'nvim-treesitter/playground'
 						Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+						Plug 'singlexyz/treesitter-frontend-textobjects'
+						Plug 'mfussenegger/nvim-ts-hint-textobject'
+							omap <silent> gt <cmd>lua require('tsht').nodes()<CR>
+							vnoremap <silent> gt <cmd>lua require('tsht').nodes()<CR>
 						Plug 'romgrk/nvim-treesitter-context'
 						Plug 'nvim-treesitter/nvim-treesitter-refactor'
 						Plug 'p00f/nvim-ts-rainbow'
@@ -4911,6 +4915,7 @@
 			if has('nvim-0.5')
 				"treesitter
 				lua require('plugins/treesitter/treesitter')
+				"lua require('plugins/treesitter/hint-textobject')
 
 				"lsp
 				lua require('plugins/lsp/lspconfig')
