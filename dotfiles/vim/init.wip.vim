@@ -2855,6 +2855,7 @@
 							let g:lens#animate = 1
 					Plug 'szw/vim-maximizer'
 						nnoremap <silent> <Leader>wm :MaximizerToggle<CR>
+						tnoremap <silent> <A-m> <C-\><C-n>:MaximizerToggle<CR>i
 					Plug 'blueyed/vim-diminactive'
 						let g:diminactive_use_syntax = 1
 						let g:diminactive_use_colorcolumn = 0
@@ -3817,13 +3818,12 @@
 						let g:floaterm_width = 0.9
 						let g:floaterm_height = 0.9
 					"MAPPINGS
-						nnoremap <silent> <Leader>tt :FloatermToggle<CR>
-
 						nnoremap <silent> <Leader>tf :FloatermNew --wintype=float<CR>
 						nnoremap <silent> <Leader>th :FloatermNew --wintype=split --height=0.4<CR>
 						nnoremap <silent> <Leader>tv :FloatermNew --wintype=vsplit --width=0.5<CR>
+						nnoremap <silent> <Leader>tt :FloatermToggle<CR>
 
-						nnoremap <silent> <Leader>tk :FloatermKill<CR>
+						nnoremap <silent> <Leader>td :FloatermKill<CR>
 						nnoremap <silent> <Leader>tn :FloatermNext<CR>
 						nnoremap <silent> <Leader>tp :FloatermPrev<CR>
 
@@ -3833,7 +3833,7 @@
 						execute 'tnoremap <silent> <' . g:action_leader . '-f> <C-\><C-n>:FloatermNew<CR>'
 						execute 'tnoremap <silent> <' . g:action_leader . '-h> <C-\><C-n>:FloatermNew --wintype=split --height=0.4<CR>'
 						execute 'tnoremap <silent> <' . g:action_leader . '-v> <C-\><C-n>:FloatermNew --wintype=vsplit --width=0.5<CR>'
-						execute 'tnoremap <silent> <' . g:action_leader . '-k> <C-\><C-n>:FloatermKill<CR>'
+						execute 'tnoremap <silent> <' . g:action_leader . '-d> <C-\><C-n>:FloatermKill<CR>'
 						execute 'tnoremap <silent> <' . g:action_leader . '-p> <C-\><C-n>:FloatermNext<CR>'
 						execute 'tnoremap <silent> <' . g:action_leader . '-n> <C-\><C-n>:FloatermPrev<CR>'
 				if has('nvim-0.5')
