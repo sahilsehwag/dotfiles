@@ -38,31 +38,25 @@
 
 	local tree_cb = require'nvim-tree.config'.nvim_tree_callback
 	vim.g.nvim_tree_bindings = {
-		["<CR>"]	= tree_cb("cd"),
-		["<BS>"]	= tree_cb("dir_up"),
-
-		["l"]			= tree_cb("edit"),
-		["h"]			= tree_cb("close_node"),
-		["<C-v>"] = tree_cb("vsplit"),
-		["<C-h>"] = tree_cb("split"),
-		["<C-t>"] = tree_cb("tabnew"),
-
-		["<Tab>"] = tree_cb("preview"),
-
-		["."]			= tree_cb("toggle_dotfiles"),
-		["I"]			= tree_cb("toggle_ignored"),
-
-		["a"]			= tree_cb("create"),
-		["D"]			= tree_cb("remove"),
-		["d"]			= tree_cb("cut"),
-		["y"]			= tree_cb("copy"),
-		["p"]			= tree_cb("paste"),
-		["r"]			= tree_cb("full_rename"),
-		["R"]			= tree_cb("rename"),
-
-		["[g"]		= tree_cb("prev_git_item"),
-		["]g"]		= tree_cb("next_git_item"),
-
-		["<C-r>"] = tree_cb("refresh"),
-		["q"]			= tree_cb("close"),
+		{ key = "<CR>",  cb = tree_cb("cd") },
+		{ key = "<BS>",  cb = tree_cb("dir_up") },
+		{ key = "l",     cb = tree_cb("edit") },
+		{ key = "h",     cb = tree_cb("close_node") },
+		{ key = "<C-v>", cb = tree_cb("vsplit") },
+		{ key = "<C-h>", cb = tree_cb("split") },
+		{ key = "<C-t>", cb = tree_cb("tabnew") },
+		{ key = "<Tab>", cb = tree_cb("preview") },
+		{ key = ".",     cb = tree_cb("toggle_dotfiles") },
+		{ key = "I",     cb = tree_cb("toggle_ignored") },
+		{ key = "a",     cb = tree_cb("create") },
+		{ key = "D",     cb = tree_cb("remove") },
+		{ key = "d",     cb = tree_cb("cut") },
+		{ key = "y",     cb = tree_cb("copy") },
+		{ key = "p",     cb = tree_cb("paste") },
+		{ key = "r",     cb = tree_cb("full_rename") },
+		{ key = "R",     cb = tree_cb("rename") },
+		{ key = "[g",    cb = tree_cb("prev_git_item") },
+		{ key = "]g",    cb = tree_cb("next_git_item") },
+		{ key = "<C-r>", cb = tree_cb("refresh") },
+		{ key = "q",     cb = tree_cb("close") },
 	}

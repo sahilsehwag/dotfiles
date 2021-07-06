@@ -2775,7 +2775,7 @@
 						if has('nvim-0.5')
 							"remove lua branch when neovim-0.5 is released, since this will be
 							"moved to the the main branch
-							Plug 'lukas-reineke/indent-blankline.nvim', { 'branch': 'lua' }
+							Plug 'lukas-reineke/indent-blankline.nvim'
 								let g:indent_blankline_enabled = v:true
 
 								let g:indent_blankline_char = '│'
