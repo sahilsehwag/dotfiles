@@ -1,79 +1,14 @@
-local colors = {
-	bg       = '#202328',
-	blue     = '#51afef';
-	cyan     = '#008080',
-	darkblue = '#081633',
-	fg       = '#bbc2cf',
-	green    = '#98be65',
-	magenta  = '#c678dd',
-	orange   = '#FF8800',
-	red      = '#ec5f67';
-	violet   = '#a9a1e1',
-	yellow   = '#fabd2f',
+local ROOT_PATH = 'plugins/aesthetics/nvim-bufferline'
+
+local THEMES = {
+	CUSTOM = 'custom',
+	COLORSCHEME = 'colorscheme',
 }
 
+local theme = require(ROOT_PATH .. '/' .. THEMES.CUSTOM)
+
 require('bufferline').setup({
-	--highlights = {
-	--	fill = {
-	--		guibg = '#282828',
-	--	},
-	--	buffer_selected = {
-	--		gui = 'NONE',
-	--	},
-	--	--separator_selected = {
-	--	--	guifg = '#282828',
-	--	--},
-	--	--separator_visible = {
-	--	--	guifg = '#282828',
-	--	--},
-	--	--separator = {
-	--	--	guifg = '#282828',
-	--	--},
-	--},
-	highlights = {
-		fill = {
-			guifg = {attribute = "fg", highlight = "Normal"},
-			guibg = {attribute = "bg", highlight = "StatusLineNC"},
-		},
-		background = {
-			guifg = {attribute = "fg", highlight = "Normal"},
-			guibg = {attribute = "bg", highlight = "StatusLine"}
-		},
-		buffer_visible = {
-			gui = "",
-			guifg = {attribute = "fg", highlight="Normal"},
-			guibg = {attribute = "bg", highlight = "Normal"}
-		},
-		buffer_selected = {
-			gui = "",
-			guifg = {attribute = "fg", highlight="Normal"},
-			guibg = {attribute = "bg", highlight = "Normal"}
-		},
-		separator = {
-			guifg = {attribute = "bg", highlight = "Normal"},
-			guibg = {attribute = "bg", highlight = "StatusLine"},
-		},
-		separator_selected = {
-						guifg = {attribute = "fg", highlight="Special"},
-						guibg = {attribute = "bg", highlight = "Normal"}
-		},
-		separator_visible = {
-			guifg = {attribute = "fg", highlight = "Normal"},
-			guibg = {attribute = "bg", highlight = "StatusLineNC"},
-		},
-		close_button = {
-			guifg = {attribute = "fg", highlight = "Normal"},
-			guibg = {attribute = "bg", highlight = "StatusLine"}
-		},
-		close_button_selected = {
-			guifg = {attribute = "fg", highlight="normal"},
-			guibg = {attribute = "bg", highlight = "normal"}
-		},
-		close_button_visible = {
-			guifg = {attribute = "fg", highlight="normal"},
-			guibg = {attribute = "bg", highlight = "normal"}
-		},
-	},
+	highlights = theme.highlights,
 	options = {
 		mappings               = false,
 		numbers                = 'none',
@@ -117,10 +52,10 @@ require('bufferline').setup({
 		},
 
 		--icons
-		--indicator_icon		 = '?',
-		--buffer_close_icon  = '?',
-		--modified_icon			 = '?',
+		indicator_icon		 = '',
+		--modified_icon			 = '',
 		--close_icon				 = '?',
+		--buffer_close_icon  = '',
 		--left_trunc_marker  = '◤',
 		--right_trunc_marker = '◥',
 			-- NOTE: this plugin is designed with this icon in mind,
@@ -143,10 +78,10 @@ require('bufferline').setup({
 			--separator_style = 'slant' | 'thick' | 'thin' | { 'any', 'any' },
 
 		--diagnostics
-		--diagnostics = 'nvim_lsp',
+		--diagnostics = 'nvim_lsp|none',
 		diagnostics = 'none',
 		diagnostics_indicator = function(count, level, diagnostics_dict, context)
-			return '('..count..')'
+			return '  '..count..' '
 		end,
 		diagnostic = {
 			guifg = comment_diagnostic_fg,
@@ -191,7 +126,6 @@ require('bufferline').setup({
 			gui = 'bold,italic',
 			guisp = info_diagnostic_fg,
 		},
-
 		custom_areas = {
 			right = function()
 				local result = {}
@@ -201,34 +135,34 @@ require('bufferline').setup({
 				local info		= vim.lsp.diagnostic.get_count(0, [[Information]])
 				local hint		= vim.lsp.diagnostic.get_count(0, [[Hint]])
 
-				--if error ~= 0 then
-				--	result[1] = {
-				--		text = '  ' .. error,
-				--		guifg = '#EC5241',
-				--	}
-				--end
+			--  if error ~= 0 then
+			--    result[1] = {
+			--      text = '  ' .. error,
+			--      guifg = '#EC5241',
+			--    }
+			--  end
 
-				--if warning ~= 0 then
-				--	result[2] = {
-				--		text = '  ' .. warning,
-				--		guifg = '#EFB839',
-				--	}
-				--end
+			--  if warning ~= 0 then
+			--    result[2] = {
+			--      text = '  ' .. warning,
+			--      guifg = '#EFB839',
+			--    }
+			--  end
 
-				--if hint ~= 0 then
-				--	result[3] = {
-				--		text = '  ' .. hint,
-				--		guifg = '#A3BA5E',
-				--	}
-				--end
+			--  if hint ~= 0 then
+			--    result[3] = {
+			--      text = '  ' .. hint,
+			--      guifg = '#A3BA5E',
+			--    }
+			--  end
 
-				--if info ~= 0 then
-				--	result[4] = {
-				--		text = '  ' .. info,
-				--		guifg = '#7EA9A7',
-				--	}
-				--end
-				return result
+			--  if info ~= 0 then
+			--    result[4] = {
+			--      text = '  ' .. info,
+			--      guifg = '#7EA9A7',
+			--    }
+			--  end
+			--  return result
 			end
 		},
 	},
