@@ -4250,6 +4250,7 @@
 						Plug 'kosayoda/nvim-lightbulb'
 						Plug 'hrsh7th/nvim-compe'
 							Plug 'tzachar/compe-tabnine', { 'do': './install.sh' }
+						Plug 'ray-x/lsp_signature.nvim'
 						Plug 'onsails/lspkind-nvim'
 						Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
 					elseif has('node') && (v:version >= 800 || has('nvim-0.4'))
@@ -4951,6 +4952,7 @@
 				lua require('plugins/lsp/lspsaga')
 				lua require('plugins/lsp/lightbulb')
 				lua require('plugins/lsp/compe')
+				lua require('plugins/lsp/lsp_signature')
 				lua require('plugins/lsp/lspkind')
 				lua require('plugins/lsp/lsp-ts-utils')
 
