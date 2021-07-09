@@ -2408,6 +2408,11 @@
 			"DEFAULTS
 			"EDITING
 				"OPERATORS
+					Plug 'JRasmusBm/vim-peculiar'
+						nmap gn <Plug>PeculiarN
+						nmap g; <Plug>PeculiarG
+						nmap g: <Plug>PeculiarV
+						nmap gr <Plug>PeculiarR
 					Plug 'haya14busa/vim-operator-flashy'
 						"CONFIGURATION
 							let g:operator#flashy#group = 'Visual'
@@ -2668,6 +2673,8 @@
 					if v:version >= 740
 						Plug 'andymass/vim-matchup'
 					endif
+				"JUMPS
+				"COMMANDS
 				"RANDOM
 					Plug 'machakann/vim-swap'
 						let g:swap_no_default_key_mappings = 1
@@ -2731,9 +2738,7 @@
 						let g:bullets_max_alpha_characters = 2
 			"EDITOR
 				"MODES
-					if has('nvim-0.5')
-						Plug 'Iron-E/nvim-libmodal', { 'branch': 'feature' }
-					elseif has('nvim-0.4')
+					if has('nvim-0.4')
 						Plug 'Iron-E/nvim-libmodal', { 'branch': 'master' }
 					else
 						Plug 'Iron-E/vim-libmodal'
