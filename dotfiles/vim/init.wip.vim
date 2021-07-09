@@ -2409,10 +2409,10 @@
 			"EDITING
 				"OPERATORS
 					Plug 'JRasmusBm/vim-peculiar'
-						nmap gn <Plug>PeculiarN
+						nmap g<space> <Plug>PeculiarN
 						nmap g; <Plug>PeculiarG
 						nmap g: <Plug>PeculiarV
-						nmap gr <Plug>PeculiarR
+						nmap g. <Plug>PeculiarR
 					Plug 'haya14busa/vim-operator-flashy'
 						"CONFIGURATION
 							let g:operator#flashy#group = 'Visual'
@@ -4258,6 +4258,7 @@
 						Plug 'ray-x/lsp_signature.nvim'
 						Plug 'onsails/lspkind-nvim'
 						Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
+						Plug 'folke/lua-dev.nvim'
 					elseif has('node') && (v:version >= 800 || has('nvim-0.4'))
 						Plug 'neoclide/coc.nvim', {'branch': 'release'}
 							"CONFIGURATION
@@ -4960,6 +4961,7 @@
 				lua require('plugins/lsp/lsp_signature')
 				lua require('plugins/lsp/lspkind')
 				lua require('plugins/lsp/lsp-ts-utils')
+				lua require('plugins/lsp/lua-dev')
 
 				"vcs
 				lua require('plugins/vcs/gitsigns')

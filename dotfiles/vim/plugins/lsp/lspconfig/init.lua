@@ -11,7 +11,7 @@ local SERVERS = {
 	--'codeqlls',
 
 	'vimls',
-	'sumneko_lua',
+	--'sumneko_lua',
 	'pyright',
 	--'jedi_language_server',
 	--'pyls',
