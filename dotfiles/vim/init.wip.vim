@@ -673,6 +673,8 @@
 						"au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc,init.vim so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
 					"augroup END
 		"EDITING
+			Plug 'kana/vim-operator-user'
+			Plug 'kana/vim-textobj-user'
 			"OPERATOR
 				"TODO:HOO-RANGE
 					"FEATURE:DOT=TARGET
@@ -2740,8 +2742,50 @@
 				"MODES
 					if has('nvim-0.4')
 						Plug 'Iron-E/nvim-libmodal', { 'branch': 'master' }
-					else
+					elseif has('vim')
 						Plug 'Iron-E/vim-libmodal'
+					else
+						"Plug 'kana/vim-submode'
+							"let g:submode_always_show_submode = 1
+							"let g:submode_keep_leaving_key = 1
+							"let g:submode_timeout = 0
+							"let g:submode_timeoutlen = 1000
+						"Plug 'vim-scripts/vim-easy-submode'
+							" call easysubmode#load()
+
+							" SubmodeDefine buffers
+							" Submode n <enter> <Leader>b. :bnext<CR>
+							" Submode n h :bnext<CR>
+							" Submode n l :bprevious<CR>
+							" SubmodeDefineEnd
+
+							" SubmodeDefine tabs
+							" Submode n <enter> <Leader>t. :tabnext<CR>
+							" Submode n n :tabnext<CR>
+							" Submode n p :tabprevious<CR>
+							" Submode n h :tabmove +1<CR>
+							" Submode n l :tabmove -1<CR>
+							" SubmodeDefineEnd
+
+
+							" SubmodeDefine windows
+							" Submode n <enter> <Leader>w. <C-W><C-L>
+							" Submode n h <C-W><C-H>
+							" Submode n j <C-W><C-J>
+							" Submode n k <C-W><C-K>
+							" Submode n l <C-W><C-L>
+
+							" Submode n <S-h> <C-W><S-H>
+							" Submode n <S-j> <C-W><S-J>
+							" Submode n <S-k> <C-W><S-K>
+							" Submode n <S-l> <C-W><S-L>
+
+							" Submode n r <C-W><C-R>
+							" Submode n R <C-W><S-R>
+							" SubmodeDefineEnd
+						"Plug 'kana/vim-arpeggio'
+						"Plug 'vim-scripts/tinymode.vim'
+						"Plug 'tyru/stickykey.vim'
 					endif
 				"BUFFER
 					"SCROLLBAR"
@@ -2866,9 +2910,9 @@
 						let g:diminactive_use_colorcolumn = 0
 						"highlight ColorColumn ctermbg=0 guibg=#081C23
 				"MAPPINGS
-					if has('nvim-.0.6')
+					if has('nvim-0.6')
 						Plug 'folke/which-key.nvim'
-					else
+					elseif has('vim')
 						Plug 'liuchengxu/vim-which-key'
 							"CONFIGURATION
 								let g:which_key_sep					 = '→'
@@ -3254,6 +3298,9 @@
 								nnoremap <silent> <Leader>		:<C-U>WhichKey		 '<SPACE>' <CR>
 								vnoremap <silent> <Leader>		:<C-U>WhichKeyVisual '<SPACE>' <CR>
 								nnoremap <silent> <LocalLeader> :<C-U>WhichKey		 ','		 <CR>
+					else
+						"Plug 'luzhlon/guider.nvim'
+						"Plug 'skywind3000/quickmenu.vim'
 					endif
 				"MINIMAP
 					if has('nvim-0.5') || v:version >= 820
@@ -3298,6 +3345,10 @@
 					if has('nvim')
 						Plug 'kevinhwang91/nvim-bqf'
 					endif
+				"HIGHLIGHT
+					"if has('nvim-0.5') || v:version >= 810
+						"Plug 'ayosec/hltermpaste.vim'
+					"endif
 				Plug 'mtth/scratch.vim'
 					let g:scratch_no_mappings      = 1
 					let g:scratch_height           = 0.3
@@ -4185,6 +4236,19 @@
 							"NEODARK
 						"RANDOM
 							"*MATERIAL*
+				"FOCUS
+					if has('nvim-0.5')
+						Plug 'folke/zen-mode.nvim'
+						Plug 'folke/twilight.nvim'
+					else
+						Plug 'junegunn/goyo.vim'
+							let g:goyo_width = "75%"
+							let g:goyo_height = "90%"
+							let g:goyo_linenr = 1
+							nnoremap <Leader>vtd	:Goyo<CR>
+						Plug 'junegunn/limelight.vim'
+							nnoremap <Leader>vtD :Limelight!!<CR>
+					endif
 				"ICONS
 					Plug 'kyazdani42/nvim-web-devicons'
 					Plug 'ryanoasis/vim-devicons'
@@ -4229,7 +4293,13 @@
 							let g:git_messenger_max_popup_width     = 200
 							let g:git_messenger_max_popup_height    = 40
 							let g:git_messenger_no_default_mappings = v:true
+							let g:git_messenger_floating_win_opts = { 'border': 'single' }
+							let g:git_messenger_popup_content_margins = v:true
 						"HIGHLIGHTS
+							"hi gitmessengerPopupNormal term=None guifg=#eeeeee guibg=#333333 ctermfg=255 ctermbg=234
+							"hi gitmessengerHeader term=None guifg=#88b8f6 ctermfg=111
+							"hi gitmessengerHash term=None guifg=#f0eaaa ctermfg=229
+							"hi gitmessengerHistory term=None guifg=#fd8489 ctermfg=210
 						"MAPPINGS
 							nmap <silent> <Leader>gch <Plug>(git-messenger)
 					Plug 'rhysd/conflict-marker.vim'
@@ -4504,17 +4574,20 @@
 					Plug 'tpope/vim-dadbod'
 					Plug 'kristijanhusak/vim-dadbod-ui'
 				"SNIPPETS
-					if false && has('nvim-0.5')
-						Plug 'norcalli/snippets.nvim'
-					elseif false && (has('nvim-0.4.4') || v:version >= 800)
+					if has('nvim-0.5')
+						Plug 'L3MON4D3/LuaSnip'
+					elseif (has('nvim-0.4.4') || v:version >= 800) && v:false
 						Plug 'hrsh7th/vim-vsnip'
 						Plug 'hrsh7th/vim-vsnip-integ'
 						Plug 'rafamadriz/friendly-snippets'
+					elseif has('nvim-0.5') && v:false
+						"Plug 'norcalli/snippets.nvim'
 					else
 						Plug 'SirVer/ultisnips'
 							let g:UltiSnipsExpandTrigger       = ""
 							let g:UltiSnipsJumpForwardTrigger  = ""
 							let g:UltiSnipsJumpBackwardTrigger = ""
+							"let g:UltiSnipsSnippetDirectories=["UltiSnips", "~/.config/nvim/snippets"]
 						Plug 'honza/vim-snippets'
 						"Plug 'epilande/vim-react-snippets'
 					endif
@@ -4709,53 +4782,7 @@
 							nmap <Leader>ow :execute ":OpenBrowserSearch -wikipedia " GetWordUnderCursor() <CR>
 							vmap <Leader>ow :<C-w>execute ":OpenBrowserSearch -wikipedia " GetSelectedText() <CR>
 			"LIBRARIES
-				Plug 'kana/vim-textobj-user'
-				Plug 'kana/vim-operator-user'
 				"Plug 'mattn/webapi-vim'
-				"Plug 'lucerion/vim-buffr'
-				"Plug 'kana/vim-submode'
-					let g:submode_always_show_submode = 1
-					"let g:submode_keep_leaving_key = 1
-					"let g:submode_timeout = 0
-					let g:submode_timeoutlen = 1000
-				"Plug 'vim-scripts/vim-easy-submode'
-					" call easysubmode#load()
-
-					" SubmodeDefine buffers
-					" Submode n <enter> <Leader>b. :bnext<CR>
-					" Submode n h :bnext<CR>
-					" Submode n l :bprevious<CR>
-					" SubmodeDefineEnd
-
-					" SubmodeDefine tabs
-					" Submode n <enter> <Leader>t. :tabnext<CR>
-					" Submode n n :tabnext<CR>
-					" Submode n p :tabprevious<CR>
-					" Submode n h :tabmove +1<CR>
-					" Submode n l :tabmove -1<CR>
-					" SubmodeDefineEnd
-
-
-					" SubmodeDefine windows
-					" Submode n <enter> <Leader>w. <C-W><C-L>
-					" Submode n h <C-W><C-H>
-					" Submode n j <C-W><C-J>
-					" Submode n k <C-W><C-K>
-					" Submode n l <C-W><C-L>
-
-					" Submode n <S-h> <C-W><S-H>
-					" Submode n <S-j> <C-W><S-J>
-					" Submode n <S-k> <C-W><S-K>
-					" Submode n <S-l> <C-W><S-L>
-
-					" Submode n r <C-W><C-R>
-					" Submode n R <C-W><S-R>
-					" SubmodeDefineEnd
-				"Plug 'kana/vim-arpeggio'
-				"Plug 'vim-scripts/tinymode.vim'
-				"Plug 'tyru/stickykey.vim'
-				"Plug 'luzhlon/popup.vim'
-				"Plug 'skywind3000/quickmenu.vim'
 			"DEPENDENCIES
 				Plug 'Shougo/vimproc.vim'
 			"MESS:EXTENDING-VIM
@@ -4859,9 +4886,6 @@
 						"nmap <Leader>aa <Plug>(AerojumpFromCursorBolt)
 						"nmap <Leader>ad <Plug>(AerojumpDefault)
 				endif
-				if has('nvim-0.5')
-					Plug 'L3MON4D3/LuaSnip'
-				endif
 			"TODECIDE
 				Plug 'kopischke/vim-fetch'
 				"Plug 'gyim/vim-boxdraw'
@@ -4962,6 +4986,8 @@
 				lua require('plugins/lsp/lspkind')
 				lua require('plugins/lsp/lsp-ts-utils')
 				lua require('plugins/lsp/lua-dev')
+				lua require('plugins/lsp/luasnip')
+				lua require('plugins/lsp/vsnip')
 
 				"vcs
 				lua require('plugins/vcs/gitsigns')
@@ -4983,6 +5009,8 @@
 				"aesthetics
 				lua require('plugins/aesthetics/galaxyline/evilline')
 				lua require('plugins/aesthetics/nvim-bufferline')
+				lua require('plugins/aesthetics/zen-mode')
+				lua require('plugins/aesthetics/twilight')
 			endif
 	"CUSTOM
 		source ~/.config/nvim/plugins/aesthetics/custom/minimalistic-folds.vim

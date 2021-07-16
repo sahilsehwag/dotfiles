@@ -1,3 +1,5 @@
+local luasnip = require('luasnip')
+
 vim.o.completeopt = 'menuone,noselect'
 
 require'compe'.setup {
@@ -15,8 +17,9 @@ require'compe'.setup {
   documentation = true;
 
   source = {
+    luasnip       = { priority = 10000000 };
+    --vsnip         = { priority = 10000000 };
     ultisnips     = { priority = 10000000 };
-    vsnip         = { priority = 10000000 };
     snippets_nvim = { priority = 10000000 };
 
     nvim_lsp = { priority = 1000000 };
@@ -35,11 +38,11 @@ require'compe'.setup {
   };
 }
 
-local t = function(str)
+local replaceTermcodes = function(str)
   return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
 
-local check_back_space = function()
+local checkBackspace = function()
   local col = vim.fn.col('.') - 1
   if col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
     return true
@@ -50,13 +53,15 @@ end
 
 _G.tab_complete = function()
   if vim.fn.pumvisible() == 1 then
-    return t '<C-n>'
-  elseif vim.fn["UltiSnips#CanExpandSnippet"]() == 1 or vim.fn["UltiSnips#CanJumpForwards"]() == 1 then
-    return vim.api.nvim_replace_termcodes("<C-R>=UltiSnips#ExpandSnippetOrJump()<CR>", true, true, true)
-  --elseif vim.fn.call("vsnip#available", {1}) == 1 then
-  --  return t "<Plug>(vsnip-expand-or-jump)"
-  elseif check_back_space() then
-    return t '<Tab>'
+    return replaceTermcodes('<C-n>')
+  elseif luasnip and luasnip.expand_or_jumpable() then
+    return replaceTermcodes('<Plug>luasnip-expand-or-jump')
+  --elseif vim.fn.call('vsnip#available', {1}) == 1 then
+  --  return t '<Plug>(vsnip-expand-or-jump)'
+  elseif vim.fn['UltiSnips#CanExpandSnippet']() == 1 or vim.fn['UltiSnips#CanJumpForwards']() == 1 then
+    return replaceTermcodes('<C-R>=UltiSnips#ExpandSnippetOrJump()<CR>')
+  elseif checkBackspace() then
+    return replaceTermcodes('<Tab>')
   else
     return vim.fn['compe#complete']()
   end
@@ -64,19 +69,34 @@ end
 
 _G.s_tab_complete = function()
   if vim.fn.pumvisible() == 1 then
-    return t '<C-p>'
-  elseif vim.fn["UltiSnips#CanJumpBackwards"]() == 1 then
-    return vim.api.nvim_replace_termcodes("<C-R>=UltiSnips#JumpBackwards()<CR>", true, true, true)
-  --elseif vim.fn.call("vsnip#jumpable", {-1}) == 1 then
-  --  return t "<Plug>(vsnip-jump-prev)"
+    return replaceTermcodes('<C-p>')
+  elseif luasnip and luasnip.jumpable(-1) then
+    return replaceTermcodes('<Plug>luasnip-jump-prev')
+  --elseif vim.fn.call('vsnip#jumpable', {-1}) == 1 then
+  --  return t '<Plug>(vsnip-jump-prev)'
+  elseif vim.fn['UltiSnips#CanJumpBackwards']() == 1 then
+    return vim.api.nvim_replace_termcodes('<C-R>=UltiSnips#JumpBackwards()<CR>', true, true, true)
   else
-    return t '<S-Tab>'
+    return replaceTermcodes('<S-Tab>')
   end
 end
 
-vim.api.nvim_set_keymap('i', '<Tab>'  , 'v:lua.tab_complete()'  , { noremap = true , expr = true , silent = true})
-vim.api.nvim_set_keymap('s', '<Tab>'  , 'v:lua.tab_complete()'  , { noremap = true , expr = true , silent = true})
-vim.api.nvim_set_keymap('i', '<S-Tab>', 'v:lua.s_tab_complete()', { noremap = true , expr = true , silent = true})
-vim.api.nvim_set_keymap('s', '<S-Tab>', 'v:lua.s_tab_complete()', { noremap = true , expr = true , silent = true})
-vim.api.nvim_set_keymap('i', '<CR>'   , 'compe#confirm("<CR>")' , { noremap = true , expr = true , silent = true})
+--_G.cr_complete = function()
+--  if vim.fn.pumvisible() == 1 then
+--    _G.tab_complete()
+--    vim.fn['compe#confirm']("<CR>")
+--    --vim.fn['compe#complete']()
+--    return replaceTermcodes('')
+--    --return replaceTermcodes('compe#confirm("<CR>")')
+--    --return replaceTermcodes('compe#complete()')
+--  else
+--    return replaceTermcodes('<CR>')
+--  end
+--end
+
+vim.api.nvim_set_keymap('i', '<Tab>',   'v:lua.tab_complete()',   { noremap = true, expr = true, silent = true})
+vim.api.nvim_set_keymap('s', '<Tab>',   'v:lua.tab_complete()',   { noremap = true, expr = true, silent = true})
+vim.api.nvim_set_keymap('i', '<S-Tab>', 'v:lua.s_tab_complete()', { noremap = true, expr = true, silent = true})
+vim.api.nvim_set_keymap('s', '<S-Tab>', 'v:lua.s_tab_complete()', { noremap = true, expr = true, silent = true})
+--vim.api.nvim_set_keymap('i', '<CR>',    'v:lua.cr_complete()',    { noremap = true, expr = true, silent = true})
 
