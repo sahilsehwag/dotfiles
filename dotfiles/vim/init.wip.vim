@@ -673,8 +673,6 @@
 						"au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc,init.vim so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
 					"augroup END
 		"EDITING
-			Plug 'kana/vim-operator-user'
-			Plug 'kana/vim-textobj-user'
 			"OPERATOR
 				"TODO:HOO-RANGE
 					"FEATURE:DOT=TARGET
@@ -2036,8 +2034,10 @@
 		map Q <nop>
 		map <C-r> <nop>
 	"REMAPS
+		"nnoremap ; :
 		nnoremap U <C-r>
 		nnoremap ' "
+		nnoremap " '
 	"LEADER
 		"BASICS
 			nnoremap <Leader>vq :qall<CR>
@@ -2409,6 +2409,22 @@
 		call plug#begin()
 			"DEFAULTS
 			"EDITING
+				"GENERAL
+					"BETTER-CAPSLOCK
+						Plug 'tpope/vim-capslock'
+							nmap <silent> <LocalLeader><LocalLeader> <Plug>CapsLockToggle
+							imap ;; <Plug>CapsLockToggle
+					"BETTER-REPEAT
+						"BETTER-DOT
+							Plug 'tpope/vim-repeat'
+						"BETTER-;,
+							if v:false
+								Plug 'Houl/repmo-vim'
+							else
+								Plug 'vim-scripts/repmo.vim'
+									let repmo_key = ";"
+									let repmo_revkey = ","
+							endif
 				"OPERATORS
 					Plug 'JRasmusBm/vim-peculiar'
 						nmap g<space> <Plug>PeculiarN
@@ -2739,6 +2755,75 @@
 						let g:bullets_pad_right = 1
 						let g:bullets_max_alpha_characters = 2
 			"EDITOR
+				"GENERAL
+					"STARTSCREEN
+						Plug 'mhinz/vim-startify'
+							"CONFIGURATION
+								let g:startify_session_sort        = 1
+								let g:startify_change_to_vcs_root  = 1
+								let g:startify_fortune_use_unicode = 1
+								let g:startify_session_dir         = g:jaat_tmp_path . 'sessions'
+							"AUTOCOMMANDS
+								autocmd User StartifyReady setl foldlevel=99
+					"UNDOTREE
+						Plug 'mbbill/undotree'
+							"CONFIGURATIONS
+								let g:undotree_WindowLayout = 2
+								let g:undotree_ShortIndicators = 1
+								let g:undotree_SplitWidth = 30
+								let g:undotree_DiffpanelHeight = 10
+								let g:undotree_SetFocusWhenToggle = 1
+								let g:undotree_TreeNodeShape = '◉'
+								" let g:undotree_DiffCommand = "Delta"
+								let g:undotree_HighlightChangedText = 1
+								let g:undotree_HighlightChangedWithSign = 1
+								let g:undotree_HighlightSyntaxAdd = "DiffAdd"
+								let g:undotree_HighlightSyntaxChange = "DiffChange"
+								let g:undotree_HighlightSyntaxDel = "DiffDelete"
+								let g:undotree_HelpLine = 0
+								let g:undotree_CursorLine = 1
+							"MAPPINGS
+								nnoremap <Leader>vu :UndotreeToggle<CR>
+					"SESSIONS
+						Plug 'abdalrahman-ali/vim-remembers'
+							let g:remembers_ignore_empty_buffers = 1
+							let g:remembers_tmp_dir     = g:jaat_tmp_path . 'remembers/unnamed'
+							let g:remembers_session_dir = g:jaat_tmp_path . 'remembers/sessions'
+					"MINIMAP
+						if has('nvim-0.5') || v:version >= 820
+							Plug 'wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'}
+								let g:minimap_left = v:false
+								let g:minimap_width = 15
+								let g:minimap_auto_start = v:true
+								let g:minimap_auto_start_win_enter = v:true
+								let g:minimap_block_filetypes = ['fugitive', 'help', 'startify', 'floaterm']
+								let g:minimap_block_buftypes = ['terminal']
+								let g:indent_blankline_bufname_exclude = ['README.md', '.*\.py']
+						endif
+					"SEARCH-REPLACE
+						if has('nvim-0.5')
+							Plug 'windwp/nvim-spectre'
+						endif
+					"SCRATCH-BUFFER
+						Plug 'mtth/scratch.vim'
+							let g:scratch_no_mappings      = 1
+							let g:scratch_height           = 0.3
+							let g:scratch_top              = 0
+							let g:scratch_persistence_file = g:jaat_tmp_path . 'scratch'
+
+							nnoremap <silent> <Leader>so :Scratch<CR>
+							nnoremap <silent> <Leader>sp :ScratchPreview<CR>
+							vnoremap <silent> <Leader>ss :ScratchSelection<CR>
+
+							augroup SCRATCH_ENTER
+								autocmd!
+								autocmd FileType scratch nnoremap <buffer> <esc> :q<CR>
+								autocmd FileType scratch set syntax=jproperties
+							augroup END
+					"BUFFER-TREE
+						Plug 'el-iot/buffer-tree-explorer'
+							let g:buffer_tree_explorer_compress = v:true
+							nnoremap <Leader>bt :Tree<CR>
 				"MODES
 					if has('nvim-0.4')
 						Plug 'Iron-E/nvim-libmodal', { 'branch': 'master' }
@@ -2860,33 +2945,12 @@
 						if has('nvim-0.5')
 							Plug 'norcalli/nvim-colorizer.lua'
 						endif
-					"BETTER-FOLDING
-						if has('folding')
-							Plug 'pseewald/vim-anyfold'
-								"CONFIGURATION
-									let g:anyfold_motion            = 0
-									let g:anyfold_fold_comments     = 0
-									let g:anyfold_identify_comments = 0
-									let g:anyfold_fold_toplevel     = 0
-									let g:anyfold_comments          = []
-									let g:anyfold_fold_level_str    = ''
-									let g:anyfold_fold_size_str     = '%s Lines   '
-								"HIGHLIGHT
-									"hi Folded ctermfg= ctermbg= guifg= guibg
-								"AUTOCOMMANDS
-									autocmd FileType text AnyFoldActivate
-									autocmd FileType jproperties AnyFoldActivate
-								"MAPPINGS
-							Plug 'arecarn/vim-fold-cycle'
-								let g:fold_cycle_default_mapping = 0
-								nmap <TAB>	 <Plug>(fold-cycle-open)
-								nmap <S-TAB> <Plug>(fold-cycle-close)
+					"WORD-HIGHLIGHER
+						Plug 'itchyny/vim-cursorword'
+					"PASTE-HIGHLIGHTER
+						if has('nvim-0.5') || v:version >= 810
+							Plug 'ayosec/hltermpaste.vim'
 						endif
-					"BETTER-SIGNS
-						if has('signs')
-							Plug 'kshenoy/vim-signature'
-						endif
-					Plug 'itchyny/vim-cursorword'
 					if has('nvim-0.5')
 						Plug 'nacro90/numb.nvim'
 					endif
@@ -3302,599 +3366,40 @@
 						"Plug 'luzhlon/guider.nvim'
 						"Plug 'skywind3000/quickmenu.vim'
 					endif
-				"MINIMAP
-					if has('nvim-0.5') || v:version >= 820
-						Plug 'wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'}
-							let g:minimap_left = v:false
-							let g:minimap_width = 15
-							let g:minimap_auto_start = v:true
-							let g:minimap_auto_start_win_enter = v:true
-							let g:minimap_block_filetypes = ['fugitive', 'help', 'startify', 'floaterm']
-							let g:minimap_block_buftypes = ['terminal']
-							let g:indent_blankline_bufname_exclude = ['README.md', '.*\.py']
-					endif
-				"UNDOTREE
-					Plug 'mbbill/undotree'
-						"CONFIGURATIONS
-							let g:undotree_WindowLayout = 2
-							let g:undotree_ShortIndicators = 1
-							let g:undotree_SplitWidth = 30
-							let g:undotree_DiffpanelHeight = 10
-							let g:undotree_SetFocusWhenToggle = 1
-							let g:undotree_TreeNodeShape = '◉'
-							" let g:undotree_DiffCommand = "Delta"
-							let g:undotree_HighlightChangedText = 1
-							let g:undotree_HighlightChangedWithSign = 1
-							let g:undotree_HighlightSyntaxAdd = "DiffAdd"
-							let g:undotree_HighlightSyntaxChange = "DiffChange"
-							let g:undotree_HighlightSyntaxDel = "DiffDelete"
-							let g:undotree_HelpLine = 0
-							let g:undotree_CursorLine = 1
-						"MAPPINGS
-							nnoremap <Leader>vu :UndotreeToggle<CR>
-				"SESSIONS
-					Plug 'abdalrahman-ali/vim-remembers'
-						let g:remembers_ignore_empty_buffers = 1
-						let g:remembers_tmp_dir     = g:jaat_tmp_path . 'remembers/unnamed'
-						let g:remembers_session_dir = g:jaat_tmp_path . 'remembers/sessions'
-				"SEARCH
-					if has('nvim-0.5')
-						Plug 'windwp/nvim-spectre'
-					endif
-				"BETTER-QUICKFIX
-					if has('nvim')
-						Plug 'kevinhwang91/nvim-bqf'
-					endif
-				"HIGHLIGHT
-					"if has('nvim-0.5') || v:version >= 810
-						"Plug 'ayosec/hltermpaste.vim'
-					"endif
-				Plug 'mtth/scratch.vim'
-					let g:scratch_no_mappings      = 1
-					let g:scratch_height           = 0.3
-					let g:scratch_top              = 0
-					let g:scratch_persistence_file = g:jaat_tmp_path . 'scratch'
-
-					nnoremap <silent> <Leader>so :Scratch<CR>
-					nnoremap <silent> <Leader>sp :ScratchPreview<CR>
-					vnoremap <silent> <Leader>ss :ScratchSelection<CR>
-
-					augroup SCRATCH_ENTER
-						autocmd!
-						autocmd FileType scratch nnoremap <buffer> <esc> :q<CR>
-						autocmd FileType scratch set syntax=jproperties
-					augroup END
-				Plug 'tpope/vim-repeat'
-				Plug 'tpope/vim-capslock'
-					nmap <silent> <LocalLeader><LocalLeader> <Plug>CapsLockToggle
-					imap ;; <Plug>CapsLockToggle
-				Plug 'liuchengxu/vim-which-key'
-					"CONFIGURATION
-						let g:which_key_sep = '→'
-						let g:which_key_hspace = 5
-						let g:which_key_flatten = 1
-						let g:which_key_max_size = 0
-						let g:which_key_sort_horizontal = 0
-						let g:which_key_vertical = 0
-						let g:which_key_use_floating_win = 0
-						let g:which_key_align_by_seperator = 1
-						let g:which_key_display_names	   = {
-							\' '	 : 'SPC',
-							\'<C-H>' : 'BS'
-						\}
-
-						"hiding statusline
-						autocmd! FileType which_key
-						autocmd  FileType which_key set laststatus=0 noshowmode noruler
-							\| autocmd BufLeave <buffer> set laststatus=2 noshowmode ruler
-
-						let g:which_key_map = {}
-
-						let g:which_key_map['*']   = "which_key_ignore"
-						let g:which_key_map['"']   = "which_key_ignore"
-						let g:which_key_map['/']   = "which_key_ignore"
-						let g:which_key_map['?']   = "which_key_ignore"
-						let g:which_key_map['@']   = "which_key_ignore"
-
-						let g:which_key_map['1-9'] = "open-buffer"
-							let g:which_key_map['1']   = "which_key_ignore"
-							let g:which_key_map['2']   = "which_key_ignore"
-							let g:which_key_map['3']   = "which_key_ignore"
-							let g:which_key_map['4']   = "which_key_ignore"
-							let g:which_key_map['5']   = "which_key_ignore"
-							let g:which_key_map['6']   = "which_key_ignore"
-							let g:which_key_map['7']   = "which_key_ignore"
-							let g:which_key_map['8']   = "which_key_ignore"
-							let g:which_key_map['9']   = "which_key_ignore"
-						let g:which_key_map['`']   = "open-last-buffer"
-
-						let g:which_key_map['<Tab>'] = "show-mappings"
-						let g:which_key_map[' '] = {'name':'+miscellanous'}
-
-						let g:which_key_map['a'] = {
-							\'name' : 'applications(tui)',
-							\'e' : 'explorer',
-							\'m' : 'markdown',
-							\'M' : 'markdown-current-file',
-							\'g' : 'git',
-							\'t' : 'typing-practise',
-							\'y' : 'youtube',
-							\'Y' : 'youtube-music',
-						\}
-						let g:which_key_map['b'] = {
-							\'name' : '+buffers',
-							\'a': {
-								\'name': '+new',
-								\'n': 'new-buffer',
-								\'s': 'new-scratch-buffer',
-								\'S': 'new-scratch-buffer-filetype',
-							\},
-							\'c': {
-								\'name': '+close',
-								\'c': 'close-current',
-								\'C': 'CLOSE-current',
-								\'a': 'close-all',
-								\'A': 'CLOSE-all',
-								\'o': 'close-others',
-								\'h': 'close-left-ones',
-								\'l': 'close-right-ones',
-							\},
-							\'d': {
-								\'name': '+delete',
-								\'c': 'delete-current',
-								\'C': 'DELETE-current',
-								\'a': 'delete-all',
-								\'A': 'DELETE-all',
-								\'o': '--delete-others',
-								\'h': '--delete-left-ones',
-								\'l': '--delete-right-ones',
-							\},
-							\'w' : {
-								\'name': '+write',
-								\'c': 'write-current-buffer',
-								\'C': 'WRITE-current-buffer',
-								\'a': 'write-all-buffers',
-								\'A': 'WRITE-all-buffers',
-							\},
-							\'l': 'list-buffers',
-							\'g': 'goto-buffer',
-							\'t': 'open-buffer-tree',
-							\'f': 'change-buffer-filetype',
-							\'/': 'search-current-buffer',
-							\'?': 'search-all-buffers',
-						\}
-						let g:which_key_map['c'] = {
-							\'name' : 'which_key_ignore',
-						\}
-						let g:which_key_map['d'] = {
-							\'name' : 'which_key_ignore',
-						\}
-						let g:which_key_map['e'] = {
-							\'name' : 'which_key_ignore',
-						\}
-						let g:which_key_map['f'] = {
-							\'name' : '+fuzzy',
-							\'f' : {
-								\'name': '+files',
-								\'/': 'search-/',
-								\'h': 'search-home',
-								\'d': 'search-drive',
-								\'p': 'search-current-directory',
-								\'c': 'search-curent-buffer-directory',
-							\},
-							\'d' : {
-								\'name': '+directories',
-								\'/': 'search-/',
-								\'h': 'search-home',
-								\'d': 'search-drive',
-								\'p': 'search-current-directory',
-								\'c': 'search-curent-buffer-directory',
-							\},
-							\'r': 'open-recent-file'
-						\}
-						let g:which_key_map['g'] = {
-							\'name' : '+git',
-							\'i' : 'git-init',
-							\'a' : {
-								\'name': '+staging-area',
-								\'s': 'git-status',
-								\'d': '--git-diff',
-								\'a': '--git-add',
-								\'r': '--reset-working-area',
-							\},
-							\'b' : {
-								\'name': '+branch',
-								\'l': '--list-branches',
-								\'n': '--new-branch',
-								\'N': '--new-branch->checkout',
-								\'c': '--git-checkout',
-								\'C': '--git-checkout-last-branch',
-								\'m': '--git-merge',
-								\'M': '--git-merge-no-ff',
-								\'r': '--git-rebase',
-								\'R': '--git-rebase-interactive',
-							\},
-							\'c' : {
-								\'name': '+commits',
-								\'l': 'git-log',
-								\'L': 'git-log-buffer',
-								\'m': '--git-commit',
-								\'a': '--git-commit-amend',
-								\'u': '--undo-commit',
-								\'d': '--delete-commit',
-								\'h' : 'show-line-commit-history',
-								\'b' : 'git-blame',
-							\},
-							\'h' : {
-								\'name': '+hunks',
-								\'s': 'stage-hunk',
-								\'u': 'undo-stage-hunk',
-								\'p': 'preview-hunk',
-								\'r': 'reset-hunk',
-								\'R': 'reset-buffer',
-							\},
-							\'r' : {
-								\'name': '+remote',
-								\'p': '--git-pull',
-								\'P': '--git-push',
-								\'l': '--git-remote-show',
-								\'a': '--git-remote-add',
-								\'d': '--git-remote-remove',
-								\'r': '--git-remote-rename',
-							\},
-							\'s' : {
-								\'name': '+stash',
-								\'s': '--git-stash',
-								\'l': '--git-stash-list',
-								\'a': '--git-stash-apply',
-								\'p': '--git-stash-pop',
-								\'d': '--git-stash-drop',
-								\'c': '--git-stash-clear',
-							\},
-						\}
-						let g:which_key_map['h'] = {
-							\'name' : 'which_key_ignore',
-						\}
-						let g:which_key_map['i'] = {
-							\'name' : 'which_key_ignore',
-						\}
-						let g:which_key_map['j'] = {
-							\'name' : '+jump',
-						\}
-						let g:which_key_map['k'] = {
-							\'name' : 'which_key_ignore',
-						\}
-						let g:which_key_map['l'] = {
-							\'name' : '+lsp',
-							\'a': {
-								\'name': '+actions',
-								\'a': 'show-code-actions',
-								\'f': 'format-buffer',
-								\'o': '--organize-imports',
-								\'q': '--quickfix',
-							\},
-							\'g': {
-								\'name': '+goto',
-								\'d': 'goto-definition',
-								\'D': 'goto-declaration',
-								\'t': 'goto-type-definition',
-								\'i': 'goto-implementation',
-								\'r': 'goto-references',
-								\'p': 'preview-definition',
-							\},
-							\'s': {
-								\'name': '+symbols',
-								\'d': 'show-document-symbols',
-								\'w': 'show-workspace-symbols',
-								\'r': 'rename-symbol',
-								\'R': 'rename-symbol-treesitter',
-								\'t': 'tagbar',
-							\},
-							\'d': {
-								\'name': '+diagnostics',
-								\'w': 'show-workspace-diagnostics',
-								\'d': 'show-document-diagnostics',
-								\'l': 'show-line-diagnostics',
-								\'n': 'goto-next-diagnostic',
-								\'p': 'goto-prev-diagnostic',
-							\},
-							\'h': {
-								\'name': '+help',
-								\'h': 'hover-documentation',
-								\'s': 'signature-help',
-							\},
-						\}
-						let g:which_key_map['m'] = {
-							\'name' : 'which_key_ignore',
-						\}
-						let g:which_key_map['n'] = {
-							\'name' : 'which_key_ignore',
-						\}
-						let g:which_key_map['o'] = {
-							\'name' : '+browse',
-							\'g'	: 'search-github',
-							\'d'	: 'search-duckduckgo',
-							\'w'	: 'search-wikipedia',
-						\}
-						let g:which_key_map['p'] = {
-							\'name' : '+projects',
-							\'o'    : 'open-project',
-							\'f'    : 'open-project-file',
-							\'r'    : 'open-project-mru',
-							\'/'    : 'search-project',
-							\'e'    : 'open-file-directory',
-							\'E'    : 'open-project-directory',
-							\'g'    : 'open-modified-file',
-						\}
-						let g:which_key_map['q'] = {
-							\'name' : 'which_key_ignore',
-						\}
-						let g:which_key_map['r'] = {
-							\'name' : 'which_key_ignore',
-						\}
-						let g:which_key_map['S'] = {
-							\'name' : '+sessions',
-							\'l'	: 'list-sessions',
-							\'n'	: 'new-session',
-							\'d'	: 'delete-session',
-							\'s'	: '--save-session',
-							\'o'	: 'open-session',
-							\'c'	: 'close-session',
-						\}
-						let g:which_key_map['s'] = {
-							\'name' : '+scratch-window',
-							\'p'	: 'preview-scratch',
-							\'o'	: 'open-scratch',
-							\'s'	: 'send-selection',
-						\}
-						let g:which_key_map['t'] = {
-							\'name' : '+terminal',
-							\'l'	: '--list-terminals',
-							\'b'	: 'new-buffer-terminal',
-							\'f'	: 'new-flaating-terminal',
-							\'v'	: 'new-vertical-terminal',
-							\'h'	: 'new-horizontal-terminal',
-							\'t'	: 'toggle-terminal',
-							\'k'	: 'kill-terminal',
-							\'n'	: 'next-terminal',
-							\'p'	: 'previous-terminal',
-							\'B'	: '--new-buffer-terminal-lcd',
-							\'F'	: '--new-floating-terminal-lcd',
-							\'V'	: '--new-vertical-terminal-lcd',
-							\'H'	: '--new-horizontal-terminal-lcd',
-						\}
-						let g:which_key_map['T'] = {
-							\'name' : '+tabs',
-							\'l'	: 'list-tabs',
-							\'a'	: 'add-tab',
-							\'d'	: 'delete-tab',
-							\'n'	: 'next-tab',
-							\'p'	: 'previous-tab',
-							\'N'	: 'move-tab-right',
-							\'P'	: 'move-tab-left',
-						\}
-						let g:which_key_map['u'] = {
-							\'name' : 'which_key_ignore',
-						\}
-						let g:which_key_map['v'] = {
-							\'name' : '+vim',
-							\'c' : 'open-config',
-							\'s' : 'source-config',
-							\'C' : 'select-colorscheme',
-							\'/' : 'search-history',
-							\':' : 'command-history',
-							\'q' : 'quit-vim',
-							\'h' : {
-								\'name' : '+help',
-								\'c'	: 'commands',
-								\'h'	: 'help',
-								\'m'	: 'maps',
-							\},
-							\'p' : {
-								\'name' : '+plugin-manager',
-								\'l'	: 'list-plugins',
-								\'i'	: 'install-plugins',
-								\'d'	: 'uninstall-plugins',
-								\'u'	: 'update-plugins',
-								\'U'	: '--update-plugin',
-								\'p'	: 'update-plugin-manager',
-							\},
-							\'t' : {
-								\'name' : '+toggles',
-								\'w'	: 'autosave-toggle',
-								\'c'	: 'autocorrect-toggle',
-								\'f'	: 'autoformat-toggle',
-								\'p'	: 'pencil-toggle',
-								\'d'	: 'distraction-mode',
-								\'l'	: 'limelight',
-							\},
-						\}
-						let g:which_key_map['w'] = {
-							\'name' : '+windows',
-							\'h'	: 'horizontal-split',
-							\'v'	: 'vertical-split',
-							\'c'	: 'close-split',
-							\'o'	: 'only-split',
-							\'m'	: 'maximize-split',
-							\'H'	: 'empty-horizontal-split',
-							\'V'	: 'empty-vertical-split',
-							\'='	: 'make-windows-equal',
-						\}
-						let g:which_key_map['x'] = {
-							\'name' : 'which_key_ignore',
-						\}
-						let g:which_key_map['y'] = {
-							\'name' : 'which_key_ignore',
-						\}
-						let g:which_key_map['z'] = {
-							\'name' : '+miscelleanous',
-						\}
-					"MAPPINGS
-						nnoremap <silent> <Leader>      :<C-U>WhichKey       '<SPACE>' <CR>
-						vnoremap <silent> <Leader>      :<C-U>WhichKeyVisual '<SPACE>' <CR>
-						nnoremap <silent> <LocalLeader> :<C-U>WhichKey       ','       <CR>
-				Plug 'el-iot/buffer-tree-explorer'
-					let g:buffer_tree_explorer_compress = v:true
-					nnoremap <Leader>bt :Tree<CR>
+				"BETTER
+					"BETTER-FOLDING
+						if has('folding')
+							Plug 'pseewald/vim-anyfold'
+								"CONFIGURATION
+									let g:anyfold_motion            = 0
+									let g:anyfold_fold_comments     = 0
+									let g:anyfold_identify_comments = 0
+									let g:anyfold_fold_toplevel     = 0
+									let g:anyfold_comments          = []
+									let g:anyfold_fold_level_str    = ''
+									let g:anyfold_fold_size_str     = '%s Lines   '
+								"HIGHLIGHT
+									"hi Folded ctermfg= ctermbg= guifg= guibg
+								"AUTOCOMMANDS
+									autocmd FileType text AnyFoldActivate
+									autocmd FileType jproperties AnyFoldActivate
+								"MAPPINGS
+							Plug 'arecarn/vim-fold-cycle'
+								let g:fold_cycle_default_mapping = 0
+								nmap <TAB>	 <Plug>(fold-cycle-open)
+								nmap <S-TAB> <Plug>(fold-cycle-close)
+						endif
+					"BETTER-SIGNS
+						if has('signs')
+							Plug 'kshenoy/vim-signature'
+						endif
+					"BETTER-QUICKFIX
+						if has('nvim')
+							Plug 'kevinhwang91/nvim-bqf'
+						endif
 				Plug 'junegunn/vim-peekaboo'
 					let g:peekaboo_window  = 'vert bo 80new'
 					let g:peekaboo_compact = 0
-			"SYSTEM
-				Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': { -> fzf#install() }}
-					"CONFIGURATION
-						let g:fzf_action = {
-							\'ALT-t': 'tab split',
-							\'ALT-h': 'split',
-							\'ALT-v': 'vsplit',
-							\'ALT-m': 'Glow',
-							\'ALT-c': 'cd',
-							\'ALT-e': 'Vifm',
-							\'ALT-o': 'Open',
-						\}
-							"'SaveAs'
-							"'SaveAs!'
-							"'NewFile'
-							"'NewDirectory'
-							"'DeleteFile'
-							"'DeleteDirectory'
-							"'DeleteDirectory!'
-						"let g:fzf_layout = {}
-						"let g:fzf_colors = {
-							"\'fg':		 ['fg', 'Normal'],
-							"\'bg':		 ['bg', 'Normal'],
-							"\'hl':		 ['fg', 'Comment'],
-							"\'fg+':	 ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-							"\'bg+':	 ['bg', 'CursorLine', 'CursorColumn'],
-							"\'hl+':	 ['fg', 'Statement'],
-							"\'info':	 ['fg', 'PreProc'],
-							"\'border':  ['fg', 'Ignore'],
-							"\'prompt':  ['fg', 'Conditional'],
-							"\'pointer': ['fg', 'Exception'],
-							"\'marker':  ['fg', 'Keyword'],
-							"\'spinner': ['fg', 'Label'],
-							"\'header':  ['fg', 'Comment'],
-						"\}
-						"let g:fzf_history_dir = {}
-						"let g:fzf_launcher = {}
-					"AUTOCOMMANDS
-						autocmd! FileType fzf
-						autocmd  FileType fzf set laststatus=0 | autocmd BufLeave <buffer> set laststatus=2
-					"FUNCTIONS
-						function! FZFFiles(path, ...)
-							call fzf#run(fzf#wrap({
-								\'source': g:jaat_find_files_command . ' ' . a:path,
-							\}))
-						endfunction
-
-						function! FZFDirectories(path, ...)
-							call fzf#run(fzf#wrap({
-								\'source': g:jaat_find_directories_command . ' ' . a:path,
-							\}))
-						endfunction
-					"MAPPINGS
-						"nnoremap <silent> <Leader>ffr :call FZFFindFiles()<CR>
-						nnoremap <silent> <Leader>ff/ :call FZFFiles(g:jaat_root_path)<CR>
-						nnoremap <silent> <Leader>ffh :call FZFFiles(g:jaat_home_path)<CR>
-						nnoremap <silent> <Leader>ffd :call FZFFiles(g:jaat_drive_path)<CR>
-						nnoremap <silent> <Leader>ffp :call FZFFiles('')<CR>
-						nnoremap <silent> <Leader>ffc :call FZFFiles(expand('%:h'))<CR>
-
-						"nnoremap <silent> <Leader>fdr :call FZFFindDirectories()<CR>
-						nnoremap <silent> <Leader>fd/ :call FZFDirectories(g:jaat_root_path)<CR>
-						nnoremap <silent> <Leader>fdh :call FZFDirectories(g:jaat_home_path)<CR>
-						nnoremap <silent> <Leader>fdd :call FZFDirectories(g:jaat_drive_path)<CR>
-						nnoremap <silent> <Leader>fdp :call FZFDirectories('')<CR>
-						nnoremap <silent> <Leader>fdc :call FZFDirectories(expand('%:h'))<CR>
-					"EXTENSIONS
-						Plug 'junegunn/fzf.vim'
-							"MAPPINGS
-								nmap <silent> <Leader><TAB> <plug>(fzf-maps-n)
-								xmap <silent> <Leader><TAB> <plug>(fzf-maps-x)
-								omap <silent> <Leader><TAB> <plug>(fzf-maps-o)
-								imap <silent> ;<TAB> <plug>(fzf-maps-i)
-							"INBUILT
-								nnoremap <silent> <Leader>bl :Buffers<CR>
-								"nnoremap <silent> <Leader>b/ :BLines<CR>
-								nnoremap <silent> <Leader>b? :Lines<CR>
-
-								nnoremap <silent> <Leader>bf :Filetypes<CR>
-
-								nnoremap <silent> <Leader>vhc :Commands<CR>
-								nnoremap <silent> <Leader>vhh :Helptags<CR>
-								nnoremap <silent> <Leader>vhm :Maps<CR>
-
-								nnoremap <silent> <Leader>v/ :History/<CR>
-								nnoremap <silent> <Leader>v: :History:<CR>
-
-								nnoremap <silent> <Leader>vC :Colors<CR>
-
-								"nnoremap <silent> <Leader>nt :Tags<CR>
-								"nnoremap <silent> <Leader>nT :BTags<CR>
-							"COMPLETION
-								imap		;w <plug>(fzf-complete-word)
-								imap		;p <plug>(fzf-complete-path)
-								imap		;f <plug>(fzf-complete-file-ag)
-								imap		;l <plug>(fzf-complete-line)
-								imap		;L <plug>(fzf-complete-buffer-line)
-								imap <expr> ;cp fzf#complete('find ~/Google\ Drive')
-								imap <expr> ;cf fzf#complete('find ~/Google\ Drive -type f')
-								imap <expr> ;cd fzf#complete('find ~/Google\ Drive -type d')
-							"GIT
-								nnoremap <Leader>gcl :Commits<CR>
-								nnoremap <Leader>gcL :BCommits<CR>
-								nnoremap <Leader>pg  :GFiles?<CR>
-								nnoremap <Leader>pG  :GFiles<CR>
-							"SEARCH
-								nnoremap <silent> <Leader>p/ :Rg<CR>
-
-								nnoremap <A-/> :Rg<SPACE>
-						Plug 'yuki-ycino/fzf-preview.vim', { 'branch': 'release/rpc' }
-							"MAPPINGS
-								"PROJECT
-									nnoremap <silent> <Leader>pr :FzfPreviewProjectMruFilesRpc<CR>
-									nnoremap <silent> <Leader>pR :FzfPreviewProjectMrwFilesRpc<CR>
-
-								nnoremap <silent> <A-r> :FzfPreviewProjectMruFilesRpc<CR>
-						Plug 'dominickng/fzf-session.vim'
-							"CONFIGURATION
-								let g:fzf_session_path = g:jaat_tmp_path . 'sessions'
-							"MAPPINGS
-								nnoremap <silent> <Leader>Sl :Sessions<CR>
-								nnoremap <silent> <Leader>Sn :Session<space>
-								nnoremap <silent> <Leader>Sd :SDelete<space>
-								nnoremap <silent> <Leader>So :SLoad<space>
-								nnoremap <silent> <Leader>Sc :SQuit<CR>
-						Plug 'pbogut/fzf-mru.vim'
-							nnoremap <silent> <Leader>fr :<C-u>FZFMru<CR>
-				Plug 'voldikss/vim-floaterm'
-					"CONFIGURATION
-						"let g:floaterm_autoinsert = 1
-						"let g:floaterm_autohide = 1
-						let g:floaterm_autoclose = 1
-						let g:floaterm_width = 0.9
-						let g:floaterm_height = 0.9
-					"MAPPINGS
-						nnoremap <silent> <Leader>tf :FloatermNew --wintype=float<CR>
-						nnoremap <silent> <Leader>th :FloatermNew --wintype=split --height=0.4<CR>
-						nnoremap <silent> <Leader>tv :FloatermNew --wintype=vsplit --width=0.5<CR>
-						nnoremap <silent> <Leader>tt :FloatermToggle<CR>
-
-						nnoremap <silent> <Leader>td :FloatermKill<CR>
-						nnoremap <silent> <Leader>tn :FloatermNext<CR>
-						nnoremap <silent> <Leader>tp :FloatermPrev<CR>
-
-						execute 'nnoremap <silent> <' . g:action_leader . '-`> :FloatermToggle<CR>'
-
-						execute 'tnoremap <silent> <' . g:action_leader . '-`> <C-\><C-n>:FloatermToggle<CR>'
-						execute 'tnoremap <silent> <' . g:action_leader . '-f> <C-\><C-n>:FloatermNew<CR>'
-						execute 'tnoremap <silent> <' . g:action_leader . '-h> <C-\><C-n>:FloatermNew --wintype=split --height=0.4<CR>'
-						execute 'tnoremap <silent> <' . g:action_leader . '-v> <C-\><C-n>:FloatermNew --wintype=vsplit --width=0.5<CR>'
-						execute 'tnoremap <silent> <' . g:action_leader . '-d> <C-\><C-n>:FloatermKill<CR>'
-						execute 'tnoremap <silent> <' . g:action_leader . '-p> <C-\><C-n>:FloatermNext<CR>'
-						execute 'tnoremap <silent> <' . g:action_leader . '-n> <C-\><C-n>:FloatermPrev<CR>'
-				if has('nvim-0.5')
-					Plug 'kyazdani42/nvim-tree.lua'
-				endif
 			"AESTHETICS
 				"STATUSLINE
 					if has('nvim-0.5')
@@ -4260,6 +3765,165 @@
 				"DISABLED
 					"Plug 'haya14busa/vim-keeppad'
 					"Plug 'zefei/vim-colortuner'
+			"SYSTEM
+				"SEARCH
+					Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': { -> fzf#install() }}
+						"CONFIGURATION
+							let g:fzf_action = {
+								\'ALT-t': 'tab split',
+								\'ALT-h': 'split',
+								\'ALT-v': 'vsplit',
+								\'ALT-m': 'Glow',
+								\'ALT-c': 'cd',
+								\'ALT-e': 'Vifm',
+								\'ALT-o': 'Open',
+							\}
+								"'SaveAs'
+								"'SaveAs!'
+								"'NewFile'
+								"'NewDirectory'
+								"'DeleteFile'
+								"'DeleteDirectory'
+								"'DeleteDirectory!'
+							"let g:fzf_layout = {}
+							"let g:fzf_colors = {
+								"\'fg':		 ['fg', 'Normal'],
+								"\'bg':		 ['bg', 'Normal'],
+								"\'hl':		 ['fg', 'Comment'],
+								"\'fg+':	 ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+								"\'bg+':	 ['bg', 'CursorLine', 'CursorColumn'],
+								"\'hl+':	 ['fg', 'Statement'],
+								"\'info':	 ['fg', 'PreProc'],
+								"\'border':  ['fg', 'Ignore'],
+								"\'prompt':  ['fg', 'Conditional'],
+								"\'pointer': ['fg', 'Exception'],
+								"\'marker':  ['fg', 'Keyword'],
+								"\'spinner': ['fg', 'Label'],
+								"\'header':  ['fg', 'Comment'],
+							"\}
+							"let g:fzf_history_dir = {}
+							"let g:fzf_launcher = {}
+						"AUTOCOMMANDS
+							autocmd! FileType fzf
+							autocmd  FileType fzf set laststatus=0 | autocmd BufLeave <buffer> set laststatus=2
+						"FUNCTIONS
+							function! FZFFiles(path, ...)
+								call fzf#run(fzf#wrap({
+									\'source': g:jaat_find_files_command . ' ' . a:path,
+								\}))
+							endfunction
+
+							function! FZFDirectories(path, ...)
+								call fzf#run(fzf#wrap({
+									\'source': g:jaat_find_directories_command . ' ' . a:path,
+								\}))
+							endfunction
+						"MAPPINGS
+							"nnoremap <silent> <Leader>ffr :call FZFFindFiles()<CR>
+							nnoremap <silent> <Leader>ff/ :call FZFFiles(g:jaat_root_path)<CR>
+							nnoremap <silent> <Leader>ffh :call FZFFiles(g:jaat_home_path)<CR>
+							nnoremap <silent> <Leader>ffd :call FZFFiles(g:jaat_drive_path)<CR>
+							nnoremap <silent> <Leader>ffp :call FZFFiles('')<CR>
+							nnoremap <silent> <Leader>ffc :call FZFFiles(expand('%:h'))<CR>
+
+							"nnoremap <silent> <Leader>fdr :call FZFFindDirectories()<CR>
+							nnoremap <silent> <Leader>fd/ :call FZFDirectories(g:jaat_root_path)<CR>
+							nnoremap <silent> <Leader>fdh :call FZFDirectories(g:jaat_home_path)<CR>
+							nnoremap <silent> <Leader>fdd :call FZFDirectories(g:jaat_drive_path)<CR>
+							nnoremap <silent> <Leader>fdp :call FZFDirectories('')<CR>
+							nnoremap <silent> <Leader>fdc :call FZFDirectories(expand('%:h'))<CR>
+						"EXTENSIONS
+							Plug 'junegunn/fzf.vim'
+								"MAPPINGS
+									nmap <silent> <Leader><TAB> <plug>(fzf-maps-n)
+									xmap <silent> <Leader><TAB> <plug>(fzf-maps-x)
+									omap <silent> <Leader><TAB> <plug>(fzf-maps-o)
+									imap <silent> ;<TAB> <plug>(fzf-maps-i)
+								"INBUILT
+									nnoremap <silent> <Leader>bl :Buffers<CR>
+									"nnoremap <silent> <Leader>b/ :BLines<CR>
+									nnoremap <silent> <Leader>b? :Lines<CR>
+
+									nnoremap <silent> <Leader>bf :Filetypes<CR>
+
+									nnoremap <silent> <Leader>vhc :Commands<CR>
+									nnoremap <silent> <Leader>vhh :Helptags<CR>
+									nnoremap <silent> <Leader>vhm :Maps<CR>
+
+									nnoremap <silent> <Leader>v/ :History/<CR>
+									nnoremap <silent> <Leader>v: :History:<CR>
+
+									nnoremap <silent> <Leader>vC :Colors<CR>
+
+									"nnoremap <silent> <Leader>nt :Tags<CR>
+									"nnoremap <silent> <Leader>nT :BTags<CR>
+								"COMPLETION
+									imap		;w <plug>(fzf-complete-word)
+									imap		;p <plug>(fzf-complete-path)
+									imap		;f <plug>(fzf-complete-file-ag)
+									imap		;l <plug>(fzf-complete-line)
+									imap		;L <plug>(fzf-complete-buffer-line)
+									imap <expr> ;cp fzf#complete('find ~/Google\ Drive')
+									imap <expr> ;cf fzf#complete('find ~/Google\ Drive -type f')
+									imap <expr> ;cd fzf#complete('find ~/Google\ Drive -type d')
+								"GIT
+									nnoremap <Leader>gcl :Commits<CR>
+									nnoremap <Leader>gcL :BCommits<CR>
+									nnoremap <Leader>pg  :GFiles?<CR>
+									nnoremap <Leader>pG  :GFiles<CR>
+								"SEARCH
+									nnoremap <silent> <Leader>p/ :Rg<CR>
+
+									nnoremap <A-/> :Rg<SPACE>
+							Plug 'yuki-ycino/fzf-preview.vim', { 'branch': 'release/rpc' }
+								"MAPPINGS
+									"PROJECT
+										nnoremap <silent> <Leader>pr :FzfPreviewProjectMruFilesRpc<CR>
+										nnoremap <silent> <Leader>pR :FzfPreviewProjectMrwFilesRpc<CR>
+
+									nnoremap <silent> <A-r> :FzfPreviewProjectMruFilesRpc<CR>
+							Plug 'dominickng/fzf-session.vim'
+								"CONFIGURATION
+									let g:fzf_session_path = g:jaat_tmp_path . 'sessions'
+								"MAPPINGS
+									nnoremap <silent> <Leader>Sl :Sessions<CR>
+									nnoremap <silent> <Leader>Sn :Session<space>
+									nnoremap <silent> <Leader>Sd :SDelete<space>
+									nnoremap <silent> <Leader>So :SLoad<space>
+									nnoremap <silent> <Leader>Sc :SQuit<CR>
+							Plug 'pbogut/fzf-mru.vim'
+								nnoremap <silent> <Leader>fr :<C-u>FZFMru<CR>
+				"TERMINAL
+					Plug 'voldikss/vim-floaterm'
+						"CONFIGURATION
+							"let g:floaterm_autoinsert = 1
+							"let g:floaterm_autohide = 1
+							let g:floaterm_autoclose = 1
+							let g:floaterm_width = 0.9
+							let g:floaterm_height = 0.9
+						"MAPPINGS
+							nnoremap <silent> <Leader>tf :FloatermNew --wintype=float<CR>
+							nnoremap <silent> <Leader>th :FloatermNew --wintype=split --height=0.4<CR>
+							nnoremap <silent> <Leader>tv :FloatermNew --wintype=vsplit --width=0.5<CR>
+							nnoremap <silent> <Leader>tt :FloatermToggle<CR>
+
+							nnoremap <silent> <Leader>td :FloatermKill<CR>
+							nnoremap <silent> <Leader>tn :FloatermNext<CR>
+							nnoremap <silent> <Leader>tp :FloatermPrev<CR>
+
+							execute 'nnoremap <silent> <' . g:action_leader . '-`> :FloatermToggle<CR>'
+
+							execute 'tnoremap <silent> <' . g:action_leader . '-`> <C-\><C-n>:FloatermToggle<CR>'
+							execute 'tnoremap <silent> <' . g:action_leader . '-f> <C-\><C-n>:FloatermNew<CR>'
+							execute 'tnoremap <silent> <' . g:action_leader . '-h> <C-\><C-n>:FloatermNew --wintype=split --height=0.4<CR>'
+							execute 'tnoremap <silent> <' . g:action_leader . '-v> <C-\><C-n>:FloatermNew --wintype=vsplit --width=0.5<CR>'
+							execute 'tnoremap <silent> <' . g:action_leader . '-d> <C-\><C-n>:FloatermKill<CR>'
+							execute 'tnoremap <silent> <' . g:action_leader . '-p> <C-\><C-n>:FloatermNext<CR>'
+							execute 'tnoremap <silent> <' . g:action_leader . '-n> <C-\><C-n>:FloatermPrev<CR>'
+				"FILESYSTEM
+					if has('nvim-0.5')
+						Plug 'kyazdani42/nvim-tree.lua'
+					endif
 			"PROGRAMMING
 				"SYNTAX
 					"RAINBOW
@@ -4283,7 +3947,7 @@
 						let g:vim_markdown_no_default_key_mappings = 1
 					"Plug 'vim-syntastic/syntastic'
 					"Plug 'coachshea/jade-vim'
-				"VCS:GIT
+				"VCS[GIT]
 					Plug 'tpope/vim-fugitive'
 						"TODO
 						nnoremap <Leader>gas :Gstatus<CR>
@@ -4323,8 +3987,6 @@
 							Plug 'RishabhRD/popfix'
 						Plug 'glepnir/lspsaga.nvim'
 						Plug 'kosayoda/nvim-lightbulb'
-						Plug 'hrsh7th/nvim-compe'
-							Plug 'tzachar/compe-tabnine', { 'do': './install.sh' }
 						Plug 'ray-x/lsp_signature.nvim'
 						Plug 'onsails/lspkind-nvim'
 						Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
@@ -4592,6 +4254,10 @@
 						"Plug 'epilande/vim-react-snippets'
 					endif
 				"COMPLETION
+					if has('nvim-0.5')
+						Plug 'hrsh7th/nvim-compe'
+							Plug 'tzachar/compe-tabnine', { 'do': './install.sh' }
+					endif
 					Plug 'mattn/emmet-vim'
 						let g:user_emmet_install_global = 0
 						let g:user_emmet_leader_key='<A-e>'
@@ -4686,7 +4352,7 @@
 				if has('nvim')
 					Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 				endif
-			"WRITTING
+			"AUTHORING
 				Plug 'reedes/vim-pencil'
 					nnoremap <silent> <Leader>vtp :PencilToggle<CR>
 				Plug 'panozzaj/vim-autocorrect'
@@ -4702,14 +4368,6 @@
 					let g:lexical#thesaurus = ['~/.config/nvim/spell/mthesaurus.txt/',]
 					let g:lexical#spellfile = ['~/.config/spell/en.utf-8.add',]
 			"RANDOM
-				Plug 'mhinz/vim-startify'
-					"CONFIGURATION
-						let g:startify_session_sort        = 1
-						let g:startify_change_to_vcs_root  = 1
-						let g:startify_fortune_use_unicode = 1
-						let g:startify_session_dir         = g:jaat_tmp_path . 'sessions'
-					"AUTOCOMMANDS
-						autocmd User StartifyReady setl foldlevel=99
 				if has('nvim-0.2.2') || v:version >= 800
 					"Plug 'dstein64/vim-startuptime'
 				endif
@@ -4782,7 +4440,13 @@
 							nmap <Leader>ow :execute ":OpenBrowserSearch -wikipedia " GetWordUnderCursor() <CR>
 							vmap <Leader>ow :<C-w>execute ":OpenBrowserSearch -wikipedia " GetSelectedText() <CR>
 			"LIBRARIES
-				"Plug 'mattn/webapi-vim'
+				"EDITING
+					Plug 'kana/vim-operator-user'
+					Plug 'kana/vim-textobj-user'
+				"UI
+						Plug 'MunifTanjim/nui.nvim'
+				"NETWORK
+					"Plug 'mattn/webapi-vim'
 			"DEPENDENCIES
 				Plug 'Shougo/vimproc.vim'
 			"MESS:EXTENDING-VIM
@@ -4797,9 +4461,6 @@
 					"xmap y <plug>(YoinkYankPreserveCursorPosition)
 					"nmap <expr> p yoink#canSwap() ? '<plug>(YoinkPostPasteSwapBack)' : '<plug>(YoinkPaste_p)'
 					"nmap <expr> P yoink#canSwap() ? '<plug>(YoinkPostPasteSwapForward)' : '<plug>(YoinkPaste_P)'
-				"Plug 'vim-scripts/repmo.vim'
-					let repmo_key = ";"
-					let repmo_revkey = ","
 				if has('macunix')
 					Plug 'gastonsimone/vim-dokumentary'
 				endif
@@ -5011,6 +4672,9 @@
 				lua require('plugins/aesthetics/nvim-bufferline')
 				lua require('plugins/aesthetics/zen-mode')
 				lua require('plugins/aesthetics/twilight')
+
+				"ui
+				lua require('plugins/libs/ui/nui')
 			endif
 	"CUSTOM
 		source ~/.config/nvim/plugins/aesthetics/custom/minimalistic-folds.vim
