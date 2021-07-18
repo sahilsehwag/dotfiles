@@ -1,5 +1,5 @@
 "LEADER
-	nnoremap ; :
+	"nnoremap ; :
 	let mapleader      = ' '
 	let maplocalleader = ','
 
@@ -2034,7 +2034,6 @@
 		map Q <nop>
 		map <C-r> <nop>
 	"REMAPS
-		"nnoremap ; :
 		nnoremap U <C-r>
 		nnoremap ' "
 		nnoremap " '
@@ -2088,7 +2087,8 @@
 				nnoremap <silent> <Leader>bwa :wall<CR>
 				nnoremap <silent> <Leader>bwC :write!<CR>
 				nnoremap <silent> <Leader>bwA :wall!<CR>
-				nnoremap <silent> <A-s> :wall<CR>
+				nnoremap <silent> <C-s> :w<CR>
+				nnoremap <silent> <C-S-s> :wall<CR>
 
 				"shortcuts
 				nnoremap <Leader>` <C-^>
