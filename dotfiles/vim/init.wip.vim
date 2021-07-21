@@ -3397,6 +3397,17 @@
 						if has('nvim')
 							Plug 'kevinhwang91/nvim-bqf'
 						endif
+				"RANDOM
+					"COLOR-CONVERTER
+						if has('nvim-0.4')
+							Plug 'NTBBloodbath/color-converter.nvim'
+								augroup ColorConverter
+									autocmd!
+									autocmd FileType html,css,scss,sass,less,js,ts,jsx,tsx nmap <Leader>.c <Plug>ColorConvertCycle
+								augroup end
+						else
+							Plug 'amadeus/vim-convert-color-to'
+						endif
 				Plug 'junegunn/vim-peekaboo'
 					let g:peekaboo_window  = 'vert bo 80new'
 					let g:peekaboo_compact = 0
