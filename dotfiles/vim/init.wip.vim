@@ -4212,6 +4212,9 @@
 						Plug 'JoosepAlviste/nvim-ts-context-commentstring'
 					endif
 				"COMMENTS
+					if has('nvim-0.5')
+						Plug 's1n7ax/nvim-comment-frame'
+					endif
 					"Plug 'tpope/vim-commentary'
 					Plug 'scrooloose/nerdcommenter'
 						"CONFIGURATION
