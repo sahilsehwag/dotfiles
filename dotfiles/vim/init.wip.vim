@@ -2429,7 +2429,7 @@
 					Plug 'JRasmusBm/vim-peculiar'
 						nmap g<space> <Plug>PeculiarN
 						nmap g; <Plug>PeculiarG
-						nmap g: <Plug>PeculiarV
+						nmap g, <Plug>PeculiarV
 						nmap g. <Plug>PeculiarR
 					Plug 'haya14busa/vim-operator-flashy'
 						"CONFIGURATION
@@ -4172,26 +4172,30 @@
 									nmap <silent> <C-s>      <Plug>(coc-range-select)
 									xmap <silent> <C-s>      <Plug>(coc-range-select)
 					endif
-					Plug 'liuchengxu/vista.vim'
-						"CONFIGURATION
-							let g:vista_default_executive =
-								\ has('nvim-0.5')
-								\ ? 'nvim_lsp'
-								\ : 'coc'
-							let g:vista#renderer#enable_icon = 1
-							let g:vista_sidebar_width = 45
-							let g:vista_fzf_preview = ['right:50%']
-							let g:vista_echo_cursor_strategy = 'echo'
-						"MAPPINGS
-							nnoremap <silent> <Leader>lst :Vista!!<CR>
-							nnoremap <silent> <Leader>lsD :Vista finder fzf<CR>
-						"STATUSLINE
-							function! NearestMethodOrFunction() abort
-								return get(b:, 'vista_nearest_method_or_function', '')
-							endfunction
-
-							"set statusline+=%{NearestMethodOrFunction()}
-							"autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
+					"PREVIEW
+						if has('nvim-0.5')
+							Plug 'rmagatti/goto-preview'
+						endif
+					"TAGBAR
+						Plug 'liuchengxu/vista.vim'
+							"CONFIGURATION
+								let g:vista_default_executive =
+									\ has('nvim-0.5')
+									\ ? 'nvim_lsp'
+									\ : 'coc'
+								let g:vista#renderer#enable_icon = 1
+								let g:vista_sidebar_width = 45
+								let g:vista_fzf_preview = ['right:50%']
+								let g:vista_echo_cursor_strategy = 'echo'
+							"MAPPINGS
+								nnoremap <silent> <Leader>lst :Vista!!<CR>
+								nnoremap <silent> <Leader>lsD :Vista finder fzf<CR>
+							"STATUSLINE
+								function! NearestMethodOrFunction() abort
+									return get(b:, 'vista_nearest_method_or_function', '')
+								endfunction
+								"set statusline+=%{NearestMethodOrFunction()}
+								"autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
 				"TREESITTER
 					if has('nvim-0.5')
 						Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -4282,10 +4286,6 @@
 							let g:doge_enable_mappings = 0
 							let g:doge_mapping = '<Leader>lad'
 						"Plug 'nvim-treesitter/nvim-tree-docs'
-					endif
-				"PREVIEW
-					if has('nvim-0.5')
-						Plug 'rmagatti/goto-preview'
 					endif
 				"PLAYGROUND
 					Plug 'metakirby5/codi.vim'
@@ -4643,6 +4643,9 @@
 			call which_key#register('<SPACE>', "g:which_key_map")
 		"LUA
 			if has('nvim-0.5')
+				"editing
+				lua require('plugins/comment-frame')
+
 				"treesitter
 				lua require('plugins/treesitter/treesitter')
 				"lua require('plugins/treesitter/hint-textobject')
