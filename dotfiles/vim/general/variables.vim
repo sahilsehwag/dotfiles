@@ -1,3 +1,73 @@
+"SETUP
+	let g:config = {
+		\'plugins':
+			\ exists('g:vscode')
+			\ ? 'core'
+			\ : exists('g:started_by_firenvim')
+			\ ? 'minimal'
+			\ : exists('g:neovide')
+			\ ? 'ide'
+			\ : exists('g:goneovim')
+			\ ? 'ide'
+			\ : 'featured',
+		\'paths': {
+			\'tmp': glob('~/.config/nvim/tmp'),
+			\'lists': glob('~/.config/nvim/tmp/lists'),
+			\'drive': shellescape(expand('~/Google Drive')),
+			\'plugins': expand('~/.config/nvim/plugged'),
+			\'configs': 'configs',
+		\},
+		\'configs': {
+			\'plugins': 'general/configs/plugins',
+			\'pacmans': 'general/configs/pacmans',
+			\'languages': 'general/configs/languages',
+			\'projects': 'general/configs/projects',
+			\'frameworks': 'general/configs/frameworks',
+			\'editor': has('nvim')
+				\ ? glob('~/.conifg/nvim/init.vim')
+				\ : glob('~/.vimrc'),
+		\},
+		\'commands' : {
+			\'terminal': 'terminal',	
+			\'window': 'e',	
+		\},
+		\'executables': {
+			\'python2': '',
+			\'python3': '',
+			\'node': expand('~/.nvm/versions/node/v12.18.3/bin/node'),
+			\'shell':
+				\ IsWindows()
+				\ ? "cmd"
+				\ : executable('zsh')
+				\ ? "zsh"
+				\ : executable('fish')
+				\ ? "fish"
+				\ : executable('bash')
+				\ ? "bash"
+				\ : "sh",
+			\'lines':
+				\ executable('rg')
+				\ ? 'rg --hidden --follow --no-ignore-vcs --ignore -g "!{node_modules/*,.git/*}"'
+				\ : executable('ag')
+				\ ? 'ag --nogroup -s .+'
+				\ : 'grep -rHnas --color --exclude-dir=".git" --exclude-dir="node_modules" -i . *',
+			\'files':
+				\ executable('fd')
+				\ ? "fd -tf --hidden --exclude .git --exclude node_modules '.*'"
+				\ : 'find -type f -iname',
+			\'dirs':
+				\ executable('fd')
+				\ ? "fd -td --hidden --exclude .git --exclude node_modules '.*'"
+				\ : 'find -type d -iname',
+			\'explorer':
+				\ executable('vifm')
+				\ ? 'vifm'
+				\ : executable('ranger')
+				\ ? 'ranger'
+				\ : '',
+		\},
+		\'statusline': 'default',	
+	\}
 "PATHS
 	let g:jaat_tmp_path = glob('~/.config/nvim/tmp/')
 	let g:jaat_lists_path = g:jaat_tmp_path . 'lists/'

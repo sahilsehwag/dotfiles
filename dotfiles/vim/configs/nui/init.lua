@@ -1,0 +1,132 @@
+-- local Popup = require('nui.popup')
+-- local Input = require('nui.input')
+-- local Menu = require('nui.menu')
+-- local Split = require('nui.split')
+-- local event = require('nui.utils.autocmd').event
+
+-- local popup = Popup({
+--   enter = true,
+--   focusable = true,
+--   border = {
+--     style = 'rounded',
+--     highlight = 'FloatBorder',
+--   },
+--   position = '50%',
+--   size = {
+--     width = '80%',
+--     height = '60%',
+--   },
+--   buf_options = {
+--     modifiable = true,
+--     readonly = false,
+--   },
+-- })
+
+-- -- unmount component when cursor leaves buffer
+-- popup:on(event.BufLeave, function()
+--   popup:unmount()
+-- end)
+
+
+-- local input = Input({
+--   position = '20%',
+--   size = {
+--       width = 20,
+--       height = 2,
+--   },
+--   relative = 'editor',
+--   border = {
+--     highlight = 'MyHighlightGroup',
+--     style = 'single',
+--     text = {
+--         top = 'How old are you?',
+--         top_align = 'center',
+--     },
+--   },
+--   win_options = {
+--     winblend = 10,
+--     winhighlight = 'Normal:Normal',
+--   },
+-- }, {
+--   prompt = '> ',
+--   default_value = '42',
+--   on_close = function()
+--     print('Input closed!')
+--   end,
+--   on_submit = function(value)
+--     print('You are ' .. value .. ' years old')
+--   end,
+-- })
+
+-- -- unmount component when cursor leaves buffer
+-- input:on(event.BufLeave, function()
+--   input:unmount()
+-- end)
+
+
+-- local menu = Menu({
+--   position = '20%',
+--   size = {
+--     width = 20,
+--     height = 2,
+--   },
+--   relative = 'editor',
+--   border = {
+--     highlight = 'MyHighlightGroup',
+--     style = 'single',
+--     text = {
+--       top = 'Choose Something',
+--       top_align = 'center',
+--     },
+--   },
+--   win_options = {
+--     winblend = 10,
+--     winhighlight = 'Normal:Normal',
+--   },
+-- }, {
+--   lines = {
+--     Menu.item('Item 1'),
+--     Menu.item('Item 2'),
+--     Menu.separator('Menu Group'),
+--     Menu.item('Item 3'),
+--   },
+--   max_width = 20,
+--   separator = {
+--     char = '-',
+--     text_align = 'right',
+--   },
+--   keymap = {
+--     focus_next = { 'j', '<Down>', '<Tab>' },
+--     focus_prev = { 'k', '<Up>', '<S-Tab>' },
+--     close = { '<Esc>', '<C-c>' },
+--     submit = { '<CR>', '<Space>' },
+--   },
+--   on_close = function()
+--     print('CLOSED')
+--   end,
+--   on_submit = function(item)
+--     print('SUBMITTED', vim.inspect(item))
+--   end,
+-- })
+
+-- -- close menu when cursor leaves buffer
+-- menu:on(event.BufLeave, menu.menu_props.on_close, { once = true })
+
+
+-- local split = Split({
+--   relative = 'editor',
+--   position = 'bottom',
+--   size = '20%',
+-- })
+
+-- -- unmount component when cursor leaves buffer
+-- split:on(event.BufLeave, function()
+--   split:unmount()
+-- end)
+
+-- return {
+--   popup = popup,
+--   input = input,
+--   menu = menu,
+--   split = split,
+-- }

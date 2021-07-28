@@ -1,16 +1,18 @@
-"CONFIGURATION
-	let g:firenvim_config = {
-		\'globalSettings': {
-			\'alt': 'all',
-		\},
-		\'localSettings': {
-			\'.*': {
-				\'cmdline': 'firenvim',
-				\'priority': 0,
-				\'selector': 'textarea',
-				\'takeover': 'never',
+if exists('g:started_by_firenvim')
+	"CONFIGURATION
+		let g:firenvim_config = {
+			\'globalSettings': {
+				\'alt': 'all',
 			\},
+			\'localSettings': {
+				\'.*': {
+					\'cmdline': 'firenvim',
+					\'priority': 0,
+					\'selector': 'textarea',
+					\'takeover': 'never',
+				\},
+			\}
 		\}
-	\}
-"PLUGINS
-	let g:startify_disable_at_vimenter = 0
+	"PLUGINS
+		let g:startify_disable_at_vimenter = 0
+endif

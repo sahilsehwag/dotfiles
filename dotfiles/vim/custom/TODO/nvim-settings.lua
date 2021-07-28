@@ -1,0 +1,9 @@
+-- float
+-- folds (sections)
+-- icons
+-- inputs
+	-- flag = green/red icon
+	-- list = dropdown
+	-- string = input
+-- status [edited]
+-- buffer/window/global

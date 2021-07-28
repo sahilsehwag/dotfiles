@@ -50,7 +50,8 @@
 		}
 #ZSH|OhMyZsh
 	#CONFIGURATION
-		export TERM='xterm-256color'
+		#export TERM='xterm-256color'
+		export TERM='xterm-256color-italic'
 		export ZSH=~/.oh-my-zsh
 		export SSH_KEY_PATH="~/.ssh/rsa_id"
 
@@ -142,6 +143,9 @@
 	type nvim           > /dev/null && alias vim='nvim'
 	type path-extractor > /dev/null && alias pe='path-extractor'
 	type dos2unix       > /dev/null && alias d2u='find -type f | xargs dos2unix'
+	
+  #hack|resetting-term for ssh
+	alias ssh='TERM=xterm-256color ssh'
 #RANDOM
 	#COMMAND-NOT-FOUND
 		if [[ $jatPlatform =~ "mac" ]]; then

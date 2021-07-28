@@ -1,12 +1,12 @@
 {
-	// PRIORITIES:COMPLETION
+	// COMPLETION-PRIORITIES
 	// completion=1
 	// emmet=2
 	// snippets=3
 	// words=9
 	// browser=10
 
-	// פּ                 
+	// פּ                
 	//   <>   	       ﱮ  塞       練蘒
 	"suggest.completionItemKindLabels": {
 		"method": "  ",
@@ -52,7 +52,7 @@
 	"snippets.enableStatusItem": false,
 
 	//coc-explorer
-	"explorer.width": 45,
+	"explorer.width": 60,
 	"explorer.icon.enableNerdfont": true,
 	"explorer.git.showIgnored": true,
 	"explorer.file.showHiddenFiles": true,
@@ -108,7 +108,7 @@
 	"git.changeRemovedSign.hlGroup": "JatGitChange",
 	"git.blameUseRealTime": false,
 	"git.addGBlameToVirtualText": false,
-	"git.virtualTextPrefix": "		 ",
+	"git.virtualTextPrefix": "\t",
 	"git.conflict.current.hlGroup": "DiffChange",
 	"git.conflict.incoming.hlGroup": "DiffAdd",
 
@@ -120,15 +120,26 @@
 	"diagnostic.warningSign": "ﱢ",
 	"diagnostic.infoSign": "ﱢ",
 	"diagnostic.hintSign": "ﱢ",
+	//"diagnostic.errorSign": " ",
+	//"diagnostic.warningSign": " ",
+	//"diagnostic.infoSign": "",
+	//"diagnostic.hintSign": " ",
 	"diagnostic.virtualText": true,
 	"diagnostic.virtualTextLines": 3,
 	"diagnostic.virtualTextPrefix": " ﱢ ",
 	"diagnostic.virtualTextCurrentLineOnly": false,
 	"diagnostic.virtualTextLineSeparator": " ● ",
-	"diagnostic.enableMessage": "never",
+	"diagnostic.enableMessage": "always",
 	"diagnostic.messageTarget": "float",
 	"diagnostic.format": "%message\n[%source:%code]",
 	/*"diagnostic.checkCurrentLine": false,*/
+
+	//markdown-lint
+	"markdownlint.config": {
+		"no-multiple-blanks": false,
+		"blanks-around-headings": false,
+		"headings": false,
+	},
 
 	//coc-yank
 	"yank.priority": 100,
@@ -143,7 +154,7 @@
 	"coc.source.word.filetypes": ["text"],
 
 	//coc-browser
-	"browser.priority": 9,
+	"browser.priority": 10,
 
 	//coc-spell-checker
 	"cSpell.enabled": true,
@@ -153,7 +164,12 @@
 	"cSpell.allowCompoundWords": true,
 	"cSpell.fixSpellingWithRenameProvider": true,
 	"cSpell.userWords": [
-		"Untracked"
+		"Conteful",
+		"Contentful",
+		"UPDATION",
+		"inplace",
+		"uninteractive",
+		"untracked"
 	],
 	"cSpell.ignoreWords": [
 	],

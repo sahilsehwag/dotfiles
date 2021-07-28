@@ -10,16 +10,21 @@
 		set foldlevel=0
 		set foldignore=
 		set foldlevelstart=99
+		augroup FOLD_LEVEL
+			au!
+			au FileType text set foldlevelstart=0
+			au FileType vim set foldlevelstart=0
+		augroup END
 	endif
 "INDENTATION
 	set autoindent
 	set smartindent
 	set smarttab
-	set shiftwidth=4
-	set tabstop=4
+	set shiftwidth=2
+	set tabstop=2
 	set noexpandtab
 "LINES
-	set number
+	"set number
 	set relativenumber
 "SWAP|BACKUP|UNDO
 	set undofile
@@ -68,6 +73,17 @@
 "INTERFACE
 	"COLORS
 		if (has("termguicolors"))
+			"italics
+			let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
+			let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
+			
+			"wip
+			let &t_Cs = "\e[4:3m"
+			let &t_Ce = "\e[4:0m"
+			let &t_AU = "\e[58:5:%dm"
+			let &t_8u = "\e[58:2:%lu:%lu:%lum"
+			
+			"true-colors
 			set termguicolors
 			hi LineNr ctermbg=NONE guibg=NONE
 		endif
@@ -85,7 +101,9 @@
 		"WINDOW
 			set splitbelow
 			set splitright
-			if has("patch-8.1.1564")
+			if has('nvim-0.5')
+				set signcolumn=auto:4
+			elseif has('patch-8.1.1564')
 				"Always show the signcolumn, otherwise it would shift the text each time
 				"diagnostics appear/become resolved.
 				"Recently vim can merge signcolumn and number column into one
@@ -97,27 +115,24 @@
 		set nolist
 		set shortmess=filmnrwxoOTWAIcFS
 		set listchars=tab:\ \ ,
-		set listchars+=eol:¬
-		set listchars+=trail:•
-		set listchars+=extends:➞
-		set listchars+=extends:…
-		set listchars+=precedes:←
-		set listchars+=precedes:…
-		set listchars+=nbsp:␣
-		set fillchars=fold:\ ,
-		set fillchars=stl:\ ,
-		set fillchars=stlnc:\ ,
-		set fillchars=vert:│
+		set listchars+=eol:¬,
+		set listchars+=trail:•,
+		set listchars+=extends:➞,
+		set listchars+=extends:…,
+		set listchars+=precedes:←,
+		set listchars+=precedes:…,
+		set listchars+=nbsp:␣,
+		set fillchars+=fold:\ ,
+		set fillchars+=stl:\ ,
+		set fillchars+=stlnc:\ ,
+		set fillchars+=vert:│,
+		"set fillchars+=diff:─,
+		set fillchars+=diff:╱,
+		set fillchars+=eob:~,
 	"CURSOR
 		set nocursorcolumn
 		set cursorline
 		set nostartofline
-	"COLORSCHEME
-		if IsNix()
-			colorscheme vscode
-		elseif IsWindows()
-			colorscheme solarized8_light_high
-		endif
 	"STATUSLINE
 		set showcmd
 		set noshowmode
@@ -136,17 +151,27 @@
 	"FILETYPE
 		augroup CONFIGURATIONS
 			au!
-			au Filetype python set tabstop=4 | set shiftwidth=4 | set noexpandtab
-			au Filetype scala set tabstop=4 | set shiftwidth=4 | set noexpandtab
+			au Filetype python set tabstop=2 | set shiftwidth=2 | set noexpandtab
+			au Filetype scala set tabstop=2 | set shiftwidth=2 | set noexpandtab
+			au Filetype lua set tabstop=2 | set shiftwidth=2 | set noexpandtab
 			au BufEnter *.csx set filetype=csx | set syntax=cs
 
 			"FILETYPE=jproperties FOR TEXT FILES
 			autocmd BufNewFile,BufRead *.txt set syntax=jproperties
 			autocmd Filetype text set syntax=jproperties
 		augroup END
+"TERMINAL
+	augroup BETTER_TERMINAL
+		autocmd!
+		if has('nvim')
+			autocmd TermOpen *
+				\ setlocal nonumber norelativenumber |
+				\ startinsert
+		endif
+	augroup END
 "RANDOM
 	let loaded_netrwPlugin = 0
-	set scrolloff=10
+	set scrolloff=3
 	set nocompatible
 		"disabling vi compatibility features|mappings…
 	set mouse=a
@@ -155,3 +180,23 @@
 	set updatetime=50
 		"mainly used coc.nvim
 		"default is 4000ms(4s) which leads to noticeable delays and poor user experience.
+"CONFIGURATION
+	"PYTHON
+		" let g:loaded_python_provider	= 1
+		" let g:loaded_python3_provider = 1
+
+		if IsNix()
+			" let g:python_host_prog	= '/usr/bin/python'
+			" let g:python3_host_prog = '/usr/local/bin/python3'
+			let g:python3_host_prog = '/Users/sahilsehwag/neovim/bin/python3'
+		elseif IsWindows()
+			"TODO:FIX
+			let g:python_host_prog	= "C:/Users/138100/scoop/apps/anaconda3/current/envs/pynvim2/python.exe"
+			let g:python3_host_prog = "C:/Users/138100/scoop/apps/anaconda3/current/envs/pynvim/python.exe"
+		endif
+	"NODE
+		let $PATH = fnamemodify(g:config.executables.node, ':p:h') . ':' . $PATH
+	"MSWIN
+		if IsWindows()
+			nnoremap <Leader>mm :source $VIMRUNTIME/mswin.vim<CR>
+		endif

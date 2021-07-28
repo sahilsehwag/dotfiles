@@ -1,0 +1,16 @@
+runtime general/mappings/leaders.vim
+runtime general/mappings/remaps.vim
+runtime general/mappings/buffers.vim
+runtime general/mappings/windows.vim
+runtime general/mappings/tabs.vim
+runtime general/mappings/terminal.vim
+runtime general/mappings/commandline.vim
+runtime general/mappings/quickfix.vim
+runtime general/mappings/general.vim
+runtime general/mappings/abbreviations.vim
+runtime general/mappings/programming.vim
+runtime general/mappings/plugin.vim
+runtime general/mappings/hacks.vim
+runtime general/mappings/random.vim
+runtime general/mappings/mess.vim
+runtime general/mappings/temporal.vim
