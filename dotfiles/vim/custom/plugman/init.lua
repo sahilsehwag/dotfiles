@@ -36,8 +36,14 @@ local defaults = {
 }
 
 local is_plugin_installed = function(config, plugin)
+	local plugin_config = config.config[plugin]
+	local install_directory = (
+		(plugin_config and plugin_config.directory) or 
+		(config.paths.plugins .. '/' .. vim.fn.split(plugin, '/')[2])
+	)
+	
 	return vim.fn.isdirectory(
-		vim.fn.expand(config.paths.plugins .. '/' .. vim.fn.split(plugin, '/')[2])
+		vim.fn.expand(install_directory)
 	) == 1
 end
 
@@ -189,11 +195,7 @@ return function(cfg)
 	loader.load(config, groups)
 	run_hook(config, groups.hooks, 'after_plugin_load')
 	
-	if #groups.not_installed ~= 0 then
-		--run_hook(config, groups.hooks, 'before_plugin_install')
-		loader.install(config, groups)
-		--run_hook(config, groups.hooks, 'after_plugin_install')
-	end
+	loader.install(config, groups)
 	
 	load_configs(config, groups.enabled, groups.hooks)
 end

@@ -16,7 +16,6 @@
 		autocmd! FileType markdown AnyFoldActivate
 		autocmd! FileType scratch AnyFoldActivate
 		autocmd! FileType lspinfo AnyFoldActivate
-		"autocmd! FileType vim AnyFoldActivate
 	else
 		autocmd! FileType * AnyFoldActivate
 	endif

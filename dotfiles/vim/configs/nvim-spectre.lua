@@ -1,59 +1,67 @@
 --CONFIGURATION
 	require('spectre').setup({
-		line_sep = '──────────────────────────────────────────────────────────────────────────',
-		result_padding = '	 ',
-		replace_vim_cmd = "cfdo",
-		is_open_target_win = false,
-		is_insert_mode = false,
+		line_sep_start = '───────────────────────────────────────────────────────────────────────────────────────────',
+		--result_padding = '	 ',
+		result_padding = '│ ',
+		line_sep       = '───────────────────────────────────────────────────────────────────────────────────────────',
 		highlight = {
 			ui = "String",
 			search = "DiffChange",
 			replace = "DiffDelete",
 		},
 		mapping = {
-			['delete_line'] = {
+			['toggle_line'] = {
 					map = "dd",
-					cmd = "<cmd>lua require('spectre').delete()<CR>",
-					desc = "delete current item",
+					cmd = "<cmd>lua require('spectre').toggle_line()<CR>",
+					desc = "toggle current item"
 			},
 			['enter_file'] = {
-					map = "<CR>",
+					map = "<cr>",
 					cmd = "<cmd>lua require('spectre.actions').select_entry()<CR>",
-					desc = "goto current file",
+					desc = "goto current file"
 			},
 			['send_to_qf'] = {
-					map = "rq",
+					map = "<LocalLeader>q",
 					cmd = "<cmd>lua require('spectre.actions').send_to_qf()<CR>",
-					desc = "send all item to quickfix",
+					desc = "send all item to quickfix"
 			},
 			['replace_cmd'] = {
-					map = "rc",
+					map = "<LocalLeader>c",
 					cmd = "<cmd>lua require('spectre.actions').replace_cmd()<CR>",
-					desc = "input replace vim command",
+					desc = "input replace vim command"
 			},
 			['show_option_menu'] = {
-					map = "to",
+					map = "<LocalLeader>o",
 					cmd = "<cmd>lua require('spectre').show_options()<CR>",
-					desc = "show option",
+					desc = "show option"
 			},
 			['run_replace'] = {
-					map = "rS",
+					map = "<LocalLeader>R",
 					cmd = "<cmd>lua require('spectre.actions').run_replace()<CR>",
-					desc = "replace all",
+					desc = "replace all"
+			},
+			['change_view_mode'] = {
+					map = "<LocalLeader>v",
+					cmd = "<cmd>lua require('spectre').change_view()<CR>",
+					desc = "change result view mode"
+			},
+			['toggle_live_update']={
+				map = "tu",
+				cmd = "<cmd>lua require('spectre').toggle_live_update()<CR>",
+				desc = "update change when vim write file."
 			},
 			['toggle_ignore_case'] = {
 				map = "ti",
 				cmd = "<cmd>lua require('spectre').change_options('ignore-case')<CR>",
-				desc = "toggle ignore case",
+				desc = "toggle ignore case"
 			},
 			['toggle_ignore_hidden'] = {
 				map = "th",
 				cmd = "<cmd>lua require('spectre').change_options('hidden')<CR>",
-				desc = "toggle search hidden",
+				desc = "toggle search hidden"
 			},
 		},
 		find_engine = {
-			-- rg is map wiht finder_cmd
 			['rg'] = {
 				cmd = "rg",
 				args = {
@@ -62,38 +70,73 @@
 					'--with-filename',
 					'--line-number',
 					'--column',
+					'--pcre2',
 				} ,
 				options = {
 					['ignore-case'] = {
 						value= "--ignore-case",
 						icon="[I]",
-						desc="ignore case",
+						desc="ignore case"
 					},
 					['hidden'] = {
 						value="--hidden",
 						desc="hidden file",
-						icon="[H]",
+						icon="[H]"
+					},
+					-- you can put any rg search option you want here it can toggle with
+					-- show_option function
+				}
+			},
+			['ag'] = {
+				cmd = "ag",
+				args = {
+					'--vimgrep',
+					'-s'
+				} ,
+				options = {
+					['ignore-case'] = {
+						value= "-i",
+						icon="[I]",
+						desc="ignore case"
+					},
+					['hidden'] = {
+						value="--hidden",
+						desc="hidden file",
+						icon="[H]"
 					},
 				},
 			},
 		},
 		replace_engine={
-			['sed']={
+			['sed'] = {
 				cmd = "sed",
-				args = nil,
+				args = nil
 			},
+			options = {
+				['ignore-case'] = {
+					value= "--ignore-case",
+					icon="[I]",
+					desc="ignore case"
+				},
+			}
 		},
 		default = {
 			find = {
-				--pick one of item that find_engine
+				--pick one of item in find_engine
 				cmd = "rg",
-				options = {"ignore-case"},
+				options = {"ignore-case"}
 			},
 			replace={
-				--pick one of item that replace_engine
-				cmd = "sed",
-			},
+				--pick one of item in replace_engine
+				cmd = "sed"
+			}
 		},
+		replace_vim_cmd = "cdo",
+		is_open_target_win = false, --open file on opener window
+		is_insert_mode = true,
 	})
 --MAPPINGS
-	vim.cmd [[ nnoremap <silent> <leader>ft :lua require('spectre').open()<CR> ]]
+	vim.cmd [[ nnoremap <silent> <Leader>fsp :lua require('spectre').open()<CR> ]]
+	vim.cmd [[ nnoremap <silent> <Leader>fsf viw:lua require('spectre').open_file_search()<cr> ]]
+	vim.cmd [[ nnoremap <silent> <Leader>fsw :lua require('spectre').open_visual({select_word=true})<CR> ]]
+	vim.cmd [[ vnoremap <silent> <Leader>fs :lua require('spectre').open_visual()<CR> ]]

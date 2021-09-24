@@ -14,7 +14,7 @@
 			\'tmp': glob('~/.config/nvim/tmp'),
 			\'lists': glob('~/.config/nvim/tmp/lists'),
 			\'drive': shellescape(expand('~/Google Drive')),
-			\'plugins': expand('~/.config/nvim/plugged'),
+			\'plugins': expand('~/nvim-plugins'),
 			\'configs': 'configs',
 		\},
 		\'configs': {

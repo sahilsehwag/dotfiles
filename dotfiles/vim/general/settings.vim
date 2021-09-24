@@ -104,9 +104,9 @@
 			if has('nvim-0.5')
 				set signcolumn=auto:4
 			elseif has('patch-8.1.1564')
-				"Always show the signcolumn, otherwise it would shift the text each time
+				"always show the signcolumn, otherwise it would shift the text each time
 				"diagnostics appear/become resolved.
-				"Recently vim can merge signcolumn and number column into one
+				"recently vim can merge signcolumn and number column into one
 				set signcolumn=number
 			else
 				set signcolumn=yes
@@ -182,13 +182,13 @@
 		"default is 4000ms(4s) which leads to noticeable delays and poor user experience.
 "CONFIGURATION
 	"PYTHON
-		" let g:loaded_python_provider	= 1
-		" let g:loaded_python3_provider = 1
+		"let g:loaded_python_provider	= 1
+		"let g:loaded_python3_provider = 1
 
 		if IsNix()
-			" let g:python_host_prog	= '/usr/bin/python'
-			" let g:python3_host_prog = '/usr/local/bin/python3'
-			let g:python3_host_prog = '/Users/sahilsehwag/neovim/bin/python3'
+			"let g:python_host_prog	= '/usr/bin/python'
+			"let g:python3_host_prog = '/usr/local/bin/python3'
+			"let g:python3_host_prog = '/Users/sahilsehwag/neovim/bin/python3'
 		elseif IsWindows()
 			"TODO:FIX
 			let g:python_host_prog	= "C:/Users/138100/scoop/apps/anaconda3/current/envs/pynvim2/python.exe"

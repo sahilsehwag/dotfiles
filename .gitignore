@@ -1,5 +1,9 @@
 *.swp
 .DS_Store
-**/pluggged
-#**/tmp
 tags
+
+**/tmp/undofiles
+**/tmp/swapfiles
+**/tmp/remembers
+
+vifminfo.json

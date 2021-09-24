@@ -38,5 +38,7 @@
 	"COLORS
 		highlight JatCyanFG  ctermfg=235 ctermbg=39 guifg=#61AFEF guibg=#282C34
 		highlight JatCyanBG ctermfg=235 ctermbg=39 guifg=#282C34 guibg=#61AFEF
+  "SPELL
+		highlight SpellBad gui=undercurl guibg=#E06C75 ctermbg=204
 	"RANDOM
 		highlight! link SignColumn LineNr

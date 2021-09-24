@@ -25,8 +25,8 @@ require('compe').setup({
 
   source = {
     luasnip = { priority = 10000000 },
-    --vsnip = { priority = 10000000 },
     ultisnips = { priority = 10000000 },
+    vsnip = { priority = 10000000 },
     --snippets_nvim = { priority = 10000000 },
 
     nvim_lsp = { priority = 1000000 },
@@ -63,13 +63,11 @@ _G.tab_complete = function()
   if vim.fn.pumvisible() == 1 then
     return replace_term_codes('<C-n>')
   elseif luasnip and luasnip.expand_or_jumpable() then
-    --return replace_term_codes('<Plug>luasnip-expand-or-jump')
-    --return replace_term_codes("<cmd>lua require'luasnip'.jump(1)<Cr>")
-    return replace_term_codes("<cmd>lua require'luasnip'.expand_or_jump()<Cr>")
-  --elseif vim.fn.call('vsnip#available', {1}) == 1 then
-    --return t '<Plug>(vsnip-expand-or-jump)'
+    return replace_term_codes('<cmd>lua require"luasnip".expand_or_jump()<cr>')
   elseif vim.fn['UltiSnips#CanExpandSnippet']() == 1 or vim.fn['UltiSnips#CanJumpForwards']() == 1 then
     return replace_term_codes('<C-R>=UltiSnips#ExpandSnippetOrJump()<CR>')
+  elseif vim.fn.call('vsnip#available', {1}) == 1 then
+    return replace_term_codes('<Plug>(vsnip-expand-or-jump)')
   elseif check_backspace() then
     return replace_term_codes('<Tab>')
   else
@@ -81,12 +79,11 @@ _G.s_tab_complete = function()
   if vim.fn.pumvisible() == 1 then
     return replace_term_codes('<C-p>')
   elseif luasnip and luasnip.jumpable(-1) then
-    --return replace_term_codes('<Plug>luasnip-jump-prev')
-    return replace_term_codes("<cmd>lua require'luasnip'.jump(-1)<Cr>")
-  --elseif vim.fn.call('vsnip#jumpable', {-1}) == 1 then
-    --return t '<Plug>(vsnip-jump-prev)'
+    return replace_term_codes('<cmd>lua require"luasnip".jump(-1)<cr>')
   elseif vim.fn['UltiSnips#CanJumpBackwards']() == 1 then
     return vim.api.nvim_replace_termcodes('<C-R>=UltiSnips#JumpBackwards()<CR>', true, true, true)
+  elseif vim.fn.call('vsnip#jumpable', {-1}) == 1 then
+    return replace_term_codes('<Plug>(vsnip-jump-prev)')
   else
     return replace_term_codes('<S-Tab>')
   end

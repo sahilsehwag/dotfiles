@@ -3,7 +3,7 @@ local adapt = function(plugin_config)
 		return plugin_config.plug
 	else
 		local options = {}
-		
+
 		if plugin_config.alias then
 			options.as = plugin_config.alias
 		end
@@ -36,7 +36,7 @@ local adapt = function(plugin_config)
 				options['on'] = plugin_config.cmds
 			end
 		end
-		
+
 		--HACK/TEMP
 		vim.api.nvim_set_var('plugman_plug_options', options)
 		return vim.fn.len(options) == 0 and '' or 'g:plugman_plug_options'
@@ -48,6 +48,13 @@ local plug = function(plugin, options)
 		vim.cmd('Plug ' .. "'" .. plugin .. "', " .. options)
 	else
 		vim.cmd('Plug ' .. "'" .. plugin .. "'")
+	end
+end
+
+local run_hook = function(hooks, hook_type, plugins)
+	for _, plugin in ipairs(plugins) do
+		local fn = hooks[hook_type][plugin]
+		if fn then fn() end
 	end
 end
 
@@ -72,16 +79,21 @@ return {
 		end
 	end,
 	install = function(config, groups)
-		local plugins = {}
-		for _, plugin in ipairs(groups.not_installed) do
-			table.insert(plugins, vim.fn.split(plugin, '/')[2])
+		if #groups.not_installed ~= 0 then
+			run_hook(groups.hooks, 'before_plugin_install', groups.not_installed)
+
+			local plugins = {}
+			for _, plugin in ipairs(groups.not_installed) do
+				table.insert(plugins, vim.fn.split(plugin, '/')[2])
+			end
+			vim.cmd('PlugInstall ' .. table.concat(plugins, ' '))
+
+			run_hook(groups.hooks, 'after_plugin_install', groups.not_installed)
 		end
-		
-		vim.cmd('PlugInstall ' .. table.concat(plugins, ' '))
 	end,
 	load = function(config, groups)
 		vim.fn['plug#begin'](config.paths.plugins)
-		
+
 		for _, plugin in ipairs(groups.enabled) do
 			local plugin_config = config.config[plugin]
 			plug(
@@ -89,7 +101,7 @@ return {
 				plugin_config and adapt(plugin_config)
 			)
 		end
-		
+
 		vim.fn['plug#end']()
 	end,
 }

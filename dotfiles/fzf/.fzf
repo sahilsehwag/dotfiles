@@ -1,6 +1,7 @@
 #VARIABLES
 	alias fzf='fzf-tmux'
 #SETUP
+	[ ! -f ~/.fzf.zsh ] && /bin/sh ~/.fzf/install && echo FZF initialization complete, reload ZSH!!!
 	[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 	export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 	export FZF_DEFAULT_OPTS=$'

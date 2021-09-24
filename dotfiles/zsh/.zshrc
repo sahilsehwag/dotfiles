@@ -2,9 +2,9 @@
 	#ENVIORNMENT
 		export GOPATH='~/.config/go'
 	#META
-		if [[ $OSTYPE =~ "darwin" ]]; then
+		if [[ "$OSTPYPE" == "darwin"* ]]; then
 			jatPlatform=mac
-		elif [[ $OSTYPE =~ "linux" ]]; then
+		elif [[ "$OSTPYPE" == "linux-gnu"* ]]; then
 			jatPlatform=linux
 		fi
 	#PATHS
@@ -17,7 +17,7 @@
 		#jatFindText=
 #FUNCTIONS
 	#FILESYSTEM
-		function newFile() {
+		function new_file() {
 			if [[ "$@" == */ ]] then
 				mkdir -p $@
 			else
@@ -29,6 +29,14 @@
 	#RANDOM
 		function cheat() {
 			type curl > /dev/null && curl cheat.sh/$1 | bat
+		}
+    
+		function ban() {
+      if type bat &> /dev/null; then
+				nocorrect man "$@" | bat
+			else
+				nocorrect man "$@"
+			fi
 		}
 
 		function codi() {
@@ -133,22 +141,24 @@
 	#FUCK
 		type "thefuck" > /dev/null && eval $(thefuck --alias fuck)
 	#STARSHIP
-		eval "$(starship init zsh)"
+		#eval "$(starship init zsh)"
 	#STARTSCREEN
-		type neofetch > /dev/null && neofetch
+		#type neofetch &> /dev/null && neofetch
 #ALIASES
-	type exa            > /dev/null && alias ls='exa'
-	type bat            > /dev/null && alias less='bat'
-	type procs          > /dev/null && alias ps='procs'
-	type nvim           > /dev/null && alias vim='nvim'
-	type path-extractor > /dev/null && alias pe='path-extractor'
-	type dos2unix       > /dev/null && alias d2u='find -type f | xargs dos2unix'
+	type exa            &> /dev/null && alias ls='exa'
+	type bat            &> /dev/null && alias less='bat'
+	type procs          &> /dev/null && alias ps='procs'
+	type path-extractor &> /dev/null && alias pe='path-extractor'
+	type dos2unix       &> /dev/null && alias d2u='find -type f | xargs dos2unix'
+	
+	#shortcuts
+	alias c='clear'
 	
   #hack|resetting-term for ssh
 	alias ssh='TERM=xterm-256color ssh'
 #RANDOM
 	#COMMAND-NOT-FOUND
-		if [[ $jatPlatform =~ "mac" ]]; then
+		if [[ "$OSTPYPE" == "darwin"* ]]; then
 			HB_CNF_HANDLER="$(brew --prefix)/Homebrew/Library/Taps/homebrew/homebrew-command-not-found/handler.sh"
 			if [ -f "$HB_CNF_HANDLER" ]; then
 				source "$HB_CNF_HANDLER";

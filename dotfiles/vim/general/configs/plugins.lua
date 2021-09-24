@@ -73,7 +73,7 @@ local core = {
 	--operations
 	'machakann/vim-swap',
 	'AndrewRadev/splitjoin.vim',
-	--'dkarter/bullets.vim',
+	'dkarter/bullets.vim',
 	'lambdalisue/reword.vim',
 	{'jiangmiao/auto-pairs', 'windwp/nvim-autopairs'},
 	{'NTBBloodbath/color-converter.nvim', 'amadeus/vim-convert-color-to'},
@@ -112,10 +112,15 @@ local editor = {
 	'rcarriga/nvim-notify',
 	'kevinhwang91/nvim-bqf',
 	'mbbill/undotree',
-	{'dohsimpson/vim-macroeditor', 'rbong/vim-buffest'},
-	'svermeulen/vim-macrobatics',
+	{
+		'svermeulen/vim-macrobatics',
+		{'dohsimpson/vim-macroeditor', 'rbong/vim-buffest'},
+	},
 	'notomo/cmdbuf.nvim',
+	'joechrisellis/vim-git-arglist',
 	--'junegunn/vim-peekaboo',
+	--not-working
+	'boson-joe/vimwintab',
 
 	--editor.aesthetics
 	{'romgrk/barbar.nvim', 'akinsho/nvim-bufferline.lua', 'bling/vim-bufferline',},
@@ -137,33 +142,35 @@ local editor = {
 
 	-- colorcshemes
 	{
+		--testing
 		--'challenger-deep-theme/vim',
 		--'Pocco81/Catppuccino.nvim',
 		--'yashguptaz/calvera-dark.nvim',
 		--'Shadorain/shadotheme',
-    
-    --stable
+		--'wuelnerdotexe/vim-enfocado',
+
+		--stable
 		'EdenEast/nightfox.nvim',
 		'projekt0n/github-nvim-theme',
-    'eddyekofo94/gruvbox-flat.nvim',
+		'eddyekofo94/gruvbox-flat.nvim',
 		{'folke/tokyonight.nvim', 'ghifarit53/tokyonight-vim'},
 		{'Mofiqul/vscode.nvim', 'tomasiser/vim-code-dark'},
 		{'kaicataldo/material.vim', 'marko-cerovac/material.nvim'},
-    
-    --good
+
+		--good
 		'christianchiarulli/nvcode-color-schemes.vim',
 		'KeitaNakamura/neodark.vim',
 		'Mangeshrex/uwu.vim',
 		'ayu-theme/ayu-vim',
 		'sindresorhus/focus',
 
-    --okish
+		--okish
 		'KabbAmine/yowish.vim',
 		'tyrannicaltoucan/vim-quantum',
 		'raphamorim/lucario',
 		'arzg/vim-corvine',
 
-    --collections
+		--collections
 		'rockerBOO/boo-colorscheme-nvim',
 		'flazz/vim-colorschemes',
 		'rafi/awesome-vim-colorschemes',
@@ -188,7 +195,7 @@ local default = {
 	--'haya14busa/incsearch-easymotion.vim',
 	'lambdalisue/lista.nvim',
 	'osyo-manga/vim-hopping',
-	'windwp/nvim-spectre',
+	{'windwp/nvim-spectre', 'brooth/far.vim'},
 
 	--editor.general
 	'dstein64/vim-startuptime',
@@ -216,6 +223,9 @@ local default = {
 	--'camspiers/animate.vim',
 	--'camspiers/lens.vim',
 	--'blueyed/vim-diminactive',
+
+	--random
+	'edluffy/hologram.nvim',
 }
 local ide = {
 	--editor.general
@@ -229,7 +239,9 @@ local ide = {
 	--'axlebedev/footprints',
 
 	--programming.completion
-	{'SirVer/ultisnips', 'L3MON4D3/LuaSnip', 'hrsh7th/vim-vsnip', 'norcalli/snippets.nvim'},
+	'L3MON4D3/LuaSnip',
+	'SirVer/ultisnips',
+	{ 'hrsh7th/vim-vsnip', 'norcalli/snippets.nvim' },
 	{'hrsh7th/nvim-compe', 'ms-jpq/coq_nvim'},
 
 	--programming.lsp
@@ -270,7 +282,7 @@ local ide = {
 	{'iamcco/markdown-preview.nvim', 'suan/vim-instant-markdown'},
 
 	--programming.vcs
-	--{'tanvirtin/vgit.nvim', 'TimUntersberger/neogit', 'tpope/vim-fugitive'},
+	{'tpope/vim-fugitive', 'tanvirtin/vgit.nvim', 'TimUntersberger/neogit'},
 	{'airblade/vim-gitgutter', 'lewis6991/gitsigns.nvim'},
 	'ttys3/nvim-blamer.lua',
 	'sindrets/diffview.nvim',
@@ -294,10 +306,10 @@ local ide = {
 local configuration = {
 	--random
 	'tpope/vim-scriptease',
-	
+
 	--api
 	'tweekmonster/nvim-api-viewer',
-	
+
 	--colors
 	'rktjmp/lush.nvim',
 }
@@ -319,9 +331,10 @@ local featured = {
 	'panozzaj/vim-autocorrect',
 
 	--random
-	'MrPeterLee/VimWordpress',
+	--'MrPeterLee/VimWordpress',
 }
 local testing = {
+	'dstein64/vim-menu',
 	'r1ri/suffer',
 	'lukas-reineke/headlines.nvim',
 	'jameshiew/nvim-magic',
@@ -520,12 +533,18 @@ return {
 		['windwp/nvim-spectre'] = {
 			url = 'windwp/nvim-spectre',
 			is_enabled = function()
-				return vim.fn.has('nvim-0.5') == 1
+				return (
+					vim.fn.has('nvim-0.5') == 1 and
+					vim.fn.executable('rg') == 1 and
+					vim.fn.executable('sed') == 1
+				)
 			end,
 			dependencies = {
 				pre = {
 					'nvim-lua/plenary.nvim',
 					'nvim-lua/popup.nvim',
+					'kyazdani42/nvim-web-devicons',
+					'ryanoasis/vim-devicons',
 				},
 			},
 		},
@@ -578,6 +597,14 @@ return {
 					vim.cmd('hi UnfocusedWindow guibg=#1f2a38')
 				end,
 			},
+		},
+		['wuelnerdotexe/vim-enfocado'] = {
+			url = 'wuelnerdotexe/vim-enfocado',
+			config = function()
+				vim.cmd('set termguicolors')
+				vim.cmd('colorscheme enfocado')
+				--vim.cmd('autocmd VimEnter * ++nested colorscheme enfocado')
+			end
 		},
 		['projekt0n/github-nvim-theme'] = {
 			url = 'projekt0n/github-nvim-theme',
@@ -668,8 +695,8 @@ return {
 			is_enabled = function()
 				return vim.fn.has('nvim-0.5') == 1
 			end,
-      config = function()
-        vim.cmd [[ colorscheme gruvbox-flat ]]
+			config = function()
+				vim.cmd [[ colorscheme gruvbox-flat ]]
 			end,
 		},
 		['rockerBOO/boo-colorscheme-nvim'] = {
@@ -794,6 +821,18 @@ return {
 			end,
 		},
 
+		--editor/graphics
+		['edluffy/hologram.nvim'] = {
+			url = 'edluffy/hologram.nvim',
+			is_enabled = function()
+				return (
+					vim.fn.has('nvim-0.5') == 1 or
+					vim.fn.has('macunix') == 1 or
+					vim.fn.has('unix') == 1 or
+					vim.fn.has('linux') == 1
+				)
+			end,
+		},
 		--BUFFER
 		--buffer/general
 		['kazhala/close-buffers.nvim'] = {
@@ -943,6 +982,12 @@ return {
 				pre = { 'nvim-lua/plenary.nvim', 'nvim-lua/popup.nvim' },
 			},
 		},
+		['kyazdani42/nvim-tree.lua'] = {
+			url = 'kyazdani42/nvim-tree.lua',
+			is_enabled = function()
+				return vim.fn.has('nvim-0.5') == 1
+			end,
+		},
 
 		--system/terminal
 		['lambdalisue/guise.vim'] = {
@@ -1028,6 +1073,11 @@ return {
 				return vim.fn.has('nvim-0.5') == 1
 			end,
 			post_install = ':TSUpdate',
+			hooks = {
+				after_plugin_install = function()
+					vim.cmd('TSInstall all')
+				end
+			},
 		},
 		['nvim-treesitter/playground'] = {
 			url = 'nvim-treesitter/playground',
@@ -1155,7 +1205,7 @@ return {
 			end,
 			dependencies = {
 				pre = {
-					'L3MON4D3/LuaSnip',
+					--'L3MON4D3/LuaSnip',
 					--'SirVer/ultisnips',
 					--'hrsh7th/vim-vsnip',
 				},
@@ -1171,6 +1221,15 @@ return {
 				pre = { 'hrsh7th/nvim-compe' },
 			},
 			post_install = './install.sh'
+		},
+		['L3MON4D3/LuaSnip'] = {
+			url = 'L3MON4D3/LuaSnip',
+			is_enabled = function()
+				return vim.fn.has('nvim-0.5') == 1
+			end,
+			dependencies = {
+				post = { 'rafamadriz/friendly-snippets' },
+			},
 		},
 		['hrsh7th/vim-vsnip'] = {
 			url = 'hrsh7th/vim-vsnip',
@@ -1192,6 +1251,9 @@ return {
 					'epilande/vim-react-snippets',
 				},
 			},
+			is_enabled = function()
+				return vim.fn.has('python3') == 1
+			end,
 		},
 		['ms-jpq/coq_nvim'] = {
 			url = 'ms-jpq/coq_nvim',

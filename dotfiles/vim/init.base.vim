@@ -20,7 +20,12 @@
 	runtime better-folds.vim
 	runtime better-terminal.vim
 	runtime better-help.vim
-	runtime minimalistic-folds.vim
+	
+	if has('nvim-0.5')
+		lua require('folder').setup({ folder = 'default' })
+	else
+		runtime folder.vim
+	end
 
 	runtime terminator.vim
 	runtime projectinator.vim
@@ -41,9 +46,10 @@
 		runtime configs/pacman.lua
 		runtime configs/plugman.lua
 		runtime configs/executioner.lua
+	elseif has('nvim-0.4')
+		runtime executioner.vim
 	else
 		"call g:loaders['plug'](s:plugins, s:configs)
-		runtime executioner.vim
 	end
 "CLIENTS
 	runtime clients/firenvim.vim
@@ -51,4 +57,5 @@
 	runtime clients/neovide.vim
 	runtime clients/goneovim.vim
 "OVERRIDES
+	runtime general/highlights.vim
 	runtime general/overrides.vim

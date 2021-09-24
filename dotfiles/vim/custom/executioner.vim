@@ -173,9 +173,7 @@ if ExistsAndTrue('g:executioner_enabled')
 					\}
 			"FRAMEWORKS
 	"FUNCTIONS
-		if has('vim')
-			"TODO
-		elseif has('nvim')
+		if has('nvim')
 			"FUNCTIONS
 				function! ExecutionerCommand(type, ...) abort
 					if exists('a:1') && len(a:1) > 0

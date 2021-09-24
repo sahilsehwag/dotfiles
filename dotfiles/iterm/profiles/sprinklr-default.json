@@ -36,7 +36,7 @@
   "Non-ASCII Anti Aliased" : true,
   "Sync Title" : false,
   "Disable Window Resizing" : true,
-  "Description" : "Default",
+  "Description" : "SprinklrDefault",
   "Close Sessions On End" : true,
   "Jobs to Ignore" : [
     "rlogin",

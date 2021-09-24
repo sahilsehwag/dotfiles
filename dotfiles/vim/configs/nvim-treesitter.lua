@@ -9,6 +9,7 @@ require('nvim-treesitter.parsers').get_parser_configs().norg = {
 }
 
 require('nvim-treesitter.configs').setup({
+  --ensure_installed = 'all',
 	highlight = { enable = true, },
 	indent = { enable = false, },
 	textobjects = {

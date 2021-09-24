@@ -1,0 +1,6 @@
+--list-emmet
+--multiple list types
+--list symbol completion
+--for-loop structure {0,10,+1}
+--indentation
+--nested-list
