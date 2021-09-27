@@ -1,0 +1,7 @@
+broot like features as well
+like dirbuf.nvim
+like clifm
+	* numbers to identify items
+
+remote/ssh fs
+git/github/..client fs

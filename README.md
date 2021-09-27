@@ -1,14 +1,2 @@
-# Specification
-
-## pacman
-
-* pacman.cmd
-* pacman.find
-* pacman.add
-* pacman.remove
-* pacman.list
-* pacman.show
-* pacman.update
-* pacman.upgrade
-* pacman.add-mirror
-* pacman.remove-mirror
+### Install
+`curl https://raw.githubusercontent.com/sahilsehwag/dotfiles/master/install.sh | sh -x`

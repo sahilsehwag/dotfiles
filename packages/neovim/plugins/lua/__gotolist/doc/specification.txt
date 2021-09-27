@@ -1,0 +1,19 @@
+mode triggers in a new tab
+each jump opens a new window stacked below the last window with previous symbol
+and previous window becomes `n` lines long and eventually 1 line long
+jump history becomes trivial using c-j and c-k
+simple since it uses simple/basic vim constructs
+jumping/focusing on some window(symbol) focuses it and makes other 1 line long
+
+persistent jump history view(like sessions)
+saving this view for future use
+project/directory/branch based persistence
+
+preview any history item from jump history to open find the history we want
+navigating between various histories like quickfix list history navigation
+
+automatic suggesting/finding/opening of list of histories by current symbol matching/under the cursor
+
+qf list can be used?
+
+abstract/generaize it to jumplist/taglist/insertlist and so on....

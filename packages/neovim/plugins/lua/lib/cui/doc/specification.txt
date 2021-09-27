@@ -1,0 +1,2 @@
+features:
+	* reference|like CliFM

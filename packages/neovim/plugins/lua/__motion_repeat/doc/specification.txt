@@ -1,0 +1,13 @@
+#like better-n
+motion-repeat: dot-repeat for motions
+repeat last motion
+remembers the last count used with this motion repeat
+
+items
+	* search
+	* fFtT
+	+ qf|loc
+	+ lsp|treesitter
+	+ text-object|motion
+	+ jumps(miscelleanous)
+	+ registration of custom jumps and motions using commands and maps

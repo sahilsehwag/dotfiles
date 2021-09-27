@@ -1,0 +1,11 @@
+structure
+	* tree(heirarchy)
+	* graph
+		+ symlinking to specific block
+item
+	* singleline
+	* multiline
+actions
+	* filtering
+	* selection
+		+ persistent selection across filtering

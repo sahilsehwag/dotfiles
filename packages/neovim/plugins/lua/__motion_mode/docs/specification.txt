@@ -1,0 +1,19 @@
+MESS
+	tree-navigation
+		universal-navigation
+		same-node navigation
+	select-mode ...like syntax-tree-surfer
+	hints|markers for close siblings|children|parent nodes
+	highlights
+		boundries ...like sibling boundry
+	focus mode ...like limelight
+LISTS
+	JUMPLIST
+	CHANGELIST
+	#LSPLIST
+	#MARKSLIST
+	#BOOKMARKSLIST
+	CUSTOM-LIST
+		for ex bookmarks...or custom logic to build a list
+REPEAT
+	;, = repeat last motion command with same count

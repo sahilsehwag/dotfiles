@@ -1,0 +1,4 @@
+custom buffer tree per project/tab track code structure while nagivating and debugging codebases
+editable and rearrangable
+like incoming/outgoing calls but for navigating/understaging codebases
+manually + automatically(using lsp)

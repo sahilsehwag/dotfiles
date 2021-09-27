@@ -1,0 +1,135 @@
+board:
+    id: 205
+    name: GE Scrum
+    type: scrum
+epic:
+    name: customfield_10005
+    link: customfield_10008
+installation: Cloud
+issue:
+    fields:
+        custom:
+            - name: Tech Debt Category
+              key: customfield_10197
+              schema:
+                datatype: array
+                items: option
+            - name: Environment Track
+              key: customfield_10165
+              schema:
+                datatype: array
+                items: option
+            - name: Development
+              key: customfield_10000
+              schema:
+                datatype: any
+            - name: Grooming Status
+              key: customfield_10332
+              schema:
+                datatype: option
+            - name: Work Category
+              key: customfield_10135
+              schema:
+                datatype: array
+                items: option
+            - name: Story Points
+              key: customfield_10014
+              schema:
+                datatype: number
+            - name: Rank Order
+              key: customfield_10335
+              schema:
+                datatype: number
+            - name: Sprint
+              key: customfield_10010
+              schema:
+                datatype: array
+                items: json
+            - name: Release
+              key: customfield_10253
+              schema:
+                datatype: array
+                items: option
+            - name: Type of Issue
+              key: customfield_10128
+              schema:
+                datatype: array
+                items: option
+            - name: Customer
+              key: customfield_10045
+              schema:
+                datatype: array
+                items: string
+            - name: Time to resolution
+              key: customfield_10100
+              schema:
+                datatype: sd-servicelevelagreement
+            - name: Checklist Completed
+              key: customfield_10119
+              schema:
+                datatype: string
+            - name: SLA
+              key: customfield_10054
+              schema:
+                datatype: date
+            - name: Epic Link
+              key: customfield_10008
+              schema:
+                datatype: any
+            - name: Issue Environment
+              key: customfield_10053
+              schema:
+                datatype: array
+                items: option
+            - name: Issue Reported On
+              key: customfield_10048
+              schema:
+                datatype: array
+                items: option
+            - name: Developer
+              key: customfield_10025
+              schema:
+                datatype: array
+                items: user
+            - name: Epic Name
+              key: customfield_10005
+              schema:
+                datatype: string
+    types:
+        - id: "10002"
+          name: Task
+          handle: Task
+          subtask: false
+        - id: "10003"
+          name: Sub-task
+          handle: Sub-task
+          subtask: true
+        - id: "10001"
+          name: Story
+          handle: Story
+          subtask: false
+        - id: "10004"
+          name: Bug
+          handle: Bug
+          subtask: false
+        - id: "10000"
+          name: Epic
+          handle: Epic
+          subtask: false
+        - id: "10062"
+          name: Sprint Bugs
+          handle: Sprint Bugs
+          subtask: true
+        - id: "10284"
+          name: Capability
+          handle: Capability
+          subtask: false
+        - id: "10306"
+          name: Testing Defect
+          handle: Testing Defect
+          subtask: false
+login: sahil.sehwag@mindtickle.com
+project:
+    key: GE
+    type: classic
+server: https://mindtickle.atlassian.net

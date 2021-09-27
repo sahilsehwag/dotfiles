@@ -1,0 +1,37 @@
+require'nvim-surround'.setup()
+--require'nvim-surround'.setup{
+--  keymaps = { -- vim-surround style keymaps
+--    --insert = "ys",
+--    visual = "S",
+--    delete = "ds",
+--    change = "cs",
+--  },
+--  surrounds = {
+--    pairs = {
+--      ['('] = { '(', ')' },
+--      [')'] = { '( ', ' )' },
+--      ['{'] = { '{', '}' },
+--      ['}'] = { '{ ', ' }' },
+--      ['<'] = { '<', '>' },
+--      ['>'] = { '< ', ' >' },
+--      ['['] = { '[', ']' },
+--      [']'] = { '[ ', ' ]' },
+--    },
+--    separators = {
+--      ["'"] = { "'", "'" },
+--      ['"'] = { '"', '"' },
+--      ["`"] = { "`", "`" },
+--      [" "] = { " ", " " },
+--    },
+--    HTML = {
+--      ['t'] = true, -- Use "t" for HTML-style mappings
+--    },
+--    aliases = {
+--      ['b'] = { '{', '(', '[' }, -- Table aliases only apply for changes/deletions
+--      ['q'] = { '"', "'", "`" }, -- Table aliases only apply for changes/deletions
+--    },
+--  },
+--  highlight = {
+--    duration = 0,
+--  },
+--}

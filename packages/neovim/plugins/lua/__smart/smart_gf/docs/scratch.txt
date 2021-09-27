@@ -1,0 +1,8 @@
+resolvers[priority] -> gf -> resolvers[backup] -> project -> project[hidden+ignored] -> workspace -> system[locate]
+
+search=fuzzy|wild...locate?
+resolvers
+	enabled
+		filetype
+		projecttype
+	pattern

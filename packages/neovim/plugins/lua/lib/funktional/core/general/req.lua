@@ -1,0 +1,1 @@
+return Funk.memo(require)

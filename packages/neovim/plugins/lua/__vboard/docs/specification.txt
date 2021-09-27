@@ -1,0 +1,2 @@
+virtual dashboard
+like vscode/fleet/intellij home screen

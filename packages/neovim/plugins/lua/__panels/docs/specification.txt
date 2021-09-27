@@ -1,0 +1,30 @@
+"jetbrains like panels for left/right/bottom
+"collapsed-menu-of-panels with intellij/vscode like vertical menu
+"like scrollbar
+PANELS
+	TOP
+	BOTTOM
+		TABS
+			"like vscode
+			PROBLEMS
+			TASKS
+			TERMINALS
+			FILTER=SEARCH
+				TAGS
+					file:<regex>
+					path:
+					text:
+					row:
+					col:
+					...
+	LEFT=SIDEBAR
+		TABS
+			TREE
+			S&R
+			BUFFERS
+			TABS
+			WINDOWS
+	RIGHT
+		TABS
+			SYMBOLS
+			CALLS

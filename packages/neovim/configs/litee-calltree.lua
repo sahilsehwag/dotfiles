@@ -1,0 +1,1 @@
+require('litee.calltree').setup({})

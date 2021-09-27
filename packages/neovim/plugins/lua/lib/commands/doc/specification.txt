@@ -1,0 +1,7 @@
+grammar=range.command
+range=
+	single|multiple(bulk)
+	consecutive|non-consecutive
+	across-buffers|files...
+	buffers|files[proejct,git....]|qflist|arglist|interactive(fuzzy)
+hooks=beorte|after to make a chain of commands using composition

@@ -1,0 +1,2 @@
+colorscheme onehalflight
+colorscheme onehalfdark

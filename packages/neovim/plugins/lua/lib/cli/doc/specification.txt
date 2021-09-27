@@ -1,0 +1,9 @@
+generic library to create interfaces like neogit/magit/gh
+basically a vim buffer interface for cli apps like git [lib|api/cli/tui/gui/web]
+with command as entry point
+like neogit/magit
+command -> subcommands(mappings) -> flags(--/=) -> buffer(for input)
+
+aliases | custom commands in between
+	custom commands are combinations of subcommands + input + options
+	like L to git log --oneline

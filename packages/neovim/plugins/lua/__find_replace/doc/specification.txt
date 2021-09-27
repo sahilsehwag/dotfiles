@@ -1,0 +1,48 @@
+line|block search and replace
+
+search and replace using buffers
+select text like work|line(s)|block
+and show that text in buffer with same text below
+we can edit src text to make groups|regex and so on
+and in replaced text we can use those groups
+or edit text
+then check for results before confirming or doing one by one confirmation
+or skipping something or doing multiple replacements at same time using text objects (like in functions)
+
+search-replace editor blocks
+	* search input
+	* replace input
+	* preview
+	* results
+operations
+	* save to do the replace
+	* delete to exclude the file or specific instance of the search
+query
+	* custom regex engine?
+		+ intellisense based searching
+	* broot like system
+	* flags (extended character classes)
+		+ lsp|treesitter based flags
+			+ \v - variable
+			+ \f - function
+			+ ...other symbols
+		+ text based flags
+			+ regex flags
+				+ i - case insensitive
+				+ g - global
+				+ m - multiline
+				+ \w \d and other regex character classes
+				+ ...other flags
+	* nested queries
+		+ identifier inside function
+
+preserve casing while replacing and ignore casing when searching for identifiers
+
+control scope object|buffer|files|qflist(...lists)|directory|project|regex(globs) for directories/files|
+
+see operation result previews using git delta like diffs with context
+
+virtual text to show as block separators for search,replace,preview blocks
+using markers like [[ ... ]] as block separators
+
+ability to toggle diff mode for results

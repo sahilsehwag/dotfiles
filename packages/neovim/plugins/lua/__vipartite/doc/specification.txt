@@ -1,0 +1,2 @@
+visual partial mode
+select non continous lines

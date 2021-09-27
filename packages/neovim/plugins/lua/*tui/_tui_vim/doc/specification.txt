@@ -1,0 +1,22 @@
+ui=tabs|windows|buffers|files|sessions|temrinals
+tabs -> windows -> buffer -> file
+
+sessions
+	info in a tree view like buffers, windows, tabs and their sizes positions etc
+
+o=add child
+O=add parent
+indentation=parent child relationship
+
+t0
+	b0 = b# | filename:position
+	b1
+	b2
+t1
+	b0
+	b1
+	b2
+t2
+	b0
+	b1
+	b2

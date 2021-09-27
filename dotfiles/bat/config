@@ -1,7 +1,0 @@
-#--theme="TwoDark"
---italic-text=always
---style="header,numbers,grid,changes,snip"
-
---paging=always
-
---map-syntax "*.txt:Java Properties"

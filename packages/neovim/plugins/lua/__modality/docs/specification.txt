@@ -1,0 +1,14 @@
+modes
+interactive-modes
+	#transient-states
+variant-modes
+	like motion mode, function|class toggles hjkl
+context-maps
+	for example treesitter objects based on treesitter-context
+layers
+	hydra.nvim
+keymap-stack
+	map-prepend|append
+keymap-queue
+	map-prepend|append
+	keymap-amend.nvim

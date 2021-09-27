@@ -1,0 +1,15 @@
+"vmap gjs <Plug>(jplus)
+"vmap gjC <Plug>(jplus-getchar)
+"vmap gjc <Plug>(jplus-getchar-with-space)
+"vmap gjI <Plug>(jplus-input)
+"vmap gji <Plug>(jplus-input-with-space)
+
+vmap Js <Plug>(jplus)
+vmap Jc <Plug>(jplus-getchar)
+vmap JC <Plug>(jplus-getchar-with-space)
+vmap Ji <Plug>(jplus-input)
+vmap JI <Plug>(jplus-input-with-space)
+
+"nmap gjs <Plug>(operator-jplus)
+"nmap gjc <Plug>(operator-jplus-getchar)
+"nmap gji <Plug>(operator-jplus-input)

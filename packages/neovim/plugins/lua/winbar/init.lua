@@ -1,0 +1,1 @@
+--vim.cmd[[set winbar=%{%v:lua.require('winbar.winbar').eval()%}]]

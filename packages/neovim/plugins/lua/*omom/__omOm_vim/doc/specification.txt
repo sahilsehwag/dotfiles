@@ -1,0 +1,6 @@
+buffers
+windows
+tabs
+arglist
+qf
+loc

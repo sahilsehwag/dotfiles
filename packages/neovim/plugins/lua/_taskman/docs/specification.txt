@@ -1,0 +1,57 @@
+TASKS
+	CONFIG
+		SCOPE
+			GLOBAL
+			FILE
+			STACK
+			PROJECT
+		TYPE
+			CONSUMER=INTERNAL|EXTERNAL
+			BACKGROUND=TRUE|FALSE
+		DEPENDENCIES
+			INTERNAL
+				TASKS
+				PLUGINS
+				COMMANDS
+				FUNCTIONS
+			EXTERNAL
+	COMMANDS
+		LIST
+	ACTIONS
+		NEW
+		UPDATE
+		DELETE
+		RUN
+		EDIT
+			PARAMS
+				WORKFLOW[WARP]
+			ARGS
+	RANDOM
+		AUTOPICK
+			NODE
+	REFERENCE
+		VSCODE-TASKS
+	TASK-STRUCTURE
+		-- TODO:
+		local task = {
+			name = '',
+			description = '',
+
+			type = 'internal|external',
+			background = true|false,
+
+			cmd = function() end,
+			runner = function() end,
+			--output = function() end,
+
+			-- internal|external tasks|plugins|commands|functions
+			--is_enabled = function() end,
+
+			tags = {},
+
+			input_formatter = function() end,
+			output_formatter = function() end,
+		}
+
+#ROOTER LOGIC
+https://github.com/ahmedkhalf/project.nvim

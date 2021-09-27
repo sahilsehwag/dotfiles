@@ -1,0 +1,1 @@
+like a function with a multiple strings as arguments and returns a regex string representing that data(list of strings)

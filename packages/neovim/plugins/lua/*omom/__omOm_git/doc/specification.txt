@@ -1,0 +1,8 @@
+files
+	tracked
+	ignored
+	all
+	changed
+	staged
+	unstaged
+	modified

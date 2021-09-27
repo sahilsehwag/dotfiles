@@ -1,5 +1,17 @@
 #!usr/bin/env bash
-script_directory="$( cd "$( dirname "$0" )" && pwd )"
+[[ ! -z $SCRIPTS_CORE ]] || export SCRIPTS_CORE="$( cd "$( dirname "${BASH_SOURCE:-$0}" )" && pwd )"
+[[ ! -z $SCRIPTS_ROOT ]] || export SCRIPTS_ROOT="$( cd "$SCRIPTS_CORE/../" && pwd )"
+[[ ! -z $SCRIPTS_REPOS ]] || export SCRIPTS_REPOS="$HOME/.repos"
+[[ ! -z $SCRIPTS_CONFIG ]] || export SCRIPTS_CONFIG="$HOME/.config/scripts"
 
-/bin/sh -x $script_directory/variables.sh
-/bin/sh -x $script_directory/paths.sh
+#ENVIORNMENT
+#CONSTANT
+#interface
+#__private
+#_function
+#module__function
+
+source $SCRIPTS_CORE/libs/install.sh
+source $SCRIPTS_CORE/variables.sh
+source $SCRIPTS_CORE/paths.sh
+source $SCRIPTS_CORE/pacman.sh

@@ -1,0 +1,74 @@
+MAPPINGS
+	BASICS
+		#UNMAPPINGS
+			unmap gt
+			unmap gT
+			unmap gf
+		#INBUILT
+			#TABS
+				map wn createTab
+				map wd duplicateTab
+				map ww moveTabToNewWindow
+
+				#map x closeCurrentTab
+				#map X restoreTab
+				map wco closeOtherTabs
+				map wch closeTabsOnLeft
+				map wcl closeTabsOnRight
+
+				map wp togglePinTab
+				map wm toggleMuteTab
+
+				map w/ Vomnibar.activateTabSelection
+				map w9 firstTab
+				map w0 lastTab
+				map `  visitPreviousTab
+
+				map <C-9> previousTab
+				map <C-0> nextTab
+				map ( moveTabLeft
+				map ) moveTabRight
+			#HINTING
+				map gf LinkHints.activateModeWithQueue
+				map gF LinkHints.activateModeToOpenInNewForegroundTab
+			#EDITING
+				map eu Vomnibar.activateEditUrl
+				map eU Vomnibar.activateEditUrlInNewTab
+		#SEARCH-ENGINE-MAPPINGS
+			map sg Vomnibar.activateInNewTab keyword=google
+			map sd Vomnibar.activateInNewTab keyword=duckduckgo
+			map sy Vomnibar.activateInNewTab keyword=youtube
+			map sv Vomnibar.activateInNewTab keyword=github
+			map sm Vomnibar.activateInNewTab keyword=google_maps
+			map sa Vomnibar.activateInNewTab keyword=amazon
+			map sw Vomnibar.activateInNewTab keyword=wikipedia
+
+			#map sf Vomnibar.activateInNewTab keyword=flipkart
+			#map sd Vomnibar.activateInNewTab keyword=dw
+			#map sq Vomnibar.activateInNewTab keyword=qwant
+			#map sb Vomnibar.activateInNewTab keyword=bing
+		#SEARCH-ENGINE-MAPPINGS(NEW-TAB)
+			map sG Vomnibar.activateInNewTab keyword=google
+			map sD Vomnibar.activateInNewTab keyword=duckduckgo
+			map sY Vomnibar.activateInNewTab keyword=youtube
+			map sv Vomnibar.activateInNewTab keyword=github
+			map sM Vomnibar.activateInNewTab keyword=google_maps
+			map sW Vomnibar.activateInNewTab keyword=wikipedia
+			map sA Vomnibar.activateInNewTab keyword=amazon
+
+			#map sF Vomnibar.activateInNewTab keyword=flipkart
+			#map sD Vomnibar.activateInNewTab keyword=dw
+			#map sQ Vomnibar.activateInNewTab keyword=qwant
+			#map sB Vomnibar.activateInNewTab keyword=bing
+	SEARCH-ENGINES
+		wikipedia:   http://www.wikipedia.org/w/index.php?title=Special:Search&search=%s Wikipedia
+		google:      http://www.google.com/search?q=%s Google
+		youtube:     http://www.youtube.com/results?search_query=%s Youtube
+		google_maps: https://www.google.com/maps?q=%s Google maps
+		duckduckgo:  https://duckduckgo.com/?q=%s DuckDuckGo
+		amazon:      http://www.amazon.com/s/?field-keywords=%s Amazon
+		dictionary:  http://www.merriam-webster.com/dictionary/%s Merriam-Webster
+		github:      http://github.com/search?q=%s Github
+		#bing:       https://www.bing.com/search?q=%s Bing
+		#flipkart:   https://www.flipkart.com/search?otracker=start&as-show=on&as=off&q=%s Flipkart
+		#qwant:      https://www.qwant.com/?q=%s Qwant

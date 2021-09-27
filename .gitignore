@@ -2,8 +2,7 @@
 .DS_Store
 tags
 
-**/tmp/undofiles
-**/tmp/swapfiles
-**/tmp/remembers
+**/vifm/colors
+**/vifm_devicons
 
 vifminfo.json

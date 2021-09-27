@@ -1,0 +1,8 @@
+API using CLI
+	* parse using MAN|--help
+		+ compile
+	* examples(git)
+		+ git.commit({ amend = true })
+	* aliases
+		+ function name to specific state of command formation
+		+ ex: git.log = git log --oneline

@@ -1,0 +1,2 @@
+--print operation info, live
+--delete inner word

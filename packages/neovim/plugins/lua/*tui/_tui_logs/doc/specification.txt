@@ -1,0 +1,22 @@
+requirements
+	* buffer dedicated for logs
+		+ hidden/togglable (like emacs messages buffer)
+	* adding/removing/toggling sources
+	* custom sources
+		+ api for integration by 3rd party consumers
+		+ running custom shell/vim commands
+LOGS
+	* external
+		+ server
+		+ shell
+		+ ssh
+	* internal
+		* messages
+		* vim.notify
+		* lsp
+		* code
+			+ scripts
+			+ modules
+		* plugins
+			+ api (integration)
+		* processes

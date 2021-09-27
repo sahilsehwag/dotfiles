@@ -1,0 +1,12 @@
+* tescases
+	+ run
+	+ watch
+	+ target
+		+	single
+		+ multiple
+			+ consecutive
+			+	non-consecutive
+	+ status
+		+ icons
+		+ virtual-text
+		+ toggle (details)
