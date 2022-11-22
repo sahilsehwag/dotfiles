@@ -62,8 +62,8 @@ require('vgit').setup({
 				sp = nil,
 				override = false,
 			},
-			GitSignsAddLn = 'DiffAdd',
-			GitSignsDeleteLn = 'DiffDelete',
+			GitSignsAddLn = 'JatAddBG',
+			GitSignsDeleteLn = 'JatDeleteBG',
 			GitWordAdd = {
 				gui = nil,
 				fg = nil,

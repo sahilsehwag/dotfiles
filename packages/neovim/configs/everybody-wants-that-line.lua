@@ -16,7 +16,7 @@ require'everybody-wants-that-line'.setup({
 		path = 'relative',
 		-- If `true` the path will be shortened, e.g. '/a/b/c/filename.lua'.
 		-- It only works if `path` is 'relative' or 'full'.
-		shorten = false,
+		shorten = true,
 	},
 	filesize = {
 		-- `metric` can be:

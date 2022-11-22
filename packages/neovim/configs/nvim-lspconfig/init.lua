@@ -76,14 +76,24 @@
 		--'scry',
 	}
 
-	for _,server in ipairs(SERVERS) do
+	for _, server in ipairs(SERVERS) do
 		local path = vim.g.config.paths.configs .. '/nvim-lspconfig/servers' .. '/' .. server
 
+		local on_attach = function(client, bufnr)
+			require('plugins/lsp_signature').attach()
+
+			local lsp_format_modifications = require'lsp-format-modifications'
+			lsp_format_modifications.attach(client, bufnr, { format_on_save = false })
+		end
+
 		if vim.fn.filereadable(path) == 1 then
-			require(path)
-			-- require('lspconfig')[server].setup(require(path))
+			require(path).setup({
+				on_attach = on_attach,
+			})
 		else
-			require('lspconfig')[server].setup({})
+			require('lspconfig')[server].setup({
+				on_attach = on_attach,
+      })
 		end
 	end
 -- MESS

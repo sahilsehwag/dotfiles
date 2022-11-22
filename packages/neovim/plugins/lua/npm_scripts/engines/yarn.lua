@@ -1,8 +1,4 @@
 local vim, fn = vim, vim.fn
-local concat = require('libs.utils').table.list.concat
-
-local COMMANDS = {
-}
 
 local split_output = F.pipe(
   F.append_to({ 'cd', F.git.get_root(), '&&' }),

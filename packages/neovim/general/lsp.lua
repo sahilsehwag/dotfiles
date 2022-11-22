@@ -1,36 +1,36 @@
 --MAPPINGS
 	--GOTO
-		F.nvim.nmap('<Leader>lgd', '<cmd>lua vim.lsp.buf.definition()<CR>')
-		F.nvim.nmap('<Leader>lgD', '<cmd>lua vim.lsp.buf.declaration()<CR>')
-		F.nvim.nmap('<Leader>lgt', '<cmd>lua vim.lsp.buf.type_definition()<CR>')
-		F.nvim.nmap('<Leader>lgi', '<cmd>lua vim.lsp.buf.implementation()<CR>')
-		F.nvim.nmap('<Leader>lgr', '<cmd>lua vim.lsp.buf.references()<CR>')
+		F.nvim.nmap('<Leader>lgd', vim.lsp.buf.definition)
+		F.nvim.nmap('<Leader>lgD', vim.lsp.buf.declaration)
+		F.nvim.nmap('<Leader>lgt', vim.lsp.buf.type_definition)
+		F.nvim.nmap('<Leader>lgi', vim.lsp.buf.implementation)
+		F.nvim.nmap('<Leader>lgr', vim.lsp.buf.references)
 
-		F.nvim.nmap('gd', '<cmd>lua vim.lsp.buf.definition()<CR>')
-		F.nvim.nmap('gD', '<cmd>lua vim.lsp.buf.declaration()<CR>')
-		--F.nvim.nmap('gi', '<cmd>lua vim.lsp.buf.implementation()<CR>')
-		F.nvim.nmap('gt', '<cmd>lua vim.lsp.buf.type_definition()<CR>')
-		F.nvim.nmap('gr', '<cmd>lua vim.lsp.buf.references()<CR>')
+		F.nvim.nmap('gd', vim.lsp.buf.definition)
+		F.nvim.nmap('gD', vim.lsp.buf.declaration)
+		F.nvim.nmap('gi', vim.lsp.buf.implementation)
+		F.nvim.nmap('gt', vim.lsp.buf.type_definition)
+		F.nvim.nmap('gr', vim.lsp.buf.references)
 	--DOCUMENTATION
-		F.nvim.nmap('<Leader>lhh', '<cmd>lua vim.lsp.buf.hover()<CR>')
-		F.nvim.nmap('<Leader>lhs', '<cmd>lua vim.lsp.buf.signature_help()<CR>')
+		F.nvim.nmap('<Leader>lhh', vim.lsp.buf.hover)
+		F.nvim.nmap('<Leader>lhs', vim.lsp.buf.signature_help)
 	--DIAGNOSTICS
 		F.nvim.nmap('<Leader>leq', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>')
 		F.nvim.nmap('<Leader>lel', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>')
 		F.nvim.nmap('[e', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>')
 		F.nvim.nmap(']e', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>')
 	--CODE-ACTIONS
-		F.nvim.nmap('<Leader>laa', '<cmd>lua vim.lsp.buf.code_action()<CR>')
-		F.nvim.nmap('<Leader>laa', '<cmd>lua vim.lsp.buf.range_code_action()<CR>')
+		F.nvim.nmap('<Leader>laa', vim.lsp.buf.code_action)
+		F.nvim.nmap('<Leader>laa', vim.lsp.buf.range_code_action)
 	--SYMBOLS
-		F.nvim.nmap('<Leader>lsr', '<cmd>lua vim.lsp.buf.rename()<CR>')
-		F.nvim.nmap('<Leader>lsd', '<cmd>lua vim.lsp.buf.document_symbol()<CR>')
-		F.nvim.nmap('<Leader>lsw', '<cmd>lua vim.lsp.buf.workspace_symbol()<CR>')
-		F.nvim.nmap('<Leader>lsi', '<cmd>lua vim.lsp.buf.incoming_calls()<CR>')
-		F.nvim.nmap('<Leader>lso', '<cmd>lua vim.lsp.buf.outgoing_calls()<CR>')
+		F.nvim.nmap('<Leader>lsr', vim.lsp.buf.rename)
+		F.nvim.nmap('<Leader>lsd', vim.lsp.buf.document_symbol)
+		F.nvim.nmap('<Leader>lsw', vim.lsp.buf.workspace_symbol)
+		F.nvim.nmap('<Leader>lsi', vim.lsp.buf.incoming_calls)
+		F.nvim.nmap('<Leader>lso', vim.lsp.buf.outgoing_calls)
 	--FORMATTING
-		F.nvim.nmap('<Leader>laf', '<cmd>lua vim.lsp.buf.formatting()<CR>')
-		F.nvim.nmap('<Leader>laf', '<cmd>lua vim.lsp.buf.range_formatting()<CR>')
+		F.nvim.nmap('<Leader>laf', vim.lsp.buf.formatting)
+		F.nvim.nmap('<Leader>laf', vim.lsp.buf.range_formatting)
 --FORMATTING
 	--vim.cmd [[ autocmd BufWritePre *.js  lua vim.lsp.buf.formatting_sync(nil, 100) ]]
 	--vim.cmd [[ autocmd BufWritePre *.ts  lua vim.lsp.buf.formatting_sync(nil, 100) ]]

@@ -28,6 +28,7 @@ local core = {
 	'smjonas/live-command.nvim',
 	'vim-scripts/LargeFile',
 	'thalesmello/nvim-better-operator-message',
+	--'haolian9/redostr.nvim',
 	--'miversen33/import.nvim',
 		--TODO:test
 
@@ -104,6 +105,7 @@ local core = {
 	--'furkanzmc/options.nvim',
 
   --intelligence
+	--'VonHeikemen/lsp-zero.nvim',
 	'neovim/nvim-lspconfig',
 	'nvim-treesitter/nvim-treesitter',
 
@@ -234,8 +236,10 @@ local core = {
 	--'rbong/vim-vertical',
 
   --motions.treesitter
-	--{'ziontee113/syntax-tree-surfer', 'drybalka/tree-climber.nvim'},
+	--{ 'Dkendal/nvim-treeclimber', 'ziontee113/syntax-tree-surfer', 'drybalka/tree-climber.nvim' },
 	--'mfussenegger/nvim-treehopper',
+	--'Wansmer/sibling-swap.nvim',
+	--'Wansmer/binary-swap.nvim',
 
 	--jumps
 	'buztard/vim-rel-jump',
@@ -356,6 +360,7 @@ local editor = {
 		'mbbill/undotree',
 		--'simnalamburt/vim-mundo',
 	},
+	--'debugloop/telescope-undo.nvim',
 	'ntpeters/vim-better-whitespace',
 	{ 'svermeulen/vim-macrobatics', {'dohsimpson/vim-macroeditor', 'rbong/vim-buffest'} },
 	'notomo/cmdbuf.nvim',
@@ -405,9 +410,9 @@ local editor = {
 		--'yonlu/omni.vim',
 
 		--best.vibrant
-		{ 'B4mbus/oxocarbon-lua.nvim', 'shaunsingh/oxocarbon.nvim' },
+		--{ 'B4mbus/oxocarbon-lua.nvim', 'shaunsingh/oxocarbon.nvim' },
 		--'NvChad/nvim-base16.lua',
-		--'projekt0n/github-nvim-theme',
+		'projekt0n/github-nvim-theme',
 		--{'folke/tokyonight.nvim', 'ghifarit53/tokyonight-vim'},
 		--'tiagovla/tokyodark.nvim',
 		--'Pocco81/Catppuccino.nvim',
@@ -485,7 +490,7 @@ local editor = {
 		'bling/vim-bufferline',
 	},
 	{
-		--'strash/everybody-wants-that-line.nvim',
+		'strash/everybody-wants-that-line.nvim',
 		'feline-nvim/feline.nvim',
 		'glepnir/galaxyline.nvim',
 		'hoob3rt/lualine.nvim',
@@ -493,6 +498,7 @@ local editor = {
 		'itchyny/lightline.vim',
 	},
 	{
+		'utilyre/barbecue.nvim',
 		--TODO: setup
 		'SmiteshP/nvim-navic',
 		--TODO: not sure
@@ -662,10 +668,13 @@ local ide = {
 
 	--programming.ai
 	--to setup/fix
+	--'aduros/ai.vim',
 	--'jameshiew/nvim-magic',
 	--'ashzero2/VimPilot',
 	--'tom-doerr/vim_codex',
 	--'github/copilot.vim',
+	--'zbirenbaum/copilot.lua',
+	--'jackMort/ChatGPT.nvim',
 
 	--programming.lsp
 	--'neoclide/coc.nvim',
@@ -675,6 +684,8 @@ local ide = {
 	-- TODO:wait for patch/fix
 	'RishabhRD/nvim-lsputils',
 	'rmagatti/goto-preview',
+	'DNLHC/glance.nvim',
+	--'ldelossa/nvim-ide',
 	'folke/trouble.nvim',
 	{
 		--'vigoux/notifier.nvim',
@@ -696,6 +707,8 @@ local ide = {
   --TODO: broken...wait
 	'wiliamks/nice-reference.nvim',
 	'cseickel/diagnostic-window.nvim',
+  --FIX:broken
+	'joechrisellis/lsp-format-modifications.nvim',
 	--'jose-elias-alvarez/null-ls.nvim',
 	--not-working
 	--'lewis6991/spellsitter.nvim',
@@ -855,6 +868,30 @@ local featured = {
 }
 local testing = {
 	--'cbochs/portal.nvim',
+	--'lpoto/actions.nvim',
+	--'cvigilv/esqueleto.nvim',
+	--'nyngwang/suave.lua',
+	--'danielvolchek/tailiscope.nvim',
+	--'hudclark/grpc-nvim',
+	--'ellisonleao/dotenv.nvim',
+	'tamton-aquib/stuff.nvim',
+	'sunjon/stylish.nvim',
+	--'rareitems/hl_match_area.nvim',
+	--'lalitmee/browse.nvim',
+	--'vinnymeller/swagger-preview.nvim',
+	--'folke/paint.nvim',
+	--'folke/neoconf.nvim',
+	--'folke/styler.nvim',
+	--'xorid/swap-split.nvim',
+	--'katawful/kreative',
+  --'https://gitlab.com/madyanov/svart.nvim',
+	--'GnikDroy/projections.nvim',
+	--'nyngwang/fzf-lua-projections.nvim',
+	--'chrisgrieser/nvim-recorder',
+	--'chrisgrieser/nvim-genghis',
+	--'TimotheeSai/git-sessions.nvim',
+	'j-morano/buffer_manager.nvim',
+	--'nat-418/scamp.nvim',
 	--'LintaoAmons/scratch.nvim',
 	--'mrded/nvim-zond',
 	--'princejoogie/dir-telescope.nvim',
@@ -866,7 +903,6 @@ local testing = {
 	--'nat-418/termitary.nvim',
 	--'LukasPietzschmann/telescope-tabs',
 	--'haolian9/reveal.nvim',
-	--'amarakon/nvim-cmp-buffer-lines',
 	--'ziontee113/query-secretary',
 	--'PatschD/zippy.nvim',
 	--'MrcJkb/haskell-tools.nvim',
@@ -915,7 +951,7 @@ local testing = {
 	--'Djancyp/regex.nvim',
 	--'Vonr/align.nvim',
 	--'gaoDean/autolist.nvim',
-	--'phaazon/mind.nvim',
+	'phaazon/mind.nvim',
 	--'echasnovski/mini.nvim',
 	--'smartpde/neoscopes',
 	--'nvim-colortils/colortils.nvim',
@@ -1123,12 +1159,8 @@ local testing = {
 	--'wincent/loupe',
 	--'jessekelighine/vindent.vim',
 	--'Issafalcon/lsp-overloads.nvim',
-	--'tzachar/cmp-fuzzy-buffer',
 	--'tzachar/fuzzy.nvim',
 	--'nvim-telescope/telescope-fzf-native.nvim',
-	--'tzachar/cmp-fuzzy-path',
-	--'zbirenbaum/copilot-cmp',
-	--'rcarriga/cmp-dap',
 	--'jameshiew/nvim-magic',
 	--'AckslD/nvim-neoclip.lua',
 	--'gennaro-tedesco/nvim-peekup',
@@ -1137,7 +1169,6 @@ local testing = {
 	--'itmecho/neoterm.nvim',
 	--'kevinhwang91/nvim-ufo',
 	--'anuvyklack/pretty-fold.nvim',
-	--'KadoBOT/cmp-plugins',
 	--'doums/suit.nvim',
 	--'EtiamNullam/relative-source.nvim',
 	--'kyoh86/backgroundfile.nvim',
@@ -1167,7 +1198,6 @@ local testing = {
 	--'RobertAudi/junkfile.nvim',
 	--'tssm/nvim-reflex',
 	--'delphinus/auto-cursorline.nvim',
-	--'barklan/cmp-gitlog',
 	--'FraserLee/ScratchPad',
 	--'uga-rosa/translate.nvim',
 	--'tamago324/nlsp-settings.nvim',
@@ -1176,10 +1206,8 @@ local testing = {
 	--'vimpostor/vim-tpipeline',
 	--'stevearc/stickybuf.nvim',
 	--'rmagatti/session-lens',
-	--'zbirenbaum/copilot.lua',
 	--'Pocco81/HighStr.nvim',
 	--'sbdchd/neoformat',
-	--'kdheepak/cmp-latex-symbols',
 	--'davidgranstrom/nvim-markdown-preview',
 	--'boson-joe/YANP',
 	--'rliang/macrosearch.vim',
@@ -1195,7 +1223,6 @@ local testing = {
 	--'ruanyl/vim-gh-line',
 	--'KadoBOT/nvim-spotify',
 	--'sidebar-nvim/sections-dap',
-	--'quangnguyen30192/cmp-nvim-ultisnips',
 	--'nvim-plugnplay/plugnplay.nvim',
 	--'nvim-telescope/telescope-file-browser.nvim',
 	--'chrsm/impulse.nvim',
@@ -1220,7 +1247,6 @@ local testing = {
 	--'miversen33/netman.nvim',
 	--'jbyuki/instant.nvim',
 	--'mvllow/modes.nvim',
-	--'lukas-reineke/cmp-under-comparator',
 	--'winston0410/cmd-parser.nvim',
 	--'ray-x/sad.nvim',
 	--'ginsburgnm/rich.nvim',
@@ -2150,6 +2176,21 @@ return {
 		},
 		['tyru/open-browser.vim'] = {
 			url = 'tyru/open-browser.vim',
+			dependencies = {
+				post = {
+					'tyru/open-browser-github.vim',
+					--'tyru/open-browser-unicode.vim',
+				}
+			},
+		},
+		['j-morano/buffer_manager.nvim'] = {
+			url = 'j-morano/buffer_manager.nvim',
+			is_enabled = function()
+				return vim.fn.has('nvim-0.5') == 1
+			end,
+			dependencies = {
+				pre = { 'nvim-lua/plenary.nvim' },
+			},
 		},
 		['xiyaowong/link-visitor.nvim'] = {
 			url = 'xiyaowong/link-visitor.nvim',
@@ -2668,6 +2709,19 @@ return {
 				pre = { 'neovim/nvim-lspconfig' },
 			},
 		},
+		['utilyre/barbecue.nvim'] = {
+			url = 'utilyre/barbecue.nvim',
+			is_enabled = function()
+				return vim.fn.has('nvim-0.8') == 1
+			end,
+			dependencies = {
+				pre = {
+					'neovim/nvim-lspconfig',
+					'SmiteshP/nvim-navic',
+					'kyazdani42/nvim-web-devicons', -- optional
+				},
+			},
+		},
 		['folke/trouble.nvim'] = {
 			url = 'folke/trouble.nvim',
 			is_enabled = function()
@@ -2782,6 +2836,12 @@ return {
 			url = 'jose-elias-alvarez/null-ls.nvim',
 			is_enabled = function()
 				return vim.fn.has('nvim-0.5') == 1
+			end,
+		},
+		['joechrisellis/lsp-format-modifications.nvim'] = {
+			url = 'joechrisellis/lsp-format-modifications.nvim',
+			is_enabled = function()
+				return vim.fn.has('nvim-0.8')
 			end,
 		},
 
@@ -2975,6 +3035,31 @@ return {
 					--'hrsh7th/cmp-calc',
 					--'octaltree/cmp-look',
 					--'hrsh7th/cmp-emoji',
+					--'chrisgrieser/cmp-nerdfont',
+					--'amarakon/nvim-cmp-buffer-lines',
+					--'tzachar/cmp-fuzzy-buffer',
+					--'tzachar/cmp-fuzzy-path',
+					--'rcarriga/cmp-dap',
+					--'KadoBOT/cmp-plugins',
+					--'barklan/cmp-gitlog',
+					--'kdheepak/cmp-latex-symbols',
+					--'quangnguyen30192/cmp-nvim-ultisnips',
+					--'lukas-reineke/cmp-under-comparator',
+					--'hrsh7th/cmp-copilot',
+					--'zbirenbaum/copilot-cmp',
+					--'lttr/cmp-jira',
+					--'aspeddro/cmp-pandoc.nvim',
+					--'uga-rosa/cmp-dictionary',
+					--'bydlw98/cmp-env',
+					--'amarakon/nvim-cmp-fonts',
+					--'wxxxcxx/cmp-browser-source',
+					--'dcampos/cmp-emmet-vim',
+					--'pschmitt/cmp-brotab',
+					--'jcha0713/cmp-tw2css',
+					--'uga-rosa/cmp-dynamic',
+					--'doxnit/cmp-luasnip-choice',
+					--'phenax/cmp-graphql',
+					--'Dosx001/cmp-commit',
 				},
 			},
 		},

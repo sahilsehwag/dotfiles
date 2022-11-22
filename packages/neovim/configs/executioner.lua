@@ -33,4 +33,4 @@ vim.cmd [[
 --vim.cmd [[ autocmd BufWritePre *.jsx lua require('executioner').format{} ]]
 --vim.cmd [[ autocmd BufWritePre *.tsx lua require('executioner').format{} ]]
 
-vim.cmd [[ autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.svelte,*.yaml,*.html lua require('executioner').format{} ]]
+--vim.cmd [[ autocmd BufWritePre *.js,*.jsx,*.ts,*.tsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.svelte,*.yaml,*.html lua require('executioner').format{} ]]

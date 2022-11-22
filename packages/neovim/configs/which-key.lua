@@ -464,7 +464,8 @@ require('which-key').register({
 		name = 'which_key_ignore',
 	},
 	n = {
-		name = 'which_key_ignore',
+		name = 'notes',
+		['.'] = 'toggle-sidebar',
 	},
 	o = {
 		name = 'which_key_ignore',
