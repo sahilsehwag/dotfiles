@@ -66,8 +66,6 @@
 		view = {
 			--width of the window, can be either a number (columns) or a string in `%`, for left or right side placement
 			width = 40,
-			--height of the window, can be either a number (columns) or a string in `%`, for top or bottom side placement
-			height = 30,
 			--side of the tree, can be one of 'left' | 'right' | 'top' | 'bottom'
 			side = 'left',
 			mappings = {
@@ -191,4 +189,4 @@
 		},
 	};
 --MAPPPINGS
-	F.nvim.nmap('<Leader>pt', '<cmd>NvimTreeToggle<cr>')
+	F.vim.nmap('<Leader>pt', '<cmd>NvimTreeToggle<cr>')

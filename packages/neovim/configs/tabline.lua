@@ -24,8 +24,8 @@ vim.cmd [[
 	set sessionoptions+=tabpages,globals
 ]]
 
-F.nvim.nmap('<Leader>ta' , '<cmd>TablineTabNew<CR>')
-F.nvim.nmap('<Leader>tr' , ':TablineTabRename ')
-F.nvim.nmap('<C-n>'      , '<cmd>TablineBufferNext<CR>')
-F.nvim.nmap('<C-p>'      , '<cmd>TablineBufferPrevious<CR>')
-F.nvim.nmap('<Leader>tt' , '<cmd>TablineToggleShowAllBuffers<CR>')
+F.vim.nmap('<Leader>ta' , '<cmd>TablineTabNew<CR>')
+F.vim.nmap('<Leader>tr' , ':TablineTabRename ')
+F.vim.nmap('<C-n>'      , '<cmd>TablineBufferNext<CR>')
+F.vim.nmap('<C-p>'      , '<cmd>TablineBufferPrevious<CR>')
+F.vim.nmap('<Leader>tt' , '<cmd>TablineToggleShowAllBuffers<CR>')

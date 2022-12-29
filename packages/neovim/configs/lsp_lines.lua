@@ -5,4 +5,4 @@ vim.diagnostic.config({
 })
 
 
-F.nvim.nmap('<leader>letv', require'lsp_lines'.toggle)
+F.vim.nmap('<leader>letv', require'lsp_lines'.toggle)

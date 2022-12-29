@@ -5,5 +5,5 @@ require'dirbuf'.setup{
 	write_cmd = 'DirbufSync',
 }
 
-F.nvim.nmap('<leader>pe', '<cmd>Dirbuf %<cr>')
-F.nvim.nmap('<leader>pE', '<cmd>Dirbuf<cr>')
+F.vim.nmap('<leader>pe', '<cmd>Dirbuf %<cr>')
+F.vim.nmap('<leader>pE', '<cmd>Dirbuf<cr>')

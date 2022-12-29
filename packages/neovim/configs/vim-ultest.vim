@@ -7,7 +7,7 @@ let g:ultest_virtual_text = 0
 "let g:ultest_pass_text = ''
 "let g:ultest_fail_text = ''
 "let g:ultest_running_text = ''
-let g:ultest_summary_open = 'call nvim_open_win(nvim_get_current_buf(), 1, { "relative" : "editor", "row" : &lines * 0.1, "col": &columns * 0.1, "height": float2nr(round(&lines * 0.8)), "width": float2nr(round(&columns * 0.8)), "border": "rounded" })'
+"let g:ultest_summary_open = 'call nvim_open_win(nvim_get_current_buf(), 1, { "relative" : "editor", "row" : &lines * 0.1, "col": &columns * 0.1, "height": float2nr(round(&lines * 0.8)), "width": float2nr(round(&columns * 0.8)), "border": "rounded" })'
 
 let g:ultest_pass_sign = ''
 let g:ultest_fail_sign = ''

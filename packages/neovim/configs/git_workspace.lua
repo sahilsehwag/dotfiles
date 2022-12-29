@@ -15,7 +15,7 @@ vim.keymap.set('n', '<Leader>gpp', function()
 	require'git_workspace'.switch_project{
 		prompt = 'Open project in nvim',
 		on_select = function(project)
-			F.nvim.open_nvim_in_tmux{pwd=project}
+			F.vim.open_nvim_in_tmux{pwd=project}
 		end
 	}
 end, { noremap = true, silent = true })

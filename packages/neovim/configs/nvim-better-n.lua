@@ -41,5 +41,5 @@ require'better-n'.setup{
 	}
 }
 
-F.nvim.nmap('n',     require'better-n'.n,       {nowait = true})
-F.nvim.nmap('<s-n>', require'better-n'.shift_n, {nowait = true})
+F.vim.nmap('n',     require'better-n'.n,       {nowait = true})
+F.vim.nmap('<s-n>', require'better-n'.shift_n, {nowait = true})

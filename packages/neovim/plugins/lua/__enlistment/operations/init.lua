@@ -17,5 +17,5 @@ local default = {
 }
 
 return function(config)
-	config = F.nvim.get_config(default, config or {})
+	config = F.vim.get_config(default, config or {})
 end

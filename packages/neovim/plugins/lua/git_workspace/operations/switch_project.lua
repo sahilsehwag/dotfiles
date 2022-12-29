@@ -8,7 +8,7 @@ local default = {
 }
 
 return function(config)
-  config = F.nvim.get_config(default, config or {})
+  config = F.vim.get_config(default, config or {})
   local handler = config.on_select
   config.on_select = function(project)
     if project then

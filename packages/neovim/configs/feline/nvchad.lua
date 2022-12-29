@@ -4,7 +4,7 @@ if not present then
 	return
 end
 
-local colors = require('resources.colors.nvchad.catppuccin').base_30
+local colors = require('sahilsehwag.resources.colors.nvchad.catppuccin').base_30
 
 local lsp = require "feline.providers.lsp"
 local lsp_severity = vim.diagnostic.severity

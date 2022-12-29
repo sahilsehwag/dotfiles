@@ -281,13 +281,13 @@
 "SETTINGS
 	"OPTIONS
 		"colorscheme Default-256
-		"colorscheme gruvbox
+		colorscheme gruvbox
 		"colorscheme g80
 		"colorscheme monochrome
 		"colorscheme near-default
 		"colorscheme zenburn
 		"colorscheme palenight
-		colorscheme ansa
+		"colorscheme ansa
 		"colorscheme papercolor-dark
 		"colorscheme iceberg
 		"colorscheme dracula

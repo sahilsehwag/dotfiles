@@ -4,5 +4,5 @@ local spread = require("spread")
 --vim.keymap.add("n", "<leader>ss", spread.out, default_options)
 --vim.keymap.add("n", "<leader>ssc", spread.combine, default_options)
 
-F.nvim.nmap('gS', spread.out)
-F.nvim.nmap('gJ', spread.combine)
+F.vim.nmap('gS', spread.out)
+F.vim.nmap('gJ', spread.combine)

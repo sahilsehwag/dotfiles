@@ -141,7 +141,7 @@ local operations = {
 		description = 'Find files/dirs in directory',
 		get_cmd = function()
 			if vim.fn.executable('fd') then
-				return 'fd "" ' .. F.nvim.get_selection()
+				return 'fd "" ' .. F.vim.get_selection()
 			else
 				return 'find'
 			end
@@ -152,7 +152,7 @@ local operations = {
 		description = 'Find files in directory',
 		get_cmd = function()
 			if vim.fn.executable('fd') then
-				return 'fd -tf "" ' .. F.nvim.get_selection()
+				return 'fd -tf "" ' .. F.vim.get_selection()
 			else
 				return 'find'
 			end
@@ -163,7 +163,7 @@ local operations = {
 		description = 'Find dirs in directory',
 		get_cmd = function()
 			if vim.fn.executable('fd') then
-				return 'fd -td "" ' .. F.nvim.get_selection()
+				return 'fd -td "" ' .. F.vim.get_selection()
 			else
 				return 'find'
 			end
@@ -174,7 +174,7 @@ local operations = {
 		description = 'Find files/dirs matching pattern in pwd',
 		get_cmd = function()
 			if vim.fn.executable('fd') then
-				return 'fd "' .. F.nvim.get_selection() .. '" ' .. vim.fn.getcwd()
+				return 'fd "' .. F.vim.get_selection() .. '" ' .. vim.fn.getcwd()
 			else
 				return 'find'
 			end

@@ -1,1 +1,1 @@
-F.nvim.nmap('<leader>lel', '<cmd>DiagWindowShow<cr>')
+F.vim.nmap('<leader>lel', '<cmd>DiagWindowShow<cr>')

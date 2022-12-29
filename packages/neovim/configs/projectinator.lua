@@ -7,6 +7,7 @@ local get_js_default = projectinator.helpers.get_operation_default(
 		{'mt%-shell', 'mt_shell'},
 		{'design%-library', 'design_library'},
 		{'ui%-containers', 'ui_containers'},
+		{'learner%-certifications', 'learner_certifications'},
 	},
 	'yarn'
 )
@@ -42,6 +43,7 @@ projectinator.setup({
 					commands = {
 						mt_dashboard = 'npm run start',
 						design_library = 'yarn run start:storybook',
+						learner_certifications = 'nvm use 14.18.0 && yarn run start',
 					},
 				},
 				build = {

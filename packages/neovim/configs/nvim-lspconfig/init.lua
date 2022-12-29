@@ -1,8 +1,8 @@
 -- MAPPINGS
-	F.nvim.nmap('<Leader>l.s', '<cmd>LspStart<cr>')
-	F.nvim.nmap('<Leader>l.r', '<cmd>LspRestart<cr>')
-	F.nvim.nmap('<Leader>l.k', '<cmd>LspStop<space>')
-	F.nvim.nmap('<Leader>l.i', '<cmd>LspInfo<cr>')
+	F.vim.nmap('<Leader>l.s', '<cmd>LspStart<cr>')
+	F.vim.nmap('<Leader>l.r', '<cmd>LspRestart<cr>')
+	F.vim.nmap('<Leader>l.k', '<cmd>LspStop<space>')
+	F.vim.nmap('<Leader>l.i', '<cmd>LspInfo<cr>')
 -- SERVERS
 	local SERVERS = {
 		--'efm',

@@ -4,7 +4,7 @@
 	execute 'set rtp+=' . globpath(&rtp, 'plugins/vim')
 "LIBS
 	if has('nvim-0.5')
-		lua require('lib.funktional')
+		lua require('lib.funk')
 		lua require('lib.func')
 		lua require('lib.commands')
 		lua require('lib.grammar')
@@ -21,16 +21,34 @@
 
 	runtime libs/init.vim
 "GENERAL
-	runtime general/variables.vim
-	runtime general/settings.vim
-	runtime general/mappings/init.vim
-	runtime general/highlights.vim
-	runtime general/autocmds.vim
-	runtime general/specification.vim
-	runtime general/plugins.vim
+	lua require('sahilsehwag.general.variables')
+	lua require('sahilsehwag.general.settings')
+	lua require('sahilsehwag.general.highlights')
+	lua require('sahilsehwag.general.autocmds')
+	lua require('sahilsehwag.general.specification')
+
+	lua require('sahilsehwag.mappings.leaders')
+	lua require('sahilsehwag.mappings.remaps')
+	lua require('sahilsehwag.mappings.buffers')
+	lua require('sahilsehwag.mappings.windows')
+	lua require('sahilsehwag.mappings.tabs')
+	lua require('sahilsehwag.mappings.terminal')
+	lua require('sahilsehwag.mappings.commandline')
+	lua require('sahilsehwag.mappings.quickfix')
+	lua require('sahilsehwag.mappings.general')
+	lua require('sahilsehwag.mappings.abbreviations')
+	lua require('sahilsehwag.mappings.programming')
+	lua require('sahilsehwag.mappings.plugin')
+	lua require('sahilsehwag.mappings.hacks')
+	lua require('sahilsehwag.mappings.toggles')
+	lua require('sahilsehwag.mappings.random')
+	lua require('sahilsehwag.mappings.mess')
+	lua require('sahilsehwag.mappings.temporal')
+
+	lua require('sahilsehwag.configs.plugins')
 
 	if has('nvim-0.5')
-		runtime general/lsp.lua
+		lua require('sahilsehwag.general.lsp')
 	endif
 "CUSTOM
 	runtime better-defaults/init.vim
@@ -93,8 +111,8 @@
 	runtime clients/nvui.vim
 	runtime clients/goneovim.vim
 "OVERRIDES
-	runtime general/highlights.vim
-	runtime general/overrides.vim
+	lua require('sahilsehwag.general.highlights')
+	lua require('sahilsehwag.general.overrides')
 "MESS
 	function! ProcessFileChangedShell()
 		if v:fcs_reason == 'mode' || v:fcs_reason == 'time'

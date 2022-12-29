@@ -17,8 +17,10 @@ require('dressing').setup({
 		max_width = { 140, 0.9 },
 		min_width = { 20, 0.2 },
 
-		winblend = 0, -- transparency=0-100
-		winhighlight = '',
+		win_options = {
+			winhighlight = '',
+			winblend = 0, -- transparency=0-100
+		},
 
 		override = function(conf)
 			-- This is the config that will be passed to nvim_open_win.
@@ -71,15 +73,17 @@ require('dressing').setup({
 			border = 'rounded',
 			relative = 'editor',
 
-			winblend = 10,
-			winhighlight = '',
-
 			width = nil,
 			max_width = { 140, 0.8 },
 			min_width = { 40, 0.2 },
 			height = nil,
 			max_height = 0.9,
 			min_height = { 10, 0.2 },
+
+			win_options = {
+				winblend = 10,
+				winhighlight = '',
+			},
 
 			override = function(conf)
 				return conf

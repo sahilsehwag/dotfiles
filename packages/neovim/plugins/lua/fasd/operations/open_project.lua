@@ -7,6 +7,6 @@ return function(on_select)
 
 	return F.pipe(
 		F.rf('fasd.utilities.get_dirs'),
-		F.nvim.select_directory(opts)
+		F.vim.select_directory(opts)
 	)()
 end

@@ -45,8 +45,8 @@ require'cybu'.setup{
 	fallback = function() end,        -- arbitrary fallback function | used in excluded filetypes
 }
 
---F.nvim.nmap('<C-p>', '<Plug>(CybuPrev)')
---F.nvim.nmap('<C-n>', '<Plug>(CybuNext)')
+--F.vim.nmap('<C-p>', '<Plug>(CybuPrev)')
+--F.vim.nmap('<C-n>', '<Plug>(CybuNext)')
 
-F.nvim.nmap('<C-p>', '<Plug>(CybuLastusedPrev)')
-F.nvim.nmap('<C-n>', '<Plug>(CybuLastusedNext)')
+F.vim.nmap('<C-p>', '<Plug>(CybuLastusedPrev)')
+F.vim.nmap('<C-n>', '<Plug>(CybuLastusedNext)')

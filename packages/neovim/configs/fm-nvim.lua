@@ -61,10 +61,10 @@ require'fm-nvim'.setup{
 	broot_conf = vim.fn.stdpath('data') .. '/site/pack/packer/start/fm-nvim/assets/broot_conf.hjson'
 }
 
-F.nvim.nmap('<Leader>ae', '<cmd>Vifm %:h<cr>')
-F.nvim.nmap('<Leader>aE', '<cmd>Vifm<cr>')
+F.vim.nmap('<Leader>ae', '<cmd>Vifm %:h<cr>')
+F.vim.nmap('<Leader>aE', '<cmd>Vifm<cr>')
 
---F.nvim.nmap('<Leader>ag', '<cmd>Lazygit<cr>')
+--F.vim.nmap('<Leader>ag', '<cmd>Lazygit<cr>')
 
 --vim.cmd [[ nnoremap <Leader>ae <cmd>Ranger<cr> ]]
 --vim.cmd [[ nnoremap <Leader>ae <cmd>Lf<cr> ]]

@@ -1,5 +1,5 @@
 require'link-visitor'.setup()
 
-F.nvim.nmap('<Leader>fw.', '<cmd>VisitLinkInBuffer<cr>')
-F.nvim.nmap('<Leader>fwo', '<cmd>VisitLinkNearCursor<cr>')
-F.nvim.nmap('<Leader>fwO', '<cmd>VisitLinkUnderCursor<cr>')
+F.vim.nmap('<Leader>fw.', '<cmd>VisitLinkInBuffer<cr>')
+F.vim.nmap('<Leader>fwo', '<cmd>VisitLinkNearCursor<cr>')
+F.vim.nmap('<Leader>fwO', '<cmd>VisitLinkUnderCursor<cr>')

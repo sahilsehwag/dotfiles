@@ -20,5 +20,5 @@ require'specs'.setup({
 --vim.api.nvim_set_keymap('n', '<C-b>', ':lua require("specs").show_specs()', { noremap = true, silent = true })
 
 -- You can even bind it to search jumping and more, example:
-F.nvim.nmap('n', 'n:lua require("specs").show_specs()<CR>')
-F.nvim.nmap('N', 'N:lua require("specs").show_specs()<CR>')
+F.vim.nmap('n', 'n:lua require("specs").show_specs()<CR>')
+F.vim.nmap('N', 'N:lua require("specs").show_specs()<CR>')

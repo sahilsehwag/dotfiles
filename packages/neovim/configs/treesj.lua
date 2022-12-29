@@ -30,5 +30,5 @@ tsj.setup({
   },
 })
 
-F.nvim.nmap('gJ', ' <CMD>TSJJoin<CR>')
-F.nvim.nmap('gS', ' <CMD>TSJSplit<CR>')
+F.vim.nmap('gJ', ' <CMD>TSJJoin<CR>')
+F.vim.nmap('gS', ' <CMD>TSJSplit<CR>')
