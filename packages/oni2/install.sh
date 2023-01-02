@@ -9,8 +9,8 @@ F_isUbuntu && F_install nasm libacl1-dev libncurses-dev
 F_isRedHat && F_install libXt-devel libSM-devel libICE-devel libacl-devel ncurses-devel
 
 # cloning|pulling -> cd -> build
-F_isDir $SCRIPTS_REPOS/oni2 || git clone https://github.com/onivim/oni2 $SCRIPTS_REPOS/oni2
-cd $SCRIPTS_REPOS/oni2 && git pull
+F_isDir $DOTFILES_REPOS/oni2 || git clone https://github.com/onivim/oni2 $DOTFILES_REPOS/oni2
+cd $DOTFILES_REPOS/oni2 && git pull
 
 # node dependencies
 npm install -g node-gyp

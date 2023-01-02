@@ -1,1 +1,1 @@
-type starship &> /dev/null &&  "$(starship init zsh)"
+type starship &> /dev/null && eval "$(starship init zsh)"
