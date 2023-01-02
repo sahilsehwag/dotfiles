@@ -1,4 +1,4 @@
-#!usr/bin/env bash
+#!/usr/bin/env bash
 brew list fmt					|| brew install fmt
 brew list boost				|| brew install boost
 brew list qt@5				|| brew install qt@5

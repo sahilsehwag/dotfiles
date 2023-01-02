@@ -1,4 +1,4 @@
-#!usr/bin/env bash
+#!/usr/bin/env bash
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 	platform='linux'
 elif [[ "$OSTYPE" == "freebsd"* ]]; then

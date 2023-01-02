@@ -1,5 +1,0 @@
-require'configs.hydra.scroll'
-require'configs.hydra.window'
-require'configs.hydra.buffer'
-require'configs.hydra.tab'
-require'configs.hydra.git'

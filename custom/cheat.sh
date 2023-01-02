@@ -1,4 +1,4 @@
-#!usr/bin/env bash
+#!/usr/bin/env bash
 
 # dependencies
 type bat &> /dev/null || F_install bat

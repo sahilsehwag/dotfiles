@@ -1,5 +1,4 @@
-#!usr/bin/env bash
-
+#!/usr/bin/env bash
 F_isMac() {
 	if [[ "$OSTYPE" == "darwin"* ]]; then
 		return 0

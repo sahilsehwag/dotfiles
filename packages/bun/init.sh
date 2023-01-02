@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # bun completions
-[ -s "/Users/sahilsehwag/.bun/_bun" ] && source "/Users/sahilsehwag/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"

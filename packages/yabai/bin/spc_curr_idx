@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+spcs | jq 'map(select(."has-focus" == true))[0].index'

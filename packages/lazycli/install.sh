@@ -7,8 +7,8 @@ else
 fi
 
 if ! F_isInstalled lazycli; then
-	F_isDir $SCRIPTS_REPOS/lazycli || git clone https://github.com/jesseduffield/lazycli.git $SCRIPTS_REPOS/lazycli
-	cd $SCRIPTS_REPOS/lazycli && git pull
+	F_isDir $DOTFILES_REPOS/lazycli || git clone https://github.com/jesseduffield/lazycli.git $DOTFILES_REPOS/lazycli
+	cd $DOTFILES_REPOS/lazycli && git pull
 	cargo install --locked --path .
 fi
 

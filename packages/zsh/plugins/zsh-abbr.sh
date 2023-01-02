@@ -13,6 +13,7 @@
 #NPM
 	abbr -g nr="npm run"
 	abbr -g nrs="npm run start"
+	abbr -g nrt="npm run test"
 
 	abbr -g nip="npm install"
 	abbr -g nid="npm install -D"
@@ -20,8 +21,11 @@
 #YARN
 	abbr -g yr="yarn run"
 	abbr -g yrs="yarn run start"
+	abbr -g yrt="yarn run test"
 
 	abbr -g ya="yarn"
 	abbr -g yag="yarn global add"
 	abbr -g yap="yarn add"
 	abbr -g yad="yarn add -D"
+#WORK
+	abbr shtl="sshuttle -r hopper 10.0.0.0/8"

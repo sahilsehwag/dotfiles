@@ -1,4 +1,4 @@
-#!usr/bin/env bash
+#!/usr/bin/env bash
 #META
 #EVIL
 	[[ ! -d ~/.emacs.d/packages/evil                         ]] && git clone https://github.com/emacs-evil/evil/                      ~/.emacs.d/packages/evil

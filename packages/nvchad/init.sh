@@ -1,1 +1,1 @@
-alias nvchad="nvim -u $SCRIPTS_REPOS/NvChad/init.lua"
+alias nvchad="nvim -u $DOTFILES_REPOS/NvChad/init.lua"

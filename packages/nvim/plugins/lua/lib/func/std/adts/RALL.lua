@@ -1,0 +1,4 @@
+-- ReactiveAsyncLazyList :: Reactive Async List Lazy Result T
+-- List Lazy Async Result ....?
+-- States can be ... NotAsked | Loading | Success | Failure
+-- figure out the ordering and structure of this super monad

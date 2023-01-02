@@ -1,0 +1,6 @@
+vim.keymap.set("n", "<leader>lei", function()
+	require("rulebook").ignoreRule()
+end)
+vim.keymap.set("n", "<leader>leI", function()
+	require("rulebook").lookupRule()
+end)

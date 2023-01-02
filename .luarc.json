@@ -1,5 +1,11 @@
 {
 	"$schema": "https://raw.githubusercontent.com/sumneko/vscode-lua/master/setting/schema.json",
-	"Lua.diagnostics.globals": ["vim", "Funk", "F"],
-	"Lua.workspace.maxPreload": 2000
+	"Lua.diagnostics.globals": ["vim", "Funk", "Func", "F"],
+	"Lua.workspace.maxPreload": 2000,
+    "workspace.library": [
+        "/Users/sahilsehwag/.cache/nvim/plugins/neodev.nvim/types/nightly",
+        "/Users/sahilsehwag/.local/share/bob/nightly/nvim-macos/share/nvim/runtime/lua",
+        "/Users/sahilsehwag/Documents/projects/personal/github/dotfiles/packages/nvim/lua",
+        "${3rd}/luv/library"
+    ]
 }

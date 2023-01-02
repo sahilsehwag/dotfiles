@@ -1,0 +1,69 @@
+#  █████╗ ██╗      █████╗  ██████╗██████╗ ██╗████████╗████████╗██╗   ██╗
+# ██╔══██╗██║     ██╔══██╗██╔════╝██╔══██╗██║╚══██╔══╝╚══██╔══╝╚██╗ ██╔╝
+# ███████║██║     ███████║██║     ██████╔╝██║   ██║      ██║    ╚████╔╝
+# ██╔══██║██║     ██╔══██║██║     ██╔══██╗██║   ██║      ██║     ╚██╔╝
+# ██║  ██║███████╗██║  ██║╚██████╗██║  ██║██║   ██║      ██║      ██║
+# ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚═╝   ╚═╝      ╚═╝      ╚═╝
+
+live_config_reload: true
+
+env:
+  TERM: alacritty
+
+font:
+  size: 13.0
+  normal:
+    family: "FiraCode NFM"
+    style: Regular
+  italic:
+    family: Menlo
+    style: Italic
+  bold:
+    family: "FiraCode NFM"
+    style: Bold
+  #bold_italic:
+    #family: Menlo
+    #style: Italic
+  #offset:
+    #x: 0
+    #y: 14
+  #glyph_offset:
+    #x: 0
+    #y: 7
+  #builtin_box_drawing: true
+
+draw_bold_text_with_bright_colors: true
+
+window:
+  #dimensions:
+    #columns: 0
+    #lines: 0
+  #position:
+    #x: 25
+    #y: 25
+  padding:
+    x: 14
+    y: 10
+  dynamic_padding: true
+  opacity: 0.9
+  decorations: buttonless #full|none ... transparent|buttonless
+  #startup_mode: SimpleFullscreen #Windowed|Maximized|Fullscreen ... SimpleFullscreen
+  option_as_alt: Both
+
+scrolling:
+  history: 10000
+
+#NOTE: helpful hex codes
+#\x1b = escape (useful for vim-related keybindings)
+
+#0,25| - key: {string.char(%d+65)}, mods: Alt, chars: "\x1b{string.char(%d+97)}"
+key_bindings:
+  # Control|Command + B ⇒ SearchBackward
+  # Control|Command + C ⇒ Copy
+  # Control|Command + F ⇒ SearchForward
+  # Control|Command + N ⇒ CreateNewWindow
+  # Control|Command + U ⇒ “EnterHintsMode”
+  # Control|Command + V ⇒ Paste
+
+import:
+  - ~/.config/alacritty/keys.yml

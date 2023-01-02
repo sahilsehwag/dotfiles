@@ -1,11 +1,16 @@
-#!usr/bin/env bash
-script_directory=$(F_getScriptDir ${BASH_SOURCE:-$0})
+#!/usr/bin/env bash
+script_directory=$(F_getScriptDir "${BASH_SOURCE:-$0}")
 
-#dependencies
+#DEPENDENCIES
 F_install delta
 
-[[ ! -L ~/.gitconfig ]] && ln -sv $script_directory/dotfiles/.gitconfig ~/.gitconfig
+F_pkg_install git
 
-if [[ "$OSTYPE" == "darwin"* ]]; then
-	type git &> /dev/null || brew install git
+if ! F_isSoftlink "$HOME/.config/git"; then
+	ln -sv "$script_directory/" "$HOME/.config/git"
 fi
+
+ln -sv $HOME/.config/git/.gitconfig   $HOME/.gitconfig
+
+#EXTENSIONS
+F_install gh glab mani git-workspace

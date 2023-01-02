@@ -1,6 +1,6 @@
-#!usr/bin/env bash
+#!/usr/bin/env bash
 script_directory=$(F_getScriptDir ${BASH_SOURCE:-$0})
 
-[[ ! -d $SCRIPTS_REPOS/brn ]] && git clone https://github.com/nimaipatel/brn.git  $SCRIPTS_REPOS/brn
-cd $SCRIPTS_REPOS/brn
+[[ ! -d $DOTFILES_REPOS/brn ]] && git clone https://github.com/nimaipatel/brn.git  $DOTFILES_REPOS/brn
+cd $DOTFILES_REPOS/brn
 sudo make install

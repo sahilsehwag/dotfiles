@@ -46,7 +46,7 @@ F_isWritable() {
 	fi
 }
 
-F_isSymlink() {
+F_isSoftlink() {
 	local file=$1
 	if [[ -L "$file" ]]; then
 		return 0
@@ -66,7 +66,7 @@ F_isHardlink() {
 
 F_isLink() {
 	local file=$1
-	if F_isSymlink "$file" || F_isHardlink "$file"; then
+	if F_isSoftlink "$file" || F_isHardlink "$file"; then
 		return 0
 	else
 		return 1
@@ -664,3 +664,24 @@ F_isPortReachableByUserGrp() {
 #--------------------------------------------------------------------#
 #																 PORT																 #
 #--------------------------------------------------------------------#
+
+#--------------------------------------------------------------------#
+#																 LINK																 #
+#--------------------------------------------------------------------#
+
+F_createSoftLink() {
+	local from=$1
+	local to=$2
+	ln -sv $from $to
+}
+
+F_createHardLink() {
+	local from=$1
+	local to=$2
+	ln -v $from $to
+}
+
+#--------------------------------------------------------------------#
+#																 LINK																 #
+#--------------------------------------------------------------------#
+

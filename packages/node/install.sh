@@ -1,4 +1,4 @@
-#!usr/bin/env bash
+#!/usr/bin/env bash
 script_directory=$(F_getScriptDir ${BASH_SOURCE:-$0})
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
@@ -6,3 +6,5 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 fi
 
 npm install -g yarn
+
+npm install -g zx

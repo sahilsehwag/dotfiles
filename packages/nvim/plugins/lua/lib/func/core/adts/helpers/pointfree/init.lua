@@ -1,0 +1,1 @@
+-- generic map and other functions that calls object.map
