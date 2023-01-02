@@ -1,0 +1,1294 @@
+# TODO: Function/Arrows/Home and other remaining keys
+# Key: Control-A
+[[keyboard.bindings]]
+chars = "\u001B[97;5u"
+key = "A"
+mods = "Control"
+
+# Key: Control-B
+[[keyboard.bindings]]
+chars = "\u001B[98;5u"
+key = "B"
+mods = "Control"
+
+# Key: Control-C
+[[keyboard.bindings]]
+chars = "\u001B[99;5u"
+key = "C"
+mods = "Control"
+
+# Key: Control-D
+[[keyboard.bindings]]
+chars = "\u001B[100;5u"
+key = "D"
+mods = "Control"
+
+# Key: Control-E
+[[keyboard.bindings]]
+chars = "\u001B[101;5u"
+key = "E"
+mods = "Control"
+
+# Key: Control-F
+[[keyboard.bindings]]
+chars = "\u001B[102;5u"
+key = "F"
+mods = "Control"
+
+# Key: Control-G
+[[keyboard.bindings]]
+chars = "\u001B[103;5u"
+key = "G"
+mods = "Control"
+
+# Key: Control-H
+[[keyboard.bindings]]
+chars = "\u001B[104;5u"
+key = "H"
+mods = "Control"
+
+# Key: Control-I
+[[keyboard.bindings]]
+chars = "\u001B[105;5u"
+key = "I"
+mods = "Control"
+
+# Key: Control-J
+[[keyboard.bindings]]
+chars = "\u001B[106;5u"
+key = "J"
+mods = "Control"
+
+# Key: Control-K
+[[keyboard.bindings]]
+chars = "\u001B[107;5u"
+key = "K"
+mods = "Control"
+
+# Key: Control-L
+[[keyboard.bindings]]
+chars = "\u001B[108;5u"
+key = "L"
+mods = "Control"
+
+# Key: Control-M
+[[keyboard.bindings]]
+chars = "\u001B[109;5u"
+key = "M"
+mods = "Control"
+
+# Key: Control-N
+[[keyboard.bindings]]
+chars = "\u001B[110;5u"
+key = "N"
+mods = "Control"
+
+# Key: Control-O
+[[keyboard.bindings]]
+chars = "\u001B[111;5u"
+key = "O"
+mods = "Control"
+
+# Key: Control-P
+[[keyboard.bindings]]
+chars = "\u001B[112;5u"
+key = "P"
+mods = "Control"
+
+# Key: Control-Q
+[[keyboard.bindings]]
+chars = "\u001B[113;5u"
+key = "Q"
+mods = "Control"
+
+# Key: Control-R
+[[keyboard.bindings]]
+chars = "\u001B[114;5u"
+key = "R"
+mods = "Control"
+
+# Key: Control-S
+[[keyboard.bindings]]
+chars = "\u001B[115;5u"
+key = "S"
+mods = "Control"
+
+# Key: Control-T
+[[keyboard.bindings]]
+chars = "\u001B[116;5u"
+key = "T"
+mods = "Control"
+
+# Key: Control-U
+[[keyboard.bindings]]
+chars = "\u001B[117;5u"
+key = "U"
+mods = "Control"
+
+# Key: Control-V
+[[keyboard.bindings]]
+chars = "\u001B[118;5u"
+key = "V"
+mods = "Control"
+
+# Key: Control-W
+[[keyboard.bindings]]
+chars = "\u001B[119;5u"
+key = "W"
+mods = "Control"
+
+# Key: Control-X
+[[keyboard.bindings]]
+chars = "\u001B[120;5u"
+key = "X"
+mods = "Control"
+
+# Key: Control-Y
+[[keyboard.bindings]]
+chars = "\u001B[121;5u"
+key = "Y"
+mods = "Control"
+
+# Key: Control-Z
+[[keyboard.bindings]]
+chars = "\u001B[122;5u"
+key = "Z"
+mods = "Control"
+
+# Key: Control-Key0
+[[keyboard.bindings]]
+chars = "\u001B[48;5u"
+key = "Key0"
+mods = "Control"
+
+# Key: Control-Key1
+[[keyboard.bindings]]
+chars = "\u001B[49;5u"
+key = "Key1"
+mods = "Control"
+
+# Key: Control-Key2
+[[keyboard.bindings]]
+chars = "\u001B[50;5u"
+key = "Key2"
+mods = "Control"
+
+# Key: Control-Key3
+[[keyboard.bindings]]
+chars = "\u001B[51;5u"
+key = "Key3"
+mods = "Control"
+
+# Key: Control-Key4
+[[keyboard.bindings]]
+chars = "\u001B[52;5u"
+key = "Key4"
+mods = "Control"
+
+# Key: Control-Key5
+[[keyboard.bindings]]
+chars = "\u001B[53;5u"
+key = "Key5"
+mods = "Control"
+
+# Key: Control-Key6
+[[keyboard.bindings]]
+chars = "\u001B[54;5u"
+key = "Key6"
+mods = "Control"
+
+# Key: Control-Key7
+[[keyboard.bindings]]
+chars = "\u001B[55;5u"
+key = "Key7"
+mods = "Control"
+
+# Key: Control-Key8
+[[keyboard.bindings]]
+chars = "\u001B[56;5u"
+key = "Key8"
+mods = "Control"
+
+# Key: Control-Key9
+[[keyboard.bindings]]
+chars = "\u001B[57;5u"
+key = "Key9"
+mods = "Control"
+
+# Key: Control-'
+[[keyboard.bindings]]
+chars = "\u001B[39;5u"
+key = "'"
+mods = "Control"
+
+# Key: Control-`
+[[keyboard.bindings]]
+chars = "\u001B[96;5u"
+key = "`"
+mods = "Control"
+
+# Key: Control-Minus
+[[keyboard.bindings]]
+chars = "\u001B[45;5u"
+key = "Minus"
+mods = "Control"
+
+# Key: Control-Equals
+[[keyboard.bindings]]
+chars = "\u001B[61;5u"
+key = "Equals"
+mods = "Control"
+
+# Key: Control-LBracket
+[[keyboard.bindings]]
+chars = "\u001B[91;5u"
+key = "LBracket"
+mods = "Control"
+
+# Key: Control-RBracket
+[[keyboard.bindings]]
+chars = "\u001B[93;5u"
+key = "RBracket"
+mods = "Control"
+
+# Key: Control-Backslash
+[[keyboard.bindings]]
+chars = "\u001B[92;5u"
+key = "Backslash"
+mods = "Control"
+
+# Key: Control-Semicolon
+[[keyboard.bindings]]
+chars = "\u001B[59;5u"
+key = "Semicolon"
+mods = "Control"
+
+# Key: Control-Comma
+[[keyboard.bindings]]
+chars = "\u001B[44;5u"
+key = "Comma"
+mods = "Control"
+
+# Key: Control-Period
+[[keyboard.bindings]]
+chars = "\u001B[46;5u"
+key = "Period"
+mods = "Control"
+
+# Key: Control-Slash
+[[keyboard.bindings]]
+chars = "\u001B[47;5u"
+key = "Slash"
+mods = "Control"
+
+# Key: Control-Space
+[[keyboard.bindings]]
+chars = "\u001B[32;5u"
+key = "Space"
+mods = "Control"
+
+# Key: Control-Tab
+[[keyboard.bindings]]
+chars = "\u001B[9;5u"
+key = "Tab"
+mods = "Control"
+
+# Key: Control-Enter
+[[keyboard.bindings]]
+chars = "\u001B[13;5u"
+key = "Enter"
+mods = "Control"
+
+# Key: Control-Backspace
+[[keyboard.bindings]]
+chars = "\u001B[8;5u"
+key = "Backspace"
+mods = "Control"
+
+# Key: Control-Escape
+[[keyboard.bindings]]
+chars = "\u001B[27;5u"
+key = "Escape"
+mods = "Control"
+
+# Key: Control-Delete
+[[keyboard.bindings]]
+chars = "\u001B[127;5u"
+key = "Delete"
+mods = "Control"
+
+# Key: Control-Shift-A
+[[keyboard.bindings]]
+chars = "\u001B[65;6u"
+key = "A"
+mods = "Control|Shift"
+
+# Key: Control-Shift-B
+[[keyboard.bindings]]
+chars = "\u001B[66;6u"
+key = "B"
+mods = "Control|Shift"
+
+# Key: Control-Shift-C
+[[keyboard.bindings]]
+chars = "\u001B[67;6u"
+key = "C"
+mods = "Control|Shift"
+
+# Key: Control-Shift-D
+[[keyboard.bindings]]
+chars = "\u001B[68;6u"
+key = "D"
+mods = "Control|Shift"
+
+# Key: Control-Shift-E
+[[keyboard.bindings]]
+chars = "\u001B[69;6u"
+key = "E"
+mods = "Control|Shift"
+
+# Key: Control-Shift-F
+[[keyboard.bindings]]
+chars = "\u001B[70;6u"
+key = "F"
+mods = "Control|Shift"
+
+# Key: Control-Shift-G
+[[keyboard.bindings]]
+chars = "\u001B[71;6u"
+key = "G"
+mods = "Control|Shift"
+
+# Key: Control-Shift-H
+[[keyboard.bindings]]
+chars = "\u001B[72;6u"
+key = "H"
+mods = "Control|Shift"
+
+# Key: Control-Shift-I
+[[keyboard.bindings]]
+chars = "\u001B[73;6u"
+key = "I"
+mods = "Control|Shift"
+
+# Key: Control-Shift-J
+[[keyboard.bindings]]
+chars = "\u001B[74;6u"
+key = "J"
+mods = "Control|Shift"
+
+# Key: Control-Shift-K
+[[keyboard.bindings]]
+chars = "\u001B[75;6u"
+key = "K"
+mods = "Control|Shift"
+
+# Key: Control-Shift-L
+[[keyboard.bindings]]
+chars = "\u001B[76;6u"
+key = "L"
+mods = "Control|Shift"
+
+# Key: Control-Shift-M
+[[keyboard.bindings]]
+chars = "\u001B[77;6u"
+key = "M"
+mods = "Control|Shift"
+
+# Key: Control-Shift-N
+[[keyboard.bindings]]
+chars = "\u001B[78;6u"
+key = "N"
+mods = "Control|Shift"
+
+# Key: Control-Shift-O
+[[keyboard.bindings]]
+chars = "\u001B[79;6u"
+key = "O"
+mods = "Control|Shift"
+
+# Key: Control-Shift-P
+[[keyboard.bindings]]
+chars = "\u001B[80;6u"
+key = "P"
+mods = "Control|Shift"
+
+# Key: Control-Shift-Q
+[[keyboard.bindings]]
+chars = "\u001B[81;6u"
+key = "Q"
+mods = "Control|Shift"
+
+# Key: Control-Shift-R
+[[keyboard.bindings]]
+chars = "\u001B[82;6u"
+key = "R"
+mods = "Control|Shift"
+
+# Key: Control-Shift-S
+[[keyboard.bindings]]
+chars = "\u001B[83;6u"
+key = "S"
+mods = "Control|Shift"
+
+# Key: Control-Shift-T
+[[keyboard.bindings]]
+chars = "\u001B[84;6u"
+key = "T"
+mods = "Control|Shift"
+
+# Key: Control-Shift-U
+[[keyboard.bindings]]
+chars = "\u001B[85;6u"
+key = "U"
+mods = "Control|Shift"
+
+# Key: Control-Shift-V
+[[keyboard.bindings]]
+chars = "\u001B[86;6u"
+key = "V"
+mods = "Control|Shift"
+
+# Key: Control-Shift-W
+[[keyboard.bindings]]
+chars = "\u001B[87;6u"
+key = "W"
+mods = "Control|Shift"
+
+# Key: Control-Shift-X
+[[keyboard.bindings]]
+chars = "\u001B[88;6u"
+key = "X"
+mods = "Control|Shift"
+
+# Key: Control-Shift-Y
+[[keyboard.bindings]]
+chars = "\u001B[89;6u"
+key = "Y"
+mods = "Control|Shift"
+
+# Key: Control-Shift-Z
+[[keyboard.bindings]]
+chars = "\u001B[90;6u"
+key = "Z"
+mods = "Control|Shift"
+
+# Key: Control-Shift-Key0
+[[keyboard.bindings]]
+chars = "\u001B[48;6u"
+key = "Key0"
+mods = "Control|Shift"
+
+# Key: Control-Shift-Key1
+[[keyboard.bindings]]
+chars = "\u001B[49;6u"
+key = "Key1"
+mods = "Control|Shift"
+
+# Key: Control-Shift-Key2
+[[keyboard.bindings]]
+chars = "\u001B[50;6u"
+key = "Key2"
+mods = "Control|Shift"
+
+# Key: Control-Shift-Key3
+[[keyboard.bindings]]
+chars = "\u001B[51;6u"
+key = "Key3"
+mods = "Control|Shift"
+
+# Key: Control-Shift-Key4
+[[keyboard.bindings]]
+chars = "\u001B[52;6u"
+key = "Key4"
+mods = "Control|Shift"
+
+# Key: Control-Shift-Key5
+[[keyboard.bindings]]
+chars = "\u001B[53;6u"
+key = "Key5"
+mods = "Control|Shift"
+
+# Key: Control-Shift-Key6
+[[keyboard.bindings]]
+chars = "\u001B[54;6u"
+key = "Key6"
+mods = "Control|Shift"
+
+# Key: Control-Shift-Key7
+[[keyboard.bindings]]
+chars = "\u001B[55;6u"
+key = "Key7"
+mods = "Control|Shift"
+
+# Key: Control-Shift-Key8
+[[keyboard.bindings]]
+chars = "\u001B[56;6u"
+key = "Key8"
+mods = "Control|Shift"
+
+# Key: Control-Shift-Key9
+[[keyboard.bindings]]
+chars = "\u001B[57;6u"
+key = "Key9"
+mods = "Control|Shift"
+
+# Key: Control-Shift-'
+[[keyboard.bindings]]
+chars = "\u001B[39;6u"
+key = "'"
+mods = "Control|Shift"
+
+# Key: Control-Shift-`
+[[keyboard.bindings]]
+chars = "\u001B[96;6u"
+key = "`"
+mods = "Control|Shift"
+
+# Key: Control-Shift-Minus
+[[keyboard.bindings]]
+chars = "\u001B[45;6u"
+key = "Minus"
+mods = "Control|Shift"
+
+# Key: Control-Shift-Equals
+[[keyboard.bindings]]
+chars = "\u001B[61;6u"
+key = "Equals"
+mods = "Control|Shift"
+
+# Key: Control-Shift-LBracket
+[[keyboard.bindings]]
+chars = "\u001B[91;6u"
+key = "LBracket"
+mods = "Control|Shift"
+
+# Key: Control-Shift-RBracket
+[[keyboard.bindings]]
+chars = "\u001B[93;6u"
+key = "RBracket"
+mods = "Control|Shift"
+
+# Key: Control-Shift-Backslash
+[[keyboard.bindings]]
+chars = "\u001B[92;6u"
+key = "Backslash"
+mods = "Control|Shift"
+
+# Key: Control-Shift-Semicolon
+[[keyboard.bindings]]
+chars = "\u001B[59;6u"
+key = "Semicolon"
+mods = "Control|Shift"
+
+# Key: Control-Shift-Comma
+[[keyboard.bindings]]
+chars = "\u001B[44;6u"
+key = "Comma"
+mods = "Control|Shift"
+
+# Key: Control-Shift-Period
+[[keyboard.bindings]]
+chars = "\u001B[46;6u"
+key = "Period"
+mods = "Control|Shift"
+
+# Key: Control-Shift-Slash
+[[keyboard.bindings]]
+chars = "\u001B[47;6u"
+key = "Slash"
+mods = "Control|Shift"
+
+# Key: Control-Shift-Space
+[[keyboard.bindings]]
+chars = "\u001B[32;6u"
+key = "Space"
+mods = "Control|Shift"
+
+# Key: Control-Shift-Tab
+[[keyboard.bindings]]
+chars = "\u001B[9;6u"
+key = "Tab"
+mods = "Control|Shift"
+
+# Key: Control-Shift-Enter
+[[keyboard.bindings]]
+chars = "\u001B[13;6u"
+key = "Enter"
+mods = "Control|Shift"
+
+# Key: Control-Shift-Backspace
+[[keyboard.bindings]]
+chars = "\u001B[8;6u"
+key = "Backspace"
+mods = "Control|Shift"
+
+# Key: Control-Shift-Escape
+[[keyboard.bindings]]
+chars = "\u001B[27;6u"
+key = "Escape"
+mods = "Control|Shift"
+
+# Key: Control-Shift-Delete
+[[keyboard.bindings]]
+chars = "\u001B[127;6u"
+key = "Delete"
+mods = "Control|Shift"
+
+# Key: Alt-A
+[[keyboard.bindings]]
+chars = "\u001B[97;3u"
+key = "A"
+mods = "Alt"
+
+# Key: Alt-B
+[[keyboard.bindings]]
+chars = "\u001B[98;3u"
+key = "B"
+mods = "Alt"
+
+# Key: Alt-C
+[[keyboard.bindings]]
+chars = "\u001B[99;3u"
+key = "C"
+mods = "Alt"
+
+# Key: Alt-D
+[[keyboard.bindings]]
+chars = "\u001B[100;3u"
+key = "D"
+mods = "Alt"
+
+# Key: Alt-E
+[[keyboard.bindings]]
+chars = "\u001B[101;3u"
+key = "E"
+mods = "Alt"
+
+# Key: Alt-F
+[[keyboard.bindings]]
+chars = "\u001B[102;3u"
+key = "F"
+mods = "Alt"
+
+# Key: Alt-G
+[[keyboard.bindings]]
+chars = "\u001B[103;3u"
+key = "G"
+mods = "Alt"
+
+# Key: Alt-H
+[[keyboard.bindings]]
+chars = "\u001B[104;3u"
+key = "H"
+mods = "Alt"
+
+# Key: Alt-I
+[[keyboard.bindings]]
+chars = "\u001B[105;3u"
+key = "I"
+mods = "Alt"
+
+# Key: Alt-J
+[[keyboard.bindings]]
+chars = "\u001B[106;3u"
+key = "J"
+mods = "Alt"
+
+# Key: Alt-K
+[[keyboard.bindings]]
+chars = "\u001B[107;3u"
+key = "K"
+mods = "Alt"
+
+# Key: Alt-L
+[[keyboard.bindings]]
+chars = "\u001B[108;3u"
+key = "L"
+mods = "Alt"
+
+# Key: Alt-M
+[[keyboard.bindings]]
+chars = "\u001B[109;3u"
+key = "M"
+mods = "Alt"
+
+# Key: Alt-N
+[[keyboard.bindings]]
+chars = "\u001B[110;3u"
+key = "N"
+mods = "Alt"
+
+# Key: Alt-O
+[[keyboard.bindings]]
+chars = "\u001B[111;3u"
+key = "O"
+mods = "Alt"
+
+# Key: Alt-P
+[[keyboard.bindings]]
+chars = "\u001B[112;3u"
+key = "P"
+mods = "Alt"
+
+# Key: Alt-Q
+[[keyboard.bindings]]
+chars = "\u001B[113;3u"
+key = "Q"
+mods = "Alt"
+
+# Key: Alt-R
+[[keyboard.bindings]]
+chars = "\u001B[114;3u"
+key = "R"
+mods = "Alt"
+
+# Key: Alt-S
+[[keyboard.bindings]]
+chars = "\u001B[115;3u"
+key = "S"
+mods = "Alt"
+
+# Key: Alt-T
+[[keyboard.bindings]]
+chars = "\u001B[116;3u"
+key = "T"
+mods = "Alt"
+
+# Key: Alt-U
+[[keyboard.bindings]]
+chars = "\u001B[117;3u"
+key = "U"
+mods = "Alt"
+
+# Key: Alt-V
+[[keyboard.bindings]]
+chars = "\u001B[118;3u"
+key = "V"
+mods = "Alt"
+
+# Key: Alt-W
+[[keyboard.bindings]]
+chars = "\u001B[119;3u"
+key = "W"
+mods = "Alt"
+
+# Key: Alt-X
+[[keyboard.bindings]]
+chars = "\u001B[120;3u"
+key = "X"
+mods = "Alt"
+
+# Key: Alt-Y
+[[keyboard.bindings]]
+chars = "\u001B[121;3u"
+key = "Y"
+mods = "Alt"
+
+# Key: Alt-Z
+[[keyboard.bindings]]
+chars = "\u001B[122;3u"
+key = "Z"
+mods = "Alt"
+
+# Key: Alt-Key0
+[[keyboard.bindings]]
+chars = "\u001B[48;3u"
+key = "Key0"
+mods = "Alt"
+
+# Key: Alt-Key1
+[[keyboard.bindings]]
+chars = "\u001B[49;3u"
+key = "Key1"
+mods = "Alt"
+
+# Key: Alt-Key2
+[[keyboard.bindings]]
+chars = "\u001B[50;3u"
+key = "Key2"
+mods = "Alt"
+
+# Key: Alt-Key3
+[[keyboard.bindings]]
+chars = "\u001B[51;3u"
+key = "Key3"
+mods = "Alt"
+
+# Key: Alt-Key4
+[[keyboard.bindings]]
+chars = "\u001B[52;3u"
+key = "Key4"
+mods = "Alt"
+
+# Key: Alt-Key5
+[[keyboard.bindings]]
+chars = "\u001B[53;3u"
+key = "Key5"
+mods = "Alt"
+
+# Key: Alt-Key6
+[[keyboard.bindings]]
+chars = "\u001B[54;3u"
+key = "Key6"
+mods = "Alt"
+
+# Key: Alt-Key7
+[[keyboard.bindings]]
+chars = "\u001B[55;3u"
+key = "Key7"
+mods = "Alt"
+
+# Key: Alt-Key8
+[[keyboard.bindings]]
+chars = "\u001B[56;3u"
+key = "Key8"
+mods = "Alt"
+
+# Key: Alt-Key9
+[[keyboard.bindings]]
+chars = "\u001B[57;3u"
+key = "Key9"
+mods = "Alt"
+
+# Key: Alt-'
+[[keyboard.bindings]]
+chars = "\u001B[39;3u"
+key = "'"
+mods = "Alt"
+
+# Key: Alt-`
+[[keyboard.bindings]]
+chars = "\u001B[96;3u"
+key = "`"
+mods = "Alt"
+
+# Key: Alt-Minus
+[[keyboard.bindings]]
+chars = "\u001B[45;3u"
+key = "Minus"
+mods = "Alt"
+
+# Key: Alt-Equals
+[[keyboard.bindings]]
+chars = "\u001B[61;3u"
+key = "Equals"
+mods = "Alt"
+
+# Key: Alt-LBracket
+[[keyboard.bindings]]
+chars = "\u001B[91;3u"
+key = "LBracket"
+mods = "Alt"
+
+# Key: Alt-RBracket
+[[keyboard.bindings]]
+chars = "\u001B[93;3u"
+key = "RBracket"
+mods = "Alt"
+
+# Key: Alt-Backslash
+[[keyboard.bindings]]
+chars = "\u001B[92;3u"
+key = "Backslash"
+mods = "Alt"
+
+# Key: Alt-Semicolon
+[[keyboard.bindings]]
+chars = "\u001B[59;3u"
+key = "Semicolon"
+mods = "Alt"
+
+# Key: Alt-Comma
+[[keyboard.bindings]]
+chars = "\u001B[44;3u"
+key = "Comma"
+mods = "Alt"
+
+# Key: Alt-Period
+[[keyboard.bindings]]
+chars = "\u001B[46;3u"
+key = "Period"
+mods = "Alt"
+
+# Key: Alt-Slash
+[[keyboard.bindings]]
+chars = "\u001B[47;3u"
+key = "Slash"
+mods = "Alt"
+
+# Key: Alt-Space
+[[keyboard.bindings]]
+chars = "\u001B[32;3u"
+key = "Space"
+mods = "Alt"
+
+# Key: Alt-Tab
+[[keyboard.bindings]]
+chars = "\u001B[9;3u"
+key = "Tab"
+mods = "Alt"
+
+# Key: Alt-Enter
+[[keyboard.bindings]]
+chars = "\u001B[13;3u"
+key = "Enter"
+mods = "Alt"
+
+# Key: Alt-Backspace
+[[keyboard.bindings]]
+chars = "\u001B[8;3u"
+key = "Backspace"
+mods = "Alt"
+
+# Key: Alt-Escape
+[[keyboard.bindings]]
+chars = "\u001B[27;3u"
+key = "Escape"
+mods = "Alt"
+
+# Key: Alt-Delete
+[[keyboard.bindings]]
+chars = "\u001B[127;3u"
+key = "Delete"
+mods = "Alt"
+
+# Key: Alt-Shift-A
+[[keyboard.bindings]]
+chars = "\u001B[65;4u"
+key = "A"
+mods = "Alt|Shift"
+
+# Key: Alt-Shift-B
+[[keyboard.bindings]]
+chars = "\u001B[66;4u"
+key = "B"
+mods = "Alt|Shift"
+
+# Key: Alt-Shift-C
+[[keyboard.bindings]]
+chars = "\u001B[67;4u"
+key = "C"
+mods = "Alt|Shift"
+
+# Key: Alt-Shift-D
+[[keyboard.bindings]]
+chars = "\u001B[68;4u"
+key = "D"
+mods = "Alt|Shift"
+
+# Key: Alt-Shift-E
+[[keyboard.bindings]]
+chars = "\u001B[69;4u"
+key = "E"
+mods = "Alt|Shift"
+
+# Key: Alt-Shift-F
+[[keyboard.bindings]]
+chars = "\u001B[70;4u"
+key = "F"
+mods = "Alt|Shift"
+
+# Key: Alt-Shift-G
+[[keyboard.bindings]]
+chars = "\u001B[71;4u"
+key = "G"
+mods = "Alt|Shift"
+
+# Key: Alt-Shift-H
+[[keyboard.bindings]]
+chars = "\u001B[72;4u"
+key = "H"
+mods = "Alt|Shift"
+
+# Key: Alt-Shift-I
+[[keyboard.bindings]]
+chars = "\u001B[73;4u"
+key = "I"
+mods = "Alt|Shift"
+
+# Key: Alt-Shift-J
+[[keyboard.bindings]]
+chars = "\u001B[74;4u"
+key = "J"
+mods = "Alt|Shift"
+
+# Key: Alt-Shift-K
+[[keyboard.bindings]]
+chars = "\u001B[75;4u"
+key = "K"
+mods = "Alt|Shift"
+
+# Key: Alt-Shift-L
+[[keyboard.bindings]]
+chars = "\u001B[76;4u"
+key = "L"
+mods = "Alt|Shift"
+
+# Key: Alt-Shift-M
+[[keyboard.bindings]]
+chars = "\u001B[77;4u"
+key = "M"
+mods = "Alt|Shift"
+
+# Key: Alt-Shift-N
+[[keyboard.bindings]]
+chars = "\u001B[78;4u"
+key = "N"
+mods = "Alt|Shift"
+
+# Key: Alt-Shift-O
+[[keyboard.bindings]]
+chars = "\u001B[79;4u"
+key = "O"
+mods = "Alt|Shift"
+
+# Key: Alt-Shift-P
+[[keyboard.bindings]]
+chars = "\u001B[80;4u"
+key = "P"
+mods = "Alt|Shift"
+
+# Key: Alt-Shift-Q
+[[keyboard.bindings]]
+chars = "\u001B[81;4u"
+key = "Q"
+mods = "Alt|Shift"
+
+# Key: Alt-Shift-R
+[[keyboard.bindings]]
+chars = "\u001B[82;4u"
+key = "R"
+mods = "Alt|Shift"
+
+# Key: Alt-Shift-S
+[[keyboard.bindings]]
+chars = "\u001B[83;4u"
+key = "S"
+mods = "Alt|Shift"
+
+# Key: Alt-Shift-T
+[[keyboard.bindings]]
+chars = "\u001B[84;4u"
+key = "T"
+mods = "Alt|Shift"
+
+# Key: Alt-Shift-U
+[[keyboard.bindings]]
+chars = "\u001B[85;4u"
+key = "U"
+mods = "Alt|Shift"
+
+# Key: Alt-Shift-V
+[[keyboard.bindings]]
+chars = "\u001B[86;4u"
+key = "V"
+mods = "Alt|Shift"
+
+# Key: Alt-Shift-W
+[[keyboard.bindings]]
+chars = "\u001B[87;4u"
+key = "W"
+mods = "Alt|Shift"
+
+# Key: Alt-Shift-X
+[[keyboard.bindings]]
+chars = "\u001B[88;4u"
+key = "X"
+mods = "Alt|Shift"
+
+# Key: Alt-Shift-Y
+[[keyboard.bindings]]
+chars = "\u001B[89;4u"
+key = "Y"
+mods = "Alt|Shift"
+
+# Key: Alt-Shift-Z
+[[keyboard.bindings]]
+chars = "\u001B[90;4u"
+key = "Z"
+mods = "Alt|Shift"
+
+# Key: Alt-Shift-Key0
+[[keyboard.bindings]]
+chars = "\u001B[48;4u"
+key = "Key0"
+mods = "Alt|Shift"
+
+# Key: Alt-Shift-Key1
+[[keyboard.bindings]]
+chars = "\u001B[49;4u"
+key = "Key1"
+mods = "Alt|Shift"
+
+# Key: Alt-Shift-Key2
+[[keyboard.bindings]]
+chars = "\u001B[50;4u"
+key = "Key2"
+mods = "Alt|Shift"
+
+# Key: Alt-Shift-Key3
+[[keyboard.bindings]]
+chars = "\u001B[51;4u"
+key = "Key3"
+mods = "Alt|Shift"
+
+# Key: Alt-Shift-Key4
+[[keyboard.bindings]]
+chars = "\u001B[52;4u"
+key = "Key4"
+mods = "Alt|Shift"
+
+# Key: Alt-Shift-Key5
+[[keyboard.bindings]]
+chars = "\u001B[53;4u"
+key = "Key5"
+mods = "Alt|Shift"
+
+# Key: Alt-Shift-Key6
+[[keyboard.bindings]]
+chars = "\u001B[54;4u"
+key = "Key6"
+mods = "Alt|Shift"
+
+# Key: Alt-Shift-Key7
+[[keyboard.bindings]]
+chars = "\u001B[55;4u"
+key = "Key7"
+mods = "Alt|Shift"
+
+# Key: Alt-Shift-Key8
+[[keyboard.bindings]]
+chars = "\u001B[56;4u"
+key = "Key8"
+mods = "Alt|Shift"
+
+# Key: Alt-Shift-Key9
+[[keyboard.bindings]]
+chars = "\u001B[57;4u"
+key = "Key9"
+mods = "Alt|Shift"
+
+# Key: Alt-Shift-'
+[[keyboard.bindings]]
+chars = "\u001B[39;4u"
+key = "'"
+mods = "Alt|Shift"
+
+# Key: Alt-Shift-`
+[[keyboard.bindings]]
+chars = "\u001B[96;4u"
+key = "`"
+mods = "Alt|Shift"
+
+# Key: Alt-Shift-Minus
+[[keyboard.bindings]]
+chars = "\u001B[45;4u"
+key = "Minus"
+mods = "Alt|Shift"
+
+# Key: Alt-Shift-Equals
+[[keyboard.bindings]]
+chars = "\u001B[61;4u"
+key = "Equals"
+mods = "Alt|Shift"
+
+# Key: Alt-Shift-LBracket
+[[keyboard.bindings]]
+chars = "\u001B[91;4u"
+key = "LBracket"
+mods = "Alt|Shift"
+
+# Key: Alt-Shift-RBracket
+[[keyboard.bindings]]
+chars = "\u001B[93;4u"
+key = "RBracket"
+mods = "Alt|Shift"
+
+# Key: Alt-Shift-Backslash
+[[keyboard.bindings]]
+chars = "\u001B[92;4u"
+key = "Backslash"
+mods = "Alt|Shift"
+
+# Key: Alt-Shift-Semicolon
+[[keyboard.bindings]]
+chars = "\u001B[59;4u"
+key = "Semicolon"
+mods = "Alt|Shift"
+
+# Key: Alt-Shift-Comma
+[[keyboard.bindings]]
+chars = "\u001B[44;4u"
+key = "Comma"
+mods = "Alt|Shift"
+
+# Key: Alt-Shift-Period
+[[keyboard.bindings]]
+chars = "\u001B[46;4u"
+key = "Period"
+mods = "Alt|Shift"
+
+# Key: Alt-Shift-Slash
+[[keyboard.bindings]]
+chars = "\u001B[47;4u"
+key = "Slash"
+mods = "Alt|Shift"
+
+# Key: Alt-Shift-Space
+[[keyboard.bindings]]
+chars = "\u001B[32;4u"
+key = "Space"
+mods = "Alt|Shift"
+
+# Key: Alt-Shift-Tab
+[[keyboard.bindings]]
+chars = "\u001B[9;4u"
+key = "Tab"
+mods = "Alt|Shift"
+
+# Key: Alt-Shift-Enter
+[[keyboard.bindings]]
+chars = "\u001B[13;4u"
+key = "Enter"
+mods = "Alt|Shift"
+
+# Key: Alt-Shift-Backspace
+[[keyboard.bindings]]
+chars = "\u001B[8;4u"
+key = "Backspace"
+mods = "Alt|Shift"
+
+# Key: Alt-Shift-Escape
+[[keyboard.bindings]]
+chars = "\u001B[27;4u"
+key = "Escape"
+mods = "Alt|Shift"
+
+# Key: Alt-Shift-Delete
+[[keyboard.bindings]]
+chars = "\u001B[127;4u"
+key = "Delete"
+mods = "Alt|Shift"
+
+
+################
+# Normal Stuff #
+################
+[[keyboard.bindings]]
+key = "F12"
+action = "ToggleFullscreen"
+
+[[keyboard.bindings]]
+key = "F11"
+action = "ToggleSimpleFullscreen"
+
+[[keyboard.bindings]]
+mods = "Command"
+key = "M"
+action = "Minimize"
+
+[[keyboard.bindings]]
+mods = "Command"
+key = "H"
+action = "Hide"

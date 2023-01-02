@@ -11,7 +11,7 @@ else
 fi
 
 if ! F_isInstalled hx; then
-	F_isDir $SCRIPTS_REPOS/helix || git clone https://github.com/helix-editor/helix $SCRIPTS_REPOS/helix
-	cd $SCRIPTS_REPOS/helix && git pull
+	F_isDir $DOTFILES_REPOS/helix || git clone https://github.com/helix-editor/helix $DOTFILES_REPOS/helix
+	cd $DOTFILES_REPOS/helix && git pull
 	cargo install --path helix-term
 fi

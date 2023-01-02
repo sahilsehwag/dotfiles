@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+# cSpell:words lvim lfcd esac
+
+paneCmd="$1"
+panePath="$2"
+
+case $paneCmd in
+	tmux)
+		echo ""
+		;;
+	fish | zsh | bash)
+		echo ""
+		;;
+	nvim | vim | lvim)
+		echo " $(basename $panePath)"
+		;;
+	lf | lfcd | ranger | vifm)
+		echo ""
+		;;
+	lazygit | git)
+		echo "שׂ"
+		;;
+	node)
+		echo ""
+		;;
+	ruby)
+		echo ""
+		;;
+	go)
+		echo "ﳑ"
+		;;
+	*)
+		echo $paneCmd
+		;;
+esac

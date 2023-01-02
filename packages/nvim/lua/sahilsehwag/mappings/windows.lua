@@ -1,0 +1,47 @@
+F.vim.nmap('<Leader>w;', ':windo norm<space>', { silent = false })
+F.vim.nmap('<Leader>w:', ':windo<space>',      { silent = false })
+
+F.vim.nmap('<Leader>ws', ':sp<CR>')
+F.vim.nmap('<Leader>wS', ':new<CR>')
+F.vim.nmap('<Leader>wv', ':vsp<CR>')
+F.vim.nmap('<Leader>wV', ':vnew<CR>')
+
+F.vim.nmap('<Leader>wbt', ':wincmd T<CR>')
+F.vim.nmap('<Leader>wbf', '<nop>')
+F.vim.nmap('<Leader>wba', ':wincmd ^<CR>')
+
+F.vim.nmap('<Leader>wo', ':only<CR>')
+F.vim.nmap('<Leader>wc', ':close<CR>')
+
+F.vim.nmap('<C-h>', ':wincmd h<CR>')
+F.vim.nmap('<C-j>', ':wincmd j<CR>')
+F.vim.nmap('<C-k>', ':wincmd k<CR>')
+F.vim.nmap('<C-l>', ':wincmd l<CR>')
+
+F.vim.nmap('<C-S-h>', ':5wincmd <<CR>')
+F.vim.nmap('<C-S-j>', ':5wincmd -<CR>')
+F.vim.nmap('<C-S-k>', ':5wincmd +<CR>')
+F.vim.nmap('<C-S-l>', ':5wincmd ><CR>')
+F.vim.nmap('<Leader>w=', ':wincmd =<CR>')
+F.vim.nmap('<Leader>wm', ':wincmd | | wincmd _<CR>')
+
+F.vim.nmap('<Leader>wh', ':wincmd H<CR>')
+F.vim.nmap('<Leader>wj', ':wincmd J<CR>')
+F.vim.nmap('<Leader>wk', ':wincmd K<CR>')
+F.vim.nmap('<Leader>wl', ':wincmd L<CR>')
+F.vim.nmap('<Leader>wx', ':wincmd x<CR>')
+F.vim.nmap('<Leader>wr', ':wincmd r<CR>')
+F.vim.nmap('<Leader>wR', ':wincmd R<CR>')
+
+--F.vim.nmap('<Leader>w3v', ':only<bar>vsplit<bar>split<bar>wincmd h<CR>')
+--F.vim.nmap('<Leader>w3h', ':only<bar>split<bar>vsplit<bar>wincmd k<CR>')
+--F.vim.nmap('<Leader>w4d', ':only<bar>vsplit<bar>split<bar>wincmd h<bar>split<bar>wincmd k<CR>')
+--F.vim.nmap('<Leader>w4v', ':only<bar>vsplit<bar>split<bar>split<bar>wincmd h<CR>')
+--F.vim.nmap('<Leader>w4h', ':only<bar>split<bar>vsplit<bar>vsplit<bar>wincmd k<CR>')
+--F.vim.nmap('<Leader>w5v', ':only<bar>vsplit<bar>split<bar>split<bar>split<bar>wincmd h<CR>')
+--F.vim.nmap('<Leader>w5h', ':only<bar>split<bar>vsplit<bar>vsplit<bar>vsplit<bar>wincmd k<CR>')
+
+F.vim.tmap('<C-h>', '<C-\\><C-n>:wincmd h<CR>')
+F.vim.tmap('<C-j>', '<C-\\><C-n>:wincmd j<CR>')
+F.vim.tmap('<C-k>', '<C-\\><C-n>:wincmd k<CR>')
+F.vim.tmap('<C-l>', '<C-\\><C-n>:wincmd l<CR>')

@@ -1,74 +1,99 @@
-MAPPINGS
-	BASICS
+#MAPPINGS
+	#BASICS
 		#UNMAPPINGS
 			unmap gt
 			unmap gT
 			unmap gf
+			unmap ge
+			unmap gE
+			unmap W
+			unmap <<
+			unmap >>
+			unmap <a-p>
+			unmap <a-m>
+			unmap <a-f>
+			unmap yt
+			unmap g0
+			unmap g$
+			unmap T
+			unmap <c-e>
+			unmap <c-y>
+			unmap gu
+			unmap gU
+			unmap [[
+			unmap ]]
+			unmap ^
 		#INBUILT
 			#TABS
-				map wn createTab
 				map wd duplicateTab
+				map wn createTab window
+				map wi createTab incognito
 				map ww moveTabToNewWindow
 
-				#map x closeCurrentTab
-				#map X restoreTab
+				map J previousTab
+				map K nextTab
+				map ( firstTab
+				map ) lastTab
+
+				map - moveTabLeft
+				map = moveTabRight
+				map _ moveTabLeft count=99
+				map + moveTabRight count=99
+
+				map <S-Tab> visitPreviousTab
+
+				map r reload
+				map R reload hard
+
+				map x removeTab
+				map X restoreTab
 				map wco closeOtherTabs
 				map wch closeTabsOnLeft
 				map wcl closeTabsOnRight
 
-				map wp togglePinTab
-				map wm toggleMuteTab
+				map <C-p> togglePinTab
+				map <C-m> toggleMuteTab
+				map wma   toggleMuteTab all
+				map wmo   toggleMuteTab other
 
-				map w/ Vomnibar.activateTabSelection
-				map w9 firstTab
-				map w0 lastTab
-				map `  visitPreviousTab
-
-				map <C-9> previousTab
-				map <C-0> nextTab
-				map ( moveTabLeft
-				map ) moveTabRight
-			#HINTING
+				map <C-Space> Vomnibar.activateTabSelection
+			#HINTS
 				map gf LinkHints.activateModeWithQueue
 				map gF LinkHints.activateModeToOpenInNewForegroundTab
 			#EDITING
-				map eu Vomnibar.activateEditUrl
-				map eU Vomnibar.activateEditUrlInNewTab
-		#SEARCH-ENGINE-MAPPINGS
-			map sg Vomnibar.activateInNewTab keyword=google
-			map sd Vomnibar.activateInNewTab keyword=duckduckgo
-			map sy Vomnibar.activateInNewTab keyword=youtube
-			map sv Vomnibar.activateInNewTab keyword=github
-			map sm Vomnibar.activateInNewTab keyword=google_maps
-			map sa Vomnibar.activateInNewTab keyword=amazon
-			map sw Vomnibar.activateInNewTab keyword=wikipedia
+				map <C-l> Vomnibar.activateEditUrl
+				map <C-L> Vomnibar.activateEditUrlInNewTab
 
-			#map sf Vomnibar.activateInNewTab keyword=flipkart
-			#map sd Vomnibar.activateInNewTab keyword=dw
-			#map sq Vomnibar.activateInNewTab keyword=qwant
-			#map sb Vomnibar.activateInNewTab keyword=bing
-		#SEARCH-ENGINE-MAPPINGS(NEW-TAB)
-			map sG Vomnibar.activateInNewTab keyword=google
-			map sD Vomnibar.activateInNewTab keyword=duckduckgo
+				map <C-u> goUp
+				map <C-U> goToRoot
+			#PAGINATION
+				map [ goPrevious
+				map ] goNext
+			#GROUPS
+				map wgn createTab window https://neovimcraft.com https://this-week-in-neovim.org/
+				map wge createTab window https://primevideo.com  https://netflix.com/ https://hotstar.com/
+		#REMAPS
+		#SEARCH
+			map sg Vomnibar.activate keyword=github
+			map sb Vomnibar.activate keyword=bing
+			map sy Vomnibar.activate keyword=youtube
+			map sm Vomnibar.activate keyword=google_maps
+			map sa Vomnibar.activate keyword=amazon
+			map sw Vomnibar.activate keyword=wikipedia
+		#SEARCH(NEW)
+			map sG Vomnibar.activateInNewTab keyword=gitub
+			map sB Vomnibar.activateInNewTab keyword=bing
 			map sY Vomnibar.activateInNewTab keyword=youtube
-			map sv Vomnibar.activateInNewTab keyword=github
 			map sM Vomnibar.activateInNewTab keyword=google_maps
 			map sW Vomnibar.activateInNewTab keyword=wikipedia
 			map sA Vomnibar.activateInNewTab keyword=amazon
-
-			#map sF Vomnibar.activateInNewTab keyword=flipkart
-			#map sD Vomnibar.activateInNewTab keyword=dw
-			#map sQ Vomnibar.activateInNewTab keyword=qwant
-			#map sB Vomnibar.activateInNewTab keyword=bing
-	SEARCH-ENGINES
+	#SEARCH-ENGINES
+		google:      http://www.google.com/search?q=%s                                   Google
+		github:      http://github.com/search?q=%s                                       Github
+		youtube:     http://www.youtube.com/results?search_query=%s                      Youtube
 		wikipedia:   http://www.wikipedia.org/w/index.php?title=Special:Search&search=%s Wikipedia
-		google:      http://www.google.com/search?q=%s Google
-		youtube:     http://www.youtube.com/results?search_query=%s Youtube
-		google_maps: https://www.google.com/maps?q=%s Google maps
-		duckduckgo:  https://duckduckgo.com/?q=%s DuckDuckGo
-		amazon:      http://www.amazon.com/s/?field-keywords=%s Amazon
-		dictionary:  http://www.merriam-webster.com/dictionary/%s Merriam-Webster
-		github:      http://github.com/search?q=%s Github
-		#bing:       https://www.bing.com/search?q=%s Bing
-		#flipkart:   https://www.flipkart.com/search?otracker=start&as-show=on&as=off&q=%s Flipkart
-		#qwant:      https://www.qwant.com/?q=%s Qwant
+		google_maps: https://www.google.com/maps?q=%s Google                             maps
+		bing:        https://www.bing.com/search?q=%s                                    Bing
+		duckduckgo:  https://duckduckgo.com/?q=%s                                        DuckDuckGo
+		amazon:      http://www.amazon.com/s/?field-keywords=%s                          Amazon
+		dictionary:  http://www.merriam-webster.com/dictionary/%s                        Merriam-Webster

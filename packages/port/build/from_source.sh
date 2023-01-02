@@ -1,4 +1,4 @@
-cd $SCRIPTS_REPOS
+cd $DOTFILES_REPOS
 mkdir port
 cd port
 curl -O https://distfiles.macports.org/MacPorts/MacPorts-2.7.2.tar.bz2
