@@ -5,4 +5,13 @@ tags
 **/vifm/colors
 **/vifm_devicons
 
+**/alacritty/themes
+
 vifminfo.json
+
+**/highlights.scm
+packages/terminfo/.terminfo/61/alacritty
+packages/terminfo/.terminfo/61/alacritty-direct
+
+usage_data.json
+packages/vifm/scripts/README

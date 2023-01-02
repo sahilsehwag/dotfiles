@@ -1,0 +1,32 @@
+elegant restrictive editing like dired/dirbuf/spectre to use buffer as an interface for commands for operations using vim mechanics
+
+navigation
+	search = /
+	tree navigation = hjkl
+philosophy:
+	* unix->everything is a file
+	* vim is a tool for editing files
+	* therefore everything is a buffer in vim like operations
+2 ways of makeing buffer restrictive
+	* selected blocks are editable
+	* selected blocks are non-editable
+nesting:
+	* single
+	* tree
+	* recursive (just jump to specific item)
+history:
+	* undo/redo
+	* logs
+	* jump stack
+	* marks
+	* bookmarks
+	* contextual history (based on project/cwd)
+changes(CRUD):
+	* non-permanent changes
+	* easy revert
+	* using git for management??
+help:
+	* ? on the item for the actions
+	* hydra/which-key like menu
+completion
+	* based on context/line/item

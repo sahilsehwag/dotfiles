@@ -1,0 +1,36 @@
+import = ["/Users/sahil.sehwag/.config/alacritty/keys.toml"]
+live_config_reload = true
+
+[colors]
+draw_bold_text_with_bright_colors = true
+
+[env]
+TERM = "alacritty"
+
+[font]
+size = 13.0
+
+[font.bold]
+family = "FiraCode Nerd Font Mono"
+style = "Bold"
+
+[font.italic]
+family = "Menlo"
+style = "Italic"
+
+[font.normal]
+family = "FiraCode Nerd Font Mono"
+style = "Regular"
+
+[scrolling]
+history = 10000
+
+[window]
+decorations = "buttonless"
+dynamic_padding = true
+opacity = 0.9
+option_as_alt = "Both"
+
+[window.padding]
+x = 14
+y = 10
