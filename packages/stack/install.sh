@@ -5,8 +5,8 @@ F_isInstalled stack || wget -qO- https://get.haskellstack.org/ | sh
 
 if ! F_isInstalled stack
 then
-	git clone https://github.com/commercialhaskell/stack.git $SCRIPTS_REPOS/stack
-	cd $SCRIPTS_REPOS/stack
+	git clone https://github.com/commercialhaskell/stack.git $DOTFILES_REPOS/stack
+	cd $DOTFILES_REPOS/stack
 	stack setup
 	stack build
 fi

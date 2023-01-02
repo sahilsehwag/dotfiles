@@ -1,0 +1,3 @@
+--rust artickle
+--for effects where on successful completion we get nothing but on failure we get error
+--Option<Error> or Fallible<Error>
