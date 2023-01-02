@@ -51,7 +51,8 @@ __mani_handle_go_custom_completion()
     # Prepare the command to request completions for the program.
     # Calling ${words[0]} instead of directly mani allows to handle aliases
     args=("${words[@]:1}")
-    requestComp="${words[0]} __completeNoDesc ${args[*]}"
+    # Disable ActiveHelp which is not supported for bash completion v1
+    requestComp="MANI_ACTIVE_HELP=0 ${words[0]} __completeNoDesc ${args[*]}"
 
     lastParam=${words[$((${#words[@]}-1))]}
     lastChar=${lastParam:$((${#lastParam}-1)):1}
@@ -77,7 +78,7 @@ __mani_handle_go_custom_completion()
         directive=0
     fi
     __mani_debug "${FUNCNAME[0]}: the completion directive is: ${directive}"
-    __mani_debug "${FUNCNAME[0]}: the completions are: ${out[*]}"
+    __mani_debug "${FUNCNAME[0]}: the completions are: ${out}"
 
     if [ $((directive & shellCompDirectiveError)) -ne 0 ]; then
         # Error code.  No completion.
@@ -103,7 +104,7 @@ __mani_handle_go_custom_completion()
         local fullFilter filter filteringCmd
         # Do not use quotes around the $out variable or else newline
         # characters will be kept.
-        for filter in ${out[*]}; do
+        for filter in ${out}; do
             fullFilter+="$filter|"
         done
 
@@ -114,7 +115,7 @@ __mani_handle_go_custom_completion()
         # File completion for directories only
         local subdir
         # Use printf to strip any trailing newline
-        subdir=$(printf "%s" "${out[0]}")
+        subdir=$(printf "%s" "${out}")
         if [ -n "$subdir" ]; then
             __mani_debug "Listing directories in $subdir"
             __mani_handle_subdirs_in_dir_flag "$subdir"
@@ -125,7 +126,7 @@ __mani_handle_go_custom_completion()
     else
         while IFS='' read -r comp; do
             COMPREPLY+=("$comp")
-        done < <(compgen -W "${out[*]}" -- "$cur")
+        done < <(compgen -W "${out}" -- "$cur")
     fi
 }
 
@@ -359,6 +360,33 @@ __mani_handle_word()
     __mani_handle_word
 }
 
+_mani_check()
+{
+    last_command="mani_check"
+
+    command_aliases=()
+
+    commands=()
+
+    flags=()
+    two_word_flags=()
+    local_nonpersistent_flags=()
+    flags_with_completion=()
+    flags_completion=()
+
+    flags+=("--config=")
+    two_word_flags+=("--config")
+    two_word_flags+=("-c")
+    flags+=("--no-color")
+    flags+=("--user-config=")
+    two_word_flags+=("--user-config")
+    two_word_flags+=("-u")
+
+    must_have_one_flag=()
+    must_have_one_noun=()
+    noun_aliases=()
+}
+
 _mani_completion()
 {
     last_command="mani_completion"
@@ -491,15 +519,11 @@ _mani_describe()
         aliashash["prj"]="projects"
         command_aliases+=("project")
         aliashash["project"]="projects"
-        command_aliases+=("projects")
-        aliashash["projects"]="projects"
     fi
     commands+=("tasks")
     if [[ -z "${BASH_VERSION:-}" || "${BASH_VERSINFO[0]:-}" -gt 3 ]]; then
         command_aliases+=("task")
         aliashash["task"]="tasks"
-        command_aliases+=("tasks")
-        aliashash["tasks"]="tasks"
         command_aliases+=("tsk")
         aliashash["tsk"]="tasks"
     fi
@@ -648,6 +672,10 @@ _mani_exec()
     local_nonpersistent_flags+=("-k")
     flags+=("--dry-run")
     local_nonpersistent_flags+=("--dry-run")
+    flags+=("--ignore-errors")
+    local_nonpersistent_flags+=("--ignore-errors")
+    flags+=("--ignore-non-existing")
+    local_nonpersistent_flags+=("--ignore-non-existing")
     flags+=("--omit-empty")
     local_nonpersistent_flags+=("--omit-empty")
     flags+=("--output=")
@@ -682,6 +710,10 @@ _mani_exec()
     local_nonpersistent_flags+=("--projects")
     local_nonpersistent_flags+=("--projects=")
     local_nonpersistent_flags+=("-p")
+    flags+=("--silent")
+    flags+=("-s")
+    local_nonpersistent_flags+=("--silent")
+    local_nonpersistent_flags+=("-s")
     flags+=("--tags=")
     two_word_flags+=("--tags")
     flags_with_completion+=("--tags")
@@ -1057,6 +1089,10 @@ _mani_run()
     flags+=("-e")
     local_nonpersistent_flags+=("--edit")
     local_nonpersistent_flags+=("-e")
+    flags+=("--ignore-errors")
+    local_nonpersistent_flags+=("--ignore-errors")
+    flags+=("--ignore-non-existing")
+    local_nonpersistent_flags+=("--ignore-non-existing")
     flags+=("--omit-empty")
     local_nonpersistent_flags+=("--omit-empty")
     flags+=("--output=")
@@ -1091,6 +1127,10 @@ _mani_run()
     local_nonpersistent_flags+=("--projects")
     local_nonpersistent_flags+=("--projects=")
     local_nonpersistent_flags+=("-p")
+    flags+=("--silent")
+    flags+=("-s")
+    local_nonpersistent_flags+=("--silent")
+    local_nonpersistent_flags+=("-s")
     flags+=("--tags=")
     two_word_flags+=("--tags")
     flags_with_completion+=("--tags")
@@ -1137,10 +1177,34 @@ _mani_sync()
     flags+=("-p")
     local_nonpersistent_flags+=("--parallel")
     local_nonpersistent_flags+=("-p")
+    flags+=("--paths=")
+    two_word_flags+=("--paths")
+    flags_with_completion+=("--paths")
+    flags_completion+=("__mani_handle_go_custom_completion")
+    two_word_flags+=("-d")
+    flags_with_completion+=("-d")
+    flags_completion+=("__mani_handle_go_custom_completion")
+    local_nonpersistent_flags+=("--paths")
+    local_nonpersistent_flags+=("--paths=")
+    local_nonpersistent_flags+=("-d")
     flags+=("--status")
     flags+=("-s")
     local_nonpersistent_flags+=("--status")
     local_nonpersistent_flags+=("-s")
+    flags+=("--sync-remotes")
+    flags+=("-r")
+    local_nonpersistent_flags+=("--sync-remotes")
+    local_nonpersistent_flags+=("-r")
+    flags+=("--tags=")
+    two_word_flags+=("--tags")
+    flags_with_completion+=("--tags")
+    flags_completion+=("__mani_handle_go_custom_completion")
+    two_word_flags+=("-t")
+    flags_with_completion+=("-t")
+    flags_completion+=("__mani_handle_go_custom_completion")
+    local_nonpersistent_flags+=("--tags")
+    local_nonpersistent_flags+=("--tags=")
+    local_nonpersistent_flags+=("-t")
     flags+=("--config=")
     two_word_flags+=("--config")
     two_word_flags+=("-c")
@@ -1151,33 +1215,7 @@ _mani_sync()
 
     must_have_one_flag=()
     must_have_one_noun=()
-    noun_aliases=()
-}
-
-_mani_version()
-{
-    last_command="mani_version"
-
-    command_aliases=()
-
-    commands=()
-
-    flags=()
-    two_word_flags=()
-    local_nonpersistent_flags=()
-    flags_with_completion=()
-    flags_completion=()
-
-    flags+=("--config=")
-    two_word_flags+=("--config")
-    two_word_flags+=("-c")
-    flags+=("--no-color")
-    flags+=("--user-config=")
-    two_word_flags+=("--user-config")
-    two_word_flags+=("-u")
-
-    must_have_one_flag=()
-    must_have_one_noun=()
+    has_completion_function=1
     noun_aliases=()
 }
 
@@ -1188,6 +1226,7 @@ _mani_root_command()
     command_aliases=()
 
     commands=()
+    commands+=("check")
     commands+=("completion")
     commands+=("describe")
     if [[ -z "${BASH_VERSION:-}" || "${BASH_VERSINFO[0]:-}" -gt 3 ]]; then
@@ -1218,7 +1257,6 @@ _mani_root_command()
         command_aliases+=("clone")
         aliashash["clone"]="sync"
     fi
-    commands+=("version")
 
     flags=()
     two_word_flags=()

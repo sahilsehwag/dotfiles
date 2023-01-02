@@ -1,0 +1,3 @@
+local vs remote mode
+generic interface for jira and other similar systems
+for local mode used to manage our own workflows

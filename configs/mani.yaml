@@ -1,0 +1,40 @@
+projects:
+  personal:
+    path: .
+
+  dotfiles:
+    path: dotfiles
+    url: https://github.com/sahilsehwag/dotfiles
+
+  ush:
+    path: ush
+    url: https://github.com/sahilsehwag/ush
+
+  std.ush:
+    path: std.ush
+    url: https://github.com/sahilsehwag/std.ush
+
+  fp.ush:
+    path: fp.ush
+    url: https://github.com/sahilsehwag/fp.ush
+
+  pacman.ush:
+    path: pacman.ush
+    url: https://github.com/sahilsehwag/pacman.ush
+
+  pluralsight-downloader-chrome-extension:
+    path: pluralsight-downloader-chrome-extension
+    url: https://github.com/sahilsehwag/pluralsight-downloader-chrome-extension
+
+  func.lua:
+    path: func.lua
+    url: https://github.com/sahilsehwag/func.lua
+
+  funk.lua:
+    path: funk.lua
+    url: https://github.com/sahilsehwag/funk.lua
+
+tasks:
+  hello:
+    desc: Print Hello World
+    cmd: echo "Hello World"

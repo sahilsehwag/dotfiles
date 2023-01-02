@@ -1,4 +1,4 @@
-#!usr/bin/env bash
+#!/usr/bin/env bash
 script_directory=$(F_getScriptDir ${BASH_SOURCE:-$0})
 
 if ! type diffsitter > /dev/null 2>&1; then
