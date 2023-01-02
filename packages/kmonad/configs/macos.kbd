@@ -1,0 +1,106 @@
+;;https://precondition.github.io/home-row-mod
+
+#|------------------------------------------------
+(deflayer function
+  _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _              _              _    _    _    _    _
+)
+(deflayer function
+  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  caps a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft up
+  fn   lctl lalt lmet           spc            rmet ralt left down rght
+)
+-------------------------------------------------|#
+
+(defcfg
+  input (iokit-name "Apple Internal Keyboard / Trackpad")
+  output (kext)
+  fallthrough true
+  allow-cmd false
+)
+
+(defsrc
+  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  caps a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft up
+  fn   lctl lalt lmet           spc            rmet ralt left down rght
+)
+
+(defalias
+  spc-mod (tap-hold-next-release 175 spc lsft)
+
+  a-mod (tap-hold-next-release 175 a lsft)
+  s-mod (tap-hold-next-release 175 s lmet)
+  d-mod (tap-hold-next-release 175 d lalt)
+  f-mod (tap-hold-next-release 175 f lctl)
+  j-mod (tap-hold-next-release 175 j rctl)
+  k-mod (tap-hold-next-release 175 k ralt)
+  l-mod (tap-hold-next-release 175 l rmet)
+  ;-mod (tap-hold-next-release 175 ; rsft)
+
+  g-mod (tap-hold-next-release 175 g (around lctl lalt))
+  h-mod (tap-hold-next-release 175 h (around rctl ralt))
+
+  v-mod (tap-hold-next-release 175 v (around lalt lmet))
+  n-mod (tap-hold-next-release 175 n (around ralt rmet))
+
+  r-mod (tap-hold-next-release 175 r (around lctl lmet))
+  u-mod (tap-hold-next-release 175 u (around rctl rmet))
+
+  esc-mod (tap-hold-next-release 175 esc (around lctl (around lalt lmet)))
+  quo-mod (tap-hold-next-release 175 '   (around rctl (around ralt rmet)))
+
+  b-mod (tap-hold-next-release 175 b fn)
+
+  ;;q-mod (tap-hold-next-release 175 q fn)
+  ;;w-mod (tap-hold-next-release 175 w fn)
+  ;;e-mod (tap-hold-next-release 175 e fn)
+  ;;r-mod (tap-hold-next-release 175 r fn)
+  ;;t-mod (tap-hold-next-release 175 t fn)
+  ;;y-mod (tap-hold-next-release 175 y fn)
+  ;;u-mod (tap-hold-next-release 175 u fn)
+  ;;i-mod (tap-hold-next-release 175 i fn)
+  ;;o-mod (tap-hold-next-release 175 o fn)
+  ;;p-mod (tap-hold-next-release 175 p fn)
+)
+
+(deflayer base
+  _         _       _       _       _         _       _       _       _       _       _       _        _
+  _         _       _       _       _         _       _       _       _       _       _       _        _  _
+  _         _       _       _       @r-mod    _       _       @u-mod  _       _       _       _        _  _
+  @esc-mod  @a-mod  @s-mod  @d-mod  @f-mod    @g-mod  @h-mod  @j-mod  @k-mod  @l-mod  @;-mod  @quo-mod _
+  caps      _       _       _       @v-mod    @b-mod  @n-mod  _       _       _       _       _        _
+  _         _       _       _                      @spc-mod                   bspc    _       _        _  _
+)
+
+(deflayer numbers
+  _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    1    2    3    4    5    6    7    8    9    0    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _              _              _    _    _    _    _
+)
+
+(deflayer vim
+  _    _    _    _    _    _    _    _       _       _       _       _    _
+  _    _    _    _    _    _    _    _       _       _       _       _    _    _
+  _    _    _    _    _    _    _    _       _       _       _       _    _    _
+  _    _    _    _    _    _    _    left    down    up      right   _    _
+  _    _    _    _    _    _    _    _       _       _       _       _    _
+  _    _    _    _              _                    _       _       _    _    _
+)
+
+;;HALMAK
+;;DVORAK
+;;WORKMAN
+;;COLEMAK

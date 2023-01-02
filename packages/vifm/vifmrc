@@ -280,17 +280,20 @@
 	" nnoremap <left> <nop>
 "SETTINGS
 	"OPTIONS
-		"colorscheme Default-256
-		colorscheme gruvbox
-		"colorscheme g80
-		"colorscheme monochrome
-		"colorscheme near-default
-		"colorscheme zenburn
-		"colorscheme palenight
-		"colorscheme ansa
-		"colorscheme papercolor-dark
-		"colorscheme iceberg
-		"colorscheme dracula
+		"COLORSCHEME
+			"colorscheme Default-256
+			"colorscheme gruvbox
+			"colorscheme truedark
+			"colorscheme g80
+			"colorscheme monochrome
+			"colorscheme near-default
+			"colorscheme zenburn
+			"colorscheme palenight
+			"colorscheme ansa
+			"colorscheme papercolor-dark
+			"colorscheme iceberg
+			"colorscheme dracula
+			colorscheme nord
 		set vicmd=nvim
 		set trash
 		set history=100
@@ -311,6 +314,13 @@
 	"FILETYPES
 	"FILEVIEWER
 		fileviewer *.* bat --color always --wrap never --pager never %c -p
+	"PREVIEW
+		set tabstop=2
+	"TABLINE
+		set showtabline=multiple
+"AESTHETICS
+	"STATUSLINE
+	"TABLINE
 "MAPPINGS
 	"MAIN
 		nnoremap yd :!printf %d | pbcopy<cr>
@@ -320,23 +330,42 @@
 		nnoremap <space>vq :q<CR>
 		nnoremap <space>vs :source ~/.config/vifm/vifmrc<CR>
 		nnoremap <space>vt :shell<CR>
-	"GUI
+	"WINDOWS
 		nnoremap <space>wo :only<CR>
 		nnoremap <space>wv :vsplit<CR>
 		nnoremap <space>wh :split<CR>
+	"TABLINE
+		nnoremap <C-t> :tabnew<cr>
+		nnoremap <space>tn :tabnew<space>
+		nnoremap <C-n> :tabnext<cr>
+		nnoremap <C-p> :tabprev<cr>
+		nnoremap <space>td :tabclose<cr>
+		nnoremap <space>to :tabonly<cr>
 	"FILESYSTEM
 		nnoremap <space>ff :touch<space>
 		nnoremap <space>fd :mkdir<space>
+	"PATHS
+		"yank current directory path into the clipboard
+		nnoremap yd :!echo -n %d | pbcopy %i<cr>:echo expand('%"d') "is yanked to clipboard"<cr>
+
+		"yank current file path into the clipboard
+		nnoremap yf :!echo -n %c:p | pbcopy %i<cr>:echo expand('%"c:p') "is yanked to clipboard"<cr>
+
+		"yank current filename without path into the clipboard
+		nnoremap yn :!echo -n %c | pbcopy %i<cr>:echo expand('%"c') "is yanked to clipboard"<cr>
+
+		"yank root of current file's name into the clipboard
+		nnoremap yr :!echo -n %c:r | pbcopy %i<cr>:echo expand('%"c:r') "is yanked to clipboard"<cr>
 "MARKS
 	mark h ~
 	mark g ~/Google\ Drive
 	mark t ~/.Trash
 	mark d ~/Downloads
+	mark p ~/Documents/projects
+	mark c ~/.config/nvim/configs
 "BOOKMARKS
-"CUSTOMIZATIONS
-	"STATUSLINE
-"VIFMSCRIPT
+"INTEGRATIONS
 	"FZF
 	"FASD
-"DEVICONS
+"ICONS
 	source ~/.config/vifm/vifm_devicons/favicons.vifm

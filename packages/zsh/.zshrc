@@ -1,17 +1,28 @@
+# ███████╗░██████╗██╗░░██╗
+# ╚════██║██╔════╝██║░░██║
+# ░░███╔═╝╚█████╗░███████║
+# ██╔══╝░░░╚═══██╗██╔══██║
+# ███████╗██████╔╝██║░░██║
+# ╚══════╝╚═════╝░╚═╝░░╚═╝
+
 #CORE
-	if [[ -d ~/.dotfiles ]]; then
-		export SCRIPTS_ROOT=~/.dotfiles
-		export SCRIPTS_CORE=$SCRIPTS_ROOT/core
+	export USH_ROOT="$HOME/Documents/projects/personal/github/ush"
+	if [ -f ~/Documents/projects/personal/github/ush/index.sh ]; then
+		source ~/Documents/projects/personal/github/ush/index.sh
+	fi
+	if [[ -d "$HOME/Documents/projects/personal/github/dotfiles" ]]; then
+		export DOTFILES_ROOT="$HOME/Documents/projects/personal/dotfiles"
+		export DOTFILES_CORE="$DOTFILES_ROOT/core"
 
-		source $SCRIPTS_CORE/install.sh
-		source $SCRIPTS_CONFIG/init.sh
+		source $DOTFILES_CORE/install.sh
+		source $DOTFILES_CONFIG/init.sh
 
-		source $SCRIPTS_ROOT/custom/install.sh
+		source $DOTFILES_ROOT/custom/install.sh
 	fi
 #VARIABLES
 	#ENVIORNMENT
 		export EDITOR=nvim
-		source $HOME/shell-tokens.sh
+		source $HOME/.tokens
 	#META
 		if [[ "$OSTPYPE" == "darwin"* ]]; then
 			jatPlatform=mac
@@ -28,64 +39,32 @@
 		#jatFindText=
 #FUNCTIONS
 	#RANDOM
-		function ban() {
-			if type bat &> /dev/null; then
-				nocorrect man "$@" | bat
-			else
-				nocorrect man "$@"
-			fi
-		}
-
-		function codi() {
-			local syntax="${1:-python}"
-			shift
-			nvim -c \
-				"let g:startify_disable_at_vimenter = 1 |\
-				set bt=nofile ls=0 noru nonu nornu |\
-				hi ColorColumn ctermbg=NONE |\
-				hi VertSplit ctermbg=NONE |\
-				hi NonText ctermfg=0 |\
-				Codi $syntax" "$@"
-		}
-
-		function processing() {
-			rm -rf /tmp/processing
-			mkdir /tmp/processing
-			processing-java --output=/tmp/processing/ --force --sketch=$1 --run
-		}
 #ZSH|OhMyZsh
 	#CONFIGURATION
-		#export TERM='xterm-256color'
-		export TERM='xterm-256color-italic'
+		export TERM='xterm-256color-italic' #xterm-256color
 		export ZSH=~/.oh-my-zsh
 		export SSH_KEY_PATH="~/.ssh/rsa_id"
 
-		if [[ -f $HOME/.config/promptline.sh ]]  then
-			source $HOME/.config/promptline.sh
-		else
-			#ZSH_THEME="spaceship"
-			#ZSH_THEME="powerlevel9k/powerlevel9k"
-			ZSH_THEME="powerlevel10k/powerlevel10k"
-		fi
+		#spaceship, powerlevel9k/powerlevel9k
+		#ZSH_THEME="powerlevel10k/powerlevel10k"
 
 		HYPHEN_INSENSITIVE="true"
 		ENABLE_CORRECTION="true"
 		ZSH_DISABLE_COMPFIX="true"
 
 		plugins=(
-			fzf-tab
-			vi-mode
+			#vi-mode
+			zsh-vi-mode
 			zsh-syntax-highlighting
+			zsh-autosuggestions
 			zsh-interactive-cd
-			zsh-fzf-history-search	#CTRL-R FOR HISTORY SEARCH
-			web-search
+			zsh-fzf-history-search # CTRL-R FOR HISTORY SEARCH
+			fzf-tab
 			colored-man-pages
 			command-not-found
-			zsh-abbr
-			#zsh-autosuggestions
-			#zsh_reload
+			zsh-abbr               # "abbr" to define abbreviations
 		)
-		source $ZSH/oh-my-zsh.sh
+		F_isFile $ZSH/oh-my-zsh.sh && source $ZSH/oh-my-zsh.sh
 	#POWERLEVEL9K
 		#PROMPTS
 			POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(ssh public_ip dir vcs root_indicator)
@@ -125,7 +104,3 @@
 			fi
 		fi
 #TEMPORAL
-	if F_isFile ~/Documents/projects/sahilsehwag/github/ush/install.sh
-	then
-		source ~/Documents/projects/sahilsehwag/github/ush/install.sh
-	fi

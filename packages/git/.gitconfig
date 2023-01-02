@@ -1,0 +1,22 @@
+[user]
+	name = Sahil Sehwag
+	email = sehwagsahil002@gmail.com
+[core]
+	pager = delta
+	excludesfile = ~/.config/git/.gitignore
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+	navigate = true  # use n and N to move between diff sections
+[merge]
+	conflictstyle = diff3
+[diff]
+	colorMoved = default
+[ogit]
+	storagePath = /Users/sahilsehwag/ogit
+	fetchUserRepos = false
+	sshAuth = ssh-agent
+[ogit "github"]
+	orgs = sahilsehwag, MindTickle
+;[ogit "gitlab"]
+;  orgs = sahilsehwag, MindTickle

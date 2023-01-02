@@ -1,8 +1,8 @@
-#!usr/bin/env bash
-[[ ! -z $SCRIPTS_CORE ]] || export SCRIPTS_CORE="$( cd "$( dirname "${BASH_SOURCE:-$0}" )" && pwd )"
-[[ ! -z $SCRIPTS_ROOT ]] || export SCRIPTS_ROOT="$( cd "$SCRIPTS_CORE/../" && pwd )"
-[[ ! -z $SCRIPTS_REPOS ]] || export SCRIPTS_REPOS="$HOME/.repos"
-[[ ! -z $SCRIPTS_CONFIG ]] || export SCRIPTS_CONFIG="$HOME/.config/scripts"
+#!/usr/bin/env bash
+[[ -z $DOTFILES_CORE ]]   && export DOTFILES_CORE="$( cd "$( dirname "${BASH_SOURCE:-$0}" )" && pwd )"
+[[ -z $DOTFILES_ROOT ]]   && export DOTFILES_ROOT="$( cd "$DOTFILES_CORE/../" && pwd )"
+[[ -z $DOTFILES_REPOS ]]  && export DOTFILES_REPOS="$HOME/.cache/dotfiles/repos"
+[[ -z $DOTFILES_CONFIG ]] && export DOTFILES_CONFIG="$HOME/.config/dotfiles"
 
 #ENVIORNMENT
 #CONSTANT
@@ -11,7 +11,7 @@
 #_function
 #module__function
 
-source $SCRIPTS_CORE/libs/install.sh
-source $SCRIPTS_CORE/variables.sh
-source $SCRIPTS_CORE/paths.sh
-source $SCRIPTS_CORE/pacman.sh
+source $DOTFILES_CORE/libs/install.sh
+source $DOTFILES_CORE/variables.sh
+source $DOTFILES_CORE/paths.sh
+source $DOTFILES_CORE/pacman.sh
