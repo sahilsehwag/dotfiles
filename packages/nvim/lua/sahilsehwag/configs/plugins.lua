@@ -3308,6 +3308,8 @@ return {
 					"petertriho/cmp-git",
 					"hrsh7th/cmp-cmdline",
 
+					"tzachar/cmp-ai",
+
 					"f3fora/cmp-spell",
 					--'hrsh7th/cmp-calc',
 					--'octaltree/cmp-look',

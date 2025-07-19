@@ -6,9 +6,11 @@ vim.o.completeopt = 'menu,menuone,noselect'
 local rtc = function(str)
 	return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
+
 local fk = function(str)
 	return vim.api.nvim_feedkeys(str, 'n', true)
 end
+
 local fkrtc = function(str)
 	fk(rtc(str))
 end
@@ -91,6 +93,7 @@ cmp.setup({
 		{ name = 'nvim_lua',                max_item_count = nil, },
 		{ name = 'nvim_lsp_signature_help', max_item_count = 7,  },
 
+		--{ name = 'cmp_ai', max_item_count = 2,  }, -- FIX: not working
 		{ name = 'cmp_tabnine', max_item_count = 3, },
 		{ name = 'tags',        max_item_count = 3, },
 		{ name = 'treesitter',  max_item_count = 3, },
@@ -128,6 +131,7 @@ cmp.setup({
 			latex_symbols = '[Latex]',
 			rg						= '[RG]',
 			tmux					= '[Tmux]',
+			cmp_ai				= '[LLM]',
 		})}),
 	},
 	filetype = {
