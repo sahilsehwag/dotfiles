@@ -954,327 +954,327 @@ key = "Delete"
 mods = "Alt"
 
 # Key: Alt-Shift-A
-[[keyboard.bindings]]
-chars = "\u001B[65;4u"
-key = "A"
-mods = "Alt|Shift"
-
+#[[keyboard.bindings]]
+#chars = "\u001B[65;4u"
+#key = "A"
+#mods = "Alt|Shift"
+#
 # Key: Alt-Shift-B
-[[keyboard.bindings]]
-chars = "\u001B[66;4u"
-key = "B"
-mods = "Alt|Shift"
-
+#[[keyboard.bindings]]
+#chars = "\u001B[66;4u"
+#key = "B"
+#mods = "Alt|Shift"
+#
 # Key: Alt-Shift-C
-[[keyboard.bindings]]
-chars = "\u001B[67;4u"
-key = "C"
-mods = "Alt|Shift"
-
+#[[keyboard.bindings]]
+#chars = "\u001B[67;4u"
+#key = "C"
+#mods = "Alt|Shift"
+#
 # Key: Alt-Shift-D
-[[keyboard.bindings]]
-chars = "\u001B[68;4u"
-key = "D"
-mods = "Alt|Shift"
-
+#[[keyboard.bindings]]
+#chars = "\u001B[68;4u"
+#key = "D"
+#mods = "Alt|Shift"
+#
 # Key: Alt-Shift-E
-[[keyboard.bindings]]
-chars = "\u001B[69;4u"
-key = "E"
-mods = "Alt|Shift"
-
+#[[keyboard.bindings]]
+#chars = "\u001B[69;4u"
+#key = "E"
+#mods = "Alt|Shift"
+#
 # Key: Alt-Shift-F
-[[keyboard.bindings]]
-chars = "\u001B[70;4u"
-key = "F"
-mods = "Alt|Shift"
-
+#[[keyboard.bindings]]
+#chars = "\u001B[70;4u"
+#key = "F"
+#mods = "Alt|Shift"
+#
 # Key: Alt-Shift-G
-[[keyboard.bindings]]
-chars = "\u001B[71;4u"
-key = "G"
-mods = "Alt|Shift"
-
+#[[keyboard.bindings]]
+#chars = "\u001B[71;4u"
+#key = "G"
+#mods = "Alt|Shift"
+#
 # Key: Alt-Shift-H
-[[keyboard.bindings]]
-chars = "\u001B[72;4u"
-key = "H"
-mods = "Alt|Shift"
-
+#[[keyboard.bindings]]
+#chars = "\u001B[72;4u"
+#key = "H"
+#mods = "Alt|Shift"
+#
 # Key: Alt-Shift-I
-[[keyboard.bindings]]
-chars = "\u001B[73;4u"
-key = "I"
-mods = "Alt|Shift"
-
-# Key: Alt-Shift-J
-[[keyboard.bindings]]
-chars = "\u001B[74;4u"
-key = "J"
-mods = "Alt|Shift"
-
+#[[keyboard.bindings]]
+#chars = "\u001B[73;4u"
+#key = "I"
+#mods = "Alt|Shift"
+#
+## Key: Alt-Shift-J
+#[[keyboard.bindings]]
+#chars = "\u001B[74;4u"
+#key = "J"
+#mods = "Alt|Shift"
+#
 # Key: Alt-Shift-K
-[[keyboard.bindings]]
-chars = "\u001B[75;4u"
-key = "K"
-mods = "Alt|Shift"
-
+#[[keyboard.bindings]]
+#chars = "\u001B[75;4u"
+#key = "K"
+#mods = "Alt|Shift"
+#
 # Key: Alt-Shift-L
-[[keyboard.bindings]]
-chars = "\u001B[76;4u"
-key = "L"
-mods = "Alt|Shift"
-
+#[[keyboard.bindings]]
+#chars = "\u001B[76;4u"
+#key = "L"
+#mods = "Alt|Shift"
+#
 # Key: Alt-Shift-M
-[[keyboard.bindings]]
-chars = "\u001B[77;4u"
-key = "M"
-mods = "Alt|Shift"
-
+#[[keyboard.bindings]]
+#chars = "\u001B[77;4u"
+#key = "M"
+#mods = "Alt|Shift"
+#
 # Key: Alt-Shift-N
-[[keyboard.bindings]]
-chars = "\u001B[78;4u"
-key = "N"
-mods = "Alt|Shift"
-
+#[[keyboard.bindings]]
+#chars = "\u001B[78;4u"
+#key = "N"
+#mods = "Alt|Shift"
+#
 # Key: Alt-Shift-O
-[[keyboard.bindings]]
-chars = "\u001B[79;4u"
-key = "O"
-mods = "Alt|Shift"
-
+#[[keyboard.bindings]]
+#chars = "\u001B[79;4u"
+#key = "O"
+#mods = "Alt|Shift"
+#
 # Key: Alt-Shift-P
-[[keyboard.bindings]]
-chars = "\u001B[80;4u"
-key = "P"
-mods = "Alt|Shift"
-
+#[[keyboard.bindings]]
+#chars = "\u001B[80;4u"
+#key = "P"
+#mods = "Alt|Shift"
+#
 # Key: Alt-Shift-Q
-[[keyboard.bindings]]
-chars = "\u001B[81;4u"
-key = "Q"
-mods = "Alt|Shift"
-
+#[[keyboard.bindings]]
+#chars = "\u001B[81;4u"
+#key = "Q"
+#mods = "Alt|Shift"
+#
 # Key: Alt-Shift-R
-[[keyboard.bindings]]
-chars = "\u001B[82;4u"
-key = "R"
-mods = "Alt|Shift"
-
+#[[keyboard.bindings]]
+#chars = "\u001B[82;4u"
+#key = "R"
+#mods = "Alt|Shift"
+#
 # Key: Alt-Shift-S
-[[keyboard.bindings]]
-chars = "\u001B[83;4u"
-key = "S"
-mods = "Alt|Shift"
-
+#[[keyboard.bindings]]
+#chars = "\u001B[83;4u"
+#key = "S"
+#mods = "Alt|Shift"
+#
 # Key: Alt-Shift-T
-[[keyboard.bindings]]
-chars = "\u001B[84;4u"
-key = "T"
-mods = "Alt|Shift"
-
+#[[keyboard.bindings]]
+#chars = "\u001B[84;4u"
+#key = "T"
+#mods = "Alt|Shift"
+#
 # Key: Alt-Shift-U
-[[keyboard.bindings]]
-chars = "\u001B[85;4u"
-key = "U"
-mods = "Alt|Shift"
-
+#[[keyboard.bindings]]
+#chars = "\u001B[85;4u"
+#key = "U"
+#mods = "Alt|Shift"
+#
 # Key: Alt-Shift-V
-[[keyboard.bindings]]
-chars = "\u001B[86;4u"
-key = "V"
-mods = "Alt|Shift"
-
+#[[keyboard.bindings]]
+#chars = "\u001B[86;4u"
+#key = "V"
+#mods = "Alt|Shift"
+#
 # Key: Alt-Shift-W
-[[keyboard.bindings]]
-chars = "\u001B[87;4u"
-key = "W"
-mods = "Alt|Shift"
-
+#[[keyboard.bindings]]
+#chars = "\u001B[87;4u"
+#key = "W"
+#mods = "Alt|Shift"
+#
 # Key: Alt-Shift-X
-[[keyboard.bindings]]
-chars = "\u001B[88;4u"
-key = "X"
-mods = "Alt|Shift"
-
+#[[keyboard.bindings]]
+#chars = "\u001B[88;4u"
+#key = "X"
+#mods = "Alt|Shift"
+#
 # Key: Alt-Shift-Y
-[[keyboard.bindings]]
-chars = "\u001B[89;4u"
-key = "Y"
-mods = "Alt|Shift"
-
+#[[keyboard.bindings]]
+#chars = "\u001B[89;4u"
+#key = "Y"
+#mods = "Alt|Shift"
+#
 # Key: Alt-Shift-Z
-[[keyboard.bindings]]
-chars = "\u001B[90;4u"
-key = "Z"
-mods = "Alt|Shift"
-
+#[[keyboard.bindings]]
+#chars = "\u001B[90;4u"
+#key = "Z"
+#mods = "Alt|Shift"
+#
 # Key: Alt-Shift-Key0
-[[keyboard.bindings]]
-chars = "\u001B[48;4u"
-key = "Key0"
-mods = "Alt|Shift"
-
+#[[keyboard.bindings]]
+#chars = "\u001B[48;4u"
+#key = "Key0"
+#mods = "Alt|Shift"
+#
 # Key: Alt-Shift-Key1
-[[keyboard.bindings]]
-chars = "\u001B[49;4u"
-key = "Key1"
-mods = "Alt|Shift"
-
+#[[keyboard.bindings]]
+#chars = "\u001B[49;4u"
+#key = "Key1"
+#mods = "Alt|Shift"
+#
 # Key: Alt-Shift-Key2
-[[keyboard.bindings]]
-chars = "\u001B[50;4u"
-key = "Key2"
-mods = "Alt|Shift"
-
+#[[keyboard.bindings]]
+#chars = "\u001B[50;4u"
+#key = "Key2"
+#mods = "Alt|Shift"
+#
 # Key: Alt-Shift-Key3
-[[keyboard.bindings]]
-chars = "\u001B[51;4u"
-key = "Key3"
-mods = "Alt|Shift"
-
+#[[keyboard.bindings]]
+#chars = "\u001B[51;4u"
+#key = "Key3"
+#mods = "Alt|Shift"
+#
 # Key: Alt-Shift-Key4
-[[keyboard.bindings]]
-chars = "\u001B[52;4u"
-key = "Key4"
-mods = "Alt|Shift"
-
+#[[keyboard.bindings]]
+#chars = "\u001B[52;4u"
+#key = "Key4"
+#mods = "Alt|Shift"
+#
 # Key: Alt-Shift-Key5
-[[keyboard.bindings]]
-chars = "\u001B[53;4u"
-key = "Key5"
-mods = "Alt|Shift"
-
+#[[keyboard.bindings]]
+#chars = "\u001B[53;4u"
+#key = "Key5"
+#mods = "Alt|Shift"
+#
 # Key: Alt-Shift-Key6
-[[keyboard.bindings]]
-chars = "\u001B[54;4u"
-key = "Key6"
-mods = "Alt|Shift"
-
+#[[keyboard.bindings]]
+#chars = "\u001B[54;4u"
+#key = "Key6"
+#mods = "Alt|Shift"
+#
 # Key: Alt-Shift-Key7
-[[keyboard.bindings]]
-chars = "\u001B[55;4u"
-key = "Key7"
-mods = "Alt|Shift"
-
+#[[keyboard.bindings]]
+#chars = "\u001B[55;4u"
+#key = "Key7"
+#mods = "Alt|Shift"
+#
 # Key: Alt-Shift-Key8
-[[keyboard.bindings]]
-chars = "\u001B[56;4u"
-key = "Key8"
-mods = "Alt|Shift"
-
+#[[keyboard.bindings]]
+#chars = "\u001B[56;4u"
+#key = "Key8"
+#mods = "Alt|Shift"
+#
 # Key: Alt-Shift-Key9
-[[keyboard.bindings]]
-chars = "\u001B[57;4u"
-key = "Key9"
-mods = "Alt|Shift"
-
+#[[keyboard.bindings]]
+#chars = "\u001B[57;4u"
+#key = "Key9"
+#mods = "Alt|Shift"
+#
 # Key: Alt-Shift-'
-[[keyboard.bindings]]
-chars = "\u001B[39;4u"
-key = "'"
-mods = "Alt|Shift"
-
+#[[keyboard.bindings]]
+#chars = "\u001B[39;4u"
+#key = "'"
+#mods = "Alt|Shift"
+#
 # Key: Alt-Shift-`
-[[keyboard.bindings]]
-chars = "\u001B[96;4u"
-key = "`"
-mods = "Alt|Shift"
-
+#[[keyboard.bindings]]
+#chars = "\u001B[96;4u"
+#key = "`"
+#mods = "Alt|Shift"
+#
 # Key: Alt-Shift-Minus
-[[keyboard.bindings]]
-chars = "\u001B[45;4u"
-key = "Minus"
-mods = "Alt|Shift"
-
+#[[keyboard.bindings]]
+#chars = "\u001B[45;4u"
+#key = "Minus"
+#mods = "Alt|Shift"
+#
 # Key: Alt-Shift-Equals
-[[keyboard.bindings]]
-chars = "\u001B[61;4u"
-key = "Equals"
-mods = "Alt|Shift"
-
+#[[keyboard.bindings]]
+#chars = "\u001B[61;4u"
+#key = "Equals"
+#mods = "Alt|Shift"
+#
 # Key: Alt-Shift-LBracket
-[[keyboard.bindings]]
-chars = "\u001B[91;4u"
-key = "LBracket"
-mods = "Alt|Shift"
-
+#[[keyboard.bindings]]
+#chars = "\u001B[91;4u"
+#key = "LBracket"
+#mods = "Alt|Shift"
+#
 # Key: Alt-Shift-RBracket
-[[keyboard.bindings]]
-chars = "\u001B[93;4u"
-key = "RBracket"
-mods = "Alt|Shift"
-
+#[[keyboard.bindings]]
+#chars = "\u001B[93;4u"
+#key = "RBracket"
+#mods = "Alt|Shift"
+#
 # Key: Alt-Shift-Backslash
-[[keyboard.bindings]]
-chars = "\u001B[92;4u"
-key = "Backslash"
-mods = "Alt|Shift"
-
+#[[keyboard.bindings]]
+#chars = "\u001B[92;4u"
+#key = "Backslash"
+#mods = "Alt|Shift"
+#
 # Key: Alt-Shift-Semicolon
-[[keyboard.bindings]]
-chars = "\u001B[59;4u"
-key = "Semicolon"
-mods = "Alt|Shift"
-
+#[[keyboard.bindings]]
+#chars = "\u001B[59;4u"
+#key = "Semicolon"
+#mods = "Alt|Shift"
+#
 # Key: Alt-Shift-Comma
-[[keyboard.bindings]]
-chars = "\u001B[44;4u"
-key = "Comma"
-mods = "Alt|Shift"
-
+#[[keyboard.bindings]]
+#chars = "\u001B[44;4u"
+#key = "Comma"
+#mods = "Alt|Shift"
+#
 # Key: Alt-Shift-Period
-[[keyboard.bindings]]
-chars = "\u001B[46;4u"
-key = "Period"
-mods = "Alt|Shift"
-
+#[[keyboard.bindings]]
+#chars = "\u001B[46;4u"
+#key = "Period"
+#mods = "Alt|Shift"
+#
 # Key: Alt-Shift-Slash
-[[keyboard.bindings]]
-chars = "\u001B[47;4u"
-key = "Slash"
-mods = "Alt|Shift"
-
+#[[keyboard.bindings]]
+#chars = "\u001B[47;4u"
+#key = "Slash"
+#mods = "Alt|Shift"
+#
 # Key: Alt-Shift-Space
-[[keyboard.bindings]]
-chars = "\u001B[32;4u"
-key = "Space"
-mods = "Alt|Shift"
-
+#[[keyboard.bindings]]
+#chars = "\u001B[32;4u"
+#key = "Space"
+#mods = "Alt|Shift"
+#
 # Key: Alt-Shift-Tab
-[[keyboard.bindings]]
-chars = "\u001B[9;4u"
-key = "Tab"
-mods = "Alt|Shift"
-
+#[[keyboard.bindings]]
+#chars = "\u001B[9;4u"
+#key = "Tab"
+#mods = "Alt|Shift"
+#
 # Key: Alt-Shift-Enter
-[[keyboard.bindings]]
-chars = "\u001B[13;4u"
-key = "Enter"
-mods = "Alt|Shift"
-
+#[[keyboard.bindings]]
+#chars = "\u001B[13;4u"
+#key = "Enter"
+#mods = "Alt|Shift"
+#
 # Key: Alt-Shift-Backspace
-[[keyboard.bindings]]
-chars = "\u001B[8;4u"
-key = "Backspace"
-mods = "Alt|Shift"
-
+#[[keyboard.bindings]]
+#chars = "\u001B[8;4u"
+#key = "Backspace"
+#mods = "Alt|Shift"
+#
 # Key: Alt-Shift-Escape
-[[keyboard.bindings]]
-chars = "\u001B[27;4u"
-key = "Escape"
-mods = "Alt|Shift"
-
+#[[keyboard.bindings]]
+#chars = "\u001B[27;4u"
+#key = "Escape"
+#mods = "Alt|Shift"
+#
 # Key: Alt-Shift-Delete
-[[keyboard.bindings]]
-chars = "\u001B[127;4u"
-key = "Delete"
-mods = "Alt|Shift"
+#[[keyboard.bindings]]
+#chars = "\u001B[127;4u"
+#key = "Delete"
+#mods = "Alt|Shift"
 
 
-################
+########
 # Normal Stuff #
-################
+########
 [[keyboard.bindings]]
 key = "F12"
 action = "ToggleFullscreen"
