@@ -7,8 +7,9 @@ source $script_directory/install.minimal.sh
 shells=(fish elvish nushell oil ngs)
 utils=(direnv miller)
 tools=(pandoc)
-guis=(warp)
+guis=(warp hyper)
 dev=(k9s)
+gui=(espanso)
 mac=(
 	alacritty
 	yabai
