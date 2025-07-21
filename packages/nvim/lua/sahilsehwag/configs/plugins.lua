@@ -855,6 +855,7 @@ local ide = {
 	"chrisbra/csv.vim",
 	"norcalli/nvim-colorizer.lua",
 	{
+		"MeanderingProgrammer/render-markdown.nvim",
 		"prurigro/vim-markdown-concealed",
 		"plasticboy/vim-markdown",
 	},
@@ -3726,6 +3727,21 @@ return {
 			is_enabled = function()
 				return vim.fn.has("nvim-0.7") == 1
 			end,
+		},
+		["MeanderingProgrammer/render-markdown.nvim"] = {
+			url = "MeanderingProgrammer/render-markdown.nvim",
+			--lazyload = {
+			--  filetypes = { "markdown", "mkdc" },
+			--},
+			dependencies = {
+				pre = {
+					'nvim-treesitter/nvim-treesitter',
+					'echasnovski/mini.nvim',
+				}
+			},
+			--config = function()
+			--  require('render-markdown').setup({})
+			--end,
 		},
 		["iamcco/markdown-preview.nvim"] = {
 			url = "iamcco/markdown-preview.nvim",
