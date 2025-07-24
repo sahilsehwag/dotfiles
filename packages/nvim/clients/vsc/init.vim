@@ -5,9 +5,29 @@ execute 'set rtp+=' . globpath(&rtp, 'plugins/vim')
 execute 'set rtp+=' . globpath(&rtp, 'clients')
 execute 'set rtp+=' . globpath(&rtp, 'clients/vsc')
 
+"vscode calls and mappings
 runtime vsc/mappings/init.vim
 
 runtime better-defaults/init.vim
+
+"LIBS
+if has('nvim-0.5')
+  lua require('lib.funk')
+  lua require('lib.func')
+  lua require('lib.cmds')
+  lua require('lib.grammar')
+  lua require('lib.modal')
+  lua require('lib.buf')
+  lua require('lib.win')
+  lua require('lib.list')
+  lua require('lib.api')
+  lua require('lib.cli')
+  lua require('lib.tui')
+  lua require('lib.cui')
+  lua require('lib.ui')
+end
+
+runtime libs/init.vim
 
 runtime object-at.vim
 runtime object-before.vim
@@ -16,6 +36,29 @@ runtime object-after.vim
 runtime object-line.vim
 runtime object-entire.vim
 runtime object-last-selected.vim
+
+runtime space-warrior.vim
+runtime ivim/init.vim
+
+"GENERAL
+lua require('sahilsehwag.general.variables')
+lua require('sahilsehwag.general.settings')
+lua require('sahilsehwag.general.highlights')
+lua require('sahilsehwag.general.autocmds')
+lua require('sahilsehwag.general.specification')
+
+lua require('sahilsehwag.mappings.filetype.markdown')
+
+if has('nvim-0.5')
+  "runtime configs/executioner.lua
+  "runtime configs/projectinator.lua
+  "runtime configs/npm_scripts.lua
+  "runtime configs/worktree.lua
+  "runtime configs/git_workspace.lua
+  "runtime configs/mani.lua
+  "runtime configs/fasd.lua
+  "runtime configs/nix.lua
+end
 
 "SPECIFICATION
   "b = buffer

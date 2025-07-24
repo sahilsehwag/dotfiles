@@ -2,11 +2,11 @@ require("lazy").setup({
   spec = {
     { "lewis6991/impatient.nvim", },
     { "tpope/vim-capslock", },
+    { "kana/vim-repeat" },
     { "kana/vim-niceblock", },
     { "smjonas/live-command.nvim", },
 
     -- grammar
-    { "kana/vim-repeat", },
     { "thalesmello/nvim-better-operator-message", },
     { "wellle/targets.vim", },
     {
@@ -58,5 +58,16 @@ require("lazy").setup({
     { "michaeljsmith/vim-indent-object", },
     { "Raimondi/vim_search_objects", },
     { "machakann/vim-swap", },
+
+    {
+      "nvim-treesitter/nvim-treesitter",
+      config = function()
+        require('configs.nvim-treesitter')
+      end,
+      dependencies = {
+        "nvim-treesitter/nvim-treesitter-textobjects",
+        "David-Kunz/treesitter-unit",
+      }
+    },
   },
 })
