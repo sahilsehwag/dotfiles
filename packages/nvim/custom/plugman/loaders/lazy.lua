@@ -35,6 +35,10 @@ local adapt = function(plugin, plugin_config)
 		end
 	end
 
+	-- trying out stuff
+	-- ERROR: not working
+	--options.lazy = false
+
 	return options
 end
 
@@ -53,6 +57,7 @@ return {
 		return vim.loop.fs_stat(lazypath)
 	end,
 	install_pacman = function(config)
+		local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 		vim.fn.system({
 			"git",
 			"clone",
@@ -61,9 +66,11 @@ return {
 			"--branch=stable", -- latest stable release
 			lazypath,
 		})
+		vim.opt.rtp:prepend(lazypath)
 	end,
 	install = function(config, groups)
 		run_hook(groups.hooks, "before_plugin_install", groups.not_installed)
+		-- ERROR: lazy not loaded so giving error
 		vim.cmd("Lazy install")
 		run_hook(groups.hooks, "after_plugin_install", groups.not_installed)
 	end,
