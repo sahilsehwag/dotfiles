@@ -1816,6 +1816,72 @@ local testing = {
 	--'tamago324/LeaderF-filer',
 	--'RishabhRD/lspactions',
 }
+local vscode = {
+	-- incomplete trying out stuff
+	"lewis6991/impatient.nvim",
+	"tpope/vim-capslock", --1+
+	{ "kana/vim-repeat", "tpope/vim-repeat" }, --1+
+	"kana/vim-niceblock",
+	"smjonas/live-command.nvim",
+	"thalesmello/nvim-better-operator-message",
+	"kana/vim-operator-user",
+	"kana/vim-textobj-user",
+	"osyo-manga/vim-textobj-blockwise",
+	"osyo-manga/vim-operator-blockwise",
+	"wellle/targets.vim",
+	--"jonatan-branting/nvim-better-n", --1+
+	"haya14busa/vim-operator-flashy",
+	{
+		"kylechui/nvim-surround", --1+
+		"tpope/vim-surround",
+	},
+	"svermeulen/vim-subversive", --1+
+	"tommcdo/vim-exchange", --1+
+	"junegunn/vim-easy-align", --1+
+	"JRasmusBm/vim-peculiar", --1+
+	{
+		"kana/vim-operator-replace", --1+
+		"romgrk/replace.vim",
+	},
+	"kana/vim-grex", --2+
+	{
+		--'johmsalas/text-case.nvim',
+		"arthurxavierx/vim-caser",
+	},
+	"gustavo-hms/vim-duplicate", --2+
+	"rjayatilleka/vim-operator-goto",
+	{
+		"tommcdo/vim-ninja-feet", --1+
+		"bagohart/vim-operator-insert-append",
+	},
+	"osyo-manga/vim-operator-search",
+	"vim-scripts/operator-star",
+	"terryma/vim-multiple-cursors",
+	"coderifous/textobj-word-column.vim", --1
+	"rhysd/vim-textobj-anyblock", --1
+	"thinca/vim-textobj-between", --1
+	"michaeljsmith/vim-indent-object", --1,
+	{
+		"saaguero/vim-textobj-pastedtext", --1
+		--'gilligan/textobj-lastpaste',
+	},
+	"rhysd/vim-textobj-lastinserted",
+	"Raimondi/vim_search_objects",
+	"Julian/vim-textobj-variable-segment", --1
+	"machakann/vim-textobj-delimited", --1
+	{
+		"syngan/vim-textobj-postexpr",
+		"machakann/vim-textobj-functioncall",
+		"anyakichi/vim-textobj-xbrackets",
+	},
+	"thalesmello/vim-textobj-methodcall",
+	{
+		"machakann/vim-swap", --1+
+		"sgur/vim-textobj-parameter",
+	},
+	"glts/vim-textobj-comment", --1
+	"justinj/vim-textobj-reactprop",
+}
 
 return {
 	setup = function() end,

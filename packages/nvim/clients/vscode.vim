@@ -89,7 +89,6 @@ if exists('g:vscode')
     nnoremap <C-8> <CMD>call VSCodeNotify('workbench.action.openEditorAtIndex8')<CR>
     " nnoremap <C-9> <CMD>call VSCodeNotify('workbench.action.openEditorAtIndex9')<CR>
     " nnoremap <C-0> <CMD>call VSCodeNotify('workbench.action.lastEditorInGroup')<CR>
-
   "TAB MANAGEMENT
     nnoremap <Leader>tn <CMD>call VSCodeNotify('workbench.action.newWindow')<CR>
     nnoremap <Leader>tr <CMD>call VSCodeNotify('workbench.action.reloadWindow')<CR>
@@ -113,7 +112,6 @@ if exists('g:vscode')
     nnoremap <Leader>fe <CMD>call VSCodeNotify('workbench.view.explorer')<CR>
     nnoremap <Leader>fr <CMD>call VSCodeNotify('workbench.files.action.refreshFilesExplorer')<CR>
     nnoremap <Leader>fc <CMD>call VSCodeNotify('workbench.files.action.collapseExplorerFolders')<CR>
-
   "LSP FEATURES
     "Go to shortcuts
     nnoremap gd <CMD>call VSCodeNotify('editor.action.revealDefinition')<CR>
@@ -173,11 +171,9 @@ if exists('g:vscode')
     nnoremap <Leader>ldj <CMD>call VSCodeNotify('editor.debug.action.stepInto')<CR>
     nnoremap <Leader>ldk <CMD>call VSCodeNotify('editor.debug.action.stepOut')<CR>
     nnoremap <Leader>ldl <CMD>call VSCodeNotify('editor.debug.action.stepOver')<CR>
-
   "PROJECT MANAGEMENT
     " nnoremap <Leader>po <CMD>call VSCodeNotify('workbench.action.openProject')<CR>
     nnoremap <Leader>pr <CMD>call VSCodeNotify('workbench.action.openRecent')<CR>
-
   "UI MANAGEMENT
     nnoremap <C-9> <CMD>call VSCodeNotify('workbench.action.toggleSidebarVisibility')<CR>
     nnoremap <C-0> <CMD>call VSCodeNotify('workbench.action.togglePanel')<CR>
@@ -189,19 +185,15 @@ if exists('g:vscode')
     nnoremap <Leader>vd <CMD>call VSCodeNotify('workbench.view.debug')<CR>
     nnoremap <Leader>vp <CMD>call VSCodeNotify('workbench.actions.view.problems')<CR>
     nnoremap <Leader>vz <CMD>call VSCodeNotify('workbench.action.toggleZenMode')<CR>
-
   "GIT INTEGRATION
     nnoremap <Leader>g. <CMD>call VSCodeNotify('workbench.view.scm')<CR>
     nnoremap <Leader>gC <CMD>call VSCodeNotify('git.commitAll')<CR>
     nnoremap <Leader>gB <CMD>call VSCodeNotify('git.branch')<CR>
-
-
   "EASYMOTION INTEGRATION
     "These are already mapped in VSCode settings.json
     "Just keeping them here for reference
     "nnoremap <Leader>jw <CMD>call VSCodeNotify('editor.action.wordHighlight.next')<CR>
     "nnoremap <Leader>jf <CMD>call VSCodeNotify('editor.action.wordHighlight.next')<CR>
-
   "MISC
     "Command palette
 

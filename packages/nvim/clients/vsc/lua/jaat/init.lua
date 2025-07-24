@@ -1,0 +1,1 @@
+require('jaat.plugins')

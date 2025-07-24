@@ -3,7 +3,7 @@ vim.cmd [[
 		let g:config = {
 			\'plugins':
 				\ exists('g:vscode')
-				\ ? 'core'
+				\ ? 'vscode'
 				\ : exists('g:started_by_firenvim')
 				\ ? 'minimal'
 				\ : exists('g:neovide')
