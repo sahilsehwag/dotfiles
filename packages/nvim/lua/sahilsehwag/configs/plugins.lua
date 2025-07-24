@@ -753,8 +753,9 @@ local ide = {
 	--'bennypowers/nvim-regexplainer',
 
 	--programming.ai
+	"github/copilot.vim",
 	--FIX:
-	"piersolenski/wtf.nvim",
+	--"piersolenski/wtf.nvim",
 	--FIX:
 	--"james1236/backseat.nvim",
 	--FIX:
