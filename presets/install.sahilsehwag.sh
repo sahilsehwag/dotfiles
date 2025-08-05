@@ -31,7 +31,8 @@ misc=(terminfo)
 ai=(cursor windsurf windsurf@next opencode-ai@latest opencode-ai/tap/opencode @google/gemini-cli)
 mac=(
 	alacritty
-	yabai
+	#yabai
+	aerospace
 	notion
 	notion-mail
 	alfred

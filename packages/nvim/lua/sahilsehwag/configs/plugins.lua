@@ -252,7 +252,13 @@ local core = {
 
 	--motions.treesitter
 	--'gsuuon/tshjkl.nvim', --TODO: 1+
-	--{ 'Dkendal/nvim-treeclimber', 'ziontee113/syntax-tree-surfer', 'drybalka/tree-climber.nvim' }, --1*
+	--
+	{
+		'aaronik/treewalker.nvim',
+		'drybalka/tree-climber.nvim',
+		'Dkendal/nvim-treeclimber',
+		--'ziontee113/syntax-tree-surfer', --UNMAINTAINED
+	}, --1*
 	--'mfussenegger/nvim-treehopper', --1*
 	--'roobert/tabtree.nvim', --1*
 	--'Wansmer/sibling-swap.nvim',
@@ -1472,7 +1478,7 @@ local testing = {
 	--'stevearc/gkeep.nvim',
 	--'is0n/jaq-nvim',
 	--'axieax/urlview.nvim',
-	--'mrjones2014/legendary.nvim',
+	--'mrjones2014/legendary.nvim', --1+
 	--'toppair/reach.nvim',
 	--'tjdevries/vlog.nvim',
 	--'jghauser/fold-cycle.nvim',
