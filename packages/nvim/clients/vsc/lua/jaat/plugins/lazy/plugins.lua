@@ -21,7 +21,7 @@ require("lazy").setup({
         {
           "gustavo-hms/vim-duplicate",
           keys = {
-            { "gy", "<plug>(operator-duplicate)", desc = "operator-duplicate"},
+            { "gy", "<plug>(operator-duplicate)", desc = "operator-duplicate" },
           },
         },
       },
@@ -44,7 +44,7 @@ require("lazy").setup({
       },
     },
 
-		{"chaoren/vim-wordmotion" },
+    { "chaoren/vim-wordmotion" },
     { "jonatan-branting/nvim-better-n", },
     { "kylechui/nvim-surround", },
     { "svermeulen/vim-subversive", },
@@ -67,6 +67,13 @@ require("lazy").setup({
       dependencies = {
         "nvim-treesitter/nvim-treesitter-textobjects",
         "David-Kunz/treesitter-unit",
+        {
+          'aaronik/treewalker.nvim',
+          config = function()
+            -- FIX: mappings are not working but not the mappings
+            require('configs.treewalker')
+          end
+        },
       }
     },
   },

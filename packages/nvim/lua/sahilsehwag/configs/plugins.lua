@@ -745,6 +745,7 @@ local ide = {
 	},
 	"ziontee113/icon-picker.nvim",
 	"piersolenski/telescope-import.nvim", --1
+	"xzbdmw/colorful-menu.nvim",
 
 	--programming.documentation
 	{
@@ -1177,7 +1178,8 @@ local testing = {
 	--'Vonr/align.nvim',
 	--'gaoDean/autolist.nvim',
 	--'echasnovski/mini.nvim',
-	--'nvim-colortils/colortils.nvim',
+
+	--'max397574/colortils.nvim',
 
 	--'Pocco81/true-zen.nvim',
 	--'smolovk/projector.nvim',
