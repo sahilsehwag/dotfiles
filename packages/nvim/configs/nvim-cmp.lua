@@ -142,6 +142,9 @@ cmp.setup({
 				{ name = 'buffer' },
 			})
 		},
+		typr = {
+			sources = {},
+		}
 	},
 	cmdline = {
 		['/'] = {

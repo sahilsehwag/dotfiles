@@ -381,6 +381,9 @@ local core = {
 	"Shougo/vimproc.vim",
 }
 local editor = {
+	--libraries
+	"nvzone/volt", --1+ Reactive UI library for neovim UIs
+
 	--jumps
 	"nacro90/numb.nvim",
 
@@ -431,12 +434,9 @@ local editor = {
 		--'lukas-reineke/virt-column.nvim',
 	},
 
-	--libraries
-	"nvzone/volt", --1+ Reactive UI library for neovim UIs
-
 	-- contextmenu
 	{
-		"nvzone/menu", --1+
+		"nvzone/menu", --TODO: 1+
 		--"LintaoAmons/context-menu.nvim", -- EXPERIMENT
 	},
 
@@ -1048,6 +1048,7 @@ local featured = {
 	--'mcauley-penney/visual-whitespace.nvim', --TODO: try
 
 	"nvzone/showkeys",
+	"nvzone/typr",
 
 	--operations
 	"tpope/vim-speeddating",
