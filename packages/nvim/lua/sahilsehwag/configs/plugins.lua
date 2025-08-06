@@ -383,8 +383,10 @@ local core = {
 }
 local editor = {
 	--libraries
-	"nvzone/volt", --1+ Reactive UI library for neovim UIs
-	"s1n7ax/nvim-react", --1+ React for nvim development
+	'echasnovski/mini.nvim', --1+
+	--"nvzone/volt", --TODO: 1+ Reactive UI library for neovim UIs
+	--"grapp-dev/nui-components.nvim", --TODO: 1+ -- "MunifTanjim/nui.nvim",
+	--"s1n7ax/nvim-react", --?? React for nvim development
 
 	--jumps
 	"nacro90/numb.nvim",
@@ -581,12 +583,15 @@ local editor = {
 	},
 	"itchyny/vim-highlighturl",
 	"kazhala/close-buffers.nvim",
-	"pseewald/vim-anyfold",
-	"anuvyklack/fold-preview.nvim",
-	--'yaocccc/nvim-foldsign',
-	--'arecarn/vim-fold-cycle',
 	--'haya14busa/vim-over',
 	--'ghillb/cybu.nvim',
+
+	-- folding
+	"pseewald/vim-anyfold",
+	--'kevinhwang91/nvim-ufo', --1
+	"anuvyklack/fold-preview.nvim",
+	--'yaocccc/nvim-foldsign', --FIX:
+	--'arecarn/vim-fold-cycle',
 
 	-- window
 	--'tamton-aquib/flirt.nvim', TODO: setup =1+
@@ -961,6 +966,7 @@ local ide = {
 	--react
 	"napmn/react-extract.nvim",
 	"Azeirah/nvim-redux",
+	"harisb2012/tsnest.nvim",
 
 	--typescript
 	"dmmulroy/tsc.nvim",
@@ -1192,7 +1198,6 @@ local testing = {
 	--'Djancyp/regex.nvim',
 	--'Vonr/align.nvim',
 	--'gaoDean/autolist.nvim',
-	--'echasnovski/mini.nvim',
 
 	--'max397574/colortils.nvim',
 
@@ -1397,7 +1402,6 @@ local testing = {
 	--'LionC/nest.nvim',
 	--'strash/no-one-wants-to-restart.nvim',
 	--'itmecho/neoterm.nvim',
-	--'kevinhwang91/nvim-ufo',
 	--'anuvyklack/pretty-fold.nvim',
 	--'EtiamNullam/relative-source.nvim',
 	--'kyoh86/backgroundfile.nvim',
@@ -2417,6 +2421,12 @@ return {
 		},
 
 		--editor/ui
+		["kevinhwang91/nvim-ufo"] = {
+			url = "kevinhwang91/nvim-ufo",
+			dependencies = {
+				pre = { "kevinhwang91/promise-async" },
+			}
+		},
 		["liuchengxu/vim-which-key"] = {
 			url = "liuchengxu/vim-which-key",
 		},
