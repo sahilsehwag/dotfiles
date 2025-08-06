@@ -1047,6 +1047,8 @@ local featured = {
 	--'blumaa/ohne-accidents.nvim', --TODO: try
 	--'mcauley-penney/visual-whitespace.nvim', --TODO: try
 
+	"nvzone/showkeys",
+
 	--operations
 	"tpope/vim-speeddating",
 
