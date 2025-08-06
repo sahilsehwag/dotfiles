@@ -432,7 +432,13 @@ local editor = {
 	},
 
 	--libraries
-	"s1n7ax/nvim-window-picker",
+	"nvzone/volt", --1+ Reactive UI library for neovim UIs
+
+	-- contextmenu
+	{
+		"nvzone/menu", --1+
+		--"LintaoAmons/context-menu.nvim", -- EXPERIMENT
+	},
 
 	-- analytics
 	"gaborvecsei/usage-tracker.nvim",
@@ -861,6 +867,7 @@ local ide = {
 	"sheerun/vim-polyglot",
 	"jparise/vim-graphql",
 	"chrisbra/csv.vim",
+	"hat0uma/csvview.nvim",
 	"norcalli/nvim-colorizer.lua",
 	{
 		"MeanderingProgrammer/render-markdown.nvim",
@@ -1015,6 +1022,7 @@ local markup = {
 	--'kristijanhusak/orgmode.nvim',
 	--'nvim-orgmode/orgmode',
 	--'akinsho/org-bullets.nvim',
+
 	--"nvim-neorg/neorg", -- plug not supported bcz of luarocks
 	--"letieu/jot.lua", -- TODO:try
 	--"2KAbhishek/tdo.nvim", -- TODO:try
