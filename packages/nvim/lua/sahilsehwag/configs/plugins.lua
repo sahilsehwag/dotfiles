@@ -384,6 +384,7 @@ local core = {
 local editor = {
 	--libraries
 	"nvzone/volt", --1+ Reactive UI library for neovim UIs
+	"s1n7ax/nvim-react", --1+ React for nvim development
 
 	--jumps
 	"nacro90/numb.nvim",
