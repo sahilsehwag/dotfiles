@@ -17,6 +17,7 @@ end
 
 local core = {
 	--'wbthomason/packer.nvim',
+	--"Zeioth/hot-reload.nvim", --TODO:
 
 	--general
 	--'Tastyep/structlog.nvim',
@@ -631,6 +632,7 @@ local default = {
 	"nvim-telescope/telescope.nvim", --1+
 	"skywind3000/asyncrun.vim",
 	{
+		--"nvzone/floaterm", --TODO: 1+
 		"voldikss/vim-floaterm",
 		"akinsho/toggleterm.nvim",
 	},
@@ -869,6 +871,7 @@ local ide = {
 	"chrisbra/csv.vim",
 	"hat0uma/csvview.nvim",
 	"norcalli/nvim-colorizer.lua",
+	"nvzone/minty",
 	{
 		"MeanderingProgrammer/render-markdown.nvim",
 		"prurigro/vim-markdown-concealed",
