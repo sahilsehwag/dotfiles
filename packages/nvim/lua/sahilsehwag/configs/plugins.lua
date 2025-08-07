@@ -762,7 +762,7 @@ local ide = {
 	},
 	"ziontee113/icon-picker.nvim",
 	"piersolenski/telescope-import.nvim", --1
-	"xzbdmw/colorful-menu.nvim",
+	--"xzbdmw/colorful-menu.nvim", --FIX: causing issues here and there
 
 	--programming.documentation
 	{
