@@ -37,5 +37,5 @@
 "SEARCH
 	nnoremap          <Leader>p/ :Rg<SPACE>
 	nnoremap <silent> <Leader>p? :Rg<CR>
-	nnoremap <C-/>   :Rg<space>
-	nnoremap <C-S-/> :Rg<CR>
+	"nnoremap <C-/>   :Rg<space>
+	"nnoremap <C-S-/> :Rg<CR>

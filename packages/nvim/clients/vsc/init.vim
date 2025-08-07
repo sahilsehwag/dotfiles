@@ -1,7 +1,6 @@
 "RUNTIMEPATH
 execute 'set rtp+=' . globpath(&rtp, 'custom')
-execute 'set rtp+=' . globpath(&rtp, 'plugins')
-execute 'set rtp+=' . globpath(&rtp, 'plugins/vim')
+execute 'set rtp+=' . globpath(&rtp, 'custom/vim')
 execute 'set rtp+=' . globpath(&rtp, 'clients')
 execute 'set rtp+=' . globpath(&rtp, 'clients/vsc')
 

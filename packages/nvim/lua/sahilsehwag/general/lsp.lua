@@ -59,34 +59,52 @@
 		--)
 	--DIAGNOSTICS
 	--SIGNS
-		vim.fn.sign_define('DiagnosticSignError', {
-			--✖,
-			text = '',
-			texthl = 'JatErrorFG',
-			numhl = 'JatErrorFG',
-			--linehl = 'JatErrorBGTransparent',
-		})
-		vim.fn.sign_define('DiagnosticSignWarn', {
-			-- ,
-			text = '',
-			texthl = 'JatWarningFG',
-			numhl = 'JatWarningFG',
-			--linehl = 'JatWarningBGTransparent',
-		})
-		vim.fn.sign_define('DiagnosticSignInfo', {
-			-- ,
-			text = '',
-			texthl = 'JatInfoFG',
-			numhl = 'JatInfoFG',
-			--linehl = 'JatInfoBGTransparent',
-		})
-		vim.fn.sign_define('DiagnosticSignHint', {
-			-- ,
-			text = '',
-			texthl = 'JatHintFG',
-			numhl = 'JatHintFG',
-			--linehl = 'JatHintBGTransparent',
-		})
+	--
+    vim.diagnostic.config({
+        signs = {
+            text = {
+                [vim.diagnostic.severity.ERROR] = '',
+                [vim.diagnostic.severity.WARN] = '',
+                [vim.diagnostic.severity.INFO] = '',
+                [vim.diagnostic.severity.HINT] = '',
+            },
+            linehl = {
+                [vim.diagnostic.severity.ERROR] = 'ErrorMsg',
+            },
+            numhl = {
+                [vim.diagnostic.severity.WARN] = 'WarningMsg',
+            },
+        },
+    })
+		--vim.fn.sign_define('DiagnosticSignError', {
+		--  --✖,
+		--  text = '',
+		--  texthl = 'JatErrorFG',
+		--  numhl = 'JatErrorFG',
+		--  --linehl = 'JatErrorBGTransparent',
+		--})
+    --
+		--vim.fn.sign_define('DiagnosticSignWarn', {
+		--  -- ,
+		--  text = '',
+		--  texthl = 'JatWarningFG',
+		--  numhl = 'JatWarningFG',
+		--  --linehl = 'JatWarningBGTransparent',
+		--})
+		--vim.fn.sign_define('DiagnosticSignInfo', {
+		--  -- ,
+		--  text = '',
+		--  texthl = 'JatInfoFG',
+		--  numhl = 'JatInfoFG',
+		--  --linehl = 'JatInfoBGTransparent',
+		--})
+		--vim.fn.sign_define('DiagnosticSignHint', {
+		--  -- ,
+		--  text = '',
+		--  texthl = 'JatHintFG',
+		--  numhl = 'JatHintFG',
+		--  --linehl = 'JatHintBGTransparent',
+		--})
 	--VIRTUAL-TEXT
 		vim.cmd [[ highlight! link LspDiagnosticsVirtualTextError JatErrorFG ]]
 		vim.cmd [[ highlight! link LspDiagnosticsVirtualTextWarning JatWarningFG ]]

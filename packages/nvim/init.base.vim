@@ -1,22 +1,10 @@
 "RUNTIMEPATH
 	execute 'set rtp+=' . globpath(&rtp, 'custom')
-	execute 'set rtp+=' . globpath(&rtp, 'plugins')
-	execute 'set rtp+=' . globpath(&rtp, 'plugins/vim')
+	execute 'set rtp+=' . globpath(&rtp, 'custom/vim')
 "LIBS
 	if has('nvim-0.5')
 		lua require('lib.funk')
 		lua require('lib.func')
-		lua require('lib.cmds')
-		lua require('lib.grammar')
-		lua require('lib.modal')
-		lua require('lib.buf')
-		lua require('lib.win')
-		lua require('lib.list')
-		lua require('lib.api')
-		lua require('lib.cli')
-		lua require('lib.tui')
-		lua require('lib.cui')
-		lua require('lib.ui')
 	end
 
 	runtime libs/init.vim
@@ -56,14 +44,8 @@
 "CUSTOM
 	runtime better-defaults/init.vim
 
-	if has('nvim-0.8')
-		"lua require('winbar')
-	end
-
 	if has('nvim-0.5')
 		lua require('folder').setup({ folder = 'default' })
-	else
-		runtime folder.vim
 	end
 
 	runtime preserve.vim
@@ -71,7 +53,7 @@
 	runtime terminator.vim
 	runtime projectinator.vim
 	runtime space-warrior.vim
-	runtime ivim/init.vim
+	"runtime ivim/init.vim
 	"runtime movee.vim
 
 	runtime worktree/init.vim
@@ -97,14 +79,9 @@
 		runtime configs/mani.lua
 		runtime configs/fasd.lua
 		runtime configs/nix.lua
-	elseif has('nvim-0.4')
-		runtime executioner.vim
-	else
-		"call g:loaders['plug'](s:plugins, s:configs)
 	end
 "CLIENTS
 	runtime clients/firenvim.vim
-	runtime clients/vscode.vim
 	runtime clients/neovide.vim
 	runtime clients/nvui.vim
 	runtime clients/goneovim.vim
@@ -121,6 +98,3 @@
 	endfunction
 	autocmd FileChangedShell <buffer> call ProcessFileChangedShell()
 	autocmd FileChangedShellPost <buffer> call ProcessFileChangedShell()
-
-	nmap <C-/> gkt
-	xmap <C-/> gkt

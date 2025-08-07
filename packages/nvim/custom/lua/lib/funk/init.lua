@@ -38,7 +38,7 @@ end
 
 local function load_modules(dir, type, parent)
 	-- TODO:
-	local paths = vim.split(vim.fn.glob('~/.config/nvim/plugins/lua/lib/funk/' .. dir .. '/*.lua'), '\n')
+	local paths = vim.split(vim.fn.glob('~/.config/nvim/custom/lua/lib/funk/' .. dir .. '/*.lua'), '\n')
 
 	local modules = {}
 	for _, path in ipairs(paths) do

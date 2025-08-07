@@ -28,3 +28,6 @@
 
 	nmap gk9 <plug>NERDCommenterToEOL
 	nmap gka <plug>NERDCommenterAppend
+
+	nmap <C-/> gkt
+	xmap <C-/> gkt
