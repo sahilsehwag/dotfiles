@@ -63,6 +63,7 @@ local get_field_cmd = function(field_name, field_value, config)
 
 	if not language[field_name] then
 		vim.notify('Operation(' .. field_name .. ') not supported for this file')
+		return
 	end
 
 	local default_field_value = get_path(language, 'config.defaults.' .. field_name) or language[field_name].default

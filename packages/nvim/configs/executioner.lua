@@ -31,6 +31,9 @@ F.vim.nmap('<Leader>lfe', function()
       mkdc = function()
         vim.cmd('MarkdownPreview')
       end,
+			markdown  = function()
+        vim.cmd('MarkdownPreview')
+      end,
     },
   }
 end)
