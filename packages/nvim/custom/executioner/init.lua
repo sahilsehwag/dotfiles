@@ -7,6 +7,8 @@ local LANGUAGES = CONFIG.languages
 
 local terminal_cmd = CONFIG.cmds.terminal
 local window_cmd = CONFIG.cmds.window
+-- TODO: add support for vim runner to run normal vim commands as well
+local command_cmd = CONFIG.cmds.command
 
 local get_lang_cfg_from_filetype = function(filetype)
 	for _, config in pairs(LANGUAGES or {}) do
@@ -126,7 +128,7 @@ end
 --	cmd = '',
 --	args = '',
 --	filename = '',
---	vim_runner = '',
+--	vim_runner = '', -- "runner" fits better
 --	field = '',
 --	mode = 'buffer|selection|line',
 --}

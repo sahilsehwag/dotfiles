@@ -12,7 +12,8 @@ return {
     'mkdc',
   },
 	runners = {
-		preview = 'MarkdownPreview',
+		-- TODO: type not supported yet
+		preview = { cmd = 'MarkdownPreview', type = 'command' },
     markmap = 'MarkmapOpen',
 	},
 }
