@@ -20,6 +20,7 @@ local projects = {
 	--	default = ''|function,
 	--	operations = {
 	--		run = {
+	--		  -- TODO: type = 'common' ??? for commong operations irrespective of project like initialize, bootstrap
 	--			config = {
 	--				default = ''|{}|function,
 	--				runner = '',

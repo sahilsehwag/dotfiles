@@ -4,30 +4,29 @@ execute 'set rtp+=' . globpath(&rtp, 'custom/vim')
 execute 'set rtp+=' . globpath(&rtp, 'clients')
 execute 'set rtp+=' . globpath(&rtp, 'clients/vsc')
 
-"vscode calls and mappings
-runtime vsc/mappings/init.vim
-
 runtime better-defaults/init.vim
 
 "LIBS
 if has('nvim-0.5')
   lua require('lib.funk')
   lua require('lib.func')
-  lua require('lib.cmds')
-  lua require('lib.grammar')
-  lua require('lib.modal')
-  lua require('lib.buf')
-  lua require('lib.win')
-  lua require('lib.list')
-  lua require('lib.api')
-  lua require('lib.cli')
-  lua require('lib.tui')
-  lua require('lib.cui')
-  lua require('lib.ui')
 end
-
 runtime libs/init.vim
 
+"LEADERS
+let mapleader = " "
+let maplocalleader = ","
+
+"GENERAL
+lua require('sahilsehwag.general.variables')
+lua require('sahilsehwag.general.settings')
+lua require('sahilsehwag.general.highlights')
+lua require('sahilsehwag.general.autocmds')
+lua require('sahilsehwag.general.specification')
+
+lua require('sahilsehwag.mappings.filetype.markdown')
+
+"PLUGINS
 runtime object-at.vim
 runtime object-before.vim
 runtime object-between.vim
@@ -39,25 +38,16 @@ runtime object-last-selected.vim
 runtime space-warrior.vim
 runtime ivim/init.vim
 
-"GENERAL
-lua require('sahilsehwag.general.variables')
-lua require('sahilsehwag.general.settings')
-lua require('sahilsehwag.general.highlights')
-lua require('sahilsehwag.general.autocmds')
-lua require('sahilsehwag.general.specification')
+"TODO:
+  "require('vscode').action('workbench.action.terminal.sendSequence', {
+  "  args = { text = cmd .. '\n' }
+  "})
+runtime configs/npm_scripts.lua
+runtime configs/worktree.lua
+runtime configs/git_workspace.lua
+runtime configs/mani.lua
+runtime configs/nix.lua
 
-lua require('sahilsehwag.mappings.filetype.markdown')
-
-if has('nvim-0.5')
-  "runtime configs/executioner.lua
-  "runtime configs/projectinator.lua
-  "runtime configs/npm_scripts.lua
-  "runtime configs/worktree.lua
-  "runtime configs/git_workspace.lua
-  "runtime configs/mani.lua
-  "runtime configs/fasd.lua
-  "runtime configs/nix.lua
-end
 
 "SPECIFICATION
   "b = buffer
@@ -69,14 +59,11 @@ end
   "l = lsp
   "ld = debug
   "f = finding/searching
-"LEADERS
-  let mapleader = " "
-  let maplocalleader = ","
 "TEXT
   nnoremap gS <CMD>call VSCodeNotify('splitjoin-vscode.split')<CR>
   nnoremap gJ <CMD>call VSCodeNotify('splitjoin-vscode.join')<CR>
   nnoremap gT <CMD>call VSCodeNotify('splitjoin-vscode.toggle')<CR>
-"WINDOW MANAGEMENT
+"WINDOW
   "Split window
   nnoremap <Leader>wh <CMD>call VSCodeNotify('workbench.action.splitEditorLeft')<CR>
   nnoremap <Leader>wj <CMD>call VSCodeNotify('workbench.action.splitEditorDown')<CR>
@@ -107,7 +94,7 @@ end
 
   "Window operations
   nnoremap <Leader>wbt <CMD>call VSCodeNotify('workbench.action.moveEditorToNewWindow')<CR>
-"BUFFER MANAGEMENT
+"BUFFER
   "Buffer navigation
   nnoremap <C-[> <CMD>call VSCodeNotify('workbench.action.previousEditor')<CR>
   nnoremap <C-]> <CMD>call VSCodeNotify('workbench.action.nextEditor')<CR>
@@ -149,14 +136,13 @@ end
   nnoremap <C-8> <CMD>call VSCodeNotify('workbench.action.openEditorAtIndex8')<CR>
   " nnoremap <C-9> <CMD>call VSCodeNotify('workbench.action.openEditorAtIndex9')<CR>
   " nnoremap <C-0> <CMD>call VSCodeNotify('workbench.action.lastEditorInGroup')<CR>
-"TAB MANAGEMENT
+"TABS
   nnoremap <Leader>tn <CMD>call VSCodeNotify('workbench.action.newWindow')<CR>
   nnoremap <Leader>tr <CMD>call VSCodeNotify('workbench.action.reloadWindow')<CR>
   nnoremap <Leader>tc <CMD>call VSCodeNotify('workbench.action.closeWindow')<CR>
   nnoremap <Leader>tl <CMD>call VSCodeNotify('workbench.action.switchWindow')<CR>
   nnoremap <Leader>t. <CMD>call VSCodeNotify('workbench.action.quickSwitchWindow')<CR>
-
-"FILE OPERATIONS
+"FILES
   "File navigation
   nnoremap <Leader>fr <CMD>call VSCodeNotify('editor.action.startFindReplaceAction')<CR>
 
@@ -172,7 +158,7 @@ end
   nnoremap <Leader>fe <CMD>call VSCodeNotify('workbench.view.explorer')<CR>
   nnoremap <Leader>fr <CMD>call VSCodeNotify('workbench.files.action.refreshFilesExplorer')<CR>
   nnoremap <Leader>fc <CMD>call VSCodeNotify('workbench.files.action.collapseExplorerFolders')<CR>
-"LSP FEATURES
+"LSP
   "Go to shortcuts
   nnoremap gd <CMD>call VSCodeNotify('editor.action.revealDefinition')<CR>
   nnoremap gi <CMD>call VSCodeNotify('editor.action.goToImplementation')<CR>
@@ -231,10 +217,9 @@ end
   nnoremap <Leader>ldj <CMD>call VSCodeNotify('editor.debug.action.stepInto')<CR>
   nnoremap <Leader>ldk <CMD>call VSCodeNotify('editor.debug.action.stepOut')<CR>
   nnoremap <Leader>ldl <CMD>call VSCodeNotify('editor.debug.action.stepOver')<CR>
-"PROJECT MANAGEMENT
-  " nnoremap <Leader>po <CMD>call VSCodeNotify('workbench.action.openProject')<CR>
+"PROJECT
   nnoremap <Leader>pr <CMD>call VSCodeNotify('workbench.action.openRecent')<CR>
-"UI MANAGEMENT
+"INTERFACE
   nnoremap <C-9> <CMD>call VSCodeNotify('workbench.action.toggleSidebarVisibility')<CR>
   nnoremap <C-0> <CMD>call VSCodeNotify('workbench.action.togglePanel')<CR>
 
@@ -245,11 +230,12 @@ end
   nnoremap <Leader>vd <CMD>call VSCodeNotify('workbench.view.debug')<CR>
   nnoremap <Leader>vp <CMD>call VSCodeNotify('workbench.actions.view.problems')<CR>
   nnoremap <Leader>vz <CMD>call VSCodeNotify('workbench.action.toggleZenMode')<CR>
-"GIT INTEGRATION
+"GIT
   nnoremap <Leader>g. <CMD>call VSCodeNotify('workbench.view.scm')<CR>
   nnoremap <Leader>gC <CMD>call VSCodeNotify('git.commitAll')<CR>
   nnoremap <Leader>gB <CMD>call VSCodeNotify('git.branch')<CR>
-"EASYMOTION INTEGRATION
+"EXTENSIONS
+"EASYMOTION
   "These are already mapped in VSCode settings.json
   "Just keeping them here for reference
   "nnoremap <Leader>jw <CMD>call VSCodeNotify('editor.action.wordHighlight.next')<CR>

@@ -1,4 +1,4 @@
---vim.cmd [[ nnoremap <Leader>gwl :lua require'worktree'.list_worktrees()<CR> ]]
+vim.cmd [[ nnoremap <Leader>gwl :lua require'worktree'.list_worktrees()<CR> ]]
 vim.cmd [[ nnoremap <Leader>gwr :lua require'worktree'.remove_worktree()<CR> ]]
 vim.cmd [[ nnoremap <Leader>gwR :lua require'worktree'.remove_worktree(true)<CR> ]]
 vim.cmd [[ nnoremap <Leader>gws :lua require'worktree'.switch_worktree()<CR> ]]

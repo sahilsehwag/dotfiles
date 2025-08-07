@@ -16,7 +16,7 @@ vim.cmd("source " .. current_dir .. "init.vim")
 -- CONFIG
 --------------------------------
 
-require('jaat')
+require('jaat.plugins.lazy')
 
 --------------------------------
 -- PLUGINS
