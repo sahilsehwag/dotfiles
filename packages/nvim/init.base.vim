@@ -70,15 +70,9 @@
 
 	runtime terminator.vim
 	runtime projectinator.vim
-	if ! has('nvim-0.5')
-		runtime nixification.vim
-	endif
-	runtime nixification.vim
 	runtime space-warrior.vim
 	runtime ivim/init.vim
 	"runtime movee.vim
-	"runtime symbolic.vim
-	"runtime vifm.vim
 
 	runtime worktree/init.vim
 
