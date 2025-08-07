@@ -393,7 +393,7 @@ local editor = {
 
 	--editor.general
 	"nanotee/zoxide.vim",
-	"gelguy/wilder.nvim", --1+
+	--"gelguy/wilder.nvim", --1+ FIX: some features not working like completion
 	{
 		--'linty-org/key-menu.nvim',
 		--'Cassin01/wf.nvim',

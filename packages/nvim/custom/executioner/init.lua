@@ -96,7 +96,7 @@ end
 local run_cmd = function(runner, cmd)
 	if type(runner) == 'string' then
 		vim.cmd(runner .. ' '.. cmd)
-	elseif type(runner) == 'function' then
+	elseif F.is_function(runner) then
 		runner(cmd)
 	else
     --TODO
