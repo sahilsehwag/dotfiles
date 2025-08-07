@@ -626,6 +626,9 @@ local editor = {
 	"aca/vidir.nvim",
 }
 local default = {
+	--'folke/neoconf.nvim', --TODO: TRY???
+	'klen/nvim-config-local',
+
 	--dependencies
 	"mattn/webapi-vim",
 
@@ -1133,7 +1136,6 @@ local testing = {
 	--'rareitems/hl_match_area.nvim',
 	--'vinnymeller/swagger-preview.nvim',
 	--'folke/paint.nvim',
-	--'folke/neoconf.nvim',
 	--'folke/styler.nvim',
 	--'xorid/swap-split.nvim',
 	--'katawful/kreative',
