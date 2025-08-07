@@ -228,19 +228,16 @@ vim.g.loaded_netrwPlugin = 0
 --vim.opt.suffixesadd =
 
 --PYTHON
---vim.g.loaded_python_provider	= 1
+if vim.fn.IsNix() == 1 then
+	vim.g.python3_host_prog = F.sh.run_and_split('which python3')[1]
+elseif vim.fn.IsWindows() then
+	-- TODO: add windows path
+	vim.g.python3_host_prog = "C:/Users/138100/scoop/apps/anaconda3/current/envs/pynvim/python.exe"
+end
+
+-- TODO: I think not needed above is suffiecient
 --vim.g.loaded_python3_provider = 1
-vim.cmd [[
-	if IsNix()
-		"let g:python_host_prog	= '/usr/bin/python'
-		let g:python3_host_prog = '/usr/local/bin/python3'
-		"let g:python3_host_prog = '/Users/sahilsehwag/neovim/bin/python3'
-	elseif IsWindows()
-		"FIX:
-		let g:python_host_prog	= "C:/Users/138100/scoop/apps/anaconda3/current/envs/pynvim2/python.exe"
-		let g:python3_host_prog = "C:/Users/138100/scoop/apps/anaconda3/current/envs/pynvim/python.exe"
-	endif
-]]
+--vim.g.loaded_python_provider	= 1
 
 --NODE
 vim.cmd [[

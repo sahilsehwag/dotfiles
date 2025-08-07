@@ -14,7 +14,7 @@ return {
   --definitions
   --variables
   --functions
-  
+
   --expressions
   snippet('expression.type', {
     text_node('type('),
@@ -50,7 +50,7 @@ return {
     insert_node(1),
     text_node("')"),
   }),
-  
+
   snippet('api.print', {
     text_node('print('),
     insert_node(1),
@@ -61,7 +61,7 @@ return {
     insert_node(1),
     text_node("')"),
   }),
-  
+
   --api.nvim
   snippet('api.nvim.inspect', {
     text_node('vim.inspect('),
