@@ -42,7 +42,7 @@ return {
 			get_pacman_from_filetype(config.filetype or vim.bo.filetype)
 		]
 		local operation = pacman[config.operation]
-		
+
 		local cmd = vim.fn.join({
 			config.vim_cmd				or CONFIG.cmds.terminal,
 			config.cmd						or get_cmd(pacman.cmd) .. ' ' .. get_cmd(operation),
