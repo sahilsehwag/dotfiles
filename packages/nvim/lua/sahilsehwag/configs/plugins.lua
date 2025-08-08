@@ -22,24 +22,25 @@ local core = {
 	--general
 	"lewis6991/impatient.nvim",
 	"tpope/vim-capslock", --1+
-	{ "kana/vim-repeat", "tpope/vim-repeat" }, --1+
+	{
+		"kana/vim-repeat",
+		--"tpope/vim-repeat",
+	}, --1+
 	"kana/vim-niceblock",
 	"smjonas/live-command.nvim",
 	"vim-scripts/LargeFile",
 	"thalesmello/nvim-better-operator-message",
-	--'haolian9/redostr.nvim',
-	--TODO:test
+	--'haolian9/redostr.nvim',--TODO:test
 
 	--nested neovim instances
 	{
 		"willothy/flatten.nvim",
-		"samjwill/nvim-unception",
+		--"samjwill/nvim-unception",
 	},
 
 	--arglist
 	--'idbrii/vim-argedit',
-	--TODO:not working due to :Scratch command, interefering with scratch.vim
-	"joechrisellis/vim-git-arglist",
+	"joechrisellis/vim-git-arglist",-- TODO:not working due to :Scratch command, interefering with scratch.vim
 
 	{
 		--'glepnir/mcc.nvim',
@@ -73,8 +74,7 @@ local core = {
 	--'inkarkat/vim-CountJump',
 	--'d4ku/vim-pushover',
 	"jonatan-branting/nvim-better-n", --1+
-	--FIX: not working | to avoid overriding insert in last
-	--'vim-scripts/repeatable-motions.vim',
+	--'vim-scripts/repeatable-motions.vim',-- FIX: not working | to avoid overriding insert in last
 	--{'vim-scripts/repmo.vim', 'Houl/repmo-vim'},
 	--'hgiesel/vim-motion-sickness',
 	--'vim-scripts/motpat.vim',
@@ -116,11 +116,10 @@ local core = {
 	"haya14busa/vim-operator-flashy",
 	{
 		"kylechui/nvim-surround", --1+
-		"tpope/vim-surround",
+		--"tpope/vim-surround",
 	},
 	--'syngan/vim-operator-furround',
-	-- FIX: mappings overriding other mappings like dd
-	--'gbprod/substitute.nvim',
+	--'gbprod/substitute.nvim',-- FIX: mappings overriding other mappings like dd
 	-- TODO: not working
 	-- INFO: vim-subversive + vim-exchange
 	"svermeulen/vim-subversive", --1+
@@ -129,7 +128,7 @@ local core = {
 	"JRasmusBm/vim-peculiar", --1+
 	{
 		"kana/vim-operator-replace", --1+
-		"romgrk/replace.vim",
+		--"romgrk/replace.vim",
 	},
 	"kana/vim-grex", --2+
 	{
@@ -140,13 +139,12 @@ local core = {
 	"rjayatilleka/vim-operator-goto",
 	{
 		"tommcdo/vim-ninja-feet", --1+
-		"bagohart/vim-operator-insert-append",
+		--"bagohart/vim-operator-insert-append",
 	},
 	"osyo-manga/vim-operator-search",
 	"vim-scripts/operator-star",
 	--'osyo-manga/vim-operator-block',
-	-- FIX: not-working
-	--'svermeulen/vim-cutlass',
+	--'svermeulen/vim-cutlass',-- FIX: not-working
 	--'rgrinberg/vim-operator-gsearch',
 	--'kusabashira/vim-operator-exrange',
 	--'benjamin-glitsos/vim-operator-ToFile',
@@ -161,12 +159,10 @@ local core = {
 	--'teddywing/vim-searchop',
 
 	--editing
-	--TODO: change keymaps
-	--'otavioschwanck/cool-substitute.nvim',
+	--'otavioschwanck/cool-substitute.nvim',--TODO: change keymaps
 	{
 		--'mg979/vim-visual-multi',
-		-- TODO: configure
-		"terryma/vim-multiple-cursors",
+		"terryma/vim-multiple-cursors",-- TODO: configure
 	},
 
 	--objects.modifier
@@ -212,14 +208,14 @@ local core = {
 	"Julian/vim-textobj-variable-segment", --1
 	"machakann/vim-textobj-delimited", --1
 	{
-		"syngan/vim-textobj-postexpr",
-		"machakann/vim-textobj-functioncall",
-		"anyakichi/vim-textobj-xbrackets",
+		"syngan/vim-textobj-postexpr", -- TODO: mappings not working
+		--"machakann/vim-textobj-functioncall",
+		--"anyakichi/vim-textobj-xbrackets",
 	},
 	"thalesmello/vim-textobj-methodcall",
 	{
 		"machakann/vim-swap", --1+
-		"sgur/vim-textobj-parameter",
+		--"sgur/vim-textobj-parameter",
 	},
 	"glts/vim-textobj-comment", --1
 	--'Julian/vim-textobj-assignment',
@@ -243,10 +239,13 @@ local core = {
 	--'spiiph/vim-space',
 	{
 		"chaoren/vim-wordmotion", --1+
-		"kana/vim-smartword",
+		--"kana/vim-smartword",
 	},
 	--'haya14busa/vim-edgemotion',
-	{ "terryma/vim-expand-region", "gcmt/wildfire.vim" },
+	{
+		"terryma/vim-expand-region",
+		--"gcmt/wildfire.vim",
+	},
 	--'vim-scripts/JumpToLastOccurrence',
 	--'rbong/vim-vertical',
 
@@ -255,8 +254,8 @@ local core = {
 	--
 	{
 		'aaronik/treewalker.nvim',
-		'drybalka/tree-climber.nvim',
-		'Dkendal/nvim-treeclimber',
+		--'drybalka/tree-climber.nvim',
+		--'Dkendal/nvim-treeclimber',
 		--'ziontee113/syntax-tree-surfer', --UNMAINTAINED
 	}, --1*
 	--'mfussenegger/nvim-treehopper', --1*
@@ -270,19 +269,23 @@ local core = {
 	--jumps
 	"buztard/vim-rel-jump",
 	"kana/vim-exjumplist",
-	-- FIX:
-	"kwkarlwang/bufjump.nvim",
-	{ "andymass/vim-matchup", "theHamsta/nvim-treesitter-pairs" },
-	{ "chentoast/marks.nvim", "kshenoy/vim-signature" },
+	"kwkarlwang/bufjump.nvim",-- FIX:
+	{
+		"andymass/vim-matchup",
+		--"theHamsta/nvim-treesitter-pairs",
+	},
+	{
+		"chentoast/marks.nvim",
+		--"kshenoy/vim-signature",
+	},
 	--'fnune/recall.nvim', -- TODO: try
 	--"arp242/jumpy.vim", --TODO: MAPPINGS =1+
-	-- FIX:
-	--'fergdev/vim-cursor-hist',
+	--'fergdev/vim-cursor-hist',-- FIX:
 
 	--search
 	{
 		"folke/flash.nvim", --1+
-		"ggandor/leap.nvim", --1+
+		--"ggandor/leap.nvim", --1+
 		--'haya14busa/incsearch.vim',
 		--'haya14busa/incsearch-fuzzy.vim',
 	},
@@ -299,8 +302,7 @@ local core = {
 		--'dahu/vim-fanfingtastic',
 		--"justinmk/vim-sneak",
 	},
-	--"kevinhwang91/nvim-ffhighlight",
-	-- FIX: highlight | keymaps
+	--"kevinhwang91/nvim-ffhighlight",-- FIX: highlight | keymaps
 
 	--operations
 	--'sickill/vim-pasta',
@@ -315,20 +317,28 @@ local core = {
 	},
 	--'jeetsukumaran/vim-linearly',
 	"osyo-manga/vim-jplus",
-	"sQVe/sort.nvim",
-	-- TODO: configure|define-operator(s)
+	"sQVe/sort.nvim",-- TODO: configure|define-operator(s)
 
 	--operations.miscelleanous
 	"dkarter/bullets.vim",
-	--'kabbamine/lazylist.vim',
+	--'kabbamine/lazylist.vim', -- TODO: setup/try
 	"dhruvasagar/vim-table-mode",
 	"rasukarusan/nvim-select-multi-line",
 	"lambdalisue/reword.vim",
-	{'windwp/nvim-autopairs', 'jiangmiao/auto-pairs'},
+	{
+		'windwp/nvim-autopairs',
+		--'jiangmiao/auto-pairs',
+	},
 	"abecodes/tabout.nvim",
 	"windwp/nvim-ts-autotag",
-	{ "NTBBloodbath/color-converter.nvim", "amadeus/vim-convert-color-to" },
-	{ "zirrostig/vim-schlepp", "matze/vim-move" },
+	{
+		"NTBBloodbath/color-converter.nvim",
+		--"amadeus/vim-convert-color-to",
+	},
+	{
+		"zirrostig/vim-schlepp",
+		--"matze/vim-move",
+	},
 	--'svermeulen/vim-yoink',
 	"tenfyzhong/axring.vim",
 	"leothelocust/vim-makecols",
@@ -353,8 +363,8 @@ local core = {
 	--"p00f/nvim-ts-rainbow",
 	{
 		"tzachar/local-highlight.nvim",
-		"RRethy/vim-illuminate",
-		"itchyny/vim-cursorword",
+		--"RRethy/vim-illuminate",
+		--"itchyny/vim-cursorword",
 	},
 	"markonm/traces.vim",
 
@@ -397,7 +407,7 @@ local editor = {
 		--'linty-org/key-menu.nvim',
 		--'Cassin01/wf.nvim',
 		"folke/which-key.nvim", --1+
-		"liuchengxu/vim-which-key",
+		--"liuchengxu/vim-which-key",
 	},
 	"abdalrahman-ali/vim-remembers",
 	"rcarriga/nvim-notify", --1+
@@ -411,7 +421,10 @@ local editor = {
 	{
 		--'desdic/macrothis.nvim', TODO: 1+
 		"svermeulen/vim-macrobatics",
-		{ "dohsimpson/vim-macroeditor", "rbong/vim-buffest" },
+		{
+			"dohsimpson/vim-macroeditor", -- TODO: experiment
+			--"rbong/vim-buffest", -- TODO: tryout
+		},
 	},
 	"notomo/cmdbuf.nvim",
 	"kopischke/vim-fetch",
@@ -458,7 +471,7 @@ local editor = {
 	--quickfix
 	{
 		"kevinhwang91/nvim-bqf", --1
-		"romainl/vim-qf",
+		--"romainl/vim-qf",
 	},
 	"weilbith/vim-loche",
 	"weilbith/vim-quickname",
@@ -507,7 +520,11 @@ local editor = {
 		"kdheepak/monochrome.nvim",
 
 		--best.stable
-		{ "martinsione/darkplus.nvim", "Mofiqul/vscode.nvim", "tomasiser/vim-code-dark" },
+		{
+			"martinsione/darkplus.nvim",
+			--"Mofiqul/vscode.nvim",
+			--"tomasiser/vim-code-dark",
+		},
 
 		--good
 		"ayu-theme/ayu-vim",
@@ -544,7 +561,10 @@ local editor = {
 		"sindresorhus/focus",
 
 		--collections
-		{ "RRethy/nvim-base16", "chriskempson/base16-vim" },
+		{
+			"RRethy/nvim-base16",
+			--"chriskempson/base16-vim",
+		},
 		"christianchiarulli/nvcode-color-schemes.vim",
 		"flazz/vim-colorschemes",
 		"rafi/awesome-vim-colorschemes",
@@ -559,9 +579,9 @@ local editor = {
 		--'noib3/nvim-cokeline',
 
 		"akinsho/bufferline.nvim", --1+
-		"akinsho/nvim-bufferline.lua", --same as above just the legacy config
-		"romgrk/barbar.nvim",
-		"bling/vim-bufferline",
+		--"akinsho/nvim-bufferline.lua", --same as above just the legacy config
+		--"romgrk/barbar.nvim",
+		--"bling/vim-bufferline",
 	},
 	{
 		--"strash/everybody-wants-that-line.nvim", --1
@@ -574,7 +594,10 @@ local editor = {
 	},
 
 	--buffer
-	{ "kevinhwang91/nvim-hlslens", "osyo-manga/vim-anzu" },
+	{
+		"kevinhwang91/nvim-hlslens",
+		--"osyo-manga/vim-anzu",
+	},
 	--'rktjmp/highlight-current-n.nvim',
 	{
 		--"shellRaining/hlchunk.nvim", --TODO: CONFIGURE
@@ -606,9 +629,9 @@ local editor = {
 	--winbar
 	{
 		"Bekaboo/dropbar.nvim", --1+
-		"utilyre/barbecue.nvim", --1
-		"fgheng/winbar.nvim",
-		"mrjones2014/winbarbar.nvim",
+		--"utilyre/barbecue.nvim", --1
+		--"fgheng/winbar.nvim",
+		--"mrjones2014/winbarbar.nvim",
 		--'b0o/incline.nvim',
 		--'SmiteshP/nvim-gps',
 	},
@@ -640,18 +663,18 @@ local default = {
 	"nvim-telescope/telescope.nvim", --1+
 	"skywind3000/asyncrun.vim",
 	{
-		--"nvzone/floaterm", --TODO: 1+
+		--"nvzone/floaterm", -- TODO: 1+
 		"voldikss/vim-floaterm",
-		"akinsho/toggleterm.nvim",
+		--"akinsho/toggleterm.nvim",
 	},
 	{
 		"nvim-neo-tree/neo-tree.nvim", --1+
-		"kyazdani42/nvim-tree.lua", --1
-		"ms-jpq/chadtree",
+		--"kyazdani42/nvim-tree.lua", --1
+		--"ms-jpq/chadtree",
 	},
 	{
 		"elihunter173/dirbuf.nvim", --1+
-		"X3eRo0/dired.nvim",
+		"X3eRo0/dired.nvim", -- TODO: tryout
 		--'stevearc/oil.nvim', --INFO: reference
 	},
 	--"is0n/fm-nvim",
@@ -661,14 +684,14 @@ local default = {
 	--'haya14busa/incsearch-easymotion.vim',
 	{
 		"windwp/nvim-spectre", --1+
-		"brooth/far.vim",
+		"brooth/far.vim", -- TODO: tryout
 	},
 	--'ray-x/sad.nvim', TODO: 1
 	--'AckslD/muren.nvim', --TODO:1+
 	{
 		"ripxorip/aerojump.nvim",
 		--'lambdalisue/lista.nvim',
-		"osyo-manga/vim-hopping",
+		--"osyo-manga/vim-hopping",
 	},
 
 	--editor.general
@@ -679,7 +702,7 @@ local default = {
 	--  'goolord/alpha-nvim',
 	--  'startup-nvim/startup.nvim',
 	--},
-	{ "jbyuki/venn.nvim", "gyim/vim-boxdraw" },
+	--{ "jbyuki/venn.nvim", "gyim/vim-boxdraw" }, -- TODO: tryout
 	-- "lfv89/vim-foldfocus", -- FIX:
 	"rexagod/samwise.nvim",
 	--TO-TEST
@@ -691,16 +714,16 @@ local default = {
 
 	--buffer.general
 	{
-		--'petertriho/nvim-scrollbar', --TODO:
+		--'petertriho/nvim-scrollbar', -- TODO:
 		"dstein64/nvim-scrollview", --1+
-		"Xuyuanp/scrollbar.nvim",
+		--"Xuyuanp/scrollbar.nvim",
 	},
 	{
 		-- TODO: not working figure out
 		"gen740/SmoothCursor.nvim",
 		"karb94/neoscroll.nvim",
-		"psliwka/vim-smoothie",
-		"joeytwiddle/sexy_scroller.vim",
+		--"psliwka/vim-smoothie",
+		--"joeytwiddle/sexy_scroller.vim",
 	},
 	"el-iot/buffer-tree-explorer", --2+
 	"j-morano/buffer_manager.nvim",
@@ -714,9 +737,8 @@ local default = {
 	"s1n7ax/nvim-window-picker",
 
 	--random
-	"edluffy/hologram.nvim",
-	--TODO: configure|setup
-	"potamides/pantran.nvim",
+	--"edluffy/hologram.nvim", -- TODO: setup|tryout
+	--"potamides/pantran.nvim",--TODO: configure|setup
 }
 local ide = {
 	--editor.general
@@ -733,31 +755,31 @@ local ide = {
 	"folke/todo-comments.nvim", --1+
 	{
 		"folke/zen-mode.nvim", --2+
-		"junegunn/goyo.vim",
+		--"junegunn/goyo.vim",
 	},
 	{
 		"folke/twilight.nvim", --2+
-		"koenverburg/peepsight.nvim",
-		"junegunn/limelight.vim",
+		--"koenverburg/peepsight.nvim",
+		--"junegunn/limelight.vim",
 	},
 	--'axlebedev/footprints',
 	{
 		"zbirenbaum/neodim",
-		"NarutoXY/dim.lua",
+		--"NarutoXY/dim.lua",
 	},
 
 	--programming.completion
 	{
 		"L3MON4D3/LuaSnip", --1+
-		"hrsh7th/vim-vsnip",
-		"SirVer/ultisnips",
-		"norcalli/snippets.nvim",
+		--"hrsh7th/vim-vsnip",
+		--"SirVer/ultisnips",
+		--"norcalli/snippets.nvim",
 	},
 	{
 		--'noib3/nvim-compleet',
 		"hrsh7th/nvim-cmp", --1
-		"hrsh7th/nvim-compe",
-		"ms-jpq/coq_nvim",
+		--"hrsh7th/nvim-compe",
+		--"ms-jpq/coq_nvim",
 	},
 	"ziontee113/icon-picker.nvim",
 	"piersolenski/telescope-import.nvim", --1
@@ -767,7 +789,7 @@ local ide = {
 	{
 		"kkoomen/vim-doge",
 		"danymat/neogen",
-		"glepnir/prodoc.nvim",
+		--"glepnir/prodoc.nvim",
 	},
 	--'Zeioth/dooku.nvim',
 
@@ -891,18 +913,18 @@ local ide = {
 	--programming.vcs
 	{
 		"lewis6991/gitsigns.nvim", --1+
-		"airblade/vim-gitgutter",
+		--"airblade/vim-gitgutter",
 	},
 	"tanvirtin/vgit.nvim", --1+
 	{
 		"TimUntersberger/neogit", --1+
-		"tpope/vim-fugitive",
+		--"tpope/vim-fugitive",
 	},
 	{
 		"pwntester/octo.nvim", --1+
 		"ldelossa/gh.nvim", --1+
-		"skanehira/denops-gh.vim",
-		"skanehira/gh.vim",
+		--"skanehira/denops-gh.vim",
+		--"skanehira/gh.vim",
 	},
 	--"harrisoncramer/gitlab.nvim", --1+
 	--'ttys3/nvim-blamer.lua',
@@ -910,7 +932,7 @@ local ide = {
 	--'isak102/telescope-git-file-history.nvim', -- TODO: try
 	{
 		"rhysd/conflict-marker.vim", --1+
-		"akinsho/git-conflict.nvim",
+		--"akinsho/git-conflict.nvim",
 	},
 	"rhysd/git-messenger.vim", --1+
 	{
@@ -992,7 +1014,7 @@ local ide = {
 		--'linty-org/key-menu.nvim',
 		--'Cassin01/wf.nvim',
 		"folke/which-key.nvim",
-		"liuchengxu/vim-which-key",
+		--"liuchengxu/vim-which-key",
 	},
 	"powerman/vim-plugin-AnsiEsc",
 }
@@ -1034,22 +1056,27 @@ local configuration = {
 	--"guns/xterm-color-table.vim",
 }
 local markup = {
+	"phaazon/mind.nvim", --1+
+	"antonk52/markdowny.nvim",
+	"Zeioth/markmap.nvim",
+
+	{
+		"mtth/scratch.vim", --1
+		--"kana/vim-scratch",
+	},
+
 	--'kristijanhusak/orgmode.nvim',
 	--'nvim-orgmode/orgmode',
 	--'akinsho/org-bullets.nvim',
 
-	--"nvim-neorg/neorg", -- plug not supported bcz of luarocks
+	--"nvim-neorg/neorg", -- TODO: plug not supported bcz of luarocks
+	--'epwalsh/obsidian.nvim',
+
 	--"letieu/jot.lua", -- TODO:try
 	--"2KAbhishek/tdo.nvim", -- TODO:try
-	"phaazon/mind.nvim", --1+
-	"antonk52/markdowny.nvim",
-	"Zeioth/markmap.nvim",
 	--'AckslD/nvim-FeMaco.lua',
+
 	"osyo-manga/vim-operator-highlighter",
-	{
-		"mtth/scratch.vim", --1
-		"kana/vim-scratch",
-	},
 }
 local featured = {
 	-- system
@@ -1079,8 +1106,8 @@ local featured = {
 
 	--random
 	--'MrPeterLee/VimWordpress',
-	"itchyny/calendar.vim",
-	"samodostal/image.nvim",
+	--"itchyny/calendar.vim",
+	--"samodostal/image.nvim", -- TODO: tryout | setup
 }
 local testing = {
 	--'gsuuon/note.nvim', --TODO: 1
@@ -1109,7 +1136,6 @@ local testing = {
 	--'ecthelionvi/NeoComposer.nvim', -- TODO:1+
 	--'otavioschwanck/tmux-awesome-manager.nvim',
 	--'mrjones2014/smart-splits.nvim',
-	--'epwalsh/obsidian.nvim',
 	--'ofirgall/open.nvim'
 	--'cbochs/portal.nvim',
 	--'romgrk/kui.nvim',
@@ -1125,8 +1151,7 @@ local testing = {
 	--'idanarye/nvim-buffls',
 	--'desdic/greyjoy.nvim',--INFO: task
 	--'emileferreira/nvim-strict',
-	-- TODO: setup
-	--'marcuscaisey/olddirs.nvim',
+	--'marcuscaisey/olddirs.nvim',-- TODO: setup
 	--'princejoogie/chafa.nvim',
 	--'cvigilv/esqueleto.nvim',
 	--'nyngwang/suave.lua',
@@ -1165,8 +1190,7 @@ local testing = {
 	--'narutoxy/silicon.lua',
 	--'olrtg/nvim-rename-state',
 	--'almo7aya/openingh.nvim',
-	-- TODO: TRIAL
-	--'justinmk/vim-dirvish',
+	--'justinmk/vim-dirvish',-- TODO: TRIAL
 	--'lewis6991/brodir.nvim',
 	--'zegervdv/nrpattern.nvim',
 	--'nat-418/dbm.nvim',
@@ -1691,7 +1715,6 @@ local testing = {
 	--'m00qek/baleia.nvim',
 	--'hkupty/iron.nvim',
 	--'bfredl/nvim-ipy',
-	--'https://gitlab.com/HiPhish/repl.nvim',
 	--'roxma/nvim-completion-manager',
 	--'nicwest/vim-camelsnek',
 	--'prabirshrestha/asyncomplete.vim',
@@ -1743,9 +1766,6 @@ local testing = {
 	--'lambdalisue/gina.vim',
 	--'lambdalisue/vim-gita',
 	--'lambdalisue/vim-pager',
-	--'lambdalisue/battery.vim',
-	--'lambdalisue/wifi.vim',
-	--'lambdalisue/vital-Vim-Prompt',
 	--'lambdalisue/vim-backslash',
 	--'jreybert/vimagit',
 	--'cldwalker/vimdb',
@@ -1770,7 +1790,6 @@ local testing = {
 	--'tomtom/tregisters_vim',
 	--'kovisoft/slimv',
 	--'Shougo/neossh.vim',
-	--'thinca/vim-github',
 	--'lokikl/shellbridge',
 	--'rhysd/warp.vim',
 	--'jalvesaq/vimcmdline',
@@ -1783,9 +1802,7 @@ local testing = {
 	--'vim-scripts/DoxygenToolkit.vim',
 	--'mhinz/vim-randomtag',
 	--'rupa/v',
-	--'jrosiek/vim-mark',
 	--'tyru/karakuri.vim/blob/master/autoload/karakuri.vim',
-	--'tyru/current-func-info.vim',
 	--'tyru/emap.vim',
 	--'vim-scripts/ccase.vim',
 	--'tpope/vim-sexp-mappings-for-regular-people',
@@ -1800,20 +1817,11 @@ local testing = {
 	--'cocopon/snapbuffer.vim',
 	--'cocopon/colorswatch.vim',
 	--'jlxz/TaskVim',
-	--'jarolrod/vim-python-ide',
 	--'bpstahlman/txtfmt',
-	--'junegunn/vim-github-dashboard',
 	--'google/ijaas',
 	--'boucherm/ShowMotion',
-	--'okcompute/vim-python-motions',
-	--'mattn/googlesuggest-complete-vim',
 	--'makerj/vim-transit',
-	--'Kazark/vim-http-client',
-	--'tasuten/gcalc.vim',
 	--'iamcco/dict.vim',
-	--'eschao/vim-dict',
-	--'ntnn/vim-diction',
-	--'drmikehenry/vim-extline',
 	--'hauleth/sad.vim',
 	--'AndrewRadev/inline_edit.vim',
 	--'AndrewRadev/deleft.vim',
@@ -1824,28 +1832,17 @@ local testing = {
 	--'AndrewRadev/dsf.vim',
 	--'AndrewRadev/undoquit.vim',
 	--'ckarnell/Antonys-macro-repeater',
-	--'Rykka/mathematic.vim',
 	--'tpope/vim-dispatch',
 	--'Badacadabra/Vimpressionist',
 	--'ryanfmurphy/vimsed',
-	--'b4b4r07/zsh-vimode-visual',
-	--'vim-jp/vital.vim',
 	--'haya14busa/underscore.vim',
 	--'amoffat/snake',
 	--'pocket7878/curses-vim',
-	--'LucHermitte/lh-vim-lib',
 	--'rbtnn/rabbit-ui.vim',
 	--'ViKomprenas/scratch.vim',
-	--'ehamberg/vim-cute-python',
 	--'nyngwang/NeoRoot.lua',
 	--'nyngwang/NeoZoom.lua',
-	--'Yggdroot/LeaderF',
 	--'dylanaraps/pywal',
-	--'cirala/vifm_devicons',
-	--'chrisbra/matchit',
-	--'fszymanski/fzf-quickfix',
-	--'tamago324/LeaderF-filer',
-	--'RishabhRD/lspactions',
 }
 local vscode = {
 	-- incomplete trying out stuff
