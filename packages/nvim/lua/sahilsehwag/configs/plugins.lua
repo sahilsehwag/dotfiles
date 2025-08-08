@@ -778,6 +778,7 @@ local ide = {
 
 	--programming.ai
 	"github/copilot.vim",
+	'kawre/leetcode.nvim',
 	--FIX:
 	--"piersolenski/wtf.nvim",
 	--FIX:
@@ -3742,6 +3743,19 @@ return {
 		},
 
 		--programming/miscelleanous
+		["kawre/leetcode.nvim"] = {
+			url = "kawre/leetcode.nvim",
+			is_enabled = function()
+				return vim.fn.has("nvim-0.9") == 1
+			end,
+			post_install = 'TSUpdate html',
+			dependencies = {
+				pre = {
+					"nvim-lua/plenary.nvim",
+					"MunifTanjim/nui.nvim",
+				},
+			},
+		},
 		["tpope/vim-dadbod"] = {
 			url = "tpope/vim-dadbod",
 			is_enabled = function()
