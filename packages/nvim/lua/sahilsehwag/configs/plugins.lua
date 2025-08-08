@@ -20,7 +20,6 @@ local core = {
 	--"Zeioth/hot-reload.nvim", --TODO:
 
 	--general
-	--'Tastyep/structlog.nvim',
 	"lewis6991/impatient.nvim",
 	"tpope/vim-capslock", --1+
 	{ "kana/vim-repeat", "tpope/vim-repeat" }, --1+
@@ -777,8 +776,11 @@ local ide = {
 	--'bennypowers/nvim-regexplainer',
 
 	--programming.ai
-	{ 'zbirenbaum/copilot.lua', "github/copilot.vim" },
-	'yetone/avante.nvim',
+	{
+		--'zbirenbaum/copilot.lua', --TODO: setup
+		"github/copilot.vim",
+	},
+	'yetone/avante.nvim', --TODO: setup
 	--FIX:
 	--"piersolenski/wtf.nvim",
 	--FIX:
@@ -799,8 +801,7 @@ local ide = {
 	--'VonHeikemen/lsp-zero.nvim',
 	"williamboman/mason.nvim", --1+
 	"neovim/nvim-lspconfig", --1+
-	-- archived ??
-	--"jose-elias-alvarez/null-ls.nvim",
+	--"jose-elias-alvarez/null-ls.nvim",-- archived ??
 	{ "mhartington/formatter.nvim", "sbdchd/neoformat" },
 	"klen/nvim-test",
 	"rcarriga/neotest", -- FIX:
@@ -811,7 +812,6 @@ local ide = {
 	"folke/lsp-colors.nvim",
 	"DNLHC/glance.nvim", --1+
 	"rmagatti/goto-preview", --1+
-	"folke/trouble.nvim", --1+
 	{
 		--'vigoux/notifier.nvim',
 		"j-hui/fidget.nvim", --1+
@@ -823,46 +823,38 @@ local ide = {
 		"nvimdev/lspsaga.nvim", --1+
 		"jinzhongjia/LspUI.nvim",
 	},
-	-- TODO:setup
-	--'nanotee/nvim-lsp-basics',
-	-- TODO:wait for patch/fix
-	"RishabhRD/nvim-lsputils",
+	--'nanotee/nvim-lsp-basics',-- TODO:setup
+	"RishabhRD/nvim-lsputils",-- TODO:wait for patch/fix
 	--'smjonas/inc-rename.nvim',
 	{
-		--TODO: not working
-		--"JASONews/glow-hover",
-		--TODO: not working
-		--"Fildo7525/pretty_hover",
+		--"JASONews/glow-hover",-- TODO: not working
+		--"Fildo7525/pretty_hover", -- TODO: not working
 	},
 	"VidocqH/lsp-lens.nvim",
 	"jubnzv/virtual-types.nvim",
 	--"weilbith/nvim-code-action-menu",
 	--"ray-x/lsp_signature.nvim",
 	--"WhoIsSethDaniel/toggle-lsp-diagnostics.nvim",
-	"ivanjermakov/troublesum.nvim", --1
 	"roobert/hoversplit.nvim",
 	"chrisgrieser/nvim-rulebook", --1
 	"whynothugo/lsp_lines.nvim", --1
 	"onsails/lspkind-nvim", --1+
 	"antosha417/nvim-lsp-file-operations",
 	--'amrbashir/nvim-docs-view',
-	--TODO: broken...wait
-	--"wiliamks/nice-reference.nvim",
+	--"wiliamks/nice-reference.nvim",-- TODO: broken...wait
 
+	-- programming.diagnostics
+	"folke/trouble.nvim", --1+
+	"ivanjermakov/troublesum.nvim", --1
 	"cseickel/diagnostic-window.nvim", --2+
-	-- FIX: not working
-	--'davidosomething/format-ts-errors.nvim',
-	--FIX:broken
-	--"joechrisellis/lsp-format-modifications.nvim",
+	--'davidosomething/format-ts-errors.nvim',-- FIX: not working
+	--"joechrisellis/lsp-format-modifications.nvim",--FIX:broken
 
-	--not-working
-	--'lewis6991/spellsitter.nvim',
-	--setup
-	--'weilbith/nvim-floating-tag-preview',
+	--'lewis6991/spellsitter.nvim',-- FIX: not-working
+	--'weilbith/nvim-floating-tag-preview',-- TODO: setup
 	--'nvim-lua/lsp-status.nvim',
 	--'doums/lsp_spinner.nvim',
-	--not-working
-	--'onsails/vimway-lsp-diag.nvim',
+	--'onsails/vimway-lsp-diag.nvim',-- not-working
 	--'Mofiqul/trld.nvim',
 
 	--progrmaming.general
@@ -939,6 +931,7 @@ local ide = {
 	--'KDesp73/project-starter.nvim', -- TODO: try
 
 	--programming.debugging
+	--programming.logging
 	{
 		"andrewferrier/debugprint.nvim", --1+
 		"rareitems/printer.nvim",
@@ -1010,7 +1003,8 @@ local configuration = {
 	--'tyru/capture.vim',
 	--{ 'dstein64/vim-startuptime', 'henriquehbr/nvim-startup.lua' },
 
-	--plugin development
+	-- logging
+	--'Tastyep/structlog.nvim', --TODO: 1+?? Setup and try
 	--"smartpde/debuglog",
 
 	--'dokwork/vim-hp',

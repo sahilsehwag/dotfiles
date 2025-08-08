@@ -16,8 +16,10 @@ vim.cmd("source " .. current_dir .. "init.vim")
 -- CONFIG
 --------------------------------
 
-require('jaat.plugins.lazy')
+vim.notify = require('vscode').notify
 
 --------------------------------
 -- PLUGINS
 --------------------------------
+
+require('jaat.plugins.lazy')
