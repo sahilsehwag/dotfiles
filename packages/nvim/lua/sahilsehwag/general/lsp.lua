@@ -69,13 +69,24 @@
                 [vim.diagnostic.severity.HINT] = '',
             },
             linehl = {
-                [vim.diagnostic.severity.ERROR] = 'ErrorMsg',
+                --[vim.diagnostic.severity.ERROR] = 'ErrorMsg',
             },
             numhl = {
-                [vim.diagnostic.severity.WARN] = 'WarningMsg',
+                --[vim.diagnostic.severity.WARN] = 'WarningMsg',
             },
         },
+        virtual_text = false,
+        underline = true,
+        update_in_insert = false,
+        severity_sort = true,
     })
+
+    -- Ensure signs are defined (fallback for older Neovim versions)
+		vim.fn.sign_define('DiagnosticSignError', { text = '', texthl = 'DiagnosticSignError' })
+		vim.fn.sign_define('DiagnosticSignWarn', { text = '', texthl = 'DiagnosticSignWarn' })
+		vim.fn.sign_define('DiagnosticSignInfo', { text = '', texthl = 'DiagnosticSignInfo' })
+		vim.fn.sign_define('DiagnosticSignHint', { text = '', texthl = 'DiagnosticSignHint' })
+
 		--vim.fn.sign_define('DiagnosticSignError', {
 		--  --✖,
 		--  text = '',
