@@ -27,21 +27,23 @@ require("telescope").setup({
 	},
 })
 
---pickers
-vim.cmd("nnoremap <silent> <Leader>f. <CMD>Telescope<CR>")
+local tb = require('telescope.builtin')
+local opts = { silent = true }
 
---buffers
-vim.cmd("nnoremap <silent> <Leader>bl <CMD>Telescope buffers<CR>")
-vim.cmd("nnoremap <silent> <Leader>bf <CMD>Telescope filetypes<CR>")
+-- General
+vim.keymap.set('n', '<Leader>f.', '<CMD>Telescope<CR>', vim.tbl_extend('force', opts, { desc = 'Telescope: Open picker list' }))
 
---vim
-vim.cmd("nnoremap <silent> <Leader>v; <CMD>Telescope commands<CR>")
-vim.cmd("nnoremap <silent> <Leader>v: <CMD>Telescope command_history<CR>")
-vim.cmd("nnoremap <silent> <Leader>v/ <CMD>Telescope search_history<CR>")
-vim.cmd("nnoremap <silent> <Leader>v? <CMD>Telescope help_tags<CR>")
+-- Buffers
+vim.keymap.set('n', '<Leader>bl', tb.buffers,    vim.tbl_extend('force', opts, { desc = 'Telescope: List buffers' }))
+vim.keymap.set('n', '<Leader>bf', tb.filetypes,  vim.tbl_extend('force', opts, { desc = 'Telescope: Change filetype' }))
 
---git
+-- Vim commands/history/help
+vim.keymap.set('n', '<Leader>v;', tb.commands,         vim.tbl_extend('force', opts, { desc = 'Telescope: Commands' }))
+vim.keymap.set('n', '<Leader>v:', tb.command_history,  vim.tbl_extend('force', opts, { desc = 'Telescope: Command history' }))
+vim.keymap.set('n', '<Leader>v/', tb.search_history,   vim.tbl_extend('force', opts, { desc = 'Telescope: Search history' }))
+vim.keymap.set('n', '<Leader>v?', tb.help_tags,        vim.tbl_extend('force', opts, { desc = 'Telescope: Help tags' }))
+vim.keymap.set('n', '<Leader><Tab>', tb.keymaps,       vim.tbl_extend('force', opts, { desc = 'Telescope: Keymaps' }))
 
---project
-F.vim.nmap("<leader>pf", "<cmd>Telescope git_files<cr>")
-F.vim.nmap("<leader>pg", "<cmd>Telescope git_status<cr>")
+-- Git
+vim.keymap.set('n', '<Leader>pf', tb.git_files,   vim.tbl_extend('force', opts, { desc = 'Telescope: Git files' }))
+vim.keymap.set('n', '<Leader>pg', tb.git_status,  vim.tbl_extend('force', opts, { desc = 'Telescope: Git status' }))

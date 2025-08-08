@@ -306,8 +306,8 @@ local core = {
 	--'sickill/vim-pasta',
 	{
 		"Wansmer/treesj", --1+
-		"aarondiel/spread.nvim",
-		"AndrewRadev/splitjoin.vim",
+		--"aarondiel/spread.nvim",
+		--"AndrewRadev/splitjoin.vim",
 	},
 	{
 		--'AckslD/nvim-trevJ.lua',
@@ -337,8 +337,8 @@ local core = {
 	--comment
 	{
 		"scrooloose/nerdcommenter",
-		"tpope/vim-commentary",
-		"b3nj5m1n/kommentary",
+		--"tpope/vim-commentary",
+		--"b3nj5m1n/kommentary",
 	},
 	"LudoPinelli/comment-box.nvim", --2
 	"s1n7ax/nvim-comment-frame", --2
@@ -871,6 +871,7 @@ local ide = {
 	"chrisbra/csv.vim",
 	"hat0uma/csvview.nvim",
 	"norcalli/nvim-colorizer.lua",
+	--"m-demare/hlargs.nvim", --useful in some cases where lsps don't have proper arguments highlighting
 	"nvzone/minty",
 	{
 		"MeanderingProgrammer/render-markdown.nvim",
@@ -930,11 +931,16 @@ local ide = {
 	},
 	--'KDesp73/project-starter.nvim', -- TODO: try
 
+	-- programming.refactoring
+	"theprimeagen/refactoring.nvim", -- 1+??  TODO: not working for some reason
+
 	--programming.debugging
 	--programming.logging
 	{
 		"andrewferrier/debugprint.nvim", --1+
-		"rareitems/printer.nvim",
+		'Goose97/timber.nvim', -- TODO: add mapping for multi varible log statements (which is missing in debugprint.nvim)
+		--'chrisgrieser/nvim-chainsaw',
+		--"rareitems/printer.nvim",
 	},
 	--'kungfusheep/randomword.nvim', -- TODO: try
 
@@ -1046,12 +1052,12 @@ local markup = {
 	},
 }
 local featured = {
-	--system
+	-- system
 	--'edkolev/tmuxline.vim',
 	--'edkolev/promptline.vim',
 	--'vim-scripts/WholeLineColor',
 
-	--vanity
+	-- vanity
 	--'tamton-aquib/zone.nvim',
 	--'blumaa/ohne-accidents.nvim', --TODO: try
 	--'mcauley-penney/visual-whitespace.nvim', --TODO: try
@@ -1503,7 +1509,6 @@ local testing = {
 	--'jghauser/fold-cycle.nvim',
 	--'AckslD/nvim-gfold.lua',
 	--'ellisonleao/carbon-now.nvim',
-	--'ThePrimeagen/refactoring.nvim',
 	--'ThePrimeagen/jvim.nvim',
 	--'ThePrimeagen/vim-apm',
 	--'ThePrimeagen/harpoon',
