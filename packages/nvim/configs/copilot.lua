@@ -1,0 +1,17 @@
+require("copilot").setup({})
+
+--require("copilot.panel").accept()
+--require("copilot.panel").jump_next()
+--require("copilot.panel").jump_prev()
+--require("copilot.panel").open({position, ratio})
+--require("copilot.panel").toggle()
+--require("copilot.panel").refresh()
+
+--require("copilot.suggestion").is_visible()
+--require("copilot.suggestion").accept(modifier)
+--require("copilot.suggestion").accept_word()
+--require("copilot.suggestion").accept_line()
+--require("copilot.suggestion").next()
+--require("copilot.suggestion").prev()
+--require("copilot.suggestion").dismiss()
+--require("copilot.suggestion").toggle_auto_trigger()

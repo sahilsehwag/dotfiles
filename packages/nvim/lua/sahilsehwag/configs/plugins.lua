@@ -434,7 +434,7 @@ local editor = {
 
 	--colorcolumn
 	{
-		"m4xshen/smartcolumn.nvim",
+		--"m4xshen/smartcolumn.nvim",
 		--'lukas-reineke/virt-column.nvim',
 	},
 
@@ -777,8 +777,8 @@ local ide = {
 	--'bennypowers/nvim-regexplainer',
 
 	--programming.ai
-	"github/copilot.vim",
-	'kawre/leetcode.nvim',
+	{ 'zbirenbaum/copilot.lua', "github/copilot.vim" },
+	'yetone/avante.nvim',
 	--FIX:
 	--"piersolenski/wtf.nvim",
 	--FIX:
@@ -792,8 +792,6 @@ local ide = {
 	--'jameshiew/nvim-magic',
 	--'ashzero2/VimPilot',
 	--'tom-doerr/vim_codex',
-	--'github/copilot.vim',
-	--'zbirenbaum/copilot.lua',
 	--'jackMort/ChatGPT.nvim',
 	--'dense-analysis/neural',
 
@@ -959,6 +957,9 @@ local ide = {
 
 	--python
 	--'AckslD/swenv.nvim',
+
+	-- competitive
+	'kawre/leetcode.nvim',
 
 	--javascript
 	--'vuki656/package-info.nvim',
@@ -3385,6 +3386,23 @@ return {
 			is_enabled = function()
 				return vim.fn.has("nvim-0.6") == 1
 			end,
+		},
+		["yetone/avante.nvim"] = {
+		  url = "yetone/avante.nvim",
+			post_install = "make",
+		  dependencies = {
+		    pre = {
+					'nvim-lua/plenary.nvim',
+					'MunifTanjim/nui.nvim',
+					'MeanderingProgrammer/render-markdown.nvim',
+					'hrsh7th/nvim-cmp',
+					'nvim-tree/nvim-web-devicons',
+					'HakonHarnes/img-clip.nvim',
+					'zbirenbaum/copilot.lua',
+					'stevearc/dressing.nvim',
+					'folke/snacks.nvim',
+				},
+		  },
 		},
 		["hrsh7th/nvim-cmp"] = {
 			url = "hrsh7th/nvim-cmp",
