@@ -702,9 +702,8 @@ local default = {
 	--},
 	--{ "jbyuki/venn.nvim", "gyim/vim-boxdraw" }, -- TODO: tryout
 	-- "lfv89/vim-foldfocus", -- FIX:
-	"rexagod/samwise.nvim",
-	--TO-TEST
-	--'hood/popui.nvim',
+	--"rexagod/samwise.nvim", -- FIX: not able to save changes
+	--'hood/popui.nvim', -- TODO: try
 
 	--vim.ui
 	"stevearc/dressing.nvim", --1+
@@ -850,7 +849,7 @@ local ide = {
 		--"JASONews/glow-hover",-- TODO: not working
 		--"Fildo7525/pretty_hover", -- TODO: not working
 	},
-	"VidocqH/lsp-lens.nvim",
+	--"VidocqH/lsp-lens.nvim", -- TODO: causing duplicate lenses
 	"jubnzv/virtual-types.nvim",
 	--"weilbith/nvim-code-action-menu",
 	--"ray-x/lsp_signature.nvim",
@@ -1262,9 +1261,6 @@ local testing = {
 
 	--'https://gitlab.com/yorickpeterse/nvim-window.git',
 	--'https://gitlab.com/yorickpeterse/nvim-pqf.git',
-
-	--'ckarnell/antonys-macro-repeater',
-	--'jacobchrismarsh/vim-macro-repeat',
 
 	--'arp242/batchy.vim',
 	--'dkprice/vim-easygrep',

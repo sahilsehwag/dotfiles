@@ -12,7 +12,7 @@
 	let g:Mac_FzfOptions = {'window': {'width': 0.75, 'height': 0.6}}
 "MAPPINGS
 	nmap q <nop>
-	
+
 	nmap <silent> <nowait> qr <plug>(Mac_RecordNew)
 	nmap <silent> <nowait> qp <plug>(Mac_Play)
 
