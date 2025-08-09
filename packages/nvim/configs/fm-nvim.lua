@@ -61,13 +61,18 @@ require'fm-nvim'.setup{
 	broot_conf = vim.fn.stdpath('data') .. '/site/pack/packer/start/fm-nvim/assets/broot_conf.hjson'
 }
 
---F.vim.nmap('<Leader>ae', '<cmd>Vifm %:h<cr>')
---F.vim.nmap('<Leader>aE', '<cmd>Vifm<cr>')
+F.vim.nmap('<Leader>pe', '<cmd>Vifm %:h<cr>')
+F.vim.nmap('<Leader>pE', '<cmd>Vifm<cr>')
 
---F.vim.nmap('<Leader>ag', '<cmd>Lazygit<cr>')
+F.vim.nmap('<Leader>ae', '<cmd>Vifm %:h<cr>')
+F.vim.nmap('<Leader>aE', '<cmd>Vifm<cr>')
 
+F.vim.nmap('<Leader>ag', '<cmd>Lazygit<cr>')
+F.vim.nmap('<C-g>', '<cmd>Lazygit<cr>')
+
+--vim.cmd [[ nnoremap <Leader>ae <cmd>Broot<cr> ]]
 --vim.cmd [[ nnoremap <Leader>ae <cmd>Ranger<cr> ]]
+--vim.cmd [[ nnoremap <Leader>ae <cmd>Xplr<cr> ]]
+
 --vim.cmd [[ nnoremap <Leader>ae <cmd>Lf<cr> ]]
 --vim.cmd [[ nnoremap <Leader>ae <cmd>Nnn<cr> ]]
---vim.cmd [[ nnoremap <Leader>ae <cmd>Xplr<cr> ]]
---vim.cmd [[ nnoremap <Leader>ae <cmd>Broot<cr> ]]

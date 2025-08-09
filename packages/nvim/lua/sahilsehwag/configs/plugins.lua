@@ -662,9 +662,9 @@ local default = {
 	"nvim-telescope/telescope.nvim", --1+
 	"skywind3000/asyncrun.vim",
 	{
-		"voldikss/vim-floaterm",
+		"voldikss/vim-floaterm", --1
 		--"akinsho/toggleterm.nvim",
-	}, "nvzone/floaterm",
+	}, "nvzone/floaterm", --1*
 	{
 		"nvim-neo-tree/neo-tree.nvim", --1+
 		--"kyazdani42/nvim-tree.lua", --1
@@ -672,10 +672,10 @@ local default = {
 	},
 	{
 		"elihunter173/dirbuf.nvim", --1+
-		"X3eRo0/dired.nvim", -- TODO: tryout
+		--"X3eRo0/dired.nvim", --1+
 		--'stevearc/oil.nvim', --INFO: reference
 	},
-	--"is0n/fm-nvim",
+	"is0n/fm-nvim", --1+
 
 	--search
 	--'easymotion/vim-easymotion',
