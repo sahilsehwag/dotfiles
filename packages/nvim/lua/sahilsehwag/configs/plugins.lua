@@ -39,7 +39,7 @@ local core = {
 	},
 
 	--arglist
-	--'idbrii/vim-argedit',
+	'idbrii/vim-argedit', -- TODO: try/explore/experiment
 	"joechrisellis/vim-git-arglist",-- TODO:not working due to :Scratch command, interefering with scratch.vim
 
 	{
@@ -393,7 +393,7 @@ local core = {
 local editor = {
 	--libraries
 	'echasnovski/mini.nvim', --1+
-	--"nvzone/volt", --TODO: 1+ Reactive UI library for neovim UIs
+	--"nvzone/volt", -- TODO: 1+ Reactive UI library for neovim UIs
 	--"grapp-dev/nui-components.nvim", --TODO: 1+ -- "MunifTanjim/nui.nvim",
 	--"s1n7ax/nvim-react", --?? React for nvim development
 
@@ -411,15 +411,14 @@ local editor = {
 	},
 	"abdalrahman-ali/vim-remembers",
 	"rcarriga/nvim-notify", --1+
-	--TODO: setup =1+
-	--'liangxianzhe/nap.nvim',
+	--'liangxianzhe/nap.nvim',-- TODO: setup =1+
 	{
 		"mbbill/undotree", --1+
 		--'simnalamburt/vim-mundo',
 	},
 	"ntpeters/vim-better-whitespace",
 	{
-		--'desdic/macrothis.nvim', TODO: 1+
+		--'desdic/macrothis.nvim', -- TODO: 1+
 		"svermeulen/vim-macrobatics",
 		{
 			"dohsimpson/vim-macroeditor", -- TODO: experiment
@@ -606,17 +605,17 @@ local editor = {
 	"itchyny/vim-highlighturl",
 	"kazhala/close-buffers.nvim",
 	--'haya14busa/vim-over',
-	--'ghillb/cybu.nvim',
+	--'ghillb/cybu.nvim', -- TODO: try/experiment/explore
 
 	-- folding
 	"pseewald/vim-anyfold",
 	--'kevinhwang91/nvim-ufo', --1
 	"anuvyklack/fold-preview.nvim",
-	--'yaocccc/nvim-foldsign', --FIX:
+	--'yaocccc/nvim-foldsign', -- FIX:
 	--'arecarn/vim-fold-cycle',
 
 	-- window
-	--'tamton-aquib/flirt.nvim', TODO: setup =1+
+	--'tamton-aquib/flirt.nvim',--  TODO: setup =1+
 	--"nvim-zh/colorful-winsep.nvim",
 	"sindrets/winshift.nvim",
 	"luukvbaal/stabilize.nvim",
@@ -624,7 +623,7 @@ local editor = {
 	--'TaDaa/vimade',
 	--'beauwilliams/focus.nvim',
 	"wellle/visual-split.vim",
-	--'declancm/windex.nvim',
+	--'declancm/windex.nvim', -- TODO: try/explore
 
 	--winbar
 	{
@@ -663,10 +662,9 @@ local default = {
 	"nvim-telescope/telescope.nvim", --1+
 	"skywind3000/asyncrun.vim",
 	{
-		--"nvzone/floaterm", -- TODO: 1+
 		"voldikss/vim-floaterm",
 		--"akinsho/toggleterm.nvim",
-	},
+	}, "nvzone/floaterm",
 	{
 		"nvim-neo-tree/neo-tree.nvim", --1+
 		--"kyazdani42/nvim-tree.lua", --1
@@ -943,6 +941,9 @@ local ide = {
 		--"moyiz/git-dev.nvim",
 		"drzel/vim-repo-edit", --1+
 	},
+
+	--programming.tasks
+	'stevearc/overseer.nvim',
 
 	--programming.testing
 
@@ -1265,7 +1266,6 @@ local testing = {
 	--'ckarnell/antonys-macro-repeater',
 	--'jacobchrismarsh/vim-macro-repeat',
 
-	--'stevearc/overseer.nvim',
 	--'arp242/batchy.vim',
 	--'dkprice/vim-easygrep',
 	--'eugen0329/vim-esearch',
@@ -2918,6 +2918,12 @@ return {
 		},
 
 		--system/terminal
+		["nvzone/floaterm"] = {
+			url = "nvzone/floaterm",
+			dependencies = {
+				pre = { 'nvzone/volt' },
+			},
+		},
 		["lambdalisue/guise.vim"] = {
 			url = "lambdalisue/guise.vim",
 			is_enabled = function()
