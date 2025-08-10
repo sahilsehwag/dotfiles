@@ -166,7 +166,7 @@ F_hasGrp() {
 	fi
 }
 
-F_isInstalled() {
+F_isBinaryInstalled() {
 	local package=$1
 	if type $package &> /dev/null
 	then
@@ -670,15 +670,11 @@ F_isPortReachableByUserGrp() {
 #--------------------------------------------------------------------#
 
 F_createSoftLink() {
-	local from=$1
-	local to=$2
-	ln -sv $from $to
+	ln -sv $1 $2
 }
 
 F_createHardLink() {
-	local from=$1
-	local to=$2
-	ln -v $from $to
+	ln -v $1 $2
 }
 
 #--------------------------------------------------------------------#
