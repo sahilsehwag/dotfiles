@@ -14,6 +14,7 @@ base=(curl wget make cmake gcc g++)
 git=(git gh glab mani git-workspace)
 dev=(python go rust node lua)
 utils=(rg fd sd choose path-extractor up redo yank grex gnu-sed)
+testing=(sregx srex ast-grep)
 data=(yq jq gron jc jo)
 alts=(
 	sshs
@@ -44,7 +45,7 @@ gui=(
 	espanso
 )
 
-F_install ${setup[@]} ${base[@]} ${git[@]} ${dev[@]} ${utils[@]} ${data[@]} ${alts[@]} ${tools[@]} ${fonts[@]} ${apps[@]} ${misc[@]} ${mac[@]} ${testing[@]}
+F_install ${setup[@]} ${base[@]} ${git[@]} ${dev[@]} ${utils[@]} ${data[@]} ${testing[@]} ${alts[@]} ${tools[@]} ${fonts[@]} ${apps[@]} ${misc[@]} ${mac[@]}
 
 if ! F_isSoftlink "$HOME/Documents/projects/personal/mani.yml"; then
 	ln -sv "$DOTFILES_ROOT/configs/mani.yaml" "$HOME/Documents/projects/personal/mani.yml"
