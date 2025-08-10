@@ -61,6 +61,7 @@ require'fm-nvim'.setup{
 	broot_conf = vim.fn.stdpath('data') .. '/site/pack/packer/start/fm-nvim/assets/broot_conf.hjson'
 }
 
+F.vim.nmap('<C-E>', '<cmd>Vifm %:h<cr>')
 F.vim.nmap('<Leader>pe', '<cmd>Vifm %:h<cr>')
 F.vim.nmap('<Leader>pE', '<cmd>Vifm<cr>')
 
