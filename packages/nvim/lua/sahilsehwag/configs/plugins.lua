@@ -409,7 +409,14 @@ local editor = {
 		"folke/which-key.nvim", --1+
 		--"liuchengxu/vim-which-key",
 	},
+
+	-- editor.sessions
+	{
+		--"dominickng/fzf-session.vim",
+		'rmagatti/auto-session', -- TODO: tryout/explore
+	},
 	"abdalrahman-ali/vim-remembers",
+
 	"rcarriga/nvim-notify", --1+
 	--'liangxianzhe/nap.nvim',-- TODO: setup =1+
 	{
@@ -417,6 +424,9 @@ local editor = {
 		--'simnalamburt/vim-mundo',
 	},
 	"ntpeters/vim-better-whitespace",
+
+	-- editor.macros
+	'sahilsehwag/macrobank.nvim',
 	{
 		--'desdic/macrothis.nvim', -- TODO: 1+
 		"svermeulen/vim-macrobatics",
@@ -425,6 +435,7 @@ local editor = {
 			--"rbong/vim-buffest", -- TODO: tryout
 		},
 	},
+
 	"notomo/cmdbuf.nvim",
 	"kopischke/vim-fetch",
 	"crusj/bookmarks.nvim",
@@ -1219,7 +1230,6 @@ local testing = {
 	--'woosaaahh/sj.nvim',
 	--'smartpde/neoscopes',
 	--'olimorris/persisted.nvim', --TODO: 1
-	'rmagatti/auto-session',
 
 	--'numToStr/prettierrc.nvim',
 	--'Djancyp/better-comments.nvim',

@@ -79,7 +79,6 @@
 		runtime configs/mani.lua
 		runtime configs/fasd.lua
 		runtime configs/nix.lua
-		runtime configs/macrograph.lua
 	end
 "CLIENTS
 	runtime clients/firenvim.vim
