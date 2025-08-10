@@ -28,8 +28,8 @@
 	nmap <silent> <nowait> qnf <plug>(Mac_NameCurrentMacroForFileType)
 	nmap <silent> <nowait> qns <plug>(Mac_NameCurrentMacroForCurrentSession)
 
-	nmap <silent> <nowait> qsp <plug>(Mac_SearchForNamedMacroAndPlay)
-	nmap <silent> <nowait> qss <plug>(Mac_SearchForNamedMacroAndSelect)
-	nmap <silent> <nowait> qsd <plug>(Mac_SearchForNamedMacroAndDelete)
-	nmap <silent> <nowait> qsr <plug>(Mac_SearchForNamedMacroAndRename)
-	nmap <silent> <nowait> qso <plug>(Mac_SearchForNamedMacroAndOverwrite)
+	nmap <silent> <nowait> qfp <plug>(Mac_SearchForNamedMacroAndPlay)
+	nmap <silent> <nowait> qfs <plug>(Mac_SearchForNamedMacroAndSelect)
+	nmap <silent> <nowait> qfd <plug>(Mac_SearchForNamedMacroAndDelete)
+	nmap <silent> <nowait> qfr <plug>(Mac_SearchForNamedMacroAndRename)
+	nmap <silent> <nowait> qfo <plug>(Mac_SearchForNamedMacroAndOverwrite)
