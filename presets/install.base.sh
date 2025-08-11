@@ -14,7 +14,12 @@ base=(curl wget make cmake gcc g++)
 git=(git gh glab mani git-workspace)
 dev=(python go rust node lua)
 utils=(rg fd fzf sd choose path-extractor up redo yank grex)
-testing=(sregx srex ast-grep)
+testing=(
+	sregx
+	srex
+	ast-grep
+	#https://github.com/shannonmoeller/up #move up the directory like inverse of fuzzy cd
+)
 data=(yq jq gron jc jo)
 alts=(
 	sshs
