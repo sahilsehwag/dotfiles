@@ -841,7 +841,10 @@ local ide = {
 	"SmiteshP/nvim-navbuddy",
 	"folke/lsp-colors.nvim",
 	"DNLHC/glance.nvim", --1+
-	"rmagatti/goto-preview", --1+
+	{
+		--"WilliamHsieh/overlook.nvim", --1+ TODO: setup/try
+		"rmagatti/goto-preview", --1+
+	},
 	{
 		--'vigoux/notifier.nvim',
 		"j-hui/fidget.nvim", --1+
