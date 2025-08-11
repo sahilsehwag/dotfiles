@@ -10,7 +10,7 @@ tools=(pandoc)
 guis=(warp hyper)
 dev=(k9s)
 gui=(espanso)
-ai=(cursor windsurf windsurf@next claude gemini opencode)
+ai=(cursor windsurf windsurf@next claude gemini opencode codex)
 mac=(
 	alacritty
 	#yabai

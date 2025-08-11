@@ -29,7 +29,7 @@ fonts=(fira-code)
 # kanata (kmonad alternative)
 apps=(fzf zsh tmux nvim vifm lazygit kmonad)
 misc=(terminfo)
-ai=(cursor windsurf windsurf@next claude gemini opencode)
+ai=(cursor windsurf windsurf@next claude gemini opencode codex)
 mac=(
 	alacritty
 	#yabai
