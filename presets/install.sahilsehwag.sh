@@ -29,7 +29,7 @@ fonts=(fira-code)
 # kanata (kmonad alternative)
 apps=(fzf zsh tmux nvim vifm lazygit kmonad)
 misc=(terminfo)
-ai=(cursor windsurf windsurf@next opencode-ai@latest opencode-ai/tap/opencode @google/gemini-cli)
+ai=(cursor windsurf windsurf@next claude gemini opencode)
 mac=(
 	alacritty
 	#yabai
@@ -45,7 +45,11 @@ gui=(
 	espanso
 )
 
-F_install ${setup[@]} ${base[@]} ${git[@]} ${dev[@]} ${utils[@]} ${data[@]} ${testing[@]} ${alts[@]} ${tools[@]} ${fonts[@]} ${apps[@]} ${misc[@]} ${mac[@]}
+F_install ${setup[@]} ${base[@]} ${git[@]} ${dev[@]} ${utils[@]} ${data[@]} ${testing[@]} ${alts[@]} ${tools[@]} ${fonts[@]} ${apps[@]} ${misc[@]}
+
+if F_isMac; then
+	F_install ${mac[@]}
+fi
 
 if ! F_isSoftlink "$HOME/Documents/projects/personal/mani.yml"; then
 	ln -sv "$DOTFILES_ROOT/configs/mani.yaml" "$HOME/Documents/projects/personal/mani.yml"

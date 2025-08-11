@@ -10,9 +10,11 @@ tools=(pandoc)
 guis=(warp hyper)
 dev=(k9s)
 gui=(espanso)
+ai=(cursor windsurf windsurf@next claude gemini opencode)
 mac=(
 	alacritty
-	yabai
+	#yabai
+	aerospace
 	notion
 	alfred
 	visual-studio-code
@@ -22,4 +24,8 @@ mac=(
 	vlc
 )
 
-F_install ${shells[@]} ${utils[@]} ${tools[@]} ${guis[@]} ${mac[@]}
+F_install ${shells[@]} ${utils[@]} ${tools[@]} ${guis[@]}
+
+if F_isMac; then
+	F_install ${mac[@]}
+fi
