@@ -4,8 +4,8 @@ script_directory=$(F_getScriptDir ${BASH_SOURCE:-$0})
 F_isInstalled() {
 	local package="$1"
 
-	local path1="$DOTFILES_ROOT/packages/$package/is-installed.sh"
-	local path2="$DOTFILES_ROOT/packages/$package/scripts/is-installed.sh"
+	local path1="$DOTFILES_ROOT/packages/$package/is_installed.sh"
+	local path2="$DOTFILES_ROOT/packages/$package/scripts/is_installed.sh"
 
 	if F_isFile $path1; then
 		source $path1

@@ -967,6 +967,9 @@ local ide = {
 	},
 	--'KDesp73/project-starter.nvim', -- TODO: try
 
+	--programming.scaffolding
+	'nvimdev/template.nvim',
+
 	-- programming.refactoring
 	"theprimeagen/refactoring.nvim", -- 1+??  TODO: not working for some reason
 
