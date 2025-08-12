@@ -31,9 +31,9 @@ apps=(fzf zsh tmux nvim vifm lazygit kmonad)
 misc=(terminfo)
 ai=(cursor windsurf windsurf@next claude gemini opencode codex cursor-agent)
 mac=(
-	alacritty
-	#yabai
-	aerospace
+	alacritty #warp
+	#kindavim #svim #macos wide vim emulation
+	aerospace #yabai
 	notion
 	notion-mail
 	alfred

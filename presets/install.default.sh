@@ -7,14 +7,13 @@ source $script_directory/install.minimal.sh
 shells=(fish elvish nushell oil ngs)
 utils=(direnv miller)
 tools=(pandoc)
-guis=(warp hyper)
+guis=(alacritty warp hyper)
 dev=(k9s)
 gui=(espanso)
 ai=(cursor windsurf windsurf@next claude gemini opencode codex cursor-agent)
 mac=(
-	alacritty
-	#yabai
-	aerospace
+	aerospace #yabai
+	#kindavim #svim #macos wide vim emulation
 	notion
 	alfred
 	visual-studio-code
