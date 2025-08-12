@@ -3442,6 +3442,7 @@ return {
 					"hrsh7th/cmp-cmdline",
 
 					"tzachar/cmp-ai",
+					'dcampos/cmp-emmet-vim',
 
 					"f3fora/cmp-spell",
 					--'hrsh7th/cmp-calc',
@@ -3465,7 +3466,6 @@ return {
 					--'bydlw98/cmp-env',
 					--'amarakon/nvim-cmp-fonts',
 					--'wxxxcxx/cmp-browser-source',
-					--'dcampos/cmp-emmet-vim',
 					--'pschmitt/cmp-brotab',
 					--'jcha0713/cmp-tw2css',
 					--'uga-rosa/cmp-dynamic',

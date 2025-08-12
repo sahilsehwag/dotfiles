@@ -93,22 +93,24 @@ cmp.setup({
 		{ name = 'nvim_lua',                max_item_count = nil, },
 		{ name = 'nvim_lsp_signature_help', max_item_count = 7,  },
 
+		{ name = 'emmet_vim', max_item_count = 1 },
+
 		--{ name = 'cmp_ai', max_item_count = 2,  }, -- FIX: not working
-		{ name = 'cmp_tabnine', max_item_count = 3, },
-		{ name = 'tags',        max_item_count = 3, },
+		--{ name = 'cmp_tabnine', max_item_count = 3, },
+		--{ name = 'tags',        max_item_count = 3, },
 		{ name = 'treesitter',  max_item_count = 3, },
 
 		{ name = 'buffer', max_item_count = 3, },
 		{ name = 'tmux',   max_item_count = 3, },
 		{ name = 'rg',     max_item_count = 3, },
 		{ name = 'path',   max_item_count = 3, },
-		{ name = 'zsh',    max_item_count = 3, },
+		{ name = 'zsh',    max_item_count = 3, keyword_length = 3 },
 		{ name = 'npm',    max_item_count = 3, },
 		{ name = 'git',    max_item_count = 3, },
 
 		{ name = 'look',  keyword_length = 2, max_item_count = 3, },
-		{ name = 'calc',  max_item_count = 3, },
-		{ name = 'spell', max_item_count = 3, },
+		{ name = 'calc',  max_item_count = 1, },
+		{ name = 'spell', max_item_count = 2, },
 		{ name = 'emoji', max_item_count = 3, },
 	},
 	formatting = {
