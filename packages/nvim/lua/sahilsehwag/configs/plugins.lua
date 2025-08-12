@@ -1431,7 +1431,6 @@ local testing = {
 	--'lpinilla/vim-codepainter'
 	--'thinca/vim-poslist',
 	--'tssm/nvim-snitch',
-	--'glepnir/template.nvim',
 	--'GustavoKatel/tasks.nvim',
 	--'Pocco81/AutoSave.nvim',
 	--'wincent/loupe',
@@ -1565,7 +1564,6 @@ local testing = {
 	--'klen/nvim-config-local',
 	--'morphisjustfun/nvim-code2text',
 	--'kwkarlwang/bufresize.nvim',
-	--'vigoux/templar.nvim',
 	--'pianocomposer321/yabs.nvim',
 	--'ray-x/guihua.lua',
 	--'stevearc/qf_helper.nvim',
