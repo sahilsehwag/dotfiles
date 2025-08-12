@@ -36,7 +36,8 @@
 )
 
 (defalias
-  spc-mod (tap-hold-next-release 175 spc lsft)
+  ;;spc-mod (tap-hold-next-release 175 spc lsft)
+  spc-mod (tap-hold-next-release 175 spc (around lctl (around lalt lmet)))
 
   a-mod (tap-hold-next-release 175 a lsft)
   s-mod (tap-hold-next-release 175 s lmet)
