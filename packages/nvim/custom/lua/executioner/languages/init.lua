@@ -21,7 +21,7 @@ local LANGUAGES = {
 	--'ocaml',
 
 	--ICL
-	--'java',
+	'java',
 	--'cs',
 	--'scala',
 

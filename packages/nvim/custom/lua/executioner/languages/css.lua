@@ -6,8 +6,8 @@ return {
 			formatters = 'prettier',
 		},
 	},
-	extenisons = { 'css' },
-	filetypes = { 'css' },
+	extenisons = { 'css', 'scss', 'sass' },
+	filetypes = { 'css', 'scss', 'sass' },
 	formatters = {
 		prettier = javascript.formatters.prettier,
 	}
