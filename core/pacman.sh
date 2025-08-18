@@ -74,9 +74,9 @@ F_install() {
 			local path2="$DOTFILES_ROOT/packages/$package/scripts/install.sh"
 
 			if F_isFile $path1; then
-				source $script_path
+				source $path1
 			elif F_isFile $path2; then
-				source $script_path
+				source $path2
 			else
 				F_pkg_install $package
 			fi
