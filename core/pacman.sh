@@ -17,9 +17,9 @@ F_isInstalled() {
 		return $?
 	elif F_isFile $packages; then
 		if grep -q "^$package$" "$packages"; then
-			echo 0
+			return 0
 		else
-			echo 1
+			return 1
 		fi
 	else
 		F_isBinaryInstalled $package
