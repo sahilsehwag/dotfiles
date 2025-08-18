@@ -7,12 +7,20 @@ F_isInstalled() {
 	local path1="$DOTFILES_ROOT/packages/$package/is_installed.sh"
 	local path2="$DOTFILES_ROOT/packages/$package/scripts/is_installed.sh"
 
+	local packages="$DOTFILES_CONFIG/packages.txt"
+
 	if F_isFile $path1; then
 		source $path1
 		return $?
 	elif F_isFile $path2; then
 		source $path2
 		return $?
+	elif F_isFile $packages; then
+		if grep -q "^$package$" "$packages"; then
+			echo 0
+		else
+			echo 1
+		fi
 	else
 		F_isBinaryInstalled $package
 		return $?
@@ -57,6 +65,9 @@ F_init() {
 }
 
 F_install() {
+	local packages="$DOTFILES_CONFIG/packages.txt"
+	F_isFile $packages || touch $packages
+
 	for package in "$@"; do
 		if ! F_isInstalled $package; then
 			local path1="$DOTFILES_ROOT/packages/$package/install.sh"
@@ -69,6 +80,8 @@ F_install() {
 			else
 				F_pkg_install $package
 			fi
+
+			echo "$package" >> $packages
 		fi
 
 		F_init $package

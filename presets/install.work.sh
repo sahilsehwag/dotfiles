@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-source $DOTFILES_ROOT/custom/install.sh
 
 if F_isMac; then
 	xcode-select –-install
