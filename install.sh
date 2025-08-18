@@ -5,7 +5,7 @@
 
 if [[ ! -d "$DOTFILES_ROOT" ]]; then
 	git clone https://github.com/sahilsehwag/dotfiles "$DOTFILES_ROOT"
-
-	source "$DOTFILES_CORE/install.sh"
-	source "$DOTFILES_ROOT/presets/install.$DOTFILES_PRESET.sh"
 fi
+
+source "$DOTFILES_CORE/install.sh"
+source "$DOTFILES_ROOT/presets/install.$DOTFILES_PRESET.sh"

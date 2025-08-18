@@ -13,7 +13,7 @@
 	if [ -f ~/Documents/projects/personal/github/ush/index.sh ]; then
 		source ~/Documents/projects/personal/github/ush/index.sh
 	fi
-	if [[ -d "$HOME/Documents/projects/personal/github/dotfiles" ]]; then
+	if [[ -d "$HOME/Documents/projects/personal/dotfiles" ]]; then
 		export DOTFILES_ROOT="$HOME/Documents/projects/personal/dotfiles"
 		export DOTFILES_CORE="$DOTFILES_ROOT/core"
 
