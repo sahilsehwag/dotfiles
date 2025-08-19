@@ -5,6 +5,9 @@ if F_isMac; then
 	setup=(brew)
 fi
 
+sudo chown -R $(whoami) ~/.local
+chmod -R 777 ~/.local
+
 base=(curl wget make cmake gcc g++)
 git=(git gh glab mani git-workspace)
 dev=(python go rust node lua)

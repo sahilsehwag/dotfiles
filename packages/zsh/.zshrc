@@ -9,9 +9,9 @@
 	autoload -U +X compinit && compinit
 	autoload -U +X bashcompinit && bashcompinit 
 #CORE
-	export USH_ROOT="$HOME/Documents/projects/personal/github/ush"
-	if [ -f ~/Documents/projects/personal/github/ush/index.sh ]; then
-		source ~/Documents/projects/personal/github/ush/index.sh
+	export USH_ROOT="$HOME/Documents/projects/personal/ush"
+	if [ -f ~/Documents/projects/personal/ush/index.sh ]; then
+		source ~/Documents/projects/personal/ush/index.sh
 	fi
 	if [[ -d "$HOME/Documents/projects/personal/dotfiles" ]]; then
 		export DOTFILES_ROOT="$HOME/Documents/projects/personal/dotfiles"

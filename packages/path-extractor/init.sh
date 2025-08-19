@@ -1,1 +1,1 @@
-type path-extractor || alias pe='path-extractor'
+type path-extractor &> /dev/null || alias pe='path-extractor'

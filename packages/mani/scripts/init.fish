@@ -79,7 +79,7 @@ function __mani_clear_perform_completion_once_result
     __mani_debug ""
     __mani_debug "========= clearing previously set __mani_perform_completion_once_result variable =========="
     set --erase __mani_perform_completion_once_result
-    __mani_debug "Succesfully erased the variable __mani_perform_completion_once_result"
+    __mani_debug "Successfully erased the variable __mani_perform_completion_once_result"
 end
 
 function __mani_requires_order_preservation
