@@ -9,6 +9,8 @@ else
 	setup=()
 fi
 
+sudo chown -R $(whoami) ~/.local
+chmod -R 777 ~/.local
 
 base=(curl wget make cmake gcc g++)
 git=(git gh glab mani git-workspace)
@@ -44,7 +46,7 @@ alts=(
 	diffsitter
 )
 tools=(broot fasd sad)
-fonts=(fira-code font-hack-nerd-font)
+fonts=(font-fira-code font-hack-nerd)
 # kanata (kmonad alternative)
 apps=(kmonad zsh tmux mprocs nvim vifm lazygit)
 misc=(terminfo git-sim)

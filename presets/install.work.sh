@@ -21,14 +21,14 @@ alts=(
 	hyperfine
 	delta
 )
-tools=(broot fasd sad)
-fonts=(fira-code)
+tools=(broot zoxide sad)
+fonts=(font-fira-code)
 # kanata (kmonad alternative)
 apps=(fzf zsh tmux nvim vifm lazygit kmonad)
 misc=(terminfo)
 mac=(
 	alacritty #warp
-    kitty
+	kitty
 	#kindavim #svim #macos wide vim emulation
 	aerospace #yabai
 	notion

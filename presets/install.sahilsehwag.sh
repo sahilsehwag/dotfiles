@@ -10,6 +10,9 @@ else
 	setup=()
 fi
 
+sudo chown -R $(whoami) ~/.local
+chmod -R 777 ~/.local
+
 base=(curl wget make cmake gcc g++)
 git=(git gh glab mani git-workspace)
 dev=(python go rust node lua)
@@ -25,7 +28,7 @@ alts=(
 	delta
 )
 tools=(broot fasd sad zoxide)
-fonts=(fira-code)
+fonts=(font-fira-code)
 # kanata (kmonad alternative)
 apps=(fzf zsh tmux nvim vifm lazygit kmonad)
 misc=(terminfo)
