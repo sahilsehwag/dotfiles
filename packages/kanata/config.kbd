@@ -1,13 +1,6 @@
 ;; This is the Lisp-like Kanata equivalent of your KMonad config.
 ;; WARNING: This syntax is deprecated and will NOT work with modern Kanata versions.
 
-(defcfg
-  input (iokit-name "Apple Internal Keyboard / Trackpad")
-  output (kext)
-  fallthrough true
-  allow-cmd false
-)
-
 (defsrc
   esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
@@ -18,26 +11,76 @@
 )
 
 ;; `defalias` worked the same way, defining named, reusable actions.
+;; --- fake keys for individual modifiers we want to press/release programmatically
+(deffakekeys
+  LCTL lctl
+  LALT lalt
+  LMET lmet
+  RCTL rctl
+  RALT ralt
+  RMET rmet
+  LSFT lsft
+  RSFT rsft
+)
+
+;; --- helpers: press multiple mods on key press, release them on key release
 (defalias
-  spc-mod (tap-hold-next-release 175 spc (around lctl (around lalt lmet)))
-  a-mod (tap-hold-next-release 175 a lsft)
-  s-mod (tap-hold-next-release 175 s lmet)
-  d-mod (tap-hold-next-release 175 d lalt)
-  f-mod (tap-hold-next-release 175 f lctl)
-  j-mod (tap-hold-next-release 175 j rctl)
-  k-mod (tap-hold-next-release 175 k ralt)
-  l-mod (tap-hold-next-release 175 l rmet)
-  ;-mod (tap-hold-next-release 175 ; rsft)
-  g-mod (tap-hold-next-release 175 g (around lctl lalt))
-  h-mod (tap-hold-next-release 175 h (around rctl ralt))
-  v-mod (tap-hold-next-release 175 v (around lalt lmet))
-  n-mod (tap-hold-next-release 175 n (around ralt rmet))
-  r-mod (tap-hold-next-release 175 r (around lctl lmet))
-  u-mod (tap-hold-next-release 175 u (around rctl rmet))
-  esc-mod (tap-hold-next-release 175 esc (around lctl (around lalt lmet)))
-  quo-mod (tap-hold-next-release 175 '   (around rctl (around ralt rmet)))
-  ;; Here, holding 'b' presses the physical 'fn' key defined in `defsrc`.
-  b-mod (tap-hold-next-release 175 b fn)
+  ;; left-side combos
+  hold-LCTL+LALT (multi
+    (on-press-fakekey LCTL press) (on-press-fakekey LALT press)
+    (on-release-fakekey LALT release) (on-release-fakekey LCTL release))
+  hold-LALT+LMET (multi
+    (on-press-fakekey LALT press) (on-press-fakekey LMET press)
+    (on-release-fakekey LMET release) (on-release-fakekey LALT release))
+  hold-LCTL+LMET (multi
+    (on-press-fakekey LCTL press) (on-press-fakekey LMET press)
+    (on-release-fakekey LMET release) (on-release-fakekey LCTL release))
+  hold-LCTL+LALT+LMET (multi
+    (on-press-fakekey LCTL press) (on-press-fakekey LALT press) (on-press-fakekey LMET press)
+    (on-release-fakekey LMET release) (on-release-fakekey LALT release) (on-release-fakekey LCTL release))
+
+  ;; right-side combos
+  hold-RCTL+RALT (multi
+    (on-press-fakekey RCTL press) (on-press-fakekey RALT press)
+    (on-release-fakekey RALT release) (on-release-fakekey RCTL release))
+  hold-RALT+RMET (multi
+    (on-press-fakekey RALT press) (on-press-fakekey RMET press)
+    (on-release-fakekey RMET release) (on-release-fakekey RALT release))
+  hold-RCTL+RMET (multi
+    (on-press-fakekey RCTL press) (on-press-fakekey RMET press)
+    (on-release-fakekey RMET release) (on-release-fakekey RCTL release))
+  hold-RCTL+RALT+RMET (multi
+    (on-press-fakekey RCTL press) (on-press-fakekey RALT press) (on-press-fakekey RMET press)
+    (on-release-fakekey RMET release) (on-release-fakekey RALT release) (on-release-fakekey RCTL release))
+)
+
+;; --- your dual-role aliases (TH-NR → best Kanata equivalent: tap-hold-release)
+(defalias
+  spc-mod (tap-hold-release 175 175 spc @hold-LCTL+LALT+LMET)
+
+  a-mod   (tap-hold-release 175 175 a   lsft)
+  s-mod   (tap-hold-release 175 175 s   lmet)
+  d-mod   (tap-hold-release 175 175 d   lalt)
+  f-mod   (tap-hold-release 175 175 f   lctl)
+
+  j-mod   (tap-hold-release 175 175 j   rctl)
+  k-mod   (tap-hold-release 175 175 k   ralt)
+  l-mod   (tap-hold-release 175 175 l   rmet)
+  ;-mod (tap-hold-release 175 175 ;   rsft)
+
+  g-mod   (tap-hold-release 175 175 g   @hold-LCTL+LALT)
+  h-mod   (tap-hold-release 175 175 h   @hold-RCTL+RALT)
+
+  v-mod   (tap-hold-release 175 175 v   @hold-LALT+LMET)
+  n-mod   (tap-hold-release 175 175 n   @hold-RALT+RMET)
+
+  r-mod   (tap-hold-release 175 175 r   @hold-LCTL+LMET)
+  u-mod   (tap-hold-release 175 175 u   @hold-RCTL+RMET)
+
+  esc-mod (tap-hold-release 175 175 esc @hold-LCTL+LALT+LMET)
+  quo-mod (tap-hold-release 175 175 '   @hold-RCTL+RALT+RMET)
+
+  b-mod   (tap-hold-release 175 175 b   fn)
 )
 
 ;; Layers were also defined and used in the same way.
