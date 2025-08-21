@@ -30,7 +30,7 @@ alts=(
 tools=(broot fasd sad zoxide)
 fonts=(font-fira-code)
 # kanata (kmonad alternative)
-apps=(fzf zsh tmux nvim vifm lazygit kmonad)
+apps=(fzf zsh tmux nvim vifm lazygit kanata)
 misc=(terminfo)
 ai=(cursor windsurf windsurf@next claude gemini opencode codex cursor-agent)
 mac=(

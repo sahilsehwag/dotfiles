@@ -24,7 +24,7 @@ alts=(
 tools=(broot zoxide sad)
 fonts=(font-fira-code)
 # kanata (kmonad alternative)
-apps=(fzf zsh tmux nvim vifm lazygit kmonad)
+apps=(fzf zsh tmux nvim vifm lazygit kanata)
 misc=(terminfo)
 mac=(
 	alacritty #warp
