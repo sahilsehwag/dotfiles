@@ -620,7 +620,7 @@ local editor = {
 
 	-- folding
 	"pseewald/vim-anyfold",
-	--'kevinhwang91/nvim-ufo', --1
+	'kevinhwang91/nvim-ufo', --1
 	"anuvyklack/fold-preview.nvim",
 	--'yaocccc/nvim-foldsign', -- FIX:
 	--'arecarn/vim-fold-cycle',
@@ -1715,7 +1715,6 @@ local testing = {
 	--'Timoses/vim-venu',
 	--'skywind3000/vim-auto-popmenu',
 	--'liuchengxu/graphviz.vim',
-	--'MattesGroeger/vim-bookmarks',
 	--'romgrk/todoist.nvim',
 	--'jamestthompson3/nvim-remote-containers',
 	--'gaborvecsei/memento.nvim',
@@ -2146,6 +2145,14 @@ return {
 			is_enabled = function()
 				return vim.fn.has("nvim-0.5") == 1
 			end,
+		},
+		["crusj/bookmarks.nvim"] = {
+			url = "crusj/bookmarks.nvim",
+			dependencies = {
+				pre = {
+					'kyazdani42/nvim-web-devicons',
+				},
+			}
 		},
 		["goolord/alpha-nvim"] = {
 			url = "goolord/alpha-nvim",
