@@ -1082,12 +1082,12 @@ local markup = {
 		--"kana/vim-scratch",
 	},
 
+	"nvim-neorg/neorg",
+	--'epwalsh/obsidian.nvim',
+
 	--'kristijanhusak/orgmode.nvim',
 	--'nvim-orgmode/orgmode',
 	--'akinsho/org-bullets.nvim',
-
-	--"nvim-neorg/neorg", -- TODO: plug not supported bcz of luarocks
-	--'epwalsh/obsidian.nvim',
 
 	--"letieu/jot.lua", -- TODO:try
 	--"2KAbhishek/tdo.nvim", -- TODO:try
@@ -3913,6 +3913,7 @@ return {
 				pre = {
 					"nvim-lua/plenary.nvim",
 					"nvim-neorg/lua-utils.nvim",
+					"pysan3/pathlib.nvim",
 				},
 			},
 		},
