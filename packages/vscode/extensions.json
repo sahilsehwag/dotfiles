@@ -1,0 +1,18 @@
+{
+  "recommendations": [
+    "graphql.vscode-graphql",
+    "mgmcdermott.vscode-language-babel",
+    "dbaeumer.vscode-eslint",
+    "flowtype.flow-for-vscode",
+    "esbenp.prettier-vscode",
+    "orta.vscode-jest",
+    "ionutvmi.path-autocomplete",
+    "mrkou47.thrift-syntax-support",
+    "zxh404.vscode-proto3",
+    "bazelbuild.vscode-bazel",
+    "arcanis.vscode-zipfs",
+    "streetsidesoftware.code-spell-checker",
+    "eamodio.gitlens",
+    "voytuh.uweb-web-code"
+  ]
+}

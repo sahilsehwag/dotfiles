@@ -31,6 +31,7 @@ mac=(
 	kitty
 	#kindavim #svim #macos wide vim emulation
 	aerospace #yabai
+	vscode
 	notion
 	alfred
 )

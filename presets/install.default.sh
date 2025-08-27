@@ -16,7 +16,7 @@ mac=(
 	#kindavim #svim #macos wide vim emulation
 	notion
 	alfred
-	visual-studio-code
+	vscode
 	google-chrome
 	google-drive
 	keycastr

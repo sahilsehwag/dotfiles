@@ -10,7 +10,7 @@ if ! F_isSoftlink "$HOME/.config/git"; then
 	ln -sv "$script_directory/" "$HOME/.config/git"
 fi
 
-ln -sv $HOME/.config/git/.gitconfig   $HOME/.gitconfig
+ln -sv $HOME/.config/git/.gitconfig $HOME/.gitconfig
 
 #EXTENSIONS
 F_install gh glab mani git-workspace

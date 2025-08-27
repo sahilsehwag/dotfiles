@@ -40,6 +40,7 @@ mac=(
 	notion
 	notion-mail
 	alfred
+	vscode
 	google-chrome
 	google-drive
 	vlc
