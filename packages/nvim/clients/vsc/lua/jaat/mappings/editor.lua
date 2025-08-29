@@ -29,8 +29,8 @@ vim.cmd [[
 
 -- buffers
 vim.cmd [[
-  nnoremap <C-[> <CMD>call VSCodeNotify('workbench.action.previousEditor')<CR>
-  nnoremap <C-]> <CMD>call VSCodeNotify('workbench.action.nextEditor')<CR>
+  nnoremap <C-n> <CMD>call VSCodeNotify('workbench.action.previousEditor')<CR>
+  nnoremap <C-p> <CMD>call VSCodeNotify('workbench.action.nextEditor')<CR>
 
   nnoremap <Leader>bl <CMD>call VSCodeNotify('workbench.action.showAllEditorsByMostRecentlyUsed')<CR>
 

@@ -38,3 +38,12 @@ end)
 vim.keymap.set('n', '<Leader>gzi', function()
 	vscode.action('git.ignore')
 end)
+
+-- motions
+vim.keymap.set('n', '[g', function()
+	vscode.action('workbench.action.editor.previousChange')
+end)
+
+vim.keymap.set('n', ']g', function()
+	vscode.action('workbench.action.editor.nextChange')
+end)

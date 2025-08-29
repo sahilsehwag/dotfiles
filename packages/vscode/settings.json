@@ -25,6 +25,8 @@
   "remote.SSH.enableAgentForwarding": false,
   "security.promptForRemoteFileProtocolHandling": false,
 
+  "git.blame.editorDecoration.enabled": true,
+
   "terminal.integrated.shell.osx": "/usr/bin/zsh",
   "terminal.integrated.profiles.osx": {
     "lazygit": {
@@ -41,4 +43,8 @@
   },
 
   "vscode-neovim.neovimInitVimPaths.darwin": "/Users/sahil.sehwag/Documents/projects/personal/dotfiles/packages/nvim/clients/vsc/init.lua",
+
+  "gitProjectManager.baseProjectsFolders": [
+    "~/Documents/projects"
+  ]
 }
