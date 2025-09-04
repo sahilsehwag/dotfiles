@@ -4,6 +4,7 @@ local vscode = require('vscode')
 -- worktrees
 -- remotes
 -- commiting
+-- revert
 
 -- gui
 vim.keymap.set('n', '<Leader>g.', function()
@@ -15,9 +16,13 @@ vim.keymap.set('n', '<Leader>g.', function()
 	})
 end)
 
--- staging
+-- hunks
 vim.keymap.set({ 'n', 'v' }, '<Leader>ghs', function()
 	vscode.action('git.stageSelectedRanges')
+end)
+
+vim.keymap.set({ 'n', 'v' }, '<Leader>ghr', function()
+	vscode.action('git.revertSelectedRanges')
 end)
 
 -- diffing
@@ -29,10 +34,6 @@ vim.keymap.set('n', '<Leader>gdf', function()
 	vscode.action('git.openChange')
 end)
 
--- revert
-vim.keymap.set({ 'n', 'v' }, '<Leader>ghr', function()
-	vscode.action('git.revertSelectedRanges')
-end)
 
 -- miscellaneous
 vim.keymap.set('n', '<Leader>gzi', function()
@@ -47,3 +48,5 @@ end)
 vim.keymap.set('n', ']g', function()
 	vscode.action('workbench.action.editor.nextChange')
 end)
+
+-- working area

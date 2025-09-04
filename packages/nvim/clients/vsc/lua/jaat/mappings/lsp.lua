@@ -1,7 +1,7 @@
 vim.cmd [[
   nnoremap gd <CMD>call VSCodeNotify('editor.action.revealDefinition')<CR>
-  nnoremap gi <CMD>call VSCodeNotify('editor.action.goToImplementation')<CR>
   nnoremap gt <CMD>call VSCodeNotify('editor.action.goToTypeDefinition')<CR>
+  nnoremap gi <CMD>call VSCodeNotify('editor.action.goToImplementation')<CR>
   nnoremap gr <CMD>call VSCodeNotify('editor.action.goToReferences')<CR>
 
   nnoremap K <CMD>call VSCodeNotify('editor.action.showHover')<CR>
@@ -10,9 +10,9 @@ vim.cmd [[
   nnoremap [e <CMD>call VSCodeNotify('editor.action.marker.prev')<CR>
   nnoremap ]e <CMD>call VSCodeNotify('editor.action.marker.next')<CR>
 
-  nnoremap <Leader>lq <CMD>call VSCodeNotify('editor.action.quickFix')<CR>
-  nnoremap <Leader>lr <CMD>call VSCodeNotify('editor.action.rename')<CR>
-  nnoremap <Leader>lf <CMD>call VSCodeNotify('editor.action.formatDocument')<CR>
+  nnoremap <Leader>laq <CMD>call VSCodeNotify('editor.action.quickFix')<CR>
+  nnoremap <Leader>laf <CMD>call VSCodeNotify('editor.action.formatDocument')<CR>
+  nnoremap <Leader>lsr <CMD>call VSCodeNotify('editor.action.rename')<CR>
 
   "nnoremap <Leader>lsd <CMD>call VSCodeNotify('workbench.action.gotoSymbol')<CR>
   "nnoremap <Leader>lsw <CMD>call VSCodeNotify('workbench.action.showAllSymbols')<CR>
@@ -28,6 +28,11 @@ vim.cmd [[
   nnoremap <Leader>lbc <CMD>call VSCodeNotify('editor.debug.action.conditionalBreakpoint')<CR>
   nnoremap <Leader>lbl <CMD>call VSCodeNotify('editor.debug.action.toggleLogPoint')<CR>
   nnoremap <Leader>lbC <CMD>call VSCodeNotify('workbench.debug.viewlet.action.removeAllBreakpoints')<CR>
+
+  nnoremap <Leader>lpd <CMD>call VSCodeNotify('editor.action.peekDefinition')<CR>
+  nnoremap <Leader>lpD <CMD>call VSCodeNotify('editor.action.peekDeclaration')<CR>
+  nnoremap <Leader>lpt <CMD>call VSCodeNotify('editor.action.peekTypeDefinition')<CR>
+  nnoremap <Leader>lpi <CMD>call VSCodeNotify('editor.action.peekImplementation')<CR>
 
   nnoremap <Leader>lds <CMD>call VSCodeNotify('workbench.action.debug.start')<CR>
   nnoremap <Leader>ldt <CMD>call VSCodeNotify('workbench.action.debug.stop')<CR>
