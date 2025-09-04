@@ -1,11 +1,5 @@
 local vscode = require('vscode')
 
--- branches
--- worktrees
--- remotes
--- commiting
--- revert
-
 -- gui
 vim.keymap.set('n', '<Leader>g.', function()
 	vscode.action('workbench.action.terminal.newWithProfile', {
@@ -16,37 +10,24 @@ vim.keymap.set('n', '<Leader>g.', function()
 	})
 end)
 
--- hunks
-vim.keymap.set({ 'n', 'v' }, '<Leader>ghs', function()
-	vscode.action('git.stageSelectedRanges')
-end)
+vim.cmd [[
+	"hunks
+	nnoremap <Leader>ghs <cmd>call VSCodeNotify('git.stageSelectedRanges')<CR>
+	nnoremap <Leader>ghr <cmd>call VSCodeNotify('git.revertSelectedRanges')<CR>
 
-vim.keymap.set({ 'n', 'v' }, '<Leader>ghr', function()
-	vscode.action('git.revertSelectedRanges')
-end)
+	"diff
+	nnoremap <Leader>gdp <cmd>call VSCodeNotify('git.viewChanges')<CR>
+	nnoremap <Leader>gdf <cmd>call VSCodeNotify('git.openChange')<CR>
 
--- diffing
-vim.keymap.set('n', '<Leader>gdp', function()
-	vscode.action('git.viewChanges')
-end)
+	"miscellaneous
+	nnoremap <Leader>gi <cmd>call VSCodeNotify('git.ignore')<CR>
 
-vim.keymap.set('n', '<Leader>gdf', function()
-	vscode.action('git.openChange')
-end)
+	"motions
+	nnoremap [g <cmd>call VSCodeNotify('workbench.action.editor.previousChange')<CR>
+	nnoremap ]g <cmd>call VSCodeNotify('workbench.action.editor.nextChange')<CR>
 
-
--- miscellaneous
-vim.keymap.set('n', '<Leader>gzi', function()
-	vscode.action('git.ignore')
-end)
-
--- motions
-vim.keymap.set('n', '[g', function()
-	vscode.action('workbench.action.editor.previousChange')
-end)
-
-vim.keymap.set('n', ']g', function()
-	vscode.action('workbench.action.editor.nextChange')
-end)
-
--- working area
+	"remotes
+  nnoremap <Leader>grp <cmd>call VSCodeNotify('git.pull')<CR>
+  nnoremap <Leader>grP <cmd>call VSCodeNotify('git.pullFrom')<CR>
+  nnoremap <Leader>grr <cmd>call VSCodeNotify('git.rebase')<CR>
+]]

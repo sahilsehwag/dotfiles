@@ -59,6 +59,15 @@ require("lazy").setup({
     { "Raimondi/vim_search_objects", },
     { "machakann/vim-swap", },
 
+    -- comments
+    -- FIX:
+    --{
+    --  "s1n7ax/nvim-comment-frame",
+    --  config = function()
+    --    require('configs.nvim-comment-frame')
+    --  end
+    --},
+
     {
       "nvim-treesitter/nvim-treesitter",
       config = function()
