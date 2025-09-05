@@ -2,6 +2,9 @@
 F_pkg_install gh
 
 if F_isInstalled gh; then
+	curl -LsSf https://astral.sh/uv/install.sh | sh
+	gh extension install gizmo385/gh-lazy
+
 	gh extension install coloradocolby/gh-eco
 	gh extension install dlvhdr/gh-dash
 
