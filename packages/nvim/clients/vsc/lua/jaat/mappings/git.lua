@@ -19,15 +19,34 @@ vim.cmd [[
 	nnoremap <Leader>gdp <cmd>call VSCodeNotify('git.viewChanges')<CR>
 	nnoremap <Leader>gdf <cmd>call VSCodeNotify('git.openChange')<CR>
 
-	"miscellaneous
-	nnoremap <Leader>gi <cmd>call VSCodeNotify('git.ignore')<CR>
+	"remotes
+  "nnoremap <Leader>gpp <cmd>call VSCodeNotify('git.pull')<CR>
+  nnoremap <Leader>grp <cmd>call VSCodeNotify('git.pullRebase')<CR>
+  nnoremap <Leader>grP <cmd>call VSCodeNotify('git.pullFrom')<CR>
+
+  nnoremap <Leader>grr <cmd>call VSCodeNotify('git.rebase')<CR>
+	nnoremap <Leader>grR <cmd>call VSCodeNotify('git.syncRebase')<CR>
+
+  nnoremap <Leader>grm <cmd>call VSCodeNotify('git.merge')<CR>
+
+	"branches
+  nnoremap <Leader>gbc <cmd>call VSCodeNotify('git.checkout')<CR>
+  nnoremap <Leader>gbC <cmd>call VSCodeNotify('git.checkoutDetached')<CR>
+
+  nnoremap <Leader>gbn <cmd>call VSCodeNotify('git.branch')<CR>
+  nnoremap <Leader>gbN <cmd>call VSCodeNotify('git.branchFrom')<CR>
+
+  nnoremap <Leader>gbd <cmd>call VSCodeNotify('git.deleteBranch')<CR>
+  nnoremap <Leader>gbD <cmd>call VSCodeNotify('git.deleteRemoteBranch')<CR>
+
+  nnoremap <Leader>gbr <cmd>call VSCodeNotify('git.renameBranch')<CR>
+
+  nnoremap <Leader>gbp <cmd>call VSCodeNotify('git.publishBranch')<CR>
 
 	"motions
 	nnoremap [g <cmd>call VSCodeNotify('workbench.action.editor.previousChange')<CR>
 	nnoremap ]g <cmd>call VSCodeNotify('workbench.action.editor.nextChange')<CR>
 
-	"remotes
-  nnoremap <Leader>grp <cmd>call VSCodeNotify('git.pull')<CR>
-  nnoremap <Leader>grP <cmd>call VSCodeNotify('git.pullFrom')<CR>
-  nnoremap <Leader>grr <cmd>call VSCodeNotify('git.rebase')<CR>
+	"miscellaneous
+	nnoremap <Leader>gi <cmd>call VSCodeNotify('git.ignore')<CR>
 ]]
