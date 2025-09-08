@@ -15,3 +15,7 @@ alias tpk='tmux kill-pane'
 alias tcs='tmux choose-session'
 alias tcw='tmux choose-window'
 alias tcp='tmux choose-pane'
+
+alias tsv='tmux split-window -v'
+alias tsh='tmux split-window -h'
+alias tsK='tmux kill-pane'
