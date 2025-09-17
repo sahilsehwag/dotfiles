@@ -1,5 +1,6 @@
 require("lazy").setup({
   spec = {
+    -- dependencies | core
     { "lewis6991/impatient.nvim", },
     { "tpope/vim-capslock", },
     { "kana/vim-repeat" },

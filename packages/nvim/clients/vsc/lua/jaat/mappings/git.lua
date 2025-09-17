@@ -20,14 +20,30 @@ vim.cmd [[
 	nnoremap <Leader>gdf <cmd>call VSCodeNotify('git.openChange')<CR>
 
 	"remotes
-  "nnoremap <Leader>gpp <cmd>call VSCodeNotify('git.pull')<CR>
+  "nnoremap <Leader>grp <cmd>call VSCodeNotify('git.pull')<CR>
+  "nnoremap <Leader>grP <cmd>call VSCodeNotify('git.pullFrom')<CR>
   nnoremap <Leader>grp <cmd>call VSCodeNotify('git.pullRebase')<CR>
-  nnoremap <Leader>grP <cmd>call VSCodeNotify('git.pullFrom')<CR>
+  nnoremap <Leader>grP <cmd>call VSCodeNotify('git.rebase')<CR>
 
   nnoremap <Leader>grr <cmd>call VSCodeNotify('git.rebase')<CR>
 	nnoremap <Leader>grR <cmd>call VSCodeNotify('git.syncRebase')<CR>
 
   nnoremap <Leader>grm <cmd>call VSCodeNotify('git.merge')<CR>
+
+	"commit
+  nnoremap <Leader>gcu <cmd>call VSCodeNotify('git.undoCommit')<CR>
+
+  nnoremap <Leader>gcc <cmd>call VSCodeNotify('git.commit')<CR>
+  nnoremap <Leader>gcC <cmd>call VSCodeNotify('git.commitAmend')<CR>
+
+  nnoremap <Leader>gcs <cmd>call VSCodeNotify('git.commitStaged')<CR>
+  nnoremap <Leader>gcS <cmd>call VSCodeNotify('git.commitStagedAmend')<CR>
+
+  nnoremap <Leader>gca <cmd>call VSCodeNotify('git.commitAll')<CR>
+  nnoremap <Leader>gcA <cmd>call VSCodeNotify('git.commitAllAmend')<CR>
+
+	"stash
+  nnoremap <Leader>gsn <cmd>call VSCodeNotify('git.stash')<CR>
 
 	"branches
   nnoremap <Leader>gbc <cmd>call VSCodeNotify('git.checkout')<CR>
