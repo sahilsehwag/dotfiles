@@ -44,6 +44,8 @@ vim.cmd [[
 
 	"stash
   nnoremap <Leader>gsn <cmd>call VSCodeNotify('git.stash')<CR>
+  nnoremap <Leader>gsa <cmd>call VSCodeNotify('git.stashApplyLatest')<CR>
+  nnoremap <Leader>gsA <cmd>call VSCodeNotify('git.stashApply')<CR>
 
 	"branches
   nnoremap <Leader>gbc <cmd>call VSCodeNotify('git.checkout')<CR>
