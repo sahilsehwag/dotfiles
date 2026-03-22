@@ -160,6 +160,7 @@ local core = {
 
 	--editing
 	--'otavioschwanck/cool-substitute.nvim',--TODO: change keymaps
+	--'Sang-it/fluoride', --TODO: try
 	{
 		--'mg979/vim-visual-multi',
 		"terryma/vim-multiple-cursors",-- TODO: configure
@@ -940,6 +941,7 @@ local ide = {
 	--"harrisoncramer/gitlab.nvim", --1+
 	--'ttys3/nvim-blamer.lua',
 	"sindrets/diffview.nvim", --1+
+	--"cvlmtg/inline-diff.nvim" --TODO: try
 	--'isak102/telescope-git-file-history.nvim', -- TODO: try
 	{
 		"rhysd/conflict-marker.vim", --1+
