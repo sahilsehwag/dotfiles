@@ -6,7 +6,7 @@
       "Bash(arh feature:*)",
       "Bash(arh publish:*)",
       "Bash(arh merge:*)",
-      "Bash(arh rebase:*)"
+      "Bash(arh rebase:*)",
     ]
   }
 }

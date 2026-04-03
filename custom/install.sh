@@ -5,6 +5,7 @@ script_directory=$(F_getScriptDir ${BASH_SOURCE:-$0})
 source $script_directory/workflows/git.sh
 source $script_directory/workflows/gh.sh
 source $script_directory/workflows/arc.sh
+source $script_directory/workflows/arh.sh
 source $script_directory/workflows/uber.sh
 
 # tools
