@@ -118,6 +118,8 @@ local get_project_cfgs_for_extension = function(extension, selector)
 	return selector(projects)
 end
 
+local TYPE_PRIORITY = { language = 1, vcs = 2 }
+
 local get_project_cfgs_from_roots = function(selector)
 	local projects = {}
 
@@ -126,6 +128,10 @@ local get_project_cfgs_from_roots = function(selector)
 			table.insert(projects, project)
 		end
 	end
+
+	table.sort(projects, function(a, b)
+		return (TYPE_PRIORITY[a.type] or 99) < (TYPE_PRIORITY[b.type] or 99)
+	end)
 
 	return selector(projects)
 end
@@ -233,6 +239,11 @@ local run_operation = function(op_name, op_config)
 
 	local project = get_project_configs(op_config, PROJECT_PREDICATES.FIRST)
 	local operation = project.operations[op_name]
+
+	if not operation then
+		vim.notify('[projectinator] operation is nil')
+		return
+	end
 
 	run_cmd(
 		(

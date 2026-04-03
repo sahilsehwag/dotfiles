@@ -8,7 +8,6 @@ local get_js_default = projectinator.helpers.get_operation_default({
 	{ "ui%-containers",          "ui_containers" },
 	{ "learner%-certifications", "learner_certifications" },
 	{ "leaderboard%-ui",         "leaderboard" },
-	{ "web%-code",               "web_code" },
 	{ "operator%-portal%-web",   "opw" },
 }, "yarn")
 
@@ -26,6 +25,13 @@ projectinator.setup({
 			name = "javascript",
 			type = "language",
 			default = get_js_default,
+			roots = {
+				'package.json',
+				'node_modules/',
+				'lerna.json',
+				'jsconfig.json',
+				'tsconfig.json',
+			},
 			operations = {
 				init = {},
 				install = {

@@ -33,8 +33,8 @@ return {
 		end,
 	},
 	roots = {
-		'node_modules/',
 		'package.json',
+		'node_modules/',
 		'lerna.json',
 		'jsconfig.json',
 		'tsconfig.json',
@@ -54,10 +54,14 @@ return {
 		'json',
 	},
 	default = function()
-		if vim.fn.executable('yarn') then
+		if vim.fn.executable('jz') then
+			return 'jz'
+		elseif vim.fn.executable('yarn') then
 			return 'yarn'
-		else
+		elseif vim.fn.executable('npm') then
 			return 'npm'
+		else
+			vim.notify('[projectinator] No package manager installed for javascript project (jz, yarn, npm)')
 		end
 	end,
 	operations = {
