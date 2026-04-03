@@ -36,7 +36,7 @@ projectinator.setup({
 				init = {},
 				install = {
 					commands = {
-						opw = 'jz install'
+						opw = 'jz install && jz update-flipr'
 					},
 				},
 				lint = {
