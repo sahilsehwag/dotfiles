@@ -1,7 +1,7 @@
 local get_branches = require("worktree.helpers.get_branches")
 
-return function(prompt, on_ok)
-	vim.ui.select(get_branches(), {
+return function(prompt, on_ok, branches)
+	vim.ui.select(branches or get_branches(), {
 		prompt = prompt,
 	}, function(option)
 		if option then

@@ -9,6 +9,9 @@ return {
 	add_worktree = function(branch)
 		return 'git worktree add branches/' .. branch .. ' ' .. branch
 	end,
+	add_worktree_with_name = function(branch, name)
+		return 'git worktree add -b ' .. name .. ' branches/' .. name .. ' ' .. branch
+	end,
 	remove_worktree = function(worktree, force)
 		return 'git worktree remove ' .. worktree .. (force and ' --force' or '')
 	end,
