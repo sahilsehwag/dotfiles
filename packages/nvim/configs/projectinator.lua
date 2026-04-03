@@ -72,7 +72,12 @@ projectinator.setup({
 						design_library = "yarn run start:storybook",
 						learner_certifications = "nvm use 14.18.0 && yarn run start",
 						leaderboard = "nvm use 12.19.0; yarn run start",
-						opw = "jz dev",
+						opw = function()
+							local T = require('tmuxinator').run_cmd
+							T('lw.nChecks cerberus')
+							T('lv jz dev')
+							vim.fn.system('tmux select-layout even-vertical')
+						end,
 					},
 				},
 				build = {},
