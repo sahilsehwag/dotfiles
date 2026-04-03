@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:engwiki.uberinternal.com)",
+      "Bash(arh checkout:*)",
+      "Bash(arh feature:*)",
+      "Bash(arh publish:*)",
+      "Bash(arh merge:*)",
+      "Bash(arh rebase:*)"
+    ]
+  }
+}
