@@ -1,4 +1,6 @@
 {
+  "claudeCode.disableLoginPrompt": true,
+
   "workbench.colorTheme": "Aura Dracula Spirit (Soft)",
   "workbench.iconTheme": "material-icon-theme",
   "editor.fontFamily": "Dank Mono",
