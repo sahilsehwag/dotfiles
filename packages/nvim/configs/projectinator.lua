@@ -55,6 +55,17 @@ projectinator.setup({
 						opw = 'jz test'
 					},
 				},
+				check = {
+					commands = {
+						opw = function()
+							local T = require('tmuxinator').run_cmd
+							T('lw.nChecks jz typecheck')
+							T('lv jz lint --fix')
+							T('lv jz test')
+							vim.fn.system('tmux select-layout even-vertical')
+						end,
+					},
+				},
 				run = {
 					commands = {
 						mt_dashboard = "npm run start",
@@ -90,4 +101,5 @@ vim.cmd([[
 	nnoremap <silent> <Leader>lpp <cmd>lua require('projectinator').run_operation('publish')<cr>
 	nnoremap <silent> <Leader>lpD <cmd>lua require('projectinator').run_operation('deploy')<cr>
 	nnoremap <silent> <Leader>lps <cmd>lua require('projectinator').run_operation('scaffold')<cr>
+	nnoremap <silent> <Leader>lpc <cmd>lua require('projectinator').run_operation('check')<cr>
 ]])

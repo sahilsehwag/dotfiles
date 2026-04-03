@@ -809,9 +809,9 @@ local ide = {
 	--programming.ai
 	{
 		--'zbirenbaum/copilot.lua', --TODO: setup
-		"github/copilot.vim",
+		 "github/copilot.vim",
 	},
-	'yetone/avante.nvim', --TODO: setup
+	--'yetone/avante.nvim', --TODO: setup
 	--FIX:
 	--"piersolenski/wtf.nvim",
 	--FIX:
@@ -933,8 +933,8 @@ local ide = {
 		--"tpope/vim-fugitive",
 	},
 	{
-		"pwntester/octo.nvim", --1+
-		"ldelossa/gh.nvim", --1+
+		--"pwntester/octo.nvim", --1+
+		--"ldelossa/gh.nvim", --1+
 		--"skanehira/denops-gh.vim",
 		--"skanehira/gh.vim",
 	},
@@ -974,6 +974,9 @@ local ide = {
 
 	-- programming.refactoring
 	"theprimeagen/refactoring.nvim", -- 1+??  TODO: not working for some reason
+
+	-- programming.analysis
+	'sourcegraph/sg.nvim',
 
 	--programming.debugging
 	--programming.logging

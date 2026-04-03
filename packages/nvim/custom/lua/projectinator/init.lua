@@ -245,16 +245,24 @@ local run_operation = function(op_name, op_config)
 		return
 	end
 
+	local op_cmd = get_operation_cmd(project, operation, op_config)
+
+	-- If the command is a self-executing function (returns nil), skip run_cmd
+	if type(op_cmd) == 'function' then
+		op_cmd()
+		return
+	end
+
+	local cmd = get_cmd(op_cmd, op_config)
+	if not cmd or cmd == '' then return end
+
 	run_cmd(
 		(
 			op_config.runner or
 			get_config().cmds[get_path(operation, 'config.type') or 'external'] or
 			operation.config.runner
 		),
-		get_cmd(
-			get_operation_cmd(project, operation, op_config),
-			op_config
-		)
+		cmd
 	)
 end
 
