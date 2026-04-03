@@ -1,13 +1,15 @@
 local projectinator = require("projectinator")
 
 local get_js_default = projectinator.helpers.get_operation_default({
-	{ "mt%-react%-dashboard", { "mt_dashboard", "npm" } },
-	{ "governance%-ui", "mt_governance_ui" },
-	{ "mt%-shell", "mt_shell" },
-	{ "design%-library", "design_library" },
-	{ "ui%-containers", "ui_containers" },
+	{ "mt%-react%-dashboard",    { "mt_dashboard", "npm" } },
+	{ "governance%-ui",          "mt_governance_ui" },
+	{ "mt%-shell",               "mt_shell" },
+	{ "design%-library",         "design_library" },
+	{ "ui%-containers",          "ui_containers" },
 	{ "learner%-certifications", "learner_certifications" },
-	{ "leaderboard%-ui", "leaderboard" },
+	{ "leaderboard%-ui",         "leaderboard" },
+	{ "web%-code",               "web_code" },
+	{ "operator%-portal%-web",   "opw" },
 }, "yarn")
 
 projectinator.setup({
@@ -27,13 +29,24 @@ projectinator.setup({
 			operations = {
 				init = {},
 				install = {
-					commands = {},
+					commands = {
+						opw = 'jz install'
+					},
 				},
-				lint = {},
-				format = {},
+				lint = {
+					commands = {
+						opw = 'jz lint --fix && jz typecheck'
+					}
+				},
+				format = {
+					commands = {
+						opw = 'jz lint --fix'
+					}
+				},
 				test = {
 					commands = {
 						mt_dashboard = "npm run test-prod",
+						opw = 'jz test'
 					},
 				},
 				run = {
@@ -42,6 +55,7 @@ projectinator.setup({
 						design_library = "yarn run start:storybook",
 						learner_certifications = "nvm use 14.18.0 && yarn run start",
 						leaderboard = "nvm use 12.19.0; yarn run start",
+						opw = "jz dev",
 					},
 				},
 				build = {},
