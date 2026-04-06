@@ -11,8 +11,8 @@ local get_cmd = function(force)
 	return function(branch)
 		return F.join(' ', {
 			cmds.cd_to_root(), '&& (',
-			cmds.delete_branch(branch, force), ';',
-			cmds.add_worktree(branch),
+			--cmds.delete_branch(branch, force), ';',
+			cmds.add_worktree_with_name(branch),
 			')',
 		})
 	end

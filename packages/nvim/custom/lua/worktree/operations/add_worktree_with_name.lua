@@ -9,7 +9,7 @@ local get_cmd = function(branch)
 	return function(name)
 		return F.join(' ', {
 			cmds.cd_to_root(), '&&',
-			cmds.add_worktree_with_name(branch, name),
+			cmds.add_worktree(name, branch),
 		})
 	end
 end
