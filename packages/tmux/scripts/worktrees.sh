@@ -13,10 +13,12 @@ get_repo() {
 }
 
 list_branches() {
-	git -C "$(get_root)" branch -a \
+	git -C "$(get_root)" branch -a --no-color \
 		| grep -v HEAD \
+		| grep -v ' -> ' \
 		| sed 's/^\*\s*//' \
 		| sed 's/^\s*//' \
+		| sed 's/[[:space:]]*$//' \
 		| sed 's|remotes/origin/||' \
 		| sort -u
 }
@@ -36,47 +38,44 @@ available_branches() {
 
 case "$1" in
 	add)
-		branch="$(available_branches | fzf --prompt "Checkout branch: " < /dev/tty > /dev/tty)" || exit 0
+		branch="$(available_branches | fzf --prompt "Checkout branch: ")" || exit 0
 		[[ -z "$branch" ]] && exit 0
 		root="$(get_root)"
 		repo="$(get_repo)"
 		dest="$root/../worktrees/$repo/$branch"
 		mkdir -p "$root/../worktrees/$repo"
 		tmux new-window -n "wt:$branch" \
-			"bash -c 'cd \"$root\" && git worktree add \"$dest\" \"$branch\" && exit'"
+			"bash -c 'cd \"$root\" && git worktree add \"$dest\" \"$branch\"'"
 		;;
 
 	add-name)
-		# Invoked via `become` so we have the full popup terminal
 		branch="$(list_branches | fzf --prompt "Base branch: ")" || exit 0
+		branch="$(echo "$branch" | xargs)"
 		[[ -z "$branch" ]] && exit 0
+		name="$(echo | fzf --print-query --no-sort --prompt "Worktree name: " | head -1)"
+		[[ -z "$name" ]] && exit 0
 		root="$(get_root)"
 		repo="$(get_repo)"
-		# Exit the popup (become replaces fzf, so just exit) then show command-prompt
-		tmux command-prompt -p "Worktree name:" \
-			"run-shell '$SCRIPT add-name-exec $root $repo $branch %1'"
-		;;
-
-	add-name-exec)
-		root="$2"
-		repo="$3"
-		branch="$4"
-		name="$5"
-		[[ -z "$name" ]] && exit 0
 		dest="$root/../worktrees/$repo/$name"
 		mkdir -p "$root/../worktrees/$repo"
 		tmux new-window -n "wt:$name" \
-			"bash -c 'cd \"$root\" && git worktree add -b \"$name\" \"$dest\" \"$branch\" && exit'"
+			"bash -c 'cd \"$root\" && git worktree add -b \"$name\" \"$dest\" \"$branch\"'"
 		;;
 
 	remove)
 		root="$(get_root)"
-		cd "$root" && git worktree remove "$2"
+		worktree="$2"
+		name="$(basename "$worktree")"
+		tmux new-window -n "rm:$name" \
+			"bash -c 'cd \"$root\" && git worktree remove \"$worktree\"'"
 		;;
 
 	remove-force)
 		root="$(get_root)"
-		cd "$root" && git worktree remove --force "$2"
+		worktree="$2"
+		name="$(basename "$worktree")"
+		tmux new-window -n "rm:$name" \
+			"bash -c 'cd \"$root\" && git worktree remove --force \"$worktree\"'"
 		;;
 
 	open)
@@ -92,7 +91,7 @@ case "$1" in
 				--header "enter:open  ctrl-a:checkout  ctrl-n:new-branch  ctrl-x:remove  ctrl-f:force-remove" \
 				--bind="enter:execute($SCRIPT open {})+abort" \
 				--bind="ctrl-a:execute(PANE_PATH=$PANE_PATH $SCRIPT add)+abort" \
-				--bind="ctrl-n:become(PANE_PATH=$PANE_PATH $SCRIPT add-name)" \
+				--bind="ctrl-n:execute(PANE_PATH=$PANE_PATH $SCRIPT add-name)+abort" \
 				--bind="ctrl-x:execute(PANE_PATH=$PANE_PATH $SCRIPT remove {})+abort" \
 				--bind="ctrl-f:execute(PANE_PATH=$PANE_PATH $SCRIPT remove-force {})+abort" \
 		|| true
