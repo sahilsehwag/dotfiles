@@ -1,11 +1,149 @@
 #!/usr/bin/env bash
 
-# ==========================================
-# ARH REVIEW
-# ==========================================
 # Reuses helpers from arc.sh:
 #   _ui_header, _ui_success, _ui_warn, _ui_error, _ui_confirm, _run_step
 #   _ensure_git_repo, _branch_exists
+
+# ==========================================
+# ARH FEATURE TREE
+# ==========================================
+
+arh-feature-tree() {
+
+  _ensure_git_repo || return 1
+  command -v arh >/dev/null || { _ui_error "Missing dependency: arh"; return 1; }
+
+  local current_branch
+  current_branch=$(git rev-parse --abbrev-ref HEAD)
+  [[ "$current_branch" == "HEAD" ]] && {
+    _ui_error "Detached HEAD — checkout a branch first"
+    return 1
+  }
+
+  _ui_header "ARH FEATURE TREE"
+
+  local root_parent
+  root_parent=$(gum input --placeholder "$current_branch" --prompt "Root parent branch > ")
+  root_parent="${root_parent:-$current_branch}"
+
+  git show-ref --verify --quiet "refs/heads/$root_parent" || {
+    _ui_error "Branch '$root_parent' does not exist"
+    return 1
+  }
+
+  local raw_input
+  raw_input=$(gum write \
+    --header "Rooted at '$root_parent'  |  indent = child  |  Ctrl+D to confirm" \
+    --placeholder "feat-auth
+  feat-auth-ui
+  feat-auth-api
+feat-payments
+  feat-payments-stripe" \
+    --width 60 \
+    --height 15 \
+    --show-line-numbers \
+    --show-help)
+
+  [[ -z "${raw_input// }" ]] && { _ui_warn "No input provided."; return 0; }
+
+  # Pass 1: collect non-empty lines with their indent column (tabs -> 2 spaces)
+  local -a node_names=()
+  local -a node_parents=()
+  local -a _lines=()
+  local -a _cols=()
+  while IFS= read -r _line; do
+    _line="${_line//$'\t'/  }"
+    local _rest="${_line#"${_line%%[! ]*}"}"
+    [[ -z "${_rest// }" ]] && continue
+    local _col=$(( ${#_line} - ${#_rest} ))
+    local _bname="${_rest%"${_rest##*[![:space:]]}"}"
+    [[ -z "$_bname" ]] && continue
+    _lines+=("$_bname")
+    _cols+=("$_col")
+  done <<< "$raw_input"
+
+  # Pass 2: for each node scan backward for nearest line with smaller indent = parent
+  # O(n^2) but fine for typical tree sizes; avoids bash/zsh array-indexing divergence
+  local _nlines="${#_lines[@]}"
+  local _i _j
+  for (( _i = 1; _i <= _nlines; _i++ )); do
+    local _bname="${_lines[$_i]}"
+    local _bcol="${_cols[$_i]}"
+    local _parent="$root_parent"
+    for (( _j = _i - 1; _j >= 1; _j-- )); do
+      if (( _cols[$_j] < _bcol )); then
+        _parent="${_lines[$_j]}"
+        break
+      fi
+    done
+    node_names+=("$_bname")
+    node_parents+=("$_parent")
+  done
+
+  [[ ${#node_names[@]} -eq 0 ]] && { _ui_warn "No branches parsed."; return 0; }
+
+  # Recursive tree printer — zsh dynamic scoping gives _aft_node access to
+  # node_names/node_parents/root_parent from the calling function's frame
+  _aft_node() {
+    local _nn="$1" _dd="$2" _ind="" _jj _sz
+    for (( _jj = 0; _jj < _dd; _jj++ )); do _ind+="  "; done
+    (( _dd == 0 )) \
+      && printf "  %s\n" "${_ind}${_nn}" \
+      || printf "  %s+-- %s\n" "${_ind}" "${_nn}"
+    _sz="${#node_names[@]}"
+    for (( _jj = 1; _jj <= _sz; _jj++ )); do
+      [[ "${node_parents[$_jj]}" == "$_nn" ]] && _aft_node "${node_names[$_jj]}" $(( _dd + 1 ))
+    done
+  }
+
+  echo ""
+  gum style --bold --foreground 212 "Parsed tree:"
+  _aft_node "$root_parent" 0
+  echo ""
+
+  gum confirm "Create this feature tree?" || return 0
+
+  # Run arh feature directly (not via gum spin) so output is visible.
+  # arh prepends UBER_LDAP_UID to branch names, so after each creation we capture
+  # the actual branch name and use it when resolving parents for subsequent branches.
+  local _total="${#node_names[@]}"
+  local -a _actual=()   # _actual[k] = real branch name created for node_names[k]
+  local _k
+  for (( _k = 1; _k <= _total; _k++ )); do
+    local _bname="${node_names[$_k]}"
+    local _bparent_typed="${node_parents[$_k]}"
+
+    # Resolve typed parent name -> actual branch name created by arh
+    local _bparent_actual="$_bparent_typed"
+    local _pi
+    for (( _pi = 1; _pi < _k; _pi++ )); do
+      if [[ "${node_names[$_pi]}" == "$_bparent_typed" ]]; then
+        _bparent_actual="${_actual[$_pi]}"
+        break
+      fi
+    done
+
+    gum style --bold --foreground 212 "[$_k/$_total] arh feature -p $_bparent_actual $_bname"
+    arh feature -p "$_bparent_actual" "$_bname" || {
+      _ui_error "Failed to create branch '$_bname'"
+      return 1
+    }
+
+    local _created
+    _created=$(git rev-parse --abbrev-ref HEAD)
+    _actual+=("$_created")
+    gum style --foreground 240 "  -> $_created"
+  done
+
+  _ui_success "
+Feature tree created
+"
+  arh -p
+}
+
+# ==========================================
+# ARH REVIEW
+# ==========================================
 
 arh-review() {
 
