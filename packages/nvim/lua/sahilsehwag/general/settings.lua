@@ -158,7 +158,7 @@ vim.cmd [[
 		au Filetype lua set tabstop=2 | set shiftwidth=2 | set noexpandtab
 		au BufEnter *.csx set filetype=csx | set syntax=cs
 
-		au BufEnter *.tsx,*.jsx syntax match SpecialKey /L/ conceal cchar=λ
+		"au BufEnter *.tsx,*.jsx syntax match SpecialKey /L/ conceal cchar=λ
 
 		"FILETYPE=jproperties FOR TEXT FILES
 		autocmd BufNewFile,BufRead *.txt set syntax=jproperties
