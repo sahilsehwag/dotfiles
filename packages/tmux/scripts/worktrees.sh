@@ -126,7 +126,10 @@ case "$1" in
 
 	*)
 		root="$(get_root)"
-		[[ -z "$root" ]] && exit 0
+		if [[ -z "$root" ]]; then
+			tmux display-message "worktrees: '$PANE_PATH' is not a git repository"
+			exit 0
+		fi
 		git -C "$root" worktree list | awk '{print $1}' \
 			| fzf-tmux -p -w80% \
 				--prompt "Worktrees > " \
