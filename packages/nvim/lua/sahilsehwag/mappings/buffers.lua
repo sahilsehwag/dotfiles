@@ -41,3 +41,37 @@ F.vim.imap('<C-S-s>', '<escape>:wall<CR>')
 
 F.vim.nmap('<C-S-d>',           ':bp<bar>sp<bar>bn<bar>bd<CR>')
 F.vim.nmap('<Leader><Leader>d', ':bp<bar>sp<bar>bn<bar>bd<CR>')
+
+--COPY FILE PATH
+local function copy_path(opts)
+	local abs = vim.fn.expand('%:p')
+	if abs == '' then
+		vim.notify('No file in current buffer', vim.log.levels.WARN)
+		return
+	end
+
+	local path = abs
+	if opts.relative then
+		local dir  = vim.fn.fnamemodify(abs, ':h')
+		local root = vim.fn.systemlist({ 'git', '-C', dir, 'rev-parse', '--show-toplevel' })[1]
+		if vim.v.shell_error == 0 and root and root ~= '' then
+			path = abs:sub(#root + 2)
+		else
+			vim.notify('Not in a git repo; copied absolute path', vim.log.levels.INFO)
+		end
+	end
+
+	if opts.with_pos then
+		local pos = vim.api.nvim_win_get_cursor(0)
+		path = string.format('%s:%d:%d', path, pos[1], pos[2] + 1)
+	end
+
+	vim.fn.setreg('+', path)
+	vim.fn.setreg('"', path)
+	vim.notify('Copied: ' .. path)
+end
+
+F.vim.nmap('<Leader>bya', function() copy_path({ relative = false, with_pos = true  }) end)
+F.vim.nmap('<Leader>byA', function() copy_path({ relative = false, with_pos = false }) end)
+F.vim.nmap('<Leader>byr', function() copy_path({ relative = true,  with_pos = true  }) end)
+F.vim.nmap('<Leader>byR', function() copy_path({ relative = true,  with_pos = false }) end)
