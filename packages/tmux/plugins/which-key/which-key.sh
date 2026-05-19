@@ -205,9 +205,22 @@ execute_cmd() {
             echo "tmux new-window -c \"$PANE_PATH\" \"$USER_SHELL -ilc '${rest}; ${READ_KEY}'\"" > "$WK_CMD_FILE"
             ;;
         "%")
-            # Run in split pane
+            # Split pane vertically (side-by-side)
+            rest="$(echo "$rest" | xargs)"
+            echo "tmux split-window -h -c \"$PANE_PATH\" \"$USER_SHELL -ilc '${rest}; ${READ_KEY}'\"" > "$WK_CMD_FILE"
+            ;;
+        "=")
+            # Split pane horizontally (top/bottom)
             rest="$(echo "$rest" | xargs)"
             echo "tmux split-window -v -c \"$PANE_PATH\" \"$USER_SHELL -ilc '${rest}; ${READ_KEY}'\"" > "$WK_CMD_FILE"
+            ;;
+        "&")
+            # Run in a new tmux session and switch to it
+            rest="$(echo "$rest" | xargs)"
+            cat > "$WK_CMD_FILE" <<EOF
+_wk_session=\$(tmux new-session -dP -F '#{session_name}' -c "$PANE_PATH" "$USER_SHELL -ilc '${rest}; ${READ_KEY}'")
+tmux switch-client -t "\$_wk_session"
+EOF
             ;;
         *)
             # Raw tmux command
