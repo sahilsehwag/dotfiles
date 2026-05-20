@@ -191,36 +191,65 @@ execute_cmd() {
     local cmd="$1"
     local prefix="${cmd:0:1}"
     local rest="${cmd:1}"
+    local retain=false
+
+    # ~ immediately after prefix = always keep open (interactive / show output)
+    if [[ "${rest:0:1}" == "~" ]]; then
+        retain=true
+        rest="${rest:1}"
+    fi
+
+    rest="$(echo "$rest" | xargs)"
 
     case "$prefix" in
-        "!")
-            # Run in bottom popup
-            rest="$(echo "$rest" | xargs)"
-            echo "tmux display-popup -E -d \"$PANE_PATH\" -w 100% -h 40% -y S -S \"$WK_BORDER_STYLE\" \
-                \"$USER_SHELL -ilc '${rest}; echo; echo \\\"Press any key...\\\"; ${READ_KEY}'\"" > "$WK_CMD_FILE"
-            ;;
-        ">")
-            # Run in new window
-            rest="$(echo "$rest" | xargs)"
-            echo "tmux new-window -c \"$PANE_PATH\" \"$USER_SHELL -ilc '${rest}; ${READ_KEY}'\"" > "$WK_CMD_FILE"
-            ;;
-        "%")
-            # Split pane vertically (side-by-side)
-            rest="$(echo "$rest" | xargs)"
-            echo "tmux split-window -h -c \"$PANE_PATH\" \"$USER_SHELL -ilc '${rest}; ${READ_KEY}'\"" > "$WK_CMD_FILE"
-            ;;
-        "=")
-            # Split pane horizontally (top/bottom)
-            rest="$(echo "$rest" | xargs)"
-            echo "tmux split-window -v -c \"$PANE_PATH\" \"$USER_SHELL -ilc '${rest}; ${READ_KEY}'\"" > "$WK_CMD_FILE"
-            ;;
-        "&")
-            # Run in a new tmux session and switch to it
-            rest="$(echo "$rest" | xargs)"
-            cat > "$WK_CMD_FILE" <<EOF
-_wk_session=\$(tmux new-session -dP -F '#{session_name}' -c "$PANE_PATH" "$USER_SHELL -ilc '${rest}; ${READ_KEY}'")
+        "!"|">"|"%"|"="|"&")
+            local run_script
+            run_script=$(mktemp /tmp/which-key-run.XXXXXX)
+            chmod +x "$run_script"
+
+            if $retain; then
+                cat > "$run_script" << RUNEOF
+$rest
+echo
+echo "Press any key..."
+$READ_KEY
+rm -f "$run_script"
+RUNEOF
+            else
+                cat > "$run_script" << RUNEOF
+$rest
+_wk_exit=\$?
+if [ \$_wk_exit -ne 0 ]; then
+    echo
+    printf '\033[1;31mCommand failed (exit %d). Press any key...\033[0m\n' \$_wk_exit
+    $READ_KEY
+fi
+rm -f "$run_script"
+RUNEOF
+            fi
+
+            local inner_cmd="$USER_SHELL -ilc 'source $run_script'"
+
+            case "$prefix" in
+                "!")
+                    echo "tmux display-popup -E -d \"$PANE_PATH\" -w 100% -h 40% -y S -S \"$WK_BORDER_STYLE\" \"${inner_cmd}\"" > "$WK_CMD_FILE"
+                    ;;
+                ">")
+                    echo "tmux new-window -c \"$PANE_PATH\" \"${inner_cmd}\"" > "$WK_CMD_FILE"
+                    ;;
+                "%")
+                    echo "tmux split-window -h -c \"$PANE_PATH\" \"${inner_cmd}\"" > "$WK_CMD_FILE"
+                    ;;
+                "=")
+                    echo "tmux split-window -v -c \"$PANE_PATH\" \"${inner_cmd}\"" > "$WK_CMD_FILE"
+                    ;;
+                "&")
+                    cat > "$WK_CMD_FILE" << WKEOF
+_wk_session=\$(tmux new-session -dP -F '#{session_name}' -c "$PANE_PATH" "${inner_cmd}")
 tmux switch-client -t "\$_wk_session"
-EOF
+WKEOF
+                    ;;
+            esac
             ;;
         *)
             # Raw tmux command
