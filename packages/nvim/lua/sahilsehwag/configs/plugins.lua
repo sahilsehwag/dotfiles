@@ -672,6 +672,7 @@ local default = {
 	--system
 	"junegunn/fzf", --1+
 	"nvim-telescope/telescope.nvim", --1+
+	"dmtrKovalenko/fff.nvim", --1+
 	"skywind3000/asyncrun.vim",
 	{
 		"voldikss/vim-floaterm", --1
@@ -2826,6 +2827,14 @@ return {
 			is_enabled = function()
 				return vim.fn.has("nvim-0.5") == 1
 			end,
+		},
+		["dmtrKovalenko/fff.nvim"] = {
+			url = "dmtrKovalenko/fff.nvim",
+			is_enabled = function()
+				return vim.fn.has("nvim-0.9") == 1
+			end,
+			post_install = ":lua require('fff.download').download_or_build_binary()",
+			config = "fff.lua",
 		},
 		["junegunn/fzf"] = {
 			url = "junegunn/fzf",

@@ -44,6 +44,8 @@ alts=(
 	delta
 	difftastic
 	diffsitter
+
+	gum
 )
 tools=(broot fasd sad)
 fonts=(font-fira-code font-hack-nerd)
