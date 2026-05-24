@@ -15,4 +15,3 @@ source $DOTFILES_CORE/libs/install.sh
 source $DOTFILES_CORE/variables.sh
 source $DOTFILES_CORE/paths.sh
 source $DOTFILES_CORE/pacman.sh
-source $DOTFILES_CORE/ui.sh
