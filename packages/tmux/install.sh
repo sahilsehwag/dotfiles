@@ -1,9 +1,5 @@
 #!/usr/bin/env bash
-script_directory=$(F_getScriptDir ${BASH_SOURCE:-$0})
-
-! F_isSoftlink "$HOME/.config/tmux" && ln -sv "$script_directory/"          "$HOME/.config/tmux"
-! F_isSoftlink "$HOME/.tmux.conf"   && ln -sv "$script_directory/tmux.conf" "$HOME/.tmux.conf"
-
+script_directory=$(F_getScriptDir "${BASH_SOURCE:-$0}")
 sudo cp "$script_directory/bin/tmux-icon-name" /usr/local/bin/tmux-icon-name
 sudo chmod +x /usr/local/bin/tmux-icon-name
 
