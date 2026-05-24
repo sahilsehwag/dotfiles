@@ -364,26 +364,45 @@ _F_list_check() {
 }
 
 F_list() {
+	local show_version=0
+	[[ "$1" == "--versions" || "$1" == "-v" ]] && show_version=1
+
 	local packages="$DOTFILES_CONFIG/packages.txt"
 	if ! F_isFile $packages; then
 		F_log "No packages.txt found at $packages"
 		return 1
 	fi
 
-	{	printf "PACKAGE\tNAME\tINSTALLED\tCONFIGURED\tHEALTHY\tPACMAN\tVERSION\tTAGS\n"
-		printf "-------\t----\t---------\t----------\t-------\t------\t-------\t----\n"
+	{	if [[ $show_version -eq 1 ]]; then
+			printf "PACKAGE\tNAME\tINSTALLED\tCONFIGURED\tHEALTHY\tPACMAN\tVERSION\tTAGS\n"
+			printf "-------\t----\t---------\t----------\t-------\t------\t-------\t----\n"
+		else
+			printf "PACKAGE\tNAME\tINSTALLED\tCONFIGURED\tHEALTHY\tPACMAN\tTAGS\n"
+			printf "-------\t----\t---------\t----------\t-------\t------\t----\n"
+		fi
 		while IFS= read -r package; do
 			[[ -z "$package" ]] && continue
 			local dir="$DOTFILES_ROOT/packages/$package"
-			printf "%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n" \
-				"$package" \
-				"$(_F_list_name "$dir")" \
-				"$(_F_list_inst "$package" "$dir")" \
-				"$(_F_list_check "$dir" "is_configed.sh")" \
-				"$(_F_list_check "$dir" "health.sh")" \
-				"$(_F_list_pacman "$package")" \
-				"$(_F_list_version "$package" "$dir")" \
-				"$(_F_list_tags "$dir")"
+			if [[ $show_version -eq 1 ]]; then
+				printf "%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n" \
+					"$package" \
+					"$(_F_list_name "$dir")" \
+					"$(_F_list_inst "$package" "$dir")" \
+					"$(_F_list_check "$dir" "is_configed.sh")" \
+					"$(_F_list_check "$dir" "health.sh")" \
+					"$(_F_list_pacman "$package")" \
+					"$(_F_list_version "$package" "$dir")" \
+					"$(_F_list_tags "$dir")"
+			else
+				printf "%s\t%s\t%s\t%s\t%s\t%s\t%s\n" \
+					"$package" \
+					"$(_F_list_name "$dir")" \
+					"$(_F_list_inst "$package" "$dir")" \
+					"$(_F_list_check "$dir" "is_configed.sh")" \
+					"$(_F_list_check "$dir" "health.sh")" \
+					"$(_F_list_pacman "$package")" \
+					"$(_F_list_tags "$dir")"
+			fi
 		done < "$packages"
 	} | column -t -s $'\t'
 }
