@@ -8,4 +8,3 @@ else
 	F_pkg_install jira-cli
 fi
 
-F_isSoftlink ~/.config/.jira || ln -sv $script_directory/ ~/.config/.jira

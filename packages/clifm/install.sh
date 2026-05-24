@@ -14,6 +14,3 @@ if ! F_isInstalled clifm; then
 	(cd "$DOTFILES_REPOS/clifm"
 	 sudo make install)
 fi
-
-! F_isSoftlink "$HOME/.config/clifm" && \
-	ln -sv "$script_directory/" "$HOME/.config/clifm"
