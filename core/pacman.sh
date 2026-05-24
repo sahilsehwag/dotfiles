@@ -115,7 +115,7 @@ F_install() {
 				F_pkg_install $package
 			fi
 
-			echo "$package" >> $packages
+			grep -q "^$package$" "$packages" || echo "$package" >> "$packages"
 		fi
 
 		F_init $package
