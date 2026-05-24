@@ -104,6 +104,7 @@ F_init() {
 # Install packages, skipping any already installed.
 # After installing, always runs F_init and F_config.
 F_install() {
+	local package
 	local packages="$DOTFILES_CONFIG/packages.txt"
 	F_isFile $packages || touch $packages
 
@@ -238,6 +239,7 @@ F_meta_install() {
 
 # Update installed packages. Skips packages that aren't installed.
 F_update() {
+	local package
 	for package in "$@"; do
 		if F_isInstalled $package; then
 			local path1="$DOTFILES_ROOT/packages/$package/update.sh"
@@ -256,6 +258,7 @@ F_update() {
 
 # Uninstall packages, remove config symlinks, and remove their init entries.
 F_uninstall() {
+	local package
 	for package in "$@"; do
 		local uninstall_path1="$DOTFILES_ROOT/packages/$package/uninstall.sh"
 		local uninstall_path2="$DOTFILES_ROOT/packages/$package/scripts/uninstall.sh"
@@ -282,6 +285,7 @@ F_uninstall() {
 
 # Run a package's health check script.
 F_health() {
+	local package
 	for package in "$@"; do
 		local path1="$DOTFILES_ROOT/packages/$package/health.sh"
 		local path2="$DOTFILES_ROOT/packages/$package/scripts/health.sh"

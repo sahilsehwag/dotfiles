@@ -2,6 +2,14 @@
 
 Personal dotfiles for macOS/Linux covering nvim, tmux, zsh, and other tools.
 
+## Project skills
+
+Load these when the task matches — they contain step-by-step workflows tailored to this repo.
+
+| skill | file | when to use |
+|---|---|---|
+| add-package | `.claude/skills/add-package.md` | scaffolding a new package under `packages/` |
+
 ## On-demand references
 
 Load these when working on a specific area. They document conventions, plugin systems, and patterns that would otherwise require reading the full config files.
