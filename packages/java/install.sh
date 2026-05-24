@@ -7,5 +7,5 @@ source "$HOME/.sdkman/bin/sdkman-init.sh"
 if F_isMac; then
 	source $script_directory/install.mac.sh
 else
-	F_logError "Java installation is only supported on macOS."
+	echo "Java installation is only supported on macOS."
 fi

@@ -14,5 +14,5 @@ elif type cargo &> /dev/null; then
 elif type pip &> /dev/null; then
 	type package &> /dev/null || pip install ast-grep-cli
 else
-	F_log "No supported package manager found. Please install @ast-grep/cli manually."
+	echo "No supported package manager found. Please install @ast-grep/cli manually."
 fi

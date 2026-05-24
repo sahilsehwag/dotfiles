@@ -72,8 +72,6 @@ F_config() {
 		source $path1
 	elif F_isFile $path2; then
 		source $path2
-	else
-		F_log "No config script found for package: $package"
 	fi
 }
 
@@ -294,8 +292,6 @@ F_health() {
 			source $path1
 		elif F_isFile $path2; then
 			source $path2
-		else
-			F_log "No health script for package: $package"
 		fi
 	done
 }
@@ -373,7 +369,6 @@ F_list() {
 
 	local packages="$DOTFILES_CONFIG/packages.txt"
 	if ! F_isFile $packages; then
-		F_log "No packages.txt found at $packages"
 		return 1
 	fi
 
