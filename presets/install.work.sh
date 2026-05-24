@@ -9,7 +9,7 @@ sudo chown -R $(whoami) ~/.local
 chmod -R 777 ~/.local
 
 base=(curl wget make cmake gcc g++)
-git=(git gh)
+git=(git git-credential-manager gh)
 dev=(python go rust nvm lua bun)
 utils=(rg fd sd choose path-extractor up redo yank grex gnu-sed gum)
 data=(yq jq gron jc jo)

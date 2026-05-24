@@ -13,7 +13,7 @@ sudo chown -R $(whoami) ~/.local
 chmod -R 777 ~/.local
 
 base=(curl wget make cmake gcc g++)
-git=(git gh glab mani git-workspace)
+git=(git git-credential-manager gh glab mani git-workspace)
 dev=(python go rust node lua)
 utils=(rg fd fzf sd choose path-extractor up redo yank grex)
 testing=(
