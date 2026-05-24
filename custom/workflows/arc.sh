@@ -9,16 +9,6 @@
 ARC_MAIN_BRANCH="main"
 ARC_BRANCH_PREFIX="arcpatch-"
 
-# ==========================================
-# DEPENDENCIES
-# ==========================================
-
-_WORKFLOWS_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-source "$_WORKFLOWS_DIR/../../core/libs/require.sh"
-
-require git
-require gum
-require arc --hint "arc is Phabricator's CLI — install it from your internal toolchain (https://your-internal-wiki/arc)"
 
 # ==========================================
 # UI HELPERS

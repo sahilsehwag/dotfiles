@@ -80,6 +80,8 @@
 		runtime configs/fasd.lua
 		runtime configs/nix.lua
 	end
+
+	lua require('better-g')
 "CLIENTS
 	runtime clients/firenvim.vim
 	runtime clients/neovide.vim

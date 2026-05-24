@@ -69,6 +69,11 @@
 #
 # ═══════════════════════════════════════════════════════════════════════════
 
+# ── DEPENDENCY GUARD ────────────────────────────────────────────────────────
+# require is sourced once by custom/install.sh
+
+# ────────────────────────────────────────────────────────────────────────────
+
 # Confirm helper that respects ARH_YES=1 (set by per-function -y/--yes flags).
 # Use in place of `gum confirm` inside arh-* functions so they're scriptable.
 _arh_confirm() {

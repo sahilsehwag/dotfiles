@@ -86,8 +86,27 @@ projectinator.setup({
 						mt_dashboard = "npm run sentry-release",
 					},
 				},
-				publish = {},
 				deploy = {},
+				feat = {
+					commands = {
+						opw = 'arh feat'
+					},
+				},
+				rebase = {
+					commands = {
+						opw = 'arh rebase'
+					},
+				},
+				publish = {
+					commands = {
+						opw = 'arh publish'
+					},
+				},
+				merge = {
+					commands = {
+						opw = 'arh merge'
+					},
+				},
 			},
 		},
 	},
@@ -102,7 +121,8 @@ vim.cmd([[
 	nnoremap <silent> <Leader>lpt <cmd>lua require('projectinator').run_operation('test')<cr>
 	nnoremap <silent> <Leader>lpr <cmd>lua require('projectinator').run_operation('run')<cr>
 	nnoremap <silent> <Leader>lpb <cmd>lua require('projectinator').run_operation('build')<cr>
-	nnoremap <silent> <Leader>lpR <cmd>lua require('projectinator').run_operation('release')<cr>
+	nnoremap <silent> <Leader>lpR <cmd>lua require('projectinator').run_operation('rebase')<cr>
+	nnoremap <silent> <Leader>lpm <cmd>lua require('projectinator').run_operation('merge')<cr>
 	nnoremap <silent> <Leader>lpp <cmd>lua require('projectinator').run_operation('publish')<cr>
 	nnoremap <silent> <Leader>lpD <cmd>lua require('projectinator').run_operation('deploy')<cr>
 	nnoremap <silent> <Leader>lps <cmd>lua require('projectinator').run_operation('scaffold')<cr>

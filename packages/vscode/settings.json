@@ -59,5 +59,6 @@
   "typescript.inlayHints.variableTypes.enabled": true,
   "typescript.inlayHints.propertyDeclarationTypes.enabled": true,
   "typescript.inlayHints.parameterTypes.enabled": true,
-  "typescript.tsserver.maxTsServerMemory": 16384
+  "typescript.tsserver.maxTsServerMemory": 16384,
+  "remote.SSH.connectTimeout": 600
 }

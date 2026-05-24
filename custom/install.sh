@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 script_directory=$(F_getScriptDir ${BASH_SOURCE:-$0})
 
+source "$DOTFILES_ROOT/core/libs/require.sh" 2>/dev/null || true
+
 # workflows
 source $script_directory/workflows/git.sh
 source $script_directory/workflows/gh.sh

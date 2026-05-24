@@ -45,5 +45,5 @@ vim.keymap.set('n', '<Leader>v?', tb.help_tags,        vim.tbl_extend('force', o
 vim.keymap.set('n', '<Leader><Tab>', tb.keymaps,       vim.tbl_extend('force', opts, { desc = 'Telescope: Keymaps' }))
 
 -- Git
-vim.keymap.set('n', '<Leader>pf', tb.git_files,   vim.tbl_extend('force', opts, { desc = 'Telescope: Git files' }))
-vim.keymap.set('n', '<Leader>pg', tb.git_status,  vim.tbl_extend('force', opts, { desc = 'Telescope: Git status' }))
+--vim.keymap.set('n', '<Leader>pf', tb.git_files,   vim.tbl_extend('force', opts, { desc = 'Telescope: Git files' }))
+--vim.keymap.set('n', '<Leader>pg', tb.git_status,  vim.tbl_extend('force', opts, { desc = 'Telescope: Git status' }))

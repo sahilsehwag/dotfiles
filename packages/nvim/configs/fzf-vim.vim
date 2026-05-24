@@ -32,6 +32,7 @@
 	nnoremap <Leader>gCp :Commits<CR>
 	nnoremap <Leader>gCb :BCommits<CR>
 
+	nnoremap <Leader>pf  :Fzf<CR>
 	nnoremap <Leader>pg  :GFiles?<CR>
 	"nnoremap <Leader>pG  :GFiles<CR>
 "SEARCH
