@@ -368,4 +368,6 @@
 	"FZF
 	"FASD
 "ICONS
-	source ~/.config/vifm/vifm_devicons/favicons.vifm
+	if filereadable(expand('~/.config/vifm/vifm_devicons/favicons.vifm'))
+		source ~/.config/vifm/vifm_devicons/favicons.vifm
+	endif
