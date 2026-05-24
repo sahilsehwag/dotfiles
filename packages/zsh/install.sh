@@ -10,5 +10,4 @@ git clone           https://github.com/QuarticCat/zsh-smartcache             "${
 git clone           https://github.com/Aloxaf/fzf-tab                        "${ZSH_CUSTOM:=$HOME/.oh-my-zsh/custom}/plugins/fzf-tab"
 git clone           https://github.com/jeffreytse/zsh-vi-mode                "${ZSH_CUSTOM:=$HOME/.oh-my-zsh/custom}/plugins/zsh-vi-mode"
 
-F_install starship
 F_pkg_install zsh

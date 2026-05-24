@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-F_install rust
 cargo install --git https://github.com/MordechaiHadad/bob.git
 #cargo install bob-nvim
 

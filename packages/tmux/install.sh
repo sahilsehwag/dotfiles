@@ -6,7 +6,6 @@ sudo chmod +x /usr/local/bin/tmux-icon-name
 git clone https://github.com/tmux-plugins/tpm "$HOME/.cache/tmux/plugins/tpm"
 
 F_pkg_install tmux
-F_install tmuxinator
 
 if F_isMac; then
 	brew tap arl/arl
