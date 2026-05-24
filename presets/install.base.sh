@@ -49,8 +49,17 @@ alts=(
 )
 tools=(broot fasd sad)
 fonts=(font-fira-code font-hack-nerd)
-# kanata (kmonad alternative)
-apps=(kmonad zsh tmux mprocs nvim vifm lazygit)
+apps=(
+	#kmonad
+	# (kmonad alternative)
+	kanata
+	zsh
+	tmux
+	mprocs
+	nvim
+	vifm
+	lazygit
+)
 misc=(terminfo git-sim)
 
 F_install ${setup[@]} ${base[@]} ${git[@]} ${dev[@]} ${utils[@]} ${data[@]} ${alts[@]} ${tools[@]} ${fonts[@]} ${apps[@]} ${misc[@]} ${mac[@]} ${testing[@]}

@@ -9,9 +9,9 @@ sudo chown -R $(whoami) ~/.local
 chmod -R 777 ~/.local
 
 base=(curl wget make cmake gcc g++)
-git=(git gh glab mani git-workspace)
-dev=(python go rust node lua)
-utils=(rg fd sd choose path-extractor up redo yank grex gnu-sed)
+git=(git gh)
+dev=(python go rust nvm lua bun)
+utils=(rg fd sd choose path-extractor up redo yank grex gnu-sed gum)
 data=(yq jq gron jc jo)
 alts=(
 	sshs
@@ -27,11 +27,9 @@ fonts=(font-fira-code)
 apps=(fzf zsh tmux nvim vifm lazygit kanata)
 misc=(terminfo)
 mac=(
-	alacritty #warp
-	kitty
+	alacritty #warp #kitty
 	#kindavim #svim #macos wide vim emulation
 	aerospace #yabai
-	vscode
 	notion
 	alfred
 )
