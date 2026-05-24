@@ -1,3 +1,7 @@
 #!/usr/bin/env bash
-F_pkg_install broot
+if F_isMac; then
+	brew install broot
+else
+	F_pkg_install broot
+fi
 broot

@@ -17,7 +17,9 @@
       "Bash(xargs cat)",
       "mcp__code-review-graph__get_architecture_overview_tool",
       "Bash(git -C /Users/sahil.sehwag/Documents/projects/personal/dotfiles ls-files packages/vifm/vifm_devicons/)",
-      "Bash(git -C /Users/sahil.sehwag/Documents/projects/personal/dotfiles check-ignore -v packages/vifm/vifm_devicons/)"
+      "Bash(git -C /Users/sahil.sehwag/Documents/projects/personal/dotfiles check-ignore -v packages/vifm/vifm_devicons/)",
+      "Bash(git -C /Users/sahil.sehwag/Documents/projects/personal/dotfiles log --oneline packages/vifm/install.sh)",
+      "Bash(git *)"
     ]
   }
 }
