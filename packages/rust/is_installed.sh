@@ -1,2 +1,2 @@
 F_isBinaryInstalled rs
-exit $?
+return $?

@@ -23,7 +23,8 @@
       "Bash(gum spin *)",
       "Bash(gum log *)",
       "Bash(gum style *)",
-      "Bash(bash *)"
+      "Bash(bash *)",
+      "Bash(xargs cat)"
     ]
   }
 }
