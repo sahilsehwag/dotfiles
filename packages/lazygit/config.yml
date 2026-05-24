@@ -41,10 +41,10 @@ gui:
   commandLogSize: 8
   splitDiff: 'auto' # one of 'auto' | 'always'
 git:
-  paging:
-    colorArg: always
-    useConfig: false
-    pager: delta --dark --paging=never --24-bit-color=never
+  pagers:
+    - colorArg: always
+      useConfig: false
+      pager: delta --dark --paging=never --24-bit-color=never
   commit:
     signOff: false
   merging:
