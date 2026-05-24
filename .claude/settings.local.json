@@ -1,16 +1,6 @@
 {
   "permissions": {
     "allow": [
-      "WebFetch(domain:engwiki.uberinternal.com)",
-      "Bash(arh checkout:*)",
-      "Bash(arh feature:*)",
-      "Bash(arh publish:*)",
-      "Bash(arh merge:*)",
-      "Bash(arh rebase:*)",
-      "Bash(arh --help)",
-      "Bash(arh restack:*)",
-      "Bash(arh log:*)",
-      "Bash(arh -p)",
       "Bash(gum write:*)",
       "Bash(gum --help)",
       "Bash(col -b)",
