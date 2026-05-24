@@ -12,6 +12,8 @@ if [[ "$OSTYPE" == "linux"* ]] && command -v apt-get >/dev/null 2>&1; then
 		sudo apt-get update -qq
 		sudo apt-get install -y gum
 	fi
+elif F_isMac; then
+	brew install gum
 else
 	F_pkg_install gum
 fi

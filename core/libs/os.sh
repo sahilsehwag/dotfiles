@@ -8,7 +8,7 @@ F_isMac() {
 }
 
 F_isLinux() {
-	if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+	if [[ "$OSTYPE" == "linux"* ]]; then
 		return 0
 	else
 		return 1

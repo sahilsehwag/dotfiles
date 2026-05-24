@@ -6,7 +6,24 @@
       "Bash(arh feature:*)",
       "Bash(arh publish:*)",
       "Bash(arh merge:*)",
-      "Bash(arh rebase:*)"
+      "Bash(arh rebase:*)",
+      "Bash(arh --help)",
+      "Bash(arh restack:*)",
+      "Bash(arh log:*)",
+      "Bash(arh -p)",
+      "Bash(gum write:*)",
+      "Bash(gum --help)",
+      "Bash(col -b)",
+      "Bash(chmod +x:*)",
+      "Bash(bash -n /Users/sahil.sehwag/Documents/projects/personal/dotfiles/custom/workflows/arh.sh)",
+      "Bash(gum choose *)",
+      "Bash(gum confirm *)",
+      "Bash(gum input *)",
+      "Bash(gum filter *)",
+      "Bash(gum spin *)",
+      "Bash(gum log *)",
+      "Bash(gum style *)",
+      "Bash(bash *)"
     ]
   }
 }

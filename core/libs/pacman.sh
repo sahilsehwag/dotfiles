@@ -272,7 +272,6 @@ F_pkg_install() {
 	done
 }
 
-
 F_pkg_update() {
 	for package in "$@" ; do
 		! type $package &> /dev/null && continue

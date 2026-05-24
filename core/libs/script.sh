@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+
 F_getScriptDir() {
 	#local SOURCE="${BASH_SOURCE[0]:-$0}";
 	local SOURCE="$*"

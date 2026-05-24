@@ -8,6 +8,7 @@ Load these when working on a specific area. They document conventions, plugin sy
 
 | topic | file |
 |---|---|
+| core/ — full system reference | `.claude/references/core/system.md` |
 | nvim — adding a plugin | `.claude/references/nvim/adding-plugin.md` |
 | tmux — adding a plugin | `.claude/references/tmux/adding-plugin.md` |
 | zsh — adding a plugin | `.claude/references/zsh/adding-plugin.md` |
