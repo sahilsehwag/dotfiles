@@ -134,7 +134,9 @@ F_install() {
 				F_meta_install $package
 			fi
 
-			grep -q "^$package$" "$packages" || echo "$package" >> "$packages"
+			if F_isInstalled $package; then
+				grep -q "^$package$" "$packages" || echo "$package" >> "$packages"
+			fi
 		fi
 
 		F_init $package
