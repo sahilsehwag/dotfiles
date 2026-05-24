@@ -11,3 +11,5 @@ fi
 
 source "$DOTFILES_CORE/install.sh"
 source "$DOTFILES_ROOT/presets/install.$DOTFILES_PRESET.sh"
+
+F_list
