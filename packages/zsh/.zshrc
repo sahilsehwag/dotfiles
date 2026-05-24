@@ -7,7 +7,7 @@
 
 #TEMPORAL
 	autoload -U +X compinit && compinit
-	autoload -U +X bashcompinit && bashcompinit 
+	autoload -U +X bashcompinit && bashcompinit
 #CORE
 	export USH_ROOT="$HOME/Documents/projects/personal/ush"
 	if [ -f ~/Documents/projects/personal/ush/index.sh ]; then
@@ -44,7 +44,7 @@
 	#RANDOM
 #ZSH|OhMyZsh
 	#CONFIGURATION
-		export TERM='xterm-256color-italic' #xterm-256color
+		# export TERM='xterm-256color-italic' #xterm-256color
 		export ZSH=~/.oh-my-zsh
 		export SSH_KEY_PATH="~/.ssh/rsa_id"
 
