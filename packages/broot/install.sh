@@ -4,4 +4,3 @@ if F_isMac; then
 else
 	F_pkg_install broot
 fi
-broot
