@@ -34,8 +34,8 @@
 #SETUP
 	if [ -f "$HOME/.fzf.zsh" ]; then
 		source "$HOME/.fzf.zsh"
-	else
-		/usr/bin/env bash "$HOME/.fzf/install" && echo FZF initialization complete, reload ZSH!!!
+	elif command -v fzf &>/dev/null; then
+		source <(fzf --zsh)
 	fi
 #FILESYSTEM
 	#GENERIC
