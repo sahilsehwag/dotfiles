@@ -5,6 +5,8 @@
 
 if [[ ! -d "$DOTFILES_ROOT" ]]; then
 	git clone https://github.com/sahilsehwag/dotfiles "$DOTFILES_ROOT"
+else
+	git -C "$DOTFILES_ROOT" pull
 fi
 
 source "$DOTFILES_CORE/install.sh"
