@@ -21,7 +21,9 @@
       "Bash(git -C /Users/sahil.sehwag/Documents/projects/personal/dotfiles log --oneline packages/vifm/install.sh)",
       "Bash(git *)",
       "Bash(xargs -I{} sh -c 'echo \"=== {} ===\"; cat \"{}\"')",
-      "Bash(python3 -m json.tool)"
+      "Bash(python3 -m json.tool)",
+      "Bash(xargs ls -la)",
+      "Read(//Users/sahil.sehwag/.config/dotfiles/**)"
     ]
   }
 }

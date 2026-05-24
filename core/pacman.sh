@@ -4,16 +4,13 @@ script_directory=$(F_getScriptDir ${BASH_SOURCE:-$0})
 # Check if a package is installed.
 # Resolution order:
 #   1. packages/<name>/is_installed.sh  — custom check script
-#   2. packages.txt                     — recorded by a prior F_install run
-#   3. meta_binary from metadata.sh     — if set, check that binary on PATH
-#   4. binary on PATH                   — package folder name via F_isBinaryInstalled
+#   2. meta_binary from metadata.sh     — if set, check that binary on PATH
+#   3. binary on PATH                   — package folder name via F_isBinaryInstalled
 F_isInstalled() {
 	local package="$1"
 
 	local path1="$DOTFILES_ROOT/packages/$package/is_installed.sh"
 	local path2="$DOTFILES_ROOT/packages/$package/scripts/is_installed.sh"
-
-	local packages="$DOTFILES_CONFIG/packages.txt"
 
 	if F_isFile $path1; then
 		source $path1
@@ -21,12 +18,6 @@ F_isInstalled() {
 	elif F_isFile $path2; then
 		source $path2
 		return $?
-	elif F_isFile $packages; then
-		if grep -q "^$package$" "$packages"; then
-			return 0
-		else
-			return 1
-		fi
 	else
 		local meta_binary=""
 		local _mp="$DOTFILES_ROOT/packages/$package/metadata.sh"
