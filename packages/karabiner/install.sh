@@ -1,2 +1,5 @@
 #!/usr/bin/env bash
-brew list karabiner-elements || brew install karabiner-elements
+
+if F_isMac; then
+	brew list karabiner-elements || brew install karabiner-elements
+fi

@@ -1,6 +1,13 @@
 #!/usr/bin/env bash
 ! type stack &> /dev/null && brew install stack
 brew list xcodegen || brew install xcodegen
+
+# Karabiner-Elements is required on macOS as the virtual HID driver backend.
+# After install, open Karabiner-Elements and complete these manual steps:
+#   1. System Settings > Privacy & Security > Input Monitoring — grant access to karabiner_grabber and karabiner_observer
+#   2. System Settings > Privacy & Security > Accessibility — grant access to Karabiner-Elements
+#   3. Allow the Karabiner-DriverKit-VirtualHIDDevice system extension when prompted
+# Once done, Karabiner-Elements must be QUIT so kmonad can claim the virtual device.
 brew list karabiner-elements || brew install karabiner-elements
 
 if ! type kmonad &> /dev/null; then
