@@ -299,3 +299,9 @@
 			workingDirectory = { mode = 'auto' }, -- handles monorepos
 		},
 	})
+
+	vim.lsp.config('ts_ls', {
+		init_options = {
+			maxTsServerMemory = 16384, -- MB; raised for large monorepos (default ~3072)
+		},
+	})
