@@ -10,7 +10,7 @@ require'bookmarks'.setup({
 		close      = "q", -- close bookmarks (buf keymap)
 	},
 	hl_cursorline = 'guibg=Gray guifg=White', -- hl bookmarks window cursorline
-	virt_pattern = {},
+	virt_pattern = { '*.NOMATCH' }, -- effectively disable: nvim_create_autocmd rejects empty pattern
 })
 
 require("telescope").load_extension("bookmarks")

@@ -1,198 +1,107 @@
---neoorg
---require('nvim-treesitter.parsers').get_parser_configs().norg = {
---  install_info = {
---    url = "https://github.com/vhyrro/tree-sitter-norg",
---    files = { "src/parser.c" },
---    branch = "main"
---  },
---}
+require('nvim-treesitter').setup()
 
-require('nvim-treesitter.configs').setup({
-	ensure_installed = 'all',
-	ignore_install = { "ipkg" },
-	highlight = { enable = true, },
-	indent = { enable = false, },
-	textobjects = {
-		select = {
-			enable = true,
-			keymaps = {
-				--general
-				['<space>i/'] = "@comment.inner",
-				['<space>a/'] = "@comment.outer",
-				['<space>is'] = "@statement.inner",
-				['<space>as'] = "@statement.outer",
-				['<space>ib'] = "@block.inner",
-				['<space>ab'] = "@block.outer",
-				['<space>il'] = "@loop.inner",
-				['<space>al'] = "@loop.outer",
-				['<space>ic'] = "@conditional.inner",
-				['<space>ac'] = "@conditional.outer",
+local select = require('nvim-treesitter-textobjects.select')
+local move = require('nvim-treesitter-textobjects.move')
 
-				['<space>if'] = "@function.inner",
-				['<space>af'] = "@function.outer",
-				['<space>i('] = "@call.inner",
-				['<space>a('] = "@call.outer",
-				['<space>i,'] = "@parameter.inner",
-				['<space>a,'] = "@parameter.outer",
-
-				["<space>aC"] = "@class.outer",
-				["<space>iC"] = "@class.inner",
-
-				--html
-				["<space>ix"] = "@attribute.inner",
-				["<space>ax"] = "@attribute.outer",
-				["<space>it"] = "@tag.inner",
-				["<space>at"] = "@tag.outer",
-
-				--js
-				["<space>im"] = "@import.inner",
-				["<space>am"] = "@import.outer",
-				["<space>ik"] = "@key.inner",
-				["<space>ak"] = "@key.outer",
-				["<space>iv"] = "@value.inner",
-				["<space>av"] = "@value.outer",
-
-				["<space>iL"] = "@lhs.inner",
-				["<space>aL"] = "@lhs.outer",
-				["<space>iR"] = "@rhs.inner",
-				["<space>aR"] = "@rhs.outer",
-
-				["<space>id"] = "@declaration.inner",
-				["<space>ad"] = "@declaration.outer",
-
-				["<space>ir"] = "@rule.inner",
-				["<space>ar"] = "@rule.outer",
-			},
-		},
-		move = {
-			enable = true,
-			goto_next_start = {
-				[']<space>s'] = "@statement.inner",
-				[']<space>S'] = "@statement.outer",
-				[']<space>b'] = "@block.inner",
-				[']<space>B'] = "@block.outer",
-				[']<space>l'] = "@loop.inner",
-				[']<space>L'] = "@loop.outer",
-				[']<space>c'] = "@conditional.inner",
-				[']<space>C'] = "@conditional.outer",
-				[']<space>f'] = "@function.inner",
-				[']<space>F'] = "@function.outer",
-				[']<space>a'] = "@call.inner",
-				[']<space>A'] = "@call.outer",
-				[']<space>p'] = "@parameter.inner",
-				[']<space>P'] = "@parameter.outer",
-				[']<space>/'] = "@comment.inner",
-				[']<space>?'] = "@comment.outer",
-			},
-			goto_previous_start = {
-				['[<space>s'] = "@statement.inner",
-				['[<space>S'] = "@statement.outer",
-				['[<space>b'] = "@block.inner",
-				['[<space>B'] = "@block.outer",
-				['[<space>l'] = "@loop.inner",
-				['[<space>L'] = "@loop.outer",
-				['[<space>c'] = "@conditional.inner",
-				['[<space>C'] = "@conditional.outer",
-				['[<space>f'] = "@function.inner",
-				['[<space>F'] = "@function.outer",
-				['[<space>('] = "@call.inner",
-				['[<space>)'] = "@call.outer",
-				['[<space>,'] = "@parameter.inner",
-				['[<space><'] = "@parameter.outer",
-				['[<space>/'] = "@comment.inner",
-				['[<space>?'] = "@comment.outer",
-			},
-			goto_next_end = {},
-			goto_previous_end = {},
-		},
-		swap = {
-			enable = true,
-			keymaps = {},
-		},
+require('nvim-treesitter-textobjects').setup({
+	select = {
+		lookahead = true,
 	},
-	textsubjects = {
-		enable = false,
-		keymaps = {
-			['.'] = 'textsubjects-smart',
-			[';'] = 'textsubjects-container-outer',
-		}
-	},
-	element_textobject = {
-		enable = false,
-		keymaps = {
-		},
-	},
-	scope_textobject = {
-		enable = false,
-		keymaps = {
-		},
-	},
-	pairs = {
-		enable = false,
-		disable = {},
-		highlight_pair_events = {},                                 -- e.g. {"CursorMoved"}, -- when to highlight the pairs, use {} to deactivate highlighting
-		highlight_self = false,                                     -- whether to highlight also the part of the pair under cursor (or only the partner)
-		goto_right_end = false,                                     -- whether to go to the end of the right partner or the beginning
-		fallback_cmd_normal = "call matchit#Match_wrapper('',1,'n')", -- What command to issue when we can't find a pair (e.g. "normal! %")
-		keymaps = {
-			goto_partner = "<leader>%",
-		},
-	},
-	autopairs = {
-		enable = true,
-	},
-	refactor = {
-		highlight_definitions = { enable = false },
-		highlight_current_scope = { enable = false },
-		smart_rename = {
-			enable = true,
-			keymaps = {
-				smart_rename = "<Leader>lsR",
-			},
-		},
-		navigation = {
-			enable = true,
-			keymaps = {
-				--goto_definition = "gd",
-				goto_next_usage = "<C-]>",
-				goto_previous_usage = "<C-[>",
-				--list_definitions = "<Leader>lsD",
-				--list_definitions_toc = "<Leader>lsd",
-			},
-		},
-	},
-	autotag = {
-		enable = true,
-		filetypes = { 'html', 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'svelte', 'vue' }
-	},
-	rainbow = { enable = true, },
-	tree_docs = {
-		enable = false,
-	},
-	playground = {
-		enable = true,
-		disable = {},
-		updatetime = 25,       -- Debounced time for highlighting nodes in the playground from source code
-		persist_queries = false, -- Whether the query persists across vim sessions
-		keybindings = {
-			--toggle_query_editor = 'o',
-			--toggle_hl_groups = 'i',
-			--toggle_injected_languages = 't',
-			--toggle_anonymous_nodes = 'a',
-			--toggle_language_display = 'I',
-			--focus_language = 'f',
-			--unfocus_language = 'F',
-			--update = 'R',
-			--goto_node = '<cr>',
-			--show_help = '?',
-		},
-	},
-	query_linter = {
-		enable = true,
-		use_virtual_text = true,
-		lint_events = { "BufWrite", "CursorHold" },
+	move = {
+		set_jumps = true,
 	},
 })
 
+-- SELECT textobjects
+local sel = function(lhs, query)
+	vim.keymap.set({ 'x', 'o' }, lhs, function()
+		select.select_textobject(query, 'textobjects')
+	end, { noremap = true, silent = true })
+end
+
+sel('<space>i/', '@comment.inner')
+sel('<space>a/', '@comment.outer')
+sel('<space>is', '@statement.inner')
+sel('<space>as', '@statement.outer')
+sel('<space>ib', '@block.inner')
+sel('<space>ab', '@block.outer')
+sel('<space>il', '@loop.inner')
+sel('<space>al', '@loop.outer')
+sel('<space>ic', '@conditional.inner')
+sel('<space>ac', '@conditional.outer')
+sel('<space>if', '@function.inner')
+sel('<space>af', '@function.outer')
+sel('<space>i(', '@call.inner')
+sel('<space>a(', '@call.outer')
+sel('<space>i,', '@parameter.inner')
+sel('<space>a,', '@parameter.outer')
+sel('<space>aC', '@class.outer')
+sel('<space>iC', '@class.inner')
+sel('<space>ix', '@attribute.inner')
+sel('<space>ax', '@attribute.outer')
+sel('<space>it', '@tag.inner')
+sel('<space>at', '@tag.outer')
+sel('<space>im', '@import.inner')
+sel('<space>am', '@import.outer')
+sel('<space>ik', '@key.inner')
+sel('<space>ak', '@key.outer')
+sel('<space>iv', '@value.inner')
+sel('<space>av', '@value.outer')
+sel('<space>iL', '@lhs.inner')
+sel('<space>aL', '@lhs.outer')
+sel('<space>iR', '@rhs.inner')
+sel('<space>aR', '@rhs.outer')
+sel('<space>id', '@declaration.inner')
+sel('<space>ad', '@declaration.outer')
+sel('<space>ir', '@rule.inner')
+sel('<space>ar', '@rule.outer')
+
+-- MOVE textobjects
+local nxt_s = function(lhs, query)
+	vim.keymap.set({ 'n', 'x', 'o' }, lhs, function()
+		move.goto_next_start(query, 'textobjects')
+	end, { noremap = true, silent = true })
+end
+local prv_s = function(lhs, query)
+	vim.keymap.set({ 'n', 'x', 'o' }, lhs, function()
+		move.goto_previous_start(query, 'textobjects')
+	end, { noremap = true, silent = true })
+end
+
+nxt_s(']<space>s', '@statement.inner')
+nxt_s(']<space>S', '@statement.outer')
+nxt_s(']<space>b', '@block.inner')
+nxt_s(']<space>B', '@block.outer')
+nxt_s(']<space>l', '@loop.inner')
+nxt_s(']<space>L', '@loop.outer')
+nxt_s(']<space>c', '@conditional.inner')
+nxt_s(']<space>C', '@conditional.outer')
+nxt_s(']<space>f', '@function.inner')
+nxt_s(']<space>F', '@function.outer')
+nxt_s(']<space>a', '@call.inner')
+nxt_s(']<space>A', '@call.outer')
+nxt_s(']<space>p', '@parameter.inner')
+nxt_s(']<space>P', '@parameter.outer')
+nxt_s(']<space>/', '@comment.inner')
+nxt_s(']<space>?', '@comment.outer')
+
+prv_s('[<space>s', '@statement.inner')
+prv_s('[<space>S', '@statement.outer')
+prv_s('[<space>b', '@block.inner')
+prv_s('[<space>B', '@block.outer')
+prv_s('[<space>l', '@loop.inner')
+prv_s('[<space>L', '@loop.outer')
+prv_s('[<space>c', '@conditional.inner')
+prv_s('[<space>C', '@conditional.outer')
+prv_s('[<space>f', '@function.inner')
+prv_s('[<space>F', '@function.outer')
+prv_s('[<space>(', '@call.inner')
+prv_s('[<space>)', '@call.outer')
+prv_s('[<space>,', '@parameter.inner')
+prv_s('[<space><', '@parameter.outer')
+prv_s('[<space>/', '@comment.inner')
+prv_s('[<space>?', '@comment.outer')
+
+-- FOLDS
 vim.cmd [[ set foldmethod=expr ]]
-vim.cmd [[ set foldexpr=nvim_treesitter#foldexpr() ]]
+vim.cmd [[ set foldexpr=v:lua.vim.treesitter.foldexpr() ]]

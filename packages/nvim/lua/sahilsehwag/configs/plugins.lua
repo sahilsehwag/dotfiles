@@ -1079,7 +1079,7 @@ local configuration = {
 	--"guns/xterm-color-table.vim",
 }
 local markup = {
-	"phaazon/mind.nvim", --1+
+	--"phaazon/mind.nvim", --1+
 	"antonk52/markdowny.nvim",
 	"Zeioth/markmap.nvim",
 
@@ -3051,7 +3051,8 @@ return {
 			should_load_config = true,
 			dependencies = {
 				pre = { "williamboman/mason-lspconfig.nvim" },
-				post = { "hinell/lsp-timeout.nvim" },
+				-- lsp-timeout.nvim removed: nvim 0.13 has native :lsp command which causes
+				-- plugin/lspconfig.lua to early-return, so LspStart/LspStop are never registered
 			},
 		},
 		["cseickel/diagnostic-window.nvim"] = {
@@ -3236,6 +3237,15 @@ return {
 				},
 			},
 		},
+		["ldelossa/litee-symboltree.nvim"] = {
+			should_load_config = false, -- uses vim.lsp.with, removed in nvim 0.13
+		},
+		["ldelossa/litee-calltree.nvim"] = {
+			should_load_config = false, -- uses vim.lsp.with, removed in nvim 0.13
+		},
+		["ldelossa/litee-filetree.nvim"] = {
+			should_load_config = false, -- uses vim.lsp.with, removed in nvim 0.13
+		},
 		["nvim-lua/lsp-status.nvim"] = {
 			url = "nvim-lua/lsp-status.nvim",
 			is_enabled = function()
@@ -3289,9 +3299,7 @@ return {
 					vim.cmd("TSInstall all")
 				end,
 			},
-			dependencies = {
-				post = { "nvim-treesitter/playground" },
-			},
+			dependencies = {},
 		},
 		["mfussenegger/nvim-treehopper"] = {
 			url = "mfussenegger/nvim-treehopper",
@@ -3323,7 +3331,7 @@ return {
 				},
 			},
 			is_enabled = function()
-				return vim.fn.has("nvim-0.5") == 1
+				return false -- incompatible with new nvim-treesitter (define_modules removed)
 			end,
 		},
 		["nvim-treesitter/nvim-treesitter-textobjects"] = {

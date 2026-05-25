@@ -1,3 +1,5 @@
+if not vim.env.OPENAI_API_KEY then return end
+
 local cmp_ai = require('cmp_ai.config')
 
 cmp_ai:setup({

@@ -1,8 +1,8 @@
 -- MAPPINGS
-	F.vim.nmap('<Leader>l.s', '<cmd>LspStart<cr>')
-	F.vim.nmap('<Leader>l.r', '<cmd>LspRestart<cr>')
-	F.vim.nmap('<Leader>l.k', '<cmd>LspStop<space>')
-	F.vim.nmap('<Leader>l.i', '<cmd>LspInfo<cr>')
+	F.vim.nmap('<Leader>l.s', '<cmd>lua vim.lsp.enable(vim.bo.filetype)<cr>')
+	F.vim.nmap('<Leader>l.r', '<cmd>lua for _,c in ipairs(vim.lsp.get_clients({bufnr=0})) do vim.lsp.start(c.config) end<cr>')
+	F.vim.nmap('<Leader>l.k', '<cmd>lua vim.lsp.stop_client(vim.lsp.get_clients({bufnr=0}))<cr>')
+	F.vim.nmap('<Leader>l.i', '<cmd>checkhealth vim.lsp<cr>')
 -- SERVERS
 	local SERVERS = {
 		--'efm',
@@ -235,40 +235,39 @@
 		--'zls',
 	}
 
-	for _, server in ipairs(SERVERS) do
-		local path = vim.g.config.paths.configs .. '/nvim-lspconfig/servers' .. '/' .. server
+	vim.api.nvim_create_autocmd('LspAttach', {
+		callback = function(ev)
+			local client = vim.lsp.get_client_by_id(ev.data.client_id)
+			if not client then return end
+			local bufnr = ev.buf
 
-		local on_attach = function(client, bufnr)
-			--require('configs.lsp_signature').attach()
 			require("nvim-navbuddy").attach(client, bufnr)
 
-			if client.name ~= 'tsserver' and client.name ~= 'tailwindcss' then
+			if client.name ~= 'ts_ls' and client.name ~= 'tailwindcss' then
 				require('virtualtypes').on_attach(client, bufnr)
 			end
 
-			if client.name == 'tsserver' then
+			if client.name == 'ts_ls' then
 				local lsp_format_modifications = require'lsp-format-modifications'
 				lsp_format_modifications.attach(client, bufnr, { format_on_save = false })
 			end
-		end
+		end,
+	})
 
-		if vim.fn.filereadable(path) == 1 then
-			require(path)({
-				on_attach = on_attach,
-			})
-		else
-			require('lspconfig')[server].setup({
-				on_attach = on_attach,
-			})
-		end
+	for _, server in ipairs(SERVERS) do
+		vim.lsp.enable(server)
 	end
--- MESS
-	local capabilities = vim.lsp.protocol.make_client_capabilities()
-	capabilities.textDocument.completion.completionItem.snippetSupport = true
-	capabilities.textDocument.completion.completionItem.resolveSupport = {
-		properties = {
-			'documentation',
-			'detail',
-			'additionalTextEdits',
-		}
-	}
+-- SERVER OVERRIDES (applied on top of lspconfig defaults via vim.lsp.config)
+	vim.lsp.config('lua_ls', {
+		settings = {
+			Lua = {
+				runtime = { version = 'LuaJIT' },
+				diagnostics = { globals = { 'vim' } },
+				workspace = {
+					library = vim.api.nvim_get_runtime_file('', true),
+					checkThirdParty = false,
+				},
+				telemetry = { enable = false },
+			},
+		},
+	})
