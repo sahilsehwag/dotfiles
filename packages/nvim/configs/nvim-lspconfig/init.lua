@@ -19,7 +19,7 @@
 		'html',
 		'cssls',
 		--'cssmodules_ls',
-		--'eslint',
+		'eslint',
 		--'eslintls',
 		'ts_ls',
 		--'denols',
@@ -44,7 +44,7 @@
 
 		--'ccls',
 		--'clangd',
-		--'gopls',
+		'gopls',
 		--'rust_analyzer',
 		--'rls',
 		--'sourcekit',
@@ -62,7 +62,7 @@
 		--'r_language_server',
 
 		'sqlls',
-		'graphql',
+		--'graphql',
 		'bashls',
 		--'rnix',
 		'jsonls',
@@ -208,7 +208,7 @@
 		--'svlangserver',
 		--'svls',
 		--'syntax_tree',
-		'tailwindcss',
+		--'tailwindcss',
 		--'taplo',
 		--'tblgen_lsp_server',
 		--'teal_ls',
@@ -251,6 +251,13 @@
 				local lsp_format_modifications = require'lsp-format-modifications'
 				lsp_format_modifications.attach(client, bufnr, { format_on_save = false })
 			end
+
+			if client.name == 'eslint' then
+				vim.api.nvim_create_autocmd('BufWritePre', {
+					buffer = bufnr,
+					command = 'EslintFixAll',
+				})
+			end
 		end,
 	})
 
@@ -269,5 +276,26 @@
 				},
 				telemetry = { enable = false },
 			},
+		},
+	})
+
+	vim.lsp.config('gopls', {
+		settings = {
+			gopls = {
+				analyses = {
+					unusedparams = true,
+					unusedwrite  = true,
+					shadow       = true,
+				},
+				staticcheck    = true,
+				gofumpt        = true,
+				usePlaceholders = true,
+			},
+		},
+	})
+
+	vim.lsp.config('eslint', {
+		settings = {
+			workingDirectory = { mode = 'auto' }, -- handles monorepos
 		},
 	})

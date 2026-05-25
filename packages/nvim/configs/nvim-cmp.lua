@@ -93,8 +93,6 @@ cmp.setup({
 		{ name = 'nvim_lua',                max_item_count = nil, },
 		{ name = 'nvim_lsp_signature_help', max_item_count = 7,  },
 
-		{ name = 'emmet_vim', max_item_count = 1 },
-
 		--{ name = 'cmp_ai', max_item_count = 2,  }, -- FIX: not working
 		--{ name = 'cmp_tabnine', max_item_count = 3, },
 		--{ name = 'tags',        max_item_count = 3, },
@@ -165,3 +163,13 @@ cmp.setup({
 		},
 	},
 })
+
+-- emmet only where treesitter parsers exist for it
+for _, ft in ipairs({ 'html', 'css', 'scss', 'javascriptreact', 'typescriptreact' }) do
+	cmp.setup.filetype(ft, {
+		sources = cmp.config.sources(
+			{ { name = 'emmet_vim', max_item_count = 1 } },
+			cmp.get_config().sources
+		),
+	})
+end
