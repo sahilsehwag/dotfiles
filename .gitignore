@@ -16,3 +16,5 @@ packages/terminfo/.terminfo/61/alacritty-direct
 
 usage_data.json
 packages/vifm/scripts/README
+# Added by code-review-graph
+.code-review-graph/

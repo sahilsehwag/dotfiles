@@ -259,20 +259,6 @@ WKEOF
 }
 
 main() {
-    # Build lookup tables
-    declare -A key_cmd
-    declare -A key_ns
-
-    while IFS= read -r line; do
-        [[ -z "$line" ]] && continue
-        IFS='|' read -r key label cmd <<< "$line"
-        if [[ -n "$cmd" ]]; then
-            key_cmd["$key"]="$cmd"
-        elif is_namespace "$key"; then
-            key_ns["$key"]=1
-        fi
-    done < <(get_entries "$NAMESPACE")
-
     render
 
     # Read single keypress
@@ -294,9 +280,24 @@ main() {
         return 0
     fi
 
-    if [[ -v key_cmd["$char"] ]]; then
-        execute_cmd "${key_cmd[$char]}"
-    elif [[ -v key_ns["$char"] ]]; then
+    # Find matching entry by re-parsing (avoids bash 4 associative arrays)
+    local found_cmd="" found_ns=false
+    while IFS= read -r line; do
+        [[ -z "$line" ]] && continue
+        IFS='|' read -r key label cmd <<< "$line"
+        if [[ "$key" == "$char" ]]; then
+            if [[ -n "$cmd" ]]; then
+                found_cmd="$cmd"
+            elif is_namespace "$char"; then
+                found_ns=true
+            fi
+            break
+        fi
+    done < <(get_entries "$NAMESPACE")
+
+    if [[ -n "$found_cmd" ]]; then
+        execute_cmd "$found_cmd"
+    elif $found_ns; then
         local new_ns
         if [[ -z "$NAMESPACE" ]]; then
             new_ns="$char"
