@@ -15,7 +15,7 @@ chmod -R 777 ~/.local
 
 base=(curl wget make cmake gcc g++)
 git=(git gh glab mani git-workspace)
-dev=(python go rust node lua)
+dev=(python go rust node lua pipx nvm)
 utils=(rg fd sd choose path-extractor up redo yank grex gnu-sed)
 testing=(sregx srex ast-grep)
 data=(yq jq gron jc jo)

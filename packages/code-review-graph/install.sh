@@ -2,7 +2,7 @@
 
 F_install python
 
-if F_installed pipx; then
+if F_isInstalled pipx; then
 	pipx install code-review-graph
 elif F_isInstalled pip3; then
 	pip3 install code-review-graph                     # or: pipx install code-review-graph
