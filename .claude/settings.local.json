@@ -23,7 +23,8 @@
       "Bash(xargs -I{} sh -c 'echo \"=== {} ===\"; cat \"{}\"')",
       "Bash(python3 -m json.tool)",
       "Bash(xargs ls -la)",
-      "Read(//Users/sahil.sehwag/.config/dotfiles/**)"
+      "Read(//Users/sahil.sehwag/.config/dotfiles/**)",
+      "Bash(xargs -I{} sh -c 'echo \"=== {} ===\"; cat {}')"
     ]
   }
 }
