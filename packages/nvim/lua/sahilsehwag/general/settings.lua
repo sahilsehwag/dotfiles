@@ -243,6 +243,8 @@ end
 vim.cmd [[
 	let $PATH = fnamemodify(g:config.executables.node, ':p:h') . ':' . $PATH
 ]]
+-- Fallback: ensure homebrew node/npm is always reachable (used by Mason when nvm node is broken)
+vim.env.PATH = '/opt/uber/bin:' .. vim.env.PATH
 
 --MSWIN
 vim.cmd [[

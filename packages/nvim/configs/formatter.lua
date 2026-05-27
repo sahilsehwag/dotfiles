@@ -24,6 +24,12 @@ require("formatter").setup({
 		typescript      = { require("formatter.filetypes.typescript").prettier },
 		typescriptreact = { require("formatter.filetypes.typescriptreact").prettier },
 
+		proto = {
+			function()
+				return { exe = 'buf', args = { 'format', '-' }, stdin = true }
+			end,
+		},
+
 		-- Use the special '*' filetype for defining formatter configurations on
 		-- any filetype
 		["*"] = {

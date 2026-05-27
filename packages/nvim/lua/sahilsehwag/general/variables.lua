@@ -35,7 +35,7 @@ vim.cmd [[
 			\'executables': {
 				\'python2': '',
 				\'python3': '/usr/local/bin/python3',
-				\'node': expand('~/.nvm/versions/node/v12.18.3/bin/node'),
+				\'node': expand('~/.nvm/versions/node/v') . trim(readfile(expand('~/.nvm/alias/default'))[0]) . '/bin/node',
 				\'shell':
 					\ IsWindows()
 					\ ? "cmd"
