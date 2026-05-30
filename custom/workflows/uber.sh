@@ -122,6 +122,11 @@ ufrun() {
 # ==========================================
 # PROJECTS
 # ==========================================
+
+alias cdkpc="cd src/platform/gss/common/@uber/kwm-profile-components"
+alias cdfprw="cd src/platform/gss/common/@uber/retrace-web"
+alias cdrw="cd src/platform/gss/common/@uber/fusion-plugin-retrace-web"
+
 alias cdopw="cd src/platform/gss/kwm-portals/operator-portal-web"
 alias cdnpw="cd src/platform/gss/kwm-portals/nexus-portal-web"
 alias cdsh="cd src/platform/gss/kwm-portals/supplier-hub"

@@ -866,7 +866,7 @@ local ide = {
 		--"Fildo7525/pretty_hover", -- TODO: not working
 	},
 	--"VidocqH/lsp-lens.nvim", -- TODO: causing duplicate lenses
-	"jubnzv/virtual-types.nvim",
+	--"jubnzv/virtual-types.nvim", -- unmaintained; replaced by native vim.lsp.inlay_hint
 	--"weilbith/nvim-code-action-menu",
 	--"ray-x/lsp_signature.nvim",
 	--"WhoIsSethDaniel/toggle-lsp-diagnostics.nvim",

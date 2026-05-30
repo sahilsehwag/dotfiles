@@ -3,342 +3,79 @@
 	F.vim.nmap('<Leader>l.r', '<cmd>lua for _,c in ipairs(vim.lsp.get_clients({bufnr=0})) do vim.lsp.start(c.config) end<cr>')
 	F.vim.nmap('<Leader>l.k', '<cmd>lua vim.lsp.stop_client(vim.lsp.get_clients({bufnr=0}))<cr>')
 	F.vim.nmap('<Leader>l.i', '<cmd>checkhealth vim.lsp<cr>')
+
+-- LOADER (loads sibling servers/ and linters/ files by name)
+	local _dir = debug.getinfo(1, 'S').source:sub(2):match('(.+)/[^/]+$')
+	local function load_mod(rel)
+		local path = _dir .. '/' .. rel .. '.lua'
+		if vim.fn.filereadable(path) == 1 then
+			local ok, m = pcall(dofile, path)
+			return ok and m or nil
+		end
+	end
+
 -- SERVERS
 	local SERVERS = {
-		--'efm',
-		--'diagnosticls',
-		--'codeqlls',
-
 		'vimls',
 		'lua_ls',
-		--'pyright',
-		--'jedi_language_server',
-		--'pyls',
-		--'pyls_ms',
 
 		'html',
 		'cssls',
-		--'cssmodules_ls',
 		'eslint',
-		--'eslintls',
 		'ts_ls',
-		--'denols',
-		--'flow',
-		--'rome',
-		--'vuels',
-		--'svelte',
-		--'angularls',
+		--'tailwindcss',
+
+		--'pyright',
 
 		--'hls',
-		--'fsautocomplete',
-		--'fsharp_language_server',
-		--'elmls',
-		--'nimls',
-		--'clojure_lsp',
-		--'purescriptls',
-		--'ocamlls',
-		--'ocamllsp',
-		--'elixirls',
-		--'erlangls',
-		--'groovyls',
 
-		--'ccls',
 		--'clangd',
-		'gopls',
+		--'gopls',
 		--'rust_analyzer',
 		'protols',
-		--'rls',
-		--'sourcekit',
 
 		--'solargraph',
-		--'sorbet',
-		--'perlls',
 
 		--'jdtls',
-		--'metals',
-		--'omnisharp',
-		--'csharp_ls',
-		--'kotlin_language_server',
-
-		--'r_language_server',
 
 		'sqlls',
-		--'graphql',
 		'bashls',
-		--'rnix',
 		'jsonls',
 		'yamlls',
-		--'cmake',
 		'dockerls',
-		--'terraformls',
-		--'texlab',
-		--'dhall_lsp_server',
-
-		-- 'dartls',
-		--'haxe_language_server',
-		--'julials',
-		--'scry',
-
-		--'als',
-		--'anakin_language_server',
-		--'angularls',
-		--'ansiblels',
-		--'antlersls',
-		--'apex_ls',
-		--'arduino_language_server',
-		--'asm_lsp',
-		--'awk_ls',
-		--'beancount',
-		--'bicep',
-		--'blueprint_ls',
-		--'bright_script',
-		--'bsl_ls',
-		--'bufls',
-		--'cadence',
-		--'clarity_lsp',
-		--'coffeesense',
-		--'crystalline',
-		--'csharp_ls',
-		--'cucumber_language_server',
-		--'dafny',
-		--'dagger',
-		--'docker_compose_language_service',
-		--'dolmenls',
-		--'dotls',
-		--'drools_lsp',
-		--'ds_pinyin_lsp',
-		--'ember',
-		--'emmet_ls',
-		--'erg_language_server',
-		--'esbonio',
-		--'fennel_language_server',
-		--'fennel_ls',
-		--'flux_lsp',
-		--'foam_ls',
-		--'fortls',
-		--'fstar',
-		--'futhark_lsp',
-		--'gdscript',
-		--'ghcide',
-		--'ghdl_ls',
-		--'gleam',
-		--'glint',
-		--'glslls',
-		--'golangci_lint_ls',
-		--'gradle_ls',
-		--'grammarly',
-		--'hdl_checker',
-		--'hhvm',
-		--'hie',
-		--'hoon_ls',
-		--'idris2_lsp',
-		--'intelephense',
-		--'java_language_server',
-		--'jqls',
-		--'jsonnet_ls',
-		--'lean3ls',
-		--'leanls',
-		--'lelwel_ls',
 		'lemminx',
-		--'ltex',
-		--'lua_ls',
-		--'luau_lsp',
-		--'m68k',
-		--'marksman',
-		--'millet',
-		--'mint',
-		--'mlir_lsp_server',
-		--'mlir_pdll_lsp_server',
-		--'mm0_ls',
-		--'move_analyzer',
-		--'neocmake',
-		--'nickel_ls',
-		--'nil_ls',
-		--'nomad_lsp',
-		--'ntt',
-		--'nxls',
-		--'ols',
-		--'opencl_ls',
-		--'openscad_ls',
-		--'openscad_lsp',
-		--'pasls',
-		--'perlnavigator',
-		--'perlpls',
-		--'phan',
-		--'phpactor',
-		--'please',
-		--'powershell_es',
-		--'prismals',
-		--'prolog_ls',
-		--'prosemd_lsp',
-		--'psalm',
-		--'puppet',
-		--'pyls',
-		--'pyls_ms',
-		--'pylsp',
-		--'pyre',
-		--'qml_lsp',
-		--'qmlls',
-		--'quick_lint_js',
-		--'racket_langserver',
-		--'raku_navigator',
-		--'reason_ls',
-		--'relay_lsp',
-		--'remark_ls',
-		--'rescriptls',
-		--'robotframework_ls',
-		--'ruby_ls',
-		--'ruff_lsp',
-		--'salt_ls',
-		--'scheme_langserver',
-		--'serve_d',
-		--'sixtyfps',
-		--'slint_lsp',
-		--'smarty_ls',
-		--'smithy_ls',
-		--'solang',
-		--'solc',
-		--'solidity',
-		--'solidity_ls',
-		--'sourcery',
-		--'spectral',
-		--'starlark_rust',
-		--'steep',
-		--'stylelint_lsp',
-		--'sumneko_lua',
-		--'svlangserver',
-		--'svls',
-		--'syntax_tree',
-		--'tailwindcss',
-		--'taplo',
-		--'tblgen_lsp_server',
-		--'teal_ls',
-		--'terraform_lsp',
-		--'tflint',
-		--'theme_check',
-		--'tilt_ls',
-		--'turtle_ls',
-		--'typeprof',
-		--'unison',
-		--'unocss',
-		--'uvls',
-		--'vala_ls',
-		--'vdmj',
-		--'verible',
-		--'veridian',
-		--'veryl_ls',
-		--'visualforce_ls',
-		--'vls',
-		--'volar',
-		--'vtsls',
-		--'wgsl_analyzer',
-		--'zk',
-		--'zls',
 	}
 
+	for _, server in ipairs(SERVERS) do
+		local mod = load_mod('servers/' .. server)
+		if mod and mod.config then
+			vim.lsp.config(server, mod.config)
+		end
+		vim.lsp.enable(server)
+	end
+
+-- ATTACH
 	vim.api.nvim_create_autocmd('LspAttach', {
 		callback = function(ev)
 			local client = vim.lsp.get_client_by_id(ev.data.client_id)
 			if not client then return end
 			local bufnr = ev.buf
 
-			require("nvim-navbuddy").attach(client, bufnr)
+			require('nvim-navbuddy').attach(client, bufnr)
 
-			if client.name ~= 'ts_ls' and client.name ~= 'tailwindcss' then
-				require('virtualtypes').on_attach(client, bufnr)
+			if client.supports_method('textDocument/inlayHint') then
+				vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
 			end
 
-			if client.name == 'ts_ls' then
-				local lsp_format_modifications = require'lsp-format-modifications'
-				lsp_format_modifications.attach(client, bufnr, { format_on_save = false })
-			end
-
-			if client.name == 'eslint' then
-				vim.api.nvim_create_autocmd('BufWritePre', {
-					buffer = bufnr,
-					command = 'EslintFixAll',
-				})
+			local mod = load_mod('servers/' .. client.name)
+			if mod and mod.on_attach then
+				mod.on_attach(client, bufnr)
 			end
 		end,
 	})
 
-	for _, server in ipairs(SERVERS) do
-		vim.lsp.enable(server)
-	end
--- SERVER OVERRIDES (applied on top of lspconfig defaults via vim.lsp.config)
-	vim.lsp.config('lua_ls', {
-		settings = {
-			Lua = {
-				runtime = { version = 'LuaJIT' },
-				diagnostics = { globals = { 'vim' } },
-				workspace = {
-					library = vim.api.nvim_get_runtime_file('', true),
-					checkThirdParty = false,
-				},
-				telemetry = { enable = false },
-			},
-		},
-	})
-
-	vim.lsp.config('gopls', {
-		settings = {
-			gopls = {
-				analyses = {
-					unusedparams = true,
-					unusedwrite  = true,
-					shadow       = true,
-				},
-				staticcheck    = true,
-				gofumpt        = true,
-				usePlaceholders = true,
-			},
-		},
-	})
-
-	vim.lsp.config('eslint', {
-		settings = {
-			workingDirectory = { mode = 'auto' }, -- handles monorepos
-		},
-	})
-
-	vim.lsp.config('ts_ls', {
-		init_options = {
-			maxTsServerMemory = 16384, -- MB; raised for large monorepos (default ~3072)
-		},
-	})
-
--- PROTOLINT diagnostics (runs on save, populates vim.diagnostic)
-	local protolint_ns = vim.api.nvim_create_namespace('protolint')
-	vim.api.nvim_create_autocmd({ 'BufWritePost', 'BufReadPost' }, {
-		pattern = '*.proto',
-		callback = function(ev)
-			local fname = vim.api.nvim_buf_get_name(ev.buf)
-			if fname == '' then return end
-			vim.system(
-				{ 'protolint', 'lint', '--reporter', 'json', fname },
-				{ text = true },
-				function(result)
-					local diagnostics = {}
-					if result.stdout and result.stdout ~= '' then
-						local ok, data = pcall(vim.json.decode, result.stdout)
-						if ok and data and data.lints then
-							for _, lint in ipairs(data.lints) do
-								table.insert(diagnostics, {
-									lnum     = (lint.line or 1) - 1,
-									col      = (lint.column or 1) - 1,
-									message  = lint.message,
-									severity = lint.severity == 'error'
-										and vim.diagnostic.severity.ERROR
-										or vim.diagnostic.severity.WARN,
-									source   = 'protolint(' .. (lint.rule or '') .. ')',
-								})
-							end
-						end
-					end
-					vim.schedule(function()
-						vim.diagnostic.set(protolint_ns, ev.buf, diagnostics)
-					end)
-				end
-			)
-		end,
-	})
+-- LINTERS
+	local protolint  = load_mod('linters/protolint')
+	if protolint  then protolint.setup()  end
+	local shellcheck = load_mod('linters/shellcheck')
+	if shellcheck then shellcheck.setup() end

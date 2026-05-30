@@ -1,6 +1,7 @@
 require("mason-null-ls").setup({
 	ensure_installed = {
-		-- Opt to list sources here, when available in mason.
+		'shfmt',
+		'shellcheck',
 	},
 	automatic_installation = true,
 	handlers = {},

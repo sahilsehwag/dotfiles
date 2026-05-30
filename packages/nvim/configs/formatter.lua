@@ -24,6 +24,8 @@ require("formatter").setup({
 		typescript      = { require("formatter.filetypes.typescript").prettier },
 		typescriptreact = { require("formatter.filetypes.typescriptreact").prettier },
 
+		sh = { require("formatter.filetypes.sh").shfmt },
+
 		proto = {
 			function()
 				return { exe = 'buf', args = { 'format', '-' }, stdin = true }
