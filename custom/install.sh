@@ -9,6 +9,7 @@ source $script_directory/workflows/gh.sh
 source $script_directory/workflows/arc.sh
 source $script_directory/workflows/arh.sh
 source $script_directory/workflows/uber.sh
+source $script_directory/workflows/projects.sh
 
 # tools
 source $script_directory/cheat.sh
