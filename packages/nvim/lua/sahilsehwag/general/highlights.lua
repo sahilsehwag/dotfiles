@@ -54,6 +54,12 @@
 		vim.cmd [[
 			highlight SpellBad gui=undercurl guibg=#E06C75 ctermbg=204
 		]]
+	--DIAGNOSTICS
+		-- DiagnosticUnnecessary: grey/dimmed style for unused variables, imports, dead code.
+		-- LSPs (e.g. ts_ls) tag these with DiagnosticTag.Unnecessary; Neovim 0.10+ applies
+		-- this highlight group to them. virtual_text is disabled globally so this is the only
+		-- visual indicator — keeping it distinct but subtle (no underline clash with errors).
+		vim.api.nvim_set_hl(0, 'DiagnosticUnnecessary', { fg = '#6b7280', italic = true })
 	--RANDOM
 		vim.cmd [[
 			highlight! link SignColumn LineNr

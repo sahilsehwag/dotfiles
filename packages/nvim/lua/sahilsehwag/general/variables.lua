@@ -1,4 +1,11 @@
 vim.cmd [[
+	"PLUGIN GUARDS (must be set before plugins load)
+		" Disable vim-polyglot's graphql JS syntax extension; it calls
+		" graphql#has_syntax_group() which is provided by vim-graphql, and the
+		" load order causes E117 when vim-polyglot's after/syntax runs first.
+		" vim-graphql handles GraphQL syntax directly, so this is safe to disable.
+		let g:polyglot_disabled = ['graphql']
+
 	"SETUP
 		let g:config = {
 			\'plugins':
