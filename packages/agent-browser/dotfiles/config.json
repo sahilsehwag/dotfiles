@@ -1,0 +1,10 @@
+{
+  "$schema": "https://agent-browser.dev/schema/config.json",
+  "headless": true,
+  "timeout": 30000,
+  "viewport": {
+    "width": 1920,
+    "height": 1080
+  },
+  "userAgent": ""
+}

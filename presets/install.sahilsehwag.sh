@@ -17,7 +17,7 @@ base=(curl wget make cmake gcc g++)
 git=(git gh glab mani git-workspace)
 dev=(python go rust node lua pipx nvm)
 utils=(rg fd sd choose path-extractor up redo yank grex gnu-sed)
-testing=(sregx srex ast-grep)
+testing=(sregx srex ast-grep fallow)
 data=(yq jq gron jc jo)
 alts=(
 	sshs
@@ -30,7 +30,7 @@ alts=(
 tools=(broot fasd sad zoxide)
 fonts=(font-fira-code)
 # kanata (kmonad alternative)
-apps=(fzf zsh tmux nvim vifm lazygit kanata)
+apps=(fzf zsh tmux nvim vifm lazygit kanata agent-browser oh-my-pi)
 misc=(terminfo)
 ai=(cursor windsurf windsurf@next claude gemini opencode codex cursor-agent)
 mac=(

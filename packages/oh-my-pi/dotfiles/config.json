@@ -1,0 +1,26 @@
+{
+  "$schema": "https://oh-my-pi.dev/schema/config.json",
+  "providers": {
+    "default": "claude",
+    "subagent": "claude",
+    "reasoning": "claude",
+    "planning": "claude"
+  },
+  "models": {
+    "default": "claude-opus-4-8",
+    "subagent": "claude-haiku-4-5",
+    "reasoning": "claude-opus-4-8",
+    "planning": "claude-sonnet-4-6"
+  },
+  "tools": {
+    "lsp": true,
+    "debugger": true,
+    "web": true,
+    "filesystem": true,
+    "execution": true
+  },
+  "completion": {
+    "auto": true,
+    "shell": "zsh"
+  }
+}
