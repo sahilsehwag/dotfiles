@@ -206,6 +206,116 @@ keybinding:
     update: 'u'
     bulkMenu: 'b'
 customCommands:
+  - key: 'A'
+    description: 'ARH'
+    commandMenu:
+      # ── New Branch ──
+      - key: 'n'
+        description: 'New feature branch from focused branch'
+        context: 'localBranches'
+        prompts:
+          - type: 'input'
+            title: 'Feature branch name:'
+            key: 'BranchName'
+        command: 'arh feature {{.Form.BranchName}} --parent {{.SelectedLocalBranch.Name}}'
+        output: terminal
+      # ── Publish ──
+      - key: 'p'
+        description: 'Publish'
+        commandMenu:
+          - key: 'p'
+            description: 'Publish current stack (root to checked-out)'
+            context: 'localBranches'
+            command: 'arh publish'
+            output: terminal
+          - key: 'f'
+            description: 'Publish full stack (root to leaf)'
+            context: 'localBranches'
+            command: 'arh publish --full-stack'
+            output: terminal
+          - key: 'b'
+            description: 'Checkout focused branch, then publish'
+            context: 'localBranches'
+            command: 'git checkout {{.SelectedLocalBranch.Name}} && arh publish'
+            output: terminal
+          - key: 'F'
+            description: 'Checkout focused branch, then publish full stack'
+            context: 'localBranches'
+            command: 'git checkout {{.SelectedLocalBranch.Name}} && arh publish --full-stack'
+            output: terminal
+      # ── Merge ──
+      - key: 'm'
+        description: 'Merge'
+        commandMenu:
+          - key: 'm'
+            description: 'Merge current stack (checked-out + ancestors)'
+            context: 'localBranches'
+            command: 'arh merge'
+            output: terminal
+          - key: 'f'
+            description: 'Merge full stack (root to leaf)'
+            context: 'localBranches'
+            command: 'arh merge --full-stack'
+            output: terminal
+          - key: 'b'
+            description: 'Checkout focused branch, then merge'
+            context: 'localBranches'
+            command: 'git checkout {{.SelectedLocalBranch.Name}} && arh merge'
+            output: terminal
+          - key: 'F'
+            description: 'Checkout focused branch, then merge full stack'
+            context: 'localBranches'
+            command: 'git checkout {{.SelectedLocalBranch.Name}} && arh merge --full-stack'
+            output: terminal
+      # ── Rebase ──
+      - key: 'r'
+        description: 'Rebase'
+        commandMenu:
+          - key: 'r'
+            description: 'Rebase current stack (root to checked-out)'
+            context: 'localBranches'
+            command: 'arh rebase'
+            output: terminal
+          - key: 's'
+            description: 'Rebase current stack with sync'
+            context: 'localBranches'
+            command: 'arh rebase --sync'
+            output: terminal
+          - key: 'u'
+            description: 'Rebase uptree to focused branch'
+            context: 'localBranches'
+            command: 'arh rebase -u {{.SelectedLocalBranch.Name}}'
+            output: terminal
+          - key: 't'
+            description: 'Rebase full tree from focused branch'
+            context: 'localBranches'
+            command: 'arh rebase -t {{.SelectedLocalBranch.Name}}'
+            output: terminal
+          - key: 'f'
+            description: 'Rebase only focused branch'
+            context: 'localBranches'
+            command: 'arh rebase -f {{.SelectedLocalBranch.Name}}'
+            output: terminal
+      # ── Restack ──
+      - key: 's'
+        description: 'Restack'
+        commandMenu:
+          - key: 's'
+            description: 'Restack checked-out branch onto focused branch'
+            context: 'localBranches'
+            command: 'arh restack -f {{.CheckedOutBranch.Name}} --parent {{.SelectedLocalBranch.Name}}'
+            output: terminal
+          - key: 'f'
+            description: 'Restack focused branch onto new parent'
+            context: 'localBranches'
+            prompts:
+              - type: 'input'
+                title: 'New parent branch:'
+                key: 'ParentBranch'
+                suggestions:
+                  preset: branches
+            command: 'arh restack -f {{.SelectedLocalBranch.Name}} --parent {{.Form.ParentBranch}}'
+            output: terminal
 refresher:
   refreshInterval: 10 # File/submodule refresh interval in seconds. Auto-refresh can be disabled via option 'git.autoRefresh'.
   fetchInterval: 60 # Re-fetch interval in seconds. Auto-fetch can be disabled via option 'git.autoFetch'.
