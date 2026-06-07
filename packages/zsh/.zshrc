@@ -111,4 +111,4 @@
 #TEMPORAL
 
 #LOCAL
-[ -f "$HOME/.local.zshrc" ] && source "$HOME/.local.zshrc"
+[ -f "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"

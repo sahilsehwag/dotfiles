@@ -11,4 +11,4 @@ if ! F_isSoftlink "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/configs"; then
 fi
 chsh -s "$(which zsh)"
 touch "$HOME/.tokens"
-touch "$HOME/.local.zshrc"
+touch "$HOME/.zshrc.local"
