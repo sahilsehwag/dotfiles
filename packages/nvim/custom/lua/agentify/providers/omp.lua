@@ -47,7 +47,10 @@ end
 
 -- find_session returns the most recent session id for a cwd, or nil.
 function M.find_session(root)
-	local slug = root:gsub('^/', ''):gsub('/', '-')
+	-- omp encodes cwd by stripping $HOME then replacing every / with -
+	local home = vim.fn.expand('~')
+	local rel  = root:gsub('^' .. vim.pesc(home), '')
+	local slug = rel:gsub('/', '-')
 	local dir  = vim.fn.expand('~/.omp/agent/sessions/') .. slug
 	local entries = vim.fn.glob(dir .. '/*.jsonl', false, true)
 	if #entries == 0 then return nil end
