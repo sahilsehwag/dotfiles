@@ -25,7 +25,8 @@
 #VARIABLES
 	#ENVIORNMENT
 		export EDITOR=nvim
-		source $HOME/.tokens
+		source "$HOME/.tokens"
+		export PATH="$HOME/.local/bin:$PATH"
 	#META
 		if [[ "$OSTPYPE" == "darwin"* ]]; then
 			jatPlatform=mac
@@ -106,4 +107,8 @@
 				source "$HB_CNF_HANDLER";
 			fi
 		fi
+
 #TEMPORAL
+
+#LOCAL
+[ -f "$HOME/.local.zshrc" ] && source "$HOME/.local.zshrc"

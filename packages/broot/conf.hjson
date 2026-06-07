@@ -92,6 +92,9 @@
     #     "/home/dys/useless"    : hide
     #     "/home/dys/my-link-I-want-to-explore"    : enter
     # }
+    special_paths: {
+        "node_modules": hide
+    }
 
     ###############################################################
     # Quit on last cancel

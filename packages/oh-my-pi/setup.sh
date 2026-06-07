@@ -30,6 +30,11 @@ if command -v bash &> /dev/null; then
     echo "✓ Bash completions generated"
 fi
 
+# Enable shell integration if available
+if command -v omp &> /dev/null; then
+    eval "$(omp init)"
+fi
+
 echo ""
 echo "✓ oh-my-pi setup complete!"
 echo ""
