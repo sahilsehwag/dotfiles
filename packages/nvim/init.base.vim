@@ -79,6 +79,7 @@
 		runtime configs/mani.lua
 		runtime configs/fasd.lua
 		runtime configs/nix.lua
+		runtime configs/agentify.lua
 	end
 
 	lua require('better-g')
