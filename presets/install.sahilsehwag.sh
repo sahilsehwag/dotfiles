@@ -32,7 +32,7 @@ fonts=(font-fira-code)
 # kanata (kmonad alternative)
 apps=(fzf zsh tmux nvim vifm lazygit kanata pi)
 misc=(terminfo)
-ai=(cursor claude opencode agent-browser oh-my-pi fallow)
+ai=(cursor claude opencode agent-browser oh-my-pi fallow mattpocock-skills)
 mac=(
 	alacritty #warp
 	#kindavim #svim #macos wide vim emulation
