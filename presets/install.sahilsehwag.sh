@@ -32,7 +32,8 @@ fonts=(font-fira-code)
 # kanata (kmonad alternative)
 apps=(fzf zsh tmux nvim vifm lazygit kanata pi)
 misc=(terminfo)
-ai=(cursor claude opencode agent-browser oh-my-pi fallow mattpocock-skills plannotator)
+ai=(cursor cursor-agent claude opencode agent-browser oh-my-pi fallow)
+skills=(visual-plan visual-recap mattpocock-skills plannotator)
 mac=(
 	alacritty #warp
 	#kindavim #svim #macos wide vim emulation
@@ -49,7 +50,7 @@ gui=(
 	espanso
 )
 
-F_install ${setup[@]} ${base[@]} ${git[@]} ${dev[@]} ${utils[@]} ${data[@]} ${testing[@]} ${alts[@]} ${tools[@]} ${fonts[@]} ${apps[@]} ${misc[@]}
+F_install ${setup[@]} ${base[@]} ${git[@]} ${dev[@]} ${utils[@]} ${data[@]} ${testing[@]} ${alts[@]} ${tools[@]} ${fonts[@]} ${apps[@]} ${misc[@]} ${skills[@]}
 
 if F_isMac; then
 	F_install ${mac[@]}
