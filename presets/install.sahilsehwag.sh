@@ -34,6 +34,7 @@ apps=(fzf zsh tmux nvim vifm lazygit kanata pi)
 misc=(terminfo)
 ai=(cursor cursor-agent claude opencode agent-browser oh-my-pi fallow)
 skills=(visual-plan visual-recap mattpocock-skills plannotator)
+mcps=(chrome-devtools-mcp)
 mac=(
 	alacritty #warp
 	#kindavim #svim #macos wide vim emulation
@@ -50,7 +51,7 @@ gui=(
 	espanso
 )
 
-F_install ${setup[@]} ${base[@]} ${git[@]} ${dev[@]} ${utils[@]} ${data[@]} ${testing[@]} ${alts[@]} ${tools[@]} ${fonts[@]} ${apps[@]} ${misc[@]} ${skills[@]}
+F_install ${setup[@]} ${base[@]} ${git[@]} ${dev[@]} ${utils[@]} ${data[@]} ${testing[@]} ${alts[@]} ${tools[@]} ${fonts[@]} ${apps[@]} ${misc[@]} ${skills[@]} ${mcps[@]}
 
 if F_isMac; then
 	F_install ${mac[@]}
