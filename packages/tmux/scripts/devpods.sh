@@ -28,6 +28,23 @@ case "$1" in
 		fi
 		;;
 
+	ssh-tmux)
+		# Open the devpod straight into a REMOTE tmux session and mark the
+		# window for relay mode (@ssh_tmux=1). Splits/windows/popups are then
+		# relayed into the remote tmux, which owns cwd/layout natively.
+		name="$2" region_dns="$3"
+		fqdn="$(fqdn "$name" "$region_dns")"
+
+		if [[ -x "$HOME/.config/tmux/plugins/tmux-ssh/bin/tmux-ssh" ]]; then
+			win="$(tmux new-window -P -F '#{window_id}' -n "dp:$name" \
+				"ssh $fqdn -t 'tmux new-session -A -s main'")"
+			tmux set-window-option -t "$win" @ssh_host "$fqdn"
+			tmux set-window-option -t "$win" @ssh_tmux "1"
+		else
+			tmux new-window -n "dp:$name" "ssh $fqdn -t 'tmux new-session -A -s main'"
+		fi
+		;;
+
 	info)
 		name="$2"
 		tmux new-window -n "info:$name" "devpod info $name; read"
@@ -86,8 +103,9 @@ case "$1" in
 				--delimiter='\t' \
 				--with-nth=1 \
 				--prompt="Devpods > " \
-				--header="enter:ssh  ctrl-i:info  ctrl-s:start  ctrl-x:stop  ctrl-r:restart  ctrl-d:delete  ctrl-n:create" \
+				--header="enter:ssh  ctrl-t:ssh+tmux  ctrl-i:info  ctrl-s:start  ctrl-x:stop  ctrl-r:restart  ctrl-d:delete  ctrl-n:create" \
 				--bind="enter:execute($SCRIPT ssh {2} {3})+abort" \
+				--bind="ctrl-t:execute($SCRIPT ssh-tmux {2} {3})+abort" \
 				--bind="ctrl-i:execute($SCRIPT info {2})+abort" \
 				--bind="ctrl-s:execute($SCRIPT start {2})+abort" \
 				--bind="ctrl-x:execute($SCRIPT stop {2})+abort" \

@@ -1,0 +1,73 @@
+#!/usr/bin/env bash
+# tsh-diag — diagnostic for tmux-ssh context detection.
+# Run this while focused on a tmux pane that is INSIDE an SSH session
+# (and again after running `tmux` remotely, and after `cd`-ing remotely).
+#
+# It dumps everything the plugin could possibly use to detect:
+#   - whether the pane is an SSH session
+#   - the remote host
+#   - whether a remote tmux is running
+#   - the remote working directory
+#
+# Usage (from a local shell, targeting the active pane):
+#   bin/tsh-diag
+# Or bind it and eyeball the popup.
+
+pane="${1:-$(tmux display-message -p '#{pane_id}')}"
+
+hr() { printf '%s\n' "────────────────────────────────────────────"; }
+
+echo "TMUX-SSH DIAGNOSTIC"
+hr
+echo "pane_id                : $pane"
+echo "pane_current_command   : $(tmux display-message -p -t "$pane" '#{pane_current_command}')"
+echo "pane_title             : $(tmux display-message -p -t "$pane" '#{pane_title}')"
+echo "pane_current_path      : $(tmux display-message -p -t "$pane" '#{pane_current_path}')"
+echo "pane_pid               : $(tmux display-message -p -t "$pane" '#{pane_pid}')"
+echo "pane_tty               : $(tmux display-message -p -t "$pane" '#{pane_tty}')"
+hr
+echo "window options:"
+echo "  @ssh_host            : $(tmux show-window-options -t "$pane" -v @ssh_host 2>/dev/null)"
+echo "  @ssh_dir             : $(tmux show-window-options -t "$pane" -v @ssh_dir 2>/dev/null)"
+echo "  @ssh_tmux            : $(tmux show-window-options -t "$pane" -v @ssh_tmux 2>/dev/null)"
+hr
+
+pane_pid="$(tmux display-message -p -t "$pane" '#{pane_pid}')"
+
+echo "process tree under pane_pid ($pane_pid):"
+if command -v pstree >/dev/null 2>&1; then
+	pstree -p "$pane_pid" 2>/dev/null || pstree "$pane_pid" 2>/dev/null
+fi
+# Portable child listing via ps
+echo "--- ps descendants ---"
+ps -o pid,ppid,command -ax 2>/dev/null | awk -v root="$pane_pid" '
+	{ ppid[$1]=$2; cmd[$1]=$0 }
+	END {
+		# BFS from root
+		n=1; q[1]=root; seen[root]=1
+		for (i=1; i<=n; i++) {
+			pid=q[i]
+			if (pid in cmd) print cmd[pid]
+			for (p in ppid) if (ppid[p]==pid && !(p in seen)) { seen[p]=1; q[++n]=p }
+		}
+	}'
+hr
+
+echo "ssh child args (looking for the ssh invocation + destination):"
+ps -o pid,ppid,command -ax 2>/dev/null | awk -v root="$pane_pid" '
+	{ ppid[$1]=$2; full[$1]=""; for(i=3;i<=NF;i++) full[$1]=full[$1] $i " " }
+	END {
+		n=1; q[1]=root; seen[root]=1
+		for (i=1; i<=n; i++) {
+			pid=q[i]
+			if (full[pid] ~ /(^| )ssh /) print "  ssh: " full[pid]
+			for (p in ppid) if (ppid[p]==pid && !(p in seen)) { seen[p]=1; q[++n]=p }
+		}
+	}'
+hr
+
+echo "NOTE: run this 3 times:"
+echo "  1) right after ssh-ing into the devpod (at remote shell prompt)"
+echo "  2) after cd-ing to a project dir remotely"
+echo "  3) after running 'tmux' inside the devpod"
+echo "Then paste all three outputs back."

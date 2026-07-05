@@ -3,6 +3,11 @@
 #
 # Each new view = fresh SSH session into the remote host.
 # Local tmux is in full control. No nested tmux.
+#
+# Remote cwd resolution:
+#   - If @ssh_dir is set (via ssh-attach), use it.
+#   - Otherwise probe the live remote cwd with `ssh <host> pwd` at keypress.
+#     Set @ssh_no_probe=1 on the window to skip the probe (opens in $HOME).
 
 PLUGIN_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 source "$PLUGIN_DIR/lib/context.sh"
@@ -10,13 +15,72 @@ source "$PLUGIN_DIR/lib/context.sh"
 VERB="$1"
 shift
 
+# Resolve the remote working directory.
+# Prefers explicit @ssh_dir; falls back to a live probe that reads the
+# *interactive* remote shell's cwd from /proc (a fresh `ssh host pwd` would
+# only return $HOME, since a new connection can't see another session's cd).
+_tsh_resolve_dir() {
+	# Already known from window var → use it.
+	if [ -n "$TSH_DIR" ]; then
+		printf '%s' "$TSH_DIR"
+		return
+	fi
+
+	# User opted out of probing.
+	local no_probe
+	no_probe=$(tmux show-window-options -v @ssh_no_probe 2>/dev/null)
+	[ "$no_probe" = "1" ] && return
+
+	[ -z "$TSH_HOST" ] && return
+
+	tmux display-message "tmux-ssh: probing remote cwd on $TSH_HOST…"
+
+	# Remote probe: pick the newest interactive (pts-attached) login shell
+	# that is NOT in the probe connection's own process ancestry, and read
+	# its cwd via /proc. Falls back to empty (→ remote $HOME) on any failure.
+	local remote_pwd
+	remote_pwd=$(ssh -o BatchMode=yes -o ConnectTimeout=8 "$TSH_HOST" '
+		self=$$
+		anc=" $self "
+		p=$self
+		while [ "$p" -gt 1 ]; do
+			pp=$(awk "{print \$4}" /proc/$p/stat 2>/dev/null) || break
+			[ -z "$pp" ] && break
+			anc="$anc $pp "
+			p=$pp
+		done
+		best_start=0; best_cwd=""
+		for pid in $(pgrep -u "$(id -u)" -x zsh 2>/dev/null; pgrep -u "$(id -u)" -x bash 2>/dev/null); do
+			case "$anc" in *" $pid "*) continue;; esac
+			tty=$(readlink /proc/$pid/fd/0 2>/dev/null)
+			case "$tty" in *pts*) ;; *) continue;; esac
+			cwd=$(readlink /proc/$pid/cwd 2>/dev/null) || continue
+			[ -z "$cwd" ] && continue
+			st=$(awk "{print \$22}" /proc/$pid/stat 2>/dev/null)
+			if [ -n "$st" ] && [ "$st" -gt "$best_start" ]; then best_start=$st; best_cwd=$cwd; fi
+		done
+		printf "%s" "$best_cwd"
+	' 2>/dev/null)
+	printf '%s' "$remote_pwd"
+}
+
+RESOLVED_DIR="$(_tsh_resolve_dir)"
+
+# Escape a value for safe embedding inside a single-quoted string:
+#   foo'bar → foo'\''bar
+_tsh_sq() { printf "%s" "$1" | sed "s/'/'\\\\''/g"; }
+
 # Build SSH launch string for a pane.
 # With CMD: cd dir, run cmd, keep shell after.
 # Without: cd dir, shell.
+# The whole remote command is single-quoted for `-t`; the cwd is nested-quoted
+# with '\'' escaping so paths with spaces or quotes survive.
 ssh_launch() {
 	local cmd="$1"
 	local cd_prefix=""
-	[ -n "$TSH_DIR" ] && cd_prefix="cd $TSH_DIR && "
+	if [ -n "$RESOLVED_DIR" ]; then
+		cd_prefix="cd '\''$(_tsh_sq "$RESOLVED_DIR")'\'' && "
+	fi
 
 	if [ -n "$cmd" ]; then
 		echo "ssh $TSH_HOST -t '${cd_prefix}${cmd}; exec \$SHELL'"
@@ -43,7 +107,7 @@ case "$VERB" in
 	run)
 		# No exec $SHELL — pane closes when done
 		cd_prefix=""
-		[ -n "$TSH_DIR" ] && cd_prefix="cd $TSH_DIR && "
+		[ -n "$RESOLVED_DIR" ] && cd_prefix="cd '\''$(_tsh_sq "$RESOLVED_DIR")'\'' && "
 		LAUNCH="ssh $TSH_HOST -t '${cd_prefix}$*'"
 		tmux new-window "$LAUNCH"
 		;;

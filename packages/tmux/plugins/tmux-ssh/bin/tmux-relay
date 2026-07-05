@@ -21,24 +21,26 @@ case "$VERB" in
 	split)
 		DIR="$1"
 		shift
+		# -c '#{pane_current_path}' is expanded by the REMOTE tmux, so the
+		# new split inherits the remote pane's current directory.
 		if [ -n "$*" ]; then
-			remote_tmux "split-window $DIR '$*'"
+			remote_tmux "split-window $DIR -c '#{pane_current_path}' '$*'"
 		else
-			remote_tmux "split-window $DIR"
+			remote_tmux "split-window $DIR -c '#{pane_current_path}'"
 		fi
 		;;
 	window)
 		if [ -n "$*" ]; then
-			remote_tmux "new-window '$*'"
+			remote_tmux "new-window -c '#{pane_current_path}' '$*'"
 		else
-			remote_tmux "new-window"
+			remote_tmux "new-window -c '#{pane_current_path}'"
 		fi
 		;;
 	popup)
-		remote_tmux "display-popup -E -w 90% -h 90% -x C -y C '${*:-\$SHELL}'"
+		remote_tmux "display-popup -E -w 90% -h 90% -x C -y C -d '#{pane_current_path}' '${*:-\$SHELL}'"
 		;;
 	run)
-		remote_tmux "new-window '$*'"
+		remote_tmux "new-window -c '#{pane_current_path}' '$*'"
 		;;
 	*)
 		# Raw relay: tmux-relay <any tmux command>
