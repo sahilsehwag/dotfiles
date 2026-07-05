@@ -71,7 +71,55 @@ case "$1" in
 		;;
 
 	create)
-		tmux new-window -n "dp:create" "devpod create"
+		# Open an interactive gum wizard in a new window. The window is the TTY
+		# gum needs; it stays open on completion/error via the wizard's own read.
+		tmux new-window -n "dp:create" "$SCRIPT create-wizard"
+		;;
+
+	create-wizard)
+		# Interactive create flow driven by gum. Runs inside a tmux window.
+		if ! command -v gum >/dev/null 2>&1; then
+			printf '\n  gum is required for the create wizard. Install it and retry.\n'
+			printf '  (brew install gum)\n\n'
+			read -r _
+			exit 1
+		fi
+
+		printf '\n  Create a new devpod\n\n'
+
+		name=$(gum input --prompt "Name: " --placeholder "e.g. sahilsehwag-web") || exit 0
+		if [ -z "$name" ]; then
+			printf '\n  Cancelled: a name is required (empty name provisions a random pod).\n\n'
+			read -r _
+			exit 0
+		fi
+
+		flavor=$(gum choose --header "Flavor:" \
+			base go java android web ml uberone base-arm) || exit 0
+
+		region=$(gum choose --header "Region:" \
+			india oregon virginia netherlands brazil) || exit 0
+
+		channel=$(gum choose --header "Release channel:" \
+			stable rc dev none) || exit 0
+
+		# Build the command
+		args=(--name "$name" --flavor "$flavor" --region "$region" --release-channel "$channel")
+
+		printf '\n  Will run: '
+		gum style --foreground 75 "devpod create ${args[*]}"
+		printf '\n'
+
+		if ! gum confirm "Create this devpod?"; then
+			printf '\n  Cancelled.\n\n'
+			read -r _
+			exit 0
+		fi
+
+		printf '\n'
+		devpod create "${args[@]}"
+		printf '\n  [done — press enter to close]\n'
+		read -r _
 		;;
 
 	*)
