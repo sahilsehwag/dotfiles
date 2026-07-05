@@ -390,6 +390,9 @@ local core = {
 
 	--dependencies
 	"Shougo/vimproc.vim",
+
+	--ssh
+	'nosduco/remote-sshfs.nvim',
 }
 local editor = {
 	--libraries
@@ -1804,7 +1807,6 @@ local testing = {
 	--'LeafCage/yankround.vim',
 	--'tomtom/tregisters_vim',
 	--'kovisoft/slimv',
-	--'Shougo/neossh.vim',
 	--'lokikl/shellbridge',
 	--'rhysd/warp.vim',
 	--'jalvesaq/vimcmdline',
