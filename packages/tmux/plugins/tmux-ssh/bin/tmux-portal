@@ -15,31 +15,18 @@ source "$PLUGIN_DIR/lib/context.sh"
 VERB="$1"
 shift
 
-# Resolve the remote working directory.
-# Prefers explicit @ssh_dir; falls back to a live probe that reads the
-# *interactive* remote shell's cwd from /proc (a fresh `ssh host pwd` would
-# only return $HOME, since a new connection can't see another session's cd).
-_tsh_resolve_dir() {
-	# Already known from window var → use it.
-	if [ -n "$TSH_DIR" ]; then
-		printf '%s' "$TSH_DIR"
-		return
-	fi
+# TTL (seconds) for the cached remote cwd. Within this window we use the
+# cache instantly and refresh in the background; older than this we probe
+# synchronously. Override with @ssh_cwd_ttl.
+_TSH_CWD_TTL_DEFAULT=15
 
-	# User opted out of probing.
-	local no_probe
-	no_probe=$(tmux show-window-options -v @ssh_no_probe 2>/dev/null)
-	[ "$no_probe" = "1" ] && return
-
+# The raw remote probe: read the newest interactive (pts-attached) login
+# shell's cwd from /proc, excluding the probe connection's own ancestry.
+# Prints the cwd (empty on failure). Uses ControlMaster if configured; the
+# connection reuse is what makes this fast.
+_tsh_probe_remote_cwd() {
 	[ -z "$TSH_HOST" ] && return
-
-	tmux display-message "tmux-ssh: probing remote cwd on $TSH_HOST…"
-
-	# Remote probe: pick the newest interactive (pts-attached) login shell
-	# that is NOT in the probe connection's own process ancestry, and read
-	# its cwd via /proc. Falls back to empty (→ remote $HOME) on any failure.
-	local remote_pwd
-	remote_pwd=$(ssh -o BatchMode=yes -o ConnectTimeout=8 "$TSH_HOST" '
+	ssh -o BatchMode=yes -o ConnectTimeout=8 "$TSH_HOST" '
 		self=$$
 		anc=" $self "
 		p=$self
@@ -60,8 +47,64 @@ _tsh_resolve_dir() {
 			if [ -n "$st" ] && [ "$st" -gt "$best_start" ]; then best_start=$st; best_cwd=$cwd; fi
 		done
 		printf "%s" "$best_cwd"
-	' 2>/dev/null)
-	printf '%s' "$remote_pwd"
+	' 2>/dev/null
+}
+
+# Probe and write the result into the window cache (cwd + unix timestamp).
+# Meant to be run in the foreground OR backgrounded for a silent refresh.
+_tsh_probe_and_cache() {
+	local cwd
+	cwd=$(_tsh_probe_remote_cwd)
+	if [ -n "$cwd" ]; then
+		tmux set-window-option "@ssh_cwd_cache" "$cwd" 2>/dev/null
+		tmux set-window-option "@ssh_cwd_ts" "$(date +%s)" 2>/dev/null
+	fi
+	printf '%s' "$cwd"
+}
+
+# Resolve the remote working directory.
+# Order: explicit @ssh_dir → fresh cache (background-refresh) → sync probe.
+_tsh_resolve_dir() {
+	# Explicit dir wins.
+	if [ -n "$TSH_DIR" ]; then
+		printf '%s' "$TSH_DIR"
+		return
+	fi
+
+	# User opted out of probing entirely.
+	local no_probe
+	no_probe=$(tmux show-window-options -v @ssh_no_probe 2>/dev/null)
+	[ "$no_probe" = "1" ] && return
+
+	[ -z "$TSH_HOST" ] && return
+
+	local ttl cache ts now age
+	ttl=$(tmux show-window-options -v @ssh_cwd_ttl 2>/dev/null)
+	[ -z "$ttl" ] && ttl=$_TSH_CWD_TTL_DEFAULT
+	cache=$(tmux show-window-options -v @ssh_cwd_cache 2>/dev/null)
+	ts=$(tmux show-window-options -v @ssh_cwd_ts 2>/dev/null)
+	now=$(date +%s)
+
+	if [ -n "$cache" ] && [ -n "$ts" ]; then
+		age=$(( now - ts ))
+		if [ "$age" -lt "$ttl" ]; then
+			# Fresh: use cache instantly, refresh in the background.
+			( _tsh_probe_and_cache >/dev/null 2>&1 & ) >/dev/null 2>&1
+			printf '%s' "$cache"
+			return
+		fi
+	fi
+
+	# No cache or stale: probe synchronously (fast when ControlMaster is up).
+	tmux display-message "tmux-ssh: probing remote cwd on $TSH_HOST…"
+	local fresh
+	fresh=$(_tsh_probe_and_cache)
+	# If the probe failed but we have a stale cache, prefer stale over $HOME.
+	if [ -z "$fresh" ] && [ -n "$cache" ]; then
+		printf '%s' "$cache"
+		return
+	fi
+	printf '%s' "$fresh"
 }
 
 RESOLVED_DIR="$(_tsh_resolve_dir)"
