@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+# tmux-portal <verb> [options] [CMD]
+#
+# Each new view = fresh SSH session into the remote host.
+# Local tmux is in full control. No nested tmux.
+
+PLUGIN_DIR="$(cd "$(dirname "$0")/.." && pwd)"
+source "$PLUGIN_DIR/lib/context.sh"
+
+VERB="$1"
+shift
+
+# Build SSH launch string for a pane.
+# With CMD: cd dir, run cmd, keep shell after.
+# Without: cd dir, shell.
+ssh_launch() {
+	local cmd="$1"
+	local cd_prefix=""
+	[ -n "$TSH_DIR" ] && cd_prefix="cd $TSH_DIR && "
+
+	if [ -n "$cmd" ]; then
+		echo "ssh $TSH_HOST -t '${cd_prefix}${cmd}; exec \$SHELL'"
+	else
+		echo "ssh $TSH_HOST -t '${cd_prefix}exec \$SHELL'"
+	fi
+}
+
+case "$VERB" in
+	split)
+		DIR="$1"
+		shift
+		LAUNCH=$(ssh_launch "$*")
+		tmux split-window "$DIR" "$LAUNCH"
+		;;
+	window)
+		LAUNCH=$(ssh_launch "$*")
+		tmux new-window "$LAUNCH"
+		;;
+	popup)
+		LAUNCH=$(ssh_launch "$*")
+		tmux display-popup -E -w 90% -h 90% -x C -y C "$LAUNCH"
+		;;
+	run)
+		# No exec $SHELL — pane closes when done
+		cd_prefix=""
+		[ -n "$TSH_DIR" ] && cd_prefix="cd $TSH_DIR && "
+		LAUNCH="ssh $TSH_HOST -t '${cd_prefix}$*'"
+		tmux new-window "$LAUNCH"
+		;;
+	*)
+		echo "tmux-portal: unknown verb '$VERB'" >&2
+		exit 1
+		;;
+esac

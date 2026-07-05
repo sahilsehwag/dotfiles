@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+# tmux-ssh <verb> [options] [CMD]
+#
+# Routes to relay, portal, or native based on context:
+#   @ssh_tmux=1 + @ssh_host set  →  tmux-relay
+#   @ssh_host set (no tmux flag) →  tmux-portal
+#   neither                      →  native tmux
+#
+# Verbs: split -h|-v, window, popup, run
+
+PLUGIN_DIR="$(cd "$(dirname "$0")/.." && pwd)"
+source "$PLUGIN_DIR/lib/context.sh"
+
+if [ -n "$TSH_HOST" ] && [ "$TSH_HAS_TMUX" = "1" ]; then
+	exec "$PLUGIN_DIR/bin/tmux-relay" "$@"
+elif [ -n "$TSH_HOST" ]; then
+	exec "$PLUGIN_DIR/bin/tmux-portal" "$@"
+else
+	# Native passthrough
+	VERB="$1"
+	shift
+	case "$VERB" in
+		split)
+			DIR="$1"
+			shift
+			CWD_ARG=()
+			[ -n "$TSH_CWD" ] && CWD_ARG=(-c "$TSH_CWD")
+			if [ -n "$*" ]; then
+				tmux split-window "$DIR" "${CWD_ARG[@]}" "$*"
+			else
+				tmux split-window "$DIR" "${CWD_ARG[@]}"
+			fi
+			;;
+		window)
+			CWD_ARG=()
+			[ -n "$TSH_CWD" ] && CWD_ARG=(-c "$TSH_CWD")
+			if [ -n "$*" ]; then
+				tmux new-window "${CWD_ARG[@]}" "$*"
+			else
+				tmux new-window "${CWD_ARG[@]}"
+			fi
+			;;
+		popup)
+			CWD_ARG=()
+			[ -n "$TSH_CWD" ] && CWD_ARG=(-d "$TSH_CWD")
+			tmux display-popup -E -w 90% -h 90% -x C -y C "${CWD_ARG[@]}" "${*:-$SHELL}"
+			;;
+		run)
+			CWD_ARG=()
+			[ -n "$TSH_CWD" ] && CWD_ARG=(-c "$TSH_CWD")
+			tmux new-window "${CWD_ARG[@]}" "$*"
+			;;
+		*)
+			# Unknown verb → pass raw to tmux
+			tmux "$VERB" "$@"
+			;;
+	esac
+fi

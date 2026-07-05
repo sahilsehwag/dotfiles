@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+# tmux-relay <verb> [options] [CMD]
+#
+# Sends tmux commands into the remote tmux session
+# running inside the current SSH pane.
+# The remote tmux handles splits/windows/popups — they live there.
+
+PLUGIN_DIR="$(cd "$(dirname "$0")/.." && pwd)"
+source "$PLUGIN_DIR/lib/context.sh"
+
+PANE_ID=$(tmux display-message -p '#{pane_id}')
+VERB="$1"
+shift
+
+# Sends: tmux <args>  into the current pane's stdin
+remote_tmux() {
+	tmux send-keys -t "$PANE_ID" "tmux $*" Enter
+}
+
+case "$VERB" in
+	split)
+		DIR="$1"
+		shift
+		if [ -n "$*" ]; then
+			remote_tmux "split-window $DIR '$*'"
+		else
+			remote_tmux "split-window $DIR"
+		fi
+		;;
+	window)
+		if [ -n "$*" ]; then
+			remote_tmux "new-window '$*'"
+		else
+			remote_tmux "new-window"
+		fi
+		;;
+	popup)
+		remote_tmux "display-popup -E -w 90% -h 90% -x C -y C '${*:-\$SHELL}'"
+		;;
+	run)
+		remote_tmux "new-window '$*'"
+		;;
+	*)
+		# Raw relay: tmux-relay <any tmux command>
+		remote_tmux "$VERB $*"
+		;;
+esac

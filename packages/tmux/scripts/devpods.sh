@@ -16,7 +16,16 @@ case "$1" in
 	ssh)
 		name="$2" region_dns="$3"
 		fqdn="$(fqdn "$name" "$region_dns")"
-		tmux new-window -n "dp:$name" "ssh $fqdn"
+
+		# Route through tmux-ssh (portal mode) if the plugin is present:
+		# create the window, tag it with @ssh_host so splits/windows/popups
+		# spawn fresh SSH sessions into the devpod. Fall back to plain ssh.
+		if [[ -x "$HOME/.config/tmux/plugins/tmux-ssh/bin/tmux-ssh" ]]; then
+			win="$(tmux new-window -P -F '#{window_id}' -n "dp:$name" "ssh $fqdn")"
+			tmux set-window-option -t "$win" @ssh_host "$fqdn"
+		else
+			tmux new-window -n "dp:$name" "ssh $fqdn"
+		fi
 		;;
 
 	info)
