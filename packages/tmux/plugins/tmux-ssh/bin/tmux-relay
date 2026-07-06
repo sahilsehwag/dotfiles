@@ -12,62 +12,76 @@ source "$PLUGIN_DIR/lib/context.sh"
 VERB="$1"
 shift
 
-# Run a tmux command on the REMOTE tmux server via SSH.
-# BatchMode + reused ControlMaster keeps this fast. Targets the remote
-# server's current client (the session attached in this SSH pane).
-remote_tmux() {
-	ssh -o BatchMode=yes -o ConnectTimeout=8 "$TSH_HOST" "tmux $*" 2>/dev/null
+# Shell-quote one string: wrap in single quotes, escaping embedded ' as '\''.
+_tsh_shq() {
+	printf "'%s'" "$(printf '%s' "$1" | sed "s/'/'\\\\''/g")"
 }
+
+# Run a tmux command on the REMOTE tmux server via SSH.
+# Each tmux argument is passed separately and individually shell-quoted, then
+# joined — so the remote shell receives one clean "tmux ..." command with the
+# user's command (incl. nested quotes like zsh -ic 'oc') preserved verbatim.
+# BatchMode + reused ControlMaster keeps this fast.
+remote_tmux() {
+	local remote_cmd="tmux"
+	local a
+	for a in "$@"; do
+		remote_cmd="$remote_cmd $(_tsh_shq "$a")"
+	done
+	ssh -o BatchMode=yes -o ConnectTimeout=8 "$TSH_HOST" "$remote_cmd" 2>/dev/null
+}
+
+# Remote pane cwd expression — expanded by the REMOTE tmux against its own
+# active pane, so new splits/windows inherit the remote directory.
+RCWD='#{pane_current_path}'
 
 case "$VERB" in
 	split)
 		DIR="$1"
 		shift
-		# The remote tmux expands #{pane_current_path} against its own active
-		# pane, so the new split inherits the remote pane's directory.
 		if [ -n "$*" ]; then
-			remote_tmux "split-window $DIR -c '#{pane_current_path}' '$*'"
+			remote_tmux split-window "$DIR" -c "$RCWD" "$*"
 		else
-			remote_tmux "split-window $DIR -c '#{pane_current_path}'"
+			remote_tmux split-window "$DIR" -c "$RCWD"
 		fi
 		;;
 	window)
 		if [ -n "$*" ]; then
-			remote_tmux "new-window -c '#{pane_current_path}' '$*'"
+			remote_tmux new-window -c "$RCWD" "$*"
 		else
-			remote_tmux "new-window -c '#{pane_current_path}'"
+			remote_tmux new-window -c "$RCWD"
 		fi
 		;;
 	popup)
-		remote_tmux "display-popup -E -w 90% -h 90% -x C -y C -d '#{pane_current_path}' '${*:-\$SHELL}'"
+		remote_tmux display-popup -E -w 90% -h 90% -x C -y C -d "$RCWD" "${*:-\$SHELL}"
 		;;
 	run)
-		remote_tmux "new-window -c '#{pane_current_path}' '$*'"
+		remote_tmux new-window -c "$RCWD" "$*"
 		;;
 	kill)
-		remote_tmux "kill-pane"
+		remote_tmux kill-pane
 		;;
 	kill-other)
-		remote_tmux "kill-pane -a"
+		remote_tmux kill-pane -a
 		;;
 	kill-window)
-		remote_tmux "kill-window"
+		remote_tmux kill-window
 		;;
 	kill-session)
-		remote_tmux "kill-session"
+		remote_tmux kill-session
 		;;
 	select)
 		DIR="$1"
 		shift
-		remote_tmux "select-pane $DIR"
+		remote_tmux select-pane "$DIR"
 		;;
 	resize)
 		DIR="$1"
 		shift
-		remote_tmux "resize-pane $DIR ${1:-5}"
+		remote_tmux resize-pane "$DIR" "${1:-5}"
 		;;
 	*)
 		# Raw relay: tmux-relay <any tmux command>
-		remote_tmux "$VERB $*"
+		remote_tmux "$VERB" "$@"
 		;;
 esac

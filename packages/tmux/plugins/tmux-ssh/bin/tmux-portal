@@ -109,27 +109,29 @@ _tsh_resolve_dir() {
 
 RESOLVED_DIR="$(_tsh_resolve_dir)"
 
-# Escape a value for safe embedding inside a single-quoted string:
-#   foo'bar → foo'\''bar
-_tsh_sq() { printf "%s" "$1" | sed "s/'/'\\\\''/g"; }
+# Shell-quote a string: wrap in single quotes, escaping embedded ' as '\''.
+# Result is a safe single argument for a POSIX shell (and for ssh -t's remote
+# shell). e.g.  foo'bar  →  'foo'\''bar'
+_tsh_shq() {
+	printf "'%s'" "$(printf '%s' "$1" | sed "s/'/'\\\\''/g")"
+}
 
 # Build SSH launch string for a pane.
 # With CMD: cd dir, run cmd, keep shell after.
 # Without: cd dir, shell.
-# The whole remote command is single-quoted for `-t`; the cwd is nested-quoted
-# with '\'' escaping so paths with spaces or quotes survive.
+# The remote payload (cd + cmd + exec) is assembled first, then the WHOLE
+# payload is single-quoted for `ssh -t` with '\'' escaping — so any single
+# quotes in the user's command (e.g. zsh -ic 'oc') or the path survive intact.
 ssh_launch() {
 	local cmd="$1"
-	local cd_prefix=""
-	if [ -n "$RESOLVED_DIR" ]; then
-		cd_prefix="cd '\''$(_tsh_sq "$RESOLVED_DIR")'\'' && "
-	fi
-
+	local payload=""
+	[ -n "$RESOLVED_DIR" ] && payload="cd $(_tsh_shq "$RESOLVED_DIR") && "
 	if [ -n "$cmd" ]; then
-		echo "ssh $TSH_HOST -t '${cd_prefix}${cmd}; exec \$SHELL'"
+		payload="${payload}${cmd}; exec \$SHELL"
 	else
-		echo "ssh $TSH_HOST -t '${cd_prefix}exec \$SHELL'"
+		payload="${payload}exec \$SHELL"
 	fi
+	echo "ssh $TSH_HOST -t $(_tsh_shq "$payload")"
 }
 
 case "$VERB" in
@@ -149,9 +151,10 @@ case "$VERB" in
 		;;
 	run)
 		# No exec $SHELL — pane closes when done
-		cd_prefix=""
-		[ -n "$RESOLVED_DIR" ] && cd_prefix="cd '\''$(_tsh_sq "$RESOLVED_DIR")'\'' && "
-		LAUNCH="ssh $TSH_HOST -t '${cd_prefix}$*'"
+		payload=""
+		[ -n "$RESOLVED_DIR" ] && payload="cd $(_tsh_shq "$RESOLVED_DIR") && "
+		payload="${payload}$*"
+		LAUNCH="ssh $TSH_HOST -t $(_tsh_shq "$payload")"
 		tmux new-window "$LAUNCH"
 		;;
 	kill)
