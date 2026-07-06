@@ -1,28 +1,30 @@
 #!/usr/bin/env bash
 # tmux-relay <verb> [options] [CMD]
 #
-# Sends tmux commands into the remote tmux session
-# running inside the current SSH pane.
-# The remote tmux handles splits/windows/popups — they live there.
+# Drives the REMOTE tmux server directly over SSH: `ssh <host> tmux <cmd>`.
+# This talks to the remote tmux socket — it does NOT fake keystrokes into the
+# pane, so it works no matter what is running in the remote pane (vim, less,
+# a REPL, or a bare shell). The remote tmux resolves splits/nav/cwd natively.
 
 PLUGIN_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 source "$PLUGIN_DIR/lib/context.sh"
 
-PANE_ID=$(tmux display-message -p '#{pane_id}')
 VERB="$1"
 shift
 
-# Sends: tmux <args>  into the current pane's stdin
+# Run a tmux command on the REMOTE tmux server via SSH.
+# BatchMode + reused ControlMaster keeps this fast. Targets the remote
+# server's current client (the session attached in this SSH pane).
 remote_tmux() {
-	tmux send-keys -t "$PANE_ID" "tmux $*" Enter
+	ssh -o BatchMode=yes -o ConnectTimeout=8 "$TSH_HOST" "tmux $*" 2>/dev/null
 }
 
 case "$VERB" in
 	split)
 		DIR="$1"
 		shift
-		# -c '#{pane_current_path}' is expanded by the REMOTE tmux, so the
-		# new split inherits the remote pane's current directory.
+		# The remote tmux expands #{pane_current_path} against its own active
+		# pane, so the new split inherits the remote pane's directory.
 		if [ -n "$*" ]; then
 			remote_tmux "split-window $DIR -c '#{pane_current_path}' '$*'"
 		else
@@ -43,20 +45,26 @@ case "$VERB" in
 		remote_tmux "new-window -c '#{pane_current_path}' '$*'"
 		;;
 	kill)
-		# Relay kill-pane to remote tmux
 		remote_tmux "kill-pane"
 		;;
 	kill-other)
-		# Relay kill-pane -a (kill all other panes) to remote tmux
 		remote_tmux "kill-pane -a"
 		;;
 	kill-window)
-		# Relay kill-window to remote tmux
 		remote_tmux "kill-window"
 		;;
 	kill-session)
-		# Relay kill-session to remote tmux
 		remote_tmux "kill-session"
+		;;
+	select)
+		DIR="$1"
+		shift
+		remote_tmux "select-pane $DIR"
+		;;
+	resize)
+		DIR="$1"
+		shift
+		remote_tmux "resize-pane $DIR ${1:-5}"
 		;;
 	*)
 		# Raw relay: tmux-relay <any tmux command>

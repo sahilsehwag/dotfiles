@@ -167,6 +167,17 @@ case "$VERB" in
 	kill-session)
 		tmux kill-session
 		;;
+	select)
+		# Portal splits are separate local panes → navigate locally.
+		DIR="$1"
+		shift
+		tmux select-pane "$DIR"
+		;;
+	resize)
+		DIR="$1"
+		shift
+		tmux resize-pane "$DIR" "${1:-5}"
+		;;
 	*)
 		echo "tmux-portal: unknown verb '$VERB'" >&2
 		exit 1

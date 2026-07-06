@@ -62,6 +62,18 @@ else
 			[ -n "$TSH_CWD" ] && CWD_ARG=(-c "$TSH_CWD")
 			tmux new-window "${CWD_ARG[@]}" "$*"
 			;;
+		select)
+			# Pane navigation: select -L|-D|-U|-R
+			DIR="$1"
+			shift
+			tmux select-pane "$DIR"
+			;;
+		resize)
+			# Pane resize: resize -L|-D|-U|-R [amount]
+			DIR="$1"
+			shift
+			tmux resize-pane "$DIR" "${1:-5}"
+			;;
 		*)
 			# Unknown verb → pass raw to tmux
 			tmux "$VERB" "$@"
