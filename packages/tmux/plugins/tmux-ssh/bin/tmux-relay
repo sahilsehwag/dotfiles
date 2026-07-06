@@ -42,6 +42,22 @@ case "$VERB" in
 	run)
 		remote_tmux "new-window -c '#{pane_current_path}' '$*'"
 		;;
+	kill)
+		# Relay kill-pane to remote tmux
+		remote_tmux "kill-pane"
+		;;
+	kill-other)
+		# Relay kill-pane -a (kill all other panes) to remote tmux
+		remote_tmux "kill-pane -a"
+		;;
+	kill-window)
+		# Relay kill-window to remote tmux
+		remote_tmux "kill-window"
+		;;
+	kill-session)
+		# Relay kill-session to remote tmux
+		remote_tmux "kill-session"
+		;;
 	*)
 		# Raw relay: tmux-relay <any tmux command>
 		remote_tmux "$VERB $*"

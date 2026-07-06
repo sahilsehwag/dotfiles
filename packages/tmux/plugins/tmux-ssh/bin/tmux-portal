@@ -154,6 +154,19 @@ case "$VERB" in
 		LAUNCH="ssh $TSH_HOST -t '${cd_prefix}$*'"
 		tmux new-window "$LAUNCH"
 		;;
+	kill)
+		# Local pane op — the SSH session is a local tmux pane.
+		tmux kill-pane
+		;;
+	kill-other)
+		tmux kill-pane -a
+		;;
+	kill-window)
+		tmux unlink-window -k
+		;;
+	kill-session)
+		tmux kill-session
+		;;
 	*)
 		echo "tmux-portal: unknown verb '$VERB'" >&2
 		exit 1

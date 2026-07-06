@@ -45,6 +45,18 @@ else
 			[ -n "$TSH_CWD" ] && CWD_ARG=(-d "$TSH_CWD")
 			tmux display-popup -E -w 90% -h 90% -x C -y C "${CWD_ARG[@]}" "${*:-$SHELL}"
 			;;
+		kill)
+			tmux kill-pane
+			;;
+		kill-other)
+			tmux kill-pane -a
+			;;
+		kill-window)
+			tmux unlink-window -k
+			;;
+		kill-session)
+			tmux kill-session
+			;;
 		run)
 			CWD_ARG=()
 			[ -n "$TSH_CWD" ] && CWD_ARG=(-c "$TSH_CWD")
