@@ -10,6 +10,7 @@ source $script_directory/workflows/arc.sh
 source $script_directory/workflows/arh.sh
 source $script_directory/workflows/uber.sh
 source $script_directory/workflows/projects.sh
+source $script_directory/workflows/tmux.sh
 
 # tools
 source $script_directory/cheat.sh
