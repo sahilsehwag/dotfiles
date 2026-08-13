@@ -33,7 +33,7 @@ fonts=(font-fira-code)
 apps=(fzf zsh tmux nvim vifm lazygit kanata pi)
 misc=(terminfo)
 ai=(cursor cursor-agent claude opencode agent-browser oh-my-pi fallow)
-skills=(visual-plan visual-recap mattpocock-skills plannotator)
+skills=(visual-plan visual-recap mattpocock-skills plannotator adhd diagram-design)
 mcps=(chrome-devtools-mcp codebase-memory-mcp)
 mac=(
 	alacritty #warp
