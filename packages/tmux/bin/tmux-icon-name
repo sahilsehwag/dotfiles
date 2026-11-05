@@ -9,16 +9,17 @@ case $paneCmd in
 		echo ""
 		;;
 	fish | zsh | bash)
-		echo ""
+		echo "$(basename "$panePath")"
 		;;
 	nvim | vim | lvim)
 		echo " $(basename $panePath)"
 		;;
 	lf | lfcd | ranger | vifm)
-		echo ""
+		echo " $(basename "$panePath")"
 		;;
 	lazygit | git)
-		echo "שׂ"
+		repoRoot=$(git -C "$panePath" rev-parse --show-toplevel 2>/dev/null || echo "$panePath")
+		echo "󰊢 $(basename "$repoRoot")"
 		;;
 	node)
 		echo ""

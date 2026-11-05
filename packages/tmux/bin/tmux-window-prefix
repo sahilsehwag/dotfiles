@@ -1,0 +1,87 @@
+#!/usr/bin/env bash
+# cSpell:words esac autossh mosh devpod
+
+# Prints "<icon> " if the pane's process tree runs a remote session or an AI CLI.
+# Falls back to a console icon for plain shells.
+# With --suffix, prints " (<ai status icon>)" for AI panes instead.
+# Usage: tmux-window-prefix [--suffix] <pane_pid> [pane_current_command] [ai_status]
+
+suffix=0
+[ "$1" = "--suffix" ] && suffix=1 && shift
+panePid="$1"
+paneCmd="$2"
+aiStatus="$3"
+[ -z "$panePid" ] && exit 0
+
+botIcon="󰙴"
+remoteIcon="󰆧"
+shellIcon="󰆍"
+waitingIcon="󰂚"
+workingIcon="󰔟"
+doneIcon="󰄬"
+
+result=$(ps -o pid=,ppid=,command= -ax 2>/dev/null | awk -v root="$panePid" '
+	{
+		pid = $1; ppid[pid] = $2
+		line = $0
+		sub(/^[ \t]*[0-9]+[ \t]+[0-9]+[ \t]+/, "", line)
+		cmd[pid] = line
+		kids[$2] = kids[$2] " " pid
+	}
+	END {
+		n = 1; q[1] = root; remote = 0; ai = 0
+		while (idx++ < n) {
+			p = q[idx]
+			c = cmd[p]
+			nt = split(c, t, /[ \t]+/)
+			exe = t[1]; sub(/.*\//, "", exe)
+			args = c
+			# wrapper interpreters: use the script name as exe
+			if (exe ~ /^(bash|sh|zsh|python[0-9.]*|node|ruby)$/ && nt > 1) {
+				s = t[2]; sub(/.*\//, "", s)
+				if (exe != "node" && exe !~ /^(bash|sh|zsh)$/) s = ""
+				if (s != "" && s !~ /^-/) wrapped = s; else wrapped = ""
+			} else wrapped = ""
+			for (k = 1; k <= 2; k++) {
+				e = (k == 1) ? exe : wrapped
+				if (e == "") continue
+				if (e ~ /^(ssh|mosh|mosh-client|mosh-server|et|autossh)$/) remote = 1
+				if (e == "devpod" && args ~ / ssh( |$)/) remote = 1
+				if (e ~ /^(claude|codex|aifx|aider|gemini|opencode|crush|goose|omp|oh-my-pi|cursor-agent|amp)$/) ai = 1
+				if (e ~ /^[0-9]+\.[0-9]+\.[0-9]+([-+][0-9A-Za-z.-]+)?$/) ai = 1
+			}
+			if (exe == "node" && args ~ /(claude|codex|@anthropic-ai|@openai\/codex)/) ai = 1
+			# git spawns ssh for fetch/push (e.g. lazygit auto-fetch), skip its subtree
+			if (exe == "git") continue
+			m = split(kids[p], ch, " ")
+			for (i = 1; i <= m; i++) if (!(ch[i] in seen)) { seen[ch[i]] = 1; q[++n] = ch[i] }
+		}
+		if (remote) print "remote"; else if (ai) print "ai"
+	}
+')
+
+if [ $suffix = 1 ]; then
+	[ "$result" != "ai" ] && exit 0
+	case $aiStatus in
+		waiting) echo " ($waitingIcon)" ;;
+		working) echo " ($workingIcon)" ;;
+		*) echo " ($doneIcon)" ;;
+	esac
+	exit 0
+fi
+
+case $result in
+	remote)
+		echo "${remoteIcon} "
+		;;
+	ai)
+		echo "${botIcon} "
+		;;
+	*)
+		case $paneCmd in
+			zsh | bash | fish | sh)
+				echo "${shellIcon} "
+				;;
+		esac
+		;;
+esac
